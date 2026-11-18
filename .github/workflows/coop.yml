@@ -76,6 +76,12 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: cooper-game-${{ inputs.build }}
-          path: ${{ inputs.build == 'web' && 'dist/coop' || 'dist/CooperCamp.zip' }}
+          path: |
+            ${{ inputs.build == 'web' && 'dist/coop' || 'dist/CooperCamp.zip' }}
+            LICENSE
+            THIRD_PARTY_NOTICES.md
+            coop/sky-assets.LICENSE.txt
+            coop/fonts/APACHE-2.0.txt
+            coop/fonts/NOTICE.txt
           if-no-files-found: error
           retention-days: 14

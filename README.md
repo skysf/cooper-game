@@ -4,7 +4,7 @@ Cooper Game 是一款 Godot 第一人称林地合作生存样片。1–4 人可�
 
 ## 试玩
 
-房主需要 Node.js 24 和 Godot 4.7.2。可以从 [Actions](https://github.com/skysf/cooper-game/actions/workflows/coop.yml) 下载 Web 构建并解压到 `dist/coop/`，或安装 Python 3、NumPy 和 Pillow 后运行 `npm run coop:build:web` 生成。
+房主需要 Node.js 24 和 Godot 4.7.2。可以从 [Actions](https://github.com/skysf/cooper-game/actions/workflows/coop.yml) 下载 Web 构建，将包内的 `dist/coop/` 放入项目的同名目录。自行构建可安装 Python 3、NumPy 和 Pillow，然后运行 `npm run coop:build:web`。
 
 在项目根目录运行 `npm run coop:lan`，然后打开[本机营地](http://localhost:4184/coop/?room=pine)。朋友使用终端打印的同网地址加入。
 
