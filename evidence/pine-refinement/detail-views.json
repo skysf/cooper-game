@@ -1,0 +1,371 @@
+{
+  "chip": "Apple M1",
+  "memoryGiB": 16,
+  "size": [
+    1280,
+    720
+  ],
+  "target": {
+    "id": "trail-mature",
+    "x": 2.18,
+    "z": -72.63,
+    "height": 6.16
+  },
+  "sampleMs": 0,
+  "builds": {
+    "before": {
+      "pckSha256": "9f65f1c0a3182bf97a4d96b4bb62dc43564a961afcac909b509266c1647827d3",
+      "pckBytes": 3679300,
+      "pckGzipBytes": 3609529,
+      "wasmGzipBytes": 10185394
+    },
+    "after": {
+      "pckSha256": "b8c55313aeb22a53748e5afbac11c5659f3294f5e423214f3e168e49ae9b7f97",
+      "pckBytes": 4139304,
+      "pckGzipBytes": 4065647,
+      "wasmGzipBytes": 10185394
+    }
+  },
+  "detailViews": true,
+  "runs": [
+    {
+      "label": "before",
+      "weather": "clear",
+      "station": "roots",
+      "distance": 2.2,
+      "camera": {
+        "eyeHeight": 1.67,
+        "yaw": 0.9240500000000001,
+        "pitch": -0.4504,
+        "x": 3.936998122104044,
+        "z": -71.30600694906549
+      },
+      "movementX": -467,
+      "movementY": 256,
+      "detail": null,
+      "scene": {
+        "x": 3.93699812889099,
+        "z": -71.3060073852539,
+        "yaw": 0.92405,
+        "pitch": -0.4504,
+        "elapsed": 54.8949113333332,
+        "groveElapsed": 54.8157446666665,
+        "rain": 0,
+        "grove": [
+          {
+            "height": 4.94003343333332,
+            "id": "camp-sapling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.02,
+            "id": "trail-young",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.16,
+            "id": "trail-mature",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 4.29978008999999,
+            "id": "creek-seedling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.23,
+            "id": "camp-birch",
+            "species": "birch",
+            "stage": "mature"
+          },
+          {
+            "height": 6.09,
+            "id": "trail-spruce",
+            "species": "spruce",
+            "stage": "mature"
+          },
+          {
+            "height": 6.58,
+            "id": "trail-birch",
+            "species": "birch",
+            "stage": "mature"
+          }
+        ],
+        "resident": 3,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "foreground": true
+      },
+      "screenshot": "before-roots-clear.png"
+    },
+    {
+      "label": "after",
+      "weather": "clear",
+      "station": "roots",
+      "distance": 2.2,
+      "camera": {
+        "eyeHeight": 1.67,
+        "yaw": 0.9240500000000001,
+        "pitch": -0.4504,
+        "x": 3.936998122104044,
+        "z": -71.30600694906549
+      },
+      "movementX": -467,
+      "movementY": 256,
+      "detail": "LOD0",
+      "scene": {
+        "x": 3.93699812889099,
+        "z": -71.3060073852539,
+        "yaw": 0.92405,
+        "pitch": -0.4504,
+        "elapsed": 54.7361476666665,
+        "groveElapsed": 54.6161476666665,
+        "rain": 0,
+        "grove": [
+          {
+            "height": 4.92149942619046,
+            "id": "camp-sapling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.02,
+            "id": "trail-young",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "detail": "LOD0",
+            "height": 6.16,
+            "id": "trail-mature",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 4.28309948357141,
+            "id": "creek-seedling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.23,
+            "id": "camp-birch",
+            "species": "birch",
+            "stage": "mature"
+          },
+          {
+            "height": 6.09,
+            "id": "trail-spruce",
+            "species": "spruce",
+            "stage": "mature"
+          },
+          {
+            "height": 6.58,
+            "id": "trail-birch",
+            "species": "birch",
+            "stage": "mature"
+          }
+        ],
+        "resident": 3,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "foreground": true
+      },
+      "screenshot": "after-roots-clear.png"
+    },
+    {
+      "label": "after",
+      "weather": "clear",
+      "station": "open-far",
+      "distance": 23,
+      "camera": {
+        "eyeHeight": 1.67,
+        "yaw": 0.9240500000000001,
+        "pitch": 0.1,
+        "x": 20.548616731087733,
+        "z": -58.78825446750288
+      },
+      "movementX": -467,
+      "movementY": 0,
+      "detail": "LOD2",
+      "scene": {
+        "x": 20.5486164093018,
+        "z": -58.7882537841797,
+        "yaw": 0.92405,
+        "pitch": 0.1,
+        "elapsed": 55.0298863333331,
+        "groveElapsed": 54.9898863333331,
+        "rain": 0,
+        "grove": [
+          {
+            "height": 4.95620373095236,
+            "id": "camp-sapling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.02,
+            "id": "trail-young",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "detail": "LOD2",
+            "height": 6.16,
+            "id": "trail-mature",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 4.31433335785712,
+            "id": "creek-seedling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.58,
+            "id": "trail-birch",
+            "species": "birch",
+            "stage": "mature"
+          },
+          {
+            "height": 4.0897393077857,
+            "id": "crossing-spruce",
+            "species": "spruce",
+            "stage": "mature"
+          }
+        ],
+        "resident": 3,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "foreground": true
+      },
+      "screenshot": "after-open-far-clear.png"
+    },
+    {
+      "label": "before",
+      "weather": "clear",
+      "station": "open-far",
+      "distance": 23,
+      "camera": {
+        "eyeHeight": 1.67,
+        "yaw": 0.9240500000000001,
+        "pitch": 0.1,
+        "x": 20.548616731087733,
+        "z": -58.78825446750288
+      },
+      "movementX": -467,
+      "movementY": 0,
+      "detail": null,
+      "scene": {
+        "x": 20.5486164093018,
+        "z": -58.7882537841797,
+        "yaw": 0.92405,
+        "pitch": 0.1,
+        "elapsed": 54.7750829999998,
+        "groveElapsed": 54.6551829999998,
+        "rain": 0,
+        "grove": [
+          {
+            "height": 4.92512413571427,
+            "id": "camp-sapling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.02,
+            "id": "trail-young",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.16,
+            "id": "trail-mature",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 4.28636172214284,
+            "id": "creek-seedling",
+            "species": "pine",
+            "stage": "mature"
+          },
+          {
+            "height": 6.58,
+            "id": "trail-birch",
+            "species": "birch",
+            "stage": "mature"
+          },
+          {
+            "height": 4.06456483564284,
+            "id": "crossing-spruce",
+            "species": "spruce",
+            "stage": "mature"
+          }
+        ],
+        "resident": 3,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "foreground": true
+      },
+      "screenshot": "before-open-far-clear.png"
+    }
+  ],
+  "date": "2026-11-18T10:22:01.564Z"
+}

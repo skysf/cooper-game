@@ -1,0 +1,77 @@
+{
+  "edition": "a",
+  "renderer": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "width": 1280,
+    "height": 720
+  },
+  "initial": {
+    "x": -0.3,
+    "y": 1.67,
+    "z": 5,
+    "yaw": -0.004049977856842919,
+    "pitch": -0.09,
+    "time": 0.039900000095367434,
+    "wet": 0,
+    "drops": 780,
+    "speed": 15,
+    "wetRoad": 0.47,
+    "wetRock": 0.52,
+    "darken": 0.13
+  },
+  "walked": {
+    "x": -0.30326589321570296,
+    "y": 1.67,
+    "z": 4.193606613406644,
+    "yaw": -0.004049977856842919,
+    "pitch": -0.09,
+    "time": 0.5199000000953674,
+    "wet": 0,
+    "drops": 780,
+    "speed": 15,
+    "wetRoad": 0.47,
+    "wetRock": 0.52,
+    "darken": 0.13
+  },
+  "looked": {
+    "x": -0.30326589321570296,
+    "y": 1.67,
+    "z": 4.193606613406644,
+    "yaw": 1.458950022143157,
+    "pitch": 0.1806,
+    "time": 0.5608000001907348,
+    "wet": 0,
+    "drops": 780,
+    "speed": 15,
+    "wetRoad": 0.47,
+    "wetRock": 0.52,
+    "darken": 0.13
+  },
+  "blocked": {
+    "x": 2.032,
+    "y": 1.67,
+    "z": 2.0855120001602168,
+    "yaw": 0,
+    "pitch": 0,
+    "time": 4.079900000095369,
+    "wet": 0,
+    "drops": 780,
+    "speed": 15,
+    "wetRoad": 0.47,
+    "wetRock": 0.52,
+    "darken": 0.13
+  },
+  "rock": {
+    "type": "rock",
+    "x": 2.032,
+    "z": 0.8,
+    "r": 0.956
+  },
+  "esc": true,
+  "weatherCycle": true,
+  "profiles": [
+    "base",
+    "storm"
+  ]
+}

@@ -1,0 +1,6 @@
+TrailSans.otf is a subset of Source Han Sans CN Regular.
+Copyright © 2014 Adobe Systems Incorporated. All rights reserved.
+The original font file identifies its license as Apache License, Version 2.0.
+Modifications: retained glyphs used by the game HUD and renamed the subset.
+Source family: https://github.com/adobe-fonts/source-han-sans
+See APACHE-2.0.txt.

@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://textures/bark_diff.jpg" id="1"]
+[ext_resource type="Texture2D" path="res://textures/bark_nor_gl.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://textures/bark_arm.jpg" id="3"]
+
+[resource]
+vertex_color_use_as_albedo = true
+roughness = 1.0
+albedo_texture = ExtResource("1")
+normal_enabled = true
+normal_scale = 0.76
+normal_texture = ExtResource("2")
+roughness_texture = ExtResource("3")
+roughness_texture_channel = 1
+ao_enabled = true
+ao_light_affect = 0.6
+ao_texture = ExtResource("3")
+texture_filter = 5

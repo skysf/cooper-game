@@ -1,0 +1,215 @@
+{
+  "engine": "4.7.2-stable (official)",
+  "failures": [],
+  "mode": "headless Godot editor, native HTTPRequest, single terrain instance; no browser/GPU memory measurement",
+  "observations": [
+    {
+      "at": "camp",
+      "nodes": 109.0,
+      "objects": 1773.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp"
+      ],
+      "resources": 27.0,
+      "round": 0.0,
+      "staticMemoryBytes": 55433733.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 1.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 2.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 3.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 4.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 5.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 6.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 7.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 8.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 9.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 10.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 11.0,
+      "staticMemoryBytes": 57311459.0
+    },
+    {
+      "at": "camp",
+      "nodes": 117.0,
+      "objects": 1795.0,
+      "orphanNodes": 0.0,
+      "resident": [
+        "approach",
+        "camp",
+        "creek"
+      ],
+      "resources": 27.0,
+      "round": 12.0,
+      "staticMemoryBytes": 57311459.0
+    }
+  ],
+  "peakResident": 3,
+  "releasedObjectIDs": {
+    "materials": 538,
+    "meshes": 538,
+    "nodes": 613
+  },
+  "requestedRounds": 12,
+  "routeZPerRound": [
+    -78.0,
+    -70.0,
+    -61.0,
+    -53.0,
+    -45.0,
+    -36.0,
+    -26.0,
+    -17.0,
+    -26.0,
+    -36.0,
+    -45.0,
+    -53.0,
+    -61.0,
+    -70.0,
+    -78.0,
+    -85.0
+  ],
+  "url": "http://localhost:4184/coop/zones/",
+  "utc": "2026-11-18T05:06:45"
+}

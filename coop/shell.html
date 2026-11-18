@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#152320"><title>雨线营地 · 林地合作生存</title><link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}body{margin:0;color:#e2e6d4;background:#0c1412;font:14px -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}main{height:100dvh;display:grid;place-items:center}canvas{display:block;width:min(100vw,177.778vh);height:min(56.25vw,100vh);outline:none}
+#loader{position:fixed;inset:0;display:grid;align-content:center;justify-content:center;background:radial-gradient(ellipse at 55% 85%,#2e483e,#172621 65%,#111b18)}.sheet{width:min(390px,84vw)}.over{font:11px Menlo,monospace;letter-spacing:.21em;color:#cfdb9a}h1{font:500 46px "Songti SC",Georgia,serif;margin:10px 0}p{line-height:1.8}progress{width:100%;height:4px;accent-color:#c4d187}#fresh{position:fixed;bottom:55px;right:24px;background:#14211fd9;color:#d5dfc7;padding:5px 10px;border:1px solid #899d8366;border-radius:4px;font-size:12px;text-decoration:none}[hidden]{display:none!important}
+#inviteLink{position:fixed;background:#e2e6d4;color:#14231b;border:1px solid #9aa990;border-radius:3px;padding:0 8px;font:14px -apple-system,sans-serif}
+</style></head><body><main><canvas id="canvas" width="1280" height="720" tabindex="0" aria-label="雨线营地"></canvas></main><section id="loader"><div class="sheet"><span class="over">COOPER FOREST</span><h1>雨线营地</h1><p>沿溪谷找木料，在瞭望塔取回防水布，一起赶回营地修屋。</p><progress id="bar"></progress><p id="phase" aria-live="polite">正在打开营地…</p></div></section><a hidden id="fresh">另开营地</a><input hidden readonly id="inviteLink" aria-label="房间邀请链接，可复制">
+<script src="$GODOT_URL"></script><script>
+const canvas=document.getElementById('canvas'), box=document.getElementById('loader'),phase=document.getElementById('phase'),fresh=document.getElementById('fresh');
+const room=new URLSearchParams(location.search).get('room')||'pine';
+const startNew=()=> 'camp-'+Array.from(crypto.getRandomValues(new Uint8Array(4)),v=>v.toString(16).padStart(2,'0')).join('');
+fresh.href='?room='+startNew();
+window.CooperJoin={url:(location.protocol==='https:'?'wss://':'ws://')+location.host+'/room',room,token:'',pointerLocked:false,backpackOpen:false,inviteVisible:false,zoneBase:location.origin+'/coop/zones/'};
+const inviteLink=document.getElementById('inviteLink');
+CooperJoin.setBackpackOpen=open=>{
+  CooperJoin.backpackOpen=open;
+  fresh.hidden=open||CooperJoin.pointerLocked;
+  if(open){
+    inviteLink.hidden=true;
+    CooperJoin.inviteVisible=false;
+    canvas.focus({preventScroll:true});
+  }
+};
+function placeInviteLink(){
+  const state=window.CooperStatus;
+  if(inviteLink.hidden || !state) return;
+  const rect=canvas.getBoundingClientRect(), [x,y,w,h]=state.panelRect;
+  const sx=rect.width/state.viewport[0], sy=rect.height/state.viewport[1];
+  Object.assign(inviteLink.style,{left:(rect.left+(x+16)*sx)+'px',top:(rect.top+(y+h-49)*sy)+'px',width:((w-32)*sx)+'px',height:(34*sy)+'px'});
+}
+window.addEventListener('resize',placeInviteLink);
+inviteLink.addEventListener('click',()=>inviteLink.select());
+// Fetch already decodes HTTP Content-Encoding before exposing arrayBuffer().
+CooperJoin.fetchZone = function(url) {
+  const ticket = {done:false, bytes:null, error:''};
+  const abort = new AbortController();
+  const timeout = setTimeout(() => abort.abort(), 30000);
+  fetch(url, {signal:abort.signal}).then(response => {
+    if (!response.ok) throw Error('HTTP '+response.status);
+    return response.arrayBuffer();
+  }).then(bytes => {ticket.bytes=bytes;})
+    .catch(error => {ticket.error=String(error);})
+    .finally(() => {clearTimeout(timeout);ticket.done=true;});
+  return ticket;
+};
+
+const config=$GODOT_CONFIG;
+config.canvas=canvas;config.canvasResizePolicy=0;
+// HTTP LAN pages lack AudioWorklet, which the Godot audio driver requires.
+if(!Engine.isAudioWorkletAvailable()) config.args=[...(config.args||[]),'--audio-driver','Dummy'];
+config.onProgress=(loaded,total)=>{const bar=document.getElementById('bar');if(total>0){bar.max=total;bar.value=loaded;}phase.textContent='正在载入游戏 · '+(loaded/1048576).toFixed(1)+' MiB';};
+if(!/^[a-z0-9_-]{1,24}$/.test(room)){
+ phase.textContent='房间名可用 1–24 位小写字母、数字、下划线或短横线。';fresh.hidden=false;
+}else{
+ const start=async()=>{
+   let origin=location.origin;
+   if(['localhost','127.0.0.1','[::1]'].includes(location.hostname)){
+     try{const data=await (await fetch('/health')).json();origin=data.advertised||origin;}catch{}
+   }
+   CooperJoin.inviteUrl=origin+'/coop/?room='+encodeURIComponent(room);
+   await new Engine(config).startGame();
+ };
+ start().then(()=>{
+   const wait=setInterval(()=>{if(!window.CooperStatus)return;clearInterval(wait);box.hidden=true;fresh.hidden=!!document.pointerLockElement;},80);
+ }).catch(err=>{phase.textContent='载入失败 · '+err;});
+}
+canvas.addEventListener('click',event=>{
+  const state=window.CooperStatus;
+  if(!state?.ready || document.pointerLockElement || !box.hidden || CooperJoin.backpackOpen || state.backpackOpen) return;
+  const rect=canvas.getBoundingClientRect();
+  const x=(event.clientX-rect.left)*state.viewport[0]/rect.width;
+  const y=(event.clientY-rect.top)*state.viewport[1]/rect.height;
+  const inside=r=>r && x>=r[0] && y>=r[1] && x<r[0]+r[2] && y<r[1]+r[3];
+  if(inside(state.inviteRect)){
+    inviteLink.value=CooperJoin.inviteUrl;
+    inviteLink.hidden=false;
+    CooperJoin.inviteVisible=true;
+    placeInviteLink();
+    inviteLink.focus();
+    inviteLink.select();
+    navigator.clipboard?.writeText(CooperJoin.inviteUrl).catch(()=>{});
+    return;
+  }
+  if(inside(state.panelRect) && !inside(state.enterRect)) return;
+  canvas.focus();
+  const request=canvas.requestPointerLock();
+  request?.catch(err=>console.warn('Pointer lock:',err.message));
+});
+document.addEventListener('pointerlockchange',()=>{
+  CooperJoin.pointerLocked=document.pointerLockElement===canvas;
+  fresh.hidden=CooperJoin.pointerLocked||CooperJoin.backpackOpen;
+  if(CooperJoin.pointerLocked){inviteLink.hidden=true;CooperJoin.inviteVisible=false;}
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape' && document.pointerLockElement===canvas) document.exitPointerLock();
+  if(event.code==='Tab' && !event.altKey && !event.ctrlKey && !event.metaKey && event.target===canvas && window.CooperStatus?.ready && window.CooperStatus?.survival?.bag) event.preventDefault();
+});
+</script></body></html>

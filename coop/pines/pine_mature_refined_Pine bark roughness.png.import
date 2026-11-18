@@ -1,0 +1,43 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b5jpfem51gtri"
+path="res://.godot/imported/pine_mature_refined_Pine bark roughness.png-a738e5c4be888576db2d37c3f58f894a.ctex"
+metadata={
+"vram_texture": false
+}
+generator_parameters={
+"md5": "5769a35e527b356b2a3e1f9474e66d2d"
+}
+
+[deps]
+
+source_file="res://pines/pine_mature_refined_Pine bark roughness.png"
+dest_files=["res://.godot/imported/pine_mature_refined_Pine bark roughness.png-a738e5c4be888576db2d37c3f58f894a.ctex"]
+
+[params]
+
+compress/mode=1
+compress/high_quality=false
+compress/lossy_quality=0.84
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

@@ -1,0 +1,81 @@
+name: Co-op CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: Optional playable build
+        type: choice
+        options: [none, web, macos]
+        default: web
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Godot headless tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Install Godot
+        run: bash scripts/install-ci-godot.sh
+      - name: Import game assets
+        run: |
+          "$GODOT_BIN" --headless --path coop --import 2>&1 | tee "$RUNNER_TEMP/godot-import.log"
+          if grep -Eq '(^ERROR:|SCRIPT ERROR:|Parse Error:)' "$RUNNER_TEMP/godot-import.log"; then
+            exit 1
+          fi
+        shell: bash
+      - name: Smoke-test survival and client interactions
+        run: |
+          "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-survival.gd" -- "$(mktemp -d "$RUNNER_TEMP/survival.XXXXXX")"
+          "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-feedback.gd"
+      - name: Test multiplayer rooms and persistence
+        run: npm run coop:test
+
+  build:
+    name: Build ${{ inputs.build }} client
+    if: github.event_name == 'workflow_dispatch' && inputs.build != 'none'
+    needs: test
+    runs-on: ${{ inputs.build == 'macos' && 'macos-15' || 'ubuntu-24.04' }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v6
+        if: inputs.build == 'web'
+        with:
+          python-version: '3.13'
+      - name: Install Godot
+        run: bash scripts/install-ci-godot.sh
+      - name: Build web client and map chunks
+        if: inputs.build == 'web'
+        run: |
+          python3 -m pip install numpy Pillow
+          npm run coop:build:web
+      - name: Build and archive macOS client
+        if: inputs.build == 'macos'
+        run: |
+          node scripts/godot.mjs coop-native
+          ditto -c -k --keepParent dist/coop-native/CooperCamp.app dist/CooperCamp.zip
+      - name: Upload playable build
+        uses: actions/upload-artifact@v6
+        with:
+          name: cooper-game-${{ inputs.build }}
+          path: ${{ inputs.build == 'web' && 'dist/coop' || 'dist/CooperCamp.zip' }}
+          if-no-files-found: error
+          retention-days: 14

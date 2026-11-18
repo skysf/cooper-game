@@ -1,0 +1,20 @@
+{
+  "transport": "Godot headless server + Node WebSocket clients over loopback",
+  "checks": {
+    "staleSocketTakeover": true,
+    "roomLimit": 4,
+    "rangeAndPrerequisites": true,
+    "serverSpeedBound": true,
+    "simultaneousPickupAwards": 1,
+    "reconnectIdentityAndPose": true,
+    "independentRooms": true,
+    "sharedRoof": true,
+    "stormReachedByBoth": true,
+    "restartStateAndClock": {
+      "before": 66.0417222222199,
+      "after": 66.0583888888866
+    },
+    "halfOpenSnapshotTimeout": true,
+    "godotClientReconnectAndPrediction": true
+  }
+}

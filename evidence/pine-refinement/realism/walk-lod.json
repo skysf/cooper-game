@@ -1,0 +1,371 @@
+{
+  "browser": "157.0.8103.79",
+  "target": {
+    "x": 2.18,
+    "z": -72.63,
+    "id": "trail-mature"
+  },
+  "publishingIntervalMs": 250,
+  "records": [
+    {
+      "route": "near-middle",
+      "samples": [
+        {
+          "ms": 18.5,
+          "distance": 6.200001358247684,
+          "x": 7.12790155410767,
+          "z": -68.8939208984375,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 329.2000002861023,
+          "distance": 7.14632019411741,
+          "x": 7.88311100006104,
+          "z": -68.3236770629883,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 691.5999999046326,
+          "distance": 8.414180401162284,
+          "x": 8.89492797851562,
+          "z": -67.5596771240234,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 1055.8000001907349,
+          "distance": 9.67464387797616,
+          "x": 9.90084075927734,
+          "z": -66.8001327514648,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 1416,
+          "distance": 11.07442925369822,
+          "x": 11.01793384552,
+          "z": -65.9566268920898,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 1773.0999999046326,
+          "distance": 11.239369256164766,
+          "x": 11.1495609283447,
+          "z": -65.8572311401367,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 2134.2000002861023,
+          "distance": 10.14535941353522,
+          "x": 10.2764921188354,
+          "z": -66.5164794921875,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 2496.0999999046326,
+          "distance": 8.886032698145337,
+          "x": 9.27149105072021,
+          "z": -67.2753448486328,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 2857.4000000953674,
+          "distance": 7.49019787390613,
+          "x": 8.15754508972168,
+          "z": -68.1164627075195,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 3216.2000002861023,
+          "distance": 6.228739886305369,
+          "x": 7.1508412361145,
+          "z": -68.8766098022461,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 3575.0999999046326,
+          "distance": 6.020721090110184,
+          "x": 6.98482656478882,
+          "z": -69.001953125,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        }
+      ],
+      "start": 5006.900000095367,
+      "size": [
+        1280,
+        720
+      ],
+      "edges": [
+        {
+          "ms": 18.5,
+          "distance": 6.200001358247684,
+          "x": 7.12790155410767,
+          "z": -68.8939208984375,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 1055.8000001907349,
+          "distance": 9.67464387797616,
+          "x": 9.90084075927734,
+          "z": -66.8001327514648,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 3216.2000002861023,
+          "distance": 6.228739886305369,
+          "x": 7.1508412361145,
+          "z": -68.8766098022461,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD0",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        }
+      ]
+    },
+    {
+      "route": "middle-far",
+      "samples": [
+        {
+          "ms": 16,
+          "distance": 16.000000699524946,
+          "x": 14.9487781524658,
+          "z": -62.9885101318359,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 332.7999997138977,
+          "distance": 16.879090131738327,
+          "x": 15.6503295898438,
+          "z": -62.4587707519531,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 607.7999997138977,
+          "distance": 17.991191654860895,
+          "x": 16.5378360748291,
+          "z": -61.7886199951172,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 974.5999999046326,
+          "distance": 19.257385627630953,
+          "x": 17.5483169555664,
+          "z": -61.0256156921387,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 1335.0999999046326,
+          "distance": 20.517388329830663,
+          "x": 18.5538539886475,
+          "z": -60.2663383483887,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 1692.9000000953674,
+          "distance": 20.73819944955846,
+          "x": 18.7300682067871,
+          "z": -60.1332740783691,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 2045.9000000953674,
+          "distance": 19.568669610277958,
+          "x": 17.7967376708984,
+          "z": -60.8380393981934,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 2414,
+          "distance": 18.30872869471066,
+          "x": 16.7912521362305,
+          "z": -61.597282409668,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 2772.5999999046326,
+          "distance": 17.048685562516226,
+          "x": 15.7856817245483,
+          "z": -62.3565826416016,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 3124.5,
+          "distance": 15.788734007334725,
+          "x": 14.780179977417,
+          "z": -63.1158218383789,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 3491,
+          "distance": 15.521335305541507,
+          "x": 14.566780090332,
+          "z": -63.2769508361816,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        }
+      ],
+      "start": 3558.9000000953674,
+      "size": [
+        1280,
+        720
+      ],
+      "edges": [
+        {
+          "ms": 16,
+          "distance": 16.000000699524946,
+          "x": 14.9487781524658,
+          "z": -62.9885101318359,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 974.5999999046326,
+          "distance": 19.257385627630953,
+          "x": 17.5483169555664,
+          "z": -61.0256156921387,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD2",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        },
+        {
+          "ms": 3124.5,
+          "distance": 15.788734007334725,
+          "x": 14.780179977417,
+          "z": -63.1158218383789,
+          "yaw": 0.92405,
+          "pitch": 0.1,
+          "detail": "LOD1",
+          "stage": "mature",
+          "height": 6.16,
+          "foreground": true
+        }
+      ]
+    }
+  ]
+}

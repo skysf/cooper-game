@@ -1,0 +1,7 @@
+CAMP_LIGHT 0.0 day sun_y=0.79040908813477 rain=0.0
+CAMP_LIGHT 80.0 day sun_y=0.43911975622177 rain=1.0
+CAMP_LIGHT 117.0 dusk sun_y=0.05428456142545 rain=0.03429355281207
+CAMP_LIGHT 149.0 night sun_y=-0.27865487337112 rain=0.0
+CAMP_LIGHT 250.0 night sun_y=-0.58516627550125 rain=0.0
+CAMP_LIGHT 420.0 day sun_y=0.79040908813477 rain=0.0
+CAMP_ENVIRONMENT_OK: dock, stone contention, press, grind, cut, throw, water impact, checkpoint, reload, asset instances, daylight, rain and night

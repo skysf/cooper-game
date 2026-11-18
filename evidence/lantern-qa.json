@@ -1,0 +1,83 @@
+{
+  "room": "lantern-88f7869d",
+  "url": "http://localhost:4184/coop/?room=lantern-88f7869d",
+  "checkedAt": "2026-11-18T09:37:19.039Z",
+  "mode": "headed Chrome",
+  "warmStart": {
+    "elapsed": 12,
+    "groveStartedAt": 0
+  },
+  "errors": [],
+  "warnings": [],
+  "chrome": "157.0.8103.79",
+  "packETag": "\"3609529-1794994627348\"",
+  "godot": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org",
+  "off": {
+    "path": "evidence/lantern-off.png",
+    "buffer": [
+      1280,
+      720
+    ],
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "pose": [
+      3.9300000667572,
+      -86.1600036621094,
+      -0.3509,
+      0.24835
+    ],
+    "quest": {
+      "repaired": false,
+      "tarp": true,
+      "wood": true
+    },
+    "members": 1,
+    "rain": 0,
+    "elapsed": 14.4673247777779,
+    "zone": "camp",
+    "terrainError": "",
+    "locked": true,
+    "shellOverlaysHidden": true,
+    "captureRetries": 0
+  },
+  "repair": {
+    "controls": [
+      "W",
+      "E"
+    ],
+    "walkedMeters": 2.2199480388524244,
+    "distanceBefore": 3.811820671970317,
+    "distanceAtInteraction": 1.6084634053624531,
+    "notice": "屋顶已修复，营灯亮了",
+    "persisted": true,
+    "replicatedToObserver": true
+  },
+  "on": {
+    "path": "evidence/lantern-on.png",
+    "buffer": [
+      1280,
+      720
+    ],
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "pose": [
+      3.9300000667572,
+      -86.1600036621094,
+      -0.3509,
+      0.24835
+    ],
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "members": 1,
+    "rain": 0,
+    "elapsed": 22.7171781111109,
+    "zone": "camp",
+    "terrainError": "",
+    "locked": true,
+    "shellOverlaysHidden": true,
+    "captureRetries": 0
+  },
+  "escapeReleasedPointer": true,
+  "ok": true
+}

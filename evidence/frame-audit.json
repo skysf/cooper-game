@@ -1,0 +1,28 @@
+{
+  "b": {
+    "seconds": 5.026800000190735,
+    "engineFrames": 125,
+    "animationFrameCallbacks": 125,
+    "engineFPS": 24.8667144098148,
+    "rafHz": 24.8667144098148,
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "screen": [
+      1280,
+      720
+    ],
+    "visible": "visible"
+  },
+  "a": {
+    "seconds": 5.03510000038147,
+    "engineFrames": 126,
+    "animationFrameCallbacks": 126,
+    "engineFPS": 25.024329207057253,
+    "rafHz": 25.024329207057253,
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "screen": [
+      1280,
+      720
+    ],
+    "visible": "visible"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "scene": "Pine Tree 01 - Trail",
+  "lods": [
+    "LOD0",
+    "LOD1",
+    "LOD2"
+  ],
+  "editableMeshes": 7,
+  "vertexGroups": [
+    "Surface roots",
+    "Forked boughs",
+    "Broken branch collars"
+  ],
+  "packedImageCount": 5,
+  "glbRoundTripBytes": 843880
+}

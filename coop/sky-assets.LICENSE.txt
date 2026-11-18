@@ -1,0 +1,47 @@
+Rainline Camp night sky assets
+
+The Milky Way panorama (eso0932a)
+Credit: ESO/S. Brunier
+License: Creative Commons Attribution 4.0 International
+https://www.eso.org/public/images/eso0932a/
+https://creativecommons.org/licenses/by/4.0/
+
+Original photo: art/sky/eso0932a.jpg. The game texture was resampled
+to 4096 x 2048 and recompressed. The shader projects it onto the sky
+and adjusts the visible brightness according to the time and weather.
+
+CGI Moon Kit, lroc_color_2k.jpg
+Credit: NASA's Scientific Visualization Studio, Ernie Wright (USRA)
+and Noah Petro (NASA/GSFC).
+https://svs.gsfc.nasa.gov/4720/
+
+The 2048 x 1024 NASA color map is included unaltered in the project.
+The shader samples it on the Moon and lights the surface by Sun direction.
+
+Observer star atlas
+
+The 5,044 positions, visible magnitudes and B−V color indices are from the
+Extended Hipparcos Compilation (XHIP), Erik Anderson and Charles Francis,
+via d3-celestial's stars.6.json (Olaf Frohn). The game reprojects and
+rasterizes those measurements into a galactic-coordinate texture.
+
+https://vizier.cds.unistra.fr/cgi-bin/VizieR-3?-source=V%2F137D
+https://arxiv.org/abs/1108.4971
+https://github.com/ofrohn/d3-celestial/blob/master/data/stars.6.json
+https://github.com/ofrohn/d3-celestial/blob/master/LICENSE
+
+d3-celestial, BSD 3-Clause License
+--------------------------------
+
+Copyright (c) 2015, Olaf Frohn
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

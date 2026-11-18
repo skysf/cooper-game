@@ -1,0 +1,29 @@
+{
+  "name": "cooper-woodland-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "scene": "node scripts/build-scene.mjs",
+    "build:a": "node scripts/shell.mjs && npm run scene && tsc --noEmit && vite build",
+    "build:b": "npm run scene && node scripts/godot.mjs",
+    "native": "node scripts/godot.mjs native",
+    "benchmark": "node scripts/benchmark.mjs",
+    "dev": "node scripts/start.mjs",
+    "coop": "node scripts/coop-serve.mjs",
+    "coop:build": "npm run coop:build:web && node scripts/godot.mjs coop-native",
+    "coop:build:web": "python3 scripts/coop-zones.py && node scripts/godot.mjs coop-web && node scripts/pack-coop.mjs",
+    "coop:native": "node scripts/open-camp.mjs",
+    "coop:test": "node scripts/coop-room-test.mjs",
+    "coop:lan": "node scripts/coop-serve.mjs --lan"
+  },
+  "dependencies": {
+    "@babylonjs/core": "8.56.2",
+    "@babylonjs/loaders": "8.56.2"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2",
+    "typescript": "5.9.3",
+    "vite": "6.4.1"
+  }
+}

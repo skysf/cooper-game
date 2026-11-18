@@ -1,0 +1,184 @@
+{
+  "tag": "before",
+  "browser": "157.0.8103.79",
+  "size": [
+    1280,
+    720
+  ],
+  "target": {
+    "x": 0.055,
+    "z": -51.528,
+    "height": 15.933
+  },
+  "pckSha256": "5616fc4b520585931af2f2db2d47e70c3bd90baf52e5fb854aaf89e30271fccf",
+  "chunks": {
+    "approach.glb": "8c5f73b29ced44b813f621981ed0263579f959673aaa1d94e6dc4ca8e85415e0",
+    "backcountry.glb": "11506b8efd3aa5647edd22eadd07aee91116f86d4b19bda82bf182e66f83f312",
+    "camp.glb": "635e85e9f3c7046fb8b7c475b2a99cd179cf464e6f2cf13301c7c36334e388df",
+    "creek.glb": "5f296c56a1700280220743c65ce3833023fc995e51e07da9f737039d4eb8ce79",
+    "crossing.glb": "b4a74a107047d3719a3fa47d7dd6379f6191995f548059d23a399df82a5e9727",
+    "ridge.glb": "a33e7767d3948fe866e8b7f5d06f8a99a4dcebbd25da3b66ca736bd7693a35e3",
+    "tower.glb": "0962d848c0f42cfa16affc39dfb0e30343b55120d8708b85c9d4954988f4e852"
+  },
+  "captures": [
+    {
+      "id": "roots",
+      "room": "forest-qa-207c0870",
+      "camera": {
+        "x": 0.35,
+        "z": -49.7,
+        "yaw": 0.1608,
+        "pitch": -0.5901500000000001
+      },
+      "view": {
+        "x": 0.349999994039536,
+        "z": -49.7000007629395,
+        "yaw": 0.1608,
+        "pitch": -0.59015,
+        "weather": 0,
+        "elapsed": 41.3155659999999,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "foreground": true,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "focusZone": "creek",
+        "resident": 3
+      },
+      "file": "before-roots.png",
+      "zoneResponses": [
+        {
+          "name": "camp.glb",
+          "status": 200
+        },
+        {
+          "name": "approach.glb",
+          "status": 200
+        },
+        {
+          "name": "creek.glb",
+          "status": 200
+        },
+        {
+          "name": "crossing.glb",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "branches",
+      "room": "forest-qa-5c9e33e1",
+      "camera": {
+        "x": 0.34,
+        "z": -48.28,
+        "yaw": 0.08769999999999999,
+        "pitch": 0.23975000000000002
+      },
+      "view": {
+        "x": 0.340000003576279,
+        "z": -48.2799987792969,
+        "yaw": 0.0877,
+        "pitch": 0.23975,
+        "weather": 0,
+        "elapsed": 40.5186039999999,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "foreground": true,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "focusZone": "creek",
+        "resident": 3
+      },
+      "file": "before-branches.png",
+      "zoneResponses": [
+        {
+          "name": "camp.glb",
+          "status": 200
+        },
+        {
+          "name": "approach.glb",
+          "status": 200
+        },
+        {
+          "name": "creek.glb",
+          "status": 200
+        },
+        {
+          "name": "crossing.glb",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "room": "forest-qa-1a1fcc6f",
+      "camera": {
+        "x": 3.2,
+        "z": -44.5,
+        "yaw": 0.42095,
+        "pitch": 0.11075
+      },
+      "view": {
+        "x": 3.20000004768372,
+        "z": -44.5,
+        "yaw": 0.42095,
+        "pitch": 0.11075,
+        "weather": 0,
+        "elapsed": 40.7708223333333,
+        "viewport": [
+          1280,
+          720
+        ],
+        "drawingBuffer": [
+          1280,
+          720
+        ],
+        "css": [
+          1280,
+          720
+        ],
+        "foreground": true,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "focusZone": "creek",
+        "resident": 3
+      },
+      "file": "before-overview.png",
+      "zoneResponses": [
+        {
+          "name": "camp.glb",
+          "status": 200
+        },
+        {
+          "name": "approach.glb",
+          "status": 200
+        },
+        {
+          "name": "creek.glb",
+          "status": 200
+        },
+        {
+          "name": "crossing.glb",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

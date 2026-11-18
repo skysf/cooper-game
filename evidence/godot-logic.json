@@ -1,0 +1,15 @@
+{
+  "automaticLodThreshold": 0.0,
+  "eyeHeight": 1.66999995708466,
+  "horizontalFov": 78.0000063108279,
+  "materialsUsingVertexColor": 10,
+  "mode": "headless logic and import",
+  "ok": true,
+  "rainVisible": true,
+  "rockClearanceMeasured": 1.24600028991699,
+  "rockClearanceRequired": 1.246,
+  "stormRoughness": {
+    "mud": 0.230000004172325,
+    "rock": 0.370000004768372
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-18T06:16:41.855Z",
+  "pose": [
+    -0.8,
+    -70.5
+  ],
+  "runs": [
+    {
+      "label": "before",
+      "weather": "clear",
+      "frames": 197,
+      "fps": 24.503706652072243,
+      "p95Ms": 41.70000000000073,
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+      "yaw": -0.08,
+      "pitch": 0.1,
+      "rain": 0,
+      "elapsed": 10.4378046666668
+    },
+    {
+      "label": "after",
+      "weather": "clear",
+      "frames": 200,
+      "fps": 24.995313378741486,
+      "p95Ms": 41.69999999999982,
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+      "yaw": -0.08,
+      "pitch": 0.1,
+      "rain": 0,
+      "elapsed": 10.0022683333334,
+      "grove": [
+        {
+          "height": 1.23274965476191,
+          "id": "camp-sapling",
+          "stage": "young"
+        },
+        {
+          "height": 2.98595041738096,
+          "id": "trail-young",
+          "stage": "young"
+        },
+        {
+          "height": 6.16,
+          "id": "trail-mature",
+          "stage": "mature"
+        },
+        {
+          "height": 0.98572468928572,
+          "id": "creek-seedling",
+          "stage": "young"
+        }
+      ],
+      "groveElapsed": 9.96226833333341
+    },
+    {
+      "label": "before",
+      "weather": "rain",
+      "frames": 197,
+      "fps": 24.625307816347703,
+      "p95Ms": 41.899999999999636,
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+      "yaw": -0.08,
+      "pitch": 0.1,
+      "rain": 1,
+      "elapsed": 100.253209333333
+    },
+    {
+      "label": "after",
+      "weather": "rain",
+      "frames": 199,
+      "fps": 24.875310941386765,
+      "p95Ms": 41.80000000000018,
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+      "yaw": -0.08,
+      "pitch": 0.1,
+      "rain": 1,
+      "elapsed": 100.228085666666,
+      "grove": [
+        {
+          "height": 7,
+          "id": "camp-sapling",
+          "stage": "mature"
+        },
+        {
+          "height": 6.02,
+          "id": "trail-young",
+          "stage": "mature"
+        },
+        {
+          "height": 6.16,
+          "id": "trail-mature",
+          "stage": "mature"
+        },
+        {
+          "height": 6.3,
+          "id": "creek-seedling",
+          "stage": "mature"
+        }
+      ],
+      "groveElapsed": 100.188085666666
+    }
+  ],
+  "chrome": "157.0.8103.79",
+  "cycle": [
+    {
+      "time": 0.965778666666668,
+      "tree": {
+        "height": 0.601741392,
+        "id": "camp-sapling",
+        "stage": "sapling"
+      },
+      "pose": [
+        4.44999980926514,
+        -75.6999969482422,
+        -0.08,
+        0.1
+      ],
+      "locked": false
+    },
+    {
+      "time": 19.1657786666669,
+      "tree": {
+        "height": 1.95588260952383,
+        "id": "camp-sapling",
+        "stage": "young"
+      },
+      "pose": [
+        4.44999980926514,
+        -75.6999969482422,
+        -0.08,
+        0.1
+      ],
+      "locked": false
+    },
+    {
+      "time": 48.1588586666652,
+      "tree": {
+        "height": 4.32189401904748,
+        "id": "camp-sapling",
+        "stage": "mature"
+      },
+      "pose": [
+        4.44999980926514,
+        -75.6999969482422,
+        -0.08,
+        0.1
+      ],
+      "locked": false
+    }
+  ],
+  "lateJoin": {
+    "members": 2,
+    "time": 51.8212952222207,
+    "tree": {
+      "height": 4.66197741349192,
+      "id": "camp-sapling",
+      "stage": "mature"
+    }
+  }
+}

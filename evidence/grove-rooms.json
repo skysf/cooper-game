@@ -1,0 +1,26 @@
+{
+  "transport": "Godot headless server + Node WebSocket clients over loopback",
+  "checks": {
+    "staleSocketTakeover": true,
+    "roomLimit": 4,
+    "rangeAndPrerequisites": true,
+    "serverSpeedBound": true,
+    "simultaneousPickupAwards": 1,
+    "reconnectIdentityAndPose": true,
+    "independentRooms": true,
+    "sharedRoof": true,
+    "stormReachedByBoth": true,
+    "groveClock": {
+      "legacyAnchor": 142,
+      "before": 0.366666666666958,
+      "after": 0.366666666666987,
+      "legacyPositionCorrection": 0.5000020498319123
+    },
+    "restartStateAndClock": {
+      "before": 66.0854909999976,
+      "after": 66.118824333331
+    },
+    "halfOpenSnapshotTimeout": true,
+    "godotClientReconnectAndPrediction": true
+  }
+}

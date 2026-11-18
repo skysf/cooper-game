@@ -1,0 +1,188 @@
+{
+  "chrome": "157.0.8103.79",
+  "date": "2026-11-18T06:47:54.584Z",
+  "trees": 8,
+  "shots": [
+    {
+      "name": "trail",
+      "species": [
+        {
+          "height": 4.72539657222222,
+          "id": "camp-sapling",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.02,
+          "id": "trail-young",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.16,
+          "id": "trail-mature",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 4.10660691499999,
+          "id": "creek-seedling",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.23,
+          "id": "camp-birch",
+          "species": "birch",
+          "stage": "mature"
+        },
+        {
+          "height": 6.09,
+          "id": "trail-spruce",
+          "species": "spruce",
+          "stage": "mature"
+        },
+        {
+          "height": 6.58,
+          "id": "trail-birch",
+          "species": "birch",
+          "stage": "mature"
+        }
+      ],
+      "hint": "",
+      "rain": 0,
+      "pose": [
+        1.45000004768372,
+        -85.6999969482422,
+        -3.14159265358979,
+        0.1602
+      ],
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)"
+    },
+    {
+      "name": "birch",
+      "species": [
+        {
+          "height": 4.65416615714285,
+          "id": "camp-sapling",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.02,
+          "id": "trail-young",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.16,
+          "id": "trail-mature",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 4.04249954142856,
+          "id": "creek-seedling",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.23,
+          "id": "camp-birch",
+          "species": "birch",
+          "stage": "mature"
+        },
+        {
+          "height": 6.09,
+          "id": "trail-spruce",
+          "species": "spruce",
+          "stage": "mature"
+        },
+        {
+          "height": 6.58,
+          "id": "trail-birch",
+          "species": "birch",
+          "stage": "mature"
+        }
+      ],
+      "hint": "白桦 · 成树",
+      "rain": 0,
+      "pose": [
+        -4,
+        -84.3000030517578,
+        -0.37455,
+        0.26985
+      ],
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)"
+    },
+    {
+      "name": "spruce",
+      "species": [
+        {
+          "height": 7,
+          "id": "camp-sapling",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.02,
+          "id": "trail-young",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.16,
+          "id": "trail-mature",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.3,
+          "id": "creek-seedling",
+          "species": "pine",
+          "stage": "mature"
+        },
+        {
+          "height": 6.23,
+          "id": "camp-birch",
+          "species": "birch",
+          "stage": "mature"
+        },
+        {
+          "height": 6.09,
+          "id": "trail-spruce",
+          "species": "spruce",
+          "stage": "mature"
+        },
+        {
+          "height": 6.58,
+          "id": "trail-birch",
+          "species": "birch",
+          "stage": "mature"
+        }
+      ],
+      "hint": "云杉 · 成树",
+      "rain": 1,
+      "pose": [
+        -1.54999995231628,
+        -74.6999969482422,
+        -0.08,
+        0.1
+      ],
+      "buffer": [
+        1280,
+        720
+      ],
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)"
+    }
+  ],
+  "errors": []
+}

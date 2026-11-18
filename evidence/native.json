@@ -1,0 +1,27 @@
+{
+  "build": "Godot 4.7.2.stable.official.ed1daf0bf macOS universal release",
+  "launch": "macOS LaunchServices, windowed",
+  "renderer": "OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1",
+  "profile": "base",
+  "routeSeconds": 60,
+  "startupDefinition": "Godot process clock to first rendered frame",
+  "sampleDefinition": "Godot frame_post_draw intervals from monotonic engine ticks, before display presentation",
+  "recordedAt": "2026-11-18T04:30:30.000824+00:00",
+  "adapter": "Apple M1",
+  "engine_ms": 4097.767,
+  "viewport": [
+    1280,
+    720
+  ],
+  "wet_materials": 2,
+  "clear": {
+    "fps": 108.695333347022,
+    "frames": 3261,
+    "p95_ms": 14.777
+  },
+  "rain": {
+    "fps": 119.21434709247,
+    "frames": 3534,
+    "p95_ms": 14.733
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "scene": {
+    "connected": true,
+    "elapsed": 54.9266103333332,
+    "enterRect": [
+      46,
+      584,
+      94,
+      37
+    ],
+    "focusReady": true,
+    "grove": [
+      {
+        "height": 4.94661381666665,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 4.30570243499999,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 54.8866103333332,
+    "groveHint": "松树 · 成树",
+    "inviteRect": [
+      150,
+      584,
+      94,
+      37
+    ],
+    "inviteShown": false,
+    "locked": true,
+    "members": 1,
+    "nearby": "",
+    "notice": "",
+    "noticeNo": 0,
+    "panelRect": [
+      31,
+      466,
+      500,
+      220
+    ],
+    "pitch": 0.1,
+    "players": {
+      "f4e73acb68a78c38": {
+        "slot": 1,
+        "x": 1.90029859542847,
+        "yaw": -0.08,
+        "z": -69.1411972045898
+      }
+    },
+    "quest": {
+      "repaired": false,
+      "tarp": false,
+      "wood": false
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 0,
+    "resident": 3,
+    "room": "trunk-8882ced9",
+    "selfId": "f4e73acb68a78c38",
+    "sheltered": false,
+    "status": "已连接 · trunk-8882ced9",
+    "target": "wood",
+    "terrainError": "",
+    "viewport": [
+      1280,
+      720
+    ],
+    "x": 1.90029859542847,
+    "yaw": -0.08,
+    "z": -69.1411972045898,
+    "zone": "creek"
+  },
+  "buffer": [
+    1280,
+    720
+  ],
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)"
+}

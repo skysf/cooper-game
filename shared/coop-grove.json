@@ -1,0 +1,18 @@
+{
+  "secondsPerYear": 5,
+  "species": {
+    "pine": { "label": "松树", "modelPrefix": "res://pines/pine" },
+    "birch": { "label": "白桦", "modelPrefix": "res://trees/birch" },
+    "spruce": { "label": "云杉", "modelPrefix": "res://trees/spruce" }
+  },
+  "trees": [
+    { "id": "camp-sapling", "x": 4.55, "z": -80.4, "yaw": 0.7, "initialAge": 0.6, "size": 1.0, "radius": 0.16 },
+    { "id": "trail-young", "x": 3.25, "z": -76.45, "yaw": 3.03, "initialAge": 6.3, "size": 0.86, "radius": 0.14 },
+    { "id": "trail-mature", "x": 2.18, "z": -72.63, "yaw": 1.8, "initialAge": 15.0, "size": 0.88, "radius": 0.14 },
+    { "id": "creek-seedling", "x": -6.65, "z": -64.6, "yaw": 4.26, "initialAge": 0.25, "size": 0.9, "radius": 0.14 },
+    { "id": "camp-birch", "species": "birch", "x": -1.95, "z": -89.5, "yaw": 0.85, "initialAge": 14.8, "size": 0.89, "radius": 0.16 },
+    { "id": "trail-spruce", "species": "spruce", "x": -1.55, "z": -80.25, "yaw": 2.1, "initialAge": 11.3, "size": 0.87, "radius": 0.19 },
+    { "id": "trail-birch", "species": "birch", "x": 4.25, "z": -77.8, "yaw": 5.35, "initialAge": 6.7, "size": 0.94, "radius": 0.16 },
+    { "id": "crossing-spruce", "species": "spruce", "x": 3.9, "z": -37.3, "yaw": 1.4, "initialAge": 0.8, "size": 0.81, "radius": 0.17 }
+  ]
+}

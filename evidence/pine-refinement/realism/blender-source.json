@@ -1,0 +1,35 @@
+{
+  "scene": "Pine Tree 01 - Trail",
+  "lods": [
+    "LOD0",
+    "LOD1",
+    "LOD2"
+  ],
+  "editableMeshes": 7,
+  "vertexGroups": [
+    "Surface roots",
+    "Forked boughs",
+    "Broken branch collars"
+  ],
+  "packedImageCount": 4,
+  "releasedGlbBytes": 875644,
+  "glbRoundTripBytes": 868620,
+  "geometryAccessorsMatched": 42,
+  "byteIdenticalTextures": [
+    "pine_needles",
+    "Pine bark normal",
+    "Pine bark color"
+  ],
+  "roughnessRoundTrip": {
+    "image": "Pine bark roughness",
+    "dimension": [
+      256,
+      256
+    ],
+    "changedChannel": "green",
+    "releasedPngBytes": 61078,
+    "reopenedPngBytes": 54056,
+    "meanAbsoluteDelta8bit": 1.7564697265625,
+    "maxAbsoluteDelta8bit": 13
+  }
+}
