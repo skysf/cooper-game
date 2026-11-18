@@ -44,7 +44,7 @@ jobs:
         run: npm run coop:test
 
   build:
-    name: Build ${{ inputs.build }} client
+    name: Package client
     if: github.event_name == 'workflow_dispatch' && inputs.build != 'none'
     needs: test
     runs-on: ${{ inputs.build == 'macos' && 'macos-15' || 'ubuntu-24.04' }}

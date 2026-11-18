@@ -168,9 +168,14 @@ try{
   assert.ok(Math.abs(legacy.state.groveElapsed-legacyFriend.state.groveElapsed)<.3);
   const savedGroveAge=legacy.state.groveElapsed;
   await Promise.all([close(legacy),close(legacyFriend)]);
-  await until(()=>logs.some(line=>line.includes('ROOM_LEAVE legacy-grove '+legacyFriend.id)));
+  await until(()=>[legacy,legacyFriend].every(peer=>logs.some(line=>line.includes('ROOM_LEAVE legacy-grove '+peer.id))));
   const migrated=JSON.parse(await readFile(join(tmp,'legacy-grove.json'),'utf8'));
   assert.equal(migrated.groveStartedAt,142);
+  // The snapshot and save serialize elapsed and grove age separately as JSON floats.
+  const clockTolerance=1e-6;
+  const persistedGroveAge=migrated.elapsed-migrated.groveStartedAt;
+  assert.ok(persistedGroveAge+clockTolerance>=savedGroveAge,
+    `Checkpoint regressed the grove clock from ${savedGroveAge} to ${persistedGroveAge}`);
   const interrupted=await connect('handover');
   const continued=await connect('handover',interrupted.token,false,interrupted.session);
   assert.equal(continued.id,interrupted.id);
@@ -218,9 +223,10 @@ try{
   await until(()=>existsSync(join(tmp,'test.json')));
   await stop();await boot();
   const legacyRestored=await connect('legacy-grove',legacy.token);
-  assert.ok(legacyRestored.state.groveElapsed>=savedGroveAge);
-  assert.ok(Math.abs(legacyRestored.state.groveElapsed-(migrated.elapsed-142))<.4);
-  assert.ok(Math.abs(legacyRestored.state.elapsed-legacyRestored.state.groveElapsed-142)<1e-6);
+  const restoredGroveAge=legacyRestored.state.groveElapsed;
+  assert.ok(restoredGroveAge+clockTolerance>=persistedGroveAge && restoredGroveAge-persistedGroveAge<.4,
+    `Restart read grove age ${restoredGroveAge} from persisted age ${persistedGroveAge}`);
+  assert.ok(Math.abs(legacyRestored.state.elapsed-restoredGroveAge-migrated.groveStartedAt)<clockTolerance);
   await close(legacyRestored);
   info.checks.groveClock={legacyAnchor:142,before:savedGroveAge,after:legacyRestored.state.groveElapsed,legacyPositionCorrection:displaced};
   const restored=await connect('test',a.token);
