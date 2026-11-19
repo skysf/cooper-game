@@ -1,21 +1,22 @@
 import {chromium} from 'playwright';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {strict as assert} from 'node:assert';
-const out='evidence', base='http://localhost:'+(process.env.PORT||4173);
+import {browserTestOptions, prepareOffscreenPage} from './coop-browser-controls.mjs';
+const out=process.env.WOOD_TEST_OUT||'evidence', base='http://localhost:'+(process.env.PORT||4173);
 const mode=process.argv[2]||process.env.WOOD_TEST||'bench';
 const editions=(process.env.EDITIONS||'a,b').split(',');
 await mkdir(out,{recursive:true});
-const browser=await chromium.launch({channel:'chrome',headless:false,args:['--window-size=1320,840']});
+const browser=await chromium.launch(browserTestOptions());
 try{
   const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});
   const page=await context.newPage();page.setDefaultTimeout(45000);
-  const devtools=await context.newCDPSession(page);
+  const devtools=await prepareOffscreenPage(page);
   let edition;
   page.on('pageerror',e=>console.error(edition,'page error',e.message));
   page.on('console',m=>{if(m.type()==='error'||m.type()==='warning')console.error(edition,m.type(),m.text().slice(0,500));});
   for(edition of editions){
   async function go(query=''){
-   await page.goto(base+'/'+edition+'/'+query,{waitUntil:'domcontentloaded'});await page.bringToFront();
+   await page.goto(base+'/'+edition+'/'+query,{waitUntil:'domcontentloaded'});
    await page.waitForFunction(()=>window.Wood?.readyMs||window.Wood?.error);
    const d=await page.evaluate(()=>({ready:Wood.readyMs,gpu:Wood.gpu,error:Wood.error}));
    if(d.error)throw Error(d.error);
@@ -23,8 +24,8 @@ try{
    console.log(edition,query,d);
   }
   if(mode==='bench'){
-   // Same Chrome process, window, tab and display for both engines.
-   await page.goto('about:blank');await page.bringToFront();
+   // Reuse the same offscreen browser process and page for both engines.
+   await page.goto('about:blank');
    await devtools.send('Network.clearBrowserCache');
    await devtools.send('Storage.clearDataForOrigin',{origin:base,storageTypes:'all'});
    const idleHz=await page.evaluate(()=>new Promise(resolve=>{
@@ -37,9 +38,9 @@ try{
     const result=await page.evaluate(()=>({...Wood.report,measuredRafHz:1000*window.woodRafCount/((window.woodRafEnd||performance.now())-window.woodRafStart),finalPose:{...Wood.state}}));
     result.blankTabRafHz=idleHz;
     assert.equal(result.hiddenDuringTest,false,'tab was backgrounded');
-    assert.ok(!/swiftshader|llvmpipe|software/i.test(result.gpu.renderer),'hardware renderer required');
     assert.ok(result.rain.frames>0 && result.clear.frames>0);
-    await writeFile(out+'/'+edition+'-'+cache+'.json',JSON.stringify({...result,cache,headed:true,browserVersion:browser.version(),recordedAt:new Date().toISOString()},null,2));
+    await writeFile(out+'/'+edition+'-'+cache+'.json',JSON.stringify({...result,cache,headed:false,timingEligible:false,
+      browserVersion:browser.version(),recordedAt:new Date().toISOString()},null,2));
     console.log(edition,cache,result.clear,result.rain);
    }
   } else {
@@ -54,7 +55,8 @@ try{
    const state=()=>page.evaluate(()=>({...Wood.state}));
    const initial=await state();await page.keyboard.down('w');await page.waitForTimeout(500);await page.keyboard.up('w');
    const walked=await state();assert.ok(Math.hypot(initial.x-walked.x,initial.z-walked.z)>.2);
-   await page.mouse.move(800,450);const looked=await state();assert.ok(looked.yaw!==walked.yaw||looked.pitch!==walked.pitch);
+   await page.evaluate(()=>document.dispatchEvent(new MouseEvent('mousemove',{movementX:70,movementY:5,bubbles:true})));
+   const looked=await state();assert.ok(looked.yaw!==walked.yaw||looked.pitch!==walked.pitch);
    await page.keyboard.press('r');await page.waitForFunction(()=>Wood.state.wet>.99);
    await page.keyboard.press('r');await page.waitForFunction(()=>Wood.state.wet<.01);
    // Stage just outside one rock, then drive through the normal WASD handler.
@@ -68,7 +70,7 @@ try{
    await page.keyboard.press('Escape');await page.waitForTimeout(200);
    const esc=await page.evaluate(()=>!document.pointerLockElement);
    assert.ok(esc,'Esc did not release the pointer');
-   const info={edition,renderer:await page.evaluate(()=>Wood.gpu),initial,walked,looked,blocked,rock,esc,weatherCycle:true,profiles:['base','storm']};
+   const info={edition,headless:true,renderer:await page.evaluate(()=>Wood.gpu),initial,walked,looked,blocked,rock,esc,weatherCycle:true,profiles:['base','storm']};
    await writeFile(out+'/'+edition+'-controls.json',JSON.stringify(info,null,2));
    console.log(edition,'controls',esc?'Esc passed':'Esc needs physical keyboard');
   }

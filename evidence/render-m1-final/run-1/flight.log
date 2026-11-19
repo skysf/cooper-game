@@ -1,0 +1,11 @@
+camp baseline {"avgFps":59.79,"p95Ms":17.4,"worstMs":33.3,"framesOver35ms":0,"engineFpsRange":[30,60],"turnRadians":0}
+scripts/coop-flight-playtest.mjs:37
+  throw new Error('Timed out waiting for '+description);
+        ^
+
+Error: Timed out waiting for relative mouse aim
+    at waitFor (scripts/coop-flight-playtest.mjs:37:9)
+    at async aimAtShip (scripts/coop-flight-playtest.mjs:213:5)
+    at async scripts/coop-flight-playtest.mjs:215:3
+
+Node.js v24.11.1

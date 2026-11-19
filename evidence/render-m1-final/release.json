@@ -1,0 +1,62 @@
+{
+  "releaseSha256": "0cb07374675b0399a65bbe494aa528e63dbfe55d8685995245a4d1271754427f",
+  "web": {
+    "treeSha256": "efd563d522c5ed93b4880bf2aad5fd1f529b542c4a5c8e426d53fad6611a344f",
+    "pckSha256": "1a7c74a05e37e690d9e0df57e154b7ee6e40a6a741e8e6ca2b9fc9675e7fb252",
+    "shellSha256": "50dadf0916c563a7aeb3283ac1a1f4a96ed28ff8dc06a1a36192f54d97ce7c8d",
+    "wasmSha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0",
+    "files": {
+      "index.audio.position.worklet.js": "be33985bc7160d6bf9646f259cd86b259cd67b02ccb297ee5c44f8ac84327bc8",
+      "index.audio.position.worklet.js.gz": "c7a53d0f1404ce5eabd7ed3cafea9f37cefc040aa392399e0b397722b4476024",
+      "index.audio.worklet.js": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3",
+      "index.audio.worklet.js.gz": "fc03b05e43ce17a34d09f260bbca5167eb39fae70a0319952348a47f67c86dbe",
+      "index.html": "50dadf0916c563a7aeb3283ac1a1f4a96ed28ff8dc06a1a36192f54d97ce7c8d",
+      "index.js": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba",
+      "index.js.gz": "8956ab6056e553180cf21c08ac2109611cd3bd26abae0229f905e446424c8def",
+      "index.pck": "1a7c74a05e37e690d9e0df57e154b7ee6e40a6a741e8e6ca2b9fc9675e7fb252",
+      "index.pck.gz": "5f2bc1e9317db7b0b6524cbbe9de68db971fe7e7f0fd3a8db6b32cb97a3df3b1",
+      "index.png": "3cb4495c0b98dfbe4b663cbf2b6836473572339beb66d902367893162a70be0e",
+      "index.wasm": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0",
+      "index.wasm.gz": "ea82ed126577849ce98a4737c1e76ffd378caf2da4ea0942e512784247b8b852",
+      "zones/approach.glb": "83cba37dbc341def2869838c593165805e60165c96ce634ab350f8b2dcdf244e",
+      "zones/approach.glb.gz": "345b855d83496bd3d7b6e29e34b78c6b3c7130c64979310d1d39323db8412879",
+      "zones/backcountry.glb": "a295ee9bcf1861118fa769ba89f0eeb56b8525870e00d1e77369b34abfe56360",
+      "zones/backcountry.glb.gz": "704f15ab21e54d0a15b009118616ac851d4ea2a14a727cf46ae00df0d1c537fb",
+      "zones/camp.glb": "b6043879d935d9121d5f827165dec153c0f6612d026b98d93a9ab7afe0c90403",
+      "zones/camp.glb.gz": "1790f915e09875cac131b6a1599966700c8ff84c493bb0e6fe18ef0dda317498",
+      "zones/creek.glb": "1ce0b7ea25ff195bd9524b54d78346cbd8e28b315864bd53a406ee2611863f00",
+      "zones/creek.glb.gz": "f13cb571b70bc9cc9e06ea99910f2f90bbce6b585d31d3663ad585984cc854f3",
+      "zones/crossing.glb": "6bb8e69ed2e73517448fcc89d7f8c1eb2728f0df8c82b1a9fb8a278e0b4e3afc",
+      "zones/crossing.glb.gz": "e2986feb6ed4ada6faecb5a9edb543d6290e1c641096c16a8ab21daa1134beac",
+      "zones/ridge.glb": "8e8ab1e25c5eafbe2026362cdab5c9efbda91b54355b6453fe887633802809d1",
+      "zones/ridge.glb.gz": "a271dcc489b007a81e395b85cf2125fe8fa7ed4e1677b7357e4e93f3f68619b4",
+      "zones/tower.glb": "589422c091d21a254bfda5a0818255645afa7810c11b6734c2cbca52d58a061f",
+      "zones/tower.glb.gz": "9bc38d703af350ee48f12b9d648fd617905a9ad8cefae1eef080aedfb225570d"
+    }
+  },
+  "native": {
+    "treeSha256": "1ca52b66c18caeb3eb0fe6fd533f3fc049c4edd96b9d53db96556fd7389a0107",
+    "pckSha256": "1a7c74a05e37e690d9e0df57e154b7ee6e40a6a741e8e6ca2b9fc9675e7fb252",
+    "signature": {
+      "Identifier": "local.cooper.raincamp",
+      "CDHash": "c5b3c6f5a9b53c0a4757ace7ce2e522c1ceceed1",
+      "Signature": "adhoc",
+      "TeamIdentifier": "not set"
+    },
+    "signVerification": [
+      "dist/coop-native/CooperCamp.app: valid on disk",
+      "dist/coop-native/CooperCamp.app: satisfies its Designated Requirement"
+    ],
+    "files": {
+      "Contents/Info.plist": "982e0c52e22f83ae64766f12ef518a136e03d4ff4a17bf8c3c3d6946557e5f6a",
+      "Contents/MacOS/雨线营地": "9f7ad20ed065a053d4a918d749b7d5186310a1285de615d1f301503eada1af3b",
+      "Contents/PkgInfo": "7e50a30efad50208a173203ced60818d693bb61266b75aa10927d1a2adce80cb",
+      "Contents/Resources/PrivacyInfo.xcprivacy": "0535353bb08c25b8ce5ed9ac7e442a5994f402e0f6cbc4bed668cfc63c2ceac3",
+      "Contents/Resources/icon.icns": "779ff524928785811d6d4c61f47a26491160b1092db9b610e85fcdfd9b2d2b2a",
+      "Contents/Resources/雨线营地.pck": "1a7c74a05e37e690d9e0df57e154b7ee6e40a6a741e8e6ca2b9fc9675e7fb252",
+      "Contents/_CodeSignature/CodeResources": "755ea8a268264dfa4700be2e885856550befed062b4f52ff483e67e2de9ff251"
+    }
+  },
+  "roomServerSha256": "90319db6bfe77cc1637a42d00f81b29364a5b1e2dc3c0e4e254951714e1a6cb6",
+  "worldManifestSha256": "9b029801a5e87594bc6c6d04ab0adc01a446d9f0668c9b8856293572d25914b7"
+}

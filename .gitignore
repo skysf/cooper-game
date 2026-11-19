@@ -17,6 +17,14 @@ __pycache__/
 
 /art/rocks/
 /art/household/
+/art/vegetation/grass_medium_01_4k/
+/art/vehicles/source/
+/art/animals/source/
+/art/clothing/source/
+/art/characters/sky_head.blend
+/art/characters/sky_head_v2.blend
+/art/characters/sky_head_v2_head_neck.blend
+/evidence/sky-head-likeness.jpg
 /evidence/**/coop-playtest.json
 /evidence/**/coop-playtest-web.json
 /evidence/*web-start.json

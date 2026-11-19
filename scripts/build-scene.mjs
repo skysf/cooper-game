@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {makeGlb} from './glb.mjs';
-import {clamp,lerp,random,trailX} from './scene-math.mjs';
+import {clamp,lerp,random,smooth,trailX} from './scene-math.mjs';
 import {woodlandFirWood} from './coop-fir-wood.mjs';
 
 const forCoop=process.argv.includes('--coop');
@@ -245,12 +245,54 @@ for(let i=0;i<6200;i++){
   const H=between(.06,.29),angle=rng()*TAU;
   for(let j=0;j<4;j++){
     const a=angle+j*1.61,dx=cos(a),dz=sin(a),w=between(.008,.020),l=H*between(.42,1.05);
-    if(hidden)continue;
+    if(forCoop||hidden)continue;
     const start=grass.p.length/3, n=[0,1,0];
     vert(grass,[x-w*dz,.009,z+w*dx],n,[0,0],[.079,.095,.039]);
     vert(grass,[x+w*dz,.009,z-w*dx],n,[1,0],[.085,.102,.047]);
     vert(grass,[x+dx*l,H,z+dz*l],n,[.5,1],[.18,.22,.085]);
     grass.ix.push(start,start+1,start+2);
+  }
+}
+if(forCoop){
+  const grassRng=random(cfg.seed+341), range=(a,b)=>lerp(a,b,grassRng());
+  scene.grass=[];
+  function densityAt(x,z){
+    const ix=Math.floor(x), iz=Math.floor(z), tx=smooth(x-ix), tz=smooth(z-iz);
+    function corner(a,b){
+      let hash=Math.imul(a,0x1f123bb5)^Math.imul(b,0x05491333)^cfg.seed;
+      hash=Math.imul(hash^(hash>>>16),0x045d9f3b);
+      return ((hash^(hash>>>16))>>>0)/4294967296;
+    }
+    return lerp(lerp(corner(ix,iz),corner(ix+1,iz),tx),
+                lerp(corner(ix,iz+1),corner(ix+1,iz+1),tx),tz);
+  }
+  function plant(x,z,meadow=false){
+    const y=groundHeight(x,z);
+    if(abs(x-at(z))<1.46||y<water.waterY+.012||lakeClearing(x,z,1.018))return;
+    if(abs(x-sx)<sw/2+.27&&abs(z-sz)<sd/2+.27)return;
+    if(water.boulders.some(rock=>Math.hypot(x-rock.x,z-rock.z)<rock.radius*.92))return;
+    const density=densityAt(x*.24,z*.24)*.72+densityAt(x*.71+13,z*.71-5)*.28;
+    const coverage=smooth((density-.34)/.34);
+    if(grassRng()>=coverage)return;
+    const shape=grassRng(), clumpThreshold=1-coverage*(meadow ? .33 : .20);
+    const variant=shape<lerp(.46,.14,coverage)?0:shape<clumpThreshold?1:2;
+    const width=variant===2?range(1.00,1.65):range(1.30,2.35);
+    const height=variant===2?range(.82,1.38):range(1.05,1.86);
+    const dry=grassRng()<.14?1:0;
+    scene.grass.push([variant, ...[x,y-.006,z,range(0,TAU),width,height,dry,grassRng()].map(rounded)]);
+  }
+  // Keep the center of the path clear and vary the density across the forest edge.
+  for(let i=0;i<7600;i++){
+    const z=range(-117,12), side=grassRng()<.5?-1:1;
+    plant(edge(z,side)+side*range(.02,5.2),z);
+  }
+  for(let i=0;i<1900;i++){
+    plant(sx+range(-7.5,7.5),sz+range(-5.0,10.0),true);
+  }
+  for(let i=0;i<1480;i++){
+    const angle=range(0,TAU), radius=range(1.015,1.28);
+    plant(water.center[0]+water.radius[0]*cos(angle)*radius,
+          water.center[1]+water.radius[1]*sin(angle)*radius,true);
   }
 }
 // Three-sided trail shelter. The open gable faces the approach.

@@ -1,0 +1,37 @@
+
+> coop:render:benchmark
+> node scripts/coop-render-benchmark.mjs .cache/camp-ui/preview-before dist/coop
+
+Blank tab 60.00 FPS, P95 17.20 ms
+Loading before forest
+before forest 60.00 FPS, P95 17.70 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after forest
+after forest 57.74 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before lake
+before lake 56.75 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after lake
+after lake 60.00 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before lamp
+before lamp 60.00 FPS, P95 17.70 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after lamp
+after lamp 60.01 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before dawn
+before dawn 60.00 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after dawn
+after dawn 60.01 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before inventory
+before inventory 59.88 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after inventory
+after inventory 60.00 FPS, P95 17.60 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before equipment
+before equipment 58.88 FPS, P95 17.40 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after equipment
+after equipment 60.00 FPS, P95 17.20 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before underwater
+before underwater 60.00 FPS, P95 17.40 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after underwater
+after underwater 60.00 FPS, P95 17.30 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading before storm
+before storm 60.00 FPS, P95 17.20 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)
+Loading after storm
+after storm 60.00 FPS, P95 17.30 ms, ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)

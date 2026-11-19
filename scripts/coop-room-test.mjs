@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import net from 'node:net';
 import { tmpdir, homedir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -54,19 +54,20 @@ async function stop() {
   if(process.platform!=='win32')server.kill('SIGCONT');
   server.kill('SIGTERM');await exit;
 }
-async function connect(room='test', token=randomBytes(16).toString('hex'), expectReject=false, session=randomBytes(12).toString('hex')) {
+async function connect(room='test', token=randomBytes(16).toString('hex'), expectReject=false,
+    session=randomBytes(12).toString('hex'), snapshotFlow=false) {
   const ws=new WebSocket('ws://127.0.0.1:'+port);
-  const p={ws,token,session,id:'',state:null,notices:[],reject:null,send:m=>ws.send(JSON.stringify(m))};
+  const p={ws,token,session,id:'',state:null,snapshots:0,notices:[],reject:null,send:m=>ws.send(JSON.stringify(m))};
   allPeers.push(p);
   ws.onopen=()=>{
-    p.send({t:'join',room,token,session});
+    p.send({t:'join',room,token,session,...(snapshotFlow?{snapshotFlow:true}:{})});
     const keepAlive=setInterval(()=>{if(ws.readyState===WebSocket.OPEN)p.send({t:'ping'});},5000);
     ws.addEventListener('close',()=>clearInterval(keepAlive),{once:true});
   };
   ws.onmessage=e=>{
     const m=JSON.parse(e.data);
     if(m.t==='welcome')p.id=m.id;
-    if(m.t==='snapshot')p.state=m;
+    if(m.t==='snapshot'){p.state=m;p.snapshots++;}
     if(m.t==='notice')p.notices.push(m);
     if(m.t==='reject')p.reject=m;
   };
@@ -77,7 +78,7 @@ function here(p){const {x,z}=p.state.players[p.id];return [x,z];}
 const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 async function walk(p,site) {
   const target=manifest.sites[site];
-  const points=findPath(manifest,here(p),target);
+  const points=findPath(manifest,here(p),target,{ship:p.state.ship,feet:p.state.players[p.id].y});
   for(const dest of points){
     const limit=Date.now()+3500+dist(here(p),dest)*650;
     while(dist(here(p),dest)>.32){
@@ -100,6 +101,32 @@ async function close(p){
   p.ws.close();await ended;
 }
 const playerId = (room, token) => createHash('sha256').update(`${room}:${token}`).digest('hex').slice(0,16);
+
+async function checkSnapshotCoalescing() {
+  const room = 'snapshot-flow';
+  const token = randomBytes(16).toString('hex');
+  const id = playerId(room, token);
+  await writeFile(join(tmp, room+'.json'), JSON.stringify({
+    version:1, elapsed:12, quest:{wood:true,tarp:true,repaired:false}, homes:{[id]:{x:1.9,z:-87.55,yaw:0}},
+  }));
+  const stalled = await connect(room, token, false, undefined, true);
+  const oldClient = await connect(room);
+  const first = stalled.state;
+  assert.equal(first.snapshotSeq, 1);
+  assert.equal(oldClient.state.snapshotSeq, undefined);
+  stalled.send({t:'motion',x:0,z:0,yaw:0,snapshotAck:2});
+  const repaired = await act(stalled, 'repair');
+  assert.ok(repaired.ok, 'a notice is delivered even while a snapshot is pending');
+  await until(()=>oldClient.state.quest.repaired);
+  await hold(650);
+  assert.equal(stalled.snapshots, 1, 'a slow renderer can have at most one unconsumed snapshot');
+  stalled.send({t:'motion',x:0,z:0,yaw:0,snapshotAck:first.snapshotSeq});
+  await until(()=>stalled.state.snapshotSeq===2);
+  assert.ok(stalled.state.quest.repaired && stalled.state.elapsed > first.elapsed + 0.5,
+    'the next snapshot contains the current room state rather than a backlog');
+  info.checks.snapshotFlow = {singlePending:true, freshestAfterAck:true, noticesDelivered:true, legacyCompatible:true};
+  await Promise.all([close(stalled),close(oldClient)]);
+}
 
 async function checkStones() {
   const room = 'camp-stones';
@@ -132,19 +159,31 @@ async function checkStones() {
   await until(()=>[a,b,dock].every(peer=>peer.state.lineCut));
   send(other,'drop');
   await agrees('camp-flat',s=>s?.mode==='ground');
+  const drop = await until(() => a.state.stoneSounds?.find(sound=>sound.cue==='stone_earth'));
+  assert.ok(drop.strength<1 && drop.point[1]>=0);
   send(a,'pick',{id:'shore-round'});
   send(dock,'pick',{id:'shore-round'});
   await agrees('shore-round',s=>s?.holder===dock.id);
   send(dock,'throw',{yaw:Math.PI/2,pitch:.09});
   await agrees('shore-round',s=>s?.mode==='air');
+  const launch = await until(() => dock.state.stoneSounds?.find(sound=>sound.cue==='stone_throw'));
+  for(const peer of [a,b]){
+    assert.deepEqual(await until(()=>peer.state.stoneSounds?.find(sound=>sound.id===launch.id)),launch);
+  }
   await agrees('shore-round',s=>s?.mode==='submerged');
   await until(()=>[a,b,dock].every(peer=>peer.state.waterImpacts?.length===1));
   assert.deepEqual(a.state.waterImpacts,dock.state.waterImpacts);
+  const splash=await until(()=>dock.state.stoneSounds?.find(sound=>sound.cue==='stone_water'));
+  assert.ok(splash.id>launch.id);
+  assert.deepEqual(splash.point,dock.state.waterImpacts[0].point);
+  assert.deepEqual(await until(()=>b.state.stoneSounds?.find(sound=>sound.id===splash.id)),splash);
   assert.ok(dock.state.waterImpacts[0].point[0]<positions[2][0]-2);
   const saved = JSON.parse(await readFile(join(tmp,room+'.json'),'utf8'));
   assert.equal(saved.stones['camp-flat'].edge,2);
   assert.equal(saved.lineCut,true);
+  assert.equal(saved.stoneSounds,undefined);
   info.checks.stoneInteractions = {exclusivePickup:true, placedCanvas:true, sharpenedAndCut:true, thrownAndSharedSplash:true};
+  info.checks.stoneAudioEvents = {localDrop:true, sharedLaunch:true, sharedSplash:true, transient:true};
   await Promise.all([close(a),close(b),close(dock)]);
 }
 try{
@@ -156,6 +195,7 @@ try{
     homes:{[legacyId]:{x:planted.x,z:planted.z,yaw:0}},
   }));
   await boot();
+  await checkSnapshotCoalescing();
   await checkStones();
   const legacy=await connect('legacy-grove',legacyToken);
   const legacyFriend=await connect('legacy-grove');
@@ -244,6 +284,15 @@ try{
   const adapterExit=new Promise(done=>adapter.on('exit',(code)=>done(code)));
   const reached=marker=>{if(adapter.exitCode!==null && adapter.exitCode!==0)throw Error(trace);return trace.includes(marker);};
   await until(()=>reached('ROOM_ADAPTER_CHECKPOINT'),15000);
+  assert.ok(trace.includes('ROOM_ADAPTER_RENDER_RESUMED'));
+  info.checks.firstSnapshotSurvivesRenderPause=true;
+  const expectedHome=JSON.parse(trace.match(/ROOM_ADAPTER_CHECKPOINT (\{[^\n]+\})/)[1]);
+  const checkpointPath=join(tmp,'adapter.json');
+  await until(()=>{
+    if(!existsSync(checkpointPath))return false;
+    const home=JSON.parse(readFileSync(checkpointPath,'utf8')).homes[expectedHome.id];
+    return home && dist([home.x,home.z],[expectedHome.x,expectedHome.z])<.45;
+  });
   if(process.platform!=='win32'){
     // Leave TCP open while simulating an access point that drops all game traffic.
     server.kill('SIGSTOP');

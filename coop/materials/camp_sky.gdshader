@@ -1,5 +1,7 @@
 shader_type sky;
 
+#include "res://materials/twilight.gdshaderinc"
+
 uniform sampler2D cloud_noise : repeat_enable, filter_linear_mipmap;
 uniform sampler2D star_catalog : source_color, repeat_enable, filter_linear_mipmap;
 uniform sampler2D milky_way_photo : source_color, repeat_enable, filter_linear_mipmap;
@@ -17,7 +19,6 @@ uniform vec4 sky_horizon : source_color = vec4(0.61, 0.72, 0.75, 1.0);
 uniform vec4 sun_color : source_color = vec4(1.0, 0.84, 0.57, 1.0);
 uniform float star_visibility = 0.0;
 uniform float night_tint = 0.0;
-uniform float sunset = 0.0;
 uniform float cloud_cover = 0.15;
 uniform float rain_amount = 0.0;
 uniform float room_seconds = 0.0;
@@ -84,16 +85,20 @@ vec4 moon_disc(vec3 d) {
 
 vec3 atmosphere(vec3 d) {
 	float height = max(d.y, 0.0);
-	float toward_sun = max(dot(d, sun_direction), 0.0);
+	float scattering_angle = dot(d, sun_direction);
+	float toward_sun = max(scattering_angle, 0.0);
 	float toward_moon = max(dot(d, moon_direction), 0.0);
-	vec3 result = mix(sky_horizon.rgb, sky_zenith.rgb, smoothstep(0.0, 0.76, pow(height, 0.66)));
-	float horizon_mist = exp(-height * 8.8);
+	float air_mass = exp(-height * 4.8);
+	float rayleigh_phase = 0.75 * (1.0 + scattering_angle * scattering_angle);
+	vec3 result = mix(sky_zenith.rgb, sky_horizon.rgb, air_mass);
+	float clear_day = smoothstep(-0.03, 0.26, sun_direction.y) * (1.0 - rain_amount * 0.94);
+	result += vec3(0.15, 0.23, 0.31) * (rayleigh_phase - 0.75) * clear_day * (1.0 - air_mass);
+	result = twilight_color(result, d, sun_direction, 0.0);
 	float aerosols = smoothstep(-0.19, 0.04, sun_direction.y);
 	float wet_shadow = 1.0 - rain_amount * 0.82;
-	float glow = sunset * pow(toward_sun, 8.0) * horizon_mist * wet_shadow;
-	result = mix(result, vec3(0.94, 0.54, 0.20), glow * 0.60);
-	result += vec3(0.75, 0.24, 0.05) * glow * 0.23;
-	result += sun_color.rgb * pow(toward_sun, 34.0) * aerosols * wet_shadow * (0.028 + sunset * 0.16);
+	// A broad aerosol halo joins the narrow glow around the solar disc.
+	result += sun_color.rgb * (pow(toward_sun, 13.0) * twilight * 0.10
+		+ pow(toward_sun, 44.0) * aerosols * wet_shadow * 0.060);
 	float lunar_bloom = max(-dot(sun_direction, moon_direction) * 0.5 + 0.5, 0.0) * smoothstep(-0.03, 0.1, moon_direction.y);
 	if (star_visibility > 0.003 && d.y > -0.04) {
 		float moon_washout = lunar_bloom * (0.19 + 0.46 * pow(toward_moon, 9.0));
@@ -113,36 +118,46 @@ vec3 atmosphere(vec3 d) {
 }
 
 vec3 cloudy_atmosphere(vec3 d, vec3 below) {
+	if (d.y <= -0.015) {
+		return below;
+	}
 	float height = max(d.y, 0.0);
-	vec2 projected = d.xz / (height + 0.21);
-	vec2 drift = vec2(room_seconds * 0.00012, room_seconds * -0.000068);
-	vec2 high_uv = projected * vec2(0.124, 0.254) + drift * 0.52;
-	float high_cloud = noise_field(high_uv + vec2(0.38, 0.83)) * 0.72 + noise_field(high_uv * 2.48 + vec2(0.08, 0.34)) * 0.28;
-	float high_alpha = smoothstep(0.51 - cloud_cover * 0.11, 0.76, high_cloud) * (0.34 + cloud_cover * 0.12);
-	float rise = smoothstep(-0.035, 0.12, d.y);
-	float solar_side = pow(max(dot(d, sun_direction), 0.0), 4.2);
-	float glowing_clouds = sunset * solar_side * (1.0 - rain_amount * 0.82);
-	vec3 lit_cloud = mix(vec3(0.65, 0.73, 0.78), vec3(0.94, 0.46, 0.24), glowing_clouds * 0.84);
-	vec3 dark_cloud = sky_horizon.rgb * 0.77 + vec3(0.009, 0.011, 0.018);
-	vec3 high_color = mix(lit_cloud, dark_cloud, night_tint);
-	vec3 result = mix(below, high_color, high_alpha * rise);
+	float horizon = smoothstep(-0.015, 0.19, d.y);
+	float toward_sun = max(dot(d, sun_direction), 0.0);
+	float warm_clouds = twilight * mix(0.18, 1.0, pow(toward_sun, 3.5));
+	vec3 shade = mix(vec3(0.56, 0.62, 0.69), vec3(0.50, 0.39, 0.43), warm_clouds);
+	vec3 highlight = mix(vec3(0.96, 0.96, 0.94), vec3(1.0, 0.72, 0.49), warm_clouds);
+	vec3 night_cloud = sky_horizon.rgb * 0.75 + vec3(0.009, 0.011, 0.018);
 
-	vec2 uv = projected * vec2(0.152, 0.229) + drift + vec2(0.26, 0.47);
+	// Separate wind and perspective for thin high clouds and thicker low clouds.
+	vec2 high_wind = vec2(0.00032, 0.00014) * room_seconds;
+	vec2 high_uv = d.xz / (height + 0.24) * vec2(0.17, 0.26) + high_wind + vec2(0.42, 0.67);
+	float high_mass = noise_field(high_uv);
+	float threads = noise_field(high_uv * vec2(1.8, 2.7) + high_mass * 0.14);
+	float high_alpha = smoothstep(0.51, 0.76, high_mass * 0.66 + threads * 0.34);
+	vec3 high_color = mix(highlight, night_cloud, night_tint);
+	vec3 result = mix(below, high_color, high_alpha * horizon * (0.29 - evening_weight * 0.26));
+
+	vec2 wind = vec2(0.00055, -0.00024) * room_seconds;
+	vec2 projected = d.xz / (height + 0.18);
+	vec2 uv = projected * 0.125 + wind + vec2(0.27, 0.66);
+	float local_cover = noise_field(projected * 0.063 + wind + vec2(0.55, 0.33));
 	float body = noise_field(uv);
-	float masses = body * 0.61 + noise_field(uv * 2.78 + vec2(0.79, 0.16)) * 0.27;
-	float fine = noise_field(uv * 6.15 + vec2(0.33, 0.58));
-	float shape = masses + fine * 0.12;
-	float edge = mix(0.61, 0.27, cloud_cover);
-	float thickness = smoothstep(edge - 0.05, edge + 0.18, shape);
-	thickness = mix(thickness, 0.93, rain_amount * 0.51);
-	float edge_light = clamp((noise_field(uv - sun_direction.xz * 0.031) - body) * 5.5 + 0.28, 0.0, 1.0);
-	vec3 rim = mix(vec3(0.81, 0.85, 0.86), vec3(1.0, 0.53, 0.25), glowing_clouds * 0.86);
-	vec3 underside = mix(vec3(0.36, 0.44, 0.52), vec3(0.23, 0.28, 0.33), rain_amount);
-	vec3 cumulus = mix(underside, rim, edge_light * (1.0 - rain_amount * 0.78));
-	cumulus = mix(cumulus, sky_zenith.rgb * 1.05, rain_amount * 0.44);
-	cumulus = mix(cumulus, dark_cloud * (0.73 + edge_light * 0.57), night_tint);
-	float coverage = thickness * mix(0.76, 0.965, cloud_cover) * rise;
-	return mix(result, cumulus, coverage);
+	float billows = noise_field(uv * 2.65 + vec2(0.79, 0.16));
+	float wisps = noise_field(uv * 6.4 + vec2(0.33, 0.58));
+	float shape = body * 0.53 + billows * 0.35 + wisps * 0.12;
+	float base = mix(0.62, 0.36, cloud_cover) + (0.5 - local_cover) * 0.19;
+	float density = smoothstep(base - 0.026, base + 0.16, shape);
+	density = mix(density, 0.96, rain_amount * 0.68);
+	float coverage = (1.0 - exp(-density * mix(2.9, 4.0, rain_amount))) * horizon;
+	vec2 sun_offset = sun_direction.xz * 0.036;
+	float gradient = (body - noise_field(uv - sun_offset)) * 5.8;
+	float rim = pow(toward_sun, 12.0) * (1.0 - density) * 0.48;
+	float lit = clamp(0.78 - density * 0.43 + gradient + rim, 0.08, 1.0);
+	vec3 cumulus = mix(shade, highlight, lit);
+	cumulus = mix(cumulus, vec3(0.28, 0.33, 0.39) * (0.82 + lit * 0.38), rain_amount * 0.86);
+	cumulus = mix(cumulus, night_cloud * (0.66 + lit * 0.62), night_tint);
+	return mix(result, cumulus, coverage * (1.0 - evening_weight * 0.53));
 }
 
 void sky() {

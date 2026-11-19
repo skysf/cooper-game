@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-19T09:01:16.630Z",
+  "client": "Chrome in a real foreground macOS window",
+  "packageSha256": "1a7c74a05e37e690d9e0df57e154b7ee6e40a6a741e8e6ca2b9fc9675e7fb252",
+  "shellSha256": "50dadf0916c563a7aeb3283ac1a1f4a96ed28ff8dc06a1a36192f54d97ce7c8d",
+  "viewports": {
+    "wide": {
+      "width": 1280,
+      "height": 720
+    },
+    "compact": {
+      "width": 600,
+      "height": 450
+    }
+  },
+  "fixture": "Isolated local room with a generated-format code and a lake shore spawn.",
+  "checks": [
+    "The real compact field HUD uses a standard generated room code with one connected player."
+  ],
+  "screenshots": [
+    {
+      "name": "exploration-compact-final.png",
+      "viewport": {
+        "width": 600,
+        "height": 450
+      },
+      "archivedPixels": {
+        "width": 1200,
+        "height": 900
+      },
+      "crop": "Exact top-left browser viewport extracted from the HiDPI compositor capture, with no rescaling."
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "browser": "157.0.8103.79",
+  "webGL": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Version 26.5.2 (Build 25F84))"
+  },
+  "occupancy": {
+    "room": "camp-be6fd241",
+    "members": 1,
+    "locked": true,
+    "width": 600,
+    "height": 450
+  },
+  "passed": true,
+  "visualCheck": "The entire standard room code and 1 / 4 occupancy text are both visible in the upper left."
+}

@@ -1,0 +1,30 @@
+{
+  "conclusion": "fail",
+  "mode": "visual",
+  "issues": [
+    "underwater/lakebed: image changed (mean 3.86, strongest tile 45.19)"
+  ],
+  "environment": [],
+  "scenes": {
+    "forest": {
+      "diffImage": "diff-forest.png",
+      "regions": {
+        "woods": {
+          "meanError": 0.7488508820533752,
+          "peakTileError": 5.364166736602783,
+          "luminanceSSIM": 0.9986539483070374
+        }
+      }
+    },
+    "underwater": {
+      "diffImage": "diff-underwater.png",
+      "regions": {
+        "lakebed": {
+          "meanError": 3.857652187347412,
+          "peakTileError": 45.18812561035156,
+          "luminanceSSIM": 0.45126476883888245
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+name: Co-op render regression
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      hardware:
+        description: Run on the trusted Apple M1 render runner
+        type: boolean
+        default: false
+      reference_sha:
+        description: Reference commit SHA. Overrides the approved repository reference when supplied.
+        type: string
+        required: false
+      hardware_scenes:
+        description: Comma-separated scenes for the hardware comparison
+        type: string
+        default: forest,lake,lamp,dawn,inventory,equipment,underwater,storm
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    name: ${{ inputs.hardware && 'Apple M1 frame timing and visuals' || 'SwiftShader visual A/B' }}
+    if: github.event_name != 'workflow_dispatch' || !inputs.hardware || github.ref == 'refs/heads/main'
+    runs-on: ${{ inputs.hardware && fromJSON('["self-hosted","macOS","ARM64","cooper-render-gpu"]') || 'ubuntu-24.04' }}
+    timeout-minutes: 40
+    concurrency:
+      group: ${{ inputs.hardware && 'cooper-m1-display' || format('cooper-visual-{0}', github.ref) }}
+      cancel-in-progress: false
+    env:
+      COOP_BENCH_OUT: .cache/render-ci
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Identify immutable reference
+        id: reference
+        env:
+          REQUESTED_REFERENCE: ${{ inputs.reference_sha || vars.COOP_APPROVED_RENDER_SHA || github.event.pull_request.base.sha || github.event.before }}
+        shell: bash
+        run: |
+          reference="$REQUESTED_REFERENCE"
+          if [[ -z "$reference" || "$reference" == 0000000000000000000000000000000000000000 ]]; then
+            reference=$(git rev-parse --verify HEAD^ 2>/dev/null || true)
+          fi
+          if [[ ! "$reference" =~ ^[a-fA-F0-9]{40}$ || "$reference" == "$GITHUB_SHA" ]]; then
+            echo '::error title=Invalid render environment::No distinct baseline commit is available. Select a reviewed reference SHA when dispatching the workflow.'
+            exit 2
+          fi
+          echo "sha=$reference" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.reference.outputs.sha }}
+          path: .cache/render-reference
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install test and build tools
+        run: |
+          npm ci
+          python3 -m pip install numpy Pillow
+          bash scripts/install-ci-godot.sh
+      - name: Install the pinned Chromium build
+        if: ${{ !inputs.hardware }}
+        run: npx playwright install --with-deps chromium
+      - name: Verify that the gate rejects corrupt images and slow frame sequences
+        run: npm run coop:render:test
+      - name: Export candidate game
+        run: npm run coop:build:web
+      - name: Export reference game
+        working-directory: .cache/render-reference
+        shell: bash
+        run: |
+          mkdir -p .cache
+          ln -s "$GITHUB_WORKSPACE/.cache/templates" .cache/templates
+          npm run coop:build:web
+      - name: Capture and compare the software rasterized scenes
+        if: ${{ !inputs.hardware }}
+        env:
+          COOP_BENCH_SCENES: lake,lamp,inventory,equipment
+          COOP_BENCH_HEADLESS: '1'
+          COOP_BENCH_SOFTWARE: '1'
+          COOP_BENCH_WARMUP: '8'
+          COOP_BENCH_SECONDS: '5'
+        shell: bash
+        run: |
+          capture_status=0
+          npm run coop:render:benchmark -- .cache/render-reference/dist/coop dist/coop || capture_status=$?
+          npm run coop:render:score -- "$COOP_BENCH_OUT/render-benchmark.json" --require-software --scenes "$COOP_BENCH_SCENES"
+          exit "$capture_status"
+      - name: Capture and score Apple M1 hardware frame timing
+        if: ${{ inputs.hardware }}
+        env:
+          COOP_HARDWARE_FOREGROUND: '1'
+          COOP_BENCH_HEADLESS: '0'
+          COOP_CHROME_HEADLESS: '0'
+          COOP_BENCH_WINDOW_X: ${{ vars.COOP_RENDER_WINDOW_X || '40' }}
+          COOP_BENCH_WINDOW_Y: ${{ vars.COOP_RENDER_WINDOW_Y || '40' }}
+          COOP_BENCH_SCENES: ${{ inputs.hardware_scenes }}
+          COOP_BENCH_SECONDS: '8'
+        shell: bash
+        run: |
+          capture_status=0
+          flight_status=0
+          npm run coop:render:benchmark -- .cache/render-reference/dist/coop dist/coop || capture_status=$?
+          COOP_PORT=4310 COOP_ROOM_PORT=4311 COOP_SAVE_DIR="$(mktemp -d "$RUNNER_TEMP/flight.XXXXXX")" node scripts/coop-serve.mjs &
+          camp_pid=$!
+          trap 'kill "$camp_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..60}; do
+            if curl --fail --silent http://127.0.0.1:4310/health >/dev/null; then break; fi
+            sleep 0.25
+          done
+          COOP_BASE=http://127.0.0.1:4310 node scripts/coop-flight-playtest.mjs || flight_status=$?
+          npm run coop:render:score -- "$COOP_BENCH_OUT/render-benchmark.json" --mode hardware --scenes "$COOP_BENCH_SCENES" --flight "$COOP_BENCH_OUT/flight-web.json"
+          if [[ "$flight_status" != '0' ]]; then exit "$flight_status"; fi
+          exit "$capture_status"
+      - name: Upload canvas pairs, visual differences and frame samples
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ inputs.hardware && 'cooper-render-m1' || 'cooper-render-visual' }}
+          path: |
+            .cache/render-ci/*.json
+            .cache/render-ci/*.png
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14

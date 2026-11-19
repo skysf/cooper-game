@@ -4,6 +4,7 @@ const LakeLayout = preload("res://lake_layout.gd")
 
 const SPEED := 3.6
 const RADIUS := 0.29
+const STEP_OVER_ROCK := 0.36
 const INTERACT_RANGE := 2.5
 const MIN_CORNER := Vector2(-29, -119)
 const MAX_CORNER := Vector2(29, 12)
@@ -26,6 +27,8 @@ static func rain_at(elapsed: float) -> float:
 static func collision_grid(obstacles: Array) -> Dictionary:
 	var grid := {}
 	for obstacle in obstacles:
+		if obstacle.get("type") == "rock" and float(obstacle.r) <= STEP_OVER_ROCK:
+			continue
 		var center := Vector2(obstacle.x, obstacle.z)
 		var clearance: float = obstacle.r + RADIUS
 		var lo := Vector2i(((center - Vector2.ONE * clearance) / GRID_SIZE).floor())
@@ -38,8 +41,8 @@ static func collision_grid(obstacles: Array) -> Dictionary:
 				grid[cell].append(Vector3(center.x, center.y, clearance * clearance))
 	return grid
 
-static func free_at(point: Vector2, grid: Dictionary) -> bool:
-	return not LakeLayout.blocks_walk(point) and obstacle_free_at(point, grid)
+static func free_at(point: Vector2, grid: Dictionary, allow_swim := false) -> bool:
+	return (allow_swim or not LakeLayout.blocks_walk(point)) and obstacle_free_at(point, grid)
 
 static func obstacle_free_at(point: Vector2, grid: Dictionary) -> bool:
 	var cell := Vector2i((point / GRID_SIZE).floor())
@@ -48,16 +51,17 @@ static func obstacle_free_at(point: Vector2, grid: Dictionary) -> bool:
 			return false
 	return true
 
-static func move(point: Vector2, direction: Vector2, delta: float, grid: Dictionary) -> Vector2:
+static func move(point: Vector2, direction: Vector2, delta: float, grid: Dictionary,
+		allow_swim := false, speed := SPEED) -> Vector2:
 	if direction.is_zero_approx():
 		return point
-	var motion := direction.limit_length() * SPEED * clampf(delta, 0.0, 0.1)
+	var motion := direction.limit_length() * speed * clampf(delta, 0.0, 0.1)
 	var steps := maxi(1, ceili(motion.length() / 0.12))
 	for i in steps:
 		var target := (point + motion / steps).clamp(MIN_CORNER, MAX_CORNER)
-		if free_at(Vector2(target.x, point.y), grid):
+		if free_at(Vector2(target.x, point.y), grid, allow_swim):
 			point.x = target.x
-		if free_at(Vector2(point.x, target.y), grid):
+		if free_at(Vector2(point.x, target.y), grid, allow_swim):
 			point.y = target.y
 	return point
 

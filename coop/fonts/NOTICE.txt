@@ -4,3 +4,10 @@ The original font file identifies its license as Apache License, Version 2.0.
 Modifications: retained glyphs used by the game HUD and renamed the subset.
 Source family: https://github.com/adobe-fonts/source-han-sans
 See APACHE-2.0.txt.
+The web shell embeds a smaller WOFF2 subset from the same source.
+
+CampHanSupplement.otf contains a small subset of Noto Sans CJK SC Regular 2.004.
+Copyright 2014–2021 Adobe (http://www.adobe.com/).
+Modifications: retained additional HUD glyphs and renamed the subset.
+Source family: https://github.com/notofonts/noto-cjk
+See OFL-1.1.txt.

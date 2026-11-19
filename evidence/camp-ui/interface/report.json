@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-19T08:56:34.220Z",
+  "client": "Chrome in a real foreground macOS window",
+  "packageSha256": "141fc8a95b6fe0f5961f242b356bae8a2e2c4a0482c036d440b95bbc95ba905b",
+  "shellSha256": "2fe72b21df40607877c8d152acb3362f3bd51e955666f12a8dcf20a5ede2ab2e",
+  "viewports": {
+    "wide": {
+      "width": 1280,
+      "height": 720
+    },
+    "compact": {
+      "width": 600,
+      "height": 450
+    }
+  },
+  "fixture": "Isolated local room starts within reach of the wood. Loading screenshots briefly hold the real .pck response until captured.",
+  "checks": [
+    "Actual asset progress, original font, and ready-to-enter camp were visible.",
+    "Room invitation selected the real URL, exposed a copy action and remained outside the camp menu.",
+    "The entry button captured the real pointer, and actual E input collected world wood after resize.",
+    "Escape restored the camp menu and the invitation repositioned above the compact canvas menu.",
+    "The new room button joined a different live room and kept its resources independent.",
+    "An invalid room explained the accepted room names and offered an enabled recovery action."
+  ],
+  "screenshots": [
+    {
+      "name": "loading-wide.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "name": "loading-compact.png",
+      "viewport": {
+        "width": 600,
+        "height": 450
+      }
+    },
+    {
+      "name": "entry-wide.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "name": "invite-wide.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "name": "exploration-wide.png",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "name": "exploration-compact.png",
+      "viewport": {
+        "width": 600,
+        "height": 450
+      }
+    },
+    {
+      "name": "resume-compact.png",
+      "viewport": {
+        "width": 600,
+        "height": 450
+      }
+    },
+    {
+      "name": "invite-compact.png",
+      "viewport": {
+        "width": 600,
+        "height": 450
+      }
+    },
+    {
+      "name": "room-error-compact.png",
+      "viewport": {
+        "width": 600,
+        "height": 450
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "browser": "157.0.8103.79",
+  "webGL": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Version 26.5.2 (Build 25F84))"
+  },
+  "loader": {
+    "phase": "正在载入游戏",
+    "transfer": "37.7 / 73.3 MiB",
+    "value": 39514754,
+    "max": 76883370,
+    "fontReady": true
+  },
+  "inviteWide": {
+    "panel": {
+      "x": 20,
+      "y": 517,
+      "width": 488,
+      "height": 183,
+      "top": 517,
+      "right": 508,
+      "bottom": 700,
+      "left": 20
+    },
+    "popup": {
+      "x": 520,
+      "y": 511,
+      "width": 350,
+      "height": 150,
+      "top": 511,
+      "right": 870,
+      "bottom": 661,
+      "left": 520
+    },
+    "fresh": {
+      "x": 1190,
+      "y": 673,
+      "width": 78,
+      "height": 35,
+      "top": 673,
+      "right": 1268,
+      "bottom": 708,
+      "left": 1190
+    },
+    "link": "http://127.0.0.1:59183/coop/?room=exploration-qa",
+    "select": [
+      0,
+      48
+    ],
+    "viewport": [
+      1280,
+      720
+    ],
+    "clipboardStatus": "链接已复制"
+  },
+  "clipboardStatus": "链接已复制",
+  "inviteCompact": {
+    "panel": {
+      "x": 9.375,
+      "y": 298.59375,
+      "width": 228.75,
+      "height": 85.78125,
+      "top": 298.59375,
+      "right": 238.125,
+      "bottom": 384.375,
+      "left": 9.375
+    },
+    "popup": {
+      "x": 12,
+      "y": 136.59375,
+      "width": 350,
+      "height": 150,
+      "top": 136.59375,
+      "right": 362,
+      "bottom": 286.59375,
+      "left": 12
+    },
+    "fresh": {
+      "x": 510,
+      "y": 346.75,
+      "width": 78,
+      "height": 35,
+      "top": 346.75,
+      "right": 588,
+      "bottom": 381.75,
+      "left": 510
+    },
+    "link": "http://127.0.0.1:59183/coop/?room=exploration-qa",
+    "select": [
+      0,
+      48
+    ],
+    "viewport": [
+      600,
+      450
+    ],
+    "clipboardStatus": "链接已复制"
+  },
+  "passed": true
+}

@@ -1,0 +1,243 @@
+{
+  "renderer": "Chrome 157, headless WebGL 2 ANGLE Metal on Apple M1",
+  "scope": "Interleaved local diagnostic. The macOS session was locked. The result does not use the foreground hardware acceptance gate.",
+  "packageFilesChanged": [
+    "res://character_preview.gdc",
+    "res://client.gdc",
+    "res://hud.gdc",
+    "res://terrain.gdc"
+  ],
+  "identicalModelAndTextureResources": true,
+  "before": [
+    {
+      "scene": "equipment",
+      "fps": 57.67,
+      "p95Ms": 16.8,
+      "maxFrameMs": 250,
+      "framesOver50Ms": 1,
+      "playableMs": 6294.4,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": null,
+      "warmupDrawMs": null,
+      "trustedInput": true,
+      "actionConfirmationMs": 270.3,
+      "actionMaxFrameMs": 250,
+      "shaderCalls": 45
+    },
+    {
+      "scene": "inventory",
+      "fps": 60.0,
+      "p95Ms": 16.7,
+      "maxFrameMs": 16.8,
+      "framesOver50Ms": 0,
+      "playableMs": 5698.6,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": null,
+      "warmupDrawMs": null,
+      "trustedInput": true,
+      "actionConfirmationMs": 85.4,
+      "actionMaxFrameMs": 16.7,
+      "shaderCalls": 0
+    },
+    {
+      "scene": "storm",
+      "fps": 60.0,
+      "p95Ms": 16.7,
+      "maxFrameMs": 16.8,
+      "framesOver50Ms": 0,
+      "playableMs": 6022.5,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": null,
+      "warmupDrawMs": null
+    }
+  ],
+  "after": [
+    {
+      "scene": "equipment",
+      "fps": 60.0,
+      "p95Ms": 16.7,
+      "maxFrameMs": 16.8,
+      "framesOver50Ms": 0,
+      "playableMs": 6945.3,
+      "maxFrameFirst500Ms": 16.7,
+      "warmupBuildMs": 4.1,
+      "warmupDrawMs": 302.3,
+      "trustedInput": true,
+      "actionConfirmationMs": 27.2,
+      "actionMaxFrameMs": 16.7,
+      "shaderCalls": 0
+    },
+    {
+      "scene": "inventory",
+      "fps": 60.0,
+      "p95Ms": 16.7,
+      "maxFrameMs": 16.8,
+      "framesOver50Ms": 0,
+      "playableMs": 6022.3,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": 4.6,
+      "warmupDrawMs": 262.2,
+      "trustedInput": true,
+      "actionConfirmationMs": 87.1,
+      "actionMaxFrameMs": 16.8,
+      "shaderCalls": 0
+    },
+    {
+      "scene": "storm",
+      "fps": 60.0,
+      "p95Ms": 16.7,
+      "maxFrameMs": 16.8,
+      "framesOver50Ms": 0,
+      "playableMs": 6524.1,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": 4.3,
+      "warmupDrawMs": 251.6
+    }
+  ],
+  "beforeRepeat": [
+    {
+      "scene": "storm",
+      "fps": 60.0,
+      "p95Ms": 16.8,
+      "maxFrameMs": 16.8,
+      "framesOver50Ms": 0,
+      "playableMs": 6697,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": null,
+      "warmupDrawMs": null
+    },
+    {
+      "scene": "inventory",
+      "fps": 59.84,
+      "p95Ms": 16.7,
+      "maxFrameMs": 33.3,
+      "framesOver50Ms": 0,
+      "playableMs": 6437.9,
+      "maxFrameFirst500Ms": 16.8,
+      "warmupBuildMs": null,
+      "warmupDrawMs": null,
+      "trustedInput": true,
+      "actionConfirmationMs": 58.2,
+      "actionMaxFrameMs": 33.3,
+      "shaderCalls": 0
+    }
+  ],
+  "artwork": {
+    "viewport": [
+      1280,
+      720
+    ],
+    "portraitWarmColorBoundsBefore": [
+      520,
+      156,
+      630,
+      494
+    ],
+    "portraitWarmColorBoundsAfter": [
+      520,
+      156,
+      629,
+      494
+    ],
+    "verifiedWindowSizes": [
+      [
+        1280,
+        720
+      ],
+      [
+        1600,
+        900
+      ],
+      [
+        960,
+        540
+      ]
+    ],
+    "examples": {
+      "matched1280Before": "equipment-before.png",
+      "matched1280After": "equipment-after.png",
+      "large": "equipment-1600x900.png",
+      "rotated": "../character-profile-web.png",
+      "compact": "../character-compact-web.png"
+    }
+  },
+  "initialLoadDiagnostic": {
+    "note": "The initial draft comparison had system compilation and indexing load. The long inventory intervals were outside the opening event, and the untouched storm control also stalled. It was followed by the interleaved final package run.",
+    "before": [
+      {
+        "scene": "equipment",
+        "fps": 54.19,
+        "p95Ms": 16.7,
+        "maxFrameMs": 383.4,
+        "framesOver50Ms": 3,
+        "playableMs": 9714.6,
+        "maxFrameFirst500Ms": 33.4,
+        "warmupBuildMs": null,
+        "warmupDrawMs": null
+      },
+      {
+        "scene": "inventory",
+        "fps": 60.0,
+        "p95Ms": 16.8,
+        "maxFrameMs": 16.8,
+        "framesOver50Ms": 0,
+        "playableMs": 5558.4,
+        "maxFrameFirst500Ms": 33.3,
+        "warmupBuildMs": null,
+        "warmupDrawMs": null
+      }
+    ],
+    "initialDraft": [
+      {
+        "scene": "equipment",
+        "fps": 54.34,
+        "p95Ms": 33.3,
+        "maxFrameMs": 50,
+        "framesOver50Ms": 0,
+        "playableMs": 8945.7,
+        "maxFrameFirst500Ms": 83.3,
+        "warmupBuildMs": 17.1,
+        "warmupDrawMs": 384.1
+      },
+      {
+        "scene": "inventory",
+        "fps": 51.5,
+        "p95Ms": 33.3,
+        "maxFrameMs": 216.7,
+        "framesOver50Ms": 6,
+        "playableMs": 6814.3,
+        "maxFrameFirst500Ms": 33.3,
+        "warmupBuildMs": 5.1,
+        "warmupDrawMs": 295.1
+      },
+      {
+        "scene": "lamp",
+        "fps": 54.34,
+        "p95Ms": 33.3,
+        "maxFrameMs": 83.3,
+        "framesOver50Ms": 2,
+        "playableMs": 9172,
+        "maxFrameFirst500Ms": 33.4,
+        "warmupBuildMs": 8.1,
+        "warmupDrawMs": 593.3
+      },
+      {
+        "scene": "storm",
+        "fps": 47.5,
+        "p95Ms": 50,
+        "maxFrameMs": 200,
+        "framesOver50Ms": 12,
+        "playableMs": 9924.1,
+        "maxFrameFirst500Ms": 83.4,
+        "warmupBuildMs": 12.8,
+        "warmupDrawMs": 819.4
+      }
+    ],
+    "hostObservation": "Swift compiler and ANECompilerService were each close to one full CPU core; multiple storage indexing processes were also active."
+  },
+  "functionalChecks": {
+    "godot": "CAMP_FEEDBACK_OK",
+    "browser": "CAMP_BROWSER_UI_OK",
+    "consoleWarnings": []
+  }
+}

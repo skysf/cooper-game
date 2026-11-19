@@ -1,0 +1,199 @@
+{
+  "conclusion": "fail",
+  "mode": "hardware",
+  "issues": [
+    "forest: 57.74 FPS, P95 17.60 ms, 0.43% over 50 ms, 1 consecutive slow frames, worst 149.50 ms",
+    "underwater/lakebed: image changed (mean 9.84, strongest tile 52.80)",
+    "Flight route failed: Timed out waiting for relative mouse aim",
+    "flight/takeoff: missing or invalid WebGL intervals ('takeoff')",
+    "flight/chase turn: missing or invalid WebGL intervals ('chase turn')",
+    "flight/cockpit turn: missing or invalid WebGL intervals ('cockpit turn')"
+  ],
+  "environment": [],
+  "scenes": {
+    "forest": {
+      "diffImage": "diff-forest.png",
+      "regions": {
+        "woods": {
+          "meanError": 1.2117475271224976,
+          "peakTileError": 7.936458110809326,
+          "luminanceSSIM": 0.9969199299812317
+        }
+      },
+      "framePacing": {
+        "fps": 57.74350385581622,
+        "p95Ms": 17.600000000002183,
+        "ratioOver50Ms": 0.004329004329004329,
+        "consecutiveOver50Ms": 1,
+        "maxMs": 149.5,
+        "submittedIntervals": 462
+      }
+    },
+    "lake": {
+      "diffImage": "diff-lake.png",
+      "regions": {
+        "shore": {
+          "meanError": 0.5777729749679565,
+          "peakTileError": 4.927499771118164,
+          "luminanceSSIM": 0.9985374212265015
+        },
+        "reflection": {
+          "meanError": 2.5684404373168945,
+          "peakTileError": 9.039166450500488,
+          "luminanceSSIM": 0.9532705545425415,
+          "luminanceDeviation": {
+            "reference": 12.43419361114502,
+            "actual": 12.513676643371582
+          }
+        }
+      },
+      "framePacing": {
+        "fps": 60.00075000937512,
+        "p95Ms": 17.600000000000364,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.700000000000728,
+        "submittedIntervals": 480
+      }
+    },
+    "lamp": {
+      "diffImage": "diff-lamp.png",
+      "regions": {
+        "lantern": {
+          "meanError": 0.06733487546443939,
+          "peakTileError": 0.4037500023841858,
+          "luminanceSSIM": 0.9999745488166809
+        },
+        "lit-timber": {
+          "meanError": 0.09623277932405472,
+          "peakTileError": 0.8483333587646484,
+          "luminanceSSIM": 0.9999203681945801
+        }
+      },
+      "transition": {
+        "referenceChange": 121.51,
+        "actualChange": 121.08,
+        "beforeDiffImage": "diff-lamp-before.png"
+      },
+      "framePacing": {
+        "fps": 60.00750093761719,
+        "p95Ms": 17.600000000000364,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.700000000000728,
+        "submittedIntervals": 480
+      }
+    },
+    "dawn": {
+      "diffImage": "diff-dawn.png",
+      "regions": {
+        "horizon": {
+          "meanError": 0.9994785785675049,
+          "peakTileError": 10.785625457763672,
+          "luminanceSSIM": 0.998848021030426
+        }
+      },
+      "transition": {
+        "referenceChange": 25.571102142333984,
+        "actualChange": 25.648242950439453,
+        "beforeDiffImage": "diff-dawn-before.png"
+      },
+      "framePacing": {
+        "fps": 60.00750093761719,
+        "p95Ms": 17.600000000000364,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.700000000000728,
+        "submittedIntervals": 480
+      }
+    },
+    "inventory": {
+      "diffImage": "diff-inventory.png",
+      "regions": {
+        "inventory": {
+          "meanError": 0.0,
+          "peakTileError": 0.0,
+          "luminanceSSIM": 1.0
+        },
+        "item-preview": {
+          "meanError": 0.0,
+          "peakTileError": 0.0,
+          "luminanceSSIM": 1.0
+        }
+      },
+      "framePacing": {
+        "fps": 59.995500337474674,
+        "p95Ms": 17.599999999998545,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.700000000000728,
+        "submittedIntervals": 480
+      }
+    },
+    "equipment": {
+      "diffImage": "diff-equipment.png",
+      "regions": {
+        "equipment": {
+          "meanError": 0.09191620349884033,
+          "peakTileError": 2.3966667652130127,
+          "luminanceSSIM": 0.9996599555015564
+        },
+        "character": {
+          "meanError": 0.6817277669906616,
+          "peakTileError": 2.3047916889190674,
+          "luminanceSSIM": 0.9974363446235657
+        },
+        "garment-preview": {
+          "meanError": 0.0,
+          "peakTileError": 0.0,
+          "luminanceSSIM": 1.0
+        }
+      },
+      "framePacing": {
+        "fps": 60.001500037500946,
+        "p95Ms": 17.19999999999891,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.600000000000364,
+        "submittedIntervals": 480
+      }
+    },
+    "underwater": {
+      "diffImage": "diff-underwater.png",
+      "regions": {
+        "lakebed": {
+          "meanError": 9.836756706237793,
+          "peakTileError": 52.79916763305664,
+          "luminanceSSIM": 0.31095585227012634
+        }
+      },
+      "framePacing": {
+        "fps": 60.00075000937512,
+        "p95Ms": 17.299999999999272,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.700000000000728,
+        "submittedIntervals": 480
+      }
+    },
+    "storm": {
+      "diffImage": "diff-storm.png",
+      "regions": {
+        "wet-woods": {
+          "meanError": 0.31504330039024353,
+          "peakTileError": 5.572500228881836,
+          "luminanceSSIM": 0.997700035572052
+        }
+      },
+      "framePacing": {
+        "fps": 60.0007500093751,
+        "p95Ms": 17.30000000000109,
+        "ratioOver50Ms": 0.0,
+        "consecutiveOver50Ms": 0,
+        "maxMs": 17.700000000000728,
+        "submittedIntervals": 480
+      }
+    }
+  },
+  "flight": {}
+}

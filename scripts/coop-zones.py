@@ -4,6 +4,7 @@ import random
 import struct
 import subprocess
 from pathlib import Path
+from math import floor
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -27,6 +28,8 @@ SURFACES = {
     "rock": ("mossy_rock", 512, .72),
     "wood": ("wood_planks", 512, 1.0)
 }
+TILED_SURFACES = {"forest_floor", "bark", "rock", "needles", "fern"}
+TILE_WIDTH = 12.0
 
 
 def materials():
@@ -147,6 +150,20 @@ class Chunk:
         return len(result)
 
 
+def grass_cells(plants, chunks):
+    cells = {chunk["id"]: {} for chunk in chunks}
+    for variant, *plant in plants:
+        x, _, z = plant[:3]
+        chunk = next((chunk for chunk in chunks if chunk["lo"] <= z < chunk["hi"]), None)
+        if chunk is None:
+            continue
+        origin = (floor(x / 12) * 12 + 6, floor(z / 12) * 12 + 6)
+        patch = cells[chunk["id"]].setdefault(origin, [[], [], []])
+        patch[variant].append(plant)
+    return {chunk: [[x, z, variants] for (x, z), variants in patches.items()]
+            for chunk, patches in cells.items()}
+
+
 def main():
     subprocess.run(["node", "scripts/build-scene.mjs", "--coop"], cwd=ROOT, check=True)
     layout = json.loads((SOURCE / "scene.json").read_text())
@@ -155,18 +172,35 @@ def main():
     materials()
     chunks=[Chunk() for _ in CHUNKS]
     for name,attrs,tri,z in source_meshes():
+        if name in TILED_SURFACES:
+            center_x = attrs["POSITION"][tri, 0].mean(axis=1)
+            columns = np.floor(center_x / TILE_WIDTH + 0.5).astype(np.int16)
         for chunk,(_,a,b) in zip(chunks,CHUNKS):
-            chunk.mesh(name,attrs,tri[(z>=a)&(z<b)])
+            section = (z >= a) & (z < b)
+            if name not in TILED_SURFACES:
+                chunk.mesh(name, attrs, tri[section])
+                continue
+            # Keep vertex positions and normals while giving the frustum smaller bounds.
+            for column in np.unique(columns[section]):
+                chunk.mesh(f"{name}__{column + 10}", attrs, tri[section & (columns == column)])
     manifest=[]
     for chunk,(id_,a,b) in zip(chunks,CHUNKS):
         size=chunk.write(id_)
         manifest.append(dict(id=id_,lo=a,hi=b,bytes=size))
     # Collision and imagery both use the same metre coordinates as the original world.
     world={k:layout[k] for k in ("shelter","player","weather","route","render","sunDirection")}
-    obstacles=list(layout["obstacles"])
+    rocks = {(item["x"], item["z"]): item for item in layout["objects"] if item["type"] == "rock"}
+    obstacles = []
+    for item in layout["obstacles"]:
+        if item["type"] == "rock":
+            rock = rocks[item["x"], item["z"]]
+            item = dict(item, height=round(rock["height"]*.94, 4), yaw=rock["yaw"])
+        obstacles.append(item)
     water = json.loads((PROJECT / "water_layout.json").read_text())
     for rock in water["boulders"]:
-        obstacles.append(dict(type="rock", x=rock["x"], z=rock["z"], r=rock["radius"]))
+        obstacles.append(dict(type="rock", x=rock["x"], z=rock["z"], r=rock["radius"],
+                              flightRadius=round(rock["size"]*.6352, 4), depth=round(rock["size"]*.9145, 4),
+                              height=round(rock["size"]*.8819, 4), yaw=-rock["yaw"]))
     # Covers the 1.58 x 0.72 m tabletop without closing the shelter's main aisle.
     for x in (2.65, 3.10, 3.55):
         obstacles.append(dict(type="table", x=x, z=-88.95, r=.35))
@@ -178,7 +212,8 @@ def main():
         obstacles.append(dict(type=tree.get("species", "pine"), x=tree["x"], z=tree["z"], r=tree["radius"]))
     trees=[[o['x'],o['z'],o['height'],o['yaw']] for o in layout["objects"] if o["type"]=="fir"]
     world.update(spawn=[1.9,-85],sites={"wood":[-9,-53],"tarp":[9,-17],"repair":[1.9,-89.6]},
-                 obstacles=obstacles,chunks=manifest,trees=trees,grove=GROVE)
+                 obstacles=obstacles,chunks=manifest,trees=trees,grove=GROVE,
+                 grass=grass_cells(layout["grass"], manifest))
     (PROJECT/"world.json").write_text(json.dumps(world,separators=(',',':')))
     print("Resident material source bytes:",sum(p.stat().st_size for p in TEXTURES.iterdir() if p.suffix in ('.png','.jpg')))
     print("Ground chunks:",[(c['id'],c['bytes']) for c in manifest])

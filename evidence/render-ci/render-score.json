@@ -1,0 +1,73 @@
+{
+  "conclusion": "fail",
+  "mode": "visual",
+  "issues": [
+    "lake/shore: image changed (mean 40.52, strongest tile 99.93)",
+    "lake/reflection: image changed (mean 27.87, strongest tile 57.72)",
+    "inventory/inventory: image changed (mean 17.30, strongest tile 153.84)",
+    "inventory/item-preview: image changed (mean 36.57, strongest tile 88.73)"
+  ],
+  "environment": [],
+  "scenes": {
+    "lake": {
+      "diffImage": "diff-lake.png",
+      "regions": {
+        "shore": {
+          "meanError": 40.515689849853516,
+          "peakTileError": 99.92646026611328,
+          "luminanceSSIM": -0.009018231183290482
+        },
+        "reflection": {
+          "meanError": 27.866003036499023,
+          "peakTileError": 57.721458435058594,
+          "luminanceSSIM": 0.08928759396076202,
+          "luminanceDeviation": {
+            "reference": 8.14988899230957,
+            "actual": 12.72004508972168
+          }
+        }
+      }
+    },
+    "lamp": {
+      "diffImage": "diff-lamp.png",
+      "regions": {
+        "lantern": {
+          "meanError": 0.11352920532226562,
+          "peakTileError": 1.5206249952316284,
+          "luminanceSSIM": 0.9997476935386658
+        },
+        "lit-timber": {
+          "meanError": 0.0844234824180603,
+          "peakTileError": 1.5302083492279053,
+          "luminanceSSIM": 0.9998551607131958
+        }
+      },
+      "transition": {
+        "referenceChange": 122.08880000000003,
+        "actualChange": 121.75880000000004,
+        "beforeDiffImage": "diff-lamp-before.png"
+      }
+    },
+    "inventory": {
+      "diffImage": "diff-inventory.png",
+      "regions": {
+        "inventory": {
+          "meanError": 17.295719146728516,
+          "peakTileError": 153.83792114257812,
+          "luminanceSSIM": 0.16481660306453705
+        },
+        "item-preview": {
+          "meanError": 36.56806564331055,
+          "peakTileError": 88.72791290283203,
+          "luminanceSSIM": 0.11560598015785217
+        }
+      }
+    },
+    "equipment": {
+      "coverage": "candidate-interaction",
+      "reason": "Reference does not publish equipment controls",
+      "candidateImage": "after-equipment.png",
+      "characterLuminanceDeviation": 24.72267723083496
+    }
+  }
+}

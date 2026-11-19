@@ -17,10 +17,10 @@ from mcp.client.stdio import stdio_client
 PROJECT = Path(__file__).resolve().parents[1]
 CACHE = PROJECT / ".cache/blender-lab"
 APP = CACHE / "Blender/Blender.app"
-BLENDER = APP / "Contents/MacOS/Blender"
 DMG = CACHE / "downloads/blender-5.2.4-macos-arm64.dmg"
 DMG_SHA256 = "e73d564f97061b2496ccc5a0bd738937d2d3d0acae23621a00bbc7534dfd135f"
 ADDON = CACHE / "downloads/mcp-1.0.3.zip"
+BLENDER = PROJECT / "scripts/exec-blender.sh"
 LAUNCHER = PROJECT / "scripts/start-blender-mcp.sh"
 SCENE_NAME = "Blender Lab MCP Smoke Test"
 LOCALHOST = "127.0.0.1"
@@ -120,10 +120,8 @@ def run_blender_smoke():
     scratch = CACHE / "smoke"
     profile.mkdir(exist_ok=True)
     scratch.mkdir(exist_ok=True)
-    env = os.environ | {"BLENDER_USER_RESOURCES": str(profile)}
     subprocess.run(
         [BLENDER, "--command", "extension", "install-file", "-r", "user_default", "-e", ADDON],
-        env=env,
         check=True,
     )
     with tempfile.TemporaryDirectory(prefix="scene-", dir=scratch) as directory:
@@ -136,7 +134,6 @@ def run_blender_smoke():
         subprocess.run(
             [BLENDER, "--background", "--factory-startup", "--disable-autoexec", "--python-exit-code", "1",
              "--python-expr", script],
-            env=env,
             check=True,
         )
 
@@ -148,7 +145,6 @@ def run_blender_smoke():
             process = subprocess.Popen(
                 [BLENDER, "--background", "--disable-autoexec", "--online-mode", scene_file,
                  "--command", "blender_mcp", "--host", LOCALHOST, "--port", str(port)],
-                env=env,
                 stdout=log,
                 stderr=subprocess.STDOUT,
             )

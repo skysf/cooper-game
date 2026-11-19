@@ -82,6 +82,7 @@ jobs:
             THIRD_PARTY_NOTICES.md
             coop/sky-assets.LICENSE.txt
             coop/fonts/APACHE-2.0.txt
+            coop/fonts/OFL-1.1.txt
             coop/fonts/NOTICE.txt
           if-no-files-found: error
           retention-days: 14

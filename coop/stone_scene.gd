@@ -118,7 +118,7 @@ func _rope(cut: bool) -> ArrayMesh:
 	mesh.generate_normals()
 	return mesh.commit()
 
-func update_stones(stones: Dictionary, avatars: Dictionary, self_id: String, camera: Camera3D, elapsed: float, rain: float, line_cut: bool) -> void:
+func update_stones(stones: Dictionary, avatars: Dictionary, self_id: String, camera: Camera3D, elapsed: float, rain: float, line_cut: bool, local_hiker: Node3D = null) -> void:
 	var weighed := false
 	grip.hide()
 	for id: String in markers:
@@ -145,7 +145,10 @@ func update_stones(stones: Dictionary, avatars: Dictionary, self_id: String, cam
 		match stone.mode:
 			"held":
 				var holder: String = stone.holder
-				if holder == self_id:
+				if holder == self_id and local_hiker != null:
+					at = local_hiker.held_item_position()
+					node.rotation = local_hiker.rotation
+				elif holder == self_id:
 					at = camera.to_global(Vector3(0.25, -0.16, -0.50))
 					node.rotation = camera.rotation + Vector3(-0.17, 0.28, -0.21)
 					grip.global_transform = Transform3D(camera.global_basis, at)

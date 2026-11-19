@@ -67,22 +67,32 @@ func set_room_time(seconds: float) -> void:
 		return
 	last_sample = seconds
 	for tree in trees:
-		var age := minf(FINAL_AGE, float(tree.spec.initialAge) + seconds / seconds_per_year)
+		var age := growth_age(tree.spec, seconds, seconds_per_year)
 		if age == tree.age and tree.model != null:
 			continue
 		var stage := _stage_at(age)
 		if stage != tree.stage:
 			_replace_model(tree, stage)
 		var lower: Dictionary = STAGES[stage]
-		var upper: Dictionary = STAGES[stage + 1] if stage + 1 < STAGES.size() else {"age": FINAL_AGE, "height": FINAL_HEIGHT}
-		var progress := inverse_lerp(lower.age, upper.age, age)
-		var height := lerpf(lower.height, upper.height, progress) * float(tree.spec.size)
+		var height := _height_at(age, stage) * float(tree.spec.size)
 		# Adjacent stages share their boundary height. The roots never move.
 		tree.model.scale = Vector3.ONE * (height / float(lower.mesh_height))
 		tree.height = height
 		tree.age = age
 
-func _stage_at(age: float) -> int:
+static func growth_age(spec: Dictionary, seconds: float, years: float) -> float:
+	return minf(FINAL_AGE, float(spec.initialAge) + seconds / years)
+
+static func grown_height(spec: Dictionary, seconds: float, years: float) -> float:
+	var age := growth_age(spec, seconds, years)
+	return _height_at(age, _stage_at(age)) * float(spec.size)
+
+static func _height_at(age: float, stage: int) -> float:
+	var lower: Dictionary = STAGES[stage]
+	var upper: Dictionary = STAGES[stage + 1] if stage + 1 < STAGES.size() else {"age": FINAL_AGE, "height": FINAL_HEIGHT}
+	return lerpf(lower.height, upper.height, inverse_lerp(lower.age, upper.age, age))
+
+static func _stage_at(age: float) -> int:
 	for stage in range(STAGES.size() - 1, 0, -1):
 		if age >= float(STAGES[stage].age):
 			return stage

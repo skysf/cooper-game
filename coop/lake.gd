@@ -1,21 +1,32 @@
 extends Node3D
 
 const Layout = preload("res://lake_layout.gd")
+const LakeBed = preload("res://lake_bed.gd")
 const WATER_SHADER = preload("res://materials/water.gdshader")
-const FAR_FIR = preload("res://textures/distant_fir.png")
+const EVENING_SKY := preload("res://textures/evening_sky.jpg")
+const CANOPY_SHADER = preload("res://materials/lake_canopy.gdshader")
+const CANOPY = preload("res://textures/lake_canopy.png")
+const BANK_FLOOR = preload("res://textures/forest_floor_diff.jpg")
 const SHORE_BOULDER = preload("res://props/shore_boulder.glb")
 const REFLECTION_LAYER := 1 << 8
 const IMPACT_COUNT := 6
 const DROPS_PER_IMPACT := 9
 const REFLECTION_DISTANCE := 38.0
-const WATER_PARAMETERS := ["sun_direction", "moon_direction", "sky_zenith", "sky_horizon", "sun_color", "moon_color", "cloud_cover"]
+const REFLECTION_MOVING_INTERVAL := 0.064
+const REFLECTION_STILL_INTERVAL := 0.66
+const WATER_PARAMETERS := ["sun_direction", "moon_direction", "sky_zenith", "sky_horizon",
+	"sun_color", "moon_color", "cloud_cover", "twilight", "evening_weight", "underwater"]
 
 var lake_material := ShaderMaterial.new()
 var creek_material := ShaderMaterial.new()
+var bed := LakeBed.new()
 var reflection := SubViewport.new()
 var reflection_camera := Camera3D.new()
 var reflection_updated_at := -1.0
 var reflection_enabled := false
+var reflection_viewer := Transform3D.IDENTITY
+var reflection_fov := -1.0
+var latest_impact_at := -INF
 var impacts := PackedVector4Array()
 var next_impact := 0
 var splash_mesh := MultiMeshInstance3D.new()
@@ -31,12 +42,28 @@ func configure(wood_material: StandardMaterial3D, rock_material: StandardMateria
 
 func _ready() -> void:
 	impacts.resize(IMPACT_COUNT)
+	var current_field := FastNoiseLite.new()
+	current_field.seed = 61039
+	current_field.frequency = 0.046
+	current_field.fractal_octaves = 2
+	var current_texture := NoiseTexture2D.new()
+	current_texture.width = 128
+	current_texture.height = 128
+	current_texture.seamless = true
+	current_texture.as_normal_map = true
+	current_texture.bump_strength = 3.6
+	current_texture.noise = current_field
 	for material in [lake_material, creek_material]:
 		material.shader = WATER_SHADER
+		material.set_shader_parameter("wave_current", current_texture)
+		material.set_shader_parameter("ripple_field", LakeBed.RIPPLE_FIELD)
+		material.set_shader_parameter("bed_gravel", LakeBed.GRAVEL)
+		material.set_shader_parameter("evening_sky", EVENING_SKY)
 		material.set_shader_parameter("lake_center", Layout.center())
 		material.set_shader_parameter("lake_radius", Layout.radius())
 		material.set_shader_parameter("impacts", impacts)
 	lake_material.set_shader_parameter("lake_surface", true)
+	add_child(bed)
 	_build_lake()
 	_build_creek()
 	_build_dock()
@@ -51,12 +78,17 @@ func set_bank_wet(wet: float) -> void:
 	boulder_material.albedo_color = Color.WHITE.lerp(Color("#c9ccd0"), wet)
 
 func update_water(elapsed: float, rain: float, lighting: Dictionary) -> void:
+	bed.light_bed(elapsed, lighting.get("sun_direction", Vector3.UP), lighting.get("cloud_cover", 0.3))
+	bed.motes.visible = lighting.get("underwater", false)
 	for material in [lake_material, creek_material]:
 		material.set_shader_parameter("water_time", elapsed)
 		material.set_shader_parameter("rain_amount", rain)
 		for parameter in WATER_PARAMETERS:
 			if lighting.has(parameter):
 				material.set_shader_parameter(parameter, lighting[parameter])
+	if latest_impact_at > -INF and elapsed - latest_impact_at >= 2.9:
+		latest_impact_at = -INF
+		_set_impact_active(false)
 	_update_reflection(elapsed)
 	_update_splashes(elapsed, lighting.get("sky_zenith", Color.WHITE))
 
@@ -64,6 +96,9 @@ func add_impact(point: Vector3, elapsed: float) -> void:
 	var location := Vector2(point.x, point.z)
 	if not is_finite(Layout.surface_height(location)):
 		return
+	if latest_impact_at == -INF:
+		_set_impact_active(true)
+	latest_impact_at = maxf(latest_impact_at, elapsed)
 	impacts[next_impact] = Vector4(location.x, location.y, elapsed, 1.0)
 	next_impact = (next_impact + 1) % IMPACT_COUNT
 	_update_impact_materials()
@@ -72,12 +107,18 @@ func reset_water() -> void:
 	impacts.fill(Vector4.ZERO)
 	next_impact = 0
 	reflection_updated_at = -1.0
+	latest_impact_at = -INF
+	_set_impact_active(false)
 	_update_impact_materials()
 	splash_mesh.visible = false
 
 func _update_impact_materials() -> void:
 	lake_material.set_shader_parameter("impacts", impacts)
 	creek_material.set_shader_parameter("impacts", impacts)
+
+func _set_impact_active(active: bool) -> void:
+	lake_material.set_shader_parameter("active_impacts", active)
+	creek_material.set_shader_parameter("active_impacts", active)
 
 func _build_lake() -> void:
 	var mesh := SurfaceTool.new()
@@ -89,6 +130,7 @@ func _build_lake() -> void:
 		var second := Layout.shore_at(TAU * (segment + 1) / 112.0)
 		for point in [center, first, second]:
 			mesh.set_normal(Vector3.UP)
+			mesh.set_uv2(Vector2(maxf(0.0, Layout.water_y() - Layout.ground_height(point)), 0.0))
 			mesh.add_vertex(Vector3(point.x, Layout.water_y(), point.y))
 	_add_mesh(mesh.commit(), Vector3.ZERO).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
@@ -108,6 +150,7 @@ func _build_creek() -> void:
 		var previous := (i - 1) * 2
 		for offset in [0, 1, 2, 1, 3, 2]:
 			mesh.set_normal(Vector3.UP)
+			mesh.set_uv2(Vector2(0.17, 0.0))
 			mesh.add_vertex(edges[previous + offset])
 	_add_mesh(mesh.commit(), Vector3.ZERO).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
@@ -154,31 +197,52 @@ func _build_dock() -> void:
 			support.rotation.z = rng.randf_range(-0.038, 0.038)
 
 func _build_far_shore() -> void:
-	var fir := StandardMaterial3D.new()
-	fir.albedo_texture = FAR_FIR
-	fir.albedo_color = Color("#a6b09d")
-	fir.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-	fir.alpha_scissor_threshold = 0.29
-	fir.cull_mode = BaseMaterial3D.CULL_DISABLED
-	fir.billboard_mode = BaseMaterial3D.BILLBOARD_FIXED_Y
-	fir.billboard_keep_scale = true
+	var canopy := ShaderMaterial.new()
+	canopy.shader = CANOPY_SHADER
+	canopy.set_shader_parameter("canopy_atlas", CANOPY)
 	var card := QuadMesh.new()
-	card.material = fir
+	card.material = canopy
 	card.size = Vector2.ONE
 	var trees := MultiMesh.new()
 	trees.transform_format = MultiMesh.TRANSFORM_3D
+	trees.use_custom_data = true
 	trees.mesh = card
-	trees.instance_count = 86
+	trees.instance_count = 135
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 9317
-	for i in trees.instance_count:
-		var angle := rng.randf_range(1.94, 4.27)
-		var layer := 1.075 + int(i / 29.0) * 0.19
-		var point := Layout.shore_at(angle, layer + rng.randf_range(0.0, 0.20))
-		var height := rng.randf_range(3.1, 9.0)
-		var scale := Vector3(height * rng.randf_range(0.36, 0.54), height, 1.0)
-		var mound := maxf(0.0, (layer - 1.1) * 1.4 + sin(angle * 4.1) * 0.38)
-		trees.set_instance_transform(i, Transform3D(Basis().scaled(scale), Vector3(point.x, height * 0.5 + mound - 0.10, point.y)))
+	var widths := [0.55, 0.61, 0.88, 0.55]
+	var shade_roots := PackedVector3Array()
+	for stand in 15:
+		var center_angle := lerpf(1.68, 4.62, stand / 14.0) + rng.randf_range(-0.066, 0.066)
+		var pioneer := sin(center_angle * 5.1) > 0.0
+		for stem in 7:
+			var angle := center_angle + rng.randfn(0.0, 0.095)
+			var distance := rng.randf_range(1.27, 1.81) if stem < 5 else rng.randf_range(1.04, 1.26)
+			var point := Layout.shore_at(angle, distance)
+			var species := rng.randi_range(0, 3)
+			if pioneer and stem >= 4:
+				species = 2
+			var height := rng.randf_range(4.3, 10.8) if stem < 5 else rng.randf_range(1.4, 5.6)
+			var scale := Vector3(height * float(widths[species]) * rng.randf_range(0.91, 1.18), height, 1.0)
+			var y := _far_bank_height(angle, distance, point) + height * 0.5 - height * 0.028
+			var index := stand * 7 + stem
+			trees.set_instance_transform(index, Transform3D(Basis().scaled(scale), Vector3(point.x, y, point.y)))
+			trees.set_instance_custom_data(index, Color(species % 2, floori(species / 2.0), rng.randf_range(0.77, 1.0), rng.randi_range(0, 1)))
+			shade_roots.append(Vector3(point.x, height * 0.33, point.y))
+		# Birch and spruce thickets reach into the wet margin below the canopy.
+		for shrub in 2:
+			var angle := center_angle + rng.randfn(0.0, 0.085)
+			var distance := rng.randf_range(1.044, 1.24)
+			var point := Layout.shore_at(angle, distance)
+			var h := rng.randf_range(1.05, 2.25)
+			var species := 2 if rng.randf() < 0.77 else 1
+			var width := h * rng.randf_range(1.35, 2.05)
+			var base := Vector3(point.x, _far_bank_height(angle, distance, point) + h * 0.20, point.y)
+			var index := 105 + stand * 2 + shrub
+			trees.set_instance_transform(index, Transform3D(Basis().scaled(Vector3(width, h, 1.0)), base))
+			trees.set_instance_custom_data(index, Color(species % 2, floori(species / 2.0), rng.randf_range(0.52, 0.71), rng.randi_range(0, 1)))
+			shade_roots.append(Vector3(point.x, width * 0.53, point.y))
+	_far_bank_ground(shade_roots)
 	var grove := _add_multimesh(trees)
 	grove.layers |= REFLECTION_LAYER
 	grove.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -201,29 +265,78 @@ func _build_far_shore() -> void:
 	var bank_stones := _add_multimesh(stones)
 	bank_stones.layers |= REFLECTION_LAYER
 
+func _far_bank_height(angle: float, distance: float, point: Vector2) -> float:
+	# The bluff rises only beyond the playable western boundary. Its base and
+	# each tree root use the same slope, including the trees seen in the mirror.
+	var crest := 2.25 + 0.91 * sin(angle * 3.3 - 0.8) + 0.48 * sin(angle * 8.2)
+	return Layout.ground_height(point) + smoothstep(29.3, 34.5, -point.x) * smoothstep(1.015, 1.69, distance) \
+		* (1.0 - smoothstep(1.89, 2.36, distance)) * crest
+
+func _far_bank_ground(shade_roots: PackedVector3Array) -> void:
+	var forest := StandardMaterial3D.new()
+	forest.albedo_texture = BANK_FLOOR
+	forest.vertex_color_use_as_albedo = true
+	forest.roughness = 1.0
+	forest.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
+	var mesh := SurfaceTool.new()
+	mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
+	mesh.set_material(forest)
+	var radii := [1.025, 1.09, 1.23, 1.4, 1.61, 1.82, 2.03, 2.37]
+	var steps := 82
+	for row in radii.size():
+		var distance: float = radii[row]
+		for i in (steps + 1):
+			var angle := lerpf(1.40, 4.91, i / float(steps))
+			var point := Layout.shore_at(angle, distance)
+			var lift := -0.07 if row == 0 or row == radii.size() - 1 else -0.006
+			var y := _far_bank_height(angle, distance, point) + lift
+			var inertia := smoothstep(1.06, 1.48, distance)
+			var moss := 0.5 + sin(angle * 18.0 + distance * 8.0) * 0.31 + cos(angle * 7.0 - distance * 13.0) * 0.16
+			var color := Color("#94916e").lerp(Color("#5f714e"), moss).lerp(Color("#586349"), inertia * 0.40)
+			var occlusion := 0.0
+			for tree in shade_roots:
+				var dx := point.x - tree.x
+				var dz := point.y - tree.z
+				var relative := (dx * dx + dz * dz) / (tree.y * tree.y)
+				occlusion = maxf(occlusion, 1.0 - smoothstep(0.0, 1.0, relative))
+			color *= 1.0 - 0.42 * occlusion
+			mesh.set_color(color)
+			mesh.set_uv(point * 0.44)
+			mesh.set_normal(Vector3(-cos(angle) * 0.26 * inertia, 1.0, -sin(angle) * 0.26 * inertia).normalized())
+			mesh.add_vertex(Vector3(point.x, y, point.y))
+	for row in range(radii.size() - 1):
+		for i in steps:
+			var a := row * (steps + 1) + i
+			var b := a + steps + 1
+			for index in [a, b, b + 1, a, b + 1, a + 1]:
+				mesh.add_index(index)
+	var bank := _add_mesh(mesh.commit(), Vector3.ZERO)
+	bank.layers |= REFLECTION_LAYER
+	bank.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+
 func _build_boulders() -> void:
 	var template := SHORE_BOULDER.instantiate()
 	var model := template as MeshInstance3D
 	if model == null:
 		model = template.get_child(0) as MeshInstance3D
-	var boulders := MultiMesh.new()
-	boulders.transform_format = MultiMesh.TRANSFORM_3D
-	boulders.mesh = model.mesh
-	boulder_material = model.mesh.surface_get_material(0).duplicate()
+	var shared_mesh := model.mesh
+	boulder_material = shared_mesh.surface_get_material(0).duplicate()
 	template.free()
-	var placements: Array = Layout.layout.boulders
-	boulders.instance_count = placements.size()
-	for i in placements.size():
-		var config: Dictionary = placements[i]
+	var bank_boulders := Node3D.new()
+	bank_boulders.name = "ShoreBoulders"
+	add_child(bank_boulders)
+	for config: Dictionary in Layout.layout.boulders:
 		var point := Vector2(config.x, config.z)
 		var scale := float(config.size)
 		var basis := Basis(Vector3.UP, float(config.yaw)).scaled(Vector3.ONE * scale)
 		var origin := Vector3(point.x, Layout.ground_height(point) - 0.12 * scale, point.y)
-		boulders.set_instance_transform(i, Transform3D(basis, origin))
-	var bank_boulders := _add_multimesh(boulders)
-	bank_boulders.name = "ShoreBoulders"
-	bank_boulders.material_override = boulder_material
-	bank_boulders.layers |= REFLECTION_LAYER
+		# Separate bounds keep offscreen boulders out of both cameras while sharing mesh and material.
+		var boulder := MeshInstance3D.new()
+		boulder.mesh = shared_mesh
+		boulder.material_override = boulder_material
+		boulder.transform = Transform3D(basis, origin)
+		boulder.layers |= REFLECTION_LAYER
+		bank_boulders.add_child(boulder)
 
 func _build_reeds() -> void:
 	var rng := RandomNumberGenerator.new()
@@ -291,29 +404,38 @@ func _update_reflection(elapsed: float) -> void:
 	if camera == null:
 		return
 	var center := Layout.center()
-	var to_lake := Vector3(center.x, Layout.water_y(), center.y) - camera.global_position
+	var viewer := camera.global_transform
+	var to_lake := Vector3(center.x, Layout.water_y(), center.y) - viewer.origin
 	var viewed := to_lake.length_squared() < REFLECTION_DISTANCE * REFLECTION_DISTANCE
-	viewed = viewed and to_lake.dot(-camera.global_basis.z) > -4.5
+	viewed = viewed and viewer.origin.y > Layout.water_y() - 0.025 and to_lake.dot(-viewer.basis.z) > -4.5
 	if viewed != reflection_enabled:
 		reflection_enabled = viewed
 		lake_material.set_shader_parameter("reflection_strength", 0.88 if viewed else 0.0)
 	if not viewed:
 		reflection_updated_at = -1.0
 		return
-	# Cap reflection updates independently of the main render and draw only the shore layer.
-	if elapsed >= reflection_updated_at and elapsed - reflection_updated_at < 0.064:
+	# The reflected geometry is static. Refresh quickly when the camera moves and
+	# keep the existing image between changes in the room's sky at a steady view.
+	var moved := viewer.origin.distance_squared_to(reflection_viewer.origin) > 0.035 * 0.035 \
+		or viewer.basis.z.dot(reflection_viewer.basis.z) < 0.99997 or absf(camera.fov - reflection_fov) > 0.10
+	var interval := REFLECTION_MOVING_INTERVAL if moved else REFLECTION_STILL_INTERVAL
+	var target_size := get_viewport().get_visible_rect().size
+	var width := clampi(roundi(225.0 * target_size.x / maxf(target_size.y, 1.0)), 180, 600)
+	if reflection_updated_at >= 0.0 and elapsed >= reflection_updated_at and elapsed - reflection_updated_at < interval \
+			and reflection.size.x == width:
 		return
 	reflection_updated_at = elapsed
-	var target_size := get_viewport().get_visible_rect().size
-	if target_size.y > 0.0:
-		reflection.size.x = clampi(roundi(225.0 * target_size.x / target_size.y), 180, 600)
+	reflection_viewer = viewer
+	reflection_fov = camera.fov
+	if reflection.size.x != width:
+		reflection.size.x = width
 	reflection_camera.fov = camera.fov
 	reflection_camera.keep_aspect = camera.keep_aspect
-	var origin := camera.global_position
+	var origin := viewer.origin
 	origin.y = Layout.water_y() * 2.0 - origin.y
-	var direction := -camera.global_basis.z
+	var direction := -viewer.basis.z
 	direction.y *= -1.0
-	var up := camera.global_basis.y
+	var up := viewer.basis.y
 	reflection_camera.global_position = origin
 	reflection_camera.look_at(origin + direction, Vector3(-up.x, up.y, -up.z))
 	reflection.render_target_update_mode = SubViewport.UPDATE_ONCE

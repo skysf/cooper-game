@@ -20,6 +20,9 @@ static func flat(id: String) -> bool:
 static func ground_height(id: String) -> float:
 	return 0.019 if flat(id) else 0.038
 
+static func is_pickable(stone: Dictionary) -> bool:
+	return stone.mode in ["ground", "placed", "submerged"] and float(stone.at[1]) >= -0.42
+
 static func initial() -> Dictionary:
 	var stones := {}
 	for id: String in SPAWNS:

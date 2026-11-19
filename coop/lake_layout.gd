@@ -59,8 +59,10 @@ static func ground_height(point: Vector2) -> float:
 		bed = minf(bed, creek_bed)
 	return bed
 
-static func walk_height(point: Vector2) -> float:
+static func on_dock(point: Vector2) -> bool:
 	var dock: Dictionary = layout.dock
-	if point.x >= float(dock.west) and point.x <= float(dock.east) and absf(point.y - float(dock.z)) < float(dock.halfWidth):
-		return 0.12
-	return ground_height(point)
+	return point.x >= float(dock.west) and point.x <= float(dock.east) \
+		and absf(point.y - float(dock.z)) < float(dock.halfWidth)
+
+static func walk_height(point: Vector2) -> float:
+	return 0.12 if on_dock(point) else ground_height(point)

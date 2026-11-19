@@ -3,6 +3,7 @@ extends RefCounted
 const TABLE_CENTER := Vector2(3.10, -88.95)
 const TABLE_TOP := 0.79
 const JUG := Vector2(3.59, -88.76)
+const BACKPACK := Vector2(0.55, -88.85)
 const TABLE_SLOTS := [
 	Vector2(2.50, -88.82), Vector2(2.75, -88.82),
 	Vector2(2.50, -89.11), Vector2(2.75, -89.11),
@@ -13,8 +14,10 @@ const REACH := 1.65
 const PUT_REACH := 1.55
 const JUG_REACH := 1.55
 const SLOT_COUNT := 6
+const BACKPACK_SLOTS := 6
 const STACK_SIZE := 3
-const ITEM_NAMES := {"apple": "苹果", "bread": "面包"}
+const CLOTHING := {"cap": "帽子", "jacket": "夹克", "pants": "长裤"}
+const ITEM_NAMES := {"apple": "苹果", "bread": "面包", "cap": "帽子", "jacket": "夹克", "pants": "长裤"}
 const FOOD_STATS := {
 	"apple": {"hunger": 19.0, "water": 9.0, "mood": 4.0},
 	"bread": {"hunger": 31.0, "water": 0.0, "mood": 3.0},
@@ -30,25 +33,41 @@ const WARMTH_MOOD := 0.075
 const RAIN_MOOD_LOSS := 0.17
 
 static func initial_state() -> Dictionary:
-	return {"hunger": 86.0, "water": 82.0, "mood": 65.0, "bag": {"apple": 0, "bread": 0}}
+	return {"health": MAX_STAT, "hunger": 86.0, "water": 82.0, "mood": 65.0, "bag": {"apple": 0, "bread": 0},
+		"worn": initial_wear()}
 
-static func state_from_save(value: Variant) -> Dictionary:
+static func initial_wear() -> Dictionary:
+	return {"cap": true, "jacket": true, "pants": true}
+
+static func stack_limit(item: String) -> int:
+	return STACK_SIZE if FOOD_STATS.has(item) else 1
+
+static func slot_count(wearing_backpack: bool) -> int:
+	return SLOT_COUNT + (BACKPACK_SLOTS if wearing_backpack else 0)
+
+static func state_from_save(value: Variant, slots: int = SLOT_COUNT) -> Dictionary:
 	var state := initial_state()
 	if value is not Dictionary:
 		return state
-	for key in ["hunger", "water", "mood"]:
+	for key in ["health", "hunger", "water", "mood"]:
 		var amount: Variant = value.get(key)
 		if finite_number(amount):
 			state[key] = clampf(float(amount), 0.0, MAX_STAT)
+	var worn: Variant = value.get("worn")
+	if worn is Dictionary:
+		for item: String in CLOTHING:
+			state.worn[item] = worn.get(item) == true
 	var bag: Variant = value.get("bag")
 	if bag is Dictionary:
-		var available := SLOT_COUNT
+		var available := slots
 		for item: String in ITEM_NAMES:
 			var count: Variant = bag.get(item)
 			if finite_number(count):
-				var accepted := int(clampf(float(count), 0.0, available * STACK_SIZE))
-				state.bag[item] = accepted
-				available -= ceili(float(accepted) / STACK_SIZE)
+				var limit := stack_limit(item)
+				var accepted := int(clampf(float(count), 0.0, available * limit))
+				if accepted > 0 or not CLOTHING.has(item):
+					state.bag[item] = accepted
+				available -= ceili(float(accepted) / limit)
 	return state
 
 static func initial_provisions() -> Dictionary:
@@ -69,6 +88,8 @@ static func provisions_from_save(value: Variant) -> Dictionary:
 		if id.length() > 64 or saved is not Dictionary or not ITEM_NAMES.has(saved.get("item")):
 			continue
 		if saved.get("surface") not in ["table", "ground"]:
+			continue
+		if saved.surface == "table" and CLOTHING.has(saved.item):
 			continue
 		var at: Variant = saved.get("at")
 		if at is Array and at.size() == 3 and finite_number(at[0]) and finite_number(at[1]) and finite_number(at[2]):
@@ -99,14 +120,14 @@ static func can_drink(point: Vector2) -> bool:
 static func used_slots(bag: Dictionary) -> int:
 	var occupied := 0
 	for item: String in ITEM_NAMES:
-		occupied += ceili(float(bag.get(item, 0)) / STACK_SIZE)
+		occupied += ceili(float(bag.get(item, 0)) / stack_limit(item))
 	return occupied
 
-static func can_carry(bag: Dictionary, item: String) -> bool:
+static func can_carry(bag: Dictionary, item: String, slots: int = SLOT_COUNT) -> bool:
 	if not ITEM_NAMES.has(item):
 		return false
 	var count := int(bag.get(item, 0))
-	return count % STACK_SIZE != 0 or used_slots(bag) < SLOT_COUNT
+	return count % stack_limit(item) != 0 or used_slots(bag) < slots
 
 static func free_table_slot(provisions: Dictionary) -> Vector3:
 	for slot: Vector2 in TABLE_SLOTS:
@@ -124,20 +145,24 @@ static func eat(state: Dictionary, item: String) -> void:
 	for key in nutrition:
 		state[key] = minf(MAX_STAT, float(state[key]) + float(nutrition[key]))
 
-static func tick(state: Dictionary, point: Vector2, roof_repaired: bool, rain: float, delta: float) -> void:
+static func tick(state: Dictionary, point: Vector2, roof_repaired: bool, rain: float, delta: float, piloting := false) -> void:
 	state.hunger = maxf(0.0, float(state.hunger) - HUNGER_LOSS * delta)
 	state.water = maxf(0.0, float(state.water) - WATER_LOSS * delta)
 	var mood_change := -RAIN_MOOD_LOSS * rain
-	if inside_shelter(point):
+	if not piloting and inside_shelter(point):
 		# Each of the two fixed decorations contributes separately to the room's comfort.
 		var comfort := INDOOR_MOOD + DECOR_MOOD * 2.0
 		mood_change = comfort + WARMTH_MOOD if roof_repaired else comfort + mood_change * 0.65
+		if roof_repaired:
+			state.health = minf(MAX_STAT, float(state.health) + 1.4 * delta)
 	state.mood = clampf(float(state.mood) + mood_change * delta, 0.0, MAX_STAT)
 
 static func snapshot(state: Dictionary) -> Dictionary:
 	return {
+		"health": snappedf(float(state.health), 0.1),
 		"hunger": snappedf(float(state.hunger), 0.1),
 		"water": snappedf(float(state.water), 0.1),
 		"mood": snappedf(float(state.mood), 0.1),
 		"bag": state.bag,
+		"worn": state.worn,
 	}

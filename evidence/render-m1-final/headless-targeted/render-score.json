@@ -1,0 +1,39 @@
+{
+  "conclusion": "pass",
+  "mode": "visual",
+  "issues": [],
+  "environment": [],
+  "scenes": {
+    "forest": {
+      "diffImage": "diff-forest.png",
+      "regions": {
+        "woods": {
+          "meanError": 0.7488508820533752,
+          "peakTileError": 5.364166736602783,
+          "luminanceSSIM": 0.9986539483070374
+        }
+      }
+    },
+    "underwater": {
+      "diffImage": "diff-underwater.png",
+      "regions": {
+        "lakebed": {
+          "meanError": 0.13085748255252838,
+          "peakTileError": 0.4489583373069763,
+          "luminanceSSIM": 0.99913090467453
+        },
+        "near-lakebed-left": {
+          "meanError": 0.38691943883895874,
+          "peakTileError": 2.7543749809265137,
+          "luminanceSSIM": 0.9680799245834351
+        },
+        "near-lakebed-right": {
+          "meanError": 0.05756198242306709,
+          "peakTileError": 0.2535416781902313,
+          "luminanceSSIM": 0.9998056292533875
+        }
+      },
+      "cameraDepthDelta": 0.0
+    }
+  }
+}

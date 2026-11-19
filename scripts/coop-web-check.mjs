@@ -1,17 +1,18 @@
-// Measure the real first-playable signal in a cold, bandwidth-limited window.
+// Measure first playable in a cold, bandwidth-limited browser context.
 // A second independent browser context verifies the invite and both peer views.
 import {chromium} from 'playwright';
 import {writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
+import {browserTestOptions, prepareOffscreenPage} from './coop-browser-controls.mjs';
 const base=(process.env.COOP_BASE||'http://localhost:4184').replace(/\/$/,'');
 const room='stream-'+Date.now().toString(36);
-const browser=await chromium.launch({channel:'chrome',headless:false,args:['--window-size=1320,840']});
+const browser=await chromium.launch(browserTestOptions());
 try{
   const options={viewport:{width:1280,height:720},deviceScaleFactor:1};
   const ctx=await browser.newContext(options), page=await ctx.newPage();
   page.on('pageerror',error=>console.error(error.message));
   page.on('requestfailed',r=>console.error(r.url(),r.failure()?.errorText));
-  const cdp=await ctx.newCDPSession(page);
+  const cdp=await prepareOffscreenPage(page);
   const wire=[], requests=[];
   let navClock;
   cdp.on('Network.requestWillBeSent',event=>{
@@ -32,7 +33,7 @@ try{
     },25);
   });
   const url=base+'/coop/?room='+room;
-  await page.goto(url,{waitUntil:'domcontentloaded'});await page.bringToFront();
+  await page.goto(url,{waitUntil:'domcontentloaded'});
   try {
     await page.waitForFunction(()=>window.campMeasurement,null,{timeout:95000});
   } catch (error) {
@@ -52,22 +53,22 @@ try{
   assert.ok(!report.zonesRequestedAtReady.some(path=>path.endsWith('/tower.glb')));
   report.downloadMbps=10;report.uploadMbps=2;report.simulatedLatencyMs=70;
   report.transferredMiB=report.resources.reduce((sum,r)=>sum+r.bytes,0)/1048576;
-  report.chrome=browser.version();report.date=new Date().toISOString();
+  report.chrome=browser.version();report.date=new Date().toISOString();report.headless=true;
   const inviteButton=await page.evaluate(()=>{
     const r=document.querySelector('canvas').getBoundingClientRect();
     const [x,y,w,h]=CooperStatus.inviteRect;
     return {x:r.left+(x+w/2)*r.width/CooperStatus.viewport[0],y:r.top+(y+h/2)*r.height/CooperStatus.viewport[1]};
   });
   await page.mouse.click(inviteButton.x,inviteButton.y);
-  const field=page.getByRole('textbox',{name:'房间邀请链接，可复制'});
+  const field=page.getByRole('textbox',{name:/房间邀请链接/});
   await field.waitFor({state:'visible'});
   const invite=await field.inputValue();
   assert.equal(new URL(invite).searchParams.get('room'),room);
   assert.ok(await field.evaluate(el=>el.selectionStart===0 && el.selectionEnd===el.value.length));
   report.invite={url:invite,selectable:true};
   const ctx2=await browser.newContext(options),p2=await ctx2.newPage();
+  await prepareOffscreenPage(p2);
   await p2.goto(invite);await p2.waitForFunction(()=>window.CooperStatus?.ready&&CooperStatus.members===2&&CooperStatus.remoteAvatars===1,null,{polling:100,timeout:45000});
-  await page.bringToFront();
   await page.waitForFunction(()=>window.CooperStatus?.members===2&&CooperStatus.remoteAvatars===1,null,{polling:100,timeout:18000});
   const players=await Promise.all([page,p2].map(p=>p.evaluate(()=>({id:CooperStatus.selfId,peers:CooperStatus.members,avatars:CooperStatus.remoteAvatars}))));
   assert.notEqual(players[0].id,players[1].id);assert.ok(players.every(x=>x.avatars===1));

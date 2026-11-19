@@ -30,6 +30,17 @@
 
 溪谷分块 gzip 增加 220,079 B。七个按需下载的分块合计增加 1,506,049 B。去除树梢的极近顶点之前，另在相同远一些的晴天机位采样约 8 秒，原版和新版均为 25.00 FPS，P95 帧间隔为 41.70 → 41.80 ms。 [原始帧耗时](../evidence/forest-wood/overview-frame-times.json)
 
+## 营地与湖岸草地
+
+合作版的草地使用 Poly Haven 的 **Grass Medium 01**。Rico Cilliers 建模，Rob Tuytel 摄影，素材按 CC0 1.0 发布。三种草簇均取自原始 LOD2，较密的一种在 Blender 中进一步减面。青草与偏枯色共用一张 2048 × 1024 透明贴图。小径两侧、木屋外和鹿鸣湖岸的草簇形成疏密不同的斑块，稀草之间留有裸土。 [Grass Medium 01](https://polyhaven.com/a/grass_medium_01)
+
+草簇随地形分块加载，同一片地面的同类草合并为 MultiMesh 实例。草叶轻微随风弯曲，在 23 到 31 米内逐渐淡出。运行素材位于 [coop/vegetation](../coop/vegetation/)。重做美术时，将下载的 4K 素材目录放入 `art/vegetation/`，从项目根目录执行以下命令。地图分块脚本会用固定种子重建草簇的位置。
+
+```sh
+./scripts/start-blender.sh --background art/vegetation/grass_medium_01_4k/grass_medium_01_4k.blend --python scripts/build-camp-grass.py
+npm run coop:build
+```
+
 ## 可拾取的石块
 
 圆石和扁石取自 Kless Gyzen 的 **Rock Moss Set 01** 第 3、2 块，保留原网格与扫描贴图坐标，并缩到 13.5 厘米和 11.5 厘米。磨刃版从扁石侧边切出斜刃，补成闭合网格，切面材质取自 Rob Tuytel 的 CC0 **Mossy Rock**。小石块使用内嵌的 512 像素贴图。圆石 5,000 个三角面，扁石 10,996 个。[Rock Moss Set 01](https://polyhaven.com/a/rock_moss_set_01) · [Mossy Rock](https://polyhaven.com/a/mossy_rock)
@@ -37,3 +48,9 @@
 鹿鸣湖岸的八块岩石使用 Rico Cilliers 的 **Boulder 01**。运行时复用同一份 LOD3 网格和 1024 像素贴图，每块独立定向缩放。水面反射会绘制这组岩石，雨天材质随岸线变深。实例的碰撞从 [湖岸布局](../coop/water_layout.json) 写入共享世界清单。[Boulder 01](https://polyhaven.com/a/boulder_01)
 
 要重做岩石模型，可从上面的素材页下载原始 `.blend` 和 4K 贴图，将 `rock_moss_set_01_4k` 和 `boulder_01_4k` 两个目录放入 `art/rocks/`。`python3 scripts/build-camp-stones.py` 用它们重新生成 [coop/props](../coop/props/) 中的四个 GLB。运行需要 NumPy、Pillow、`zstd` 和 [本机 Blender 安装](blender-mcp.md)附带的 OpenEXR 库。脚本直接读取网格和图像，无需打开 Blender 窗口。
+
+## 鹿鸣湖床与西岸树林
+
+湖床碎石取自 Poly Haven 的 **River Small Rocks**，由 Rob Tuytel 摄影、处理，Rico Cilliers 参与调整，按 CC0 发布。原始纹理覆盖约 2.9 米，游戏保留 768 像素底色和 512 像素法线。`python3 scripts/bake-lake-water.py` 获取并校验源图，也能从固定波谱重新生成 256 像素的水波斜率与湖底聚光纹理。纹理的蓝通道记录平行光穿过水面后落在湖底的光线密度。[River Small Rocks](https://polyhaven.com/a/river_small_rocks) · [素材许可](https://polyhaven.com/license)
+
+从栈台望向西岸时可见白桦、松树与云杉。`python3 scripts/bake-lake-canopy.py` 启动独立的后台 Blender，从营地已有的三个成树 GLB 正交渲染四个树冠视角，合成 512 × 512 的透明图集。树冠在主镜头和反射视口共享图集，根部沿同一段坡地排列。[松树来源](pine-tree.md) · [白桦与云杉来源](tree-species.md)

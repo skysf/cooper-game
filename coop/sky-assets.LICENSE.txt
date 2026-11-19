@@ -1,4 +1,15 @@
-Rainline Camp night sky assets
+Rainline Camp sky assets
+
+Evening Sky HDRI 049 A
+Credit: ambientCG
+License: Creative Commons CC0 1.0 Universal
+https://ambientcg.com/a/EveningSkyHDRI049A
+https://docs.ambientcg.com/license/
+
+The game uses a 2048 x 512 sky hemisphere derived from the supplied
+2K tone-mapped panorama. The ground and photographed sun were cropped
+out. The last sky row extends to the horizon, where the shader fades
+into the dynamic atmosphere.
 
 The Milky Way panorama (eso0932a)
 Credit: ESO/S. Brunier

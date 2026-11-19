@@ -1,5 +1,7 @@
 extends Node3D
 
+signal lantern_warmed
+
 const SURFACES = {
 	"mud": preload("res://materials/mud.tres"),
 	"forest_floor": preload("res://materials/forest_floor.tres"),
@@ -11,14 +13,19 @@ const SURFACES = {
 }
 const FAR_FIR = preload("res://textures/distant_fir.png")
 const Grove = preload("res://grove.gd")
+const Grass = preload("res://grass.gd")
 const LakeLayout = preload("res://lake_layout.gd")
 const Lake = preload("res://lake.gd")
 const ProvisionScene = preload("res://provision_scene.gd")
-const WaterLayout = preload("res://lake_layout.gd")
 const CAMP_LANTERN = preload("res://props/camp_lantern.glb")
+const Wildlife = preload("res://wildlife.gd")
 const LANTERN_GLASS = preload("res://materials/lantern_glass.tres")
-const PREFETCH_METRES := 14.0
-const KEEP_METRES := 21.0
+const PREFETCH_METRES := 26.0
+const KEEP_METRES := 34.0
+const MAX_RESIDENT_CHUNKS := 4
+const REPLACE_MARGIN := 3.0
+const HORIZON_MARGIN := 105.0
+const GROUND_OFFSET := 0.12
 const LAMP_FADE_SECONDS := 0.55
 const UNLIT_FLAME_SCALE := 0.001
 var last_error := ""
@@ -28,6 +35,7 @@ var focus := Vector3(1.9, 1.67, -85.0)
 var chunks: Array
 var loaded := {}
 var far_trees := {}
+var background_floor: MeshInstance3D
 var materials := {}
 var pending := ""
 var web_request: JavaScriptObject
@@ -37,11 +45,17 @@ var fire_lamp := OmniLight3D.new()
 var wood_pile := Node3D.new()
 var supply_roll := Node3D.new()
 var roof_patch := Node3D.new()
+var lantern: Node3D
 var flame: MeshInstance3D
 var lamp_lit := false
 var lamp_progress := 0.0
+var lantern_warmup_ms := 0.0
+var _lantern_warming := false
+var _warmup_exhaust_mesh: Mesh
+var _warmup_exhaust_material: ShaderMaterial
 var wetness := -1.0
 var grove := Grove.new()
+var grass := Grass.new()
 var lake := Lake.new()
 var household := ProvisionScene.new()
 
@@ -58,10 +72,6 @@ func _ready() -> void:
 			configure("http://localhost:4184/coop/zones/")
 	for key in SURFACES:
 		materials[key] = SURFACES[key].duplicate()
-	var sedge := StandardMaterial3D.new()
-	sedge.vertex_color_use_as_albedo = true
-	sedge.cull_mode = BaseMaterial3D.CULL_DISABLED
-	materials["sedge"] = sedge
 	add_child(http)
 	http.timeout = 25.0
 	http.request_completed.connect(_received)
@@ -71,6 +81,9 @@ func _ready() -> void:
 	grove.configure(world.get("grove", {}))
 	set_wet(0.0)
 	set_quest(false, false, false)
+	if OS.has_feature("web"):
+		_lantern_warming = true
+		_warm_lantern_materials.call_deferred()
 
 func update_focus(pos: Vector3) -> void:
 	focus = pos
@@ -93,10 +106,58 @@ func _distance(chunk: Dictionary) -> float:
 	return maxf(0.0, maxf(float(chunk.lo) - focus.z, focus.z - float(chunk.hi)))
 
 func is_focus_ready() -> bool:
+	if _lantern_warming:
+		return false
 	for chunk in chunks:
 		if focus.z >= float(chunk.lo) and focus.z < float(chunk.hi):
 			return loaded.has(chunk.id)
 	return false
+
+func wait_for_lantern_warmup() -> void:
+	if _lantern_warming:
+		await lantern_warmed
+
+func prepare_exhaust_warmup(mesh: Mesh, material: ShaderMaterial) -> void:
+	_warmup_exhaust_mesh = mesh
+	_warmup_exhaust_material = material
+
+func _warm_lantern_materials() -> void:
+	var started := Time.get_ticks_usec()
+	# Draw the actual lantern once so the browser links its glass, emission and shadow variants
+	# before the first chase turn can bring the cabin into view.
+	var preview := SubViewport.new()
+	preview.size = Vector2i(96, 54)
+	preview.world_3d = get_world_3d()
+	preview.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	add_child(preview)
+	var lens := Camera3D.new()
+	lens.near = 0.07
+	lens.far = 3.4
+	preview.add_child(lens)
+	var center := lantern.global_position + Vector3.DOWN * 0.27
+	lens.global_position = center + Vector3(1.05, 0.48, 1.25)
+	lens.look_at(center)
+	lens.make_current()
+	if _warmup_exhaust_mesh != null:
+		# Both nozzle pairs use this shader. Draw it with zero opacity in the same real scene.
+		var exhaust := MeshInstance3D.new()
+		exhaust.mesh = _warmup_exhaust_mesh
+		var material := _warmup_exhaust_material.duplicate() as ShaderMaterial
+		material.set_shader_parameter("power", 0.0)
+		exhaust.material_override = material
+		exhaust.position = Vector3(0.20, -0.22, -0.8)
+		exhaust.scale = Vector3(0.08, 0.55, 0.08)
+		exhaust.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		lens.add_child(exhaust)
+		_warmup_exhaust_mesh = null
+		_warmup_exhaust_material = null
+	preview.render_target_update_mode = SubViewport.UPDATE_ONCE
+	await RenderingServer.frame_post_draw
+	preview.queue_free()
+	await preview.tree_exited
+	lantern_warmup_ms = (Time.get_ticks_usec() - started) / 1000.0
+	_lantern_warming = false
+	lantern_warmed.emit()
 
 func _process(_dt: float) -> void:
 	if web_request != null and bool(web_request.done):
@@ -106,21 +167,43 @@ func _process(_dt: float) -> void:
 			_failed(pending, str(result.error))
 		else:
 			_parse_chunk(pending, JavaScriptBridge.js_buffer_to_packed_byte_array(result.bytes))
-	var candidate := ""
-	var best := INF
 	for chunk in chunks:
 		var id: String = chunk.id
-		var d := _distance(chunk)
-		if d > KEEP_METRES and loaded.has(id):
-			loaded[id].queue_free()
-			loaded.erase(id)
-			far_trees[id].visible = true
-		if d <= PREFETCH_METRES and not loaded.has(id) and d < best:
-			if int(next_try.get(id, 0)) <= Time.get_ticks_msec():
-				best = d
-				candidate = id
-	if pending.is_empty() and not candidate.is_empty():
-		_request_chunk(candidate)
+		if loaded.has(id) and _distance(chunk) > KEEP_METRES:
+			_unload_chunk(id)
+	if pending.is_empty():
+		var candidate := _next_chunk()
+		if not candidate.is_empty():
+			_request_chunk(candidate)
+
+func _farthest_resident() -> Dictionary:
+	var farthest := {}
+	var distance := -1.0
+	for chunk: Dictionary in chunks:
+		if loaded.has(chunk.id) and _distance(chunk) > distance:
+			distance = _distance(chunk)
+			farthest = chunk
+	return farthest
+
+func _next_chunk() -> String:
+	var limit := PREFETCH_METRES
+	if loaded.size() >= MAX_RESIDENT_CHUNKS:
+		limit = minf(limit, _distance(_farthest_resident()) - REPLACE_MARGIN)
+	var candidate := ""
+	var best := INF
+	var now := Time.get_ticks_msec()
+	for chunk: Dictionary in chunks:
+		var distance := _distance(chunk)
+		if distance <= limit and distance < best and not loaded.has(chunk.id) and int(next_try.get(chunk.id, 0)) <= now:
+			candidate = chunk.id
+			best = distance
+	return candidate
+
+func _unload_chunk(id: String) -> void:
+	far_trees[id].show()
+	loaded[id].hide()
+	loaded[id].queue_free()
+	loaded.erase(id)
 
 func _request_chunk(id: String) -> void:
 	pending = id
@@ -151,6 +234,14 @@ func _received(result: int, code: int, _headers: PackedStringArray, bytes: Packe
 	_parse_chunk(pending, bytes)
 
 func _parse_chunk(id: String, bytes: PackedByteArray) -> void:
+	var replace := {}
+	if loaded.size() >= MAX_RESIDENT_CHUNKS:
+		replace = _farthest_resident()
+	for chunk: Dictionary in chunks:
+		if chunk.id == id and (_distance(chunk) > KEEP_METRES or (
+			not replace.is_empty() and _distance(chunk) > _distance(replace) - REPLACE_MARGIN)):
+			pending = ""
+			return
 	var document := GLTFDocument.new()
 	var state := GLTFState.new()
 	var err := document.append_from_buffer(bytes, "", state)
@@ -163,12 +254,18 @@ func _parse_chunk(id: String, bytes: PackedByteArray) -> void:
 		return
 	for object in part.find_children("*", "MeshInstance3D", true, false):
 		var mesh_node := object as MeshInstance3D
-		var material = materials.get(str(mesh_node.name))
+		var surface := str(mesh_node.name).get_slice("__", 0)
+		var material = materials.get(surface)
 		if material != null:
 			mesh_node.material_override = material
-		if mesh_node.name == "forest_floor" and id in ["approach", "creek", "crossing"]:
+		if surface == "mud" or surface == "forest_floor":
+			mesh_node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if surface == "forest_floor" and id in ["approach", "creek", "crossing"]:
 			mesh_node.layers |= Lake.REFLECTION_LAYER
 	part.name = id
+	grass.add_to_chunk(part, world.get("grass", {}).get(id, []))
+	if not replace.is_empty():
+		_unload_chunk(replace.id)
 	add_child(part)
 	loaded[id] = part
 	far_trees[id].visible = false
@@ -195,8 +292,10 @@ func _background() -> void:
 			var z := float(tree[1])
 			if z < float(chunk.lo) or z >= float(chunk.hi):
 				continue
+			var x := float(tree[0])
 			var h := float(tree[2])
-			transforms.append(Transform3D(Basis().scaled(Vector3(h * 0.40, h, 1)), Vector3(tree[0], h * .5, z)))
+			var ground := LakeLayout.ground_height(Vector2(x, z)) - GROUND_OFFSET
+			transforms.append(Transform3D(Basis().scaled(Vector3(h * 0.40, h, 1)), Vector3(x, ground + h * .5, z)))
 		var multi := MultiMesh.new()
 		multi.transform_format = MultiMesh.TRANSFORM_3D
 		multi.mesh = card
@@ -211,13 +310,22 @@ func _background() -> void:
 func _background_floor() -> void:
 	var floor_mesh := SurfaceTool.new()
 	floor_mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
-	floor_mesh.set_material(materials.forest_floor)
-	_floor_sector(floor_mesh, Vector2(-30, -121), Vector2(30, -72), 1, 1)
-	_floor_sector(floor_mesh, Vector2(-30, -28), Vector2(30, 14), 1, 1)
-	_floor_sector(floor_mesh, Vector2(-7, -72), Vector2(30, -28), 1, 1)
+	var material := StandardMaterial3D.new()
+	material.albedo_texture = materials.forest_floor.albedo_texture
+	material.vertex_color_use_as_albedo = true
+	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	material.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
+	var lo := Vector2(-30, -121) - Vector2.ONE * HORIZON_MARGIN
+	var hi := Vector2(30, 14) + Vector2.ONE * HORIZON_MARGIN
+	floor_mesh.set_material(material)
+	_floor_sector(floor_mesh, lo, Vector2(hi.x, -72), 1, 1)
+	_floor_sector(floor_mesh, Vector2(lo.x, -28), hi, 1, 1)
+	_floor_sector(floor_mesh, Vector2(lo.x, -72), Vector2(-51, -28), 1, 1)
+	_floor_sector(floor_mesh, Vector2(-7, -72), Vector2(hi.x, -28), 1, 1)
 	_floor_sector(floor_mesh, Vector2(-51, -72), Vector2(-7, -28), 52, 60)
-	var floor_node := _mesh(self, floor_mesh.commit(), Vector3.ZERO)
-	floor_node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	floor_mesh.index()
+	background_floor = _mesh(self, floor_mesh.commit(), Vector3.ZERO)
+	background_floor.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 func _floor_sector(mesh: SurfaceTool, lo: Vector2, hi: Vector2, columns: int, rows: int) -> void:
 	var width := columns + 1
@@ -225,21 +333,23 @@ func _floor_sector(mesh: SurfaceTool, lo: Vector2, hi: Vector2, columns: int, ro
 	for j in rows + 1:
 		for i in columns + 1:
 			var point := Vector2(lerpf(lo.x, hi.x, i / float(columns)), lerpf(lo.y, hi.y, j / float(rows)))
-			points.append(Vector3(point.x, WaterLayout.ground_height(point) - 0.070, point.y))
+			points.append(Vector3(point.x, LakeLayout.ground_height(point) - GROUND_OFFSET, point.y))
 	for j in rows:
 		for i in columns:
 			var first := j * width + i
-			for vertex in [first, first + width, first + 1, first + 1, first + width, first + width + 1]:
+			# Godot's front faces wind clockwise when viewed from above.
+			for vertex in [first, first + 1, first + width, first + 1, first + width + 1, first + width]:
 				var point := points[vertex]
 				mesh.set_normal(Vector3.UP)
 				mesh.set_uv(Vector2(point.x, point.z) * 0.5)
-				mesh.set_color(Color(0.74, 0.75, 0.69))
+				mesh.set_color(Color(0.66, 0.67, 0.60))
 				mesh.add_vertex(point)
 
 func set_wet(value: float) -> void:
 	if materials.is_empty() or absf(value - wetness) < 0.003:
 		return
 	wetness = value
+	grass.material.set_shader_parameter("wetness", value)
 	for key in ["rock", "mud", "wood"]:
 		var mat: StandardMaterial3D = materials[key]
 		var dry: StandardMaterial3D = SURFACES[key]
@@ -309,6 +419,9 @@ func _landmarks() -> void:
 	add_child(household)
 	var wood: Material = materials.wood
 	var bark: Material = materials.bark
+	var branch_join := Wildlife.PERCH + Vector3(0.52, 0.0, 0.0)
+	_pole(self, Wildlife.PERCH_TRUNK, branch_join, 0.068, bark)
+	_pole(self, branch_join, Wildlife.PERCH - Vector3(0.43, 0.0, 0.0), 0.047, bark)
 	var cloth := StandardMaterial3D.new()
 	cloth.albedo_color = Color("#4d736a")
 	cloth.roughness = 0.76
@@ -338,7 +451,7 @@ func _landmarks() -> void:
 		_beam(roof_patch,Vector3(x1,y1,-89.6),Vector3(x2,y2,-89.6),.045,2.7,cloth)
 	for dz in [-1.25,0.,1.25]:
 		_pole(roof_patch,Vector3(1.86,3.69,-89.6+dz),Vector3(5.03,2.13,-89.6+dz),.037, wood)
-	var lantern := CAMP_LANTERN.instantiate() as Node3D
+	lantern = CAMP_LANTERN.instantiate() as Node3D
 	# The plate attaches to the lower face of the front beam beside the entry post.
 	lantern.position = Vector3(4.13, 2.156, -86.90)
 	add_child(lantern)

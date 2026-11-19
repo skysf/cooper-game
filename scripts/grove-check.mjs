@@ -1,4 +1,4 @@
-// Run both static releases in the same foreground Chrome tab. Each trial loads
+// Run both static releases in the same offscreen Chrome page. Each trial loads
 // a fresh, isolated local save at the same camera pose and room-clock time.
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
@@ -6,12 +6,13 @@ import {createHash, randomBytes} from 'node:crypto';
 import {mkdtemp, mkdir, writeFile, stat} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {chromium} from 'playwright';
+import {browserTestOptions, prepareOffscreenPage, stageOffscreenControls} from './coop-browser-controls.mjs';
 
 const reference=process.argv[2];
 if(!reference)throw Error('Pass the saved pre-grove dist/coop directory as the reference.');
 const scratch=await mkdtemp(resolve('.cache/grove-check-'));
 const servers=[];
-const result={date:new Date().toISOString(),pose:[-0.8,-70.5],runs:[]};
+const result={date:new Date().toISOString(),headless:true,timingEligible:false,pose:[-0.8,-70.5],runs:[]};
 let browser;
 try{
   for(const [label,dir,port] of [['before',reference,4240],['after','dist/coop',4242]]){
@@ -27,13 +28,13 @@ try{
       processHandle.stderr.on('data',chunk=>process.stderr.write(chunk));
     });
   }
-  browser=await chromium.launch({channel:'chrome',headless:false,args:['--window-size=1320,840']});
+  browser=await chromium.launch(browserTestOptions());
   result.chrome=browser.version();
   const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});
   const token=randomBytes(16).toString('hex');
   await context.addInitScript(t=>sessionStorage.setItem('cooper-identity',t),token);
   const page=await context.newPage();
-  const cdp=await context.newCDPSession(page);
+  const cdp=await prepareOffscreenPage(page);
   for(const [weather,clock] of [['clear',0],['rain',90]]){
     for(const [label,port] of [['before',4240],['after',4242]]){
       const room='trial-'+weather;
@@ -42,15 +43,12 @@ try{
       await writeFile(resolve(scratch,label,room+'.json'),JSON.stringify(save));
       await cdp.send('Network.clearBrowserCache');
       await page.goto('http://localhost:'+port+'/coop/?room='+room,{waitUntil:'domcontentloaded'});
-      await page.bringToFront();
       await page.waitForFunction(()=>window.CooperStatus?.ready && document.getElementById('loader').hidden);
       await page.waitForFunction(()=>CooperStatus.resident>=2);
       const pose=await page.evaluate(()=>({x:CooperStatus.x,z:CooperStatus.z,yaw:CooperStatus.yaw}));
       assert.ok(Math.abs(pose.x+.8)<.03 && Math.abs(pose.z+70.5)<.03);
       await page.waitForTimeout(500);
-      // Lock using a click in the scenery, outside all interactive HUD panels.
-      await page.mouse.click(815,325);
-      await page.waitForFunction(()=>!!document.pointerLockElement,null,{timeout:5000});
+      await stageOffscreenControls(page);
       await page.waitForTimeout(800);
       const metrics=await page.evaluate(()=>new Promise(resolve=>{
         const start=performance.now(),intervals=[];
@@ -98,6 +96,7 @@ try{
   }
   const guest=await browser.newContext({viewport:{width:1280,height:720}});
   const friend=await guest.newPage();
+  await prepareOffscreenPage(friend);
   await friend.goto(url);
   await friend.waitForFunction(()=>window.CooperStatus?.members===2 && CooperStatus.grove.some(t=>t.id==='camp-sapling'&&t.stage==='mature'));
   result.lateJoin=await friend.evaluate(()=>({members:CooperStatus.members,time:CooperStatus.groveElapsed,tree:CooperStatus.grove.find(t=>t.id==='camp-sapling')}));

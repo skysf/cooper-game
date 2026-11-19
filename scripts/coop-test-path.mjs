@@ -1,9 +1,16 @@
 // Plan a path for test clients. The game still drives ordinary input packets and
-// resolves all movement against the authoritative server's collision circles.
-export function findPath(manifest, start, target, {margin=.37, step=.5, stopDistance=1.6}={}) {
+// resolves all movement against the authoritative server's collision checks.
+export function shipClearance([x,z], ship, feet=0) {
+  if(!Number.isFinite(ship?.y) || ship.y > feet+1.67 || ship.y+1.64 < feet)return Infinity;
+  const dx=x-ship.x,dz=z-ship.z,cos=Math.cos(ship.yaw),sin=Math.sin(ship.yaw);
+  return Math.max(Math.abs(dx*cos-dz*sin)-1.0,Math.abs(dx*sin+dz*cos)-2.28);
+}
+
+export function findPath(manifest, start, target, {margin=.37, step=.5, stopDistance=1.6, ship, feet=0}={}) {
   const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
   function isClear([x,z], clearance) {
     return x>=-28.8 && x<=28.8 && z>=-118.8 && z<=11.8 &&
+      shipClearance([x,z],ship,feet)>=clearance &&
       manifest.obstacles.every(o=>Math.hypot(o.x-x,o.z-z)>=o.r+clearance);
   }
   function clearSegment(a,b,clearance=margin) {

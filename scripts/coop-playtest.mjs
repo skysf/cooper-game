@@ -1,14 +1,16 @@
 // Drives production clients through ordinary input. Telemetry is read-only.
 import { strict as assert } from 'node:assert';
-import { execFile, execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { browserTestOptions, clickCanvasPoint, prepareOffscreenPage, stageOffscreenControls } from './coop-browser-controls.mjs';
+import { installFrameCapture } from './coop-frame-capture.mjs';
 import { nativeJoinArgs, resolveNativeJoin } from './native-camp-join.mjs';
-import { findPath } from './coop-test-path.mjs';
+import { findPath, shipClearance } from './coop-test-path.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const base = new URL(process.env.COOP_BASE || 'http://localhost:' + (process.env.COOP_PORT || 4184)).origin;
@@ -21,11 +23,13 @@ const manifest = JSON.parse(await readFile(resolve(root,'coop/world.json'),'utf8
 const evidenceDir = resolve(root,process.env.COOP_EVIDENCE_DIR||'evidence');
 const wait = ms => new Promise(done => setTimeout(done,ms));
 const length = (a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
-const report = {room, native, client: 'headed Chrome', webUrl: pageURL, route: [], members: {}, picked: [], zonesRequested: [], errors: []};
+const report = {room, native, headless: true, client: 'offscreen Chromium', pointerLock: 'in-page',
+  webUrl: pageURL, route: [], members: {}, picked: [], zonesRequested: [], errors: []};
 await mkdir(evidenceDir,{recursive:true});
 await mkdir(resolve(root,'.cache'),{recursive:true});
 
 let nativeLaunch;
+let nativeClosed;
 let browser;
 let page;
 const held = new Set();
@@ -64,20 +68,18 @@ async function walk(site) {
     let s=await state();
     if(!s.ready) s=await until(async()=>{const now=await state();return now.ready&&now;},10000,'terrain loaded');
     if(!s.locked) {
-      await page.bringToFront();
-      const bounds=await page.locator('canvas').boundingBox(),[x,y,w,h]=s.enterRect;
-      await page.mouse.click(bounds.x+(x+w/2)*bounds.width/s.viewport[0],bounds.y+(y+h/2)*bounds.height/s.viewport[1]);
-      s=await until(async()=>{const now=await state();return now.locked&&now;},5000,'resume after focus change');
+      await stageOffscreenControls(page);
+      s=await state();
     }
     const here=[s.x,s.z];
     if(s.nearby===site && length(here,goal)<2.12)return s;
     if(length(here,last)<.07)stuck++;else stuck=0;
     last=here;
     if(stuck>5)throw Error('blocked at '+JSON.stringify({here,site,lastPlan}));
-    const waypoints=findPath(manifest,here,goal,{margin:.62,stopDistance:.9,step:.5});
+    const waypoints=findPath(manifest,here,goal,{margin:.62,stopDistance:.9,step:.5,ship:s.ship,feet:s.y});
     // A corner smaller than one grid cell can be the escape from contact.
     const dest=waypoints.find(p=>length(here,p)>.13)||goal;
-    const clearance=Math.min(...manifest.obstacles.map(o=>Math.hypot(here[0]-o.x,here[1]-o.z)-o.r));
+    const clearance=Math.min(shipClearance(here,s.ship,s.y),...manifest.obstacles.map(o=>Math.hypot(here[0]-o.x,here[1]-o.z)-o.r));
     const d=length(here,dest),reach=Math.min(clearance<.8 ? .65 : 3.1,d);
     const dx=(dest[0]-here[0])*reach/d,dz=(dest[1]-here[1])*reach/d;
     // Express the world-space direction as the player's actual strafe/forward keys.
@@ -112,9 +114,11 @@ async function nearAndUse(site,key){
 
 try{
   assert.ok((await fetch(base+'/coop/')).ok,'web client is unavailable');
-  browser=await chromium.launch({channel:'chrome',headless:false,args:['--window-size=1320,840']});
+  browser=await chromium.launch(browserTestOptions());
   const ctx=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});
   page=await ctx.newPage();
+  await prepareOffscreenPage(page);
+  await page.addInitScript(installFrameCapture);
   page.on('pageerror',e=>report.errors.push(e.message));
   const warnings=[];
   report.consoleWarnings=warnings;
@@ -125,7 +129,7 @@ try{
   });
 
   page.on('request',r=>{if(r.url().includes('/zones/'))report.zonesRequested.push(new URL(r.url()).pathname);});
-  await page.goto(pageURL,{waitUntil:'domcontentloaded'});await page.bringToFront();
+  await page.goto(pageURL,{waitUntil:'domcontentloaded'});
   let s=await until(async()=>{const x=await state();return x.ready&&x;},45000,'web first playable');
   const id=s.selfId;
   assert.equal(s.room,room);
@@ -134,29 +138,26 @@ try{
     return {buffer:[gl.drawingBufferWidth,gl.drawingBufferHeight],renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER)};
   });
   await page.screenshot({path:resolve(evidenceDir,'coop-camp.png')});
-  const canvas=page.locator('canvas').first();
-  const bounds=await canvas.boundingBox();
-  const px=bounds.x+bounds.width*.53,py=bounds.y+bounds.height*.49;
   await page.waitForFunction(()=>document.getElementById('loader').hidden);
-  await page.bringToFront();
-  // The first ready snapshot precedes the HUD layout pass that resizes the button.
-  // Wait for the rendered menu to settle after the loader disappears.
-  await wait(470);
+  await stageOffscreenControls(page);
   s=await state();
-  const [ex,ey,ew,eh]=s.enterRect;
-  await page.mouse.click(bounds.x+(ex+ew/2)*bounds.width/s.viewport[0],bounds.y+(ey+eh/2)*bounds.height/s.viewport[1]);
-  s=await until(async()=>{const x=await state();return x.locked&&x;},7000,'pointer capture');
   const initialYaw=s.yaw;
-  await page.mouse.move(px+70,py+5,{steps:4});
+  await page.evaluate(()=>window.coopBenchMove(70,5));
   const moved=await until(async()=>{const x=await state();return Math.abs(x.yaw-initialYaw)>.02&&x;},3000,'mouse look');
   report.lookDelta=moved.yaw-initialYaw;
-  await page.mouse.move(px,py,{steps:4});
+  await page.evaluate(()=>window.coopBenchMove(-70,-5));
   if(native){
     assert.ok(existsSync(app),'missing '+app);
     const join=await resolveNativeJoin(pageURL);
     const {websocketUrl,zoneBase,inviteUrl}=join;
     report.nativeConnection={websocketUrl,zoneBase,inviteUrl};
-    nativeLaunch=execFile('/usr/bin/open',['-n','-g','-W',app,'--args','--log-file',log,'--quit-after','30000','--',...nativeJoinArgs(join),'--qa-status-file='+log+'.events','--token='+randomBytes(16).toString('hex')]);
+    const executable=execFileSync('/usr/libexec/PlistBuddy',['-c','Print :CFBundleExecutable',resolve(app,'Contents/Info.plist')],{encoding:'utf8'}).trim();
+    assert.ok(executable && basename(executable)===executable,'invalid Mac release executable name');
+    const binary=resolve(app,'Contents/MacOS',executable);
+    report.nativeLaunch='headless release executable';
+    nativeLaunch=spawn(binary,['--headless','--max-fps','24','--log-file',log,'--quit-after','30000','--',
+      ...nativeJoinArgs(join),'--qa-status-file='+log+'.events','--token='+randomBytes(16).toString('hex')],{stdio:'ignore'});
+    nativeClosed=new Promise(done=>nativeLaunch.once('close',done));
     nativeLaunch.on('error',error=>report.errors.push(error.message));
     const ready=await until(async()=>(await nativeStates()).find(s=>s.ready),30000,'native first playable');
     assert.equal(ready.room,room);
@@ -177,8 +178,8 @@ try{
   await page.keyboard.press('Escape');
   await until(async()=>!(await state()).locked,5000,'Esc release');
   s=await state();
-  const invite=s.inviteRect;
-  await page.mouse.click(bounds.x+(invite[0]+invite[2]/2)*bounds.width/s.viewport[0],bounds.y+(invite[1]+invite[3]/2)*bounds.height/s.viewport[1]);
+  const [inviteX,inviteY,inviteWidth,inviteHeight]=s.inviteRect;
+  await clickCanvasPoint(page,[(inviteX+inviteWidth/2)/s.viewport[0],(inviteY+inviteHeight/2)/s.viewport[1]]);
   await until(async()=>(await state()).inviteShown,5000,'invite link visible');
   report.inviteKeptPointerFree=await page.evaluate(()=>!document.pointerLockElement && !CooperStatus.locked);
   assert.ok(report.inviteKeptPointerFree);
@@ -202,16 +203,8 @@ try{
   throw error;
 } finally {
   if(browser)await browser.close();
-  if(nativeLaunch){
-    // End only the app instance tagged with this test's unique log path.
-    const processes=execFileSync('/bin/ps',['-axo','pid=,command='],{encoding:'utf8',maxBuffer:12*1024*1024});
-    for(const line of processes.split('\n')){
-      const match=line.trim().match(/^(\d+)\s+(.*)$/);
-      if(match&&match[2].includes('/CooperCamp.app/Contents/MacOS/')&&match[2].includes(log)){
-        try{process.kill(Number(match[1]),'SIGTERM');}catch{}
-      }
-    }
-  }
+  if(nativeLaunch && nativeLaunch.exitCode===null && nativeLaunch.signalCode===null)nativeLaunch.kill('SIGTERM');
+  if(nativeClosed)await nativeClosed;
   report.zonesRequested=[...new Set(report.zonesRequested)];
   await writeFile(resolve(evidenceDir,native?'coop-playtest.json':'coop-playtest-web.json'),JSON.stringify(report,null,2));
   console.log('Playable test',report.ok,report.picked.join(', '));

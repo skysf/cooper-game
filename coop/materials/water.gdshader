@@ -1,10 +1,16 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, shadows_disabled, depth_draw_never;
 
+#include "res://materials/twilight.gdshaderinc"
+
 uniform sampler2D scene_depth : hint_depth_texture, repeat_disable, filter_nearest;
 uniform sampler2D shore_reflection : hint_default_black, repeat_disable, filter_linear;
+uniform sampler2D wave_current : repeat_enable, filter_linear_mipmap;
+uniform sampler2D ripple_field : repeat_enable, filter_linear_mipmap;
+uniform sampler2D bed_gravel : source_color, repeat_enable, filter_linear_mipmap;
 uniform float reflection_strength = 0.0;
 uniform bool lake_surface = false;
+uniform bool underwater = false;
 uniform vec2 lake_center = vec2(-26.0, -50.0);
 uniform vec2 lake_radius = vec2(15.0, 17.0);
 uniform vec3 sun_direction = vec3(-0.74, 0.3, 0.6);
@@ -17,10 +23,17 @@ uniform float water_time;
 uniform float rain_amount;
 uniform float cloud_cover;
 uniform vec4 impacts[6];
+uniform bool active_impacts = false;
 varying vec3 world_position;
+varying flat vec3 light_weights;
 
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	light_weights.x = clamp(max(sky_zenith.g, sky_horizon.r * 0.78) * 1.36 + 0.13, 0.10, 1.0);
+	light_weights.y = smoothstep(-0.018, 0.025, sun_direction.y) * (1.0 - cloud_cover * 0.88);
+	float moon_phase = clamp((1.0 - dot(sun_direction, moon_direction)) * 0.5, 0.0, 1.0);
+	light_weights.z = smoothstep(0.0, 0.055, moon_direction.y) * smoothstep(0.035, 0.20, -sun_direction.y)
+		* pow(moon_phase, 1.4) * (1.0 - cloud_cover * 0.86);
 }
 
 float lake_distance(vec2 point) {
@@ -33,7 +46,7 @@ float lake_distance(vec2 point) {
 
 vec2 wave(vec2 point, vec2 direction, float frequency, float amplitude, float phase) {
 	float angle = dot(point, direction) * frequency + phase;
-	float detail = 1.0 - smoothstep(0.38, 2.5, fwidth(angle));
+	float detail = 1.0 - smoothstep(0.24, 1.38, fwidth(angle));
 	return direction * cos(angle) * amplitude * detail;
 }
 
@@ -55,12 +68,6 @@ vec2 rain_ripple(vec2 point, float frequency, float time) {
 	return offset / max(radius, 0.04) * sin(ring * 106.0) * envelope;
 }
 
-float glint(vec3 normal, vec3 to_camera, vec3 direction, float sharpness) {
-	vec3 half_direction = normalize(to_camera + direction);
-	float n_dot_h = max(dot(normal, half_direction), 0.0);
-	return pow(n_dot_h, sharpness);
-}
-
 void fragment() {
 	vec2 point = world_position.xz;
 	if (!lake_surface && lake_distance(point) < 1.0) {
@@ -68,74 +75,125 @@ void fragment() {
 	}
 
 	float time = water_time;
-	float slope = mix(1.0, 1.62, rain_amount);
-	vec2 waves = wave(point, vec2(0.88, 0.475), 4.1, 0.023, time * 1.7);
-	waves += wave(point, vec2(-0.32, 0.947), 7.6, 0.017, time * 2.16);
-	waves += wave(point, vec2(0.63, -0.777), 15.8, 0.015, time * 3.14);
-	waves += wave(point, vec2(-0.71, -0.704), 26.0, 0.009, time * 3.92);
+	vec3 eye_offset = CAMERA_POSITION_WORLD - world_position;
+	float eye_distance = length(eye_offset);
+	vec3 to_camera = eye_offset / max(eye_distance, 0.001);
+	float distance_fade = smoothstep(12.0, 36.0, eye_distance);
+	// A drifting, mipmapped current shifts phase rather than adding a repeating grid of peaks.
+	vec2 current = texture(wave_current, point * 0.022 + vec2(0.005, -0.004) * time).rg - vec2(0.5);
+	vec2 surface_point = point + current * 3.2;
+	// Mipmapped slopes from a directional freshwater wave spectrum keep narrow
+	// capillaries stable at a grazing angle. The two trains travel independently.
+	vec2 wind_uv = surface_point * 0.294 + vec2(-0.049, 0.013) * time;
+	vec2 wind = texture(ripple_field, wind_uv).rg - vec2(0.5);
+	vec2 chop_uv = vec2(surface_point.y, -surface_point.x) * 0.49 + vec2(0.038, -0.018) * time;
+	vec2 chop = texture(ripple_field, chop_uv).rg - vec2(0.5);
+	vec2 waves = wind * 0.27 + vec2(-chop.y, chop.x) * 0.165;
+	waves += wave(surface_point, vec2(0.87, 0.49), 2.13, 0.011, -time * 1.13);
 	if (!lake_surface) {
-		waves += wave(point, vec2(0.22, -0.975), 11.0, 0.034, time * 3.4);
+		waves += wave(surface_point, vec2(0.22, -0.975), 9.7, 0.029, time * 3.1);
 	}
-	waves *= slope;
-	vec3 to_camera = normalize(CAMERA_POSITION_WORLD - world_position);
-	float close_detail = 1.0 - smoothstep(10.0, 24.0, distance(world_position, CAMERA_POSITION_WORLD));
-	if (rain_amount > 0.01 && close_detail > 0.0) {
-		waves += (rain_ripple(point, 2.9, time) + rain_ripple(point + vec2(0.23, 0.74), 2.1, time))
-			* rain_amount * close_detail * 0.045;
+	waves = (waves + current * 0.034) * mix(1.0, 1.42, rain_amount) * mix(1.0, 0.48, distance_fade);
+	if (rain_amount > 0.01) {
+		float close_detail = 1.0 - smoothstep(10.0, 24.0, eye_distance);
+		if (close_detail > 0.0) {
+			waves += (rain_ripple(point, 2.9, time) + rain_ripple(point + vec2(0.23, 0.74), 2.1, time))
+				* rain_amount * close_detail * 0.045;
+		}
 	}
 
 	float splash_glow = 0.0;
-	for (int i = 0; i < 6; i++) {
-		float age = time - impacts[i].z;
-		if (impacts[i].w > 0.0 && age >= 0.0 && age < 2.9) {
-			vec2 offset = point - impacts[i].xy;
-			float radius = length(offset);
-			float ring = radius - age * (1.4 - age * 0.11);
-			float envelope = exp(-ring * ring * 27.0 - age * 0.87) * smoothstep(0.0, 0.09, age);
-			waves += offset / max(radius, 0.045) * sin(ring * 39.0) * envelope * 0.125;
-			splash_glow += envelope * max(0.0, cos(ring * 39.0)) * 0.13;
+	if (active_impacts) {
+		for (int i = 0; i < 6; i++) {
+			float age = time - impacts[i].z;
+			if (impacts[i].w > 0.0 && age >= 0.0 && age < 2.9) {
+				vec2 offset = point - impacts[i].xy;
+				float radius = length(offset);
+				float ring = radius - age * (1.4 - age * 0.11);
+				float envelope = exp(-ring * ring * 27.0 - age * 0.87) * smoothstep(0.0, 0.09, age);
+				waves += offset / max(radius, 0.045) * sin(ring * 39.0) * envelope * 0.125;
+				splash_glow += envelope * max(0.0, cos(ring * 39.0)) * 0.13;
+			}
 		}
 	}
 
 	vec3 normal = normalize(vec3(waves.x, 1.0, waves.y));
-	vec3 reflected = reflect(-to_camera, normal);
-	float sky_height = max(0.0, reflected.y);
-	vec3 sky = mix(sky_horizon.rgb, sky_zenith.rgb, pow(sky_height, 0.60));
-	vec3 reflected_color = sky;
-	if (reflection_strength > 0.001) {
-		vec2 mirrored = vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y) + waves * vec2(0.87, 1.4);
-		vec2 edge = min(mirrored, 1.0 - mirrored);
-		float visible = smoothstep(0.0, 0.035, min(edge.x, edge.y));
-		reflected_color = mix(sky, texture(shore_reflection, mirrored).rgb, visible * reflection_strength);
-	}
-	float fresnel = 0.026 + 0.974 * pow(1.0 - max(dot(normal, to_camera), 0.0), 5.0);
+	float ambient = light_weights.x;
+	if (underwater || to_camera.y < 0.0) {
+		// Total internal reflection begins 48.6 degrees from vertical. Above that
+		// cone the swimmer sees the sky through a compressed, wave-broken window.
+		float facing = clamp(-dot(normal, to_camera), 0.0, 1.0);
+		float window = smoothstep(0.635, 0.704, facing);
+		vec3 through = refract(-to_camera, -normal, 1.333);
+		vec3 open_sky = mix(sky_horizon.rgb, sky_zenith.rgb, sqrt(clamp(through.y, 0.0, 1.0)));
+		vec3 under_glass = mix(vec3(0.115, 0.235, 0.21), vec3(0.19, 0.35, 0.29), facing) * ambient;
+		if (window < 0.995) {
+			// A ray reflecting back into the lake catches the nearby gravel before
+			// it dissolves into water haze. No mirrored viewport is needed below water.
+			vec3 bounce = reflect(-to_camera, normal);
+			float travel = min(max(UV2.x, 0.12) / max(-bounce.y, 0.06), 28.0);
+			vec3 bottom = texture(bed_gravel, (point + bounce.xz * travel) / 2.9).rgb;
+			float returns = exp(-travel * 0.36) * 0.84;
+			under_glass = mix(under_glass, bottom * vec3(0.64, 0.80, 0.68) * ambient, returns);
+		}
+		float grazing = 1.0 - smoothstep(0.52, 0.77, facing);
+		under_glass += sky_horizon.rgb * 0.060 * grazing;
+		float sun_disk = pow(max(dot(through, sun_direction), 0.0), 190.0) * light_weights.y;
+		ALBEDO = mix(under_glass, open_sky * 0.89 + sun_color.rgb * sun_disk * 1.5, window);
+		ALPHA = mix(0.95, 0.32, window);
+	} else {
+		vec3 reflected = reflect(-to_camera, normal);
+		float sky_height = max(0.0, reflected.y);
+		vec3 sky = mix(sky_horizon.rgb, sky_zenith.rgb, pow(sky_height, 0.60));
+		sky = twilight_color(sky, reflected, sun_direction, 2.0);
+		vec3 reflected_color = sky;
+		if (reflection_strength > 0.001) {
+			vec3 flat_ray = reflect(-to_camera, vec3(0.0, 1.0, 0.0));
+			vec3 ray_shift = reflected - flat_ray;
+			vec3 right = INV_VIEW_MATRIX[0].xyz;
+			vec2 bend = vec2(dot(ray_shift, right) * 0.29, -ray_shift.y * 0.34);
+			vec2 mirrored = vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y) + bend;
+			vec2 edge = min(mirrored, 1.0 - mirrored);
+			float visible = smoothstep(0.0, 0.035, min(edge.x, edge.y));
+			vec2 blur = vec2(0.55, 0.90) / vec2(textureSize(shore_reflection, 0));
+			vec3 trees = (texture(shore_reflection, mirrored - blur).rgb + texture(shore_reflection, mirrored + blur).rgb) * 0.5;
+			reflected_color = mix(sky, trees, visible * reflection_strength);
+		}
+		float fresnel = 0.0204 + 0.9796 * pow(1.0 - max(dot(normal, to_camera), 0.0), 5.0);
 
-	float raw_depth = texture(scene_depth, SCREEN_UV).r;
+		float raw_depth = texture(scene_depth, SCREEN_UV).r;
 #if CURRENT_RENDERER == RENDERER_COMPATIBILITY
-	vec3 ndc = vec3(SCREEN_UV, raw_depth) * 2.0 - 1.0;
+		vec3 ndc = vec3(SCREEN_UV, raw_depth) * 2.0 - 1.0;
 #else
-	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, raw_depth);
+		vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, raw_depth);
 #endif
-	vec4 scene_position = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	float depth = max(0.0, -scene_position.z / scene_position.w + VERTEX.z);
-	float absorption = 1.0 - exp(-depth * 0.94);
-	vec3 water = mix(vec3(0.15, 0.25, 0.18), vec3(0.018, 0.082, 0.072), absorption);
-	float ambient = clamp(max(sky_zenith.g, sky_horizon.r * 0.78) * 1.36 + 0.13, 0.10, 1.0);
-	water *= ambient;
-	vec3 color = mix(water, reflected_color, fresnel);
+		vec4 scene_position = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+		float depth = max(0.0, -scene_position.z / scene_position.w + VERTEX.z);
+		float path = min(38.0, depth * eye_distance / max(-VERTEX.z, 0.07));
+		float absorbed = 1.0 - exp(-path * (0.36 + rain_amount * 0.075));
+		float vertical_depth = path * max(to_camera.y, 0.0);
+		vec3 water = mix(vec3(0.23, 0.29, 0.19), vec3(0.068, 0.223, 0.204),
+			smoothstep(0.08, 1.45, vertical_depth)) * ambient;
+		// Hardware blending transmits the opaque lake bed. Weight the reflected
+		// sky and in-scattered light once, even across a few centimetres of water.
+		float scatter_weight = (1.0 - fresnel) * absorbed;
+		float opacity = fresnel + scatter_weight;
+		vec3 color = water * scatter_weight + reflected_color * fresnel;
 
-	float sun_visible = smoothstep(-0.018, 0.025, sun_direction.y) * (1.0 - cloud_cover * 0.88);
-	float moon_phase = clamp((1.0 - dot(sun_direction, moon_direction)) * 0.5, 0.0, 1.0);
-	float moon_visible = smoothstep(0.0, 0.055, moon_direction.y) * smoothstep(0.035, 0.20, -sun_direction.y)
-		* pow(moon_phase, 1.4) * (1.0 - cloud_cover * 0.86);
-	float sun_glint = glint(normal, to_camera, sun_direction, mix(1580.0, 860.0, rain_amount));
-	sun_glint = sun_glint * 2.72 + glint(normal, to_camera, sun_direction, 155.0) * 0.20;
-	float moon_glint = glint(normal, to_camera, moon_direction, 1100.0) * 0.33;
-	color += sun_color.rgb * sun_glint * sun_visible + moon_color.rgb * moon_glint * moon_visible;
-	color += splash_glow * mix(vec3(0.24, 0.35, 0.35), vec3(0.73, 0.82, 0.74), ambient);
+		float sun_glint = 0.0;
+		if (light_weights.y > 0.0) {
+			float sun_angle = max(dot(normal, normalize(to_camera + sun_direction)), 0.0);
+			sun_glint = (pow(sun_angle, mix(1380.0, 710.0, rain_amount)) * 2.05 + pow(sun_angle, 135.0) * 0.115) * light_weights.y;
+			color += sun_color.rgb * sun_glint;
+		}
+		if (light_weights.z > 0.0) {
+			float moon_angle = max(dot(normal, normalize(to_camera + moon_direction)), 0.0);
+			color += moon_color.rgb * pow(moon_angle, 1100.0) * 0.33 * light_weights.z;
+		}
+		color += splash_glow * mix(vec3(0.24, 0.35, 0.35), vec3(0.73, 0.82, 0.74), ambient);
 
-	ALBEDO = color;
-	float shore_opacity = smoothstep(0.005, 0.09, depth);
-	float opacity = mix(0.22 + absorption * 0.75, 0.98, fresnel);
-	ALPHA = clamp(opacity * shore_opacity + (sun_glint * sun_visible * 0.18 + splash_glow * 1.5) * shore_opacity, 0.0, 0.98);
+		opacity = clamp(opacity + sun_glint * 0.24 + splash_glow, 0.015, 1.0);
+		ALBEDO = color / opacity;
+		ALPHA = opacity * smoothstep(0.001, 0.067, path);
+	}
 }

@@ -2,6 +2,7 @@ extends Node3D
 
 const SKY_SHADER := preload("res://materials/camp_sky.gdshader")
 const STAR_CATALOG := preload("res://textures/milky_way_stars.png")
+const EVENING_SKY := preload("res://textures/evening_sky.jpg")
 const DAY_SECONDS := 420.0
 const FIRST_SUNSET := 122.0
 const LATITUDE := 0.75049158 # 43 degrees north
@@ -11,8 +12,8 @@ const GALACTIC_CENTER := Vector2(266.4051, -28.936175)
 const GALACTIC_EAST := Vector2(318.0044, 48.32964)
 const GALACTIC_NORTH := Vector2(192.85948, 27.12825)
 
-const DAY_ZENITH := Color("#427db9")
-const DAY_HORIZON := Color("#b1c5c9")
+const DAY_ZENITH := Color("#427bb4")
+const DAY_HORIZON := Color("#bbced8")
 const DUSK_ZENITH := Color("#3b5682")
 const DUSK_HORIZON := Color("#968986")
 const NIGHT_ZENITH := Color("#080d1c")
@@ -34,6 +35,11 @@ var sky_horizon := DAY_HORIZON
 var sun_color := Color.WHITE
 var moon_color := Color("#b4caff")
 var cloud_cover := 0.2
+var twilight := 0.0
+var evening_weight := 0.0
+var underwater := false
+var immersion := 0.0
+var eye_depth := 0.0
 var day_part := "day"
 var sun_energy := 0.0
 var moon_energy := 0.0
@@ -82,6 +88,7 @@ func _init_sky() -> void:
 	sky_material.shader = SKY_SHADER
 	sky_material.set_shader_parameter("cloud_noise", cloud_texture)
 	sky_material.set_shader_parameter("star_catalog", STAR_CATALOG)
+	sky_material.set_shader_parameter("evening_sky", EVENING_SKY)
 	var galaxy_path := "res://textures/milky_way_photo.jpg"
 	if ResourceLoader.exists(galaxy_path):
 		sky_material.set_shader_parameter("milky_way_photo", load(galaxy_path))
@@ -138,8 +145,10 @@ func _update_sky(elapsed: float, wet: float) -> void:
 
 	var night := 1.0 - smoothstep(-18.0, -3.0, solar_altitude)
 	var daylight := smoothstep(-11.0, 12.0, solar_altitude)
-	var dusk := 1.0 - smoothstep(1.5, 20.0, absf(solar_altitude + 0.8))
-	var fair_clouds := 0.17 + (sin(elapsed * 0.019 + 0.6) + 1.0) * 0.085
+	twilight = smoothstep(-14.0, -1.0, solar_altitude) * (1.0 - smoothstep(2.0, 15.0, solar_altitude))
+	twilight *= 1.0 - smoothstep(0.04, 0.64, wet)
+	evening_weight = 0.82 * twilight if not rising else 0.0
+	var fair_clouds := 0.24 + (sin(elapsed * 0.019 + 0.6) + 1.0) * 0.10
 	cloud_cover = lerpf(fair_clouds, 0.97, sqrt(wet))
 	var overcast := wet * (1.0 - night * 0.87)
 	sky_zenith = DUSK_ZENITH.lerp(DAY_ZENITH, daylight).lerp(NIGHT_ZENITH, night).lerp(STORM_ZENITH, overcast * 0.88)
@@ -159,11 +168,24 @@ func _update_sky(elapsed: float, wet: float) -> void:
 	moon.look_at(-moon_direction, Vector3.UP)
 	moon.light_color = moon_color
 	moon.light_energy = moon_energy
-	environment.ambient_light_color = Color("#bccfe3").lerp(Color("#849ab5"), night)
+	var ambient_color := Color("#bccfe3").lerp(Color("#efc39c"), twilight * 0.42)
+	environment.ambient_light_color = ambient_color.lerp(Color("#849ab5"), night)
 	environment.ambient_light_energy = lerpf(0.77, 0.23, night) * lerpf(1.0, 0.78, wet) * lerpf(0.82, 1.0, maxf(daylight, night))
-	environment.fog_light_color = sky_horizon.lerp(Color("#ac9778"), dusk * (1.0 - wet) * 0.22).lerp(Color("#35495a"), night * 0.21)
+	environment.fog_light_color = sky_horizon.lerp(Color("#d2ac87"), twilight * 0.31).lerp(Color("#35495a"), night * 0.21)
 	environment.fog_depth_begin = lerpf(20.0, 8.0, wet)
 	environment.fog_depth_end = lerpf(103.0, 49.0, wet)
+	environment.fog_sky_affect = immersion * 0.91
+	if immersion > 0.0:
+		var depth_weight := smoothstep(0.10, 1.85, eye_depth)
+		var scatter := Color("#639185").lerp(Color("#345f5a"), depth_weight)
+		scatter = scatter.lerp(Color("#415f60"), wet * 0.63).lerp(Color("#102932"), night)
+		scatter = scatter.lerp(Color("#67786a"), twilight * 0.27)
+		environment.fog_light_color = environment.fog_light_color.lerp(scatter, immersion)
+		environment.fog_depth_begin = lerpf(environment.fog_depth_begin, 0.20, immersion)
+		var visibility := lerpf(15.2, 10.5, depth_weight) - wet * 2.0 - night * 3.8
+		environment.fog_depth_end = 1.0 / lerpf(1.0 / environment.fog_depth_end, 1.0 / visibility, immersion)
+		environment.ambient_light_color = environment.ambient_light_color.lerp(Color("#83b4a3"), immersion * 0.58)
+		environment.ambient_light_energy *= 1.0 - immersion * lerpf(0.16, 0.37, depth_weight)
 
 	sky_material.set_shader_parameter("sun_direction", sun_direction)
 	sky_material.set_shader_parameter("moon_direction", moon_direction)
@@ -172,7 +194,8 @@ func _update_sky(elapsed: float, wet: float) -> void:
 	sky_material.set_shader_parameter("sun_color", sun_color)
 	sky_material.set_shader_parameter("star_visibility", (1.0 - smoothstep(-21.0, -6.0, solar_altitude)) * (1.0 - wet * 0.89))
 	sky_material.set_shader_parameter("night_tint", night)
-	sky_material.set_shader_parameter("sunset", dusk)
+	sky_material.set_shader_parameter("twilight", twilight)
+	sky_material.set_shader_parameter("evening_weight", evening_weight)
 	sky_material.set_shader_parameter("cloud_cover", cloud_cover)
 	sky_material.set_shader_parameter("rain_amount", wet)
 	sky_material.set_shader_parameter("room_seconds", elapsed)
@@ -220,13 +243,21 @@ void fragment() {
 	rain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(rain)
 
-func update_weather(at: Vector3, yaw: float, elapsed: float, wet: float, repaired: bool) -> void:
-	if absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01:
+func update_weather(at: Vector3, yaw: float, elapsed: float, wet: float, repaired: bool, below_water := false, camera_water_depth := NAN) -> void:
+	# Older callers supply just whether the eye is submerged. A real camera can
+	# cross the waterline continuously, including in third person or from the ship.
+	var depth := camera_water_depth if not is_nan(camera_water_depth) else (1.0 if below_water else -1.0)
+	var blend := smoothstep(-0.045, 0.17, depth)
+	if absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01 \
+			or below_water != underwater or absf(immersion - blend) > 0.012:
+		underwater = below_water
+		immersion = blend
+		eye_depth = maxf(depth, 0.0)
 		_last_sky_time = elapsed
 		_last_sky_rain = wet
 		_update_sky(elapsed, wet)
 		streaks.set_shader_parameter("wet", wet)
-	rain.visible = wet > .005
+	rain.visible = wet > .005 and not underwater
 	rain.position = at
 	rain.rotation.y = yaw
 	streaks.set_shader_parameter("fallen", elapsed * 15.)

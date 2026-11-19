@@ -8,4 +8,6 @@ Cooper Game 是一款 Godot 第一人称林地合作生存样片。1–4 人可�
 
 在项目根目录运行 `npm run coop:lan`，然后打开[本机营地](http://localhost:4184/coop/?room=pine)。朋友使用终端打印的同网地址加入。
 
+本机自动试玩和基准默认无窗口运行，测试输入留在各自的浏览器会话里。正式硬件帧时由有独立显示器的专用运行器采集。[自动试玩与帧时基准](docs/render-benchmark.md)
+
 [试玩、构建与 CI](docs/play.md) · [合作实测](docs/coop.md) · [项目索引](AGENTS.md) · [MIT](LICENSE) · [素材许可与署名](THIRD_PARTY_NOTICES.md)

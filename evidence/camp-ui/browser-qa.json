@@ -1,0 +1,44 @@
+{
+  "checks": [
+    "Tab opens a twelve-slot backpack in the real browser client",
+    "the selected apple action consumes one item and increases authoritative hunger",
+    "the clothing page removes a jacket into the real server-backed inventory",
+    "the clothing page re-equips the jacket and consumes its backpack slot",
+    "Escape closes the backpack after resizing the browser",
+    "3D view rotates front to profile and stays framed at 1600×900 and 960×540"
+  ],
+  "warnings": [],
+  "screenshots": [
+    "backpack-web.png",
+    "backpack-filter-web.png",
+    "character-web.png",
+    "preview-warmup/equipment-1600x900.png",
+    "character-profile-web.png",
+    "character-compact-web.png"
+  ],
+  "input": {
+    "focus": true,
+    "active": "canvas",
+    "keys": [
+      {
+        "type": "keydown",
+        "code": "Tab",
+        "key": "Tab",
+        "target": "canvas",
+        "trusted": true
+      }
+    ],
+    "ready": true,
+    "open": true,
+    "elapsed": 20.4873886666666,
+    "hasWorn": true
+  },
+  "renderer": {
+    "buffer": [
+      1280,
+      720
+    ],
+    "label": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)"
+  },
+  "mode": "Chrome headless using Apple M1 ANGLE Metal"
+}

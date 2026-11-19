@@ -1,0 +1,135 @@
+{
+  "room": "walk-mwn91g3j",
+  "native": true,
+  "macScreenLocked": true,
+  "client": "headless Chrome ANGLE Metal",
+  "webUrl": "http://127.0.0.1:4286/coop/?room=walk-mwn91g3j",
+  "inputFixture": "CDP emulates document focus and CooperJoin.pointerLocked reflects the lock state while no system pointer is captured. WASD and E are real browser keyboard events. No game or server state is staged.",
+  "route": [
+    {
+      "site": "wood",
+      "zone": "creek",
+      "x": -8.55112075805664,
+      "z": -54.4008979797363,
+      "resident": 4,
+      "elapsed": 39.2453979999991,
+      "native": {
+        "members": 2,
+        "remoteAvatars": 1,
+        "elapsed": 39.7903756666658,
+        "quest": {
+          "repaired": false,
+          "tarp": false,
+          "wood": true
+        }
+      }
+    },
+    {
+      "site": "tarp",
+      "zone": "tower",
+      "x": 8.55377674102783,
+      "z": -17.3000144958496,
+      "resident": 4,
+      "elapsed": 67.7149253333311,
+      "native": {
+        "members": 2,
+        "remoteAvatars": 1,
+        "elapsed": 67.8475010909069,
+        "quest": {
+          "repaired": false,
+          "tarp": true,
+          "wood": true
+        }
+      }
+    },
+    {
+      "site": "repair",
+      "zone": "camp",
+      "x": 1.56082725524902,
+      "z": -89.0067367553711,
+      "resident": 4,
+      "elapsed": 129.009774333328,
+      "native": {
+        "members": 2,
+        "remoteAvatars": 1,
+        "elapsed": 129.268108333329,
+        "quest": {
+          "repaired": true,
+          "tarp": true,
+          "wood": true
+        }
+      }
+    }
+  ],
+  "members": {
+    "web": 2,
+    "native": 2
+  },
+  "picked": [
+    "wood",
+    "tarp",
+    "repaired"
+  ],
+  "zonesRequested": [
+    "/coop/zones/camp.glb",
+    "/coop/zones/approach.glb",
+    "/coop/zones/backcountry.glb",
+    "/coop/zones/creek.glb",
+    "/coop/zones/crossing.glb",
+    "/coop/zones/tower.glb",
+    "/coop/zones/ridge.glb"
+  ],
+  "errors": [],
+  "pointerChanges": [],
+  "webBuild": {
+    "etag": "\"36832284-1795074034195\"",
+    "bytes": 36832284
+  },
+  "consoleWarnings": [],
+  "gpu": {
+    "buffer": [
+      1280,
+      720
+    ],
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)"
+  },
+  "pointerFixtureConfirmed": true,
+  "nativeConnection": {
+    "websocketUrl": "ws://127.0.0.1:4286/room",
+    "zoneBase": "http://127.0.0.1:4286/coop/zones/",
+    "inviteUrl": "http://127.0.0.1:4286/coop/?room=walk-mwn91g3j"
+  },
+  "nativeLaunch": "signed Mac release executable from CooperCamp.app, headless while macOS session is locked",
+  "completed": {
+    "rain": 0,
+    "elapsed": 129.718080333329,
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "sheltered": true
+  },
+  "inviteKeptPointerFree": true,
+  "inviteUrl": "http://127.0.0.1:4286/coop/?room=walk-mwn91g3j",
+  "reconnect": {
+    "samePlayerId": true,
+    "sameQuest": true,
+    "distanceFromLast": 0
+  },
+  "nativeObserved": {
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "zone": "camp",
+    "members": 2,
+    "remoteAvatars": 1,
+    "rain": 0,
+    "elapsed": 138.618487666668
+  },
+  "ok": true,
+  "serverVerifiedSamePlayerAfterRefresh": true,
+  "repairScreenshot": "repair.png"
+}
