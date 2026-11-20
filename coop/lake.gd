@@ -266,8 +266,8 @@ func _build_far_shore() -> void:
 	bank_stones.layers |= REFLECTION_LAYER
 
 func _far_bank_height(angle: float, distance: float, point: Vector2) -> float:
-	# The bluff rises only beyond the playable western boundary. Its base and
-	# each tree root use the same slope, including the trees seen in the mirror.
+	if Layout.Coast.contains(point):
+		return Layout.ground_height(point)
 	var crest := 2.25 + 0.91 * sin(angle * 3.3 - 0.8) + 0.48 * sin(angle * 8.2)
 	return Layout.ground_height(point) + smoothstep(29.3, 34.5, -point.x) * smoothstep(1.015, 1.69, distance) \
 		* (1.0 - smoothstep(1.89, 2.36, distance)) * crest
@@ -283,11 +283,13 @@ func _far_bank_ground(shade_roots: PackedVector3Array) -> void:
 	mesh.set_material(forest)
 	var radii := [1.025, 1.09, 1.23, 1.4, 1.61, 1.82, 2.03, 2.37]
 	var steps := 82
+	var world_x := PackedFloat32Array()
 	for row in radii.size():
 		var distance: float = radii[row]
 		for i in (steps + 1):
 			var angle := lerpf(1.40, 4.91, i / float(steps))
 			var point := Layout.shore_at(angle, distance)
+			world_x.append(point.x)
 			var lift := -0.07 if row == 0 or row == radii.size() - 1 else -0.006
 			var y := _far_bank_height(angle, distance, point) + lift
 			var inertia := smoothstep(1.06, 1.48, distance)
@@ -308,8 +310,11 @@ func _far_bank_ground(shade_roots: PackedVector3Array) -> void:
 		for i in steps:
 			var a := row * (steps + 1) + i
 			var b := a + steps + 1
-			for index in [a, b, b + 1, a, b + 1, a + 1]:
-				mesh.add_index(index)
+			for triangle: Array in [[a, b, b + 1], [a, b + 1, a + 1]]:
+				if triangle.any(func(index: int) -> bool: return world_x[index] < Layout.Coast.EAST_EDGE):
+					continue
+				for index: int in triangle:
+					mesh.add_index(index)
 	var bank := _add_mesh(mesh.commit(), Vector3.ZERO)
 	bank.layers |= REFLECTION_LAYER
 	bank.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

@@ -1,0 +1,6 @@
+{
+  "webEntry": "http://localhost:4494/coop/?room=pine",
+  "assetBytes": 181644324,
+  "liveWebAndMacPckSha256": "4dff1feccc834c6d4ca1687e3ce7f6eaded85c75fa3f40f6f912d5713508c9c4",
+  "macCodeSignatureVerified": true
+}

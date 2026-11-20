@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+CAP_ASSET_SMOKE {"bottom":1.64400446414948,"cap_fit_scale":[0.779999971389771,0.789999961853027,0.849999964237213],"mesh_loaded":true,"seat_and_rewear_ok":true,"top":1.74209749698639,"worn_meters":[0.167009025812149,0.0980930328369141,0.217211574316025]}

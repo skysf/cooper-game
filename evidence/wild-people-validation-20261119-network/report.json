@@ -1,0 +1,76 @@
+{
+  "started": "2026-11-19T11:34:27.303Z",
+  "transport": "Production Godot server and real loopback WebSocket clients",
+  "cases": {
+    "resourceRace": {
+      "awards": 1,
+      "stock": 0,
+      "bags": [
+        {
+          "apple": 1,
+          "bread": 0
+        },
+        {
+          "apple": 0,
+          "bread": 0
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:34:27.784Z",
+      "room": "qa-resource-race",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 1000
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:34:27.832Z",
+      "room": "qa-resource-race",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 1000.05
+    },
+    {
+      "name": "resource-race-passed",
+      "at": "2026-11-19T11:34:27.890Z",
+      "awards": 1,
+      "stock": 0,
+      "bags": [
+        {
+          "apple": 1,
+          "bread": 0
+        },
+        {
+          "apple": 0,
+          "bread": 0
+        }
+      ]
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:34:27.933Z",
+      "room": "qa-lifecycle",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 0
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:34:27.966Z",
+      "room": "qa-lifecycle",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 0.0333333333333333
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await action(a,'gather','herbs')).ok)\n\n    at file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/network-scenario.mjs:86:53"
+  ],
+  "port": 63795,
+  "ok": false,
+  "finished": "2026-11-19T11:34:29.122Z"
+}

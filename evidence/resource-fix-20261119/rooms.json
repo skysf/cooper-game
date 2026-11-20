@@ -1,0 +1,46 @@
+{
+  "transport": "Godot headless server + Node WebSocket clients over loopback",
+  "checks": {
+    "snapshotFlow": {
+      "singlePending": true,
+      "freshestAfterAck": true,
+      "noticesDelivered": true,
+      "legacyCompatible": true
+    },
+    "stoneInteractions": {
+      "exclusivePickup": true,
+      "placedCanvas": true,
+      "sharpenedAndCut": true,
+      "thrownAndSharedSplash": true
+    },
+    "stoneAudioEvents": {
+      "localDrop": true,
+      "sharedLaunch": true,
+      "sharedSplash": true,
+      "transient": true
+    },
+    "staleSocketTakeover": true,
+    "roomLimit": 4,
+    "rangeAndPrerequisites": true,
+    "serverSpeedBound": true,
+    "simultaneousPickupAwards": 1,
+    "reconnectIdentityAndPose": true,
+    "personalMaterialSpending": true,
+    "independentRooms": true,
+    "sharedRoof": true,
+    "stormReachedByBoth": true,
+    "groveClock": {
+      "legacyAnchor": 142,
+      "before": 0.416633333333664,
+      "after": 0.416633333334005,
+      "legacyPositionCorrection": 0.5000020498319123
+    },
+    "restartStateAndClock": {
+      "before": 66.0750333333309,
+      "after": 66.0750333333309
+    },
+    "firstSnapshotSurvivesRenderPause": true,
+    "halfOpenSnapshotTimeout": true,
+    "godotClientReconnectAndPrediction": true
+  }
+}

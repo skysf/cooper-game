@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ROOM_JOIN survival-fixture 454c71dd647dab7f peers=1
+ROOM_JOIN survival-fixture 2f5e91d3b5626cb8 peers=2
+ROOM_LEAVE survival-fixture 454c71dd647dab7f
+ROOM_LEAVE survival-fixture 2f5e91d3b5626cb8
+ROOM_JOIN survival-fixture 454c71dd647dab7f peers=1
+ROOM_JOIN survival-fixture 2f5e91d3b5626cb8 peers=2
+COOP_SURVIVAL_OK: provisions, equipment, wildlife, jump, swim, VTOL, water parking and restart

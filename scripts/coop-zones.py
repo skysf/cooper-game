@@ -1,5 +1,6 @@
 """Bake independently downloadable chunks from the licensed co-op Woodland GLB."""
 import json
+import os
 import random
 import struct
 import subprocess
@@ -10,7 +11,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "dist/coop/zones"
+OUT = ROOT / os.environ.get("COOP_ZONES_DIR", "dist/coop/zones")
 PROJECT = ROOT / "coop"
 TEXTURES = PROJECT / "textures"
 MATERIALS = PROJECT / "materials"
@@ -95,6 +96,9 @@ def source_meshes():
         prim=mesh["primitives"][0]
         attributes={k:accessor(v) for k,v in prim["attributes"].items()}
         triangles=accessor(prim["indices"]).reshape(-1,3)
+        if name == "forest_floor":
+            # The resident coastal field supplies the former western backdrop.
+            triangles = triangles[attributes["POSITION"][triangles, 0].mean(axis=1) >= -30.0]
         if name=="wood":
             # The shelter uses one box per board. Remove six adjacent rafters/boards
             # on the east pitch, leaving a real opening for the players' canvas patch.
@@ -140,13 +144,13 @@ class Chunk:
         self.doc["meshes"].append({"name":name,"primitives":[{"indices":index_id,"attributes":attrs}]})
         self.doc["nodes"].append({"name":name,"mesh":i})
         self.doc["scenes"][0]["nodes"].append(i)
-    def write(self,name):
+    def write(self,name,directory=OUT):
         self.doc["buffers"]=[{"byteLength":len(self.blob)}]
         js=json.dumps(self.doc,separators=(',',':')).encode()
         js+=b' '*(-len(js)%4)
         header=struct.pack("<4sIII4s",b'glTF',2,28+len(js)+len(self.blob),len(js),b'JSON')
         result=header+js+struct.pack("<I4s",len(self.blob),b'BIN\0')+self.blob
-        (OUT/(name+".glb")).write_bytes(result)
+        (directory/(name+".glb")).write_bytes(result)
         return len(result)
 
 

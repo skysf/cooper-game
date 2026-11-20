@@ -1,0 +1,189 @@
+{
+  "scope": "独立验证；仅修改本证据目录内的测试代码和fixture，没有修改实现、共享脚本或3D资产。历史失败原件保留，修复、无效环境与脚本清理错误分别记录。",
+  "conclusion": "完整玩法、双玩家/资源/持久化、普通网页UI、真实招募前后头字与Mac增量入房通过。严格前台固定镜头的8NPC战斗稳态达标，但波前131.4ms及首现连续慢帧仍未通过项目门槛。最后一次无界面归因未复现长帧，不能定位或清除旧失败；不再追加测试，当前可玩入口可交付，初期偶发长帧明确未解决。",
+  "checks": [
+    {
+      "name": "首轮真实资源竞争与药草阻断",
+      "status": "应用缺陷已修复",
+      "result": "两玩家争抢最后一份果实只发放一次。药草原坐标落在树干碰撞内，实际走到0.565米仍被拒绝；已移到可走位置，并在后续普通motion采集链路中成功取得。",
+      "evidence": [
+        "report.json",
+        "last-qa-lifecycle-0.json",
+        "run-2/lifecycle-before-restart.json"
+      ]
+    },
+    {
+      "name": "run-2完整生命周期与关系/装备",
+      "status": "游戏断言完成；测试清理exit13",
+      "result": "真实预兆、首袭、反抗扣血、徒手击晕、走近制服、采集并消耗2苹果/2水/2药草、实际等待随机110.901489秒照料、刷新、空房重启、负坐标/随机门槛保留、自愿同伴共享成功；A照顾未给B关系加分。拒绝恋爱及冷却、并发取同伴武器只发放一次、装备后交回清除玩家装备也已执行。主脚本最后二次stop等待已经被SIGTERM结束的子进程，导致报告finalize挂起；不是游戏失败。",
+      "evidence": [
+        "run-2/lifecycle-before-restart.json",
+        "run-2/saves/qa-lifecycle.json",
+        "run-2/saves/qa-social.json",
+        "run-2/persisted-audit.json",
+        "network-scenario.mjs"
+      ]
+    },
+    {
+      "name": "run-3原寻路失败",
+      "status": "保留的应用失败证据",
+      "result": "首袭者在岩石旁(9,-79.62471)连续约28秒不移动，Guard且从未攻击，未到达营地。测试exit1和原房间存档保持原样。",
+      "evidence": [
+        "run-3/report.json",
+        "run-3/last-qa-lifecycle-0.json",
+        "run-3/saves/qa-lifecycle.json",
+        "run-3-console.txt"
+      ]
+    },
+    {
+      "name": "原失败种子寻路修复回归",
+      "status": "通过，exit0",
+      "result": "直接复用run-3存档，新导航在4.433秒内抵达攻击距离；逐快照校验连续位移速度上限，无瞬移。随后普通近战击晕和制服成功，另一玩家同步俘虏状态。",
+      "evidence": [
+        "navigation-fixed/report.json",
+        "navigation-fixed-console.txt",
+        "navigation-regression.mjs"
+      ]
+    },
+    {
+      "name": "恋爱接受、自主生活和防守",
+      "status": "通过，exit0",
+      "result": "符合年龄、自由同伴时长和个人关系前提的fixture执行实际romance命令后自愿接受，未直接设置partner结果；重启后A/B伴侣投影正确。另一自由同伴消耗真实溪水库存并实际走到果点消耗果实，随后新袭击自主回防，敌人84→76HP、同伴84→80HP，双端生命同步。",
+      "evidence": [
+        "additional/report.json",
+        "additional-console.txt",
+        "additional-scenarios.mjs"
+      ]
+    },
+    {
+      "name": "正常发行网页UI",
+      "status": "通过；旧包19:41:25，后续最终版只做增量复核",
+      "result": "普通鼠标按钮feed/water/treat/loot实际扣物；B/E/Esc/Tab互斥；面板空白点击不锁鼠标、不攻击；面板内W不持续移动；3装备矛、5装备盾；背包丢木棍出现真实GLB，E重捡恢复物品；960×540可读；Chrome脚本/控制台错误为空。首个fixture视角处于飞船模型内造成遮挡，已通过普通移动移出，测试fixture随后由实现代理修正。",
+      "evidence": [
+        "browser/report.json",
+        "browser/captive-after-care.png",
+        "browser/captive-e-details.png",
+        "browser/captive-side-normal-distance.png",
+        "browser/captive-spear-shield-normal-distance.png",
+        "browser/dropped-club-ground.png",
+        "browser/people-panel-960x540.png"
+      ]
+    },
+    {
+      "name": "旧包帧时诊断",
+      "status": "仅诊断，不作为前台30FPS证明",
+      "result": "headless Chrome ANGLE Metal / Apple M1、1280×720、暴雨、1NPC+狗，6秒361个实际主画布提交帧：60.002FPS，P95/最长16.8ms，0帧超过50ms。",
+      "evidence": [
+        "browser/report.json"
+      ]
+    },
+    {
+      "name": "最终真前台normal/stress、最终PNG、0血与Mac",
+      "status": "功能通过；性能首现未达标，稳态环境无效",
+      "result": "PCK 20:10:01，SHA256 afdc7b97cb88ac3df7aae24f46d3530cf917ea8d5fb49da270dc70b102150418，晚于源码冻结。真实有头Chrome前台、Apple M1 Metal、1280×720；空白页59.978FPS。normal 1NPC：60.008FPS/P9517.6ms/最长17.7ms，达标。首次高阶出现4→8NPC：59.255FPS/P9517.6ms/最长116.7ms，单帧超100ms失败。8NPC战斗：59.502FPS/P9517.6ms/最长34.2ms，但结束前台变cmux，结论无效。六新增物品RGBA库存图实际可见，侧腰硬切线修复；0血修好木屋内5秒不复活且无法移动/近战；Mac最终发行版headless真实入同房间读到captive与正确连接地址。",
+      "evidence": [
+        "foreground-final/report.json",
+        "foreground-final/performance-assessment.json",
+        "foreground-final/normal-camp-raw-frames.json",
+        "foreground-final/stress-first-spawn-raw-frames.json",
+        "foreground-final/stress-combat-raw-frames.json",
+        "foreground-final/normal-final-model.png",
+        "foreground-final/final-inventory-icons.png",
+        "foreground-final/zero-health-panel.png",
+        "foreground-final/native-status.events",
+        "foreground-final-console.txt"
+      ]
+    },
+    {
+      "name": "16秒加速fixture复测",
+      "status": "首现样本时序无效；保留全部数据",
+      "result": "foreground-fixed首波在加载预备期间提前发生，样本起点已8NPC且0raider，不能作首现证明；后段283.3ms原因未定。脚本已恢复70秒并用真实WS出生标记，整个21秒无中途截图/OS/大对象。该轮普通UI补水→invite真实成功；俘虏无头字图清晰，同伴首图过近不作为可见文字证明。",
+      "evidence": [
+        "foreground-fixed/report.json",
+        "foreground-fixed/stress-first-spawn-raw-frames.json",
+        "foreground-fixed/stress-combat-raw-frames.json",
+        "foreground-fixed/captive-no-overhead-text.png",
+        "foreground-fixed/label-transition-states.json"
+      ]
+    },
+    {
+      "name": "连续纯窗口但未pin旧样本",
+      "status": "池命中与首现通过；固定机位归因不成立",
+      "result": "foreground-pure已记录出生前4NPC→真实新增4高阶，pool4→8/cold0；首现8秒最长17.8ms通过，前段183.3与后段233.5ms保留。审阅确认视角/位置实际变化，旧脚本漏启用coopBenchPinCamera；因此这些帧不能用于固定场景NPC归因。",
+      "evidence": [
+        "foreground-pure/report.json",
+        "foreground-pure/continuous-raw-frames.json",
+        "foreground-pure/continuous-room-trace.json"
+      ]
+    },
+    {
+      "name": "固定镜头零人类NPC对照",
+      "status": "通过，exit0",
+      "result": "同PCK20:34:52、四真实玩家、elapsed206起/天气/屋内机位、同8模型预绘；全程pose位置/yaw/pitch变化0，真实前台/locked有效；参考8秒59.995FPS/P9517.7ms/max17.7ms，余段约60FPS，0>50ms。",
+      "evidence": [
+        "foreground-zero-fixed/report.json",
+        "foreground-zero-fixed/continuous-raw-frames.json",
+        "foreground-zero-fixed/continuous-room-trace.json"
+      ]
+    },
+    {
+      "name": "严格固定镜头NPC配对",
+      "status": "稳态通过；波前与首次出现仍未达标，exit1",
+      "result": "同0NPC对照条件，全程pose变化0、前台/locked有效；池4→8、cold0。波前4同伴52.031FPS/P9533.2/max131.4ms且连续慢帧失败；实际新增4敌人后8秒59.000FPS/P9518.7/max67.1ms但2连续慢帧失败；8NPC稳态60.002FPS/P9518.6/max18.8ms/0慢帧通过。窗口内无截图/OS/大状态/写盘。",
+      "evidence": [
+        "foreground-npc-fixed/report.json",
+        "foreground-npc-fixed/continuous-raw-frames.json",
+        "foreground-npc-fixed/continuous-room-trace.json",
+        "continuous-capture.mjs",
+        "input-observer.mjs"
+      ]
+    },
+    {
+      "name": "只有自由同伴有头顶文字",
+      "status": "真实转换与可见截图通过",
+      "result": "沿已实际照顾的captive存档，通过普通面板补第2份水并邀请，服务端phase真实变companion；俘虏画面无头字，招募后普通后退约3–4米可见“禾岚 · 同伴”。敌人压力截图无头字，敌人状态保留准星HUD。",
+      "evidence": [
+        "foreground-fixed/label-transition-states.json",
+        "foreground-fixed/captive-no-overhead-text.png",
+        "foreground-pure/companion-simple-name-range.png",
+        "foreground-npc-fixed/stress-after-continuous-capture.png"
+      ]
+    },
+    {
+      "name": "最后单次CPU/GL/LongTask归因与Mac增量冒烟",
+      "status": "诊断完成但未复现/未能归因；Mac通过，exit0",
+      "result": "使用21:08:49 Web固定拷贝、独立端口/存档，headless Chrome Metal，固定pose变化0、8实例预备完成、4同伴→新增4敌人全部池命中且cold0。21秒最长33.4ms，没有LongTask，CPU仅1次client-frame9.1ms，clip切换最大0.7ms，GL最大同步getParameter(3089)14.9ms；没有复现旧131.4ms，不能清除正式失败。Mac20:35:01包headless真实入同独立房间，读取captive及正确WS/zone地址。用户入口交付后中止过一次尚未采样的有头准备，改无界面以避免抢焦点，原中止记录保留。",
+      "evidence": [
+        "diagnostic-single/aborted-before-capture.json",
+        "diagnostic-single/frozen-package.json",
+        "diagnostic-offscreen/report.json",
+        "diagnostic-offscreen/diagnostic-analysis.json",
+        "diagnostic-offscreen/diagnostic-observations.json",
+        "diagnostic-offscreen/chrome-cpu-profile.json",
+        "diagnostic-offscreen/chrome-trace.json",
+        "diagnostic-offscreen/continuous-raw-frames.json",
+        "diagnostic-offscreen/continuous-room-trace.json",
+        "diagnostic-offscreen/native-status.events"
+      ]
+    }
+  ],
+  "harnessNotes": [
+    "首次回环监听被sandbox EPERM阻止，经已有授权的窄范围网络升级后成功，不归为游戏故障。",
+    "首个浏览器脚本误在Node上下文调用installFrameCapture，改为page.addInitScript后正常；该启动错误不归为游戏故障。",
+    "run-2二次stop清理错误已修signalCode判断，后续additional和navigation-fixed均正常退出0。",
+    "首轮foreground-final/report.json的ok只表示功能流程完成；真实性能结论见同目录performance-assessment.json，明确未全绿。修版脚本已将overall ok绑定性能环境与门槛。",
+    "前台重新激活后营地菜单未重新捕获鼠标，是采样流程疏漏；战斗和画布绘制仍真实运行。修版采样前会正常继续探索并记录locked首尾。",
+    "严格配对已启用项目PinCamera、释放键并隔离非Esc输入；250ms只读pose和每snapshot权威pose证明最终两组镜头/位置未变化。"
+  ],
+  "cleanup": "本验证代理自启的独立Chrome、临时服务和Mac实例均已清理，GPU/焦点已明确释放；未再启动测试。用户普通localhost:4284/coop/?room=pine及其4285房间服务保持，未改用户存档、未将fixture用作默认游戏。初期偶发长帧仍未解决。",
+  "updatedAt": "2026-11-19T13:18:46.813610+00:00",
+  "formalVerdict": {
+    "functionalLifecycle": "通过，含真实普通采集/战斗制服/照顾/自愿招募/关系接受及拒绝/自主生活/防守/装备",
+    "multiplayerAndPersistence": "通过，含真实双socket、并发资源唯一发放、个人关系隔离、重连/进程重启",
+    "normalBrowserUI": "通过，含鼠标按钮、modal输入、960x540、真实装备拾取/丢下和最终PNG",
+    "overheadTextRule": "通过，俘虏/敌人无头字；真实邀请后自由同伴有简洁姓名身份图证",
+    "macNative": "20:35:01发行包headless增量入房通过；不代表原生GPU帧率验证",
+    "foregroundPerformance": "未整体通过：normal1NPC与8NPC稳态已通过；波前131.4ms/首次出现连续慢帧仍不达标",
+    "lastTrace": "单次headless Metal仅诊断、不评分；未复现>50ms，未能归因，不替代正式前台样本"
+  }
+}

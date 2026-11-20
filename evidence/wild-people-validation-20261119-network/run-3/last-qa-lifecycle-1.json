@@ -1,0 +1,2771 @@
+{
+  "state": {
+    "backpackOwner": "",
+    "crocodile": {
+      "at": [
+        -15.5159673690796,
+        -0.34,
+        -57.3725051879883
+      ],
+      "clip": "Swim",
+      "clipAt": 50.9529546666652,
+      "yaw": 1.88584483804061
+    },
+    "dog": {
+      "clip": "Stand",
+      "clipAt": 49.3862879999986,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 1.20247066020966,
+      "yaw": 8.7660204633002,
+      "z": -85.0265274047852
+    },
+    "elapsed": 52.7529546666651,
+    "groveElapsed": 52.7529546666651,
+    "lineCut": false,
+    "players": {
+      "b252ac49b0606636": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 1.51969265937805,
+        "y": 0,
+        "yaw": 0,
+        "z": -84.5275039672852
+      },
+      "dfe5834625f9219d": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 2,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 1.79999995231628,
+        "y": 0,
+        "yaw": 0,
+        "z": -84.9000015258789
+      }
+    },
+    "provisions": {
+      "apple-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "apple-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "bread-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      },
+      "bread-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      }
+    },
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "stoneSounds": [],
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 0,
+        "bread": 0
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 84,
+      "mood": 65,
+      "shield": false,
+      "water": 78.6,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "t": "snapshot",
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 52.7529546666651,
+      "facility": 100,
+      "log": [
+        {
+          "at": 12.0132943333335,
+          "id": 1,
+          "text": "林外传来急促脚步，约 8 秒后有人来袭。准备防守或回营！"
+        },
+        {
+          "at": 20.0031546666668,
+          "id": 2,
+          "text": "第 1 次来袭：1 名成年人，徒手"
+        }
+      ],
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2633772666651,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.542515000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "publicFood": false,
+      "raid": {
+        "nextAt": 20,
+        "phase": "active",
+        "startedAt": 20.0031546666668,
+        "warningAt": 12.0132943333335,
+        "wave": 1
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.7529546666651,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.7529546666651,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.75295466666652,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 20,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 1,
+        "rest": 3600,
+        "warning": 8
+      }
+    }
+  },
+  "notices": [],
+  "history": [
+    {
+      "elapsed": 49.369621333332,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.442693933332,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7962650000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 49.369621333332,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 49.369621333332,
+          "stock": 3
+        },
+        "water": {
+          "progress": 1.3696213333332,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 49.4862879999986,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.4365105999986,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7875150000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 49.4862879999986,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 49.4862879999986,
+          "stock": 3
+        },
+        "water": {
+          "progress": 1.48628799999987,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 49.6029546666653,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.4303272666653,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7787650000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 49.6029546666653,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 49.6029546666653,
+          "stock": 3
+        },
+        "water": {
+          "progress": 1.60295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 49.7196213333319,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.424143933332,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7700150000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 49.7196213333319,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 49.7196213333319,
+          "stock": 3
+        },
+        "water": {
+          "progress": 1.7196213333332,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 49.8362879999986,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.4179605999986,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7612650000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 49.8362879999986,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 49.8362879999986,
+          "stock": 3
+        },
+        "water": {
+          "progress": 1.83628799999987,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 49.9529546666653,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.4117772666653,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7525150000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 49.9529546666653,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 49.9529546666653,
+          "stock": 3
+        },
+        "water": {
+          "progress": 1.95295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.0696213333319,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.4055939333319,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7437650000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.0696213333319,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.0696213333319,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.0696213333332,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.1862879999986,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3994105999986,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7350150000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.1862879999986,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.1862879999986,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.18628799999987,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.3029546666652,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3932272666653,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7262650000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.3029546666652,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.3029546666652,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.30295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.4196213333319,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3870439333319,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7175150000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.4196213333319,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.4196213333319,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.4196213333332,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.5362879999986,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3808605999986,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7087650000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.5362879999986,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.5362879999986,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.53628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.6529546666652,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3746772666652,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.7000150000018,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.6529546666652,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.6529546666652,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.65295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.7696213333319,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3684939333319,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6912650000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.7696213333319,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.7696213333319,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.7696213333332,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 50.8862879999985,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3623105999986,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6825150000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 50.8862879999985,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 50.8862879999985,
+          "stock": 3
+        },
+        "water": {
+          "progress": 2.88628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.0029546666652,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3561272666652,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6737650000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.0029546666652,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.0029546666652,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.00295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.1196213333319,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3499439333319,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6650150000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.1196213333319,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.1196213333319,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.1196213333332,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.2362879999985,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3437605999985,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6562650000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.2362879999985,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.2362879999985,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.23628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.3529546666652,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3375772666652,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6475150000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.3529546666652,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.3529546666652,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.35295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.4696213333318,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3313939333319,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6387650000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.4696213333318,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.4696213333318,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.46962133333319,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.5862879999985,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3252105999985,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6300150000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.5862879999985,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.5862879999985,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.58628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.7029546666652,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3190272666652,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6212650000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.7029546666652,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.7029546666652,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.70295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.8196213333318,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3128439333318,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6125150000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.8196213333318,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.8196213333318,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.81962133333319,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 51.9362879999985,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3066605999985,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.6037650000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 51.9362879999985,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 51.9362879999985,
+          "stock": 3
+        },
+        "water": {
+          "progress": 3.93628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.0529546666651,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.3004772666652,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.5950150000019,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.0529546666651,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.0529546666651,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.05295466666653,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.1696213333318,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2942939333318,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.586265000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.1696213333318,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.1696213333318,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.16962133333319,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.2862879999985,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2881105999985,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.577515000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.2862879999985,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.2862879999985,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.28628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.4029546666651,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2819272666651,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.568765000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.4029546666651,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.4029546666651,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.40295466666652,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.5196213333318,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2757439333318,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.560015000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.5196213333318,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.5196213333318,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.51962133333319,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.6362879999984,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2695605999985,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.551265000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.6362879999984,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.6362879999984,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.63628799999986,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 52.7529546666651,
+      "people": {
+        "person-1": {
+          "actionAt": 20.0031546666668,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 20.0031546666668,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.1124725341797,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 24.4446766666666,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "",
+          "hitAt": -10,
+          "hunger": 46.2633772666651,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "raider",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 39.542515000002,
+          "weapon": "",
+          "workAt": 0,
+          "x": 9.00000381469727,
+          "y": 0,
+          "yaw": 0.0000101646674007635,
+          "z": -79.6247100830078
+        }
+      },
+      "resources": {
+        "fruit": {
+          "progress": 52.7529546666651,
+          "stock": 6
+        },
+        "herbs": {
+          "progress": 52.7529546666651,
+          "stock": 3
+        },
+        "water": {
+          "progress": 4.75295466666652,
+          "stock": 16
+        }
+      }
+    }
+  ]
+}

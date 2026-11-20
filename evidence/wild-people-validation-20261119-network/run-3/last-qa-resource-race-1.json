@@ -1,0 +1,279 @@
+{
+  "state": {
+    "backpackOwner": "",
+    "crocodile": {
+      "at": [
+        -12.6999998092651,
+        -0.00595036711533338,
+        -59.0499992370605
+      ],
+      "clip": "Idle",
+      "clipAt": 1000,
+      "yaw": 2.43933382152348
+    },
+    "dog": {
+      "clip": "Rest",
+      "clipAt": 1000,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 3.55999994277954,
+      "yaw": 3.14159265358979,
+      "z": -87.4000015258789
+    },
+    "elapsed": 1000.06666666667,
+    "groveElapsed": 1000.06666666667,
+    "lineCut": false,
+    "players": {
+      "04e9bafaa9d9ebd7": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 2,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 6,
+        "y": 0,
+        "yaw": 0,
+        "z": -81
+      },
+      "241880c65bbd4072": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 6,
+        "y": 0,
+        "yaw": 0,
+        "z": -81
+      }
+    },
+    "provisions": {
+      "apple-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "apple-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "bread-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      },
+      "bread-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      }
+    },
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "stoneSounds": [],
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 0,
+        "bread": 0
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 86,
+      "mood": 65,
+      "shield": false,
+      "water": 82,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "t": "snapshot",
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 1000.06666666667,
+      "facility": 100,
+      "log": [],
+      "people": {},
+      "publicFood": false,
+      "raid": {
+        "nextAt": 1570,
+        "phase": "rest",
+        "startedAt": 0,
+        "warningAt": 0,
+        "wave": 0
+      },
+      "resources": {
+        "fruit": {
+          "progress": 0.0666666666666667,
+          "stock": 0
+        },
+        "herbs": {
+          "progress": 0.0666666666666667,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.0666666666666667,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 7200,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 1,
+        "rest": 3600,
+        "warning": 8
+      }
+    }
+  },
+  "notices": [
+    {
+      "ok": false,
+      "site": "person",
+      "t": "notice",
+      "text": "这里暂时采空了，稍后再来"
+    }
+  ],
+  "history": [
+    {
+      "elapsed": 1000.05,
+      "people": {},
+      "resources": {
+        "fruit": {
+          "progress": 0.05,
+          "stock": 1
+        },
+        "herbs": {
+          "progress": 0.05,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.05,
+          "stock": 16
+        }
+      }
+    },
+    {
+      "elapsed": 1000.06666666667,
+      "people": {},
+      "resources": {
+        "fruit": {
+          "progress": 0.0666666666666667,
+          "stock": 0
+        },
+        "herbs": {
+          "progress": 0.0666666666666667,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.0666666666666667,
+          "stock": 16
+        }
+      }
+    }
+  ]
+}

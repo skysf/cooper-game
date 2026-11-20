@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "check": "The inland and coastal height fields meet at the old western edge",
+      "ok": true
+    },
+    {
+      "check": "Normal player movement walks from the lake up to the clifftop",
+      "ok": true
+    },
+    {
+      "check": "The descending trail reaches the shore with the same collision data",
+      "ok": true
+    },
+    {
+      "check": "Normal movement switches to swimming and crosses the outer reef",
+      "ok": true
+    },
+    {
+      "check": "A swimmer can land and walk to the top of the offshore island",
+      "ok": true
+    },
+    {
+      "check": "The bay and ocean route includes sustained swimming",
+      "ok": true
+    },
+    {
+      "check": "The same ship flies at full speed from the mainland across the reef to the island",
+      "ok": true
+    },
+    {
+      "check": "The ship can park on sea water and let a player get out to swim",
+      "ok": true
+    },
+    {
+      "check": "A saved island location restores on the new terrain",
+      "ok": true
+    }
+  ],
+  "fastestShip": 11.0000276565552,
+  "seamError": 0.0174716525757708,
+  "shipTargetDistance": 0.181463733315468,
+  "swimFrames": 1975
+}

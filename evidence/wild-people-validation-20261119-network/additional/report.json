@@ -1,0 +1,338 @@
+{
+  "started": "2026-11-19T11:42:31.480Z",
+  "transport": "Production Godot server and real loopback WebSocket clients",
+  "cases": {
+    "romanceSuccess": {
+      "result": "岩岚自愿接受了你的心意；你们成为伴侣",
+      "prerequisites": {
+        "age": 31,
+        "phase": "companion",
+        "joinedFor": 600,
+        "trust": 95,
+        "affection": 90,
+        "mood": 65
+      },
+      "storedPersonalRelations": {
+        "a": {
+          "affection": 100,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "romanceAt": 1000.08333333333,
+          "treatments": 0,
+          "trust": 95,
+          "water": 0
+        },
+        "b": {
+          "affection": 2,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "romanceAt": -1000,
+          "treatments": 0,
+          "trust": 12,
+          "water": 0
+        }
+      },
+      "sharedPartnerPersists": true
+    },
+    "foragingAndDefense": {
+      "waterSourceConsumed": true,
+      "waterAfterDrink": 61.99412475,
+      "fruitSourceConsumed": true,
+      "foodPosition": [
+        5.64479637145996,
+        -80.150764465332
+      ],
+      "hungerAfterFood": 57.960273294999,
+      "ordinaryPlayersDidNotFeed": true,
+      "raidPhase": "active",
+      "enemy": {
+        "actionAt": 1035.00196866664,
+        "age": 31,
+        "attackAt": -10,
+        "bornAt": 1035.00196866664,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 70.2218170166016,
+        "careNeed": 5,
+        "careSeconds": 0,
+        "clip": "Guard",
+        "clipAt": 1039.43577766663,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 76,
+        "help": "",
+        "hitAt": 1041.32170399996,
+        "hunger": 47.6588707293334,
+        "id": "person-1",
+        "joinedAt": 0,
+        "legL": 0,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 44,
+        "name": "木衡",
+        "order": "guard",
+        "phase": "raider",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "male",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 1,
+        "stun": 23.13,
+        "stunUntil": 0,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 41.5172699000001,
+        "weapon": "",
+        "workAt": 0,
+        "x": 9.00000476837158,
+        "y": 0,
+        "yaw": 0.0000126377517510812,
+        "z": -79.622688293457
+      },
+      "companion": {
+        "actionAt": 1000,
+        "age": 29,
+        "attackAt": 1041.32170399996,
+        "bornAt": 1000,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 109.165504455566,
+        "careNeed": 6,
+        "careSeconds": 0,
+        "clip": "Attack",
+        "clipAt": 1041.32170399996,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 80,
+        "help": "来袭回防中",
+        "hitAt": -10,
+        "hunger": 56.8066726273316,
+        "id": "free-forager",
+        "joinedAt": 400,
+        "legL": 0,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 69,
+        "name": "禾岚",
+        "order": "guard",
+        "phase": "companion",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "female",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 1,
+        "stun": 0,
+        "stunUntil": 0,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 67.8962348500022,
+        "weapon": "club",
+        "workAt": 1019.55565366665,
+        "x": 8.62335872650146,
+        "y": 0,
+        "yaw": -0.249753233546383,
+        "z": -78.1461029052734
+      }
+    }
+  },
+  "events": [
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:32.273Z",
+      "room": "qa-romance-accept",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 1000
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:32.321Z",
+      "room": "qa-romance-accept",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 1000.05
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:32.762Z",
+      "room": "qa-romance-accept",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 1000.11666666667
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:32.795Z",
+      "room": "qa-romance-accept",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 1000.15
+    },
+    {
+      "name": "romance-success-and-restart-passed",
+      "at": "2026-11-19T11:42:32.812Z",
+      "result": "岩岚自愿接受了你的心意；你们成为伴侣",
+      "prerequisites": {
+        "age": 31,
+        "phase": "companion",
+        "joinedFor": 600,
+        "trust": 95,
+        "affection": 90,
+        "mood": 65
+      },
+      "storedPersonalRelations": {
+        "a": {
+          "affection": 100,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "romanceAt": 1000.08333333333,
+          "treatments": 0,
+          "trust": 95,
+          "water": 0
+        },
+        "b": {
+          "affection": 2,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "romanceAt": -1000,
+          "treatments": 0,
+          "trust": 12,
+          "water": 0
+        }
+      },
+      "sharedPartnerPersists": true
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:32.864Z",
+      "room": "qa-forager",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 1000
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:32.934Z",
+      "room": "qa-forager",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 1000.03333333333
+    },
+    {
+      "name": "forager-drank-actual-water",
+      "at": "2026-11-19T11:42:32.958Z",
+      "elapsed": 1000.07833666667,
+      "water": 61.99412475,
+      "stock": 0,
+      "position": [
+        -10.3167448043823,
+        -62.5
+      ]
+    },
+    {
+      "name": "forager-ate-actual-fruit",
+      "at": "2026-11-19T11:42:52.592Z",
+      "elapsed": 1019.65565366665,
+      "hunger": 57.960273294999,
+      "stock": 0,
+      "position": [
+        5.64479637145996,
+        -80.150764465332
+      ]
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:59.922Z",
+      "room": "qa-forager",
+      "index": 0,
+      "phase": "warning",
+      "elapsed": 1027.00565366664
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:42:59.923Z",
+      "room": "qa-forager",
+      "index": 1,
+      "phase": "warning",
+      "elapsed": 1027.00565366664
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:43:07.963Z",
+      "room": "qa-forager",
+      "index": 0,
+      "phase": "active",
+      "elapsed": 1035.05196666664
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:43:07.964Z",
+      "room": "qa-forager",
+      "index": 1,
+      "phase": "active",
+      "elapsed": 1035.05196666664
+    },
+    {
+      "name": "autonomous-foraging-and-defense-passed",
+      "at": "2026-11-19T11:43:14.381Z",
+      "elapsed": 1041.42170399996,
+      "enemyHealth": 76,
+      "companionHealth": 80,
+      "companionMode": "来袭回防中"
+    }
+  ],
+  "errors": [],
+  "port": 65160,
+  "ok": true,
+  "finished": "2026-11-19T11:43:14.404Z"
+}

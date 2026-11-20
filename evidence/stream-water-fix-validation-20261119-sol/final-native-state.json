@@ -1,0 +1,576 @@
+{
+  "backpackOpen": false,
+  "backpackOwner": "",
+  "backpackTarget": false,
+  "bagSlots": 6,
+  "canPutProvision": true,
+  "connected": true,
+  "dayPart": "night",
+  "dog": {
+    "clip": "Rest",
+    "clipAt": 1002.14966066666,
+    "mode": "camp",
+    "owner": "",
+    "speed": 0,
+    "vx": 0,
+    "vz": 0,
+    "x": 3.55999994277954,
+    "yaw": 3.14159265358979,
+    "z": -87.4000015258789
+  },
+  "dogTarget": false,
+  "elapsed": 1003.71805399999,
+  "enterRect": [
+    36,
+    619,
+    85,
+    39
+  ],
+  "equipmentOpen": false,
+  "equipmentTabRect": [
+    80,
+    60,
+    84,
+    39
+  ],
+  "focusReady": true,
+  "foodTarget": "",
+  "fps": 24,
+  "grove": [
+    {
+      "height": 7,
+      "id": "camp-sapling",
+      "species": "pine",
+      "stage": "mature"
+    },
+    {
+      "height": 6.02,
+      "id": "trail-young",
+      "species": "pine",
+      "stage": "mature"
+    },
+    {
+      "detail": "LOD1",
+      "height": 6.16,
+      "id": "trail-mature",
+      "species": "pine",
+      "stage": "mature"
+    },
+    {
+      "height": 6.3,
+      "id": "creek-seedling",
+      "species": "pine",
+      "stage": "mature"
+    },
+    {
+      "height": 6.23,
+      "id": "camp-birch",
+      "species": "birch",
+      "stage": "mature"
+    },
+    {
+      "height": 6.09,
+      "id": "trail-spruce",
+      "species": "spruce",
+      "stage": "mature"
+    },
+    {
+      "height": 6.58,
+      "id": "trail-birch",
+      "species": "birch",
+      "stage": "mature"
+    }
+  ],
+  "groveElapsed": 1003.71805399999,
+  "groveHint": "",
+  "heldStone": "",
+  "inventoryPanel": {
+    "actions": {
+      "drink": {
+        "disabled": false,
+        "rect": [
+          80,
+          60,
+          70,
+          39
+        ],
+        "text": "喝一份",
+        "visible": false
+      },
+      "drop": {
+        "disabled": false,
+        "rect": [
+          80,
+          60,
+          54,
+          39
+        ],
+        "text": "丢下",
+        "visible": false
+      },
+      "eat": {
+        "disabled": false,
+        "rect": [
+          80,
+          60,
+          70,
+          39
+        ],
+        "text": "吃一份",
+        "visible": false
+      },
+      "put": {
+        "disabled": true,
+        "rect": [
+          80,
+          60,
+          69,
+          39
+        ],
+        "text": "放桌上",
+        "visible": false
+      },
+      "wear": {
+        "disabled": true,
+        "rect": [
+          80,
+          60,
+          55,
+          39
+        ],
+        "text": "穿上",
+        "visible": false
+      }
+    },
+    "open": false,
+    "selectedItem": "",
+    "slots": [
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      },
+      {
+        "item": "",
+        "quantity": 0,
+        "rect": [
+          80,
+          60,
+          74,
+          144
+        ],
+        "visible": false
+      }
+    ]
+  },
+  "inviteRect": [
+    129,
+    619,
+    84,
+    39
+  ],
+  "inviteShown": false,
+  "inviteUrl": "http://127.0.0.1:50773/coop/?room=stream-final",
+  "jugTarget": false,
+  "lanternWarmupMs": 0,
+  "lineCut": false,
+  "locked": false,
+  "members": 1,
+  "nearby": "",
+  "notice": "",
+  "noticeNo": 0,
+  "panelRect": [
+    20,
+    463,
+    488,
+    237
+  ],
+  "peopleColdByKey": {},
+  "peopleColdCreates": 0,
+  "peopleOpen": false,
+  "peoplePanel": {},
+  "peoplePoolByKey": {},
+  "peoplePoolHits": 0,
+  "peopleTarget": "",
+  "peopleWarmupCount": 0,
+  "peopleWarmupMs": 0,
+  "pickupStone": "",
+  "pitch": 0.1,
+  "players": {
+    "2a8308f5e9b41d86": {
+      "attackAt": -10,
+      "blocking": false,
+      "health": 100,
+      "shield": false,
+      "slot": 1,
+      "swimming": false,
+      "vy": 0,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      },
+      "x": 2.53999996185303,
+      "y": 0,
+      "yaw": -0.08,
+      "z": -87.9499969482422
+    }
+  },
+  "previewWarming": false,
+  "previewWarmupBuildMs": 0,
+  "previewWarmupDrawMs": 0,
+  "provisionScene": [
+    {
+      "at": [
+        2.5,
+        0.790000021457672,
+        -88.8199996948242
+      ],
+      "id": "apple-1",
+      "item": "apple",
+      "visible": true
+    },
+    {
+      "at": [
+        2.75,
+        0.790000021457672,
+        -88.8199996948242
+      ],
+      "id": "apple-2",
+      "item": "apple",
+      "visible": true
+    },
+    {
+      "at": [
+        2.5,
+        0.790000021457672,
+        -89.1100006103516
+      ],
+      "id": "bread-1",
+      "item": "bread",
+      "visible": true
+    },
+    {
+      "at": [
+        2.75,
+        0.790000021457672,
+        -89.1100006103516
+      ],
+      "id": "bread-2",
+      "item": "bread",
+      "visible": true
+    }
+  ],
+  "provisions": {
+    "apple-1": {
+      "at": [
+        2.5,
+        0.790000021457672,
+        -88.8199996948242
+      ],
+      "item": "apple",
+      "surface": "table"
+    },
+    "apple-2": {
+      "at": [
+        2.75,
+        0.790000021457672,
+        -88.8199996948242
+      ],
+      "item": "apple",
+      "surface": "table"
+    },
+    "bread-1": {
+      "at": [
+        2.5,
+        0.790000021457672,
+        -89.1100006103516
+      ],
+      "item": "bread",
+      "surface": "table"
+    },
+    "bread-2": {
+      "at": [
+        2.75,
+        0.790000021457672,
+        -89.1100006103516
+      ],
+      "item": "bread",
+      "surface": "table"
+    }
+  },
+  "quest": {
+    "repaired": true,
+    "tarp": false,
+    "wood": false
+  },
+  "rain": 0,
+  "ready": true,
+  "remoteAvatars": 0,
+  "resident": 1,
+  "room": "stream-final",
+  "selfId": "2a8308f5e9b41d86",
+  "sheltered": true,
+  "ship": {
+    "canLand": true,
+    "floor": 0,
+    "landed": true,
+    "onWater": false,
+    "pilot": "",
+    "rearThrust": 0,
+    "slipping": false,
+    "surface": "land",
+    "thrust": 0,
+    "tiltX": 0,
+    "tiltZ": 0,
+    "v": [
+      0,
+      0,
+      0
+    ],
+    "x": 1.5,
+    "y": 0,
+    "yaw": -3.14159265358979,
+    "z": -79.4000015258789
+  },
+  "shipCameraYaw": 3.14159265358979,
+  "shipPiloting": false,
+  "shipTarget": false,
+  "sourceTarget": "",
+  "status": "已连接 · stream-final",
+  "stoneAction": "",
+  "stones": {
+    "camp-flat": {
+      "at": [
+        2.72000002861023,
+        0.0189999993890524,
+        -83.4499969482422
+      ],
+      "edge": 0,
+      "mode": "ground"
+    },
+    "camp-round": {
+      "at": [
+        0.379999995231628,
+        0.0379999987781048,
+        -83.8600006103516
+      ],
+      "edge": 0,
+      "mode": "ground"
+    },
+    "shore-flat": {
+      "at": [
+        -9.10000038146973,
+        0.0189999993890524,
+        -50.1800003051758
+      ],
+      "edge": 0,
+      "mode": "ground"
+    },
+    "shore-round": {
+      "at": [
+        -9.19999980926514,
+        0.0379999987781048,
+        -47.8499984741211
+      ],
+      "edge": 0,
+      "mode": "ground"
+    }
+  },
+  "survival": {
+    "attackAt": -10,
+    "bag": {
+      "apple": 0,
+      "bread": 0,
+      "tarp": 1,
+      "water": 10,
+      "wood": 1
+    },
+    "downAt": -1,
+    "health": 100,
+    "hunger": 79.9,
+    "materialPending": {
+      "tarp": 0,
+      "wood": 0
+    },
+    "mood": 65.8,
+    "shield": false,
+    "water": 39.8,
+    "weapon": "",
+    "worn": {
+      "cap": true,
+      "jacket": true,
+      "pants": true
+    }
+  },
+  "swimming": false,
+  "target": "repair",
+  "terrainError": "",
+  "thirdPerson": false,
+  "viewport": [
+    1280,
+    720
+  ],
+  "waterImpacts": [],
+  "websocketUrl": "ws://127.0.0.1:50773/room",
+  "wildPeople": {
+    "elapsed": 1003.67555766666,
+    "facility": 100,
+    "log": [],
+    "people": {},
+    "publicFood": false,
+    "raid": {
+      "nextAt": 9000,
+      "phase": "rest",
+      "startedAt": 4600,
+      "warningAt": 4600,
+      "wave": 0
+    },
+    "resources": {
+      "fruit": {
+        "progress": 3.63628366666665,
+        "stock": 8
+      },
+      "herbs": {
+        "progress": 3.63628366666665,
+        "stock": 5
+      },
+      "water": {
+        "progress": 3.63628366666665,
+        "stock": 16
+      }
+    },
+    "settings": {
+      "damageScale": 0.25,
+      "firstRaid": 7200,
+      "maxCaptives": 6,
+      "maxCompanions": 4,
+      "maxRaiders": 1,
+      "rest": 3600,
+      "warning": 30
+    }
+  },
+  "x": 2.53999996185303,
+  "y": 0,
+  "yaw": -0.08,
+  "z": -87.9499969482422,
+  "zone": "camp",
+  "zoneBase": "http://127.0.0.1:50773/coop/zones/"
+}

@@ -1,0 +1,824 @@
+{
+  "started": "2026-11-19T13:39:41.214Z",
+  "mode": "Independent real WebSockets against production server; authored disposable fixtures; no runtime state setters",
+  "checks": [
+    "actual gathered 4 waters retained",
+    "actual gathered 7 waters retained",
+    "actual gathered 10 waters retained",
+    "water source actually decremented",
+    "same identity reconnect keeps all 10 water",
+    "last real water source issued once",
+    "pickup wood belongs only to A",
+    "pickup tarp belongs only to A",
+    "repair consumes only action owner material",
+    "facility repair consumes only owner wood and tarp",
+    "B cannot spend A material",
+    "drop and pickup transfer actual materials",
+    "receiver can repair from transferred material",
+    "old unspent material migrated to one real copy",
+    "already repaired old room does not duplicate spent material",
+    "old subdue mode omitted from public personal state",
+    "old stance command cannot toggle hidden mode (subdue)",
+    "cannot equip missing weapon (subdue)",
+    "equipped spear is sharp regardless old subdue field",
+    "old lethal mode omitted from public personal state",
+    "old stance command cannot toggle hidden mode (lethal)",
+    "cannot equip missing weapon (lethal)",
+    "equipped spear is sharp regardless old lethal field",
+    "NPC supply still consumes real carried water",
+    "companion still consumes real creek stock",
+    "process restart restores 10 water",
+    "material repair and private remainder survive restart",
+    "legacy migration is once across reverse join and restart"
+  ],
+  "events": [
+    {
+      "name": "gather-stage",
+      "count": 4,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "water": 4
+      },
+      "source": {
+        "progress": 0.844712333333334,
+        "stock": 12
+      }
+    },
+    {
+      "name": "gather-stage",
+      "count": 7,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "water": 7
+      },
+      "source": {
+        "progress": 1.54471233333333,
+        "stock": 9
+      }
+    },
+    {
+      "name": "gather-stage",
+      "count": 10,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "water": 10
+      },
+      "source": {
+        "progress": 2.24471233333333,
+        "stock": 6
+      }
+    },
+    {
+      "name": "source-race",
+      "race": [
+        {
+          "ok": true,
+          "site": "person",
+          "t": "notice",
+          "text": "获得装好的溪水，采集点库存 -1"
+        },
+        {
+          "ok": false,
+          "site": "person",
+          "t": "notice",
+          "text": "这里暂时采空了，稍后再来"
+        }
+      ],
+      "a": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "water": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "b": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      }
+    },
+    {
+      "name": "material-pick-wood",
+      "picked": {
+        "ok": true,
+        "site": "wood",
+        "t": "notice",
+        "text": "木料已放入你的背包；此处余料稍后可再整理"
+      },
+      "second": {
+        "ok": false,
+        "site": "wood",
+        "t": "notice",
+        "text": "这处余料已取，约 180 秒后可再整理"
+      },
+      "a": {
+        "apple": 0,
+        "bread": 0,
+        "wood": 1
+      },
+      "b": {
+        "apple": 0,
+        "bread": 0
+      },
+      "players": {
+        "613332f350b545f3": {
+          "attackAt": -10,
+          "blocking": false,
+          "health": 100,
+          "shield": false,
+          "slot": 2,
+          "swimming": false,
+          "vy": 0,
+          "weapon": "",
+          "worn": {
+            "cap": true,
+            "jacket": true,
+            "pants": true
+          },
+          "x": -8,
+          "y": 0,
+          "yaw": 0,
+          "z": -53
+        },
+        "63525110ce221c58": {
+          "attackAt": -10,
+          "blocking": false,
+          "health": 100,
+          "shield": false,
+          "slot": 1,
+          "swimming": false,
+          "vy": 0,
+          "weapon": "",
+          "worn": {
+            "cap": true,
+            "jacket": true,
+            "pants": true
+          },
+          "x": -8,
+          "y": 0,
+          "yaw": 0,
+          "z": -53
+        }
+      }
+    },
+    {
+      "name": "material-pick-tarp",
+      "picked": {
+        "ok": true,
+        "site": "tarp",
+        "t": "notice",
+        "text": "防水布已放入你的背包；此处余料稍后可再整理"
+      },
+      "second": {
+        "ok": false,
+        "site": "tarp",
+        "t": "notice",
+        "text": "这处余料已取，约 180 秒后可再整理"
+      },
+      "a": {
+        "apple": 0,
+        "bread": 0,
+        "tarp": 1
+      },
+      "b": {
+        "apple": 0,
+        "bread": 0
+      },
+      "players": {
+        "2810dc47812020d3": {
+          "attackAt": -10,
+          "blocking": false,
+          "health": 100,
+          "shield": false,
+          "slot": 2,
+          "swimming": false,
+          "vy": 0,
+          "weapon": "",
+          "worn": {
+            "cap": true,
+            "jacket": true,
+            "pants": true
+          },
+          "x": 10,
+          "y": 0,
+          "yaw": 0,
+          "z": -17
+        },
+        "f3cf5b74a6d5645f": {
+          "attackAt": -10,
+          "blocking": false,
+          "health": 100,
+          "shield": false,
+          "slot": 1,
+          "swimming": false,
+          "vy": 0,
+          "weapon": "",
+          "worn": {
+            "cap": true,
+            "jacket": true,
+            "pants": true
+          },
+          "x": 10,
+          "y": 0,
+          "yaw": 0,
+          "z": -17
+        }
+      }
+    },
+    {
+      "name": "material-use",
+      "built": {
+        "ok": true,
+        "site": "repair",
+        "t": "notice",
+        "text": "已消耗你的木料与防水布，屋顶修复，营灯亮了"
+      },
+      "a": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "tarp": 1,
+          "wood": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65.1,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "b": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "tarp": 3,
+          "wood": 3
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65.1,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "quest": {
+        "repaired": true,
+        "tarp": false,
+        "wood": false
+      }
+    },
+    {
+      "name": "material-facility",
+      "facilityFixed": {
+        "ok": true,
+        "site": "person",
+        "t": "notice",
+        "text": "已消耗你的木料与防水布；设施完整度 +25"
+      },
+      "a": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "tarp": 1,
+          "wood": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "b": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "tarp": 3,
+          "wood": 3
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "facility": 75
+    },
+    {
+      "name": "legacy-before-restart",
+      "totals": {
+        "wood": 1,
+        "tarp": 1
+      },
+      "quest": {
+        "repaired": false,
+        "tarp": true,
+        "wood": true
+      },
+      "keys": [
+        "backpackOwner",
+        "dog",
+        "elapsed",
+        "groveStartedAt",
+        "homes",
+        "lineCut",
+        "materialLegacy",
+        "materialSources",
+        "materialVersion",
+        "provisions",
+        "quest",
+        "ship",
+        "stones",
+        "survival",
+        "version",
+        "wildPeople"
+      ]
+    },
+    {
+      "name": "weapon-subdue",
+      "hit": {
+        "ok": true,
+        "site": "person",
+        "t": "notice",
+        "text": "左腿受伤，移动减慢"
+      },
+      "before": {
+        "actionAt": 1000,
+        "age": 30,
+        "attackAt": -10,
+        "bornAt": 1000,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 113.638641357422,
+        "careNeed": 5,
+        "careSeconds": 0,
+        "clip": "Down",
+        "clipAt": 1000,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 84,
+        "help": "",
+        "hitAt": -10,
+        "hunger": 79.9929333333333,
+        "id": "person-1",
+        "joinedAt": 0,
+        "legL": 0,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 70,
+        "name": "验收住民",
+        "order": "guard",
+        "phase": "down",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "female",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 1,
+        "stun": 0,
+        "stunUntil": 1100,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 41.99,
+        "weapon": "",
+        "workAt": 0,
+        "x": 4.59999990463257,
+        "y": 0,
+        "yaw": 0,
+        "z": -83
+      },
+      "after": {
+        "actionAt": 1000,
+        "age": 30,
+        "attackAt": -10,
+        "bornAt": 1000,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 113.638641357422,
+        "careNeed": 5,
+        "careSeconds": 0,
+        "clip": "Down",
+        "clipAt": 1000,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 57,
+        "help": "",
+        "hitAt": 1000.36666666667,
+        "hunger": 79.9743833333333,
+        "id": "person-1",
+        "joinedAt": 0,
+        "legL": 60.75,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 70,
+        "name": "验收住民",
+        "order": "guard",
+        "phase": "down",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "female",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 0.74485,
+        "stun": 0,
+        "stunUntil": 1100,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 41.96375,
+        "weapon": "",
+        "workAt": 0,
+        "x": 4.59999990463257,
+        "y": 0,
+        "yaw": 0,
+        "z": -83
+      },
+      "personal": {
+        "attackAt": 1000.36666666667,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "club": 1,
+          "spear": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "spear",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      }
+    },
+    {
+      "name": "weapon-lethal",
+      "hit": {
+        "ok": true,
+        "site": "person",
+        "t": "notice",
+        "text": "左腿受伤，移动减慢"
+      },
+      "before": {
+        "actionAt": 1000,
+        "age": 30,
+        "attackAt": -10,
+        "bornAt": 1000,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 65.4091110229492,
+        "careNeed": 7,
+        "careSeconds": 0,
+        "clip": "Down",
+        "clipAt": 1000,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 84,
+        "help": "",
+        "hitAt": -10,
+        "hunger": 79.9938166666667,
+        "id": "person-1",
+        "joinedAt": 0,
+        "legL": 0,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 70,
+        "name": "验收住民",
+        "order": "guard",
+        "phase": "down",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "female",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 1,
+        "stun": 0,
+        "stunUntil": 1100,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 41.99125,
+        "weapon": "",
+        "workAt": 0,
+        "x": 4.59999990463257,
+        "y": 0,
+        "yaw": 0,
+        "z": -83
+      },
+      "after": {
+        "actionAt": 1000,
+        "age": 30,
+        "attackAt": -10,
+        "bornAt": 1000,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 65.4091110229492,
+        "careNeed": 7,
+        "careSeconds": 0,
+        "clip": "Down",
+        "clipAt": 1000,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 57,
+        "help": "",
+        "hitAt": 1000.36651933333,
+        "hunger": 79.9752744753333,
+        "id": "person-1",
+        "joinedAt": 0,
+        "legL": 60.75,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 70,
+        "name": "验收住民",
+        "order": "guard",
+        "phase": "down",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "female",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 0.74485,
+        "stun": 0,
+        "stunUntil": 1100,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 41.96501105,
+        "weapon": "",
+        "workAt": 0,
+        "x": 4.59999990463257,
+        "y": 0,
+        "yaw": 0,
+        "z": -83
+      },
+      "personal": {
+        "attackAt": 1000.36651933333,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "club": 1,
+          "spear": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "spear",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      }
+    },
+    {
+      "name": "npc-real-source",
+      "resources": {
+        "fruit": {
+          "progress": 0.102008333333333,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 0.102008333333333,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.102008333333333,
+          "stock": 0
+        }
+      },
+      "person": {
+        "actionAt": 1000,
+        "age": 30,
+        "attackAt": -10,
+        "bornAt": 1000,
+        "captureAt": -10,
+        "capturedAt": 0,
+        "careDuration": 96.5245742797852,
+        "careNeed": 5,
+        "careSeconds": 0,
+        "clip": "Walk",
+        "clipAt": 1000.03333333333,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 84,
+        "help": "守家巡逻中；保留食物和水的生活需求",
+        "hitAt": -10,
+        "hunger": 79.9945935583333,
+        "id": "person-1",
+        "joinedAt": 900,
+        "legL": 0,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 70,
+        "name": "验收住民",
+        "order": "guard",
+        "phase": "companion",
+        "readyToJoin": false,
+        "relation": {
+          "affection": 0,
+          "care": 0,
+          "chatAt": -1000,
+          "food": 0,
+          "giftAt": -1000,
+          "refusedUntil": 0,
+          "treatments": 0,
+          "trust": 0,
+          "water": 0
+        },
+        "relationship": "尚未恋爱",
+        "resistance": 65,
+        "sex": "female",
+        "shield": false,
+        "sickProgress": 0,
+        "speedFactor": 1,
+        "stun": 0,
+        "stunUntil": 0,
+        "swingAt": 0,
+        "tier": 0,
+        "treatedUntil": 0,
+        "water": 61.992349375,
+        "weapon": "",
+        "workAt": 0,
+        "x": -10.3274593353271,
+        "y": 0,
+        "yaw": -1.5707963267949,
+        "z": -62.5
+      }
+    }
+  ],
+  "ownService": "http://127.0.0.1:49720",
+  "ok": true,
+  "finished": "2026-11-19T13:39:49.293Z"
+}

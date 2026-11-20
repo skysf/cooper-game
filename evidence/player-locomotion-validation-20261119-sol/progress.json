@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "existing low-magnitude real motion automatically shows Walk",
+    "ordinary W moves with automatic Run and release stands",
+    "Space actually rises off floor and lands with grounded true",
+    "local jump has Takeoff Air Land transitions",
+    "remote observer sees jump sequence",
+    "held W against actual tree stops feet and authoritative velocity",
+    "ground actions preserve weapon shield and all quantities",
+    "ground reconnect settles Stand and true floor",
+    "ordinary W walks shore and then actually swims",
+    "zero motion in deep water visibly selects Tread",
+    "both clients saw Swim and Tread",
+    "deep-water reconnect floats with Tread without phantom Air"
+  ],
+  "last": "shore-returned",
+  "room": "motion-water",
+  "frames": 46
+}

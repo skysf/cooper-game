@@ -1,0 +1,14 @@
+{
+  "stopped_pid": 72812,
+  "backup": ".local-rooms/backups/player-locomotion-20261119",
+  "records": {
+    "pine.json": {
+      "sha256": "714081eaa36b273b2a50c241af887cc0238730c96aafb98d014e2eef6997c575",
+      "elapsed": 426.149150666577,
+      "players": 3
+    }
+  },
+  "client_sha": "7fe68e3ccd9779161ed9e8144f75e9b25d4378f7957b34656696b31d92d6b457",
+  "time": "2026-11-19T23:27:14.572669",
+  "legacy_4184_pid": 76294
+}

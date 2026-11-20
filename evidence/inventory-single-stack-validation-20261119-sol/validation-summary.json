@@ -1,0 +1,113 @@
+{
+  "updatedAt": "2026-11-19T14:59:21.410266+00:00",
+  "conclusion": "统一单格独立验收通过：当前13种可携带item按同id聚合为一格，服务端容量与读档同步，数量流转守恒；50项真实网络和21项普通网页UI检查均退出0，没有本轮应用缺陷或测试失败。",
+  "scope": "只修改本证据目录内测试脚本与fixture，未改实现/共享文档/3D资产。使用独立随机端口/存档和headless Chrome Metal，不激活前台，不做性能采样，未改用户4284/4285或旧4184。人物动作任务另行验收，未与本单格修复绑包。",
+  "registry": [
+    "apple",
+    "bread",
+    "cap",
+    "jacket",
+    "pants",
+    "herb",
+    "water",
+    "stone",
+    "club",
+    "spear",
+    "shield",
+    "wood",
+    "tarp"
+  ],
+  "webPackage": {
+    "site": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/inventory-single-stack-release/coop",
+    "bytes": 46735668,
+    "mtime": "2026-11-19T14:54:35.846Z",
+    "sha256": "76e0f02f945031a0308b7b053c450518fa4effb9806502f66a2b6850ef4278f9"
+  },
+  "checks": [
+    {
+      "name": "全部13种item读档和重复拾取合并",
+      "status": "通过",
+      "result": "按实际ITEM_NAMES枚举apple,bread,cap,jacket,pants,herb,water,stone,club,spear,shield,wood,tarp，分每6种合法旧档各10份加载；各自再拾1后保留11。重连、进程重启总数均保持，未仅合并HUD或裁掉旧数量。",
+      "evidence": [
+        "network-report.json",
+        "network-check.mjs"
+      ]
+    },
+    {
+      "name": "容量按不同id，满6/12类型和合法上限",
+      "status": "通过",
+      "result": "满6与满12种类时同类追加成功，新种类被拒且原物仍在，可由B拾取。2147483647苹果上限不溢出、不移除额外世界物品；吃一份只减1。",
+      "evidence": [
+        "network-report.json"
+      ]
+    },
+    {
+      "name": "苹果4/7/10真实F采集与单格UI",
+      "status": "通过",
+      "result": "预写可追溯旧档苹果3份，另5种物品各10份已占5格；普通F从真实林果点依次取到4/7/10，每次数量同槽累加，仍为6/6格。没有运行时修改数量。",
+      "evidence": [
+        "apple-4.png",
+        "apple-4-state.json",
+        "apple-7.png",
+        "apple-10.png",
+        "apple-10-state.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "草药4/7/10真实F采集与单格UI",
+      "status": "通过",
+      "result": "真实药草点容量5且100秒补一份，为避免测试等待数分钟，使用两个明确记载初始量的旧档：3份起实际F采到4/7，9份起实际F采第10份。三张图均来自普通采集，另5类各10份，草药仅一槽；未直接设置最终结果。",
+      "evidence": [
+        "herb-4.png",
+        "herb-4-state.json",
+        "herb-7.png",
+        "herb-7-state.json",
+        "herb-10.png",
+        "herb-10-state.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "刷新、重连和服务器重启不拆堆",
+      "status": "通过",
+      "result": "网页各场景刷新后仍一槽且数量正确，随后同身份WebSocket重连与整个临时服务重启验证苹果9（实际吃过1）、草药7/10保留。全部13类网络组也各保留11。",
+      "evidence": [
+        "stack-apple-ui-refresh.png",
+        "stack-herb-low-ui-refresh.png",
+        "stack-herb-high-ui-refresh.png",
+        "stack-apple-ui-restarted.json",
+        "stack-herb-low-ui-restarted.json",
+        "stack-herb-high-ui-restarted.json",
+        "network-report.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "吃用、NPC供给、穿脱、装备与丢拾只处理一份",
+      "status": "通过",
+      "result": "苹果吃10→9、NPC喂食9→8；草药治疗10→9；穿帽10→9，满种类容量下脱帽重新合10；装备木棍不扣量，丢出仅1并保留9及装备，B只获1。网页苹果吃/丢/E拾回后剩9一槽，水实际喝1，NPC供水扣1，个人木料堆与无combatMode状态保留。",
+      "evidence": [
+        "single-use-states.json",
+        "network-report.json",
+        "apple-eat-drop-pick-single-stack.png",
+        "apple-eat-drop-pick-single-stack-state.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "帽子现有外观保持",
+      "status": "通过关联检查",
+      "result": "本轮没有改模型。普通背包穿一顶后剩9顶，实际角色预览显示当前已修帽子，未因统一数量规则改变穿戴外观。没有重跑整套帽子制作验收。",
+      "evidence": [
+        "cap-stack-equipped-current-model.png",
+        "cap-stack-equipped-current-model-state.json"
+      ]
+    }
+  ],
+  "commands": [
+    "INVENTORY_QA_SITE_DIR=$PWD/dist/coop-resource-fix node evidence/inventory-single-stack-validation-20261119-sol/network-check.mjs",
+    "INVENTORY_QA_SITE_DIR=$PWD/.cache/inventory-single-stack-release/coop node evidence/inventory-single-stack-validation-20261119-sol/browser-check.mjs"
+  ],
+  "cleanup": "独立网络服务、网页服务与Chrome均正常结束并清理；GPU/焦点已释放。已通知主代码代理可单独更新用户普通入口，本代理未修改用户服务或存档。"
+}

@@ -23,6 +23,8 @@ const CUES := {
 	&"stone_water": [[preload("res://sounds/stone-water.wav")], -10.0, 29.0],
 	&"engine_start": [[preload("res://sounds/engine-start.wav")], -11.0, ENGINE_RANGE],
 	&"engine_stop": [[preload("res://sounds/engine-stop.wav")], -12.0, ENGINE_RANGE],
+	&"rifle": [[preload("res://sounds/rifle-shot.wav")], -8.0, 68.0],
+	&"pistol": [[preload("res://sounds/pistol-shot.wav")], -10.0, 43.0],
 }
 
 enum Pose {AIR, GROUND, SWIM, PILOT}
@@ -49,6 +51,7 @@ var _camera: Camera3D
 var _gaits: Dictionary[String, Gait] = {}
 var _last_roster: Dictionary = {}
 var _last_stone_sound := 0
+var _last_weapon_attack := {}
 var _last_room_time := -1.0
 var _joined := false
 var _enabled := false
@@ -104,6 +107,7 @@ func update_world(net: Network, avatars: Dictionary, camera: Camera3D, ship_at: 
 	_joined = true
 	_enabled = _enabled or controls_active
 	_consume_stones(net.stone_sounds, net.elapsed, not entering and _enabled)
+	_consume_shots(net.players, net.elapsed, not entering and _enabled)
 	if not _enabled:
 		return
 	_update_engine(net.ship, ship_at, delta, entering)
@@ -128,6 +132,7 @@ func _reset_room() -> void:
 	_joined = false
 	_last_room_time = -1.0
 	_last_stone_sound = 0
+	_last_weapon_attack.clear()
 	_last_roster = {}
 	_gaits.clear()
 	_engine_on = false
@@ -149,6 +154,20 @@ func _consume_stones(events: Array, elapsed: float, audible: bool) -> void:
 		_last_stone_sound = id
 		if audible and elapsed - float(event.at) <= 0.55:
 			_play(StringName(event.cue), Stones.unpack(event.point), float(event.get("strength", 1.0)), 3)
+
+func _consume_shots(players: Dictionary, elapsed: float, audible: bool) -> void:
+	for id: String in _last_weapon_attack.keys():
+		if not players.has(id):
+			_last_weapon_attack.erase(id)
+	for id: String in players:
+		var player: Dictionary = players[id]
+		var weapon: String = player.get("attackWeapon", "")
+		var attack_at := float(player.get("attackAt", -10.0))
+		if weapon not in ["rifle", "pistol"] or attack_at <= float(_last_weapon_attack.get(id, -10.0)):
+			continue
+		_last_weapon_attack[id] = attack_at
+		if audible and elapsed - attack_at <= 0.35:
+			_play(StringName(weapon), Vector3(player.x, player.y + 1.40, player.z), 1.0, 3)
 
 func _pose(at: Vector3, vy: float, swimming: bool, piloting: bool) -> int:
 	if piloting:

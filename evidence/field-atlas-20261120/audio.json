@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "normalWebAudio": {
+    "mode": {
+      "secure": true,
+      "fallback": false
+    },
+    "quiet": {
+      "outlets": 2,
+      "maxRms": 0,
+      "peak": 0,
+      "activeSamples": 0
+    },
+    "zoomIn": {
+      "outlets": 2,
+      "maxRms": 0.07859788488922842,
+      "peak": 0.16376732289791107,
+      "activeSamples": 14
+    },
+    "zoomOut": {
+      "outlets": 2,
+      "maxRms": 0.07316143712567978,
+      "peak": 0.15173430740833282,
+      "activeSamples": 15
+    }
+  },
+  "insecureHttpFallback": {
+    "mode": {
+      "secure": false,
+      "fallback": true
+    },
+    "quiet": {
+      "outlets": 9,
+      "maxRms": 0,
+      "peak": 0,
+      "activeSamples": 0
+    },
+    "zoomIn": {
+      "outlets": 9,
+      "maxRms": 0.06526261843021007,
+      "peak": 0.15556715428829193,
+      "activeSamples": 6
+    },
+    "zoomOut": {
+      "outlets": 9,
+      "maxRms": 0.06535375639261613,
+      "peak": 0.15459990501403809,
+      "activeSamples": 6
+    }
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "before": {
+    "backpackOwner": "",
+    "dog": {
+      "clip": "Stand",
+      "clipAt": 1000,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 3.55999994277954,
+      "yaw": 3.14159265358979,
+      "z": -87.4000015258789
+    },
+    "elapsed": 1000.133306,
+    "groveStartedAt": 0,
+    "homes": {
+      "0c1e1102ccee21f1": {
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": 0,
+        "z": -87.9499969482422
+      },
+      "0caebde872b74f53": {
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": 0,
+        "z": -87.9499969482422
+      }
+    },
+    "lineCut": false,
+    "materialLegacy": {
+      "eligible": [
+        "0caebde872b74f53",
+        "0c1e1102ccee21f1"
+      ],
+      "owner": "0caebde872b74f53",
+      "pending": {
+        "tarp": 0,
+        "wood": 0
+      },
+      "recipients": {
+        "tarp": "0caebde872b74f53",
+        "wood": "0caebde872b74f53"
+      }
+    },
+    "materialSources": {
+      "tarp": 1180,
+      "wood": 1180
+    },
+    "materialVersion": 1,
+    "provisions": {
+      "apple-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "apple-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "bread-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      },
+      "bread-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      }
+    },
+    "quest": {
+      "repaired": false,
+      "tarp": true,
+      "wood": true
+    },
+    "ship": {
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "0c1e1102ccee21f1": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 79.9974675153333,
+        "mood": 65.00999665,
+        "shield": false,
+        "water": 39.9956681183333,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "0caebde872b74f53": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "tarp": 1,
+          "wood": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 79.9955677053333,
+        "mood": 65.0174959,
+        "shield": false,
+        "water": 39.9924184433333,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      }
+    },
+    "version": 1,
+    "wildPeople": {
+      "facility": 100,
+      "log": [],
+      "logId": 0,
+      "nextId": 1,
+      "people": {},
+      "publicFood": false,
+      "raid": {
+        "nextAt": 9000,
+        "phase": "rest",
+        "startedAt": 4600,
+        "warningAt": 4600,
+        "wave": 0
+      },
+      "repairAt": -10,
+      "resources": {
+        "fruit": {
+          "progress": 0.133306,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 0.133306,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.133306,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 7200,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 1,
+        "rest": 3600,
+        "warning": 30
+      },
+      "version": 1
+    }
+  },
+  "after": {
+    "backpackOwner": "",
+    "dog": {
+      "clip": "Stand",
+      "clipAt": 1000.133306,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 3.55999994277954,
+      "yaw": 3.14159265358979,
+      "z": -87.4000015258789
+    },
+    "elapsed": 1000.24739666667,
+    "groveStartedAt": 0,
+    "homes": {
+      "0c1e1102ccee21f1": {
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": 0,
+        "z": -87.9499969482422
+      },
+      "0caebde872b74f53": {
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": 0,
+        "z": -87.9499969482422
+      }
+    },
+    "lineCut": false,
+    "materialLegacy": {
+      "eligible": [
+        "0caebde872b74f53",
+        "0c1e1102ccee21f1"
+      ],
+      "owner": "0caebde872b74f53",
+      "pending": {
+        "tarp": 0,
+        "wood": 0
+      },
+      "recipients": {
+        "tarp": "0caebde872b74f53",
+        "wood": "0caebde872b74f53"
+      }
+    },
+    "materialSources": {
+      "tarp": 1180,
+      "wood": 1180
+    },
+    "materialVersion": 1,
+    "provisions": {
+      "apple-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "apple-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "bread-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      },
+      "bread-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      }
+    },
+    "quest": {
+      "repaired": false,
+      "tarp": true,
+      "wood": true
+    },
+    "ship": {
+      "x": 1.5,
+      "y": 0,
+      "yaw": -3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "0c1e1102ccee21f1": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 79.9931320699999,
+        "mood": 65.02711025,
+        "shield": false,
+        "water": 39.988252225,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "0caebde872b74f53": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "tarp": 1,
+          "wood": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 79.9936677053333,
+        "mood": 65.0249959,
+        "shield": false,
+        "water": 39.9891684433333,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      }
+    },
+    "version": 1,
+    "wildPeople": {
+      "facility": 100,
+      "log": [],
+      "logId": 0,
+      "nextId": 1,
+      "people": {},
+      "publicFood": false,
+      "raid": {
+        "nextAt": 9000,
+        "phase": "rest",
+        "startedAt": 4600,
+        "warningAt": 4600,
+        "wave": 0
+      },
+      "repairAt": -10,
+      "resources": {
+        "fruit": {
+          "progress": 0.247396666666667,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 0.247396666666667,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.247396666666667,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 7200,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 1,
+        "rest": 3600,
+        "warning": 30
+      },
+      "version": 1
+    }
+  }
+}

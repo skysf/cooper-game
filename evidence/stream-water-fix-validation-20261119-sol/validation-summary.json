@@ -1,0 +1,156 @@
+{
+  "updatedAt": "2026-11-19T13:49:14.440797+00:00",
+  "conclusion": "本轮三项修复独立验收通过：溪水单格合堆且可喝/可放桌；木布拾取、转移和修复扣费归个人；独立战斗姿态已移除，攻击由当前真实装备决定。独立真实socket28项、普通网页UI18项及最终修字/Web+Mac增量冒烟全部通过。",
+  "scope": "仅修改本独有证据目录内的测试脚本和fixture；未修改实现、共享文档、3D资产、用户普通服务或用户存档。全部浏览器为headless Metal功能验证，无前台激活或性能结论。",
+  "runtimeItemId": "water；本项目源码未发现water_supply/water_bottle，固定桌壶仍保留原有不消耗背包的旧语义，背包/移动容器每份真实消耗。",
+  "finalPackage": {
+    "web": {
+      "site": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/resource-fix-release/coop",
+      "mtime": "2026-11-19T13:45:56.585Z",
+      "bytes": 46735652,
+      "sha256": "cadb0db948bf8e02c50e377e7721d60dac8c77a5173fff5761020eac5daa6636",
+      "singleWaterStack": true
+    },
+    "mac": {
+      "app": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/resource-fix-release/native/CooperCamp.app",
+      "mtime": "2026-11-19T13:46:00.937Z",
+      "bytes": 46735652,
+      "sha256": "cadb0db948bf8e02c50e377e7721d60dac8c77a5173fff5761020eac5daa6636",
+      "ready": true,
+      "correctRoomAndWaterAndPrivateMaterials": true,
+      "noCombatMode": true,
+      "websocketUrl": "ws://127.0.0.1:50773/room",
+      "zoneBase": "http://127.0.0.1:50773/coop/zones/"
+    }
+  },
+  "checks": [
+    {
+      "name": "真实采集4/7/10份全部单格，刷新和重启保留",
+      "status": "通过",
+      "result": "网页从溪岸实际按F采集，包内已有另5类物品占5格，水在第6格继续合并到4/7/10；逐段截图和inventoryPanel均只有一个water槽。刷新保留10。独立socket来源16→6，重连/进程重启仍10。",
+      "evidence": [
+        "water-gathered-4.png",
+        "water-gathered-4-state.json",
+        "water-gathered-7.png",
+        "water-gathered-10.png",
+        "water-ten-after-refresh.png",
+        "network-report.json",
+        "gather-before-restart.json"
+      ]
+    },
+    {
+      "name": "正常背包喝水、满水保留和真实物品守恒",
+      "status": "通过",
+      "result": "普通鼠标点喝一份，背包10→9且水分约+32，再喝到满水后继续操作不扣第3份。B快速两次饮用消耗实际份数并按水分上限恢复，双端剩余量等于初始水量减实际饮用量，未以伪UI更新替代。",
+      "evidence": [
+        "water-drink-one.png",
+        "water-drink-one-state.json",
+        "water-full-not-consumed.png",
+        "water-full-not-consumed-state.json",
+        "water-double-drink-conservation.png",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "放桌真实容器、另一玩家可见拾回合堆及并发竞争",
+      "status": "通过",
+      "result": "普通按钮放桌消耗1份并生成独立共享provision；两个客户端均有可见真实JUG节点与同id。B按E拾回后原有2份合为单槽3份。再次放桌后两玩家普通E争抢只发一份，物品总数守恒。",
+      "evidence": [
+        "water-real-container-table.png",
+        "water-real-container-table-state.json",
+        "water-shared-container-player-b.png",
+        "water-shared-container-player-b-state.json",
+        "water-picked-merged-player-b.png",
+        "water-picked-merged-player-b-state.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "NPC供水与自主真实溪源用水",
+      "status": "通过",
+      "result": "俘虏供水从玩家10份扣为9份、NPC水分实际增加约32；自由同伴在真实溪水点从有限来源库存1扣至0，水分30→约62。water保持独立饮用品，不进入FOOD_STATS。",
+      "evidence": [
+        "network-report.json",
+        "network-check.mjs"
+      ]
+    },
+    {
+      "name": "个人木布拾取/修屋/设施修补/转交与存档",
+      "status": "通过",
+      "result": "A在真实材料点取1木/1布，B不增加且同来源不可重复拿；主修屋和住民面板设施修补均从行动者各扣1木1布，B原有各3份不受影响。B不能花A材料；A丢下后B拾到各1份即可修屋，修屋与余量重启保留。网页通过实际按钮丢出两个真实材质模型，由B按E拾回进入B个人背包。",
+      "evidence": [
+        "network-report.json",
+        "materials-real-ground-models.png",
+        "materials-real-ground-models-state.json",
+        "materials-personal-recipient-inventory.png",
+        "materials-personal-recipient-inventory-state.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "旧共享材料只迁移一次",
+      "status": "通过",
+      "result": "未修好旧房间的两个true全房间只迁成1木1布；两个既有玩家加入、服务重启后反序加入，总量仍各1。已修好的旧房间不补发已消费材料。迁移前后完整房间对象已保存。满包延迟领取与最早仅homes资格由主代码定向测试另行覆盖，本独立脚本未声称实际复测这些额外分支。",
+      "evidence": [
+        "legacy-migration-states.json",
+        "network-report.json"
+      ]
+    },
+    {
+      "name": "移除独立姿态并保留实际装备攻击",
+      "status": "通过",
+      "result": "UI无R姿态提示或stance按钮，按R不改变装备；1/2/3切换真实空手/木棍/长矛有效，缺少矛的玩家不能装备。旧subdue/lethal存档均不再读出combatMode，旧stance命令无效；两种旧存档的实际矛尖攻击均使目标84→57HP、腿伤+60.75，无旧模式差异。必要动作动画未修改。",
+      "evidence": [
+        "equipment-panel-without-stance.png",
+        "equipment-panel-without-stance-state.json",
+        "network-report.json",
+        "browser-report.json"
+      ]
+    },
+    {
+      "name": "新增文案缺字已修，最终Mac包可入房",
+      "status": "通过",
+      "result": "首个UI包真实截图中饮字缺失，fontTools确认两个字体均缺该字；已改清楚的现有字形文案。实际查看最终图，食物与水/溪水显示正常。最终Web和Mac PCK SHA相同，Mac headless加入真实房间，水10/个人木布各1、无combatMode且WS/zone地址正确。",
+      "evidence": [
+        "water-gathered-4.png",
+        "final-inventory-readable.png",
+        "final-web-state.json",
+        "final-smoke-report.json",
+        "final-native-state.json",
+        "final-native-status.events"
+      ]
+    }
+  ],
+  "preservedHarnessFailures": [
+    {
+      "status": "测试fixture问题，已修正后通过",
+      "result": "首次把木料出生点设在原有岩石碰撞内，正常_restore_position把玩家回营，远距离拾取被拒绝。改到站旁可走位置；未改游戏碰撞。",
+      "evidence": [
+        "network-attempt-1-fixture-collision/network-report.json",
+        "network-attempt-1-fixture-collision/classification.json"
+      ]
+    },
+    {
+      "status": "测试动作回执超时，改回执后限流间隔后通过",
+      "result": "第二次已真实取得3份水但后续未收到notice；服务端没有脚本异常。测试原按发送时刻间隔，改为回执后再等180ms，与既有120ms限流协调，最终28项正常完成。未将该超时标为应用数据丢失。",
+      "evidence": [
+        "network-attempt-2-notice-timeout/network-report.json",
+        "network-attempt-2-notice-timeout/classification.json"
+      ]
+    },
+    {
+      "status": "测试脚本启动变量引用错误，已修正后通过",
+      "result": "第一次浏览器准备时对未声明的CooperStatus名字做可选链，触发测试waitForFunction ReferenceError；改window.CooperStatus?.ready。不是游戏页面异常。",
+      "evidence": [
+        "browser-attempt-1-harness-ready-name/browser-report.json",
+        "browser-attempt-1-harness-ready-name/classification.json"
+      ]
+    }
+  ],
+  "commands": [
+    "node evidence/stream-water-fix-validation-20261119-sol/network-check.mjs",
+    "WATER_QA_SITE_DIR=$PWD/.cache/resource-fix-release/coop node evidence/stream-water-fix-validation-20261119-sol/browser-check.mjs",
+    "WATER_QA_SITE_DIR=$PWD/.cache/resource-fix-release/coop node evidence/stream-water-fix-validation-20261119-sol/final-smoke.mjs"
+  ],
+  "cleanup": "所有本验证自启的独立HTTP/房间服务、headless Chrome和Mac实例均已结束并明确释放。用户localhost:4284与旧4184未由本代理改动；未以fixture替换默认营地。"
+}

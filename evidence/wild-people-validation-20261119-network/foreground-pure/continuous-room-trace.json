@@ -1,0 +1,3349 @@
+{
+  "birth": {
+    "wall": 1795092189014,
+    "serverElapsed": 210.000310000021,
+    "ids": [
+      "person-5",
+      "person-6",
+      "person-7",
+      "person-8"
+    ]
+  },
+  "trace": [
+    {
+      "wall": 1795092184972,
+      "elapsed": 205.95939400002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185088,
+      "elapsed": 206.076060666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185206,
+      "elapsed": 206.192727333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185320,
+      "elapsed": 206.30939400002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185438,
+      "elapsed": 206.426060666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185553,
+      "elapsed": 206.542727333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185673,
+      "elapsed": 206.65939400002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185788,
+      "elapsed": 206.776060666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092185905,
+      "elapsed": 206.892727333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186022,
+      "elapsed": 207.00939400002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186136,
+      "elapsed": 207.126060666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186268,
+      "elapsed": 207.242727333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186379,
+      "elapsed": 207.351280333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186492,
+      "elapsed": 207.467947000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186609,
+      "elapsed": 207.584613666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186834,
+      "elapsed": 207.692933000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186834,
+      "elapsed": 207.807751000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092186918,
+      "elapsed": 207.917924333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187035,
+      "elapsed": 208.034586333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187148,
+      "elapsed": 208.151248333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187265,
+      "elapsed": 208.267910333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187383,
+      "elapsed": 208.384572333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187499,
+      "elapsed": 208.501234333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187618,
+      "elapsed": 208.617896333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187732,
+      "elapsed": 208.734558333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187850,
+      "elapsed": 208.85045000002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092187965,
+      "elapsed": 208.964765333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188083,
+      "elapsed": 209.08143200002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188197,
+      "elapsed": 209.198098666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188316,
+      "elapsed": 209.314765333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188433,
+      "elapsed": 209.43126500002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188551,
+      "elapsed": 209.547931666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188668,
+      "elapsed": 209.664598333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188775,
+      "elapsed": 209.772907333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092188891,
+      "elapsed": 209.888185111132,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189014,
+      "elapsed": 210.000310000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189122,
+      "elapsed": 210.116972000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189237,
+      "elapsed": 210.233634000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189355,
+      "elapsed": 210.35029600002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189472,
+      "elapsed": 210.46695800002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189591,
+      "elapsed": 210.58362000002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189707,
+      "elapsed": 210.70028200002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189820,
+      "elapsed": 210.81694400002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092189941,
+      "elapsed": 210.93360600002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190057,
+      "elapsed": 211.05026800002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190173,
+      "elapsed": 211.16693000002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190290,
+      "elapsed": 211.28359200002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190404,
+      "elapsed": 211.40025400002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190522,
+      "elapsed": 211.51691600002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190639,
+      "elapsed": 211.633578000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190754,
+      "elapsed": 211.750240000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190874,
+      "elapsed": 211.866902000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092190987,
+      "elapsed": 211.983564000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191105,
+      "elapsed": 212.100226000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191223,
+      "elapsed": 212.216888000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191340,
+      "elapsed": 212.333550000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191454,
+      "elapsed": 212.450212000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191573,
+      "elapsed": 212.566874000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191690,
+      "elapsed": 212.683536000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191807,
+      "elapsed": 212.800198000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092191922,
+      "elapsed": 212.916860000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192040,
+      "elapsed": 213.033522000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192156,
+      "elapsed": 213.150184000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192273,
+      "elapsed": 213.266846000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192391,
+      "elapsed": 213.383508000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192505,
+      "elapsed": 213.500170000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192623,
+      "elapsed": 213.616832000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192740,
+      "elapsed": 213.733494000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192857,
+      "elapsed": 213.850156000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092192974,
+      "elapsed": 213.966818000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193089,
+      "elapsed": 214.083480000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193206,
+      "elapsed": 214.200142000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193323,
+      "elapsed": 214.316804000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193439,
+      "elapsed": 214.433466000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193557,
+      "elapsed": 214.550128000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193674,
+      "elapsed": 214.666790000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193790,
+      "elapsed": 214.783452000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092193907,
+      "elapsed": 214.900114000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194022,
+      "elapsed": 215.016776000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194139,
+      "elapsed": 215.133438000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194257,
+      "elapsed": 215.250100000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194371,
+      "elapsed": 215.366762000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194489,
+      "elapsed": 215.483424000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194606,
+      "elapsed": 215.600086000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194724,
+      "elapsed": 215.716748000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194840,
+      "elapsed": 215.833410000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092194956,
+      "elapsed": 215.950072000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195073,
+      "elapsed": 216.066734000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195191,
+      "elapsed": 216.183396000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195306,
+      "elapsed": 216.300058000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195422,
+      "elapsed": 216.416720000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195599,
+      "elapsed": 216.550048000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195691,
+      "elapsed": 216.659174666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195804,
+      "elapsed": 216.775836666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092195923,
+      "elapsed": 216.892503333349,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196038,
+      "elapsed": 217.009170000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196155,
+      "elapsed": 217.125836666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196273,
+      "elapsed": 217.242503333349,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196390,
+      "elapsed": 217.359170000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196489,
+      "elapsed": 217.460032000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196588,
+      "elapsed": 217.560296333349,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196705,
+      "elapsed": 217.676963000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196823,
+      "elapsed": 217.793629666683,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092196937,
+      "elapsed": 217.91029633335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197055,
+      "elapsed": 218.026963000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197177,
+      "elapsed": 218.143629666683,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197289,
+      "elapsed": 218.26029633335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197406,
+      "elapsed": 218.376963000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197523,
+      "elapsed": 218.493629666683,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197640,
+      "elapsed": 218.61029633335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197756,
+      "elapsed": 218.726963000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092197873,
+      "elapsed": 218.843629666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198110,
+      "elapsed": 218.96029633335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198115,
+      "elapsed": 219.082756000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198215,
+      "elapsed": 219.19108533335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198358,
+      "elapsed": 219.300456359805,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198461,
+      "elapsed": 219.415326757593,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198548,
+      "elapsed": 219.525920484866,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198681,
+      "elapsed": 219.641084333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198773,
+      "elapsed": 219.744114636381,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198876,
+      "elapsed": 219.852700494967,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092198974,
+      "elapsed": 219.953858333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199087,
+      "elapsed": 220.070525000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199205,
+      "elapsed": 220.187191666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199321,
+      "elapsed": 220.303858333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199434,
+      "elapsed": 220.420525000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199551,
+      "elapsed": 220.537191666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199667,
+      "elapsed": 220.653858333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199784,
+      "elapsed": 220.770525000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092199910,
+      "elapsed": 220.887191666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200018,
+      "elapsed": 221.003858333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200136,
+      "elapsed": 221.120525000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200254,
+      "elapsed": 221.237191666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200369,
+      "elapsed": 221.353858333352,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200485,
+      "elapsed": 221.470525000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200602,
+      "elapsed": 221.587191666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200719,
+      "elapsed": 221.703858333352,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200834,
+      "elapsed": 221.820525000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092200953,
+      "elapsed": 221.937191666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201070,
+      "elapsed": 222.053858333352,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201186,
+      "elapsed": 222.170525000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201301,
+      "elapsed": 222.287191666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201418,
+      "elapsed": 222.403858333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201537,
+      "elapsed": 222.520525000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201651,
+      "elapsed": 222.637191666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201778,
+      "elapsed": 222.753858333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092201886,
+      "elapsed": 222.87052500002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202002,
+      "elapsed": 222.987191666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202119,
+      "elapsed": 223.103858333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202236,
+      "elapsed": 223.22052500002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202351,
+      "elapsed": 223.337191666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202469,
+      "elapsed": 223.453858333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202585,
+      "elapsed": 223.57052500002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202703,
+      "elapsed": 223.687191666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202819,
+      "elapsed": 223.803858333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092202938,
+      "elapsed": 223.92052500002,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203056,
+      "elapsed": 224.037191666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203170,
+      "elapsed": 224.153858333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203287,
+      "elapsed": 224.270525000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203404,
+      "elapsed": 224.387191666687,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203523,
+      "elapsed": 224.503858333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203636,
+      "elapsed": 224.620525000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203754,
+      "elapsed": 224.737191666688,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092203872,
+      "elapsed": 224.853858333354,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204006,
+      "elapsed": 224.970525000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204105,
+      "elapsed": 225.081362111132,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204187,
+      "elapsed": 225.181860333355,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204305,
+      "elapsed": 225.298527000021,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204420,
+      "elapsed": 225.415193666688,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204538,
+      "elapsed": 225.531860333355,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204668,
+      "elapsed": 225.648527000022,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204781,
+      "elapsed": 225.765193666688,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092204887,
+      "elapsed": 225.881860333355,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205006,
+      "elapsed": 225.998527000022,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205120,
+      "elapsed": 226.115193666689,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205236,
+      "elapsed": 226.231860333355,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205354,
+      "elapsed": 226.348527000022,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205469,
+      "elapsed": 226.465193666689,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205586,
+      "elapsed": 226.581860333356,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205704,
+      "elapsed": 226.698527000022,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205821,
+      "elapsed": 226.815193666689,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092205935,
+      "elapsed": 226.931860333356,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092206054,
+      "elapsed": 227.048527000023,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    },
+    {
+      "wall": 1795092206168,
+      "elapsed": 227.16519366669,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      }
+    }
+  ],
+  "before": {
+    "backpackOpen": false,
+    "backpackOwner": "",
+    "backpackTarget": false,
+    "bagSlots": 6,
+    "canPutProvision": true,
+    "connected": true,
+    "dayPart": "night",
+    "dog": {
+      "clip": "Lie-down",
+      "clipAt": 204.609394000018,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 3.60725021362305,
+      "yaw": 12.8896836654521,
+      "z": -87.2589874267578
+    },
+    "dogTarget": false,
+    "elapsed": 206.076060666687,
+    "enterRect": [
+      36,
+      619,
+      85,
+      39
+    ],
+    "equipmentOpen": false,
+    "equipmentTabRect": [
+      80,
+      60,
+      84,
+      39
+    ],
+    "focusReady": true,
+    "foodTarget": "",
+    "fps": 60,
+    "grove": [
+      {
+        "height": 7,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "detail": "LOD1",
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.3,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 206.076060666687,
+    "groveHint": "",
+    "heldStone": "",
+    "inviteRect": [
+      129,
+      619,
+      84,
+      39
+    ],
+    "inviteShown": false,
+    "jugTarget": false,
+    "lanternWarmupMs": 1460.1,
+    "lineCut": false,
+    "locked": true,
+    "members": 4,
+    "nearby": "",
+    "notice": "",
+    "noticeNo": 0,
+    "panelRect": [
+      20,
+      517,
+      488,
+      183
+    ],
+    "peopleColdByKey": {},
+    "peopleColdCreates": 0,
+    "peopleOpen": false,
+    "peoplePanel": {},
+    "peoplePoolByKey": {
+      "female": 2,
+      "male": 2
+    },
+    "peoplePoolHits": 4,
+    "peopleTarget": "person-1",
+    "peopleWarmupCount": 8,
+    "peopleWarmupMs": 1649.9,
+    "pickupStone": "",
+    "pitch": -0.5972,
+    "players": {
+      "4209654ecf5df8b4": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 2,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 0.649999976158142,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "5c5345afd192227c": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 3,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 3.15000009536743,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "f58db40e695d2b4a": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.41009378433228,
+        "y": 0,
+        "yaw": -3.12440000000001,
+        "z": -87.8253936767578
+      },
+      "fe15674db9aea4ad": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 1.89999997615814,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      }
+    },
+    "previewWarming": false,
+    "previewWarmupBuildMs": 8.7,
+    "previewWarmupDrawMs": 301.7,
+    "provisions": {},
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 3,
+    "resident": 4,
+    "room": "wild-qa-stress",
+    "selfId": "f58db40e695d2b4a",
+    "sheltered": true,
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "shipCameraYaw": 3.14159265358979,
+    "shipPiloting": false,
+    "shipTarget": false,
+    "sourceTarget": "",
+    "status": "已连接 · wild-qa-stress",
+    "stoneAction": "",
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 3,
+        "bread": 0,
+        "club": 1,
+        "herb": 3,
+        "shield": 1,
+        "spear": 1,
+        "water": 3
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 83.8,
+      "mood": 78.1,
+      "shield": false,
+      "water": 78.2,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "swimming": false,
+    "target": "repair",
+    "terrainError": "",
+    "thirdPerson": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 205.95939400002,
+      "facility": 100,
+      "log": [],
+      "people": {
+        "person-1": {
+          "actionAt": 140,
+          "age": 40,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 65,
+          "careNeed": 5,
+          "careSeconds": 65,
+          "clip": "Guard",
+          "clipAt": 205.876060666686,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 75.5227077713331,
+          "id": "person-1",
+          "joinedAt": -100,
+          "legL": 0,
+          "legR": 0,
+          "loot": {
+            "club": 1,
+            "shield": 1
+          },
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 47,
+          "name": "禾岚",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 52,
+            "care": 6,
+            "chatAt": -1000,
+            "food": 2,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 1,
+            "trust": 76,
+            "water": 2
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 69.0793034500009,
+          "weapon": "",
+          "workAt": 0,
+          "x": 2.43778657913208,
+          "y": 0,
+          "yaw": 1.62835257013965,
+          "z": -86.4240570068359
+        },
+        "person-2": {
+          "actionAt": 140,
+          "age": 45,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 83.224006652832,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 205.859394000019,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 118,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 63.5227077713332,
+          "id": "person-2",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "林弦",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 78.0793034500009,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 0.532315611839294,
+          "y": 0,
+          "yaw": 2.1298195600273,
+          "z": -86.0580062866211
+        },
+        "person-3": {
+          "actionAt": 140,
+          "age": 24,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 73.5567169189453,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 205.609394000019,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 118,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 63.5227077713332,
+          "id": "person-3",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "阿榆",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 78.0793034500009,
+          "weapon": "club",
+          "workAt": 0,
+          "x": -0.171472042798996,
+          "y": 0,
+          "yaw": 3.13886048590208,
+          "z": -84.8720855712891
+        },
+        "person-4": {
+          "actionAt": 140,
+          "age": 33,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 83.9823760986328,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 205.909394000019,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 118,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 75.5227077713331,
+          "id": "person-4",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 47,
+          "name": "阿峦",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 69.0793034500009,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 0.936300575733185,
+          "y": 0,
+          "yaw": -2.10133318350605,
+          "z": -83.6800155639648
+        }
+      },
+      "publicFood": true,
+      "raid": {
+        "nextAt": 210,
+        "phase": "warning",
+        "startedAt": 0,
+        "warningAt": 140,
+        "wave": 6
+      },
+      "resources": {
+        "fruit": {
+          "progress": 0.609287333332736,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 65.6092873333327,
+          "stock": 5
+        },
+        "water": {
+          "progress": 1.6092873333331,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 540,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 4,
+        "rest": 300,
+        "warning": 30
+      }
+    },
+    "x": 2.41009378433228,
+    "y": 0,
+    "yaw": -3.12440000000001,
+    "z": -87.8253936767578,
+    "zone": "camp"
+  },
+  "after": {
+    "backpackOpen": false,
+    "backpackOwner": "",
+    "backpackTarget": false,
+    "bagSlots": 6,
+    "canPutProvision": false,
+    "connected": true,
+    "dayPart": "night",
+    "dog": {
+      "clip": "Walk",
+      "clipAt": 225.215193666688,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0.820051968097687,
+      "vx": 0.796751916408539,
+      "vz": 0.194091781973839,
+      "x": 2.83519721031189,
+      "yaw": 17.0400785786056,
+      "z": -84.631217956543
+    },
+    "dogTarget": false,
+    "elapsed": 227.498527000023,
+    "enterRect": [
+      36,
+      619,
+      85,
+      39
+    ],
+    "equipmentOpen": false,
+    "equipmentTabRect": [
+      80,
+      60,
+      84,
+      39
+    ],
+    "focusReady": true,
+    "foodTarget": "",
+    "fps": 59,
+    "grove": [
+      {
+        "height": 7,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "detail": "LOD1",
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.3,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 227.498527000023,
+    "groveHint": "松树 · 成树",
+    "heldStone": "",
+    "inviteRect": [
+      129,
+      619,
+      84,
+      39
+    ],
+    "inviteShown": false,
+    "jugTarget": false,
+    "lanternWarmupMs": 1460.1,
+    "lineCut": false,
+    "locked": true,
+    "members": 4,
+    "nearby": "",
+    "notice": "",
+    "noticeNo": 0,
+    "panelRect": [
+      20,
+      517,
+      488,
+      183
+    ],
+    "peopleColdByKey": {},
+    "peopleColdCreates": 0,
+    "peopleOpen": false,
+    "peoplePanel": {},
+    "peoplePoolByKey": {
+      "female": 2,
+      "female_elite": 2,
+      "male": 2,
+      "male_elite": 2
+    },
+    "peoplePoolHits": 8,
+    "peopleTarget": "",
+    "peopleWarmupCount": 8,
+    "peopleWarmupMs": 1649.9,
+    "pickupStone": "",
+    "pitch": -0.1629,
+    "players": {
+      "4209654ecf5df8b4": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 2,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 0.649999976158142,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "5c5345afd192227c": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 71.5,
+        "shield": false,
+        "slot": 3,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 3.15000009536743,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "f58db40e695d2b4a": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 95.25,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 4.94520664215088,
+        "y": 0,
+        "yaw": -2.84060000000001,
+        "z": -85.520133972168
+      },
+      "fe15674db9aea4ad": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 1.89999997615814,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      }
+    },
+    "previewWarming": false,
+    "previewWarmupBuildMs": 8.7,
+    "previewWarmupDrawMs": 301.7,
+    "provisions": {},
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 3,
+    "resident": 4,
+    "room": "wild-qa-stress",
+    "selfId": "f58db40e695d2b4a",
+    "sheltered": false,
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "shipCameraYaw": 3.14159265358979,
+    "shipPiloting": false,
+    "shipTarget": false,
+    "sourceTarget": "",
+    "status": "已连接 · wild-qa-stress",
+    "stoneAction": "",
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 3,
+        "bread": 0,
+        "club": 1,
+        "herb": 3,
+        "shield": 1,
+        "spear": 1,
+        "water": 3
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 95.3,
+      "hunger": 83,
+      "mood": 78.8,
+      "shield": false,
+      "water": 76.8,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "swimming": false,
+    "target": "repair",
+    "terrainError": "",
+    "thirdPerson": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 227.398527000023,
+      "facility": 100,
+      "log": [
+        {
+          "at": 210.000310000021,
+          "id": 1,
+          "text": "第 7 次来袭：4 名成年人，长矛与盾牌"
+        },
+        {
+          "at": 223.803858333354,
+          "id": 2,
+          "text": "这一轮袭击结束，至少 300 秒休整；检查伤员和营地设施"
+        }
+      ],
+      "people": {
+        "person-1": {
+          "actionAt": 140,
+          "age": 40,
+          "attackAt": 223.337191666687,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 65,
+          "careNeed": 5,
+          "careSeconds": 65,
+          "clip": "Walk",
+          "clipAt": 223.353858333353,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 19,
+          "help": "重伤撤退休养，请带来药草和补给",
+          "hitAt": -10,
+          "hunger": 74.3884094386635,
+          "id": "person-1",
+          "joinedAt": -100,
+          "legL": 0,
+          "legR": 0,
+          "loot": {
+            "club": 1,
+            "shield": 1
+          },
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 47,
+          "name": "禾岚",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 52,
+            "care": 6,
+            "chatAt": -1000,
+            "food": 2,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 1,
+            "trust": 76,
+            "water": 2
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 67.4741643000008,
+          "weapon": "",
+          "workAt": 0,
+          "x": 3.53969359397888,
+          "y": 0,
+          "yaw": 0.999444027559904,
+          "z": -85.3886947631836
+        },
+        "person-2": {
+          "actionAt": 140,
+          "age": 45,
+          "attackAt": 223.087191666686,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 83.224006652832,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Walk",
+          "clipAt": 223.803858333354,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 66,
+          "help": "需要药草治疗；有食物和水时才会逐渐恢复",
+          "hitAt": -10,
+          "hunger": 62.3884094386668,
+          "id": "person-2",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "林弦",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 76.4741643000008,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 2.15294814109802,
+          "y": 0,
+          "yaw": 1.15368563214347,
+          "z": -83.9409637451172
+        },
+        "person-3": {
+          "actionAt": 140,
+          "age": 24,
+          "attackAt": 223.787191666687,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 73.5567169189453,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Walk",
+          "clipAt": 223.803858333354,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 53,
+          "help": "需要药草治疗；有食物和水时才会逐渐恢复",
+          "hitAt": -10,
+          "hunger": 62.3884094386668,
+          "id": "person-3",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "阿榆",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 76.4741643000008,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 1.95707130432129,
+          "y": 0,
+          "yaw": 1.34507597951645,
+          "z": -83.3800811767578
+        },
+        "person-4": {
+          "actionAt": 140,
+          "age": 33,
+          "attackAt": 223.053858333353,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 83.9823760986328,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 226.281860333355,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 66,
+          "help": "需要药草治疗；有食物和水时才会逐渐恢复",
+          "hitAt": -10,
+          "hunger": 74.3884094386635,
+          "id": "person-4",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 47,
+          "name": "阿峦",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 67.4741643000008,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 2.92329978942871,
+          "y": 0,
+          "yaw": 1.21904908383922,
+          "z": -83.3021545410156
+        },
+        "person-5": {
+          "actionAt": 210.000310000021,
+          "age": 44,
+          "attackAt": 217.109170000016,
+          "bornAt": 210.000310000021,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 114.529113769531,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 217.175836666682,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 147.24,
+          "help": "",
+          "hitAt": 217.175836666682,
+          "hunger": 47.0782015633336,
+          "id": "person-5",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "砾川",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 90.9145875999998,
+          "stunUntil": 243.175836666682,
+          "swingAt": 217.769170000016,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.69556825,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 3.36852931976318,
+          "y": 0,
+          "yaw": 0.212289371153313,
+          "z": -81.2281494140625
+        },
+        "person-6": {
+          "actionAt": 210.000310000021,
+          "age": 24,
+          "attackAt": 219.360781303047,
+          "bornAt": 210.000310000021,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 104.616226196289,
+          "careNeed": 5,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 221.587191666685,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 147.92,
+          "help": "",
+          "hitAt": 221.587191666685,
+          "hunger": 47.0782015633336,
+          "id": "person-6",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "叶遥",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 86.9966643999999,
+          "stunUntil": 247.587191666685,
+          "swingAt": 0,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.69556825,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 5.51017808914185,
+          "y": 0,
+          "yaw": 1.18553188868343,
+          "z": -84.0428771972656
+        },
+        "person-7": {
+          "actionAt": 210.000310000021,
+          "age": 23,
+          "attackAt": 219.378963121229,
+          "bornAt": 210.000310000021,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 86.0834655761719,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 220.853858333351,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 147.24,
+          "help": "",
+          "hitAt": 220.853858333351,
+          "hunger": 47.0782015633336,
+          "id": "person-7",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "岩岚",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 91.4873385999997,
+          "stunUntil": 246.853858333351,
+          "swingAt": 0,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.69556825,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 5.49376487731934,
+          "y": 0,
+          "yaw": 1.18452755411858,
+          "z": -84.0467910766602
+        },
+        "person-8": {
+          "actionAt": 210.000310000021,
+          "age": 25,
+          "attackAt": 221.487191666685,
+          "bornAt": 210.000310000021,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 80.2334136962891,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 223.787191666687,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 145.88,
+          "help": "",
+          "hitAt": 223.787191666687,
+          "hunger": 47.0782015633336,
+          "id": "person-8",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "阿榆",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 92.6912531999999,
+          "stunUntil": 249.787191666687,
+          "swingAt": 0,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.69556825,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 5.49349021911621,
+          "y": 0,
+          "yaw": 0.839942661148845,
+          "z": -84.0749206542969
+        }
+      },
+      "publicFood": true,
+      "raid": {
+        "nextAt": 578.803858333354,
+        "phase": "rest",
+        "startedAt": 210.000310000021,
+        "warningAt": 140,
+        "wave": 7
+      },
+      "resources": {
+        "fruit": {
+          "progress": 22.011142666666,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 87.0111426666655,
+          "stock": 5
+        },
+        "water": {
+          "progress": 7.01114266666636,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 540,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 4,
+        "rest": 300,
+        "warning": 30
+      }
+    },
+    "x": 4.94520616531372,
+    "y": 0,
+    "yaw": -2.83845000000001,
+    "z": -85.5201263427734,
+    "zone": "camp"
+  }
+}

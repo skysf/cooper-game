@@ -1,0 +1,40 @@
+{
+  "status": "prepared only; wait for runtime release",
+  "inputs": "Existing W3.6/Space/C/V only, no Shift requirement or stance controls. Existing legal motion magnitude0.4 may show automatic Walk around1.44m/s.",
+  "groundRoute": {
+    "actor": [
+      10.5,
+      -86
+    ],
+    "observer": [
+      13,
+      -88
+    ],
+    "wallTree": [
+      10.754,
+      -92.542,
+      0.289
+    ],
+    "note": "Open initial W lane then real trunk collision, player radius0.29. Jump on open ground before trunk."
+  },
+  "waterRoute": {
+    "actor": [
+      -24,
+      -29
+    ],
+    "observer": [
+      -21,
+      -40
+    ],
+    "direction": "W toward negativeZ from shore through shallow edge into deep lake, release for Tread, turn/return to shore",
+    "verified": "No world obstacles within lane x-24/z-29..-44. Lake center[-26,-50], waterY-0.075."
+  },
+  "evidence": "Actual ordinary headless Metal local third-person and remote observer frames/video; saved authoritative state and readonly animation transitions are supporting evidence, not substitutes for visual inspection.",
+  "checks": [
+    "real horizontal displacement chooses Run/Walk automatically; release and held input against collision stop feet",
+    "Space produces actual rise/apex/fall/floor contact and short landing recovery; vy≈0 at apex is not grounded; held Space does not repeat",
+    "shallow water walking then actual deep swimming, zero input Tread, exit returns grounded movement",
+    "local and observer locomotion roughly agree despite normal snapshot lag; reconnect/spawn settles correctly",
+    "cap/jacket/backpack/held weapon visuals follow and waterline remains readable; quantity/equipped identity conserved; no stance UI"
+  ]
+}

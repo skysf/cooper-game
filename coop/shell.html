@@ -156,7 +156,7 @@ const startNew = () => 'camp-' + Array.from(crypto.getRandomValues(new Uint8Arra
 fresh.href = '?room=' + startNew();
 window.CooperJoin = {
   url: (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/room',
-  room, token: '', pointerLocked: false, backpackOpen: false, inviteVisible: false,
+  room, token: '', pointerLocked: false, backpackOpen: false, atlasOpen: false, inviteVisible: false,
   zoneBase: location.origin + '/coop/zones/',
 };
 
@@ -195,7 +195,7 @@ function placeShellActions() {
 
 function syncRoomAction() {
   if (!box.hidden) return;
-  fresh.hidden = CooperJoin.pointerLocked || CooperJoin.backpackOpen;
+  fresh.hidden = CooperJoin.pointerLocked || CooperJoin.backpackOpen || CooperJoin.atlasOpen;
   if (!fresh.hidden) placeShellActions();
 }
 
@@ -241,6 +241,16 @@ CooperJoin.setBackpackOpen = open => {
     hideInvite();
     canvas.focus({preventScroll: true});
   }
+};
+CooperJoin.setAtlasOpen = open => {
+  CooperJoin.atlasOpen = open;
+  if (open) hideInvite();
+  syncRoomAction();
+};
+CooperJoin.resumeFromAtlas = () => {
+  if (document.pointerLockElement || CooperJoin.atlasOpen || CooperJoin.backpackOpen || !navigator.userActivation?.isActive) return;
+  canvas.focus({preventScroll: true});
+  canvas.requestPointerLock()?.catch(() => {});
 };
 window.addEventListener('resize', placeShellActions);
 new ResizeObserver(placeShellActions).observe(canvas);
@@ -419,7 +429,7 @@ if (!/^[a-z0-9_-]{1,24}$/.test(room)) {
 
 canvas.addEventListener('click', event => {
   const state = window.CooperStatus;
-  if (!state?.ready || document.pointerLockElement || !box.hidden || CooperJoin.backpackOpen || state.backpackOpen) return;
+  if (!state?.ready || document.pointerLockElement || !box.hidden || CooperJoin.backpackOpen || state.backpackOpen || CooperJoin.atlasOpen || state.atlas?.open) return;
   const frame = canvas.getBoundingClientRect();
   const inside = bounds => {
     if (!bounds) return false;
@@ -435,6 +445,12 @@ canvas.addEventListener('click', event => {
   const request = canvas.requestPointerLock();
   request?.catch(error => console.warn('Pointer lock:', error.message));
 });
+canvas.addEventListener('contextmenu', event => {
+  if (document.pointerLockElement === canvas || CooperJoin.atlasOpen) event.preventDefault();
+});
+canvas.addEventListener('wheel', event => {
+  if (CooperJoin.atlasOpen) event.preventDefault();
+}, {passive: false});
 document.addEventListener('pointerlockchange', () => {
   CooperJoin.pointerLocked = document.pointerLockElement === canvas;
   if (CooperJoin.pointerLocked) hideInvite();

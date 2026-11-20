@@ -1,5 +1,7 @@
 extends Node
 
+signal atlas_reply(action: String, accepted: bool, text: String)
+
 const Rules = preload("res://rules.gd")
 const PlayerMotion = preload("res://player_motion.gd")
 const Spaceship = preload("res://spaceship.gd")
@@ -25,6 +27,10 @@ var survival: Dictionary = {}
 var dog: Dictionary = {}
 var dog_sample_time := -1.0
 var crocodile: Dictionary = {}
+var wild_people: Dictionary = {}
+var blocking := false
+var aim_pitch: Variant = null
+var trace_enabled := false
 var ship: Dictionary = {}
 var backpack_owner := ""
 var backpack_enabled := false
@@ -33,6 +39,8 @@ var status := "尚未连接"
 var last_notice := ""
 var notice_number := 0
 var room := ""
+var atlas_available := false
+var atlas_pins: Dictionary = {}
 
 var _socket: WebSocketPeer
 var _url := ""
@@ -120,6 +128,8 @@ func _retry(reason: String = "") -> void:
 	ready_in_room = false
 	_direction = Vector2.ZERO
 	players = {}
+	atlas_available = false
+	atlas_pins = {}
 	stones = {}
 	water_impacts = []
 	stone_sounds = []
@@ -128,6 +138,7 @@ func _retry(reason: String = "") -> void:
 	dog = {}
 	dog_sample_time = -1.0
 	crocodile = {}
+	wild_people = {}
 	ship = {}
 	_predicted_ship = {}
 	_predicted_velocity = Vector3.ZERO
@@ -161,6 +172,23 @@ func interact_ship(action: String) -> void:
 	if ready_in_room:
 		_send({"t": "ship", "action": action})
 
+func travel_to(site: String) -> void:
+	if ready_in_room and atlas_available:
+		set_motion(Vector2.ZERO, _yaw)
+		blocking = false
+		aim_pitch = null
+		_send_motion()
+		_send({"t": "atlas", "action": "travel", "site": site})
+
+func place_atlas_pin(point: Vector2) -> void:
+	if ready_in_room and atlas_available:
+		var id := Crypto.new().generate_random_bytes(8).hex_encode()
+		_send({"t": "atlas", "action": "pin", "id": id, "x": snappedf(point.x, 0.1), "z": snappedf(point.y, 0.1)})
+
+func remove_atlas_pin(id: String) -> void:
+	if ready_in_room and atlas_available:
+		_send({"t": "atlas", "action": "remove", "id": id})
+
 func interact(site: String) -> void:
 	if ready_in_room:
 		_send({"t": "act", "site": site})
@@ -177,11 +205,32 @@ func interact_dog(action: String) -> void:
 	if ready_in_room and not dog.is_empty():
 		_send({"t": "dog", "action": action})
 
+func interact_person(action: String, item := "", id := "", yaw := 0.0, pitch := 0.0) -> void:
+	if ready_in_room:
+		_send({"t": "person", "action": action, "item": item, "id": id, "yaw": yaw, "pitch": pitch})
+
+func attack_person(body_yaw: float, sight_yaw: float, sight_pitch: float) -> void:
+	if ready_in_room:
+		_yaw = body_yaw
+		_send_motion()
+		interact_person("attack", "", "", sight_yaw, sight_pitch)
+
+func _send_motion() -> void:
+	var motion := {"t": "motion", "x": _direction.x, "z": _direction.y, "yaw": _yaw, "lift": _lift,
+		"blocking": blocking, "aimPitch": aim_pitch}
+	if _snapshot_seq > 0:
+		motion.snapshotAck = _snapshot_seq
+	_send(motion)
+	_send_in = SEND_INTERVAL
+
 func _send(message: Dictionary) -> void:
 	if _socket != null and _socket.get_ready_state() == WebSocketPeer.STATE_OPEN:
 		_socket.send_text(JSON.stringify(message))
 
 func _process(delta: float) -> void:
+	var trace_start := Time.get_ticks_usec() if trace_enabled else 0
+	var trace_packets := 0
+	var trace_bytes := 0
 	if _url.is_empty() or _stopped:
 		return
 	var now_ms := Time.get_ticks_msec()
@@ -208,7 +257,11 @@ func _process(delta: float) -> void:
 		_send({"t": "join", "room": room, "token": _token, "session": _session, "snapshotFlow": true})
 		_joined = true
 	while _socket != null and _socket.get_available_packet_count() > 0:
-		var msg = JSON.parse_string(_socket.get_packet().get_string_from_utf8())
+		var packet := _socket.get_packet()
+		var msg = JSON.parse_string(packet.get_string_from_utf8())
+		if trace_enabled:
+			trace_packets += 1
+			trace_bytes += packet.size()
 		if msg is Dictionary:
 			_receive(msg)
 	if not ready_in_room:
@@ -241,11 +294,12 @@ func _process(delta: float) -> void:
 	_height_correction -= height_fix
 	_send_in -= delta
 	if _send_in <= 0.0:
-		var motion := {"t": "motion", "x": _direction.x, "z": _direction.y, "yaw": _yaw, "lift": _lift}
-		if _snapshot_seq > 0:
-			motion.snapshotAck = _snapshot_seq
-		_send(motion)
-		_send_in = SEND_INTERVAL
+		_send_motion()
+	if trace_enabled:
+		var total := Time.get_ticks_usec() - trace_start
+		if total > 4000:
+			var sample := {"wall": Time.get_unix_time_from_system() * 1000.0, "event": "network-frame", "totalUs": total, "packets": trace_packets, "bytes": trace_bytes, "elapsed": elapsed}
+			JavaScriptBridge.eval("window.__CooperWildCpu.push(" + JSON.stringify(sample) + ");if(window.__CooperWildCpu.length>512)window.__CooperWildCpu.shift()")
 
 func _predict_ship(delta: float) -> void:
 	if _predicted_ship.is_empty():
@@ -282,6 +336,7 @@ func _receive(msg: Dictionary) -> void:
 	match msg.get("t", ""):
 		"welcome":
 			self_id = msg.id
+			atlas_available = msg.get("fieldAtlas", false) == true
 			status = "已连接 · " + room
 		"snapshot":
 			if self_id.is_empty() or not msg.players.has(self_id):
@@ -300,6 +355,7 @@ func _receive(msg: Dictionary) -> void:
 			dog = msg.get("dog", {})
 			dog_sample_time = float(msg.elapsed)
 			crocodile = msg.get("crocodile", {})
+			wild_people = msg.get("wildPeople", {})
 			var was_piloting := is_piloting()
 			ship = msg.get("ship", {})
 			_reconcile_ship(was_piloting)
@@ -320,17 +376,25 @@ func _receive(msg: Dictionary) -> void:
 				player_motion.y = height
 				player_motion.vy = float(actor.get("vy", 0.0))
 				player_motion.swimming = swimming
+				player_motion.grounded = actor.get("grounded", not swimming)
+				player_motion.vx = actor.get("vx", 0.0)
+				player_motion.vz = actor.get("vz", 0.0)
+				player_motion.waterVy = actor.get("waterVy", 0.0)
 				_height_correction = 0.0
 			else:
 				_correction = position_from_server - local_position
 				if swimming != player_motion.swimming or absf(height - float(player_motion.y)) > 0.48:
 					player_motion.swimming = swimming
+					player_motion.grounded = actor.get("grounded", not swimming)
+					player_motion.waterVy = actor.get("waterVy", 0.0)
 					player_motion.y = height
 					player_motion.vy = float(actor.get("vy", 0.0))
 					_height_correction = 0.0
 				else:
 					_height_correction = height - float(player_motion.y)
 			ready_in_room = true
+		"atlas":
+			_receive_atlas(msg)
 		"notice":
 			last_notice = msg.text
 			notice_number += 1
@@ -338,3 +402,22 @@ func _receive(msg: Dictionary) -> void:
 			if msg.code == "identity":
 				_token = _identity(true)
 			_retry(str(msg.get("text", "房间未就绪")))
+
+func _receive_atlas(msg: Dictionary) -> void:
+	var action := str(msg.get("action", ""))
+	var accepted: bool = msg.get("ok", false) == true
+	if action == "pins" and accepted and msg.get("pins") is Dictionary:
+		atlas_pins = msg.pins
+	elif action == "travel" and accepted:
+		var at: Array = msg.at
+		local_position = Vector2(at[0], at[2])
+		player_motion = PlayerMotion.put_ashore(Vector3(at[0], at[1], at[2]))
+		_direction = Vector2.ZERO
+		_lift = 0.0
+		_correction = Vector2.ZERO
+		_height_correction = 0.0
+		if msg.get("ship") is Dictionary:
+			var was_piloting := is_piloting()
+			ship = msg.ship
+			_reconcile_ship(was_piloting)
+	atlas_reply.emit(action, accepted, str(msg.get("text", "")))

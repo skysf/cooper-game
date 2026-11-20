@@ -1,0 +1,19 @@
+{
+  "started": "2026-11-19T13:40:58.378Z",
+  "mode": "headless Chrome Metal functional QA with ordinary mouse/keyboard buttons; in-page offscreen pointer lock; no performance scoring",
+  "checks": [],
+  "states": {},
+  "errors": [
+    "ReferenceError: CooperStatus is not defined"
+  ],
+  "package": {
+    "site": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/resource-fix-release/coop",
+    "sha256": "42f87099f8eaed8fdea90fb6d4ea4aa8b13387b36ea0d2b0a79da11fe387dcc1",
+    "mtime": "2026-11-19T13:39:06.726Z",
+    "bytes": 46735668
+  },
+  "ownService": "http://127.0.0.1:49935",
+  "ok": false,
+  "error": "page.waitForFunction: ReferenceError: CooperStatus is not defined\n    at eval (eval at predicate (eval at evaluate (:290:30)), <anonymous>:1:1)\n    at predicate (eval at evaluate (:290:30), <anonymous>:7:23)\n    at next (eval at evaluate (:290:30), <anonymous>:29:29)\n    at eval (eval at evaluate (:290:30), <anonymous>:42:9)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at open (/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/browser-check.mjs:18:507)\n    at async file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/browser-check.mjs:31:8",
+  "finished": "2026-11-19T13:41:09.862Z"
+}

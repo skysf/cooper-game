@@ -1,0 +1,12 @@
+{
+  "animationsPerModel": [
+    12,
+    12,
+    12,
+    12
+  ],
+  "companionOnlyOverheadLabels": true,
+  "panel": true,
+  "realModels": 4,
+  "sourceMarkers": 3
+}

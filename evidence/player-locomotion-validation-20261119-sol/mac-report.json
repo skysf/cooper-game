@@ -1,0 +1,17 @@
+{
+  "started": "2026-11-19T15:29:32.187Z",
+  "mode": "final candidate Mac release headless join only; no GPU or repeated action suite",
+  "package": {
+    "app": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/dist/coop-resource-fix-native/CooperCamp.app",
+    "mtime": "2026-11-19T15:10:27.149Z",
+    "bytes": 46857572,
+    "sha256": "7fe68e3ccd9779161ed9e8144f75e9b25d4378f7957b34656696b31d92d6b457"
+  },
+  "ready": true,
+  "room": "motion-water",
+  "websocketUrl": "ws://127.0.0.1:49825/room",
+  "zoneBase": "http://127.0.0.1:49825/coop/zones/",
+  "correctGroundedAndEquipment": true,
+  "ok": true,
+  "finished": "2026-11-19T15:29:41.323Z"
+}

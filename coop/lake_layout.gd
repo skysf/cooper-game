@@ -1,5 +1,7 @@
 extends RefCounted
 
+const Coast = preload("res://coast_layout.gd")
+
 static var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://water_layout.json"))
 
 static func center() -> Vector2:
@@ -34,17 +36,23 @@ static func creek_distance(point: Vector2) -> float:
 	return absf(point.x - section.x) / section.y
 
 static func surface_height(point: Vector2) -> float:
+	if Coast.sea_at(point, water_y()):
+		return water_y()
 	if lake_distance(point) < 1.0 or creek_distance(point) < 1.0:
 		return water_y()
 	return -INF
 
 static func blocks_walk(point: Vector2) -> bool:
+	if Coast.sea_at(point, water_y()) and ground_height(point) < water_y() - 0.28:
+		return true
 	var dock: Dictionary = layout.dock
 	if point.x >= float(dock.west) + 0.14 and point.x <= float(dock.east) and absf(point.y - float(dock.z)) < float(dock.halfWidth) - 0.16:
 		return false
 	return lake_distance(point) < 0.949
 
 static func ground_height(point: Vector2) -> float:
+	if Coast.contains(point):
+		return Coast.height(point)
 	var distance := lake_distance(point)
 	var bed := 0.0
 	if distance < 1.08:
@@ -66,3 +74,8 @@ static func on_dock(point: Vector2) -> bool:
 
 static func walk_height(point: Vector2) -> float:
 	return 0.12 if on_dock(point) else ground_height(point)
+
+static func open_water_support(point: Vector2) -> float:
+	if (Coast.sea_at(point, water_y()) or lake_distance(point) < 0.995) and ground_height(point) < water_y() - 0.045:
+		return water_y() + 0.035
+	return -INF

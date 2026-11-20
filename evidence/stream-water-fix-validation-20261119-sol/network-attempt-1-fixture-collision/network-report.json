@@ -1,0 +1,121 @@
+{
+  "started": "2026-11-19T13:37:00.340Z",
+  "mode": "Independent real WebSockets against production server; authored disposable fixtures; no runtime state setters",
+  "checks": [
+    "actual gathered 4 waters retained",
+    "actual gathered 7 waters retained",
+    "actual gathered 10 waters retained",
+    "water source actually decremented",
+    "same identity reconnect keeps all 10 water",
+    "last real water source issued once"
+  ],
+  "events": [
+    {
+      "name": "gather-stage",
+      "count": 4,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "water": 4
+      },
+      "source": {
+        "progress": 0.648120666666667,
+        "stock": 12
+      }
+    },
+    {
+      "name": "gather-stage",
+      "count": 7,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "water": 7
+      },
+      "source": {
+        "progress": 1.19812066666667,
+        "stock": 9
+      }
+    },
+    {
+      "name": "gather-stage",
+      "count": 10,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "water": 10
+      },
+      "source": {
+        "progress": 1.764567,
+        "stock": 6
+      }
+    },
+    {
+      "name": "source-race",
+      "race": [
+        {
+          "ok": true,
+          "site": "person",
+          "t": "notice",
+          "text": "获得装好的溪水，采集点库存 -1"
+        },
+        {
+          "ok": false,
+          "site": "person",
+          "t": "notice",
+          "text": "这里暂时采空了，稍后再来"
+        }
+      ],
+      "a": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0,
+          "water": 1
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      },
+      "b": {
+        "attackAt": -10,
+        "bag": {
+          "apple": 0,
+          "bread": 0
+        },
+        "downAt": -1,
+        "health": 100,
+        "hunger": 80,
+        "materialPending": {
+          "tarp": 0,
+          "wood": 0
+        },
+        "mood": 65,
+        "shield": false,
+        "water": 40,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        }
+      }
+    }
+  ],
+  "ownService": "http://127.0.0.1:49336",
+  "ok": false,
+  "error": "AssertionError [ERR_ASSERTION]: pickup wood belongs only to A\n    at check (file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/network-check.mjs:9:35)\n    at file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/network-check.mjs:45:169",
+  "finished": "2026-11-19T13:37:03.710Z"
+}

@@ -1,0 +1,247 @@
+{
+  "checks": [
+    {
+      "check": "every registered item keeps all quantities in one slot through JSON reload, including the count boundary",
+      "ok": true
+    },
+    {
+      "check": "negative/nonfinite/unknown counts are rejected and oversized saves stay bounded",
+      "ok": true
+    },
+    {
+      "check": "overflow, invalid live counts and unknown additions are refused",
+      "ok": true
+    },
+    {
+      "check": "six different kinds fill the base bag while existing kinds still merge",
+      "ok": true
+    },
+    {
+      "check": "expanded capacity is twelve kinds, with all their saved quantities intact",
+      "ok": true
+    },
+    {
+      "check": "same-kind pickup succeeds in a full bag and cannot be claimed twice",
+      "ok": true
+    },
+    {
+      "check": "a new kind cannot enter a full bag or disappear from the table",
+      "ok": true
+    },
+    {
+      "check": "eat consumes one apple from the unified stack",
+      "ok": true
+    },
+    {
+      "check": "put-one and pickup return the apple to its original stack",
+      "ok": true
+    },
+    {
+      "check": "drop-one and pickup preserve quantities and one slot",
+      "ok": true
+    },
+    {
+      "check": "removing worn clothing merges into its existing kind in a full bag",
+      "ok": true
+    },
+    {
+      "check": "wearing consumes one piece rather than the entire clothing stack",
+      "ok": true
+    },
+    {
+      "check": "a dropped garment transfers one copy and merges with the recipient stack",
+      "ok": true
+    },
+    {
+      "check": "equipping selects a carried copy without consuming the weapon or shield stack",
+      "ok": true
+    },
+    {
+      "check": "giving companion equipment transfers exactly one copy",
+      "ok": true
+    },
+    {
+      "check": "taking companion equipment merges back even when all kind slots are full",
+      "ok": true
+    },
+    {
+      "check": "treating consumes one herb package from the unified stack",
+      "ok": true
+    },
+    {
+      "check": "real herb source consumes one stock and merges into the same full-bag slot",
+      "ok": true
+    },
+    {
+      "check": "feeding a companion consumes one apple rather than its entire stack",
+      "ok": true
+    },
+    {
+      "check": "failed checkpoint restores the stack and physical item together",
+      "ok": true
+    },
+    {
+      "check": "a pickup at count maximum does not overflow or consume the world item",
+      "ok": true
+    },
+    {
+      "check": "consuming then picking up at the boundary conserves one unit",
+      "ok": true
+    },
+    {
+      "check": "unified stacks checkpoint",
+      "ok": true
+    },
+    {
+      "check": "full room restart preserves merged counts, ownership and equipment",
+      "ok": true
+    }
+  ],
+  "failed": 0,
+  "registry": [
+    {
+      "item": "apple",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "bread",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "cap",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "jacket",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "pants",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "herb",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "water",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "stone",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "club",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "spear",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "shield",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "wood",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    },
+    {
+      "item": "tarp",
+      "ok": true,
+      "quantities": [
+        4,
+        7,
+        10,
+        2147483646,
+        2147483647
+      ]
+    }
+  ],
+  "total": 24
+}

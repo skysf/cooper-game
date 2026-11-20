@@ -3,6 +3,9 @@ extends Node3D
 const CHARACTER = preload("res://props/sky_character.glb")
 const BACKPACK = preload("res://props/camp_backpack.glb")
 const Clothing = preload("res://clothing.gd")
+const LOCOMOTION = preload("res://animations/player_locomotion.tres")
+const WALK_REFERENCE_SPEED := 1.46
+const RUN_REFERENCE_SPEED := 3.56
 
 const LIMBS := [
 	[&"thigh_L", &"shin_L", &"upper_arm_L", &"forearm_L"],
@@ -37,8 +40,25 @@ var heading := 0.0
 var gait := 0.0
 var player_slot := 0
 var holding := false
+var shielding := false
+var blocking := false
 var swimming := false
-var swim_pose := 0.0
+var grounded := true
+var vertical_speed := 0.0
+var water_vertical_speed := 0.0
+var physical_speed := -1.0
+var render_speed := 0.0
+var motion_clip := "Stand"
+var motion_rate := 1.0
+var motion_elapsed := 0.0
+var last_grounded := true
+var last_swimming := false
+var motion_seen := false
+var holding_blend := 0.0
+var shield_blend := 0.0
+var block_blend := 0.0
+var transition_left := 0.0
+var motion_events: Array[Dictionary] = []
 var seated := false
 var body := Node3D.new()
 var model: Node3D
@@ -75,6 +95,8 @@ func outfit(slot: int) -> void:
 	body.add_child(model)
 	rig = model.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	animator = model.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
+	animator.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
+	animator.add_animation_library(&"move", LOCOMOTION)
 	torso = model.find_child("SkyTorso", true, false) as Node3D
 	bare_legs = model.find_child("SkyLegs", true, false) as Node3D
 	shorts = model.find_child("SkyShorts", true, false) as Node3D
@@ -230,7 +252,9 @@ func set_seated(value: bool) -> void:
 		return
 	seated = value
 	body.transform = Transform3D.IDENTITY
-	swim_pose = 0.0
+	motion_seen = false
+	motion_clip = "Sit" if seated else "Stand"
+	transition_left = 0.0
 	if seated:
 		position = Vector3.ZERO
 		rotation = Vector3.ZERO
@@ -245,32 +269,100 @@ func _bend(bone: StringName, angle: float) -> bool:
 	rig.set_bone_pose_rotation(bend_indices[bone], base * Quaternion(bend_axis[bone], angle))
 	return true
 
+func set_motion_state(state: Dictionary) -> void:
+	swimming = state.get("swimming", false)
+	vertical_speed = float(state.get("vy", 0.0))
+	water_vertical_speed = float(state.get("waterVy", 0.0))
+	grounded = state.get("grounded", not swimming and absf(vertical_speed) < 0.05)
+	physical_speed = Vector2(state.get("vx", 0.0), state.get("vz", 0.0)).length() if state.has("vx") else -1.0
+
+func _select_motion(delta: float) -> String:
+	transition_left = maxf(0.0, transition_left - delta)
+	if swimming:
+		transition_left = 0.0
+		return "move/Swim" if render_speed > 0.12 or absf(water_vertical_speed) > 0.12 else "move/Tread"
+	if not grounded:
+		if last_grounded and vertical_speed > 2.5:
+			transition_left = 0.14
+		if motion_clip == "move/Takeoff" and transition_left > 0.0 or last_grounded and vertical_speed > 2.5:
+			return "move/Takeoff"
+		return "move/Air"
+	if not last_grounded and not last_swimming:
+		transition_left = 0.22
+		return "move/Land"
+	if motion_clip == "move/Land" and transition_left > 0.0:
+		return "move/Land"
+	if render_speed < 0.08:
+		return "Stand"
+	return "move/Run" if render_speed > (2.10 if motion_clip == "move/Run" else 2.35) else "move/Walk"
+
+func _hold_arm(upper: StringName, lower: StringName, angle: float, elbow: float, weight: float) -> void:
+	if weight < 0.001:
+		return
+	for spec: Array in [[upper, angle], [lower, elbow]]:
+		var index: int = bend_indices[spec[0]]
+		var base: Quaternion = bend_base[spec[0]]
+		var axis: Vector3 = bend_axis[spec[0]]
+		var target_rotation := base * Quaternion(axis, spec[1])
+		rig.set_bone_pose_rotation(index, rig.get_bone_pose_rotation(index).slerp(target_rotation, weight))
+
 func advance(delta: float, local := false) -> void:
 	var previous := position
+	var dt := clampf(delta, 0.001, 0.10)
 	position = target if local else position.lerp(target, 1.0 - exp(-16.0 * delta))
+	# A grounded snapshot has already landed: do not interpolate the feet through the floor.
+	if grounded and not swimming:
+		position.y = target.y
 	rotation.y = heading if local else lerp_angle(rotation.y, heading, 1.0 - exp(-12.0 * delta))
 	if not visible:
+		motion_seen = false
+		transition_left = 0.0
+		last_grounded = grounded
+		last_swimming = swimming
 		return
-	var speed := position.distance_to(previous) / maxf(delta, 0.001)
-	swim_pose = lerpf(swim_pose, float(swimming), 1.0 - exp(-delta * 9.0))
-	body.rotation.x = -1.40 * swim_pose
-	body.position = Vector3(0.0, 0.06, 1.08) * swim_pose
-	gait += lerpf(minf(speed, 5.0) * 2.7, 2.4 + minf(speed, 2.5) * 1.55, swim_pose) * delta
-	var changed := false
-	for side in LIMBS.size():
-		var cycle := sin(gait + side * PI)
-		var swing := lerpf(cycle * clampf(speed * 0.14, 0.0, 0.48), 0.14 + cycle * 0.31, swim_pose)
-		var knee := -maxf(0.0, cycle) * lerpf(clampf(speed * 0.11, 0.0, 0.35), 0.40, swim_pose)
-		var carrying := holding and side == 1
-		var arm := 0.84 if carrying else lerpf(-swing * 0.64, 1.64 + cycle * 0.79, swim_pose)
-		var elbow := 0.37 if carrying else swim_pose * 0.25
-		changed = _bend(LIMBS[side][0], swing) or changed
-		changed = _bend(LIMBS[side][1], knee) or changed
-		changed = _bend(LIMBS[side][2], arm) or changed
-		changed = _bend(LIMBS[side][3], elbow) or changed
-	if changed:
-		rig.force_update_all_bone_transforms()
-		_update_garments()
+	if seated:
+		return
+	body.transform = Transform3D.IDENTITY
+	# Use rendered horizontal displacement, never jump height or input intent, to time the feet.
+	var actual_speed := Vector2(position.x - previous.x, position.z - previous.z).length() / maxf(delta, 0.001)
+	actual_speed = minf(actual_speed, 5.5)
+	render_speed = lerpf(render_speed, actual_speed, 1.0 - exp(-dt * 18.0))
+	if actual_speed < 0.01 and (physical_speed < 0.01 or physical_speed < 0.0):
+		render_speed = move_toward(render_speed, 0.0, dt * 16.0)
+	var clip := _select_motion(dt)
+	var rate := clampf(render_speed / WALK_REFERENCE_SPEED, 0.05, 2.5) if clip == "move/Walk" else clampf(render_speed / RUN_REFERENCE_SPEED, 0.10, 1.65) if clip == "move/Run" else clampf(render_speed / 2.25, 0.75, 1.35) if clip == "move/Swim" else 1.0
+	if clip != motion_clip or not motion_seen:
+		var phase := animator.current_animation_position / maxf(0.01, animator.current_animation_length)
+		var keep_phase := motion_clip in ["move/Walk", "move/Run"] and clip in ["move/Walk", "move/Run"]
+		animator.play(clip, 0.12 if motion_seen else 0.0)
+		if keep_phase:
+			animator.seek(phase * animator.get_animation(clip).length)
+		motion_events.append({"clip": clip, "atMs": Time.get_ticks_msec(), "grounded": grounded, "vy": vertical_speed, "swimming": swimming})
+		while motion_events.size() > 12:
+			motion_events.pop_front()
+		motion_clip = clip
+		motion_elapsed = 0.0
+		motion_seen = true
+	motion_rate = rate
+	animator.speed_scale = rate
+	animator.advance(dt)
+	motion_elapsed += dt
+	# This is the only bone writer after animation sampling: optional carried-item arm overlays.
+	holding_blend = move_toward(holding_blend, float(holding and not swimming), dt * 10.0)
+	shield_blend = move_toward(shield_blend, float(shielding and not swimming), dt * 10.0)
+	block_blend = move_toward(block_blend, float(blocking), dt * 10.0)
+	_hold_arm(&"upper_arm_R", &"forearm_R", 0.84, 0.37, holding_blend)
+	_hold_arm(&"upper_arm_L", &"forearm_L", lerpf(0.52, 1.10, block_blend), lerpf(0.35, 0.75, block_blend), shield_blend)
+	rig.force_update_all_bone_transforms()
+	_update_garments()
+	last_grounded = grounded
+	last_swimming = swimming
+
+func motion_observables() -> Dictionary:
+	return {"clip": motion_clip, "time": animator.current_animation_position if animator != null else 0.0,
+		"rate": motion_rate, "renderSpeed": render_speed, "physicalSpeed": physical_speed,
+		"grounded": grounded, "vy": vertical_speed, "swimming": swimming, "waterVy": water_vertical_speed,
+		"holdingBlend": holding_blend, "shieldBlend": shield_blend, "tickMs": Time.get_ticks_msec(), "transitions": motion_events}
 
 func held_item_position() -> Vector3:
 	return rig.to_global(rig.get_bone_global_pose(grip_bone) * Vector3(0, 0.063, 0.0))

@@ -30,7 +30,7 @@ static func collision_grid(world: Dictionary) -> Dictionary:
 		trees[Vector2(tree[0], tree[1])] = float(tree[2])
 	for tree: Dictionary in grove.get("trees", []):
 		saplings[Vector2(tree.x, tree.z)] = tree
-	for item: Dictionary in world.get("obstacles", []):
+	for item: Dictionary in world.get("obstacles", []) + Lake.Coast.obstacles:
 		var at := Vector2(item.x, item.z)
 		var base := Lake.ground_height(at)
 		var radius := float(item.r)
@@ -38,7 +38,7 @@ static func collision_grid(world: Dictionary) -> Dictionary:
 		match item.type:
 			"tree", "pine", "birch", "spruce":
 				var growth: Dictionary = saplings.get(at, {})
-				var height := float(trees.get(at, 12.0)) if growth.is_empty() else Grove.FINAL_HEIGHT * float(growth.size)
+				var height := float(item.get("treeHeight", trees.get(at, 12.0))) if growth.is_empty() else Grove.FINAL_HEIGHT * float(growth.size)
 				var width := 0.35 if item.type == "birch" else 0.22
 				_register(grid, {"at": at, "base": base, "kind": TREE, "radius": height * width,
 					"trunk": radius, "height": height, "width": width,
@@ -82,7 +82,9 @@ static func _cell(at: Vector2) -> Vector2i:
 	return Vector2i((at / GRID_SIZE).floor())
 
 static func _terrain(at: Vector2) -> float:
-	return 0.0 if at.y < water_min_z or at.y > water_max_z else Lake.walk_height(at)
+	if Lake.Coast.contains(at) or at.y >= water_min_z and at.y <= water_max_z:
+		return Lake.walk_height(at)
+	return 0.0
 
 static func _tree_height(shape: Dictionary, grove_time: float) -> float:
 	var growth: Dictionary = shape.growth
@@ -118,8 +120,8 @@ static func _obstacle_top(shape: Dictionary, at: Vector2, grove_time: float) -> 
 static func _surface(at: Vector2, grid: Dictionary, grove_time: float,
 		water: float, ceiling: float = INF, buoyant := false) -> Vector2:
 	var result := Vector2(_terrain(at), LAND)
-	if buoyant and not is_finite(water) and result.x < Lake.water_y() and Lake.lake_distance(at) < 1.0:
-		water = Lake.water_y() + 0.035
+	if buoyant and not is_finite(water):
+		water = Lake.open_water_support(at)
 	if water > result.x:
 		result = Vector2(water, WATER)
 	for shape: Dictionary in grid.get(_cell(at), []):
@@ -150,11 +152,11 @@ static func actor_clear(at: Vector2, feet: float, grid: Dictionary, grove_time: 
 
 static func _water_height(at: Vector2, right: Vector2, back: Vector2) -> float:
 	# A narrow creek or a single submerged wing cannot support the hull.
-	if at.y < water_min_z or at.y > water_max_z:
+	if not Lake.Coast.contains(at) and (at.y < water_min_z or at.y > water_max_z):
 		return -INF
 	for offset: Vector2 in [Vector2.ZERO, right * 0.82, -right * 0.82, back * 1.68, -back * 1.38]:
 		var location := at + offset
-		if Lake.lake_distance(location) >= 0.995 or Lake.ground_height(location) > Lake.water_y() - 0.045:
+		if not is_finite(Lake.open_water_support(location)):
 			return -INF
 	return Lake.water_y() + 0.035
 
@@ -196,6 +198,26 @@ static func contact(at: Vector2, yaw: float, grid: Dictionary, grove_time: float
 		"stable": stable, "kind": surface, "slide": downhill.normalized(),
 		"pitch": -atan(slope.y) if stable else clampf(downhill.dot(back) * 0.14, -0.21, 0.21),
 		"roll": atan(slope.x) if stable else clampf(-downhill.dot(right) * 0.14, -0.21, 0.21)}
+
+static func sight_obstructed(from: Vector3, to: Vector3, grid: Dictionary, grove_time: float) -> bool:
+	var steps := maxi(1, ceili(from.distance_to(to) / 0.10))
+	for i in range(1, steps + 1):
+		var point := from.lerp(to, float(i) / steps)
+		var at := Vector2(point.x, point.z)
+		if point.y < _terrain(at):
+			return true
+		for shape: Dictionary in grid.get(_cell(at), []):
+			if point.y < float(shape.base):
+				continue
+			if shape.kind == TREE:
+				if (point.y <= float(shape.base) + _tree_height(shape, grove_time)
+					and at.distance_squared_to(shape.at) < float(shape.trunk) ** 2):
+					return true
+				continue
+			var top := _obstacle_top(shape, at, grove_time)
+			if point.y <= top and (not shape.has("size") or point.y >= top - 0.18):
+				return true
+	return false
 
 static func camera_clearance(pivot: Vector3, offset: Vector3, grid: Dictionary, grove_time: float) -> float:
 	var length := offset.length()

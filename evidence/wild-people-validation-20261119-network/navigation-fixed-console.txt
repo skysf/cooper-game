@@ -1,0 +1,7 @@
+phase {"room":"qa-lifecycle","index":0,"phase":"active","elapsed":52.8196213333318}
+phase {"room":"qa-lifecycle","index":1,"phase":"active","elapsed":52.9196213333318}
+original-failure-seed-loaded {"elapsed":52.9362879999985,"x":9.24904155731201,"z":-79.5625991821289,"player":[1.51969265937805,-84.5275039672852]}
+original-stall-now-cleared {"elapsed":57.2529546666649,"x":3.37562847137451,"z":-84.3716735839844,"seconds":4.4333333333330955}
+phase {"room":"qa-lifecycle","index":0,"phase":"rest","elapsed":60.5196213333314}
+phase {"room":"qa-lifecycle","index":1,"phase":"rest","elapsed":60.5196213333314}
+NAVIGATION_REGRESSION_RESULT {"ok":true,"cases":{"originalNavigationRegression":{"initial":[9.24904155731201,-79.5625991821289],"reached":[3.37562847137451,-84.3716735839844],"movementBoundVerified":true,"capturedThroughOrdinaryAttackAndCapture":true,"finalPhase":"captive"}},"report":"/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/navigation-fixed/report.json"}

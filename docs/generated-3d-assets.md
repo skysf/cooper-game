@@ -12,3 +12,11 @@
 | [鳄鱼](../art/animals/camp_crocodile.blend) · [老鹰](../art/animals/camp_eagle.blend) | 鳄鱼把闭合嘴部拆成可动下颌和口腔，按曲线重排原模尾巴并验证摆尾和近地扑咬。老鹰把折翼做成形态键与骨骼同轨导出，`PerchContact` 按约 9 cm 枝径校准。运行约定见 [鹿鸣湖的鳄鱼和老鹰](coop.md#鹿鸣湖的鳄鱼和老鹰)。 |
 
 同一资产在 Blender 源目录和 `coop/` 运行目录可能有不同版本。核对具体包围盒、面数或动画时，检查实际交付或加载的文件。
+
+## 营地开局武器
+
+游戏构建直接使用 `coop/weapons/` 中的模型与贴图。要重导出模型和背包图标，从下方素材页下载三件模型的 4K Blender 版本，分别解包到 `art/weapons/source/<素材名>_4k.blend/`，保留同名的 `.blend` 文件和 `textures/` 子目录，然后在项目根目录运行 `./scripts/start-blender.sh --background --python-exit-code 1 --python scripts/build-camp-weapons.py`。
+
+日本刀、带瞄准镜的栓动步枪和手枪的可见组合分别有 6,670、19,365、16,650 个三角面。游戏保留完整网格及 4K 底色和法线，粗糙度和金属度打包为 2K，镜片透明底色为 1K。Godot 导入时生成 mipmaps，并使用 Basis Universal 压缩。持握点、瞄具定位点和地面接触在游戏坐标下校对。
+
+三件模型由 Poly Haven 以 CC0 1.0 发布。日本刀由 Tal Swicegood 制作，两把枪由 Mateusz Sadek 制作。 [日本刀](https://polyhaven.com/a/antique_katana_01) · [步枪](https://polyhaven.com/a/bolt_action_rifle_7_62) · [手枪](https://polyhaven.com/a/service_pistol) · [许可](https://polyhaven.com/license)

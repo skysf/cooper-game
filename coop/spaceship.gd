@@ -150,7 +150,8 @@ static func step(ship: Dictionary, velocity: Vector3, move: Vector2, lift: float
 		velocity.y = maxf(-6.5, velocity.y - 9.8 * dt)
 	else:
 		velocity.y = move_toward(velocity.y, climb, dt * 11.0)
-	altitude = clampf(altitude + velocity.y * dt, float(support.y), CEILING)
+	var ceiling := lerpf(CEILING, 65.0, smoothstep(46.0, 86.0, -next.x))
+	altitude = clampf(altitude + velocity.y * dt, float(support.y), ceiling)
 	var touching := altitude <= float(support.y) + 0.001 and lift <= 0.0
 	ship.x = next.x
 	ship.z = next.y
@@ -164,7 +165,7 @@ static func step(ship: Dictionary, velocity: Vector3, move: Vector2, lift: float
 		var approach := 1.0 - smoothstep(0.12, 0.82, altitude - float(support.y))
 		ship.tiltX = float(support.pitch) * approach
 		ship.tiltZ = float(support.roll) * approach
-	if is_equal_approx(altitude, CEILING) or touching:
+	if is_equal_approx(altitude, ceiling) or touching:
 		velocity.y = 0.0
 	return Vector3.ZERO if ship.landed else Vector3(horizontal.x, velocity.y, horizontal.y)
 
@@ -192,6 +193,14 @@ static func _update_thrust(ship: Dictionary, move: Vector2, lift: float,
 static func _set_thrust(ship: Dictionary, underside: float, rear: float) -> void:
 	ship.thrust = underside
 	ship.rearThrust = rear
+
+static func blocks_sight(ship: Dictionary, from: Vector3, to: Vector3) -> bool:
+	if ship.is_empty():
+		return false
+	var to_ship := Basis(Vector3.UP, -float(ship.yaw))
+	var at := position(ship)
+	var hull := AABB(Vector3(-1.0, 0.0, -2.28), Vector3(2.0, 1.64, 4.56))
+	return hull.intersects_segment(to_ship * (from - at), to_ship * (to - at)) != null
 
 static func blocks_player(at: Vector2, next: Vector2, feet: float, head: float, ship: Dictionary) -> bool:
 	return not ship.is_empty() and head >= float(ship.y) and feet <= float(ship.y) + 1.64 \

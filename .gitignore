@@ -21,6 +21,7 @@ __pycache__/
 /art/vehicles/source/
 /art/animals/source/
 /art/clothing/source/
+/art/weapons/source/
 /art/characters/sky_head.blend
 /art/characters/sky_head_v2.blend
 /art/characters/sky_head_v2_head_neck.blend
@@ -28,3 +29,18 @@ __pycache__/
 /evidence/**/coop-playtest.json
 /evidence/**/coop-playtest-web.json
 /evidence/*web-start.json
+/evidence/**/saves/
+/evidence/**/isolated-rooms/
+/evidence/**/fixture-*.log
+/evidence/**/fixture-*-output.txt
+/evidence/**/*.tmp
+/evidence/wild-people-validation-20261119-network/diagnostic-offscreen/
+/evidence/wild-people-validation-20261119-network/diagnostic-single/
+/evidence/player-locomotion-validation-20261119-sol/attempt-*/
+/evidence/player-locomotion-validation-20261119-sol/*.png
+!/evidence/player-locomotion-validation-20261119-sol/walk-forward-0-remote.png
+!/evidence/player-locomotion-validation-20261119-sol/run-0-local.png
+!/evidence/player-locomotion-validation-20261119-sol/jump-0-local.png
+!/evidence/player-locomotion-validation-20261119-sol/jump-landed-local.png
+!/evidence/player-locomotion-validation-20261119-sol/surface-0-local.png
+!/evidence/player-locomotion-validation-20261119-sol/tread-stable-local.png

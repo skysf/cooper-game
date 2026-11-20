@@ -1,0 +1,9 @@
+{
+  "firstRaid": 540,
+  "warning": 30,
+  "rest": 300,
+  "maxRaiders": 4,
+  "maxCompanions": 4,
+  "maxCaptives": 6,
+  "damageScale": 1.0
+}

@@ -1,0 +1,14 @@
+phase {"room":"qa-resource-race","index":0,"phase":"rest","elapsed":1000}
+phase {"room":"qa-resource-race","index":1,"phase":"rest","elapsed":1000.05}
+resource-race-passed {"awards":1,"stock":0,"bags":[{"apple":1,"bread":0},{"apple":0,"bread":0}]}
+phase {"room":"qa-lifecycle","index":0,"phase":"rest","elapsed":0}
+phase {"room":"qa-lifecycle","index":1,"phase":"rest","elapsed":0.032303}
+real-sources-collected {"elapsed":9.59662766666672,"at":[-10.1757469177246,-62.5027656555176],"bag":{"apple":2,"bread":0,"herb":2,"water":2}}
+phase {"room":"qa-lifecycle","index":0,"phase":"warning","elapsed":12.1132943333335}
+phase {"room":"qa-lifecycle","index":1,"phase":"warning","elapsed":12.1132943333335}
+phase {"room":"qa-lifecycle","index":0,"phase":"active","elapsed":20.0031546666668}
+phase {"room":"qa-lifecycle","index":1,"phase":"active","elapsed":20.0031546666668}
+Error: Timed out: raider approaches camp
+    at until (file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/network-scenario.mjs:30:8)
+    at async file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/network-scenario.mjs:94:28
+NETWORK_VALIDATION_RESULT {"ok":false,"cases":["resourceRace"],"report":"/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/run-3/report.json"}

@@ -1,0 +1,11 @@
+{
+  "kind": "short cap-only client visual smoke; independent default room, no live identity; headless browser and native",
+  "browser": {
+    "ready": true,
+    "capWorn": true,
+    "characterPage": true,
+    "errors": []
+  },
+  "ok": false,
+  "error": "Error: cap smoke timeout\n    at until (file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/cap-fit-release/ui-smoke.mjs:11:137)\n    at async file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/cap-fit-release/ui-smoke.mjs:37:2"
+}

@@ -1,0 +1,15 @@
+phase {"room":"qa-romance-accept","index":0,"phase":"rest","elapsed":1000}
+phase {"room":"qa-romance-accept","index":1,"phase":"rest","elapsed":1000.05}
+phase {"room":"qa-romance-accept","index":0,"phase":"rest","elapsed":1000.11666666667}
+phase {"room":"qa-romance-accept","index":1,"phase":"rest","elapsed":1000.15}
+romance-success-and-restart-passed {"result":"岩岚自愿接受了你的心意；你们成为伴侣","prerequisites":{"age":31,"phase":"companion","joinedFor":600,"trust":95,"affection":90,"mood":65},"storedPersonalRelations":{"a":{"affection":100,"care":0,"chatAt":-1000,"food":0,"giftAt":-1000,"refusedUntil":0,"romanceAt":1000.08333333333,"treatments":0,"trust":95,"water":0},"b":{"affection":2,"care":0,"chatAt":-1000,"food":0,"giftAt":-1000,"refusedUntil":0,"romanceAt":-1000,"treatments":0,"trust":12,"water":0}},"sharedPartnerPersists":true}
+phase {"room":"qa-forager","index":0,"phase":"rest","elapsed":1000}
+phase {"room":"qa-forager","index":1,"phase":"rest","elapsed":1000.03333333333}
+forager-drank-actual-water {"elapsed":1000.07833666667,"water":61.99412475,"stock":0,"position":[-10.3167448043823,-62.5]}
+forager-ate-actual-fruit {"elapsed":1019.65565366665,"hunger":57.960273294999,"stock":0,"position":[5.64479637145996,-80.150764465332]}
+phase {"room":"qa-forager","index":0,"phase":"warning","elapsed":1027.00565366664}
+phase {"room":"qa-forager","index":1,"phase":"warning","elapsed":1027.00565366664}
+phase {"room":"qa-forager","index":0,"phase":"active","elapsed":1035.05196666664}
+phase {"room":"qa-forager","index":1,"phase":"active","elapsed":1035.05196666664}
+autonomous-foraging-and-defense-passed {"elapsed":1041.42170399996,"enemyHealth":76,"companionHealth":80,"companionMode":"来袭回防中"}
+ADDITIONAL_VALIDATION_RESULT {"ok":true,"cases":["romanceSuccess","foragingAndDefense"],"report":"/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/additional/report.json"}

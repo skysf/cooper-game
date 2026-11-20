@@ -4,10 +4,13 @@ const Rules = preload("res://rules.gd")
 const Stones = preload("res://stones.gd")
 const LakeLayout = preload("res://lake_layout.gd")
 const Survival = preload("res://survival.gd")
+const Weapons = preload("res://weapons.gd")
 const CampDog = preload("res://camp_dog.gd")
 const Wildlife = preload("res://wildlife.gd")
+const WildPeople = preload("res://wild_people.gd")
 const Spaceship = preload("res://spaceship.gd")
 const PlayerMotion = preload("res://player_motion.gd")
+const Atlas = preload("res://field_atlas.gd")
 const MAX_PLAYERS := 4
 const SPAWN_OFFSETS := [Vector2.ZERO, Vector2(-1.25, 0), Vector2(1.25, 0), Vector2(0, 1.4)]
 const SNAPSHOT_PERIOD := 0.10
@@ -27,6 +30,8 @@ var next_connection := 1
 var snapshot_in := 0.0
 var save_in := SAVE_PERIOD
 var dog_motion := CampDog.new()
+var people_motion := WildPeople.new()
+var people_config: Dictionary = {}
 
 func _initialize() -> void:
 	Engine.max_fps = 60
@@ -41,6 +46,10 @@ func _initialize() -> void:
 		elif arg.begins_with("--save="):
 			save_dir = ProjectSettings.globalize_path(arg.trim_prefix("--save="))
 	world = JSON.parse_string(FileAccess.get_file_as_string("res://world.json"))
+	if FileAccess.file_exists("res://wild_people_config.json"):
+		var configured: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://wild_people_config.json"))
+		if configured is Dictionary:
+			people_config = configured
 	if not world.has("sites") or not world.has("obstacles"):
 		push_error("缺少世界清单")
 		quit(1)
@@ -98,25 +107,18 @@ func _process(delta: float) -> bool:
 		if room.actors.is_empty():
 			continue
 		room.data.elapsed += delta
+		_refresh_material_sources(room)
+		_claim_legacy_materials(code)
 		var rain := Rules.rain_at(room.data.elapsed)
 		var grove_time := _grove_time(room.data)
 		for id in room.actors:
-			var actor: Dictionary = room.actors[id]
-			actor.input_age += delta
-			if actor.input_age > IDLE_INPUT_TIMEOUT:
-				actor.direction = Vector2.ZERO
-				actor.lift = 0.0
-			var piloting: bool = room.ship.pilot == id
-			if piloting:
-				_tick_spaceship(room, actor, delta)
-			else:
-				PlayerMotion.step(actor, actor.direction, actor.lift, delta, grid, room.ship, ship_grid, grove_time)
-			Survival.tick(room.data.survival[id], actor.point, room.data.quest.repaired, rain, delta, piloting)
+			_tick_player(room, id, rain, grove_time, delta)
 		if room.ship.pilot.is_empty() and (room.ship.slipping or room.ship.surface == "tree"):
 			_tick_spaceship(room, {}, delta)
 		_tick_stones(room, delta)
 		dog_motion.tick(room, grid, delta)
 		_tick_wildlife(code, room, delta)
+		people_motion.tick(room, grid, minf(delta, 0.1))
 	snapshot_in -= delta
 	save_in -= delta
 	if snapshot_in <= 0.0:
@@ -131,6 +133,25 @@ func _process(delta: float) -> bool:
 		save_in = SAVE_PERIOD
 	return false
 
+func _tick_player(room: Dictionary, id: String, rain: float, grove_time: float, delta: float) -> void:
+	var actor: Dictionary = room.actors[id]
+	actor.input_age += delta
+	if actor.input_age > IDLE_INPUT_TIMEOUT:
+		actor.direction = Vector2.ZERO
+		actor.lift = 0.0
+	var piloting: bool = room.ship.pilot == id
+	var personal: Dictionary = room.data.survival[id]
+	if personal.health <= 0.0:
+		actor.direction = Vector2.ZERO
+		actor.lift = 0.0
+		if float(personal.get("downAt", -1.0)) < 0.0:
+			personal.downAt = room.data.elapsed
+	if piloting:
+		_tick_spaceship(room, actor, delta)
+	else:
+		PlayerMotion.step(actor, actor.direction, actor.lift, delta, grid, room.ship, ship_grid, grove_time)
+	Survival.tick(room.data.survival[id], actor.point, room.data.quest.repaired and room.data.wildPeople.facility > 20.0, rain, delta, piloting)
+
 func _message(con: Dictionary, msg: Dictionary) -> void:
 	if con.room.is_empty():
 		if msg.get("t") == "join":
@@ -138,6 +159,11 @@ func _message(con: Dictionary, msg: Dictionary) -> void:
 		return
 	var actor: Dictionary = rooms[con.room].actors[con.id]
 	var kind: String = str(msg.get("t", ""))
+	if kind == "atlas":
+		_atlas_action(con, msg)
+		return
+	if rooms[con.room].data.survival[con.id].health <= 0.0 and kind not in ["motion", "person"]:
+		return
 	if kind not in ["motion", "ship"] and rooms[con.room].ship.pilot == con.id:
 		return
 	match kind:
@@ -153,6 +179,12 @@ func _message(con: Dictionary, msg: Dictionary) -> void:
 			var lift = msg.get("lift", 0.0)
 			actor.lift = clampf(float(lift), -1.0, 1.0) if _finite_number(lift) else 0.0
 			actor.input_age = 0.0
+			var personal: Dictionary = rooms[con.room].data.survival[con.id]
+			var gun := Weapons.firearm(personal.weapon)
+			personal.blocking = msg.get("blocking") == true and personal.shield and not gun
+			var aim: Variant = msg.get("aimPitch")
+			var can_aim: bool = gun and personal.health > 0.0 and not actor.swimming and rooms[con.room].ship.pilot != con.id
+			actor.aimPitch = clampf(float(aim), -1.44, 1.44) if can_aim and _finite_number(aim) else null
 		"ship":
 			if msg.get("action") is String:
 				_spaceship_action(con, msg.action)
@@ -166,6 +198,8 @@ func _message(con: Dictionary, msg: Dictionary) -> void:
 		"dog":
 			if msg.get("action") is String:
 				_dog_action(con, msg.action)
+		"person":
+			_wild_action(con, msg)
 
 func _load_room(code: String) -> bool:
 	var path := save_dir.path_join(code + ".json")
@@ -186,6 +220,12 @@ func _load_room(code: String) -> bool:
 	data.stones = Stones.from_save(data.get("stones"))
 	data.lineCut = data.get("lineCut", false) == true
 	data.provisions = Survival.provisions_from_save(data.get("provisions"))
+	if data.get("campWeaponsVersion", 0) == 0:
+		for item: String in Weapons.CAMP_START:
+			var point: Vector2 = Weapons.CAMP_START[item]
+			var at := Vector3(point.x, LakeLayout.walk_height(point) + 0.008, point.y)
+			data.provisions["camp-weapon-" + item] = Survival.provision(item, at, "ground")
+		data.campWeaponsVersion = 1
 	var personal := {}
 	var saved_states: Variant = data.get("survival")
 	var saved_owner: Variant = data.get("backpackOwner", "")
@@ -197,7 +237,10 @@ func _load_room(code: String) -> bool:
 			if player.length() == 16 and player.is_valid_hex_number(false):
 				personal[player] = Survival.state_from_save(saved_states[player], Survival.slot_count(player == backpack_owner))
 	data.survival = personal
+	data.atlasPins = Atlas.pins_from_save(data.get("atlasPins"))
 	data.backpackOwner = backpack_owner
+	_restore_materials(data)
+	data.wildPeople = WildPeople.from_save(data.get("wildPeople"), data.elapsed, grid, people_config)
 	data.dog = CampDog.from_save(data.get("dog"), personal, grid, data.quest.repaired == true, float(data.elapsed))
 	if ship_grid.is_empty():
 		ship_grid = Spaceship.collision_grid(world)
@@ -205,7 +248,7 @@ func _load_room(code: String) -> bool:
 	data.ship = Spaceship.parked_save(ship)
 	rooms[code] = {"data": data, "actors": {}, "impacts": [], "impactId": 0, "dog_route": {},
 		"crocodile": Wildlife.crocodile(float(data.elapsed)), "ship": ship, "ship_velocity": Vector3.ZERO,
-		"stone_sounds": [], "stone_sound_id": 0}
+		"stone_sounds": [], "stone_sound_id": 0, "people_routes": {}}
 	return true
 
 func _join(con: Dictionary, msg: Dictionary) -> void:
@@ -239,7 +282,7 @@ func _join(con: Dictionary, msg: Dictionary) -> void:
 				con.session = session_tag
 				room.actors[id].direction = Vector2.ZERO
 				room.actors[id].lift = 0.0
-				_send(con.ws, {"t":"welcome", "id":id})
+				_welcome(con, room)
 				_publish(code)
 				return
 	if room.actors.has(id):
@@ -273,11 +316,137 @@ func _join(con: Dictionary, msg: Dictionary) -> void:
 	room.actors[id] = actor
 	if not room.data.survival.has(id):
 		room.data.survival[id] = Survival.initial_state()
-	_send(con.ws, {"t":"welcome", "id":id})
+	_claim_legacy_materials(code)
+	_welcome(con, room)
 	_publish(code)
 	print("ROOM_JOIN ", code, " ", id, " peers=", room.actors.size())
 
+func _welcome(con: Dictionary, room: Dictionary) -> void:
+	_send(con.ws, {"t": "welcome", "id": con.id, "fieldAtlas": true})
+	_atlas_pins(con, room)
+
+func _atlas_pins(con: Dictionary, room: Dictionary, text := "") -> void:
+	_send(con.ws, {"t": "atlas", "action": "pins", "ok": true,
+		"pins": room.data.atlasPins.get(con.id, {}), "text": text})
+
+func _atlas_error(con: Dictionary, action: String, text: String) -> void:
+	_send(con.ws, {"t": "atlas", "action": action, "ok": false, "text": text})
+
+func _atlas_action(con: Dictionary, msg: Dictionary) -> void:
+	var action: Variant = msg.get("action")
+	if not action is String:
+		return
+	var room: Dictionary = rooms[con.room]
+	if action == "travel":
+		_atlas_travel(con, room, msg.get("site"))
+		return
+	if action not in ["pin", "remove"] or not Atlas.pin_id_valid(msg.get("id")):
+		return
+	var id: String = msg.id
+	var all_pins: Dictionary = room.data.atlasPins
+	var before: Dictionary = all_pins.get(con.id, {})
+	var after := before.duplicate()
+	if action == "pin":
+		var point := Atlas.read_point(msg)
+		if not point.is_finite():
+			_atlas_error(con, action, "请选择地图范围内的位置")
+			return
+		if not after.has(id) and after.size() >= Atlas.MAX_PINS:
+			_atlas_error(con, action, "个人标记已满，请先删除一个")
+			return
+		after[id] = {"x": point.x, "z": point.y}
+	else:
+		after.erase(id)
+	if after != before:
+		var homes: Dictionary = room.data.homes.duplicate()
+		if after.is_empty():
+			all_pins.erase(con.id)
+		else:
+			all_pins[con.id] = after
+		if not _checkpoint(con.room):
+			room.data.homes = homes
+			if before.is_empty():
+				all_pins.erase(con.id)
+			else:
+				all_pins[con.id] = before
+			_atlas_error(con, action, "标记保存失败，请重试")
+			return
+	_atlas_pins(con, room, "已放置个人标记" if action == "pin" else "已删除个人标记")
+
+func _atlas_travel(con: Dictionary, room: Dictionary, site: Variant) -> void:
+	if not site is String or not Atlas.LANDMARKS.has(site):
+		_atlas_error(con, "travel", "请选择地图地标")
+		return
+	if room.data.survival[con.id].health <= 0.0:
+		_atlas_error(con, "travel", "恢复行动后即可传送")
+		return
+	var piloting: bool = room.ship.pilot == con.id
+	if piloting and not room.ship.landed:
+		_atlas_error(con, "travel", "飞船停稳后即可传送")
+		return
+	var landmark: Dictionary = Atlas.LANDMARKS[site]
+	var arrival := _atlas_landing(room, con.id, landmark.landing)
+	if not arrival.is_finite():
+		_atlas_error(con, "travel", "此处落脚点暂被占用")
+		return
+	var previous: Dictionary = room.actors[con.id]
+	var actor := previous.duplicate()
+	actor.merge(PlayerMotion.put_ashore(arrival), true)
+	actor.merge({"direction": Vector2.ZERO, "lift": 0.0, "input_age": 0.0, "aimPitch": null}, true)
+	var saved_homes: Dictionary = room.data.homes.duplicate()
+	var saved_ship: Dictionary = room.data.ship
+	var previous_ship: Dictionary = room.ship
+	var previous_velocity: Vector3 = room.ship_velocity
+	var personal: Dictionary = room.data.survival[con.id]
+	var was_blocking: bool = personal.get("blocking", false)
+	personal.blocking = false
+	room.actors[con.id] = actor
+	if piloting:
+		room.ship = previous_ship.duplicate()
+		room.ship.pilot = ""
+		room.ship_velocity = Vector3.ZERO
+		room.data.ship = Spaceship.parked_save(room.ship)
+	if not _checkpoint(con.room):
+		room.actors[con.id] = previous
+		room.data.homes = saved_homes
+		room.data.ship = saved_ship
+		room.ship = previous_ship
+		room.ship_velocity = previous_velocity
+		personal.blocking = was_blocking
+		_atlas_error(con, "travel", "传送位置保存失败，请重试")
+		return
+	var result := {"t": "atlas", "action": "travel", "ok": true, "text": "已到达" + landmark.name,
+		"at": [arrival.x, arrival.y, arrival.z]}
+	if piloting:
+		result.ship = room.ship
+	_send(con.ws, result)
+	_publish(con.room)
+
+func _atlas_landing(room: Dictionary, id: String, center: Vector2) -> Vector3:
+	for ring: float in [0.0, 0.9, 1.6, 2.4, 3.2]:
+		for step: int in (1 if ring == 0.0 else 8):
+			var point := center + Vector2.from_angle(TAU * float(step) / 8.0) * ring
+			if not Atlas.contains(point) or not Rules.free_at(point, grid):
+				continue
+			var floor_y := LakeLayout.walk_height(point)
+			if LakeLayout.surface_height(point) > floor_y + 0.025 or Spaceship.blocks_player(
+					point + Vector2(8.0, 0), point, floor_y, floor_y + PlayerMotion.WALK_EYE, room.ship):
+				continue
+			var safe := true
+			for offset: Vector2 in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+				if absf(LakeLayout.walk_height(point + offset * Rules.RADIUS) - floor_y) > 0.4:
+					safe = false
+			for peer_id: String in room.actors:
+				var peer: Dictionary = room.actors[peer_id]
+				if peer_id != id and absf(float(peer.y) - floor_y) < 1.6 and point.distance_to(peer.point) < 0.85:
+					safe = false
+			if safe:
+				return Vector3(point.x, floor_y, point.y)
+	return Vector3.INF
+
 func _restore_position(point: Vector2, spawn: Vector2) -> Vector2:
+	if point != point.clamp(Rules.MIN_CORNER, Rules.MAX_CORNER):
+		return spawn
 	if Rules.free_at(point, grid, true):
 		return point
 	# A player saved before the grove was planted can resume beside the new trunk.
@@ -413,10 +582,12 @@ func _dog_action(con: Dictionary, action: String) -> void:
 
 func _provision_action(con: Dictionary, msg: Dictionary) -> void:
 	var requested: Variant = msg.get("action")
-	if requested is not String or requested not in ["take", "eat_table", "eat", "put", "drop", "drink", "take_backpack", "wear", "remove_worn", "drop_worn"]:
+	if requested is not String or requested not in ["take", "eat_table", "drink_table", "eat", "put", "drop", "drink", "take_backpack", "wear", "remove_worn", "drop_worn"]:
 		return
 	var room: Dictionary = rooms[con.room]
 	var actor: Dictionary = room.actors[con.id]
+	if room.data.survival[con.id].health <= 0.0:
+		return
 	if requested == "take_backpack":
 		_take_backpack(con, room, actor.point)
 		return
@@ -456,7 +627,7 @@ func _take_backpack(con: Dictionary, room: Dictionary, point: Vector2) -> void:
 
 func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: Dictionary, provisions: Dictionary, slots: int) -> Dictionary:
 	var point: Vector2 = actor.point
-	if action in ["take", "eat_table"]:
+	if action in ["take", "eat_table", "drink_table"]:
 		var id: Variant = msg.get("id")
 		if id is not String or not provisions.has(id):
 			return {"ok": false, "text": "物品已不在这里"}
@@ -468,19 +639,25 @@ func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: D
 			if not Survival.can_carry(state.bag, item, slots):
 				return {"ok": false, "text": "背包已满"}
 			state.bag[item] = int(state.bag.get(item, 0)) + 1
+		elif action == "drink_table":
+			if not Survival.is_drinkable(item):
+				return {"ok": false, "text": "这件物品不能喝"}
+			if float(state.water) >= Survival.DRINK_THRESHOLD:
+				return {"ok": false, "text": "现在不渴，溪水已保留"}
+			Survival.drink(state)
 		else:
 			if not Survival.FOOD_STATS.has(item):
-				return {"ok": false, "text": "按 E 捡起衣物"}
+				return {"ok": false, "text": "按 E 捡起物品"}
 			Survival.eat(state, item)
 		provisions.erase(id)
-		var verb := "捡起了" if action == "take" else "吃掉了"
+		var verb := "捡起了" if action == "take" else "喝了一份" if action == "drink_table" else "吃掉了"
 		return {"ok": true, "text": verb + Survival.ITEM_NAMES[item]}
-	if action == "drink":
+	if action == "drink" and str(msg.get("item", "")).is_empty():
 		if not Survival.can_drink(point):
 			return {"ok": false, "text": "靠近水壶后再喝水"}
 		if float(state.water) >= Survival.DRINK_THRESHOLD:
 			return {"ok": false, "text": "现在不渴"}
-		state.water = minf(Survival.MAX_STAT, float(state.water) + Survival.DRINK_GAIN)
+		Survival.drink(state)
 		return {"ok": true, "text": "喝了水，水分恢复"}
 	var selected: Variant = msg.get("item")
 	if selected is not String or not Survival.ITEM_NAMES.has(selected):
@@ -508,16 +685,35 @@ func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: D
 		return {"ok": true, "text": "穿上了" + item_name}
 	if clothing and action != "drop":
 		return {"ok": false, "text": "衣物可以穿上或丢下"}
+	if action == "drink":
+		if not Survival.is_drinkable(selected):
+			return {"ok": false, "text": "这件物品不能喝"}
+		if float(state.water) >= Survival.DRINK_THRESHOLD:
+			return {"ok": false, "text": "现在不渴，溪水已保留"}
+		state.bag[selected] -= 1
+		Survival.drink(state)
+		return {"ok": true, "text": "喝了一份溪水，水分恢复"}
 	if action == "eat":
+		if not Survival.FOOD_STATS.has(selected):
+			return {"ok": false, "text": "这件物品可在 B 营地住民中装备或用于照料"}
 		state.bag[selected] -= 1
 		Survival.eat(state, selected)
 		return {"ok": true, "text": "吃掉了" + item_name}
 	var surface := "table" if action == "put" else "ground"
+	if not clothing and not Survival.FOOD_STATS.has(selected) and not Weapons.ATTACKS.has(selected) and selected not in ["shield", "water", "wood", "tarp"]:
+		return {"ok": false, "text": "药草用于 B 营地住民的治疗操作"}
+	if surface == "table" and not Survival.can_table(selected):
+		return {"ok": false, "text": "公共木桌存放食物与溪水"}
 	if surface == "table" and not Survival.can_put(point):
-		return {"ok": false, "text": "靠近桌子后再放回食物"}
+		return {"ok": false, "text": "靠近桌子后再放一份"}
 	var result := _place_provision(selected, actor, provisions, surface)
 	if result.ok:
 		state.bag[selected] -= 1
+		if int(state.bag[selected]) <= 0:
+			if state.get("weapon", "") == selected:
+				state.weapon = ""
+			if selected == "shield":
+				state.shield = false
 	return result
 
 func _place_provision(item: String, actor: Dictionary, provisions: Dictionary, surface: String) -> Dictionary:
@@ -563,6 +759,8 @@ func _provision_notice(con: Dictionary, ok: bool, message: String) -> void:
 func _stone_action(con: Dictionary, msg: Dictionary) -> void:
 	var room: Dictionary = rooms[con.room]
 	var actor: Dictionary = room.actors[con.id]
+	if room.data.survival[con.id].health <= 0.0:
+		return
 	var stones: Dictionary = room.data.stones
 	var held := Stones.held_by(stones, con.id)
 	var id := held
@@ -594,12 +792,14 @@ func _stone_action(con: Dictionary, msg: Dictionary) -> void:
 		return
 	var stone: Dictionary = stones[id]
 	var before := stone.duplicate()
+	var before_weapon: String = room.data.survival[con.id].get("weapon", "")
 	var line_was_cut: bool = room.data.lineCut
 	var result := ""
 	match action:
 		"pick":
 			stone.mode = "held"
 			stone.holder = con.id
+			room.data.survival[con.id].weapon = ""
 			result = "捡起石片" if Stones.flat(id) else "捡起苔藓石"
 		"drop":
 			_set_ground(stone, id, _in_front(actor))
@@ -629,6 +829,7 @@ func _stone_action(con: Dictionary, msg: Dictionary) -> void:
 			stone.velocity = Stones.pack(direction * (10.6 if Stones.flat(id) else 9.2) + Vector3.UP * 1.1)
 			stone.launch = room.data.elapsed
 			stone.mode = "air"
+			stone.thrower = con.id
 			stone.erase("holder")
 	if _checkpoint(con.room):
 		if action == "throw":
@@ -640,6 +841,7 @@ func _stone_action(con: Dictionary, msg: Dictionary) -> void:
 			_send(con.ws, {"t": "notice", "ok": true, "site": id, "text": result})
 	else:
 		stones[id] = before
+		room.data.survival[con.id].weapon = before_weapon
 		room.data.lineCut = line_was_cut
 		_send(con.ws, {"t": "notice", "ok": false, "site": id, "text": "存档写入失败，请稍后重试"})
 
@@ -692,6 +894,10 @@ func _tick_stones(room: Dictionary, delta: float) -> void:
 		var previous := Stones.flight_position(stone, elapsed - delta)
 		var previous_point := Vector2(previous.x, previous.z)
 		var bounds := point.clamp(Rules.MIN_CORNER, Rules.MAX_CORNER)
+		if _stone_person_hit(room, stone, previous, at):
+			_set_ground(stone, id, bounds)
+			_record_stone_sound(room, "stone_earth", at, 0.7)
+			continue
 		if Wildlife.stone_hit(room.crocodile, previous, at, elapsed):
 			_set_ground(stone, id, bounds)
 			if LakeLayout.walk_height(bounds) <= LakeLayout.surface_height(bounds):
@@ -737,6 +943,122 @@ func _tick_wildlife(code: String, room: Dictionary, delta: float) -> void:
 			var message := "被鳄鱼咬伤，回营可以恢复" if hurt else "鳄鱼要扑过来了，往后退"
 			_send(con.ws, {"t": "notice", "ok": false, "site": "crocodile", "text": message})
 
+func _stone_person_hit(room: Dictionary, stone: Dictionary, previous: Vector3, at: Vector3) -> bool:
+	var nearest := INF
+	var victim := ""
+	var zone := "body"
+	for id: String in room.data.wildPeople.people:
+		var npc: Dictionary = room.data.wildPeople.people[id]
+		if npc.phase in ["dead", "gone", "released"]:
+			continue
+		var hit := WildPeople.ray_hit(npc, previous, at)
+		if not hit.is_empty() and hit.distance < nearest:
+			nearest = hit.distance
+			victim = id
+			zone = hit.zone
+	if victim.is_empty():
+		return false
+	var blunt: bool = int(stone.get("edge", 0)) == 0
+	WildPeople.harm(room.data.wildPeople, room.data.wildPeople.people[victim], 16.0 if blunt else 22.0, blunt, zone, str(stone.get("thrower", "")), room.data.elapsed)
+	return true
+
+func _wild_action(con: Dictionary, msg: Dictionary) -> void:
+	if msg.get("action") is not String:
+		return
+	var now_ms := Time.get_ticks_msec()
+	if now_ms < int(con.get("person_next_ms", 0)):
+		return
+	con.person_next_ms = now_ms + 120
+	var room: Dictionary = rooms[con.room]
+	var before_people: Dictionary = room.data.wildPeople.duplicate(true)
+	var before_survival: Dictionary = room.data.survival.duplicate(true)
+	var before_provisions: Dictionary = room.data.provisions.duplicate(true)
+	var before_quest: Dictionary = room.data.quest.duplicate()
+	var before_actor: Dictionary = room.actors[con.id].duplicate(true)
+	var result := people_motion.action(room, con.id, msg, grid, ship_grid)
+	var changed: bool = room.data.wildPeople != before_people or room.data.survival != before_survival or room.data.provisions != before_provisions or room.actors[con.id] != before_actor or room.data.quest != before_quest
+	if changed and not _checkpoint(con.room):
+		room.data.wildPeople = before_people
+		room.data.survival = before_survival
+		room.data.provisions = before_provisions
+		room.data.quest = before_quest
+		room.actors[con.id] = before_actor
+		result = {"ok": false, "text": "存档写入失败，操作未生效，请稍后重试"}
+	elif changed:
+		_publish(con.room)
+	if not result.text.is_empty():
+		_send(con.ws, {"t": "notice", "site": "person", "ok": result.ok, "text": result.text})
+
+# Source availability is world state. Collected material belongs only to its collector.
+func _restore_materials(data: Dictionary) -> void:
+	if data.get("materialVersion", 0) != 1:
+		var pending := {"wood": 0, "tarp": 0}
+		for item: String in pending:
+			if data.quest.get(item, false) and not data.quest.repaired:
+				pending[item] = 1
+		var eligible: Array = data.survival.keys()
+		for player: String in data.homes:
+			if player.length() == 16 and player.is_valid_hex_number(false) and player not in eligible:
+				eligible.append(player)
+		data.materialLegacy = {"pending": pending, "eligible": eligible, "owner": "", "recipients": {}}
+		data.materialSources = {}
+		for item: String in pending:
+			data.materialSources[item] = float(data.elapsed) + Survival.MATERIAL_RESTOCK if data.quest.get(item, false) else 0.0
+		data.materialVersion = 1
+	var saved: Variant = data.get("materialSources", {})
+	var sources := {}
+	for item: String in ["wood", "tarp"]:
+		var time: Variant = saved.get(item, 0.0) if saved is Dictionary else 0.0
+		sources[item] = maxf(0.0, float(time)) if Survival.finite_number(time) else 0.0
+		data.quest[item] = float(sources[item]) > float(data.elapsed)
+	data.materialSources = sources
+	var legacy: Variant = data.get("materialLegacy", {})
+	if legacy is not Dictionary:
+		legacy = {}
+	var pending: Variant = legacy.get("pending", {})
+	data.materialLegacy = {"pending": {"wood": 1 if pending is Dictionary and pending.get("wood", 0) == 1 else 0,
+		"tarp": 1 if pending is Dictionary and pending.get("tarp", 0) == 1 else 0},
+		"eligible": legacy.get("eligible", []) if legacy.get("eligible") is Array else [],
+		"owner": legacy.get("owner", "") if legacy.get("owner") is String else "",
+		"recipients": legacy.get("recipients", {}) if legacy.get("recipients") is Dictionary else {}}
+
+func _refresh_material_sources(room: Dictionary) -> void:
+	for item: String in ["wood", "tarp"]:
+		if room.data.quest.get(item, false) and float(room.data.elapsed) >= float(room.data.materialSources[item]):
+			room.data.quest[item] = false
+
+func _claim_legacy_materials(code: String) -> void:
+	var room: Dictionary = rooms[code]
+	var ledger: Dictionary = room.data.materialLegacy
+	if int(ledger.pending.wood) + int(ledger.pending.tarp) <= 0:
+		return
+	for id: String in room.actors:
+		if not str(ledger.owner).is_empty() and ledger.owner != id:
+			continue
+		if not ledger.eligible.is_empty() and id not in ledger.eligible:
+			continue
+		var before: Dictionary = room.data.survival[id].duplicate(true)
+		var before_ledger := ledger.duplicate(true)
+		var state: Dictionary = room.data.survival[id]
+		ledger.owner = id
+		var granted := false
+		for item: String in ["wood", "tarp"]:
+			if ledger.pending[item] == 1 and Survival.can_carry(state.bag, item, Survival.slot_count(room.data.backpackOwner == id)):
+				state.bag[item] = int(state.bag.get(item, 0)) + 1
+				ledger.pending[item] = 0
+				ledger.recipients[item] = id
+				granted = true
+		if granted or ledger != before_ledger:
+			if not _checkpoint(code):
+				room.data.survival[id] = before
+				room.data.materialLegacy = before_ledger
+				return
+			if granted:
+				for con: Dictionary in connections.values():
+					if con.room == code and con.id == id:
+						_provision_notice(con, true, "营地保留的修屋材料已放入你的背包")
+			return
+
 func _act(con: Dictionary, site: String) -> void:
 	var room: Dictionary = rooms[con.room]
 	var actor: Dictionary = room.actors[con.id]
@@ -744,21 +1066,43 @@ func _act(con: Dictionary, site: String) -> void:
 		return
 	var result := "走近目标后再互动"
 	var accepted := false
-	var key := "repaired" if site == "repair" else site
-	var quest: Dictionary = room.data.quest
+	var state: Dictionary = room.data.survival[con.id]
 	if actor.point.distance_to(Rules.pair(world.sites[site])) <= Rules.INTERACT_RANGE:
-		if quest.get(key, false):
-			result = "队伍已完成这项操作"
-		elif site == "repair" and not (quest.wood and quest.tarp):
-			result = "修屋顶需要木料和防水布"
-		else:
-			quest[key] = true
-			if _checkpoint(con.room):
+		var before_quest: Dictionary = room.data.quest.duplicate()
+		var before_sources: Dictionary = room.data.materialSources.duplicate()
+		var before_state := state.duplicate(true)
+		var prior_facility: float = room.data.wildPeople.facility
+		if site == "repair":
+			if room.data.quest.repaired and prior_facility >= 100.0:
+				result = "屋顶完好，无需修补"
+			elif int(state.bag.get("wood", 0)) < 1 or int(state.bag.get("tarp", 0)) < 1:
+				result = "你的背包需要木料 1 份和防水布 1 份"
+			else:
+				state.bag.wood -= 1
+				state.bag.tarp -= 1
+				room.data.quest.repaired = true
+				room.data.wildPeople.facility = 100.0
 				accepted = true
-				result = {"wood":"木料已加入队伍物资", "tarp":"防水布已加入队伍物资", "repair":"屋顶已修复，营灯亮了"}[site]
+				result = "已消耗你的木料与防水布，屋顶修复，营灯亮了"
+		elif room.data.quest.get(site, false):
+			result = "这处材料已取，约 %d 秒后可再拾取" % ceili(float(room.data.materialSources[site]) - float(room.data.elapsed))
+		elif not Survival.can_carry(state.bag, site, Survival.slot_count(room.data.backpackOwner == con.id)):
+			result = "背包已满"
+		else:
+			state.bag[site] = int(state.bag.get(site, 0)) + 1
+			room.data.quest[site] = true
+			room.data.materialSources[site] = float(room.data.elapsed) + Survival.MATERIAL_RESTOCK
+			accepted = true
+			result = Survival.ITEM_NAMES[site] + "已放入你的背包；此处材料稍后可再拾取"
+		if accepted:
+			if _checkpoint(con.room):
 				_publish(con.room)
 			else:
-				quest[key] = false
+				room.data.quest = before_quest
+				room.data.materialSources = before_sources
+				room.data.survival[con.id] = before_state
+				room.data.wildPeople.facility = prior_facility
+				accepted = false
 				result = "存档写入失败，请稍后重试"
 	_send(con.ws, {"t":"notice", "ok":accepted, "site":site, "text":result})
 
@@ -768,9 +1112,14 @@ func _publish(code: String) -> void:
 	for id in room.actors:
 		var a: Dictionary = room.actors[id]
 		actors[id] = {"x": a.point.x, "y": a.y, "z": a.point.y, "vy": a.vy,
-			"swimming": a.swimming, "yaw": a.yaw, "slot": a.slot, "worn": room.data.survival[id].worn}
+			"swimming": a.swimming, "yaw": a.yaw, "slot": a.slot, "worn": room.data.survival[id].worn,
+			"grounded": a.get("grounded", not a.swimming), "vx": a.get("vx", 0.0), "vz": a.get("vz", 0.0), "waterVy": a.get("waterVy", 0.0)}
+		var personal: Dictionary = room.data.survival[id]
+		actors[id].merge({"weapon": personal.get("weapon", ""), "shield": personal.get("shield", false),
+			"attackAt": personal.get("attackAt", -10.0), "attackWeapon": personal.get("attackWeapon", ""),
+			"aimPitch": a.get("aimPitch"), "blocking": personal.get("blocking", false), "health": personal.health})
 	var grove_elapsed := _grove_time(room.data)
-	var snapshot := {"t":"snapshot", "quest":room.data.quest, "elapsed":room.data.elapsed, "groveElapsed":grove_elapsed, "players":actors, "stones":room.data.stones, "lineCut":room.data.lineCut, "waterImpacts":room.impacts, "backpackOwner":room.data.backpackOwner, "dog":room.data.dog}
+	var snapshot := {"t":"snapshot", "quest":room.data.quest, "elapsed":room.data.elapsed, "groveElapsed":grove_elapsed, "players":actors, "stones":room.data.stones, "lineCut":room.data.lineCut, "waterImpacts":room.impacts, "backpackOwner":room.data.backpackOwner, "dog":room.data.dog, "materialSources":room.data.materialSources}
 	snapshot.stoneSounds = room.stone_sounds
 	snapshot.crocodile = Wildlife.crocodile_pose(room.crocodile)
 	var velocity: Vector3 = room.ship_velocity
@@ -786,8 +1135,11 @@ func _publish(code: String) -> void:
 			var personal: Dictionary = room.data.survival.get(con.id, {})
 			var outgoing := snapshot.duplicate()
 			outgoing.provisions = room.data.provisions
+			outgoing.wildPeople = WildPeople.snapshot(room.data.wildPeople, con.id, room.data.elapsed)
 			if not personal.is_empty():
 				outgoing.survival = Survival.snapshot(personal)
+				var legacy: Dictionary = room.data.materialLegacy
+				outgoing.survival.materialPending = legacy.pending if legacy.owner == con.id else {"wood": 0, "tarp": 0}
 			if flow:
 				outgoing.snapshotSeq = int(con.snapshot_sent) + 1
 			if _send(con.ws, outgoing) and flow:

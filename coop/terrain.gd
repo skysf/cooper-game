@@ -16,6 +16,7 @@ const Grove = preload("res://grove.gd")
 const Grass = preload("res://grass.gd")
 const LakeLayout = preload("res://lake_layout.gd")
 const Lake = preload("res://lake.gd")
+const CoastScene = preload("res://coast_scene.gd")
 const ProvisionScene = preload("res://provision_scene.gd")
 const CAMP_LANTERN = preload("res://props/camp_lantern.glb")
 const Wildlife = preload("res://wildlife.gd")
@@ -57,6 +58,7 @@ var wetness := -1.0
 var grove := Grove.new()
 var grass := Grass.new()
 var lake := Lake.new()
+var coast := CoastScene.new()
 var household := ProvisionScene.new()
 
 func configure(zone_base_url: String) -> void:
@@ -77,6 +79,7 @@ func _ready() -> void:
 	http.request_completed.connect(_received)
 	_background()
 	_landmarks()
+	add_child(coast)
 	add_child(grove)
 	grove.configure(world.get("grove", {}))
 	set_wet(0.0)
@@ -90,6 +93,9 @@ func update_focus(pos: Vector3) -> void:
 	grove.update_focus(pos)
 
 func focus_zone() -> String:
+	var at := Vector2(focus.x, focus.z)
+	if at.x < -42.0 and LakeLayout.Coast.contains(at):
+		return LakeLayout.Coast.area(at, LakeLayout.water_y())
 	if focus.z < -70.0:
 		return "camp"
 	if focus.z < -36.0:
@@ -103,11 +109,15 @@ func resident_count() -> int:
 	return loaded.size()
 
 func _distance(chunk: Dictionary) -> float:
-	return maxf(0.0, maxf(float(chunk.lo) - focus.z, focus.z - float(chunk.hi)))
+	var x := maxf(0.0, maxf(-30.0 - focus.x, focus.x - 30.0))
+	var z := maxf(0.0, maxf(float(chunk.lo) - focus.z, focus.z - float(chunk.hi)))
+	return Vector2(x, z).length()
 
 func is_focus_ready() -> bool:
 	if _lantern_warming:
 		return false
+	if LakeLayout.Coast.contains(Vector2(focus.x, focus.z)):
+		return true
 	for chunk in chunks:
 		if focus.z >= float(chunk.lo) and focus.z < float(chunk.hi):
 			return loaded.has(chunk.id)
@@ -315,14 +325,13 @@ func _background_floor() -> void:
 	material.vertex_color_use_as_albedo = true
 	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 	material.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
-	var lo := Vector2(-30, -121) - Vector2.ONE * HORIZON_MARGIN
+	var lo := Vector2(-30.0, -121.0 - HORIZON_MARGIN)
 	var hi := Vector2(30, 14) + Vector2.ONE * HORIZON_MARGIN
 	floor_mesh.set_material(material)
 	_floor_sector(floor_mesh, lo, Vector2(hi.x, -72), 1, 1)
 	_floor_sector(floor_mesh, Vector2(lo.x, -28), hi, 1, 1)
-	_floor_sector(floor_mesh, Vector2(lo.x, -72), Vector2(-51, -28), 1, 1)
 	_floor_sector(floor_mesh, Vector2(-7, -72), Vector2(hi.x, -28), 1, 1)
-	_floor_sector(floor_mesh, Vector2(-51, -72), Vector2(-7, -28), 52, 60)
+	_floor_sector(floor_mesh, Vector2(lo.x, -72), Vector2(-7, -28), 32, 60)
 	floor_mesh.index()
 	background_floor = _mesh(self, floor_mesh.commit(), Vector3.ZERO)
 	background_floor.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -376,6 +385,7 @@ func update_flame(elapsed: float, delta: float) -> void:
 
 func update_water(elapsed: float, rain: float, lighting: Dictionary) -> void:
 	lake.update_water(elapsed, rain, lighting)
+	coast.update_light(elapsed, rain, lighting)
 
 func add_water_impact(point: Vector3, elapsed: float) -> void:
 	lake.add_impact(point, elapsed)

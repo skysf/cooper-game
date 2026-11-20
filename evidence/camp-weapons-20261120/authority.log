@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+ROOM_JOIN camp-weapon-test 700a4833b48932ee peers=1
+ROOM_JOIN camp-weapon-test 308a5e4e6ab39f66 peers=2
+ROOM_LEAVE camp-weapon-test 308a5e4e6ab39f66
+ROOM_LEAVE camp-weapon-test 700a4833b48932ee
+ROOM_JOIN camp-weapon-test 700a4833b48932ee peers=1
+COOP_WEAPONS_OK 20

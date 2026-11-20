@@ -241,6 +241,17 @@ try{
   assert.equal(attempts.filter(r=>r.ok).length,1);
   await until(()=>a.state.quest.wood && b.state.quest.wood);
   info.checks.simultaneousPickupAwards=1;
+  // The single physical award belongs to its collector. Share it explicitly before splitting up.
+  async function provision(p,action,rest={}){
+    const n=p.notices.length;p.send({t:'provision',action,...rest});return until(()=>p.notices[n]);
+  }
+  if(!a.state.survival.bag.wood){
+    assert.equal((await provision(b,'drop',{item:'wood'})).ok,true);
+    await until(()=>Object.values(a.state.provisions).some(r=>r.item==='wood'));
+    const woodId=Object.keys(a.state.provisions).find(id=>a.state.provisions[id].item==='wood');
+    assert.equal((await provision(a,'take',{id:woodId})).ok,true);
+  }
+  await until(()=>a.state.survival.bag.wood===1);
   const old=here(b),id=b.id;await close(b);
   await until(()=>Object.keys(a.state.players).length===1);
   const back=await connect('test',b.token);
@@ -249,7 +260,11 @@ try{
   console.log('Players splitting across sectors');
   await Promise.all([walk(a,'tarp'),walk(back,'repair')]);
   assert.equal((await act(a,'tarp')).ok,true);
-  assert.equal((await act(back,'repair')).ok,true);
+  assert.equal((await act(back,'repair')).ok,false, 'a teammate cannot spend the collector inventory');
+  await walk(a,'repair');
+  assert.equal((await act(a,'repair')).ok,true);
+  await until(()=>a.state.survival.bag.wood===0 && a.state.survival.bag.tarp===0);
+  info.checks.personalMaterialSpending=true;
   await until(()=>a.state.quest.repaired && back.state.quest.repaired);
   assert.equal(other.state.quest.wood,false);
   info.checks.independentRooms=true;
@@ -273,7 +288,7 @@ try{
   assert.deepEqual(restored.state.quest,{wood:true,tarp:true,repaired:true});
   assert.ok(restored.state.elapsed>=before-.5);
   assert.equal(restored.id,a.id);
-  assert.ok(dist(here(restored),manifest.sites.tarp)<2.5);
+  assert.ok(dist(here(restored),manifest.sites.repair)<2.5);
   info.checks.restartStateAndClock={before,after:restored.state.elapsed};
   await close(restored);
   // Sever the real transport under two running Godot adapters, then restore it.

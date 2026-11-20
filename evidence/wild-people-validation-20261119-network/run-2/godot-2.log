@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ROOM_SERVER_READY 127.0.0.1:64168
+ROOM_JOIN qa-lifecycle b252ac49b0606636 peers=1
+ROOM_JOIN qa-lifecycle dfe5834625f9219d peers=2
+ROOM_LEAVE qa-lifecycle b252ac49b0606636
+ROOM_LEAVE qa-lifecycle dfe5834625f9219d
+ROOM_JOIN qa-social 53025457ec4622a3 peers=1
+ROOM_JOIN qa-social 4a8d0367bdd7cc57 peers=2
+ROOM_LEAVE qa-social 53025457ec4622a3

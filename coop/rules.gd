@@ -6,7 +6,7 @@ const SPEED := 3.6
 const RADIUS := 0.29
 const STEP_OVER_ROCK := 0.36
 const INTERACT_RANGE := 2.5
-const MIN_CORNER := Vector2(-29, -119)
+const MIN_CORNER := Vector2(LakeLayout.Coast.WEST_LIMIT, -119)
 const MAX_CORNER := Vector2(29, 12)
 const RAIN_START := 65.0
 const RAIN_RAMP := 15.0
@@ -26,7 +26,7 @@ static func rain_at(elapsed: float) -> float:
 # Index each obstacle in every overlapping cell, including the player's radius.
 static func collision_grid(obstacles: Array) -> Dictionary:
 	var grid := {}
-	for obstacle in obstacles:
+	for obstacle in obstacles + LakeLayout.Coast.obstacles:
 		if obstacle.get("type") == "rock" and float(obstacle.r) <= STEP_OVER_ROCK:
 			continue
 		var center := Vector2(obstacle.x, obstacle.z)
@@ -52,16 +52,18 @@ static func obstacle_free_at(point: Vector2, grid: Dictionary) -> bool:
 	return true
 
 static func move(point: Vector2, direction: Vector2, delta: float, grid: Dictionary,
-		allow_swim := false, speed := SPEED) -> Vector2:
+		allow_swim := false, speed := SPEED, feet: float = -INF) -> Vector2:
 	if direction.is_zero_approx():
 		return point
 	var motion := direction.limit_length() * speed * clampf(delta, 0.0, 0.1)
 	var steps := maxi(1, ceili(motion.length() / 0.12))
 	for i in steps:
 		var target := (point + motion / steps).clamp(MIN_CORNER, MAX_CORNER)
-		if free_at(Vector2(target.x, point.y), grid, allow_swim):
+		var across := Vector2(target.x, point.y)
+		if free_at(across, grid, allow_swim) and LakeLayout.Coast.can_step(point, across, feet):
 			point.x = target.x
-		if free_at(Vector2(point.x, target.y), grid, allow_swim):
+		var along := Vector2(point.x, target.y)
+		if free_at(along, grid, allow_swim) and LakeLayout.Coast.can_step(point, along, feet):
 			point.y = target.y
 	return point
 

@@ -1,0 +1,139 @@
+{
+  "updatedAt": "2026-11-19T15:32:09.022366+00:00",
+  "conclusion": "人物动作独立验收通过：9项真实物理断言、15项双端普通输入检查和46组实际游戏连续关键帧，以及最终Mac发行版headless入房通过。正常游戏距离的跳跃/落地、游进/踩水和衣帽持物实图已由本验证与Astra实际复看，无未解决实际动作问题。",
+  "scope": "只改本证据目录内测试/fixture，未改实现、共享文档、3D资产或用户4284/4285/旧4184。headless Metal功能验收，不抢前台、不测FPS，不以动画字符串或假模式替代真实输入。",
+  "inputs": "保持既有W速度3.6、Space、C、V，没有新增Shift档或姿态按钮；Walk用既有合法motion方向幅0.4产生实际约1.44m/s。",
+  "release": {
+    "sha256": "7fe68e3ccd9779161ed9e8144f75e9b25d4378f7957b34656696b31d92d6b457",
+    "webTestPackage": {
+      "site": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/player-locomotion-release/coop",
+      "mtime": "2026-11-19T15:10:23.262Z",
+      "bytes": 46857572,
+      "sha256": "7fe68e3ccd9779161ed9e8144f75e9b25d4378f7957b34656696b31d92d6b457"
+    },
+    "publishedWebPath": "dist/coop-resource-fix",
+    "macFinalPackage": {
+      "app": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/dist/coop-resource-fix-native/CooperCamp.app",
+      "mtime": "2026-11-19T15:10:27.149Z",
+      "bytes": 46857572,
+      "sha256": "7fe68e3ccd9779161ed9e8144f75e9b25d4378f7957b34656696b31d92d6b457"
+    },
+    "note": "Web测试时staging承载新候选；发布采用原子路径交换后staging变旧备份。最终Mac只认已核对SHA的固定dist路径，旧误读保留。"
+  },
+  "checks": [
+    {
+      "name": "真实移动、松键与撞停",
+      "status": "通过",
+      "result": "实际PlayerMotion.step保留全幅3.6/低幅约1.44；双端实际低幅行走显示Walk，普通W显示Run，松键Stand。真实世界树干阻挡后，仍按W时本地和权威vx/vz为0且脚步停止。",
+      "evidence": [
+        "physics-report.json",
+        "browser-network-report.json",
+        "walk-forward-0-remote.png",
+        "run-1-local.png",
+        "run-released-local.png",
+        "wall-still-held-local.png",
+        "wall-still-held-remote.png"
+      ]
+    },
+    {
+      "name": "Space离地、顶点和落地缓冲",
+      "status": "通过",
+      "result": "真正按Space产生上升/空中/下降并回到实际地面，保持Space不连跳；独立积分恰到vy近0的顶点仍离地、grounded为false。两个真实客户端均记录Takeoff→Air→Land，连续游戏图可见抬膝、腾空及落地，随后Stand。短phase以真实图和切换记录共同核对，未以4Hz状态名称代替画面。",
+      "evidence": [
+        "physics-report.json",
+        "browser-network-report.json",
+        "jump-0-local.png",
+        "jump-1-local.png",
+        "jump-1-remote.png",
+        "jump-landed-local.png",
+        "jump-landed-remote.png"
+      ]
+    },
+    {
+      "name": "浅水、游进、停游、潜浮与出水",
+      "status": "通过",
+      "result": "从岸上真实W进入浅水仍接地移动，继续到实际深水后浮在水面并Swim；松W变Tread。C下潜/Space上浮后返回岸上，swimming=false、grounded=true并Stand；两个客户端基本一致，水段切换记录没有虚假的Takeoff/Air/Land。",
+      "evidence": [
+        "physics-report.json",
+        "browser-network-report.json",
+        "water-entry-3-local.png",
+        "water-entry-5-local.png",
+        "water-entry-4-remote.png",
+        "tread-stable-local.png",
+        "tread-stable-remote.png",
+        "surface-restored-local.png",
+        "shore-returned-local.png",
+        "shore-returned-remote.png"
+      ]
+    },
+    {
+      "name": "真实水线、衣帽、背包和手持物",
+      "status": "通过实际图证",
+      "result": "实际侧视图能看清游进与踩水差异，眼鼻/帽子在水线上可见，衣服和包随身体。水中手持物只收视觉，club3/shield2和其它背包量、装备身份前后相同，回岸恢复持握；跳跃中持物跟随，无飞离。Astra已实际复看并确认正常距离美术通过，未用旋转AABB角代替鞋底真实顶点。",
+      "evidence": [
+        "water-entry-4-remote.png",
+        "tread-stable-remote.png",
+        "run-1-local.png",
+        "jump-1-remote.png",
+        "shore-returned-local.png",
+        "browser-network-report.json"
+      ]
+    },
+    {
+      "name": "本地/远端与重连生成",
+      "status": "通过",
+      "result": "实际双客户端权威状态/动画和图像对照，允许正常快照延迟。地面重连恢复Stand及真实接地，深水重连恢复Tread且不产生长期Air；第二客户端能继续看到同稳定playerId。",
+      "evidence": [
+        "browser-network-report.json",
+        "ground-reconnected-local.png",
+        "ground-reconnected-remote.png",
+        "water-reconnected-local.png",
+        "water-reconnected-remote.png"
+      ]
+    },
+    {
+      "name": "最终Mac发行包",
+      "status": "通过，exit0",
+      "result": "固定dist/coop-resource-fix-native包SHA与通过Web相同，headless加入已实际返回岸上的同一QA房间，ready、非游泳且真实接地，club3/shield2和装备保留，WS/分块地址正确。不代表Mac GPU帧率测试。",
+      "evidence": [
+        "mac-report.json",
+        "mac-ready-state.json",
+        "mac-final-status.events"
+      ]
+    }
+  ],
+  "continuousEvidence": {
+    "timepoints": 46,
+    "currentImages": 86,
+    "index": "current-frame-index.json",
+    "note": "低幅Walk最初只有观察端图；后续为本地第三人称和远端成对关键帧。录像依赖缺失后按root要求使用连续关键帧，没有安装或修改环境。"
+  },
+  "preservedHistory": [
+    {
+      "classification": "录像环境依赖缺失，未开始游戏验收",
+      "result": "Playwright bundled ffmpeg不存在，0帧/0功能断言；依指令直接改连续PNG，不下载/安装/改缓存。",
+      "evidence": [
+        "attempt-1-recorder-dependency/browser-network-report.json",
+        "attempt-1-recorder-dependency/classification.json"
+      ]
+    },
+    {
+      "classification": "测试相机反馈时序导致跑线绕过目标树",
+      "result": "90ms反馈短于4Hz状态发布，朝向残留0.15865，真实移动到树旁而非撞树；撞停断言因此无效。保留通过的真跳和原截图，修正普通鼠标输入的等待/确认后真实撞停通过，未放宽物理碰撞。",
+      "evidence": [
+        "attempt-2-camera-feedback/browser-network-report.json",
+        "attempt-2-camera-feedback/classification.json"
+      ]
+    },
+    {
+      "classification": "Mac发布原子路径交换竞态，旧包误读已纠正",
+      "result": "首次Mac收尾使用的staging被发布交换为旧单格备份SHA76e...，故无localPhysics字段。发布负责人确认时机竞态；保留旧报告/status，改冻结最终dist路径、先硬核对新SHA并换全新status名称后同一步入房通过。",
+      "evidence": [
+        "attempt-3-mac-staging-swap/mac-report.json",
+        "attempt-3-mac-staging-swap/classification.json",
+        "mac-report.json"
+      ]
+    }
+  ],
+  "cleanup": "所有本验证自启HTTP/房间服务、Chrome与Mac实例均已结束清理，GPU/焦点已释放。用户普通服务由主代码代理更新并保持，本代理未改其存档；不再启动任何测试或场景。"
+}

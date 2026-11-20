@@ -1,0 +1,19 @@
+{
+  "kind": "short cap-only client visual smoke; independent default room, no live identity; headless browser and native",
+  "browser": {
+    "ready": true,
+    "capWorn": true,
+    "characterPage": true,
+    "errors": []
+  },
+  "ok": true,
+  "native": {
+    "ready": true,
+    "headless": true,
+    "capWorn": true,
+    "room": "cap-native",
+    "evidence": "native-status.jsonl",
+    "wsAndZonesCorrect": true
+  },
+  "verificationNote": "Same-run native record proves readiness; stdout-only checker timed out because the release app writes to its explicit status/log files. Original report retained as browser-smoke-stdout-timeout.json. No application failure or rerun."
+}

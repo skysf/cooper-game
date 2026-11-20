@@ -1,0 +1,5 @@
+{
+  "classification": "test harness startup ReferenceError, not application defect",
+  "cause": "Optional chaining was used on undeclared CooperStatus name before engine startup. Corrected to window.CooperStatus?.ready.",
+  "applicationPageErrors": []
+}

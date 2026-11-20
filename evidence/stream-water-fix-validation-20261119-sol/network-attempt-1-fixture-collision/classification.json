@@ -1,0 +1,5 @@
+{
+  "classification": "test fixture collision, not application defect",
+  "cause": "Fixture home exactly at wood site (-9,-53) lies inside existing rock circle (-9.581,-52.845,r0.536)+player0.29; normal _restore_position returned players to camp, so act out of range.",
+  "correction": "Use source east+1m, within normal 2.5m interaction distance and outside collision."
+}

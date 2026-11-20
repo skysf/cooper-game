@@ -100,6 +100,14 @@ def throw():
     return t, pull * 0.43 + release * 0.32
 
 
+def gunshot(rifle):
+    t = seconds(0.44 if rifle else 0.27)
+    crack = noise(t, 760, 5850) * strike(t, 0.001, .002, .022 if rifle else .014)
+    thump = tone(t, 77 if rifle else 132) * strike(t, .002, .004, .056 if rifle else .025)
+    tail = noise(t, 210, 1900) * strike(t, .022, .013, .098 if rifle else .056)
+    return t, 0.64 * crack + (0.63 if rifle else 0.36) * thump + 0.26 * tail
+
+
 def motor(phase):
     return sum(weight * tone(phase, harmonic) for harmonic, weight in [(1, 0.67), (2, 0.25), (3, 0.13), (5, 0.07)])
 
@@ -124,6 +132,15 @@ def engine_switch(starting):
     motor_sound = (0.57 * motor(phase) + 0.06 * tone(phase, 7.5) + air) * motor_level
     relay = noise(t, 280, 2200) * strike(t, 0.028 if starting else 0.41, 0.003, 0.025)
     return t, motor_sound + 0.44 * relay
+
+
+def atlas_zoom(closer):
+    t = seconds(0.095)
+    low, high = (510, 760) if closer else (670, 405)
+    frequency = low + (high - low) * (1.0 - np.exp(-t / .024))
+    phase = 2 * np.pi * np.cumsum(frequency) / RATE
+    tick = (np.sin(phase) + .24 * np.sin(phase * 2.09) + .07 * np.sin(phase * 3.61)) * np.exp(-t / .029)
+    return t, tick + .21 * noise(t, 1320, 2870) * np.exp(-t / .011)
 
 
 def write(name, signal, peak, looping=False):
@@ -153,6 +170,10 @@ def main():
     write("engine-start", engine_switch(True), 0.70)
     write("engine-loop", engine_idle(), 0.72, looping=True)
     write("engine-stop", engine_switch(False), 0.66)
+    write("rifle-shot", gunshot(True), 0.74)
+    write("pistol-shot", gunshot(False), 0.68)
+    write("atlas-zoom-in", atlas_zoom(True), 0.51)
+    write("atlas-zoom-out", atlas_zoom(False), 0.47)
 
 
 if __name__ == "__main__":

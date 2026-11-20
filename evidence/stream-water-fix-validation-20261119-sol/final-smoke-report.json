@@ -1,0 +1,26 @@
+{
+  "started": "2026-11-19T13:47:08.062Z",
+  "scope": "Final incremental font screenshot and Mac release headless join only; earlier functional tests are not repeated",
+  "errors": [],
+  "web": {
+    "site": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/resource-fix-release/coop",
+    "mtime": "2026-11-19T13:45:56.585Z",
+    "bytes": 46735652,
+    "sha256": "cadb0db948bf8e02c50e377e7721d60dac8c77a5173fff5761020eac5daa6636",
+    "singleWaterStack": true
+  },
+  "mac": {
+    "app": "/Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/.cache/resource-fix-release/native/CooperCamp.app",
+    "mtime": "2026-11-19T13:46:00.937Z",
+    "bytes": 46735652,
+    "sha256": "cadb0db948bf8e02c50e377e7721d60dac8c77a5173fff5761020eac5daa6636",
+    "ready": true,
+    "correctRoomAndWaterAndPrivateMaterials": true,
+    "noCombatMode": true,
+    "websocketUrl": "ws://127.0.0.1:50773/room",
+    "zoneBase": "http://127.0.0.1:50773/coop/zones/"
+  },
+  "service": "http://127.0.0.1:50773",
+  "ok": true,
+  "finished": "2026-11-19T13:47:37.406Z"
+}

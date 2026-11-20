@@ -1,0 +1,17 @@
+{
+  "pck_sha256": "7fe68e3ccd9779161ed9e8144f75e9b25d4378f7957b34656696b31d92d6b457",
+  "source_hashes": {
+    "coop/hiker.gd": "e375ad63387ce8bace084d014b47f8784aafb0fa61bda22a1a7f3aaf424a0a48",
+    "coop/player_motion.gd": "12fc5d2338a5d9d13e5592a7d212dcbc1b750689d329df0b09a80ab5e38b0ac7",
+    "coop/server.gd": "374ea3b5b3d7b485fe72332cd0c4343b38d1995abe64314fe4e4f954525ea054",
+    "coop/network.gd": "3267751e90a4313ef291586ae41491043c01016390319c7783bdc97ba243aef4",
+    "coop/client.gd": "78cb13085277d2c915a4a2c92b1b859806ba2eda6cb5dde606d9432b624f0854",
+    "coop/wild_people_scene.gd": "9f770458f04c976e35b55559fbe288e87ccc371cde0dccf006b703ed63f9494d",
+    "coop/stone_scene.gd": "78d0ed1101f0c48b619402da822b3fbd98a0b62779a7c3ac6697aa855c8f6b5e",
+    "coop/survival.gd": "6af289baf878814d5e3c950acf30156813c682880b35014710bcc40d3acc6178",
+    "coop/hud.gd": "a4f4994725ff9369ca5aadd91cbe7113c7341a2594c587f10c2d107858ab6322",
+    "coop/animations/player_locomotion.tres": "92fad97b6a97133a791b9af1437ad0b7eb4a495b03747a7a82e45be4ea5225b6",
+    "coop/props/camp_jacket.glb": "b6e39053016db4fae698f0a54440dd87a02d55462ab06b4e248beb5405958c9c",
+    "coop/props/camp_cap.glb": "212967607aed2ecc66c7e266107948a84e7781c838e0133568b4dcf39d505f32"
+  }
+}

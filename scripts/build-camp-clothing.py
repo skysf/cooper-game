@@ -57,10 +57,14 @@ def skin(obj, item):
     bpy.ops.object.mode_set(mode="OBJECT")
     root_group = obj.vertex_groups.new(name="Root")
     limbs = [[obj.vertex_groups.new(name=name + "_" + suffix) for name in names] for suffix in ("L", "R")]
+    if item == "jacket":
+        weights_for = runpy.run_path(str(ROOT / "art/characters/locomotion/sleeve_weights.py"))["sleeve_weights"]
+        weights = weights_for([(v.co.x, v.co.z, -v.co.y) for v in obj.data.vertices],
+                              (edge.vertices for edge in obj.data.edges))
     for vertex in obj.data.vertices:
         x, _, z = vertex.co
         if item == "jacket":
-            weight = smooth(0.17, 0.24, abs(x)) * (1.0 - smooth(1.35, 1.49, z))
+            weight = weights[vertex.index]
         else:
             weight = 1.0 - smooth(0.64, 0.87, z)
         if weight > 0.0:

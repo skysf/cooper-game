@@ -1,0 +1,20 @@
+{
+  "updated": "2026-11-19T23:00:03.667116",
+  "url": "http://localhost:4284/coop/?room=pine",
+  "health": {
+    "game": "cooper-camp",
+    "ready": true,
+    "lan": false,
+    "advertised": null
+  },
+  "pck_sha256": "76e0f02f945031a0308b7b053c450518fa4effb9806502f66a2b6850ef4278f9",
+  "bytes": 46735668,
+  "node_pid": 72812,
+  "session": 21952,
+  "save": ".local-rooms/wild-people",
+  "backups": ".local-rooms/backups/inventory-single-stack-20261119",
+  "site": "dist/coop-resource-fix",
+  "mac": "dist/coop-resource-fix-native/CooperCamp.app",
+  "legacy_4184_pid_unchanged": 76294,
+  "player_motion_pending_not_included": true
+}

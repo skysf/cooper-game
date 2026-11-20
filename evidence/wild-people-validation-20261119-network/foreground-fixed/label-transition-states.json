@@ -1,0 +1,808 @@
+{
+  "before": {
+    "backpackOpen": false,
+    "backpackOwner": "",
+    "backpackTarget": false,
+    "bagSlots": 6,
+    "canPutProvision": false,
+    "connected": true,
+    "dayPart": "night",
+    "dog": {
+      "clip": "Walk",
+      "clipAt": 593.331838999775,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0.820181310176849,
+      "vx": -0.498375862836838,
+      "vz": 0.65139764547348,
+      "x": 1.89288353919983,
+      "yaw": 2.48833719702146,
+      "z": -85.9298324584961
+    },
+    "dogTarget": false,
+    "elapsed": 594.392038999774,
+    "enterRect": [
+      36,
+      619,
+      85,
+      39
+    ],
+    "equipmentOpen": false,
+    "equipmentTabRect": [
+      80,
+      60,
+      84,
+      39
+    ],
+    "focusReady": true,
+    "foodTarget": "",
+    "fps": 12,
+    "grove": [
+      {
+        "height": 7,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "detail": "LOD1",
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.3,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 594.392038999774,
+    "groveHint": "云杉 · 成树",
+    "heldStone": "",
+    "inviteRect": [
+      129,
+      619,
+      84,
+      39
+    ],
+    "inviteShown": false,
+    "jugTarget": false,
+    "lanternWarmupMs": 2515.4,
+    "lineCut": false,
+    "locked": true,
+    "members": 1,
+    "nearby": "",
+    "notice": "",
+    "noticeNo": 0,
+    "panelRect": [
+      20,
+      490,
+      488,
+      210
+    ],
+    "peopleColdCreates": 1,
+    "peopleOpen": false,
+    "peoplePanel": {},
+    "peoplePoolHits": 0,
+    "peopleTarget": "person-1",
+    "peopleWarmupCount": 8,
+    "peopleWarmupMs": 10739.7,
+    "pickupStone": "",
+    "pitch": -0.4031,
+    "players": {
+      "058a60d1296bed15": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": true,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "spear",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 3.30056881904602,
+        "y": 0,
+        "yaw": 1.4766,
+        "z": -82.828254699707
+      }
+    },
+    "previewWarming": false,
+    "previewWarmupBuildMs": 13,
+    "previewWarmupDrawMs": 629.5,
+    "provisions": {
+      "apple-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "apple-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "bread-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      },
+      "bread-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      }
+    },
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 0,
+    "resident": 4,
+    "room": "wild-qa-captive",
+    "selfId": "058a60d1296bed15",
+    "sheltered": false,
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": -3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "shipCameraYaw": 3.14159265358979,
+    "shipPiloting": false,
+    "shipTarget": false,
+    "sourceTarget": "",
+    "status": "已连接 · wild-qa-captive",
+    "stoneAction": "",
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "club": 2,
+        "herb": 2,
+        "shield": 1,
+        "spear": 1,
+        "water": 2
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 68.7,
+      "mood": 58.6,
+      "shield": true,
+      "water": 52.5,
+      "weapon": "spear",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "swimming": false,
+    "target": "repair",
+    "terrainError": "",
+    "thirdPerson": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 594.248505666441,
+      "facility": 100,
+      "log": [],
+      "people": {
+        "person-1": {
+          "actionAt": 140,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 65,
+          "careNeed": 5,
+          "careSeconds": 65,
+          "clip": "Captive",
+          "clipAt": 140,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "正在接受照料；药草需要时间帮助恢复",
+          "hitAt": -10,
+          "hunger": 80.9390699227354,
+          "id": "person-1",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {
+            "shield": 1
+          },
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 60.99929064999,
+          "name": "禾岚",
+          "order": "guard",
+          "phase": "captive",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 6,
+            "chatAt": -1000,
+            "food": 3,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 1,
+            "trust": 46,
+            "water": 1
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 0,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 396.938943000029,
+          "water": 66.9515140416773,
+          "weapon": "",
+          "workAt": 0,
+          "x": 1.5,
+          "y": 0,
+          "yaw": 0,
+          "z": -83
+        }
+      },
+      "publicFood": true,
+      "raid": {
+        "nextAt": 2000,
+        "phase": "rest",
+        "startedAt": 0,
+        "warningAt": 0,
+        "wave": 0
+      },
+      "resources": {
+        "fruit": {
+          "progress": 63.9798127777708,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 53.9798127777681,
+          "stock": 5
+        },
+        "water": {
+          "progress": 5.97981277777618,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 1,
+        "firstRaid": 540,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 4,
+        "rest": 300,
+        "warning": 30
+      }
+    },
+    "x": 3.30056881904602,
+    "y": 0,
+    "yaw": 1.4766,
+    "z": -82.828254699707,
+    "zone": "camp"
+  },
+  "after": {
+    "backpackOpen": false,
+    "backpackOwner": "",
+    "backpackTarget": false,
+    "bagSlots": 6,
+    "canPutProvision": false,
+    "connected": true,
+    "dayPart": "night",
+    "dog": {
+      "clip": "Stand",
+      "clipAt": 595.751781110884,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 1.20157694816589,
+      "yaw": 2.48832019649117,
+      "z": -85.0265808105469
+    },
+    "dogTarget": false,
+    "elapsed": 597.223868666438,
+    "enterRect": [
+      36,
+      619,
+      85,
+      39
+    ],
+    "equipmentOpen": false,
+    "equipmentTabRect": [
+      80,
+      60,
+      84,
+      39
+    ],
+    "focusReady": true,
+    "foodTarget": "",
+    "fps": 54,
+    "grove": [
+      {
+        "height": 7,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "detail": "LOD1",
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.3,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 597.223868666438,
+    "groveHint": "",
+    "heldStone": "",
+    "inviteRect": [
+      129,
+      619,
+      84,
+      39
+    ],
+    "inviteShown": false,
+    "jugTarget": false,
+    "lanternWarmupMs": 2515.4,
+    "lineCut": false,
+    "locked": true,
+    "members": 1,
+    "nearby": "",
+    "notice": "禾岚愿意留下，已解除约束；可以分配任务、装备和自由交往",
+    "noticeNo": 2,
+    "panelRect": [
+      20,
+      517,
+      488,
+      183
+    ],
+    "peopleColdCreates": 1,
+    "peopleOpen": false,
+    "peoplePanel": {},
+    "peoplePoolHits": 0,
+    "peopleTarget": "person-1",
+    "peopleWarmupCount": 8,
+    "peopleWarmupMs": 10739.7,
+    "pickupStone": "",
+    "pitch": -0.4332,
+    "players": {
+      "058a60d1296bed15": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": true,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "spear",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 3.30056881904602,
+        "y": 0,
+        "yaw": 1.14335,
+        "z": -82.828254699707
+      }
+    },
+    "previewWarming": false,
+    "previewWarmupBuildMs": 13,
+    "previewWarmupDrawMs": 629.5,
+    "provisions": {
+      "apple-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "apple-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -88.8199996948242
+        ],
+        "item": "apple",
+        "surface": "table"
+      },
+      "bread-1": {
+        "at": [
+          2.5,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      },
+      "bread-2": {
+        "at": [
+          2.75,
+          0.790000021457672,
+          -89.1100006103516
+        ],
+        "item": "bread",
+        "surface": "table"
+      }
+    },
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 0,
+    "resident": 4,
+    "room": "wild-qa-captive",
+    "selfId": "058a60d1296bed15",
+    "sheltered": false,
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": -3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "shipCameraYaw": 3.14159265358979,
+    "shipPiloting": false,
+    "shipTarget": false,
+    "sourceTarget": "",
+    "status": "已连接 · wild-qa-captive",
+    "stoneAction": "",
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "club": 2,
+        "herb": 2,
+        "shield": 1,
+        "spear": 1,
+        "water": 1
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 68.6,
+      "mood": 58.6,
+      "shield": true,
+      "water": 52.3,
+      "weapon": "spear",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "swimming": false,
+    "target": "repair",
+    "terrainError": "",
+    "thirdPerson": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 597.107035333105,
+      "facility": 100,
+      "log": [
+        {
+          "at": 595.131694999773,
+          "id": 1,
+          "text": "禾岚自愿成为自由同伴"
+        }
+      ],
+      "people": {
+        "person-1": {
+          "actionAt": 140,
+          "age": 34,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 65,
+          "careNeed": 5,
+          "careSeconds": 65,
+          "clip": "Guard",
+          "clipAt": 597.090368666438,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 80.787567850402,
+          "id": "person-1",
+          "joinedAt": 595.131694999773,
+          "legL": 0,
+          "legR": 0,
+          "loot": {
+            "shield": 1
+          },
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 60.99929064999,
+          "name": "禾岚",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 7,
+            "chatAt": -1000,
+            "food": 3,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 1,
+            "trust": 66,
+            "water": 2
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 0,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 396.938943000029,
+          "water": 98.7371243166774,
+          "weapon": "",
+          "workAt": 0,
+          "x": 2.66957235336304,
+          "y": 0,
+          "yaw": -1.14104488233743,
+          "z": -83.5259170532227
+        }
+      },
+      "publicFood": true,
+      "raid": {
+        "nextAt": 2000,
+        "phase": "rest",
+        "startedAt": 0,
+        "warningAt": 0,
+        "wave": 0
+      },
+      "resources": {
+        "fruit": {
+          "progress": 1.8383424444374,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 56.8383424444346,
+          "stock": 5
+        },
+        "water": {
+          "progress": 0.838342444442845,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 1,
+        "firstRaid": 540,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 4,
+        "rest": 300,
+        "warning": 30
+      }
+    },
+    "x": 3.30056881904602,
+    "y": 0,
+    "yaw": 1.14335,
+    "z": -82.828254699707,
+    "zone": "camp"
+  }
+}

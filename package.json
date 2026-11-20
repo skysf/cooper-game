@@ -12,13 +12,15 @@
     "dev": "node scripts/start.mjs",
     "coop": "node scripts/coop-serve.mjs",
     "coop:build": "npm run coop:build:web && node scripts/godot.mjs coop-native",
-    "coop:build:web": "python3 scripts/coop-zones.py && node scripts/godot.mjs coop-web && node scripts/pack-coop.mjs",
+    "coop:build:web": "python3 scripts/build-coast.py && python3 scripts/build-coop-atlas.py && python3 scripts/coop-zones.py && node scripts/godot.mjs coop-web && node scripts/pack-coop.mjs",
     "coop:native": "node scripts/open-camp.mjs",
     "coop:render:benchmark": "node scripts/coop-render-benchmark.mjs",
     "coop:render:score": "python3 scripts/coop-render-score.py",
     "coop:render:test": "node --test scripts/test-coop-browser-controls.mjs && python3 scripts/test-coop-render-score.py",
     "coop:test": "node scripts/coop-room-test.mjs",
-    "coop:lan": "node scripts/coop-serve.mjs --lan"
+    "coop:lan": "node scripts/coop-serve.mjs --lan",
+    "coop:test:wild": "node scripts/coop-wild-people-test.mjs",
+    "coop:fixture:wild": "node scripts/coop-wild-people-test.mjs fixture"
   },
   "dependencies": {
     "@babylonjs/core": "8.56.2",

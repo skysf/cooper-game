@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "test": "macOS release headless connected via local WebSocket and instantiated all three imported weapon scenes",
+  "room": "weapon-native",
+  "connected": true,
+  "focusReady": true,
+  "models": [
+    "katana",
+    "pistol",
+    "rifle"
+  ],
+  "pckSha256": "d5ffe7519be2be27f94ab485415cd0a25769b86c1a2f324cb19816fe543eda26",
+  "pckBytes": 173474940
+}

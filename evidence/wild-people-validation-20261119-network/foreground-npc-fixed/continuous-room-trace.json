@@ -1,0 +1,7596 @@
+{
+  "birth": {
+    "wall": 1795093116077,
+    "serverElapsed": 210.137871666673,
+    "ids": [
+      "person-5",
+      "person-6",
+      "person-7",
+      "person-8"
+    ]
+  },
+  "trace": [
+    {
+      "wall": 1795093111615,
+      "elapsed": 205.907227666671,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093111732,
+      "elapsed": 206.023894333338,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093111849,
+      "elapsed": 206.140561000004,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093111965,
+      "elapsed": 206.257227666671,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112082,
+      "elapsed": 206.373894333338,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112201,
+      "elapsed": 206.490561000005,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112312,
+      "elapsed": 206.607227666671,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112432,
+      "elapsed": 206.723894333338,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112551,
+      "elapsed": 206.840561000005,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112665,
+      "elapsed": 206.957227666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112782,
+      "elapsed": 207.073894333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093112897,
+      "elapsed": 207.190561000005,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113014,
+      "elapsed": 207.307227666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113205,
+      "elapsed": 207.423894333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113251,
+      "elapsed": 207.529796666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113409,
+      "elapsed": 207.646458666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113485,
+      "elapsed": 207.753123333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113628,
+      "elapsed": 207.856921333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093113823,
+      "elapsed": 207.985938666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114025,
+      "elapsed": 208.140254666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114086,
+      "elapsed": 208.256921333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114214,
+      "elapsed": 208.364327333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114299,
+      "elapsed": 208.465783555561,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114407,
+      "elapsed": 208.565937666672,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114524,
+      "elapsed": 208.682452333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114628,
+      "elapsed": 208.799119000006,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114743,
+      "elapsed": 208.914335333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114858,
+      "elapsed": 209.031002000006,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093114975,
+      "elapsed": 209.147668666673,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115092,
+      "elapsed": 209.264335333339,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115207,
+      "elapsed": 209.381002000006,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115309,
+      "elapsed": 209.481049666673,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115425,
+      "elapsed": 209.59771633334,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115549,
+      "elapsed": 209.714383000006,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115657,
+      "elapsed": 209.831049666673,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093115840,
+      "elapsed": 209.940254666673,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 4,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116077,
+      "elapsed": 210.137871666673,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116193,
+      "elapsed": 210.250223619054,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116484,
+      "elapsed": 210.35850333334,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116543,
+      "elapsed": 210.473588000007,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116580,
+      "elapsed": 210.640254666673,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116684,
+      "elapsed": 210.74682433334,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116803,
+      "elapsed": 210.863491000007,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093116913,
+      "elapsed": 210.979933000007,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117027,
+      "elapsed": 211.095683000007,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117146,
+      "elapsed": 211.212349666674,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117262,
+      "elapsed": 211.328989000007,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117380,
+      "elapsed": 211.445655666674,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117498,
+      "elapsed": 211.562322333341,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117616,
+      "elapsed": 211.678989000007,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117730,
+      "elapsed": 211.795655666674,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117848,
+      "elapsed": 211.912322333341,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093117961,
+      "elapsed": 212.028989000008,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118081,
+      "elapsed": 212.145655666674,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118199,
+      "elapsed": 212.262322333341,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118314,
+      "elapsed": 212.378989000008,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118431,
+      "elapsed": 212.495655666675,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118551,
+      "elapsed": 212.612322333341,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118670,
+      "elapsed": 212.728989000008,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118782,
+      "elapsed": 212.845655666675,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093118897,
+      "elapsed": 212.962322333342,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119016,
+      "elapsed": 213.078989000008,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119128,
+      "elapsed": 213.195655666675,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119248,
+      "elapsed": 213.312322333342,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119365,
+      "elapsed": 213.428989000009,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119482,
+      "elapsed": 213.545655666676,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119599,
+      "elapsed": 213.662322333342,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119713,
+      "elapsed": 213.778989000009,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119831,
+      "elapsed": 213.895655666676,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093119947,
+      "elapsed": 214.012322333343,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120063,
+      "elapsed": 214.128989000009,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120182,
+      "elapsed": 214.245655666676,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120295,
+      "elapsed": 214.362322333343,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120413,
+      "elapsed": 214.47898900001,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120530,
+      "elapsed": 214.595655666676,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120644,
+      "elapsed": 214.712322333343,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120762,
+      "elapsed": 214.82898900001,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120880,
+      "elapsed": 214.945655666677,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093120999,
+      "elapsed": 215.062322333343,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121114,
+      "elapsed": 215.17898900001,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121231,
+      "elapsed": 215.295655666677,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121348,
+      "elapsed": 215.412322333344,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121466,
+      "elapsed": 215.52898900001,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121583,
+      "elapsed": 215.645655666677,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121706,
+      "elapsed": 215.762322333344,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121812,
+      "elapsed": 215.878989000011,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093121931,
+      "elapsed": 215.995655666677,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122044,
+      "elapsed": 216.112322333344,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122167,
+      "elapsed": 216.228989000011,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122279,
+      "elapsed": 216.345655666678,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122402,
+      "elapsed": 216.462322333345,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122515,
+      "elapsed": 216.578989000011,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122631,
+      "elapsed": 216.695655666678,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122745,
+      "elapsed": 216.812322333345,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122867,
+      "elapsed": 216.928989000012,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093122982,
+      "elapsed": 217.045655666678,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123099,
+      "elapsed": 217.162322333345,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123215,
+      "elapsed": 217.278989000012,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123331,
+      "elapsed": 217.395655666679,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123446,
+      "elapsed": 217.512322333345,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123564,
+      "elapsed": 217.628989000012,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123683,
+      "elapsed": 217.745655666679,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123804,
+      "elapsed": 217.862322333346,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093123913,
+      "elapsed": 217.978989000012,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124030,
+      "elapsed": 218.095655666679,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 4,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124149,
+      "elapsed": 218.212322333346,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124265,
+      "elapsed": 218.328989000013,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124384,
+      "elapsed": 218.445655666679,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124495,
+      "elapsed": 218.562322333346,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124614,
+      "elapsed": 218.678989000013,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124727,
+      "elapsed": 218.79565566668,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124850,
+      "elapsed": 218.912322333346,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093124965,
+      "elapsed": 219.028989000013,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125080,
+      "elapsed": 219.14565566668,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125213,
+      "elapsed": 219.262322333347,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125316,
+      "elapsed": 219.378989000013,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125430,
+      "elapsed": 219.49565566668,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125548,
+      "elapsed": 219.612322333347,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125663,
+      "elapsed": 219.728989000014,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125780,
+      "elapsed": 219.845655666681,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093125899,
+      "elapsed": 219.962322333347,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126012,
+      "elapsed": 220.078989000014,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126129,
+      "elapsed": 220.195655666681,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126246,
+      "elapsed": 220.312322333348,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126361,
+      "elapsed": 220.428989000014,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126477,
+      "elapsed": 220.545655666681,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126598,
+      "elapsed": 220.662322333348,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126714,
+      "elapsed": 220.778989000015,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126831,
+      "elapsed": 220.895655666681,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093126951,
+      "elapsed": 221.012322333348,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127063,
+      "elapsed": 221.128989000015,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127181,
+      "elapsed": 221.245655666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 3,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127296,
+      "elapsed": 221.362322333348,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127416,
+      "elapsed": 221.478989000015,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127526,
+      "elapsed": 221.595655666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127648,
+      "elapsed": 221.712322333349,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127763,
+      "elapsed": 221.828989000015,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127880,
+      "elapsed": 221.945655666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093127997,
+      "elapsed": 222.062322333349,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128113,
+      "elapsed": 222.178989000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128230,
+      "elapsed": 222.295655666682,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128348,
+      "elapsed": 222.412322333349,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128464,
+      "elapsed": 222.528989000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128580,
+      "elapsed": 222.645655666683,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128696,
+      "elapsed": 222.76232233335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128815,
+      "elapsed": 222.878989000016,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093128927,
+      "elapsed": 222.995655666683,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129043,
+      "elapsed": 223.11232233335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129165,
+      "elapsed": 223.228989000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129285,
+      "elapsed": 223.345655666683,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129399,
+      "elapsed": 223.46232233335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 2,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129509,
+      "elapsed": 223.578989000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129627,
+      "elapsed": 223.695655666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129746,
+      "elapsed": 223.81232233335,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129864,
+      "elapsed": 223.928989000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093129980,
+      "elapsed": 224.045655666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130092,
+      "elapsed": 224.162322333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130215,
+      "elapsed": 224.278989000017,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130331,
+      "elapsed": 224.395655666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130450,
+      "elapsed": 224.512322333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130563,
+      "elapsed": 224.628989000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130680,
+      "elapsed": 224.745655666684,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 1,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130798,
+      "elapsed": 224.862322333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093130911,
+      "elapsed": 224.978989000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131033,
+      "elapsed": 225.095655666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131145,
+      "elapsed": 225.212322333351,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131259,
+      "elapsed": 225.328989000018,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131376,
+      "elapsed": 225.445655666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131498,
+      "elapsed": 225.562322333352,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131614,
+      "elapsed": 225.678989000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131745,
+      "elapsed": 225.795655666685,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131857,
+      "elapsed": 225.912322333352,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093131961,
+      "elapsed": 226.028989000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132081,
+      "elapsed": 226.145655666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132193,
+      "elapsed": 226.262322333352,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132314,
+      "elapsed": 226.378989000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132428,
+      "elapsed": 226.495655666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132547,
+      "elapsed": 226.612322333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132666,
+      "elapsed": 226.728989000019,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132778,
+      "elapsed": 226.845655666686,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    {
+      "wall": 1795093132910,
+      "elapsed": 226.962322333353,
+      "counts": {
+        "players": 4,
+        "livingNPCs": 8,
+        "raiders": 0,
+        "companions": 4
+      },
+      "playerPose": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    }
+  ],
+  "before": {
+    "backpackOpen": false,
+    "backpackOwner": "",
+    "backpackTarget": false,
+    "bagSlots": 6,
+    "canPutProvision": true,
+    "connected": true,
+    "dayPart": "night",
+    "dog": {
+      "clip": "Lie-down",
+      "clipAt": 204.523588000003,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0,
+      "vx": 0,
+      "vz": 0,
+      "x": 3.60570955276489,
+      "yaw": 12.8862476785297,
+      "z": -87.2620086669922
+    },
+    "dogTarget": false,
+    "elapsed": 205.873894333337,
+    "enterRect": [
+      36,
+      619,
+      85,
+      39
+    ],
+    "equipmentOpen": false,
+    "equipmentTabRect": [
+      80,
+      60,
+      84,
+      39
+    ],
+    "focusReady": true,
+    "foodTarget": "",
+    "fps": 60,
+    "grove": [
+      {
+        "height": 7,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "detail": "LOD1",
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.3,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 205.873894333337,
+    "groveHint": "",
+    "heldStone": "",
+    "inviteRect": [
+      129,
+      619,
+      84,
+      39
+    ],
+    "inviteShown": false,
+    "jugTarget": false,
+    "lanternWarmupMs": 1514,
+    "lineCut": false,
+    "locked": true,
+    "members": 4,
+    "nearby": "",
+    "notice": "",
+    "noticeNo": 0,
+    "panelRect": [
+      20,
+      517,
+      488,
+      183
+    ],
+    "peopleColdByKey": {},
+    "peopleColdCreates": 0,
+    "peopleOpen": false,
+    "peoplePanel": {},
+    "peoplePoolByKey": {
+      "female": 2,
+      "male": 2
+    },
+    "peoplePoolHits": 4,
+    "peopleTarget": "",
+    "peopleWarmupCount": 8,
+    "peopleWarmupMs": 1590.7,
+    "pickupStone": "",
+    "pitch": 0.02045,
+    "players": {
+      "7d3ccbf5287640f6": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 3,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 3.15000009536743,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "d11803605faefed3": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 2,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 0.649999976158142,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "d25c6dc1ffc2700a": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 1.89999997615814,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "f58db40e695d2b4a": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    "previewWarming": false,
+    "previewWarmupBuildMs": 9.6,
+    "previewWarmupDrawMs": 319.8,
+    "provisions": {},
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 3,
+    "resident": 4,
+    "room": "wild-qa-stress",
+    "selfId": "f58db40e695d2b4a",
+    "sheltered": true,
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "shipCameraYaw": 3.14159265358979,
+    "shipPiloting": false,
+    "shipTarget": false,
+    "sourceTarget": "",
+    "status": "已连接 · wild-qa-stress",
+    "stoneAction": "",
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 3,
+        "bread": 0,
+        "club": 1,
+        "herb": 3,
+        "shield": 1,
+        "spear": 1,
+        "water": 3
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 83.8,
+      "mood": 78,
+      "shield": false,
+      "water": 78.2,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "swimming": false,
+    "target": "repair",
+    "terrainError": "",
+    "thirdPerson": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 205.790561000004,
+      "facility": 100,
+      "log": [],
+      "people": {
+        "person-1": {
+          "actionAt": 140,
+          "age": 35,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 65,
+          "careNeed": 5,
+          "careSeconds": 65,
+          "clip": "Guard",
+          "clipAt": 205.757227666671,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 84,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 75.5328232099958,
+          "id": "person-1",
+          "joinedAt": -100,
+          "legL": 0,
+          "legR": 0,
+          "loot": {
+            "club": 1,
+            "shield": 1
+          },
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 47,
+          "name": "禾岚",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 52,
+            "care": 6,
+            "chatAt": -1000,
+            "food": 2,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 1,
+            "trust": 76,
+            "water": 2
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 69.0936177499992,
+          "weapon": "",
+          "workAt": 0,
+          "x": 2.44371199607849,
+          "y": 0,
+          "yaw": 1.62894984570476,
+          "z": -86.4239807128906
+        },
+        "person-2": {
+          "actionAt": 140,
+          "age": 29,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 72.9131546020508,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 204.256921333336,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 118,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 63.5328232099948,
+          "id": "person-2",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "林弦",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 78.0936177499992,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 0.536433219909668,
+          "y": 0,
+          "yaw": 2.10300814498956,
+          "z": -86.0632400512695
+        },
+        "person-3": {
+          "actionAt": 140,
+          "age": 32,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.0541229248047,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 204.273588000003,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 118,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 63.5328232099951,
+          "id": "person-3",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "苇宁",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 78.0936177499992,
+          "weapon": "club",
+          "workAt": 0,
+          "x": -0.168943881988525,
+          "y": 0,
+          "yaw": 3.07894898794098,
+          "z": -84.876091003418
+        },
+        "person-4": {
+          "actionAt": 140,
+          "age": 29,
+          "attackAt": -10,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 105.782028198242,
+          "careNeed": 5,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 204.256921333336,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 118,
+          "help": "守家巡逻中；保留食物和水的生活需求",
+          "hitAt": -10,
+          "hunger": 75.5328232099952,
+          "id": "person-4",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 47,
+          "name": "砾川",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 69.0936177499992,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 0.925902664661407,
+          "y": 0,
+          "yaw": -2.19581981470358,
+          "z": -83.6943054199219
+        }
+      },
+      "publicFood": true,
+      "raid": {
+        "nextAt": 210,
+        "phase": "warning",
+        "startedAt": 0,
+        "warningAt": 140,
+        "wave": 6
+      },
+      "resources": {
+        "fruit": {
+          "progress": 0.418429999999854,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 65.4184299999998,
+          "stock": 5
+        },
+        "water": {
+          "progress": 1.41842999999975,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 540,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 4,
+        "rest": 300,
+        "warning": 30
+      }
+    },
+    "x": 2.53999996185303,
+    "y": 0,
+    "yaw": -2.9008,
+    "z": -87.9499969482422,
+    "zone": "camp"
+  },
+  "after": {
+    "backpackOpen": false,
+    "backpackOwner": "",
+    "backpackTarget": false,
+    "bagSlots": 6,
+    "canPutProvision": true,
+    "connected": true,
+    "dayPart": "night",
+    "dog": {
+      "clip": "Walk",
+      "clipAt": 225.045655666685,
+      "mode": "camp",
+      "owner": "",
+      "speed": 0.819960832595825,
+      "vx": 0.796880662441254,
+      "vz": 0.193176254630089,
+      "x": 2.90068078041077,
+      "yaw": 17.0406989671156,
+      "z": -84.6148452758789
+    },
+    "dogTarget": false,
+    "elapsed": 227.395655666686,
+    "enterRect": [
+      36,
+      619,
+      85,
+      39
+    ],
+    "equipmentOpen": false,
+    "equipmentTabRect": [
+      80,
+      60,
+      84,
+      39
+    ],
+    "focusReady": true,
+    "foodTarget": "",
+    "fps": 59,
+    "grove": [
+      {
+        "height": 7,
+        "id": "camp-sapling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.02,
+        "id": "trail-young",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "detail": "LOD1",
+        "height": 6.16,
+        "id": "trail-mature",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.3,
+        "id": "creek-seedling",
+        "species": "pine",
+        "stage": "mature"
+      },
+      {
+        "height": 6.23,
+        "id": "camp-birch",
+        "species": "birch",
+        "stage": "mature"
+      },
+      {
+        "height": 6.09,
+        "id": "trail-spruce",
+        "species": "spruce",
+        "stage": "mature"
+      },
+      {
+        "height": 6.58,
+        "id": "trail-birch",
+        "species": "birch",
+        "stage": "mature"
+      }
+    ],
+    "groveElapsed": 227.395655666686,
+    "groveHint": "",
+    "heldStone": "",
+    "inviteRect": [
+      129,
+      619,
+      84,
+      39
+    ],
+    "inviteShown": false,
+    "jugTarget": false,
+    "lanternWarmupMs": 1514,
+    "lineCut": false,
+    "locked": true,
+    "members": 4,
+    "nearby": "",
+    "notice": "",
+    "noticeNo": 0,
+    "panelRect": [
+      20,
+      517,
+      488,
+      183
+    ],
+    "peopleColdByKey": {},
+    "peopleColdCreates": 0,
+    "peopleOpen": false,
+    "peoplePanel": {},
+    "peoplePoolByKey": {
+      "female": 2,
+      "female_elite": 2,
+      "male": 2,
+      "male_elite": 2
+    },
+    "peoplePoolHits": 8,
+    "peopleTarget": "person-1",
+    "peopleWarmupCount": 8,
+    "peopleWarmupMs": 1590.7,
+    "pickupStone": "",
+    "pitch": 0.02045,
+    "players": {
+      "7d3ccbf5287640f6": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 62,
+        "shield": false,
+        "slot": 3,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 3.15000009536743,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "d11803605faefed3": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 2,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 0.649999976158142,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "d25c6dc1ffc2700a": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 1,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 1.89999997615814,
+        "y": 0,
+        "yaw": 3.14159265358979,
+        "z": -85
+      },
+      "f58db40e695d2b4a": {
+        "attackAt": -10,
+        "blocking": false,
+        "health": 100,
+        "shield": false,
+        "slot": 4,
+        "swimming": false,
+        "vy": 0,
+        "weapon": "",
+        "worn": {
+          "cap": true,
+          "jacket": true,
+          "pants": true
+        },
+        "x": 2.53999996185303,
+        "y": 0,
+        "yaw": -2.9008,
+        "z": -87.9499969482422
+      }
+    },
+    "previewWarming": false,
+    "previewWarmupBuildMs": 9.6,
+    "previewWarmupDrawMs": 319.8,
+    "provisions": {},
+    "quest": {
+      "repaired": true,
+      "tarp": true,
+      "wood": true
+    },
+    "rain": 0,
+    "ready": true,
+    "remoteAvatars": 3,
+    "resident": 4,
+    "room": "wild-qa-stress",
+    "selfId": "f58db40e695d2b4a",
+    "sheltered": true,
+    "ship": {
+      "canLand": true,
+      "floor": 0,
+      "landed": true,
+      "onWater": false,
+      "pilot": "",
+      "rearThrust": 0,
+      "slipping": false,
+      "surface": "land",
+      "thrust": 0,
+      "tiltX": 0,
+      "tiltZ": 0,
+      "v": [
+        0,
+        0,
+        0
+      ],
+      "x": 1.5,
+      "y": 0,
+      "yaw": 3.14159265358979,
+      "z": -79.4000015258789
+    },
+    "shipCameraYaw": 3.14159265358979,
+    "shipPiloting": false,
+    "shipTarget": false,
+    "sourceTarget": "",
+    "status": "已连接 · wild-qa-stress",
+    "stoneAction": "",
+    "stones": {
+      "camp-flat": {
+        "at": [
+          2.72000002861023,
+          0.0189999993890524,
+          -83.4499969482422
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "camp-round": {
+        "at": [
+          0.379999995231628,
+          0.0379999987781048,
+          -83.8600006103516
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-flat": {
+        "at": [
+          -9.10000038146973,
+          0.0189999993890524,
+          -50.1800003051758
+        ],
+        "edge": 0,
+        "mode": "ground"
+      },
+      "shore-round": {
+        "at": [
+          -9.19999980926514,
+          0.0379999987781048,
+          -47.8499984741211
+        ],
+        "edge": 0,
+        "mode": "ground"
+      }
+    },
+    "survival": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 3,
+        "bread": 0,
+        "club": 1,
+        "herb": 3,
+        "shield": 1,
+        "spear": 1,
+        "water": 3
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 83,
+      "mood": 82.9,
+      "shield": false,
+      "water": 76.8,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "swimming": false,
+    "target": "repair",
+    "terrainError": "",
+    "thirdPerson": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "waterImpacts": [],
+    "wildPeople": {
+      "elapsed": 227.312322333353,
+      "facility": 100,
+      "log": [
+        {
+          "at": 210.00692133334,
+          "id": 1,
+          "text": "第 7 次来袭：4 名成年人，长矛与盾牌"
+        },
+        {
+          "at": 224.778989000018,
+          "id": 2,
+          "text": "这一轮袭击结束，至少 300 秒休整；检查伤员和营地设施"
+        }
+      ],
+      "people": {
+        "person-1": {
+          "actionAt": 140,
+          "age": 35,
+          "attackAt": 222.828989000016,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 65,
+          "careNeed": 5,
+          "careSeconds": 65,
+          "clip": "Walk",
+          "clipAt": 222.845655666683,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 19,
+          "help": "重伤撤退休养，请带来药草和补给",
+          "hitAt": -10,
+          "hunger": 74.3953481456614,
+          "id": "person-1",
+          "joinedAt": -100,
+          "legL": 0,
+          "legR": 0,
+          "loot": {
+            "club": 1,
+            "shield": 1
+          },
+          "looted": false,
+          "maxHealth": 84,
+          "mood": 47,
+          "name": "禾岚",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 52,
+            "care": 6,
+            "chatAt": -1000,
+            "food": 2,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 1,
+            "trust": 76,
+            "water": 2
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 0,
+          "treatedUntil": 0,
+          "water": 67.4839832250005,
+          "weapon": "",
+          "workAt": 0,
+          "x": 2.99958729743958,
+          "y": 0,
+          "yaw": 0.99970815531111,
+          "z": -85.7369995117188
+        },
+        "person-2": {
+          "actionAt": 140,
+          "age": 29,
+          "attackAt": 223.56232233335,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 72.9131546020508,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Walk",
+          "clipAt": 224.778989000018,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 66,
+          "help": "需要药草治疗；有食物和水时才会逐渐恢复",
+          "hitAt": -10,
+          "hunger": 62.3953481456604,
+          "id": "person-2",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "林弦",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 76.4839832250005,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 2.90523624420166,
+          "y": 0,
+          "yaw": 1.15237307010658,
+          "z": -83.6061172485352
+        },
+        "person-3": {
+          "actionAt": 140,
+          "age": 32,
+          "attackAt": 223.528989000017,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 75.0541229248047,
+          "careNeed": 6,
+          "careSeconds": 0,
+          "clip": "Walk",
+          "clipAt": 224.778989000018,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 66,
+          "help": "需要药草治疗；有食物和水时才会逐渐恢复",
+          "hitAt": -10,
+          "hunger": 62.3953481456607,
+          "id": "person-3",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 48,
+          "name": "苇宁",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 76.4839832250005,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 2.73963928222656,
+          "y": 0,
+          "yaw": 1.34349551404116,
+          "z": -83.197868347168
+        },
+        "person-4": {
+          "actionAt": 140,
+          "age": 29,
+          "attackAt": 224.762322333351,
+          "bornAt": 140,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 105.782028198242,
+          "careNeed": 5,
+          "careSeconds": 0,
+          "clip": "Guard",
+          "clipAt": 227.07898900002,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": false,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 53,
+          "help": "需要药草治疗；有食物和水时才会逐渐恢复",
+          "hitAt": -10,
+          "hunger": 74.3953481456608,
+          "id": "person-4",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 118,
+          "mood": 47,
+          "name": "砾川",
+          "order": "guard",
+          "phase": "companion",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": false,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 0,
+          "stunUntil": 0,
+          "swingAt": 0,
+          "tier": 2,
+          "treatedUntil": 0,
+          "water": 67.4839832250005,
+          "weapon": "club",
+          "workAt": 0,
+          "x": 2.95278596878052,
+          "y": 0,
+          "yaw": 1.22235178223205,
+          "z": -83.3181533813477
+        },
+        "person-5": {
+          "actionAt": 210.00692133334,
+          "age": 28,
+          "attackAt": 218.028989000012,
+          "bornAt": 210.00692133334,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 76.9906768798828,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 218.162322333346,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 147.24,
+          "help": "",
+          "hitAt": 218.162322333346,
+          "hunger": 47.0809207813324,
+          "id": "person-5",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 90.589999999999,
+          "stunUntil": 244.162322333346,
+          "swingAt": 218.688989000012,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.6994162000011,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 3.64968705177307,
+          "y": 0,
+          "yaw": 0.199765740501262,
+          "z": -82.5319976806641
+        },
+        "person-6": {
+          "actionAt": 210.00692133334,
+          "age": 39,
+          "attackAt": 219.412322333347,
+          "bornAt": 210.00692133334,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 78.1599273681641,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 221.328989000015,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 147.24,
+          "help": "",
+          "hitAt": 221.328989000015,
+          "hunger": 47.0809207813324,
+          "id": "person-6",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "叶遥",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 91.4799999999998,
+          "stunUntil": 247.328989000015,
+          "swingAt": 0,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.6994162000011,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 5.49059772491455,
+          "y": 0,
+          "yaw": 1.1886407881363,
+          "z": -84.0592803955078
+        },
+        "person-7": {
+          "actionAt": 210.00692133334,
+          "age": 41,
+          "attackAt": 222.678989000016,
+          "bornAt": 210.00692133334,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 79.7077941894531,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 223.528989000017,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 149.28,
+          "help": "",
+          "hitAt": 223.528989000017,
+          "hunger": 47.0809207813324,
+          "id": "person-7",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "山青",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "male",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 79.7200000000003,
+          "stunUntil": 249.528989000017,
+          "swingAt": 0,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.6994162000011,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 5.49861240386963,
+          "y": 0,
+          "yaw": 1.18970460239114,
+          "z": -84.0589599609375
+        },
+        "person-8": {
+          "actionAt": 210.00692133334,
+          "age": 36,
+          "attackAt": 224.278989000017,
+          "bornAt": 210.00692133334,
+          "captureAt": -10,
+          "capturedAt": 0,
+          "careDuration": 72.4875564575195,
+          "careNeed": 7,
+          "careSeconds": 0,
+          "clip": "Down",
+          "clipAt": 224.762322333351,
+          "deadAt": 0,
+          "disease": 0,
+          "elite": true,
+          "escapeAt": 0,
+          "escapeWarned": false,
+          "health": 144.52,
+          "help": "",
+          "hitAt": 224.762322333351,
+          "hunger": 47.0809207813324,
+          "id": "person-8",
+          "joinedAt": 0,
+          "legL": 0,
+          "legR": 0,
+          "loot": {},
+          "looted": false,
+          "maxHealth": 169,
+          "mood": 44,
+          "name": "苇宁",
+          "order": "guard",
+          "phase": "down",
+          "readyToJoin": false,
+          "relation": {
+            "affection": 0,
+            "care": 0,
+            "chatAt": -1000,
+            "food": 0,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "treatments": 0,
+            "trust": 0,
+            "water": 0
+          },
+          "relationship": "尚未恋爱",
+          "resistance": 65,
+          "sex": "female",
+          "shield": true,
+          "sickProgress": 0,
+          "speedFactor": 1,
+          "stun": 97.9599999999998,
+          "stunUntil": 250.762322333351,
+          "swingAt": 224.938989000017,
+          "tier": 5,
+          "treatedUntil": 0,
+          "water": 40.6994162000011,
+          "weapon": "spear",
+          "workAt": 0,
+          "x": 5.50996255874634,
+          "y": 0,
+          "yaw": 1.19932684547362,
+          "z": -84.0806655883789
+        }
+      },
+      "publicFood": true,
+      "raid": {
+        "nextAt": 579.778989000018,
+        "phase": "rest",
+        "startedAt": 210.00692133334,
+        "warningAt": 140,
+        "wave": 7
+      },
+      "resources": {
+        "fruit": {
+          "progress": 21.8802236666666,
+          "stock": 8
+        },
+        "herbs": {
+          "progress": 86.8802236666654,
+          "stock": 5
+        },
+        "water": {
+          "progress": 6.88022366666635,
+          "stock": 16
+        }
+      },
+      "settings": {
+        "damageScale": 0.25,
+        "firstRaid": 540,
+        "maxCaptives": 6,
+        "maxCompanions": 4,
+        "maxRaiders": 4,
+        "rest": 300,
+        "warning": 30
+      }
+    },
+    "x": 2.53999996185303,
+    "y": 0,
+    "yaw": -2.9008,
+    "z": -87.9499969482422,
+    "zone": "camp"
+  },
+  "sensors": {
+    "poses": [
+      {
+        "time": 65427.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 65692.7,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 65944.2,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 66210.8,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 66477.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 66743.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 67008.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 67259.2,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 67610.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 67860.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 68126.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 68377.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 68627.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 68894.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 69158.8,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 69426.8,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 69676.8,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 69944.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 70210.8,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 70477.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 70727.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 70994,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 71260.7,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 71526,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 71777.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 72043.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 72308.7,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 72560,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 72827.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 73077.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 73344.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 73608.7,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 73859.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 74110.6,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 74375.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 74626.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 74877.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 75144,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 75394,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 75660.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 75925.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 76176.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 76427.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 76677.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 76943.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 77194,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 77444,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 77710.6,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 77975.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 78227.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 78477.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 78742.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 79009.6,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 79277.2,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 79543.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 79810.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 80060.6,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 80310.6,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 80575.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 80827.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 81091.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 81343.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 81608.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 81860,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 82127,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 82393.8,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 82658.6,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 82910.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 83177.2,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 83443.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 83710.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 83975.3,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 84227.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 84477.1,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 84727.2,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 84993.9,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 85258.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 85508.7,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 85760.4,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 86025.5,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      },
+      {
+        "time": 86276.2,
+        "x": 2.53999996185303,
+        "z": -87.9499969482422,
+        "yaw": -2.9008,
+        "pitch": 0.02045,
+        "locked": true,
+        "held": []
+      }
+    ],
+    "inputs": [
+      {
+        "time": 8983.5,
+        "type": "keyup",
+        "code": "KeyW",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 8986.199999809265,
+        "type": "keyup",
+        "code": "KeyA",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 8987.299999713898,
+        "type": "keyup",
+        "code": "KeyS",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 8990.699999809265,
+        "type": "keyup",
+        "code": "KeyD",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 8991.299999713898,
+        "type": "keyup",
+        "code": "Space",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 8992,
+        "type": "keyup",
+        "code": "KeyC",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 8992.699999809265,
+        "type": "keyup",
+        "code": "ShiftLeft",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61327.5,
+        "type": "keyup",
+        "code": "KeyW",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61345.09999990463,
+        "type": "keyup",
+        "code": "KeyA",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61358.7999997139,
+        "type": "keyup",
+        "code": "KeyS",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61376.7999997139,
+        "type": "keyup",
+        "code": "KeyD",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61392,
+        "type": "keyup",
+        "code": "Space",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61401.89999961853,
+        "type": "keyup",
+        "code": "KeyC",
+        "trusted": true,
+        "blocked": false
+      },
+      {
+        "time": 61421.59999990463,
+        "type": "keyup",
+        "code": "ShiftLeft",
+        "trusted": true,
+        "blocked": false
+      }
+    ]
+  },
+  "poseMotion": {
+    "maxPosition": 0,
+    "maxYaw": 0,
+    "maxPitch": 0
+  }
+}

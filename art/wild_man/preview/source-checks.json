@@ -1,0 +1,176 @@
+{
+  "club": {
+    "mesh_count": 1,
+    "source_vertices": 957,
+    "rig_bones": 0,
+    "nla": [],
+    "embedded": [],
+    "glb_sha256": "035569abf2f4239ea43d618e197c5b80145906e987b183040bbd078a273a8255",
+    "blend_sha256": "bd83bbfb5dd306d6f44edbf9dc5a96e9e19dc9756f952fbc88f298e6eddc54bb",
+    "matches_final_packed_images": true
+  },
+  "female": {
+    "mesh_count": 1,
+    "source_vertices": 20215,
+    "rig_bones": 25,
+    "nla": [
+      "Idle-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop"
+    ],
+    "embedded": [
+      [
+        "female",
+        true,
+        [
+          2048,
+          1024
+        ]
+      ]
+    ],
+    "glb_sha256": "85487ca43d4bb2760574df402f5f64131faeb170a9c9ebe359657e8bffcf79b5",
+    "blend_sha256": "5690465a10bb4cc9606f84038700df478b205aa329b414c663ef814160c35da0",
+    "matches_final_packed_images": true
+  },
+  "female_elite": {
+    "mesh_count": 1,
+    "source_vertices": 8971,
+    "rig_bones": 25,
+    "nla": [
+      "Idle-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop"
+    ],
+    "embedded": [
+      [
+        "female",
+        true,
+        [
+          2048,
+          1024
+        ]
+      ],
+      [
+        "elite",
+        true,
+        [
+          1376,
+          768
+        ]
+      ]
+    ],
+    "glb_sha256": "aeef4a4c9db1834c572813ad60c7e54e63da34e3f5478786b95a55dc0548bb92",
+    "blend_sha256": "b0802544c4b72853d9928409b1d249d18ceafa5272ab512cba12bad52ed7876f",
+    "matches_final_packed_images": true
+  },
+  "male": {
+    "mesh_count": 1,
+    "source_vertices": 14642,
+    "rig_bones": 25,
+    "nla": [
+      "Idle-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop"
+    ],
+    "embedded": [
+      [
+        "male",
+        true,
+        [
+          2048,
+          1024
+        ]
+      ]
+    ],
+    "glb_sha256": "ad202146189e0aac91ddcfa14c856874d24e95c4d2c5577afcab1ea17de65d33",
+    "blend_sha256": "b956902fa9ed97df5f9af879b533b73fc8cf76733d5a81f9efefb206509f4e17",
+    "matches_final_packed_images": true
+  },
+  "male_elite": {
+    "mesh_count": 1,
+    "source_vertices": 8859,
+    "rig_bones": 25,
+    "nla": [
+      "Idle-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop"
+    ],
+    "embedded": [
+      [
+        "male",
+        true,
+        [
+          2048,
+          1024
+        ]
+      ],
+      [
+        "elite",
+        true,
+        [
+          1376,
+          768
+        ]
+      ]
+    ],
+    "glb_sha256": "7414ae9b68e424a155c7c70176286f233358bd241fe15ec1b0f889e683f25feb",
+    "blend_sha256": "ce6115dc3a7494c74509dad9902a4b32f9b59b1de4ffd063834b4c5da2b3d0d7",
+    "matches_final_packed_images": true
+  },
+  "shield": {
+    "mesh_count": 1,
+    "source_vertices": 5171,
+    "rig_bones": 0,
+    "nla": [],
+    "embedded": [],
+    "glb_sha256": "a3ea5f065257a0c797b98ed5a0767870647e32d633271a1b6ff16136295eae4d",
+    "blend_sha256": "7541f7f26281c2d1a5399aaa66cb2d53c5581a3378c9bb407de5e29cd5a16f58",
+    "matches_final_packed_images": true
+  },
+  "spear": {
+    "mesh_count": 1,
+    "source_vertices": 1167,
+    "rig_bones": 0,
+    "nla": [],
+    "embedded": [],
+    "glb_sha256": "4013bb821b2257af996e25b159d012315c6b45e0f3204dafd051046d00ca384b",
+    "blend_sha256": "aef005b27909f154be87ad6490cd43fcc3d43e337b95169de7a20e29cd7ca91a",
+    "matches_final_packed_images": true
+  }
+}

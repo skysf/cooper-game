@@ -1,0 +1,290 @@
+{
+  "backpackOwner": "",
+  "dog": {
+    "clip": "Walk",
+    "clipAt": 144.029899888888,
+    "mode": "camp",
+    "owner": "",
+    "speed": 0.819928586483002,
+    "vx": -0.502123832702637,
+    "vz": 0.648193299770355,
+    "x": 1.38767910003662,
+    "yaw": 27.6153075355114,
+    "z": -85.2655944824219
+  },
+  "elapsed": 145.963233222222,
+  "groveStartedAt": 0,
+  "homes": {
+    "b252ac49b0606636": {
+      "x": 1.55076336860657,
+      "y": 0,
+      "yaw": 3.11070834673847,
+      "z": -84.5670547485352
+    },
+    "dfe5834625f9219d": {
+      "x": 1.79999995231628,
+      "y": 0,
+      "yaw": 0,
+      "z": -84.9000015258789
+    }
+  },
+  "lineCut": false,
+  "provisions": {
+    "apple-1": {
+      "at": [
+        2.5,
+        0.790000021457672,
+        -88.8199996948242
+      ],
+      "item": "apple",
+      "surface": "table"
+    },
+    "apple-2": {
+      "at": [
+        2.75,
+        0.790000021457672,
+        -88.8199996948242
+      ],
+      "item": "apple",
+      "surface": "table"
+    },
+    "bread-1": {
+      "at": [
+        2.5,
+        0.790000021457672,
+        -89.1100006103516
+      ],
+      "item": "bread",
+      "surface": "table"
+    },
+    "bread-2": {
+      "at": [
+        2.75,
+        0.790000021457672,
+        -89.1100006103516
+      ],
+      "item": "bread",
+      "surface": "table"
+    }
+  },
+  "quest": {
+    "repaired": true,
+    "tarp": true,
+    "wood": true
+  },
+  "ship": {
+    "x": 1.5,
+    "y": 0,
+    "yaw": 3.14159265358979,
+    "z": -79.4000015258789
+  },
+  "stones": {
+    "camp-flat": {
+      "at": [
+        2.72000002861023,
+        0.0189999993890524,
+        -83.4499969482422
+      ],
+      "edge": 0,
+      "mode": "ground"
+    },
+    "camp-round": {
+      "at": [
+        0.379999995231628,
+        0.0379999987781048,
+        -83.8600006103516
+      ],
+      "edge": 0,
+      "mode": "ground"
+    },
+    "shore-flat": {
+      "at": [
+        -9.10000038146973,
+        0.0189999993890524,
+        -50.1800003051758
+      ],
+      "edge": 0,
+      "mode": "ground"
+    },
+    "shore-round": {
+      "at": [
+        -9.19999980926514,
+        0.0379999987781048,
+        -47.8499984741211
+      ],
+      "edge": 0,
+      "mode": "ground"
+    }
+  },
+  "survival": {
+    "b252ac49b0606636": {
+      "attackAt": 32.0757848888885,
+      "bag": {
+        "apple": 0,
+        "bread": 0,
+        "herb": 0,
+        "water": 0
+      },
+      "blocking": false,
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 91.375,
+      "hunger": 80.4546638041708,
+      "hurtAt": 29.7424515555553,
+      "mood": 58.6249394573377,
+      "shield": false,
+      "water": 72.514556507268,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    },
+    "dfe5834625f9219d": {
+      "attackAt": -10,
+      "bag": {
+        "apple": 0,
+        "bread": 0
+      },
+      "combatMode": "subdue",
+      "downAt": -1,
+      "health": 100,
+      "hunger": 80.454611026393,
+      "mood": 58.6249394573377,
+      "shield": false,
+      "water": 72.5144662294902,
+      "weapon": "",
+      "worn": {
+        "cap": true,
+        "jacket": true,
+        "pants": true
+      }
+    }
+  },
+  "version": 1,
+  "wildPeople": {
+    "facility": 100,
+    "log": [
+      {
+        "at": 12.0114638888891,
+        "id": 1,
+        "text": "林外传来急促脚步，约 8 秒后有人来袭。准备防守或回营！"
+      },
+      {
+        "at": 20.0113895555557,
+        "id": 2,
+        "text": "第 1 次来袭：1 名成年人，徒手"
+      },
+      {
+        "at": 32.0924515555551,
+        "id": 3,
+        "text": "这一轮袭击结束，至少 3600 秒休整；检查伤员和营地设施"
+      },
+      {
+        "at": 34.0257848888884,
+        "id": 4,
+        "text": "岩岚被制服，仍需照料并尊重本人去留"
+      }
+    ],
+    "logId": 4,
+    "nextId": 2,
+    "people": {
+      "person-1": {
+        "actionAt": 20.0113895555557,
+        "age": 41,
+        "attackAt": 31.7924515555552,
+        "bornAt": 20.0113895555557,
+        "captureAt": 34.0257848888884,
+        "capturedAt": 34.0257848888884,
+        "careDuration": 110.901489257812,
+        "careNeed": 5,
+        "careSeconds": 110.901489257812,
+        "clip": "Captive",
+        "clipAt": 42.0424515555546,
+        "deadAt": 0,
+        "disease": 0,
+        "elite": false,
+        "escapeAt": 0,
+        "escapeWarned": false,
+        "health": 84,
+        "help": "正在接受照料；药草需要时间帮助恢复",
+        "hitAt": 32.0757848888885,
+        "hunger": 79.3267233128699,
+        "id": "person-1",
+        "joinedAt": 0,
+        "legL": 0,
+        "legR": 0,
+        "loot": {},
+        "looted": false,
+        "maxHealth": 84,
+        "mood": 57.5524532110977,
+        "name": "岩岚",
+        "order": "guard",
+        "partner": "",
+        "phase": "captive",
+        "relations": {
+          "b252ac49b0606636": {
+            "affection": 0,
+            "care": 8,
+            "chatAt": -1000,
+            "food": 2,
+            "giftAt": -1000,
+            "refusedUntil": 0,
+            "romanceAt": -1000,
+            "treatments": 2,
+            "trust": 62,
+            "water": 2
+          }
+        },
+        "resistance": 0,
+        "romanceOpen": true,
+        "sex": "male",
+        "shield": false,
+        "sickProgress": 0,
+        "stun": 12.2405614666647,
+        "stunUntil": 42.0257848888884,
+        "swingAt": 32.4524515555552,
+        "tier": 0,
+        "treatedUntil": 186.152780888887,
+        "water": 91.6588201833315,
+        "weapon": "",
+        "workAt": 0,
+        "x": 1.50349986553192,
+        "yaw": -0.0308843069412622,
+        "z": -83.0372009277344
+      }
+    },
+    "publicFood": false,
+    "raid": {
+      "nextAt": 3665.09245155556,
+      "phase": "rest",
+      "startedAt": 20.0113895555557,
+      "warningAt": 12.0114638888891,
+      "wave": 1
+    },
+    "resources": {
+      "fruit": {
+        "progress": 15.9056037777776,
+        "stock": 8
+      },
+      "herbs": {
+        "progress": 45.9056037777758,
+        "stock": 4
+      },
+      "water": {
+        "progress": 1.90560377777719,
+        "stock": 16
+      }
+    },
+    "settings": {
+      "damageScale": 0.25,
+      "firstRaid": 20,
+      "maxCompanions": 4,
+      "maxRaiders": 1,
+      "rest": 3600,
+      "warning": 8
+    },
+    "version": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "backup": ".local-rooms/backups/resource-fix-20261119/after-stop",
+  "records": {
+    "pine.json": {
+      "sha256": "a47b83f66bd190d4397b3040445713e712a0bbc308406bd557fe03b968b3b7ca",
+      "elapsed": 232.028718666731,
+      "players": 1,
+      "repaired": true
+    }
+  }
+}

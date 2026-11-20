@@ -1,0 +1,8727 @@
+{
+  "ok": true,
+  "checks": {
+    "walkFromLakeToClifftop": true,
+    "descendedToBay": true,
+    "swamReefDivedAndLanded": true,
+    "campAndIslandInSameRoom": true,
+    "oceanZoneRequests": 0,
+    "fullSpeedFlight": {
+      "from": "above the cliff",
+      "to": [
+        -170.41015625,
+        -55.0061721801758
+      ],
+      "p95Ms": 16.700000000004366,
+      "fps": 60.002400096003804,
+      "maxMs": 16.80000000000291,
+      "zoneRequests": 0
+    }
+  },
+  "errors": [],
+  "poses": [
+    {
+      "phase": "ridge",
+      "x": -15.6999998092651,
+      "z": -70,
+      "y": 0,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -15.6999998092651,
+      "z": -70,
+      "y": 0,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -16.4368877410889,
+      "z": -70.0568618774414,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -16.5380439758301,
+      "z": -70.0646667480469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -16.5380439758301,
+      "z": -70.0646667480469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -16.5380439758301,
+      "z": -70.0646667480469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -17.4379062652588,
+      "z": -70.1692810058594,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -17.4379062652588,
+      "z": -70.1692810058594,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -17.4379062652588,
+      "z": -70.1692810058594,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -18.3852577209473,
+      "z": -70.2793960571289,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -18.3852577209473,
+      "z": -70.2793960571289,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -18.3852577209473,
+      "z": -70.2793960571289,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -19.3388786315918,
+      "z": -70.3902435302734,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -19.3388786315918,
+      "z": -70.3902435302734,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -19.3388786315918,
+      "z": -70.3902435302734,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -20.2922477722168,
+      "z": -70.5010604858398,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -20.2922477722168,
+      "z": -70.5010604858398,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -20.2922477722168,
+      "z": -70.5010604858398,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -21.2458267211914,
+      "z": -70.6119003295898,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -21.2458267211914,
+      "z": -70.6119003295898,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -21.2458267211914,
+      "z": -70.6119003295898,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -22.1994094848633,
+      "z": -70.7227401733398,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -22.1994094848633,
+      "z": -70.7227401733398,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -23.1529922485352,
+      "z": -70.8335800170898,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -23.1529922485352,
+      "z": -70.8335800170898,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -23.1529922485352,
+      "z": -70.8335800170898,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -24.106575012207,
+      "z": -70.9444198608398,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -24.225772857666,
+      "z": -70.9582748413086,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -24.225772857666,
+      "z": -70.9582748413086,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -24.225772857666,
+      "z": -70.9582748413086,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -25.0534267425537,
+      "z": -71.1164245605469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -25.0534267425537,
+      "z": -71.1164245605469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -25.0534267425537,
+      "z": -71.1164245605469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -25.9938411712646,
+      "z": -71.2961120605469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -25.9938411712646,
+      "z": -71.2961120605469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -25.9938411712646,
+      "z": -71.2961120605469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -26.9367046356201,
+      "z": -71.4762878417969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -26.9367046356201,
+      "z": -71.4762878417969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -26.9367046356201,
+      "z": -71.4762878417969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -27.8796367645264,
+      "z": -71.6564636230469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -27.8796367645264,
+      "z": -71.6564636230469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -28.8225688934326,
+      "z": -71.8366394042969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -28.8225688934326,
+      "z": -71.8366394042969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -28.8225688934326,
+      "z": -71.8366394042969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -29.7655010223389,
+      "z": -72.0168151855469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -29.7655010223389,
+      "z": -72.0168151855469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -29.7655010223389,
+      "z": -72.0168151855469,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -30.7084331512451,
+      "z": -72.1969909667969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -30.7084331512451,
+      "z": -72.1969909667969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -30.7084331512451,
+      "z": -72.1969909667969,
+      "y": 0,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -31.6513652801514,
+      "z": -72.3771667480469,
+      "y": 0.000547474913759061,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -31.9381198883057,
+      "z": -72.4319534301758,
+      "y": 0.00149340658152705,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -31.9381198883057,
+      "z": -72.4319534301758,
+      "y": 0.00149340658152705,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -31.9381198883057,
+      "z": -72.4319534301758,
+      "y": 0.00149340658152705,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -32.843936920166,
+      "z": -72.3750457763672,
+      "y": 0.00782313123719198,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -32.843936920166,
+      "z": -72.3750457763672,
+      "y": 0.00782313123719198,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -32.843936920166,
+      "z": -72.3750457763672,
+      "y": 0.00782313123719198,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -33.8021583557129,
+      "z": -72.3128204345703,
+      "y": 0.0196787810740068,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -33.8021583557129,
+      "z": -72.3128204345703,
+      "y": 0.0196787810740068,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -33.8021583557129,
+      "z": -72.3128204345703,
+      "y": 0.0196787810740068,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -34.7601661682129,
+      "z": -72.2505645751953,
+      "y": 0.0329340084744787,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -34.7601661682129,
+      "z": -72.2505645751953,
+      "y": 0.0329340084744787,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -34.7601661682129,
+      "z": -72.2505645751953,
+      "y": 0.0329340084744787,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -35.7181739807129,
+      "z": -72.1883087158203,
+      "y": 0.0439873622108989,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -35.7181739807129,
+      "z": -72.1883087158203,
+      "y": 0.0439873622108989,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -36.6761817932129,
+      "z": -72.1260528564453,
+      "y": 0.0544835678085817,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -36.6761817932129,
+      "z": -72.1260528564453,
+      "y": 0.0544835678085817,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -36.6761817932129,
+      "z": -72.1260528564453,
+      "y": 0.0544835678085817,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -37.6341896057129,
+      "z": -72.0637969970703,
+      "y": 0.0649797739374889,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -37.6341896057129,
+      "z": -72.0637969970703,
+      "y": 0.0649797739374889,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -37.6341896057129,
+      "z": -72.0637969970703,
+      "y": 0.0649797739374889,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -38.5921974182129,
+      "z": -72.0015411376953,
+      "y": 0.0787360057176702,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -38.7718238830566,
+      "z": -71.9898681640625,
+      "y": 0.0823038444639954,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -38.7718238830566,
+      "z": -71.9898681640625,
+      "y": 0.0823038444639954,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -38.7718238830566,
+      "z": -71.9898681640625,
+      "y": 0.0823038444639954,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -39.5686111450195,
+      "z": -71.7136459350586,
+      "y": 0.166745705269646,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -39.5686111450195,
+      "z": -71.7136459350586,
+      "y": 0.166745705269646,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -39.5686111450195,
+      "z": -71.7136459350586,
+      "y": 0.166745705269646,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -40.4726257324219,
+      "z": -71.4002532958984,
+      "y": 0.30552568437027,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -40.4726257324219,
+      "z": -71.4002532958984,
+      "y": 0.30552568437027,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -41.3795852661133,
+      "z": -71.085823059082,
+      "y": 0.444741426281804,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -41.3795852661133,
+      "z": -71.085823059082,
+      "y": 0.444741426281804,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -41.3795852661133,
+      "z": -71.085823059082,
+      "y": 0.444741426281804,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -42.2866287231445,
+      "z": -70.771369934082,
+      "y": 0.583974206670715,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -42.2866287231445,
+      "z": -70.771369934082,
+      "y": 0.583974206670715,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -42.2866287231445,
+      "z": -70.771369934082,
+      "y": 0.583974206670715,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -43.1936721801758,
+      "z": -70.456916809082,
+      "y": 0.723203927245735,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -43.1936721801758,
+      "z": -70.456916809082,
+      "y": 0.723203927245735,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -43.1936721801758,
+      "z": -70.456916809082,
+      "y": 0.723203927245735,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -44.1309051513672,
+      "z": -70.1319961547852,
+      "y": 0.867071411798861,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -44.1309051513672,
+      "z": -70.1319961547852,
+      "y": 0.867071411798861,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -44.1309051513672,
+      "z": -70.1319961547852,
+      "y": 0.867071411798861,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.0085983276367,
+      "z": -69.8277282714844,
+      "y": 1.00247012218727,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.1211585998535,
+      "z": -69.788703918457,
+      "y": 1.02834519589886,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.1211585998535,
+      "z": -69.788703918457,
+      "y": 1.02834519589886,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.1211585998535,
+      "z": -69.788703918457,
+      "y": 1.02834519589886,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.9194793701172,
+      "z": -69.3731689453125,
+      "y": 1.25171270008095,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.9194793701172,
+      "z": -69.3731689453125,
+      "y": 1.25171270008095,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -45.9194793701172,
+      "z": -69.3731689453125,
+      "y": 1.25171270008095,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -46.7710418701172,
+      "z": -68.929931640625,
+      "y": 1.59741352226963,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -46.7710418701172,
+      "z": -68.929931640625,
+      "y": 1.59741352226963,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -46.7710418701172,
+      "z": -68.929931640625,
+      "y": 1.59741352226963,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -47.6226043701172,
+      "z": -68.4866943359375,
+      "y": 1.94310803007188,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -47.6226043701172,
+      "z": -68.4866943359375,
+      "y": 1.94310803007188,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -47.6226043701172,
+      "z": -68.4866943359375,
+      "y": 1.94310803007188,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -48.4741668701172,
+      "z": -68.04345703125,
+      "y": 2.28880139578982,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -48.4741668701172,
+      "z": -68.04345703125,
+      "y": 2.28880139578982,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -48.4741668701172,
+      "z": -68.04345703125,
+      "y": 2.28880139578982,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -49.3257293701172,
+      "z": -67.6002197265625,
+      "y": 2.63450196711236,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -49.3257293701172,
+      "z": -67.6002197265625,
+      "y": 2.63450196711236,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -49.3257293701172,
+      "z": -67.6002197265625,
+      "y": 2.63450196711236,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -50.1772918701172,
+      "z": -67.156982421875,
+      "y": 2.98019473029174,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -50.1772918701172,
+      "z": -67.156982421875,
+      "y": 2.98019473029174,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -51.0288543701172,
+      "z": -66.7137451171875,
+      "y": 3.32638987316138,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -51.0802040100098,
+      "z": -66.6870269775391,
+      "y": 3.34812274560454,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -51.0802040100098,
+      "z": -66.6870269775391,
+      "y": 3.34812274560454,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -51.0802040100098,
+      "z": -66.6870269775391,
+      "y": 3.34812274560454,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -51.8202781677246,
+      "z": -66.1713256835938,
+      "y": 3.71218286547133,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -51.8202781677246,
+      "z": -66.1713256835938,
+      "y": 3.71218286547133,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -52.6077995300293,
+      "z": -65.6222381591797,
+      "y": 4.1304844710928,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -52.6077995300293,
+      "z": -65.6222381591797,
+      "y": 4.1304844710928,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -52.6077995300293,
+      "z": -65.6222381591797,
+      "y": 4.1304844710928,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -53.3952751159668,
+      "z": -65.0731658935547,
+      "y": 4.54876980624994,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -53.3952751159668,
+      "z": -65.0731658935547,
+      "y": 4.54876980624994,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -53.3952751159668,
+      "z": -65.0731658935547,
+      "y": 4.54876980624994,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -54.1827507019043,
+      "z": -64.5240936279297,
+      "y": 4.96704853239535,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -54.1827507019043,
+      "z": -64.5240936279297,
+      "y": 4.96704853239535,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -54.9702262878418,
+      "z": -63.9750213623047,
+      "y": 5.38532580346667,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -54.9702262878418,
+      "z": -63.9750213623047,
+      "y": 5.38532580346667,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -54.9702262878418,
+      "z": -63.9750213623047,
+      "y": 5.38532580346667,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -55.7577018737793,
+      "z": -63.4259376525879,
+      "y": 5.80361275346191,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -55.7577018737793,
+      "z": -63.4259376525879,
+      "y": 5.80361275346191,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -55.7577018737793,
+      "z": -63.4259376525879,
+      "y": 5.80361275346191,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -56.5451774597168,
+      "z": -62.8768653869629,
+      "y": 6.22361430660724,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -56.8645057678223,
+      "z": -62.6542129516602,
+      "y": 6.40345733943628,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -56.8645057678223,
+      "z": -62.6542129516602,
+      "y": 6.40345733943628,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -56.8645057678223,
+      "z": -62.6542129516602,
+      "y": 6.40345733943628,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -57.4818534851074,
+      "z": -62.0420379638672,
+      "y": 6.82285486326795,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -57.4818534851074,
+      "z": -62.0420379638672,
+      "y": 6.82285486326795,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -58.1600952148438,
+      "z": -61.361442565918,
+      "y": 7.2828758842308,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -58.1600952148438,
+      "z": -61.361442565918,
+      "y": 7.2828758842308,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -58.1600952148438,
+      "z": -61.361442565918,
+      "y": 7.2828758842308,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -58.8376617431641,
+      "z": -60.6813163757324,
+      "y": 7.74250852153525,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -58.8376617431641,
+      "z": -60.6813163757324,
+      "y": 7.74250852153525,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -58.8376617431641,
+      "z": -60.6813163757324,
+      "y": 7.74250852153525,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -59.5152130126953,
+      "z": -60.0012016296387,
+      "y": 8.20213631721854,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -59.5152130126953,
+      "z": -60.0012016296387,
+      "y": 8.20213631721854,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -59.5152130126953,
+      "z": -60.0012016296387,
+      "y": 8.20213631721854,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -60.1927642822266,
+      "z": -59.3210868835449,
+      "y": 8.66175854948801,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -60.1927642822266,
+      "z": -59.3210868835449,
+      "y": 8.66175854948801,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -60.1927642822266,
+      "z": -59.3210868835449,
+      "y": 8.66175854948801,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -60.8703155517578,
+      "z": -58.6409721374512,
+      "y": 9.12609057748501,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -60.8703155517578,
+      "z": -58.6409721374512,
+      "y": 9.12609057748501,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -61.5478668212891,
+      "z": -57.9608573913574,
+      "y": 9.61186558683732,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -61.6720008850098,
+      "z": -57.836254119873,
+      "y": 9.71060145024122,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -61.6720008850098,
+      "z": -57.836254119873,
+      "y": 9.71060145024122,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -61.6720008850098,
+      "z": -57.836254119873,
+      "y": 9.71060145024122,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -62.4164009094238,
+      "z": -57.3234672546387,
+      "y": 10.2272616754292,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -62.4164009094238,
+      "z": -57.3234672546387,
+      "y": 10.2272616754292,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -62.4164009094238,
+      "z": -57.3234672546387,
+      "y": 10.2272616754292,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -63.2075004577637,
+      "z": -56.7794418334961,
+      "y": 10.7760427931355,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -63.2075004577637,
+      "z": -56.7794418334961,
+      "y": 10.7760427931355,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -63.2075004577637,
+      "z": -56.7794418334961,
+      "y": 10.7760427931355,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -63.9985160827637,
+      "z": -56.2354965209961,
+      "y": 11.324751912757,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -63.9985160827637,
+      "z": -56.2354965209961,
+      "y": 11.324751912757,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -63.9985160827637,
+      "z": -56.2354965209961,
+      "y": 11.324751912757,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -64.7895355224609,
+      "z": -55.6915512084961,
+      "y": 11.873461456449,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -64.7895355224609,
+      "z": -55.6915512084961,
+      "y": 11.873461456449,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -65.5805511474609,
+      "z": -55.1476058959961,
+      "y": 12.4193556828217,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -65.6299896240234,
+      "z": -55.1136093139648,
+      "y": 12.4527135134376,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -65.6299896240234,
+      "z": -55.1136093139648,
+      "y": 12.4527135134376,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -65.6299896240234,
+      "z": -55.1136093139648,
+      "y": 12.4527135134376,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -66.4980316162109,
+      "z": -54.7036972045898,
+      "y": 13.0423552326021,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -66.4980316162109,
+      "z": -54.7036972045898,
+      "y": 13.0423552326021,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -66.4980316162109,
+      "z": -54.7036972045898,
+      "y": 13.0423552326021,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -67.3660736083984,
+      "z": -54.2937850952148,
+      "y": 13.6708360679073,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -67.3660736083984,
+      "z": -54.2937850952148,
+      "y": 13.6708360679073,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -67.3660736083984,
+      "z": -54.2937850952148,
+      "y": 13.6708360679073,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -68.2341156005859,
+      "z": -53.8838729858398,
+      "y": 14.2943973211804,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -68.2341156005859,
+      "z": -53.8838729858398,
+      "y": 14.2943973211804,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -68.2341156005859,
+      "z": -53.8838729858398,
+      "y": 14.2943973211804,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -69.1021575927734,
+      "z": -53.4739608764648,
+      "y": 14.9093834174529,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -69.4134521484375,
+      "z": -53.3269577026367,
+      "y": 15.1068817731436,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -69.4134521484375,
+      "z": -53.3269577026367,
+      "y": 15.1068817731436,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -69.4134521484375,
+      "z": -53.3269577026367,
+      "y": 15.1068817731436,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -70.2155075073242,
+      "z": -52.9015731811523,
+      "y": 15.5738454997772,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -70.2155075073242,
+      "z": -52.9015731811523,
+      "y": 15.5738454997772,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -70.2155075073242,
+      "z": -52.9015731811523,
+      "y": 15.5738454997772,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -71.0700531005859,
+      "z": -52.4474983215332,
+      "y": 16.0155777674264,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -71.0700531005859,
+      "z": -52.4474983215332,
+      "y": 16.0155777674264,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -71.0700531005859,
+      "z": -52.4474983215332,
+      "y": 16.0155777674264,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "ridge",
+      "x": -71.9180145263672,
+      "z": -51.9969024658203,
+      "y": 16.4539098549166,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -72.2359390258789,
+      "z": -51.8279571533203,
+      "y": 16.5345850934391,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -72.2359390258789,
+      "z": -51.8279571533203,
+      "y": 16.5345850934391,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -72.2359390258789,
+      "z": -51.8279571533203,
+      "y": 16.5345850934391,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.4910278320312,
+      "z": -52.2283706665039,
+      "y": 16.2322893674349,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.4910278320312,
+      "z": -52.2283706665039,
+      "y": 16.2322893674349,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.4910278320312,
+      "z": -52.2283706665039,
+      "y": 16.2322893674349,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.6491394042969,
+      "z": -52.6809234619141,
+      "y": 15.7958598277082,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.6491394042969,
+      "z": -52.6809234619141,
+      "y": 15.7958598277082,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -69.8048553466797,
+      "z": -53.1347503662109,
+      "y": 15.3582962231482,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -69.7520294189453,
+      "z": -53.163143157959,
+      "y": 15.3309234648386,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -69.7520294189453,
+      "z": -53.163143157959,
+      "y": 15.3309234648386,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -69.7520294189453,
+      "z": -53.163143157959,
+      "y": 15.3309234648386,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.0739517211914,
+      "z": -52.3828086853027,
+      "y": 15.629329738449,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.0739517211914,
+      "z": -52.3828086853027,
+      "y": 15.629329738449,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.0739517211914,
+      "z": -52.3828086853027,
+      "y": 15.629329738449,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.4385147094727,
+      "z": -51.4990577697754,
+      "y": 15.8727429664216,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.4385147094727,
+      "z": -51.4990577697754,
+      "y": 15.8727429664216,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.4385147094727,
+      "z": -51.4990577697754,
+      "y": 15.8727429664216,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.8045654296875,
+      "z": -50.6117057800293,
+      "y": 15.7656530437323,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.8045654296875,
+      "z": -50.6117057800293,
+      "y": 15.7656530437323,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -70.8045654296875,
+      "z": -50.6117057800293,
+      "y": 15.7656530437323,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.170654296875,
+      "z": -49.7242546081543,
+      "y": 15.6042604903567,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.170654296875,
+      "z": -49.7242546081543,
+      "y": 15.6042604903567,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.5367431640625,
+      "z": -48.8368034362793,
+      "y": 15.6222601122145,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.5367431640625,
+      "z": -48.8368034362793,
+      "y": 15.6222601122145,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.5367431640625,
+      "z": -48.8368034362793,
+      "y": 15.6222601122145,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.90283203125,
+      "z": -47.9493522644043,
+      "y": 15.6961102715408,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.9690017700195,
+      "z": -47.7889137268066,
+      "y": 15.7084959003241,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.9690017700195,
+      "z": -47.7889137268066,
+      "y": 15.7084959003241,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -71.9690017700195,
+      "z": -47.7889137268066,
+      "y": 15.7084959003241,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -72.4860687255859,
+      "z": -47.1141052246094,
+      "y": 15.5507810998735,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -72.4860687255859,
+      "z": -47.1141052246094,
+      "y": 15.5507810998735,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -72.4860687255859,
+      "z": -47.1141052246094,
+      "y": 15.5507810998735,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -73.0690078735352,
+      "z": -46.3562545776367,
+      "y": 15.3581500741013,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -73.0690078735352,
+      "z": -46.3562545776367,
+      "y": 15.3581500741013,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -73.0690078735352,
+      "z": -46.3562545776367,
+      "y": 15.3581500741013,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -73.6542816162109,
+      "z": -45.5954742431641,
+      "y": 15.1647684461823,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -73.6542816162109,
+      "z": -45.5954742431641,
+      "y": 15.1647684461823,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -73.6542816162109,
+      "z": -45.5954742431641,
+      "y": 15.1647684461823,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -74.2396087646484,
+      "z": -44.8346099853516,
+      "y": 14.9713684832429,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -74.2396087646484,
+      "z": -44.8346099853516,
+      "y": 14.9713684832429,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -74.8249359130859,
+      "z": -44.0737457275391,
+      "y": 14.7779661338868,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -74.8249359130859,
+      "z": -44.0737457275391,
+      "y": 14.7779661338868,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -74.8249359130859,
+      "z": -44.0737457275391,
+      "y": 14.7779661338868,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -75.4102630615234,
+      "z": -43.3128814697266,
+      "y": 14.584562214779,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -75.4102630615234,
+      "z": -43.3128814697266,
+      "y": 14.584562214779,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -75.4102630615234,
+      "z": -43.3128814697266,
+      "y": 14.584562214779,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -75.9955902099609,
+      "z": -42.5520172119141,
+      "y": 14.371065097466,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -76.105339050293,
+      "z": -42.4093551635742,
+      "y": 14.3241767633191,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -76.105339050293,
+      "z": -42.4093551635742,
+      "y": 14.3241767633191,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -76.105339050293,
+      "z": -42.4093551635742,
+      "y": 14.3241767633191,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -76.914176940918,
+      "z": -41.892204284668,
+      "y": 14.0368328169307,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -76.914176940918,
+      "z": -41.892204284668,
+      "y": 14.0368328169307,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -76.914176940918,
+      "z": -41.892204284668,
+      "y": 14.0368328169307,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -77.723014831543,
+      "z": -41.3750534057617,
+      "y": 13.721232318434,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -77.723014831543,
+      "z": -41.3750534057617,
+      "y": 13.721232318434,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -78.531852722168,
+      "z": -40.8579025268555,
+      "y": 13.4056396213632,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -78.531852722168,
+      "z": -40.8579025268555,
+      "y": 13.4056396213632,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -78.531852722168,
+      "z": -40.8579025268555,
+      "y": 13.4056396213632,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -79.340690612793,
+      "z": -40.3407516479492,
+      "y": 13.0900383040409,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -79.340690612793,
+      "z": -40.3407516479492,
+      "y": 13.0900383040409,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -79.340690612793,
+      "z": -40.3407516479492,
+      "y": 13.0900383040409,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -80.149528503418,
+      "z": -39.823600769043,
+      "y": 12.7744372727379,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -80.149528503418,
+      "z": -39.823600769043,
+      "y": 12.7744372727379,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -80.149528503418,
+      "z": -39.823600769043,
+      "y": 12.7744372727379,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -80.958366394043,
+      "z": -39.3064498901367,
+      "y": 12.4588444480202,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -81.2451095581055,
+      "z": -39.1231117248535,
+      "y": 12.3324947673984,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -81.2451095581055,
+      "z": -39.1231117248535,
+      "y": 12.3324947673984,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -81.2451095581055,
+      "z": -39.1231117248535,
+      "y": 12.3324947673984,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -82.1551971435547,
+      "z": -38.9878311157227,
+      "y": 11.8994299496771,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -82.1551971435547,
+      "z": -38.9878311157227,
+      "y": 11.8994299496771,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -82.1551971435547,
+      "z": -38.9878311157227,
+      "y": 11.8994299496771,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -83.1039199829102,
+      "z": -38.8549575805664,
+      "y": 11.3967261961634,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -83.1039199829102,
+      "z": -38.8549575805664,
+      "y": 11.3967261961634,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -83.1039199829102,
+      "z": -38.8549575805664,
+      "y": 11.3967261961634,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.0546798706055,
+      "z": -38.7220230102539,
+      "y": 10.8929554950712,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.0546798706055,
+      "z": -38.7220230102539,
+      "y": 10.8929554950712,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.005485534668,
+      "z": -38.5890884399414,
+      "y": 10.3891402297297,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.005485534668,
+      "z": -38.5890884399414,
+      "y": 10.3891402297297,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.005485534668,
+      "z": -38.5890884399414,
+      "y": 10.3891402297297,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.9562911987305,
+      "z": -38.4561538696289,
+      "y": 9.88533808153018,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.9562911987305,
+      "z": -38.4561538696289,
+      "y": 9.88533808153018,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.9562911987305,
+      "z": -38.4561538696289,
+      "y": 9.88533808153018,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -86.907096862793,
+      "z": -38.3232192993164,
+      "y": 9.4737546865173,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.1406936645508,
+      "z": -38.2905654907227,
+      "y": 9.38885919171783,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.1406936645508,
+      "z": -38.2905654907227,
+      "y": 9.38885919171783,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.1406936645508,
+      "z": -38.2905654907227,
+      "y": 9.38885919171783,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.7745590209961,
+      "z": -38.9365997314453,
+      "y": 8.98134157473673,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.7745590209961,
+      "z": -38.9365997314453,
+      "y": 8.98134157473673,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.7745590209961,
+      "z": -38.9365997314453,
+      "y": 8.98134157473673,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.4428024291992,
+      "z": -39.622428894043,
+      "y": 8.52520632404956,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.4428024291992,
+      "z": -39.622428894043,
+      "y": 8.52520632404956,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.4428024291992,
+      "z": -39.622428894043,
+      "y": 8.52520632404956,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.1126861572266,
+      "z": -40.3100624084473,
+      "y": 8.06791515046534,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.1126861572266,
+      "z": -40.3100624084473,
+      "y": 8.06791515046534,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.1126861572266,
+      "z": -40.3100624084473,
+      "y": 8.06791515046534,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.7826080322266,
+      "z": -40.997745513916,
+      "y": 7.61060721611504,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.7826080322266,
+      "z": -40.997745513916,
+      "y": 7.61060721611504,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.4525299072266,
+      "z": -41.6854286193848,
+      "y": 7.22682277263263,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.4525299072266,
+      "z": -41.6854286193848,
+      "y": 7.22682196437214,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.4525299072266,
+      "z": -41.6854286193848,
+      "y": 7.22682196437214,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.4525299072266,
+      "z": -41.6854286193848,
+      "y": 7.22682196437214,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.2772064208984,
+      "z": -42.5723876953125,
+      "y": 6.7922664565749,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.2772064208984,
+      "z": -42.5723876953125,
+      "y": 6.7922664565749,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.2772064208984,
+      "z": -42.5723876953125,
+      "y": 6.7922664565749,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.0918197631836,
+      "z": -43.5102233886719,
+      "y": 6.32111692084528,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.0918197631836,
+      "z": -43.5102233886719,
+      "y": 6.32111692084528,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -90.0918197631836,
+      "z": -43.5102233886719,
+      "y": 6.32111692084528,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.9056701660156,
+      "z": -44.4518890380859,
+      "y": 5.84792148477377,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.9056701660156,
+      "z": -44.4518890380859,
+      "y": 5.84792148477377,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.7195129394531,
+      "z": -45.3936614990234,
+      "y": 5.37466530942361,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.6962585449219,
+      "z": -45.5113754272461,
+      "y": 5.31466276095307,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.6962585449219,
+      "z": -45.5113754272461,
+      "y": 5.31466276095307,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -89.6962585449219,
+      "z": -45.5113754272461,
+      "y": 5.31466276095307,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.9972076416016,
+      "z": -45.7648887634277,
+      "y": 5.00301247912167,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.9972076416016,
+      "z": -45.7648887634277,
+      "y": 5.00301247912167,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.0839920043945,
+      "z": -46.0960502624512,
+      "y": 4.27321646044574,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -88.0839920043945,
+      "z": -46.0960502624512,
+      "y": 4.27321646044574,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.1562652587891,
+      "z": -46.4324798583984,
+      "y": 3.75900176027858,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.1562652587891,
+      "z": -46.4324798583984,
+      "y": 3.75900176027858,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.1562652587891,
+      "z": -46.4324798583984,
+      "y": 3.75900176027858,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -86.2889709472656,
+      "z": -46.746997833252,
+      "y": 3.24653749321128,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.9233703613281,
+      "z": -46.8795738220215,
+      "y": 3.07079452865177,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.9233703613281,
+      "z": -46.8795738220215,
+      "y": 3.07079452865177,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.3469009399414,
+      "z": -47.3340835571289,
+      "y": 2.71512505532096,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.3469009399414,
+      "z": -47.3340835571289,
+      "y": 2.71512505532096,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.3469009399414,
+      "z": -47.3340835571289,
+      "y": 2.71512505532096,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.6006774902344,
+      "z": -47.9257202148438,
+      "y": 2.2610847267508,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.284065246582,
+      "z": -48.1767539978027,
+      "y": 2.0946322909573,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.284065246582,
+      "z": -48.1767539978027,
+      "y": 2.0946322909573,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.284065246582,
+      "z": -48.1767539978027,
+      "y": 2.0946322909573,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.4266357421875,
+      "z": -49.1336975097656,
+      "y": 1.55948713877847,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.4266357421875,
+      "z": -49.1336975097656,
+      "y": 1.55948713877847,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.4266357421875,
+      "z": -49.1336975097656,
+      "y": 1.55948713877847,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.5808486938477,
+      "z": -50.0814170837402,
+      "y": 0.974694189222507,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.5808486938477,
+      "z": -50.0814170837402,
+      "y": 0.974694189222507,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.5808486938477,
+      "z": -50.0814170837402,
+      "y": 0.974694189222507,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.7353897094727,
+      "z": -51.028865814209,
+      "y": 0.514120668069602,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.7913055419922,
+      "z": -51.3717460632324,
+      "y": 0.409148668275433,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.7913055419922,
+      "z": -51.3717460632324,
+      "y": 0.409148668275433,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -84.7913055419922,
+      "z": -51.3717460632324,
+      "y": 0.409148668275433,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.5938415527344,
+      "z": -51.6636505126953,
+      "y": 0.215235025342545,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.5938415527344,
+      "z": -51.6636505126953,
+      "y": 0.215235025342545,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -85.5938415527344,
+      "z": -51.6636505126953,
+      "y": 0.215235025342545,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -86.4927520751953,
+      "z": -51.9781761169434,
+      "y": -0.0196724200392315,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -86.4927520751953,
+      "z": -51.9781761169434,
+      "y": -0.0196724200392315,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -86.4927520751953,
+      "z": -51.9781761169434,
+      "y": -0.0196724200392315,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "descend",
+      "x": -87.398811340332,
+      "z": -52.2948875427246,
+      "y": -0.255051647179098,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -87.681999206543,
+      "z": -52.3938751220703,
+      "y": -0.321014307157384,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -87.681999206543,
+      "z": -52.3938751220703,
+      "y": -0.321014307157384,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -87.681999206543,
+      "z": -52.3938751220703,
+      "y": -0.321014307157384,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -88.5263595581055,
+      "z": -52.4291229248047,
+      "y": -0.330145227570029,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -88.5263595581055,
+      "z": -52.4291229248047,
+      "y": -0.330145227570029,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -88.5263595581055,
+      "z": -52.4291229248047,
+      "y": -0.330145227570029,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -89.48046875,
+      "z": -52.4689521789551,
+      "y": -0.355038982851984,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -89.48046875,
+      "z": -52.4689521789551,
+      "y": -0.355038982851984,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -90.4393539428711,
+      "z": -52.5089874267578,
+      "y": -0.446672484351618,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -90.4393539428711,
+      "z": -52.5089874267578,
+      "y": -0.446672484351618,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -90.4393539428711,
+      "z": -52.5089874267578,
+      "y": -0.446672484351618,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -91.3985214233398,
+      "z": -52.5490264892578,
+      "y": -0.604245543997391,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -91.3985214233398,
+      "z": -52.5490264892578,
+      "y": -0.604245543997391,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -91.3985214233398,
+      "z": -52.5490264892578,
+      "y": -0.604245543997391,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -92.0654373168945,
+      "z": -52.5768661499023,
+      "y": -0.195000018403832,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -92.0654373168945,
+      "z": -52.5768661499023,
+      "y": -0.195000018403832,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -92.664924621582,
+      "z": -52.6018905639648,
+      "y": -0.195000000518022,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -92.664924621582,
+      "z": -52.6018905639648,
+      "y": -0.195000000518022,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -92.664924621582,
+      "z": -52.6018905639648,
+      "y": -0.195000000518022,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -93.2644119262695,
+      "z": -52.6269149780273,
+      "y": -0.195000000014581,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -93.2644119262695,
+      "z": -52.6269149780273,
+      "y": -0.195000000014581,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -93.2644119262695,
+      "z": -52.6269149780273,
+      "y": -0.195000000014581,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -93.863899230957,
+      "z": -52.6519393920898,
+      "y": -0.19500000000041,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -93.863899230957,
+      "z": -52.6519393920898,
+      "y": -0.19500000000041,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -93.863899230957,
+      "z": -52.6519393920898,
+      "y": -0.19500000000041,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -94.4633865356445,
+      "z": -52.6769638061523,
+      "y": -0.195000000000012,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -94.4633865356445,
+      "z": -52.6769638061523,
+      "y": -0.195000000000012,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -95.062873840332,
+      "z": -52.7019882202148,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -95.062873840332,
+      "z": -52.7019882202148,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -95.062873840332,
+      "z": -52.7019882202148,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -95.6623611450195,
+      "z": -52.7270126342773,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -95.6623611450195,
+      "z": -52.7270126342773,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -95.6623611450195,
+      "z": -52.7270126342773,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -96.261848449707,
+      "z": -52.7520370483398,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -96.261848449707,
+      "z": -52.7520370483398,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -96.261848449707,
+      "z": -52.7520370483398,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -96.8613357543945,
+      "z": -52.7770614624023,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -96.8613357543945,
+      "z": -52.7770614624023,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -96.8613357543945,
+      "z": -52.7770614624023,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -97.4807968139648,
+      "z": -52.8029174804688,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -97.4807968139648,
+      "z": -52.8029174804688,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -98.0608901977539,
+      "z": -52.8271331787109,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -98.0608901977539,
+      "z": -52.8271331787109,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -98.0608901977539,
+      "z": -52.8271331787109,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -98.6598205566406,
+      "z": -52.8521423339844,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -98.6598205566406,
+      "z": -52.8521423339844,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -99.2106475830078,
+      "z": -52.8751335144043,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -99.2106475830078,
+      "z": -52.8751335144043,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -99.2106475830078,
+      "z": -52.8751335144043,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -99.8209991455078,
+      "z": -52.9006004333496,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -99.8209991455078,
+      "z": -52.9006004333496,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -100.420791625977,
+      "z": -52.9256362915039,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -100.420791625977,
+      "z": -52.9256362915039,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -100.420791625977,
+      "z": -52.9256362915039,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -101.020278930664,
+      "z": -52.9506607055664,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -101.020278930664,
+      "z": -52.9506607055664,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -101.020278930664,
+      "z": -52.9506607055664,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -101.619766235352,
+      "z": -52.9756851196289,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -101.619766235352,
+      "z": -52.9756851196289,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -102.219253540039,
+      "z": -53.0007095336914,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -102.219253540039,
+      "z": -53.0007095336914,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -102.219253540039,
+      "z": -53.0007095336914,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -102.818740844727,
+      "z": -53.0257339477539,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -102.818740844727,
+      "z": -53.0257339477539,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -102.818740844727,
+      "z": -53.0257339477539,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -103.418228149414,
+      "z": -53.0507583618164,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -103.418228149414,
+      "z": -53.0507583618164,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -103.418228149414,
+      "z": -53.0507583618164,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -104.017715454102,
+      "z": -53.0757827758789,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -104.017715454102,
+      "z": -53.0757827758789,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -104.617202758789,
+      "z": -53.1008071899414,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -104.617202758789,
+      "z": -53.1008071899414,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -104.617202758789,
+      "z": -53.1008071899414,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -105.216690063477,
+      "z": -53.1258316040039,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -105.216690063477,
+      "z": -53.1258316040039,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -105.216690063477,
+      "z": -53.1258316040039,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -105.816177368164,
+      "z": -53.1508560180664,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -105.816177368164,
+      "z": -53.1508560180664,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -106.415664672852,
+      "z": -53.1758804321289,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -106.415664672852,
+      "z": -53.1758804321289,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -106.415664672852,
+      "z": -53.1758804321289,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -107.270721435547,
+      "z": -53.2115745544434,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -107.270721435547,
+      "z": -53.2115745544434,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -107.913230895996,
+      "z": -53.238395690918,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -107.913230895996,
+      "z": -53.238395690918,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -107.913230895996,
+      "z": -53.238395690918,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -108.513122558594,
+      "z": -53.2634391784668,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -108.513122558594,
+      "z": -53.2634391784668,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -108.513122558594,
+      "z": -53.2634391784668,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -109.113327026367,
+      "z": -53.2884941101074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -109.113327026367,
+      "z": -53.2884941101074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -109.712852478027,
+      "z": -53.3135185241699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -109.712852478027,
+      "z": -53.3135185241699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -109.712852478027,
+      "z": -53.3135185241699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -110.312339782715,
+      "z": -53.3385429382324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -110.312339782715,
+      "z": -53.3385429382324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -110.312339782715,
+      "z": -53.3385429382324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -110.911827087402,
+      "z": -53.3635673522949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -110.911827087402,
+      "z": -53.3635673522949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -110.911827087402,
+      "z": -53.3635673522949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -111.51131439209,
+      "z": -53.3885917663574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -111.51131439209,
+      "z": -53.3885917663574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -111.51131439209,
+      "z": -53.3885917663574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -112.110801696777,
+      "z": -53.4136161804199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -112.110801696777,
+      "z": -53.4136161804199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -112.110801696777,
+      "z": -53.4136161804199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -112.710289001465,
+      "z": -53.4386405944824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -112.710289001465,
+      "z": -53.4386405944824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -112.710289001465,
+      "z": -53.4386405944824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -113.309776306152,
+      "z": -53.4636650085449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -113.309776306152,
+      "z": -53.4636650085449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -113.309776306152,
+      "z": -53.4636650085449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -113.90926361084,
+      "z": -53.4886894226074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -113.90926361084,
+      "z": -53.4886894226074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -113.90926361084,
+      "z": -53.4886894226074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -114.508750915527,
+      "z": -53.5137138366699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -114.508750915527,
+      "z": -53.5137138366699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -114.508750915527,
+      "z": -53.5137138366699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -115.108238220215,
+      "z": -53.5387382507324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -115.108238220215,
+      "z": -53.5387382507324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -115.707725524902,
+      "z": -53.5637626647949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -115.707725524902,
+      "z": -53.5637626647949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -115.707725524902,
+      "z": -53.5637626647949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -116.30721282959,
+      "z": -53.5887870788574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -116.30721282959,
+      "z": -53.5887870788574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -116.30721282959,
+      "z": -53.5887870788574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -116.906700134277,
+      "z": -53.6138114929199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -116.906700134277,
+      "z": -53.6138114929199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -116.906700134277,
+      "z": -53.6138114929199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -117.506187438965,
+      "z": -53.6388359069824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -117.506187438965,
+      "z": -53.6388359069824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -117.506187438965,
+      "z": -53.6388359069824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -118.105674743652,
+      "z": -53.6638603210449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -118.105674743652,
+      "z": -53.6638603210449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -118.105674743652,
+      "z": -53.6638603210449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -118.70516204834,
+      "z": -53.6888847351074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -118.70516204834,
+      "z": -53.6888847351074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -118.70516204834,
+      "z": -53.6888847351074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -119.304649353027,
+      "z": -53.7139091491699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -119.304649353027,
+      "z": -53.7139091491699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -119.304649353027,
+      "z": -53.7139091491699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -119.904136657715,
+      "z": -53.7389335632324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -119.904136657715,
+      "z": -53.7389335632324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -119.904136657715,
+      "z": -53.7389335632324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -120.503623962402,
+      "z": -53.7639579772949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -120.503623962402,
+      "z": -53.7639579772949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -121.10311126709,
+      "z": -53.7889823913574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -121.10311126709,
+      "z": -53.7889823913574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -121.10311126709,
+      "z": -53.7889823913574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -121.702598571777,
+      "z": -53.8140068054199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -121.702598571777,
+      "z": -53.8140068054199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -121.702598571777,
+      "z": -53.8140068054199,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -122.302085876465,
+      "z": -53.8390312194824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -122.302085876465,
+      "z": -53.8390312194824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -122.302085876465,
+      "z": -53.8390312194824,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -122.901573181152,
+      "z": -53.8640556335449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -122.901573181152,
+      "z": -53.8640556335449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -122.901573181152,
+      "z": -53.8640556335449,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -123.50106048584,
+      "z": -53.8890800476074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -123.50106048584,
+      "z": -53.8890800476074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -123.50106048584,
+      "z": -53.8890800476074,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -124.100547790527,
+      "z": -53.9141044616699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -124.100547790527,
+      "z": -53.9141044616699,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -124.700035095215,
+      "z": -53.9391288757324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -124.700035095215,
+      "z": -53.9391288757324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -124.700035095215,
+      "z": -53.9391288757324,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -125.299522399902,
+      "z": -53.9641532897949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -125.299522399902,
+      "z": -53.9641532897949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -125.299522399902,
+      "z": -53.9641532897949,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -125.89900970459,
+      "z": -53.9891777038574,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -126.041030883789,
+      "z": -53.9951133728027,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -126.041030883789,
+      "z": -53.9951133728027,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -126.041030883789,
+      "z": -53.9951133728027,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -126.578681945801,
+      "z": -53.9867477416992,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -126.578681945801,
+      "z": -53.9867477416992,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -126.578681945801,
+      "z": -53.9867477416992,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -127.173973083496,
+      "z": -53.9770088195801,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -127.173973083496,
+      "z": -53.9770088195801,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -127.173973083496,
+      "z": -53.9770088195801,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -127.773826599121,
+      "z": -53.9671821594238,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -127.773826599121,
+      "z": -53.9671821594238,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -127.773826599121,
+      "z": -53.9671821594238,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -128.373733520508,
+      "z": -53.9573554992676,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -128.373733520508,
+      "z": -53.9573554992676,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -128.373733520508,
+      "z": -53.9573554992676,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -128.973587036133,
+      "z": -53.9475288391113,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -128.973587036133,
+      "z": -53.9475288391113,
+      "y": -0.195,
+      "zone": "beach",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -129.573440551758,
+      "z": -53.9377021789551,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -129.573440551758,
+      "z": -53.9377021789551,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -129.573440551758,
+      "z": -53.9377021789551,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -130.173294067383,
+      "z": -53.9278755187988,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -130.173294067383,
+      "z": -53.9278755187988,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -130.173294067383,
+      "z": -53.9278755187988,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -130.773147583008,
+      "z": -53.9180488586426,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -130.773147583008,
+      "z": -53.9180488586426,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -130.773147583008,
+      "z": -53.9180488586426,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -131.373001098633,
+      "z": -53.9082221984863,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -131.373001098633,
+      "z": -53.9082221984863,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -131.373001098633,
+      "z": -53.9082221984863,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -131.972854614258,
+      "z": -53.8983955383301,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -131.972854614258,
+      "z": -53.8983955383301,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -131.972854614258,
+      "z": -53.8983955383301,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -132.572708129883,
+      "z": -53.8885688781738,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -132.572708129883,
+      "z": -53.8885688781738,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -132.572708129883,
+      "z": -53.8885688781738,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -133.172561645508,
+      "z": -53.8787422180176,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -133.172561645508,
+      "z": -53.8787422180176,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -133.772415161133,
+      "z": -53.8689155578613,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -133.772415161133,
+      "z": -53.8689155578613,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -133.772415161133,
+      "z": -53.8689155578613,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -134.372268676758,
+      "z": -53.8590888977051,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -134.372268676758,
+      "z": -53.8590888977051,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -134.372268676758,
+      "z": -53.8590888977051,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -134.972122192383,
+      "z": -53.8492622375488,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -134.972122192383,
+      "z": -53.8492622375488,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -134.972122192383,
+      "z": -53.8492622375488,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -135.571975708008,
+      "z": -53.8394355773926,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -135.571975708008,
+      "z": -53.8394355773926,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -135.571975708008,
+      "z": -53.8394355773926,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -136.171829223633,
+      "z": -53.8296089172363,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -136.171829223633,
+      "z": -53.8296089172363,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -136.171829223633,
+      "z": -53.8296089172363,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -136.771682739258,
+      "z": -53.8197822570801,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -136.771682739258,
+      "z": -53.8197822570801,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -136.771682739258,
+      "z": -53.8197822570801,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -137.371536254883,
+      "z": -53.8099555969238,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -137.371536254883,
+      "z": -53.8099555969238,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -137.371536254883,
+      "z": -53.8099555969238,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -137.971389770508,
+      "z": -53.8001289367676,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -137.971389770508,
+      "z": -53.8001289367676,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -138.571243286133,
+      "z": -53.7903022766113,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -138.571243286133,
+      "z": -53.7903022766113,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -138.571243286133,
+      "z": -53.7903022766113,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -139.171096801758,
+      "z": -53.7804756164551,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -139.171096801758,
+      "z": -53.7804756164551,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -139.171096801758,
+      "z": -53.7804756164551,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -139.770950317383,
+      "z": -53.7706489562988,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -139.770950317383,
+      "z": -53.7706489562988,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -139.770950317383,
+      "z": -53.7706489562988,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -140.370803833008,
+      "z": -53.7608222961426,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -140.370803833008,
+      "z": -53.7608222961426,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -140.370803833008,
+      "z": -53.7608222961426,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -140.970657348633,
+      "z": -53.7509956359863,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -140.970657348633,
+      "z": -53.7509956359863,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -140.970657348633,
+      "z": -53.7509956359863,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -141.570510864258,
+      "z": -53.7411689758301,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -141.570510864258,
+      "z": -53.7411689758301,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -142.170364379883,
+      "z": -53.7313423156738,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -142.170364379883,
+      "z": -53.7313423156738,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -142.170364379883,
+      "z": -53.7313423156738,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -142.770217895508,
+      "z": -53.7215156555176,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -142.770217895508,
+      "z": -53.7215156555176,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -142.770217895508,
+      "z": -53.7215156555176,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -143.370071411133,
+      "z": -53.7116889953613,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -143.370071411133,
+      "z": -53.7116889953613,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -143.370071411133,
+      "z": -53.7116889953613,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -143.969924926758,
+      "z": -53.7018623352051,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -144.119857788086,
+      "z": -53.6994171142578,
+      "y": -0.195000187215867,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -144.119857788086,
+      "z": -53.6994171142578,
+      "y": -0.195000187215867,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -144.119857788086,
+      "z": -53.6994171142578,
+      "y": -0.195000187215867,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -144.684295654297,
+      "z": -53.7059516906738,
+      "y": -0.195000005270501,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -144.684295654297,
+      "z": -53.7059516906738,
+      "y": -0.195000005270501,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -144.684295654297,
+      "z": -53.7059516906738,
+      "y": -0.195000005270501,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -145.282150268555,
+      "z": -53.7128944396973,
+      "y": -0.195000000148375,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -145.282150268555,
+      "z": -53.7128944396973,
+      "y": -0.195000000148375,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -145.282150268555,
+      "z": -53.7128944396973,
+      "y": -0.195000000148375,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -145.881958007812,
+      "z": -53.7198524475098,
+      "y": -0.195000000004177,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -145.881958007812,
+      "z": -53.7198524475098,
+      "y": -0.195000000004177,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -146.481811523438,
+      "z": -53.7268104553223,
+      "y": -0.195000000000118,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -146.481811523438,
+      "z": -53.7268104553223,
+      "y": -0.195000000000118,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -146.481811523438,
+      "z": -53.7268104553223,
+      "y": -0.195000000000118,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -147.081665039062,
+      "z": -53.7337684631348,
+      "y": -0.195000000000003,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -147.081665039062,
+      "z": -53.7337684631348,
+      "y": -0.195000000000003,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -147.081665039062,
+      "z": -53.7337684631348,
+      "y": -0.195000000000003,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -147.681518554688,
+      "z": -53.7407264709473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -147.681518554688,
+      "z": -53.7407264709473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -147.681518554688,
+      "z": -53.7407264709473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -148.281372070312,
+      "z": -53.7476844787598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -148.281372070312,
+      "z": -53.7476844787598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -148.281372070312,
+      "z": -53.7476844787598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -148.881225585938,
+      "z": -53.7546424865723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -148.881225585938,
+      "z": -53.7546424865723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -149.481079101562,
+      "z": -53.7616004943848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -149.481079101562,
+      "z": -53.7616004943848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -149.481079101562,
+      "z": -53.7616004943848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -150.080932617188,
+      "z": -53.7685585021973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -150.080932617188,
+      "z": -53.7685585021973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -150.080932617188,
+      "z": -53.7685585021973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -150.680786132812,
+      "z": -53.7755165100098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -150.680786132812,
+      "z": -53.7755165100098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -150.680786132812,
+      "z": -53.7755165100098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -151.311813354492,
+      "z": -53.7828330993652,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -151.311813354492,
+      "z": -53.7828330993652,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -151.311813354492,
+      "z": -53.7828330993652,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -151.881362915039,
+      "z": -53.789436340332,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -151.881362915039,
+      "z": -53.789436340332,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -152.480346679688,
+      "z": -53.7963905334473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -152.480346679688,
+      "z": -53.7963905334473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -152.480346679688,
+      "z": -53.7963905334473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -153.080200195312,
+      "z": -53.8033485412598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -153.080200195312,
+      "z": -53.8033485412598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -153.080200195312,
+      "z": -53.8033485412598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -153.680053710938,
+      "z": -53.8103065490723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -153.680053710938,
+      "z": -53.8103065490723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -153.680053710938,
+      "z": -53.8103065490723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -154.279907226562,
+      "z": -53.8172645568848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -154.279907226562,
+      "z": -53.8172645568848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -154.279907226562,
+      "z": -53.8172645568848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -154.879760742188,
+      "z": -53.8242225646973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -154.879760742188,
+      "z": -53.8242225646973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -155.479614257812,
+      "z": -53.8311805725098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -155.479614257812,
+      "z": -53.8311805725098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -155.479614257812,
+      "z": -53.8311805725098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -156.079467773438,
+      "z": -53.8381385803223,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -156.079467773438,
+      "z": -53.8381385803223,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -156.079467773438,
+      "z": -53.8381385803223,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -156.679321289062,
+      "z": -53.8450965881348,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -156.679321289062,
+      "z": -53.8450965881348,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -156.679321289062,
+      "z": -53.8450965881348,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -157.279174804688,
+      "z": -53.8520545959473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -157.279174804688,
+      "z": -53.8520545959473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -157.279174804688,
+      "z": -53.8520545959473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -157.879028320312,
+      "z": -53.8590126037598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -157.879028320312,
+      "z": -53.8590126037598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -157.879028320312,
+      "z": -53.8590126037598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -158.478881835938,
+      "z": -53.8659706115723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -158.478881835938,
+      "z": -53.8659706115723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -158.478881835938,
+      "z": -53.8659706115723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -159.078735351562,
+      "z": -53.8729286193848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -159.078735351562,
+      "z": -53.8729286193848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -159.678588867188,
+      "z": -53.8798866271973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -159.678588867188,
+      "z": -53.8798866271973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -159.678588867188,
+      "z": -53.8798866271973,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -160.278442382812,
+      "z": -53.8868446350098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -160.278442382812,
+      "z": -53.8868446350098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -160.278442382812,
+      "z": -53.8868446350098,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -160.878295898438,
+      "z": -53.8938026428223,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -160.878295898438,
+      "z": -53.8938026428223,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -160.878295898438,
+      "z": -53.8938026428223,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -161.478149414062,
+      "z": -53.9007606506348,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -161.478149414062,
+      "z": -53.9007606506348,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -161.478149414062,
+      "z": -53.9007606506348,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -162.078002929688,
+      "z": -53.9077186584473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -162.078002929688,
+      "z": -53.9077186584473,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -162.677856445312,
+      "z": -53.9146766662598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -162.677856445312,
+      "z": -53.9146766662598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -162.677856445312,
+      "z": -53.9146766662598,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -163.277709960938,
+      "z": -53.9216346740723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -163.277709960938,
+      "z": -53.9216346740723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -163.277709960938,
+      "z": -53.9216346740723,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -163.877563476562,
+      "z": -53.9285926818848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -163.877563476562,
+      "z": -53.9285926818848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -163.877563476562,
+      "z": -53.9285926818848,
+      "y": -0.195,
+      "zone": "ocean",
+      "swimming": true,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -164.815017700195,
+      "z": -53.9394989013672,
+      "y": -0.408240515207356,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -164.815017700195,
+      "z": -53.9394989013672,
+      "y": -0.408240515207356,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -164.815017700195,
+      "z": -53.9394989013672,
+      "y": -0.408240515207356,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -165.774978637695,
+      "z": -53.9506683349609,
+      "y": -0.360356307955911,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -165.774978637695,
+      "z": -53.9506683349609,
+      "y": -0.360356307955911,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -166.734939575195,
+      "z": -53.9618377685547,
+      "y": -0.211490923478698,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -166.734939575195,
+      "z": -53.9618377685547,
+      "y": -0.211490923478698,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -166.734939575195,
+      "z": -53.9618377685547,
+      "y": -0.211490923478698,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "swim",
+      "x": -167.694900512695,
+      "z": -53.9730072021484,
+      "y": -0.0553356833361729,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.80940246582,
+      "z": -53.9743347167969,
+      "y": -0.0366926934966493,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.80940246582,
+      "z": -53.9743347167969,
+      "y": -0.0366926934966493,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.80940246582,
+      "z": -53.9743347167969,
+      "y": -0.0366926934966493,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.034469604492,
+      "z": -53.5259552001953,
+      "y": -0.18070200501222,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.034469604492,
+      "z": -53.5259552001953,
+      "y": -0.18070200501222,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.034469604492,
+      "z": -53.5259552001953,
+      "y": -0.18070200501222,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -166.20231628418,
+      "z": -53.0476226806641,
+      "y": -0.321043155735188,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -165.949249267578,
+      "z": -52.9021606445312,
+      "y": -0.35240563776298,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -165.949249267578,
+      "z": -52.9021606445312,
+      "y": -0.35240563776298,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -165.949249267578,
+      "z": -52.9021606445312,
+      "y": -0.35240563776298,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -166.873626708984,
+      "z": -53.1320304870605,
+      "y": -0.222806579938421,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -166.873626708984,
+      "z": -53.1320304870605,
+      "y": -0.222806579938421,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -166.873626708984,
+      "z": -53.1320304870605,
+      "y": -0.222806579938421,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.804595947266,
+      "z": -53.3656883239746,
+      "y": -0.0621766431068755,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.804595947266,
+      "z": -53.3656883239746,
+      "y": -0.0621766431068755,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -167.804595947266,
+      "z": -53.3656883239746,
+      "y": -0.0621766431068755,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -168.735748291016,
+      "z": -53.5994529724121,
+      "y": 0.0984876904985587,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -168.735748291016,
+      "z": -53.5994529724121,
+      "y": 0.0984876904985587,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -168.735748291016,
+      "z": -53.5994529724121,
+      "y": 0.0984876904985587,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -169.666900634766,
+      "z": -53.8332176208496,
+      "y": 0.262498176054912,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -169.996978759766,
+      "z": -53.916088104248,
+      "y": 0.326073415424311,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -169.996978759766,
+      "z": -53.916088104248,
+      "y": 0.326073415424311,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -169.996978759766,
+      "z": -53.916088104248,
+      "y": 0.326073415424311,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -170.904708862305,
+      "z": -54.0759658813477,
+      "y": 0.516622845178131,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -170.904708862305,
+      "z": -54.0759658813477,
+      "y": 0.516622845178131,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -170.904708862305,
+      "z": -54.0759658813477,
+      "y": 0.516622845178131,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -171.848251342773,
+      "z": -54.2407608032227,
+      "y": 0.724488002869093,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -171.848251342773,
+      "z": -54.2407608032227,
+      "y": 0.724488002869093,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -171.848251342773,
+      "z": -54.2407608032227,
+      "y": 0.724488002869093,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -172.793731689453,
+      "z": -54.4058570861816,
+      "y": 0.932777245326309,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -172.793731689453,
+      "z": -54.4058570861816,
+      "y": 0.932777245326309,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -172.793731689453,
+      "z": -54.4058570861816,
+      "y": 0.932777245326309,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -173.739288330078,
+      "z": -54.5709571838379,
+      "y": 1.14108232355866,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -173.739288330078,
+      "z": -54.5709571838379,
+      "y": 1.14108232355866,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -174.684844970703,
+      "z": -54.7360572814941,
+      "y": 1.39000143208853,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -174.737487792969,
+      "z": -54.7452659606934,
+      "y": 1.40616337775886,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -174.737487792969,
+      "z": -54.7452659606934,
+      "y": 1.40616337775886,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -174.737487792969,
+      "z": -54.7452659606934,
+      "y": 1.40616337775886,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -175.637908935547,
+      "z": -54.8475074768066,
+      "y": 1.87232319306157,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -175.637908935547,
+      "z": -54.8475074768066,
+      "y": 1.87232319306157,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -175.637908935547,
+      "z": -54.8475074768066,
+      "y": 1.87232319306157,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -176.591903686523,
+      "z": -54.9554443359375,
+      "y": 2.36907667008422,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -176.591903686523,
+      "z": -54.9554443359375,
+      "y": 2.36907667008422,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -176.591903686523,
+      "z": -54.9554443359375,
+      "y": 2.36907667008422,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -177.533447265625,
+      "z": -55.0619697570801,
+      "y": 2.8593479114279,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -177.785980224609,
+      "z": -55.0905342102051,
+      "y": 2.99312362700449,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -177.785980224609,
+      "z": -55.0905342102051,
+      "y": 2.99312362700449,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -177.785980224609,
+      "z": -55.0905342102051,
+      "y": 2.99312362700449,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -178.663330078125,
+      "z": -54.879264831543,
+      "y": 3.39475993845681,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -178.663330078125,
+      "z": -54.879264831543,
+      "y": 3.39475993845681,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -178.663330078125,
+      "z": -54.879264831543,
+      "y": 3.39475993845681,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -179.592727661133,
+      "z": -54.6560707092285,
+      "y": 3.80942765031562,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -179.592727661133,
+      "z": -54.6560707092285,
+      "y": 3.80942765031562,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -179.592727661133,
+      "z": -54.6560707092285,
+      "y": 3.80942765031562,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -180.526000976562,
+      "z": -54.4319763183594,
+      "y": 4.22582958656386,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -180.526000976562,
+      "z": -54.4319763183594,
+      "y": 4.22582958656386,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -180.526000976562,
+      "z": -54.4319763183594,
+      "y": 4.22582958656386,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -181.459350585938,
+      "z": -54.2078552246094,
+      "y": 4.64226819863686,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -181.459350585938,
+      "z": -54.2078552246094,
+      "y": 4.64226819863686,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -182.392700195312,
+      "z": -53.9837341308594,
+      "y": 5.05904930843992,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -182.509368896484,
+      "z": -53.9557189941406,
+      "y": 5.1113834975452,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -182.509368896484,
+      "z": -53.9557189941406,
+      "y": 5.1113834975452,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -182.509368896484,
+      "z": -53.9557189941406,
+      "y": 5.1113834975452,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -183.391937255859,
+      "z": -54.1314430236816,
+      "y": 5.57973807858814,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -183.391937255859,
+      "z": -54.1314430236816,
+      "y": 5.57973807858814,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -184.333343505859,
+      "z": -54.3188819885254,
+      "y": 6.06188221303815,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -184.333343505859,
+      "z": -54.3188819885254,
+      "y": 6.06188221303815,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -184.333343505859,
+      "z": -54.3188819885254,
+      "y": 6.06188221303815,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -185.274749755859,
+      "z": -54.5063209533691,
+      "y": 6.54403122306035,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -185.274749755859,
+      "z": -54.5063209533691,
+      "y": 6.54403122306035,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -186.216156005859,
+      "z": -54.6937599182129,
+      "y": 7.02617292450452,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -186.216156005859,
+      "z": -54.6937599182129,
+      "y": 7.02617292450452,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -186.216156005859,
+      "z": -54.6937599182129,
+      "y": 7.02617292450452,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.157562255859,
+      "z": -54.8811988830566,
+      "y": 7.51007304598088,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.334075927734,
+      "z": -54.9163436889648,
+      "y": 7.6100685293027,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.334075927734,
+      "z": -54.9163436889648,
+      "y": 7.6100685293027,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.334075927734,
+      "z": -54.9163436889648,
+      "y": 7.6100685293027,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.526458740234,
+      "z": -55.744327545166,
+      "y": 7.88515914273237,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.526458740234,
+      "z": -55.744327545166,
+      "y": 7.88515914273237,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.74153137207,
+      "z": -56.6698608398438,
+      "y": 8.1338183472625,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.74153137207,
+      "z": -56.6698608398438,
+      "y": 8.1338183472625,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.74153137207,
+      "z": -56.6698608398438,
+      "y": 8.1338183472625,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.958770751953,
+      "z": -57.6046485900879,
+      "y": 8.3853151053431,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -187.958770751953,
+      "z": -57.6046485900879,
+      "y": 8.3853151053431,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "island",
+      "x": -188.176055908203,
+      "z": -58.5397071838379,
+      "y": 8.58575419445377,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 1.5,
+      "z": -79.4000015258789,
+      "y": 31.2393412517705,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 1.5,
+      "z": -79.4000015258789,
+      "y": 31.2393412517705,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 1.5,
+      "z": -79.4000015258789,
+      "y": 31.2393412517705,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 1.40131092071533,
+      "z": -79.3606796264648,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 1.40131092071533,
+      "z": -79.3606796264648,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 1.40131092071533,
+      "z": -79.3606796264648,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 0.479696035385132,
+      "z": -78.9949035644531,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": 0.479696035385132,
+      "z": -78.9949035644531,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -0.67245751619339,
+      "z": -78.5379638671875,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -0.67245751619339,
+      "z": -78.5379638671875,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -0.67245751619339,
+      "z": -78.5379638671875,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -2.25479173660278,
+      "z": -77.9105529785156,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -2.25479173660278,
+      "z": -77.9105529785156,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -4.26726913452148,
+      "z": -77.1126708984375,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -4.26726913452148,
+      "z": -77.1126708984375,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -4.26726913452148,
+      "z": -77.1126708984375,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -7.81697607040405,
+      "z": -75.7050552368164,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -7.81697607040405,
+      "z": -75.7050552368164,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -10.2028779983521,
+      "z": -74.758918762207,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -10.2028779983521,
+      "z": -74.758918762207,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -10.2028779983521,
+      "z": -74.758918762207,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -12.5887804031372,
+      "z": -73.8127822875977,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -12.5887804031372,
+      "z": -73.8127822875977,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -12.5887804031372,
+      "z": -73.8127822875977,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -14.9746828079224,
+      "z": -72.8666458129883,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -14.9746828079224,
+      "z": -72.8666458129883,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -18.5535354614258,
+      "z": -71.4474411010742,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -18.5535354614258,
+      "z": -71.4474411010742,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -18.5535354614258,
+      "z": -71.4474411010742,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -20.9394378662109,
+      "z": -70.5013046264648,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -20.9394378662109,
+      "z": -70.5013046264648,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -20.9394378662109,
+      "z": -70.5013046264648,
+      "y": 32,
+      "zone": "camp",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -23.3253402709961,
+      "z": -69.5551681518555,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -23.3253402709961,
+      "z": -69.5551681518555,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -25.7112426757812,
+      "z": -68.6090316772461,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -25.7112426757812,
+      "z": -68.6090316772461,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -25.7112426757812,
+      "z": -68.6090316772461,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -29.290096282959,
+      "z": -67.189826965332,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -29.290096282959,
+      "z": -67.189826965332,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -29.290096282959,
+      "z": -67.189826965332,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -31.6759986877441,
+      "z": -66.2436904907227,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -31.6759986877441,
+      "z": -66.2436904907227,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -35.2548522949219,
+      "z": -64.8244857788086,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -35.2548522949219,
+      "z": -64.8244857788086,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -35.2548522949219,
+      "z": -64.8244857788086,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -37.640754699707,
+      "z": -63.8783416748047,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -37.640754699707,
+      "z": -63.8783416748047,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -37.640754699707,
+      "z": -63.8783416748047,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -40.0266571044922,
+      "z": -62.9321517944336,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -40.0266571044922,
+      "z": -62.9321517944336,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -40.0266571044922,
+      "z": -62.9321517944336,
+      "y": 32,
+      "zone": "creek",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -43.6055107116699,
+      "z": -61.512866973877,
+      "y": 32,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -43.6055107116699,
+      "z": -61.512866973877,
+      "y": 32,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -45.9914131164551,
+      "z": -60.5666770935059,
+      "y": 32,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -45.9914131164551,
+      "z": -60.5666770935059,
+      "y": 32,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -45.9914131164551,
+      "z": -60.5666770935059,
+      "y": 32,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -48.3773155212402,
+      "z": -59.6204872131348,
+      "y": 32.2796717044203,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -48.3773155212402,
+      "z": -59.6204872131348,
+      "y": 32.2796717044203,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -48.3773155212402,
+      "z": -59.6204872131348,
+      "y": 32.2796717044203,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -51.956169128418,
+      "z": -58.2012023925781,
+      "y": 33.7141162431726,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -51.956169128418,
+      "z": -58.2012023925781,
+      "y": 33.7141162431726,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -51.956169128418,
+      "z": -58.2012023925781,
+      "y": 33.7141162431726,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -54.3420715332031,
+      "z": -57.255012512207,
+      "y": 34.8341162876774,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -54.3420715332031,
+      "z": -57.255012512207,
+      "y": 34.8341162876774,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -54.3420715332031,
+      "z": -57.255012512207,
+      "y": 34.8341162876774,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -56.7279739379883,
+      "z": -56.3088226318359,
+      "y": 35.9541163321823,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -56.7279739379883,
+      "z": -56.3088226318359,
+      "y": 35.9541163321823,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -59.1138763427734,
+      "z": -55.3626327514648,
+      "y": 37.0741163766871,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -59.1138763427734,
+      "z": -55.3626327514648,
+      "y": 37.0741163766871,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -59.1138763427734,
+      "z": -55.3626327514648,
+      "y": 37.0741163766871,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -62.6927299499512,
+      "z": -53.9433479309082,
+      "y": 38.7541164434443,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -62.6927299499512,
+      "z": -53.9433479309082,
+      "y": 38.7541164434443,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -62.6927299499512,
+      "z": -53.9433479309082,
+      "y": 38.7541164434443,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -65.0786056518555,
+      "z": -52.9971580505371,
+      "y": 39.8741164879492,
+      "zone": "coast-trail",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -69.5280838012695,
+      "z": -51.232551574707,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -69.5280838012695,
+      "z": -51.232551574707,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -69.5280838012695,
+      "z": -51.232551574707,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -69.6129531860352,
+      "z": -51.235710144043,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -69.6129531860352,
+      "z": -51.235710144043,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -70.5535888671875,
+      "z": -51.2707176208496,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -70.5535888671875,
+      "z": -51.2707176208496,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -70.5535888671875,
+      "z": -51.2707176208496,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -71.7582626342773,
+      "z": -51.3155517578125,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -71.7582626342773,
+      "z": -51.3155517578125,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -71.7582626342773,
+      "z": -51.3155517578125,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -73.4250030517578,
+      "z": -51.3775825500488,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -73.4250030517578,
+      "z": -51.3775825500488,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -73.4250030517578,
+      "z": -51.3775825500488,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -75.5538101196289,
+      "z": -51.4569969177246,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -75.5538101196289,
+      "z": -51.4569969177246,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -75.5538101196289,
+      "z": -51.4569969177246,
+      "y": 47.6816165792066,
+      "zone": "headland",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -79.3556747436523,
+      "z": -51.5992317199707,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -79.3556747436523,
+      "z": -51.5992317199707,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -79.3556747436523,
+      "z": -51.5992317199707,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -81.920539855957,
+      "z": -51.6952018737793,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -81.920539855957,
+      "z": -51.6952018737793,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -81.920539855957,
+      "z": -51.6952018737793,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -84.4854049682617,
+      "z": -51.7911720275879,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -84.4854049682617,
+      "z": -51.7911720275879,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -88.3327026367188,
+      "z": -51.9351272583008,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -88.3327026367188,
+      "z": -51.9351272583008,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -88.3327026367188,
+      "z": -51.9351272583008,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -90.8975677490234,
+      "z": -52.0310974121094,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -90.8975677490234,
+      "z": -52.0310974121094,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -90.8975677490234,
+      "z": -52.0310974121094,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -93.4624328613281,
+      "z": -52.127067565918,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -93.4624328613281,
+      "z": -52.127067565918,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -93.4624328613281,
+      "z": -52.127067565918,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -96.0272979736328,
+      "z": -52.2230377197266,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -96.0272979736328,
+      "z": -52.2230377197266,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -96.0272979736328,
+      "z": -52.2230377197266,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -99.8745956420898,
+      "z": -52.3669929504395,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -99.8745956420898,
+      "z": -52.3669929504395,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -99.8745956420898,
+      "z": -52.3669929504395,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -102.439460754395,
+      "z": -52.462963104248,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -102.439460754395,
+      "z": -52.462963104248,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -105.004325866699,
+      "z": -52.5589332580566,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -105.004325866699,
+      "z": -52.5589332580566,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -105.004325866699,
+      "z": -52.5589332580566,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -108.851623535156,
+      "z": -52.7028884887695,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -108.851623535156,
+      "z": -52.7028884887695,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -108.851623535156,
+      "z": -52.7028884887695,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -111.416488647461,
+      "z": -52.7988586425781,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -111.416488647461,
+      "z": -52.7988586425781,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -111.416488647461,
+      "z": -52.7988586425781,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -113.981353759766,
+      "z": -52.8948287963867,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -113.981353759766,
+      "z": -52.8948287963867,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -113.981353759766,
+      "z": -52.8948287963867,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -116.54621887207,
+      "z": -52.9907989501953,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -116.54621887207,
+      "z": -52.9907989501953,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -120.393516540527,
+      "z": -53.1347541809082,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -120.393516540527,
+      "z": -53.1347541809082,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -120.393516540527,
+      "z": -53.1347541809082,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -122.958381652832,
+      "z": -53.2307243347168,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -122.958381652832,
+      "z": -53.2307243347168,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -122.958381652832,
+      "z": -53.2307243347168,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -125.523246765137,
+      "z": -53.3266944885254,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -125.523246765137,
+      "z": -53.3266944885254,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -125.523246765137,
+      "z": -53.3266944885254,
+      "y": 47.6816165792066,
+      "zone": "beach",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -129.37060546875,
+      "z": -53.4706497192383,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -129.37060546875,
+      "z": -53.4706497192383,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -129.37060546875,
+      "z": -53.4706497192383,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -131.935577392578,
+      "z": -53.5666198730469,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -131.935577392578,
+      "z": -53.5666198730469,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -134.500549316406,
+      "z": -53.6625900268555,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -134.500549316406,
+      "z": -53.6625900268555,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -134.500549316406,
+      "z": -53.6625900268555,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -137.065521240234,
+      "z": -53.7585601806641,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -137.065521240234,
+      "z": -53.7585601806641,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -137.065521240234,
+      "z": -53.7585601806641,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -140.912979125977,
+      "z": -53.902515411377,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -140.912979125977,
+      "z": -53.902515411377,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -140.912979125977,
+      "z": -53.902515411377,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -143.477951049805,
+      "z": -53.9984855651855,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -143.477951049805,
+      "z": -53.9984855651855,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -143.477951049805,
+      "z": -53.9984855651855,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -146.042922973633,
+      "z": -54.0944557189941,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -146.042922973633,
+      "z": -54.0944557189941,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -146.042922973633,
+      "z": -54.0944557189941,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -149.890380859375,
+      "z": -54.238410949707,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -149.890380859375,
+      "z": -54.238410949707,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -149.890380859375,
+      "z": -54.238410949707,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -152.455352783203,
+      "z": -54.3343811035156,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -152.455352783203,
+      "z": -54.3343811035156,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -152.455352783203,
+      "z": -54.3343811035156,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -155.020324707031,
+      "z": -54.4303512573242,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -155.020324707031,
+      "z": -54.4303512573242,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -155.020324707031,
+      "z": -54.4303512573242,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -157.585296630859,
+      "z": -54.5263214111328,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -157.585296630859,
+      "z": -54.5263214111328,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -157.585296630859,
+      "z": -54.5263214111328,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -161.432754516602,
+      "z": -54.6702766418457,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -161.432754516602,
+      "z": -54.6702766418457,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -161.432754516602,
+      "z": -54.6702766418457,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -163.99772644043,
+      "z": -54.7662467956543,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -163.99772644043,
+      "z": -54.7662467956543,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -163.99772644043,
+      "z": -54.7662467956543,
+      "y": 47.6816165792066,
+      "zone": "ocean",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -166.562698364258,
+      "z": -54.8622169494629,
+      "y": 47.6816165792066,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -166.562698364258,
+      "z": -54.8622169494629,
+      "y": 47.6816165792066,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    },
+    {
+      "phase": "flight",
+      "x": -170.41015625,
+      "z": -55.0061721801758,
+      "y": 47.6816165792066,
+      "zone": "island",
+      "swimming": false,
+      "focusReady": true
+    }
+  ]
+}

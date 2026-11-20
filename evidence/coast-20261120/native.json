@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "client": "macOS export",
+  "room": "coast-native-85e7e75fe7",
+  "state": {
+    "connected": true,
+    "ready": true,
+    "x": -188.0,
+    "y": 8.58280037129589,
+    "z": -58.5,
+    "zone": "island",
+    "focusReady": true,
+    "members": 1
+  }
+}

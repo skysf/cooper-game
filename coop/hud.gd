@@ -2,6 +2,7 @@ extends CanvasLayer
 
 const Rules = preload("res://rules.gd")
 const Survival = preload("res://survival.gd")
+const Weapons = preload("res://weapons.gd")
 const CharacterPreview = preload("res://character_preview.gd")
 const ITEM_ICONS := {
 	"apple": preload("res://textures/inventory_apple.png"),
@@ -10,9 +11,20 @@ const ITEM_ICONS := {
 	"jacket": preload("res://textures/inventory_jacket.png"),
 	"pants": preload("res://textures/inventory_pants.png"),
 	"backpack": preload("res://textures/inventory_backpack.png"),
+	"club": preload("res://textures/inventory_club.png"),
+	"spear": preload("res://textures/inventory_spear.png"),
+	"shield": preload("res://textures/inventory_shield.png"),
+	"stone": preload("res://textures/inventory_stone.png"),
+	"water": preload("res://textures/inventory_water.png"),
+	"herb": preload("res://textures/inventory_herb.png"),
+	"wood": preload("res://textures/inventory_wood.png"),
+	"tarp": preload("res://textures/inventory_tarp.png"),
+	"katana": preload("res://textures/inventory_katana.png"),
+	"rifle": preload("res://textures/inventory_rifle.png"),
+	"pistol": preload("res://textures/inventory_pistol.png"),
 }
 const EQUIPMENT_SLOTS := {"cap": "头部", "jacket": "上身", "pants": "下身", "backpack": "背部"}
-const CATEGORIES := {"all": "全部", "food": "食物", "clothing": "服装"}
+const CATEGORIES := {"all": "全部", "food": "食物与水", "clothing": "服装", "tools": "补给与武器"}
 
 signal resume_requested
 signal invite_requested
@@ -28,7 +40,8 @@ const WELL := Color("#131d1e")
 const TILE := Color("#223031")
 const EDGE := Color("#3e5250")
 const HUD_FILL := Color("#122022ec")
-const AREA := {"camp": "林间营地", "creek": "鹿鸣溪谷", "tower": "北坡瞭望塔", "lake": "鹿鸣湖岸"}
+const AREA := {"camp": "林间营地", "creek": "鹿鸣溪谷", "tower": "北坡瞭望塔", "lake": "鹿鸣湖岸",
+	"coast-trail": "西岸山径", "headland": "海湾崖顶", "beach": "海湾浅滩", "ocean": "外海", "island": "外海小岛"}
 const GOALS := {"wood": "溪谷木料", "tarp": "瞭望塔防水布", "repair": "营地木棚"}
 const HEADING := ["北", "西北", "西", "西南", "南", "东南", "东", "东北"]
 const VITALS := [
@@ -47,6 +60,7 @@ var area_title: Label
 var room_line: Label
 var room_count: Label
 var grove_hint: Label
+var raid_hint: Label
 var sky: Label
 var bearing: Label
 var bearing_arrow: Label
@@ -60,6 +74,8 @@ var toast: Label
 var toast_panel: PanelContainer
 var menu_notice: Label
 var reticle: Label
+var scope_overlay := ColorRect.new()
+var scope_material := ShaderMaterial.new()
 var field_header: VBoxContainer
 var field_columns: HBoxContainer
 var location_card: PanelContainer
@@ -86,6 +102,7 @@ var vital_numbers: Dictionary = {}
 var backpack_shade: ColorRect
 var backpack_panel: PanelContainer
 var backpack_capacity: Label
+var material_pending: Label
 var capacity_bar: ProgressBar
 var backpack_grid: GridContainer
 var inventory_page: HBoxContainer
@@ -101,6 +118,7 @@ var backpack_names: Array[Label] = []
 var backpack_quantities: Array[Label] = []
 var backpack_actions: Dictionary = {}
 var backpack_open := false
+var modal_open := false
 var selected_slot := -1
 var can_put_food := false
 var bag: Dictionary = {}
@@ -117,6 +135,8 @@ var selection := "jacket"
 var worn: Dictionary = {}
 var wearing_backpack := false
 var clothing_supported := false
+var equipped_weapon := ""
+var drinking_full := false
 var preview_slot := 1
 
 func _style(bg: Color, border := EDGE, padding := Vector2(12, 8)) -> StyleBoxFlat:
@@ -232,6 +252,12 @@ func _ready() -> void:
 	_layout_interface()
 
 func _build_field() -> void:
+	scope_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scope_material.shader = preload("res://weapon_scope.gdshader")
+	scope_overlay.material = scope_material
+	field.add_child(scope_overlay)
+	scope_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scope_overlay.hide()
 	field_header = VBoxContainer.new()
 	field_header.add_theme_constant_override("separation", 8)
 	_place(field, field_header, Vector4(0, 0, 1, 0), Rect2(20, 18, -40, 0))
@@ -247,6 +273,8 @@ func _build_field() -> void:
 	room_count = _label(room_row, 14, MUTED)
 	grove_hint = _label(location, 14, AMBER)
 	grove_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	raid_hint = _label(location, 14, AMBER)
+	raid_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 	heading_gap = Control.new()
 	heading_gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -278,9 +306,11 @@ func _build_field() -> void:
 
 	reticle = _label(field, 22, INK, "·", true)
 	reticle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	reticle.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	reticle.add_theme_constant_override("outline_size", 4)
 	reticle.add_theme_color_override("font_outline_color", DARK)
 	_place(field, reticle, Vector4(0.5, 0.5, 0.5, 0.5), Rect2(-10, -16, 20, 32))
+	reticle.hide()
 
 	field_dock = VBoxContainer.new()
 	field_dock.alignment = BoxContainer.ALIGNMENT_END
@@ -327,23 +357,35 @@ func _build_key_guide(parent: HBoxContainer) -> void:
 	keys.add_theme_constant_override("h_separation", 10)
 	keys.add_theme_constant_override("v_separation", 7)
 	key_panel.add_child(keys)
-	for index in GROUND_KEYS.size() + 4:
+	for index in GROUND_KEYS.size() + 8:
 		var group := _row(keys, 4)
 		_keycap(group)
 		_label(group, 14, INK)
 		key_groups.append(group)
 
-func _update_key_guide(piloting: bool, swimming: bool, has_survival: bool, holding: bool) -> void:
+func set_weapon_view(weapon: String, aim: float, active: bool) -> void:
+	scope_overlay.visible = active and weapon == "rifle" and aim > 0.24
+	if scope_overlay.visible:
+		scope_material.set_shader_parameter("strength", smoothstep(0.24, 0.82, aim))
+	reticle.visible = active and not scope_overlay.visible and (weapon != "pistol" or aim < 0.80)
+
+func _update_key_guide(piloting: bool, swimming: bool, has_survival: bool, holding: bool, weapon: String) -> void:
 	var mode := "flight" if piloting else ("swim" if swimming else "ground")
-	var profile := "%s/%s/%s" % [mode, has_survival, holding]
+	var profile := "%s/%s/%s/%s" % [mode, has_survival, holding, weapon]
 	if profile == key_profile:
 		return
 	key_profile = profile
 	var keys := (FLIGHT_KEYS if piloting else (SWIM_KEYS if swimming else GROUND_KEYS)).duplicate()
 	if has_survival and not piloting:
-		keys.append(["Tab", "背包"])
+		keys.append_array([["Tab", "背包"], ["B", "住民"]])
+		if not holding:
+			if not swimming and Weapons.firearm(weapon):
+				keys.append_array([["左键", "射击"], ["右键", "开镜" if weapon == "rifle" else "瞄准"]])
+			elif not swimming or not Weapons.CAMP_MODELS.has(weapon):
+				keys.append(["左键", "近战"])
 	if holding and not piloting:
 		keys.append_array([["左键", "投掷"], ["G", "放下"]])
+	keys.append(["M", "地图"])
 	keys.append(["Esc", "菜单"])
 	for index in key_groups.size():
 		var group := key_groups[index]
@@ -554,6 +596,9 @@ func _build_inventory_page(content: VBoxContainer) -> void:
 	backpack_capacity = _label(sidebar, 21, INK, "", true)
 	capacity_bar = _bar(AMBER)
 	sidebar.add_child(capacity_bar)
+	material_pending = _label(sidebar, 12, AMBER)
+	material_pending.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	material_pending.hide()
 
 	var items := _column(inventory_page, 10)
 	items.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -565,12 +610,13 @@ func _build_inventory_page(content: VBoxContainer) -> void:
 	for index in Survival.slot_count(true):
 		_build_inventory_slot(index)
 	inventory_detail = _build_detail(inventory_page, [
-		["eat", "吃一份", true], ["wear", "穿上", true], ["put", "放回桌上", false], ["drop", "丢下", false],
+		["eat", "吃一份", true], ["drink", "喝一份", true], ["wear", "穿上", true],
+		["equip", "装备", true], ["put", "放桌上", false], ["drop", "丢下", false],
 	], _submit_backpack_action)
 	backpack_actions = inventory_detail.actions
 	detail_title = inventory_detail.title
 	backpack_actions.drop.tooltip_text = "丢到脚边"
-	backpack_actions.put.tooltip_text = "将一份食物放回木桌"
+	backpack_actions.put.tooltip_text = "将一份食物或溪水放到木桌"
 
 func _build_inventory_slot(index: int) -> void:
 	var slot := _choice()
@@ -749,9 +795,11 @@ func _select_category(filter: String) -> void:
 func _matches_category(item: String) -> bool:
 	match category:
 		"food":
-			return Survival.FOOD_STATS.has(item)
+			return Survival.can_table(item)
 		"clothing":
 			return Survival.CLOTHING.has(item)
+		"tools":
+			return not item.is_empty() and not Survival.can_table(item) and not Survival.CLOTHING.has(item)
 	return true
 
 func _select_slot(index: int) -> void:
@@ -764,14 +812,14 @@ func _submit_backpack_action(action: String) -> void:
 
 func _update_slot_controls() -> void:
 	var first := -1
-	var counts := {"all": 0, "food": 0, "clothing": 0}
+	var counts := {"all": 0, "food": 0, "clothing": 0, "tools": 0}
 	for index in backpack_slots.size():
 		var item := backpack_items[index]
 		var visible_slot := index < bag_capacity and _matches_category(item)
 		backpack_slots[index].visible = visible_slot
 		if not item.is_empty():
 			counts.all += 1
-			counts["food" if Survival.FOOD_STATS.has(item) else "clothing"] += 1
+			counts["food" if Survival.can_table(item) else "clothing" if Survival.CLOTHING.has(item) else "tools"] += 1
 			if visible_slot and first == -1:
 				first = index
 	if selected_slot < 0 or backpack_items[selected_slot].is_empty() or not backpack_slots[selected_slot].visible:
@@ -787,23 +835,25 @@ func _update_inventory_detail() -> void:
 	var item := backpack_items[selected_slot] if selected_slot >= 0 else ""
 	var clothing := Survival.CLOTHING.has(item)
 	var food: Dictionary = Survival.FOOD_STATS.get(item, {})
+	var drinkable := Survival.is_drinkable(item)
+	var table_item := Survival.can_table(item)
+	var weapon := Weapons.CAMP_MODELS.has(item)
+	var benefits: Dictionary = {"water": Survival.DRINK_GAIN} if drinkable else food
 	var detail := inventory_detail
-	detail.type.text = "服装" if clothing else ("食物" if not food.is_empty() else "")
+	detail.type.text = "服装" if clothing else ("溪水" if drinkable else "食物" if not food.is_empty() else "材料" if item in ["wood", "tarp"] else "补给与武器")
 	detail.type.visible = not item.is_empty()
 	detail_title.text = Survival.ITEM_NAMES.get(item, "背包为空" if category == "all" else "没有%s" % CATEGORIES[category])
 	detail.image.texture = ITEM_ICONS.get(item)
 	detail.image.modulate = Color(1.18, 1.18, 1.18) if clothing else Color.WHITE
 	detail.info.visible = not item.is_empty()
 	if clothing:
-		detail.info.text = "%s    占用 1 格" % EQUIPMENT_SLOTS[item]
-	elif not food.is_empty():
+		detail.info.text = "%s · 数量 %d · 占用 1 格" % [EQUIPMENT_SLOTS[item], int(bag.get(item, 0))]
+	elif not item.is_empty():
 		var quantity := int(bag.get(item, 0))
 		detail.info.text = "数量 %d 份" % quantity
-		if quantity > Survival.stack_limit(item):
-			detail.info.text = "此格 %s    共 %d 份" % [backpack_quantities[selected_slot].text, quantity]
-	detail.stats.visible = not food.is_empty()
+	detail.stats.visible = not benefits.is_empty()
 	for entry: Array in VITALS:
-		var amount := int(food.get(entry[0], 0))
+		var amount := int(benefits.get(entry[0], 0))
 		var value: Label = detail.values[entry[0]]
 		value.visible = amount > 0
 		value.text = "%s +%d" % [entry[1], amount]
@@ -815,16 +865,30 @@ func _update_inventory_detail() -> void:
 		note = "此房间未开放穿戴"
 	elif clothing and already_worn:
 		note = "此部位已有装备"
-	elif not food.is_empty() and not can_put_food:
+	elif table_item and not can_put_food:
 		note = "靠近木桌后可放回"
+	elif item in ["wood", "tarp"]:
+		note = "修屋时消耗你背包中的木料 1 份和防水布 1 份；丢下后可交给队友"
+	elif weapon:
+		var key := char(int(Weapons.KEYS.find_key(item)))
+		note = "%s 切换 · 左键挥刀" % key if item == "katana" else "%s 切换 · 左键射击 · 按住右键%s" % [key, "开镜" if item == "rifle" else "瞄准"]
+		detail.info.text = "数量 %d · %s" % [int(bag.get(item, 0)), "已装备" if equipped_weapon == item else "占用 1 格"]
+	elif not item.is_empty() and not clothing and not table_item:
+		note = "按 B 打开营地住民：装备、给同伴装备或照料伤员"
+		detail.info.text = "数量 %d · 供给与装备使用实际消耗物品" % int(bag.get(item, 0))
 	detail.note.text = note
 	detail.note.visible = not note.is_empty()
 	backpack_actions.eat.visible = not food.is_empty()
-	backpack_actions.put.visible = not food.is_empty()
+	backpack_actions.drink.visible = drinkable
+	backpack_actions.drink.disabled = drinking_full
+	backpack_actions.drink.tooltip_text = "现在不渴，溪水会保留" if drinking_full else "消耗一份溪水，水分 +32"
+	backpack_actions.put.visible = table_item
 	backpack_actions.put.disabled = not can_put_food
 	backpack_actions.wear.visible = clothing
 	backpack_actions.wear.disabled = not clothing_supported or already_worn
-	backpack_actions.drop.visible = not item.is_empty()
+	backpack_actions.equip.visible = weapon
+	backpack_actions.equip.text = "收起" if equipped_weapon == item else "装备"
+	backpack_actions.drop.visible = not item.is_empty() and item != "herb"
 
 func _refresh_backpack(contents: Dictionary, can_put: bool, slot_capacity: int) -> void:
 	slot_capacity = clampi(slot_capacity, 0, backpack_slots.size())
@@ -838,13 +902,11 @@ func _refresh_backpack(contents: Dictionary, can_put: bool, slot_capacity: int) 
 	bag_capacity = slot_capacity
 	can_put_food = can_put
 	var index := 0
-	for item: String in Survival.ITEM_NAMES:
-		var count := int(bag.get(item, 0))
-		while count > 0 and index < slot_capacity:
-			var stack := mini(count, Survival.stack_limit(item))
-			_set_stack(index, item, stack)
-			count -= stack
-			index += 1
+	for entry: Dictionary in Survival.inventory_entries(bag):
+		if index >= slot_capacity:
+			break
+		_set_stack(index, entry.item, entry.quantity)
+		index += 1
 	for empty_index in range(index, backpack_slots.size()):
 		_set_stack(empty_index, "", 0)
 	if selected_slot >= 0 and backpack_items[selected_slot] != former_item:
@@ -874,6 +936,15 @@ func _submit_equipment_action(action: String) -> void:
 		backpack_action_requested.emit(action, selection)
 
 func set_equipment(survival: Dictionary, equipped_pack: bool, slot: int) -> void:
+	var pending: Dictionary = survival.get("materialPending", {})
+	material_pending.visible = int(pending.get("wood", 0)) + int(pending.get("tarp", 0)) > 0
+	material_pending.text = "营地保留的材料待收取：木料 %d / 布 %d。空出格子后会放入背包。" % [pending.get("wood", 0), pending.get("tarp", 0)]
+	var full := float(survival.get("water", 100.0)) >= Survival.DRINK_THRESHOLD
+	var weapon: String = survival.get("weapon", "")
+	if drinking_full != full or equipped_weapon != weapon:
+		drinking_full = full
+		equipped_weapon = weapon
+		_update_inventory_detail()
 	var state: Dictionary = survival.get("worn", Survival.initial_wear())
 	var supported := survival.has("worn")
 	var changed := worn != state or wearing_backpack != equipped_pack or clothing_supported != supported or preview_slot != slot
@@ -966,6 +1037,11 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 	room_count.text = "%s / 4 人" % s.members
 	grove_hint.text = s.groveHint
 	grove_hint.visible = not s.groveHint.is_empty()
+	var people: Dictionary = s.get("wildPeople", {})
+	var raid: Dictionary = people.get("raid", {})
+	var raid_wait := maxi(0, ceili(float(raid.get("nextAt", 0.0)) - float(s.elapsed)))
+	raid_hint.text = ("来袭警报 · %d 秒" % raid_wait if raid.get("phase") == "warning" else "来袭进行中 · B 查看住民" if raid.get("phase") == "active" else "休整 · 下次来袭 %d:%02d" % [raid_wait / 60, raid_wait % 60])
+	raid_hint.visible = not people.is_empty()
 	var phase := fposmod(float(s.elapsed), Rules.WEATHER_CYCLE)
 	var time_name: String = {"dawn": "黎明", "day": "白天", "dusk": "暮色", "night": "夜晚"}.get(s.dayPart, "白天")
 	var conditions := "晴间多云"
@@ -985,8 +1061,8 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 		goal_title.text = "营地已修好"
 		supplies.text = "屋顶完好，营灯已点亮" if s.sheltered else "循灯光回营，与队友会合"
 	else:
-		goal_title.text = "返回营地修屋顶" if s.quest.get("wood",false) and s.quest.get("tarp",false) else "收集修屋材料"
-		supplies.text = "木料 %d/1    防水布 %d/1"%[int(s.quest.get("wood",false)),int(s.quest.get("tarp",false))]
+		goal_title.text = "返回营地修屋顶" if int(s.get("survival", {}).get("bag", {}).get("wood", 0)) > 0 and int(s.get("survival", {}).get("bag", {}).get("tarp", 0)) > 0 else "收集你的修屋材料"
+		supplies.text = "木料 %d/1    防水布 %d/1"%[int(s.get("survival", {}).get("bag", {}).get("wood", 0)),int(s.get("survival", {}).get("bag", {}).get("tarp", 0))]
 	var direction := atan2(-delta_to_target.x,-delta_to_target.y)
 	var relative := wrapf(direction-float(s.yaw),-PI,PI)
 	var arrow := "↑" if absf(relative)<.32 else ("身后" if absf(relative)>2.72 else ("←" if relative>0 else "→"))
@@ -996,19 +1072,19 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 	bearing.tooltip_text = "面向%s，目标在%s" % [_direction(s.yaw),_direction(direction)]
 	var active: bool = s.locked
 	entered_field = entered_field or active
-	reticle.visible = active
 	field_dock.visible = active
 	prompt_panel.visible = active and not action.is_empty()
 	if prompt_panel.visible:
 		_update_prompt(action)
-	panel.visible = not active and not backpack_open
+	panel.visible = not active and not backpack_open and not modal_open
+	field.visible = not modal_open and not backpack_open
 	if active:
 		_hide_invitation()
 	var survival_state: Dictionary = s.get("survival", {})
 	var has_survival := not survival_state.is_empty()
 	if active:
 		_update_key_guide(s.get("shipPiloting", false), s.get("swimming", false), has_survival,
-			not s.heldStone.is_empty())
+			not s.heldStone.is_empty(), survival_state.get("weapon", ""))
 	for entry: Array in VITALS:
 		var value := clampf(float(survival_state.get(entry[0], 100.0 if entry[0] == "health" else 0.0)), 0.0, 100.0)
 		vital_bars[entry[0]].value = value
@@ -1032,7 +1108,7 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 		if entered_field:
 			briefing.text = "Esc 放开鼠标。"
 		else:
-			briefing.text = "去溪谷找木料，到瞭望塔取防水布。带回营地修好木棚。"
+			briefing.text = "去溪谷找木料，到瞭望塔取防水布。带回营地修好木棚。木屋旁可按 E 拾取武器，Tab 打开背包装备，B 查看住民与补给。"
 	if s.noticeNo != last_notice:
 		last_notice = s.noticeNo
 		if not s.notice.is_empty():
@@ -1041,3 +1117,18 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 	toast_panel.visible = active and has_notice
 	if not has_notice:
 		menu_notice.text = ""
+
+# Observation only: normal UI tests still click these Controls and send their ordinary actions.
+func inventory_observables() -> Dictionary:
+	var slots := []
+	for index in backpack_slots.size():
+		var rect := backpack_slots[index].get_global_rect()
+		slots.append({"item": backpack_items[index], "quantity": int(backpack_quantities[index].text.trim_prefix("×")),
+			"visible": backpack_slots[index].is_visible_in_tree(), "rect": [rect.position.x, rect.position.y, rect.size.x, rect.size.y]})
+	var actions := {}
+	for key: String in backpack_actions:
+		var button: Button = backpack_actions[key]
+		var rect := button.get_global_rect()
+		actions[key] = {"visible": button.is_visible_in_tree(), "disabled": button.disabled, "text": button.text,
+			"rect": [rect.position.x, rect.position.y, rect.size.x, rect.size.y]}
+	return {"open": backpack_open, "slots": slots, "selectedItem": backpack_items[selected_slot] if selected_slot >= 0 else "", "actions": actions}

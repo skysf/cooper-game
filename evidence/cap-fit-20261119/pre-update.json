@@ -1,0 +1,20 @@
+{
+  "before": "2026-11-19T22:30:36.953937",
+  "site": "dist/coop-resource-fix",
+  "web_sha256": "cadb0db948bf8e02c50e377e7721d60dac8c77a5173fff5761020eac5daa6636",
+  "web_pck_bytes": 46735652,
+  "node_pid": 93107,
+  "legacy_4184_pid": 76294,
+  "save": ".local-rooms/wild-people",
+  "game_code_hashes": {
+    "coop/server.gd": "61d94f4a5120ed621538dcdfb28a57c323ba92c11f39fa848f0b630f039052b9",
+    "coop/survival.gd": "98fdd4331bc151039635ed0dc631fed2b978c798c93e9e1a4b90fe3c158a394b",
+    "coop/wild_people.gd": "587597cd36fb6467f8cb19c16d772b6dd04e16f68345324579add6db416ef543",
+    "coop/client.gd": "2d1a809f1f0b05ba3cd619eb6013a12ac9733def1c0160ecf264f4bd75d59550",
+    "coop/hud.gd": "3c30af63c7cee6da3fe0e8f2f4d9efb9e05179dfd3bd259aaf85120f2398ccee",
+    "coop/wild_people_panel.gd": "2d10e0c381cb9d9fefdec177e508bc7fa6e9815aa5d0d83503c300ab746d3738",
+    "coop/network.gd": "911233bdc404945deaf0b2476e7a3796cb921505c2b7bf718d67d2228209936c",
+    "coop/hiker.gd": "12f1c65a6de0ac6f3cf5284f668378a1d1938fef66ff97967a7485eadaaa16ff",
+    "coop/character_preview.gd": "c64e0031fad988be95de73a3fffcd4320ea81b569870ce12009ed3e05cd2da73"
+  }
+}

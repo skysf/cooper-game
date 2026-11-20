@@ -1,0 +1,50 @@
+{
+  "functionalExecutionOk": true,
+  "pck": {
+    "sha256": "afdc7b97cb88ac3df7aae24f46d3530cf917ea8d5fb49da270dc70b102150418",
+    "bytes": 46415536,
+    "mtime": "2026-11-19T12:10:01.464Z"
+  },
+  "latestSource": {
+    "file": "wild_people.gd",
+    "mtime": "2026-11-19T12:07:27.378Z"
+  },
+  "results": {
+    "normal-camp": {
+      "environmentValid": true,
+      "thresholdPassed": true,
+      "avgFps": 60.0075009376172,
+      "p95Ms": 17.600000000002183,
+      "maxMs": 17.700000000000728,
+      "framesOver50Ms": 0,
+      "reason": "passed"
+    },
+    "stress-first-spawn": {
+      "environmentValid": true,
+      "thresholdPassed": false,
+      "avgFps": 59.25518482867249,
+      "p95Ms": 17.599999999998545,
+      "maxMs": 116.70000000000437,
+      "framesOver50Ms": 1,
+      "reason": "one submitted frame exceeds 100ms"
+    },
+    "stress-combat": {
+      "environmentValid": false,
+      "thresholdPassed": null,
+      "avgFps": 59.50227655460613,
+      "p95Ms": 17.599999999998545,
+      "maxMs": 34.19999999999709,
+      "framesOver50Ms": 0,
+      "reason": "OS front app changed to cmux"
+    }
+  },
+  "overallPerformancePassed": false,
+  "applicationPerformanceFailure": "stress-first-spawn: 116.7ms maximum frame",
+  "environmentInvalidSample": "stress-combat: afterApp cmux; no performance conclusion",
+  "evidence": [
+    "report.json",
+    "normal-camp-raw-frames.json",
+    "stress-first-spawn-raw-frames.json",
+    "stress-combat-raw-frames.json"
+  ]
+}

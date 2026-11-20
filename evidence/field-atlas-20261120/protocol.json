@@ -1,0 +1,18 @@
+{
+  "invalidDestinationRejected": true,
+  "offMapPinRejected": true,
+  "saveFailureRollsBackTravel": true,
+  "pinOwnerIsolationAndReplay": true,
+  "separateSafeArrivals": [
+    [
+      -187.550003051758,
+      8.2386999130249,
+      -57.0999984741211
+    ],
+    [
+      -186.650009155273,
+      8.20561027526855,
+      -57.0999984741211
+    ]
+  ]
+}

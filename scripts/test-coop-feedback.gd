@@ -298,7 +298,7 @@ func _verify_clothing(client) -> void:
 	client._set_backpack(true)
 	var hud = client.hud
 	hud._select_slot(0)
-	_check(hud.backpack_slots[0].icon != null and hud.backpack_slots[1].icon != null and hud.detail_title.text == "帽子", "each carried garment occupies one slot and shows its actual image")
+	_check(hud.backpack_slots[0].icon != null and hud.backpack_items.count("cap") == 1 and hud.backpack_quantities[0].text == "×2" and hud.detail_title.text == "帽子", "identical garments share one slot with their total count and actual image")
 	_check(hud.backpack_actions.wear.visible and not hud.backpack_actions.eat.visible, "clothing has wear and drop actions instead of food actions")
 	hud._submit_backpack_action("wear")
 	_check(client.net.last_provision_input.get("action") == "wear", "the item page sends a wear request")
@@ -320,24 +320,26 @@ func _verify_clothing(client) -> void:
 	var arm_standing := arm.get_bone_global_pose(forearm)
 	var leg_standing := leg.get_bone_global_pose(shin)
 	var boot_standing: Transform3D = preview.boots[1].transform
-	var relaxed_hand: Vector3 = preview.held_item_position()
+	var relaxed_hand: Vector3 = preview.body.to_local(preview.held_item_position())
 	preview.heading = preview.rotation.y
-	preview.target = preview.position + Vector3(0, 0, 0.05)
 	preview.holding = true
-	preview.advance(0.016, true)
+	for frame in 15:
+		preview.target = preview.position + Vector3(0, 0, 0.05)
+		preview.advance(0.016, true)
 	_check(not arm_standing.basis.is_equal_approx(arm.get_bone_global_pose(forearm).basis)
 		and not leg_standing.basis.is_equal_approx(leg.get_bone_global_pose(shin).basis),
 		"moving the human arm and knee also moves the worn jacket and trousers")
 	_check(not preview.model.find_child("SkyFeet", true, false).visible
 		and not boot_standing.is_equal_approx(preview.boots[1].transform),
 		"the outdoor boot follows the foot bone without bare-foot geometry clipping through it")
-	_check((preview.held_item_position() - relaxed_hand).length() > 0.32,
+	_check((preview.body.to_local(preview.held_item_position()) - relaxed_hand).length() > 0.32,
 		"raising the modeled right hand moves the world stone grip")
 	preview.holding = false
-	preview.advance(0.016, true)
+	for frame in 30:
+		preview.advance(0.016, true)
 	_check(arm_standing.is_equal_approx(arm.get_bone_global_pose(forearm))
 		and leg_standing.is_equal_approx(leg.get_bone_global_pose(shin)),
-		"stopping restores the garments to the fitted standing pose")
+		"stopping smoothly restores the garments to the fitted standing pose")
 	hud._submit_equipment_action("drop_worn")
 	_check(client.net.last_provision_input.get("action") == "drop_worn" and client.net.last_provision_input.get("item") == "jacket", "the character page can drop a worn garment directly")
 	client._set_backpack(false)
@@ -368,7 +370,7 @@ func _verify_inventory_filters(client) -> void:
 	var hud = client.hud
 	hud._show_character(false)
 	hud.category_buttons.clothing.pressed.emit()
-	_check(not hud.backpack_slots[0].visible and hud.backpack_slots[3].visible and hud.detail_title.text == "帽子",
+	_check(not hud.backpack_slots[0].visible and hud.backpack_slots[2].visible and hud.detail_title.text == "帽子",
 		"filtering to clothing selects the visible hat without changing its physical inventory slot")
 	hud._refresh_backpack({"bread": 1, "cap": 1}, false, survival.SLOT_COUNT)
 	_check(hud.selected_slot == 1 and hud.detail_title.text == "帽子",
@@ -383,7 +385,7 @@ func _verify_inventory_filters(client) -> void:
 	hud.equipment_actions.wear.pressed.emit()
 	_check(client.net.last_provision_input.get("action") == "wear" and client.net.last_provision_input.get("item") == "cap",
 		"an occupied backpack slot can equip an empty body slot directly from the clothing page")
-	hud._refresh_backpack({"apple": 18}, false, survival.SLOT_COUNT)
+	hud._refresh_backpack({"apple": 18, "bread": 7, "cap": 4, "water": 7, "club": 4, "spear": 4}, false, survival.SLOT_COUNT)
 	hud.equipment_buttons.jacket.pressed.emit()
 	_check(hud.equipment_actions.remove_worn.disabled and not hud.equipment_actions.drop_worn.disabled,
 		"a full backpack disables removing a worn jacket while leaving direct dropping available")

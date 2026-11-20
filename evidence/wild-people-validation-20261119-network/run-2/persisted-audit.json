@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "scope": "Independent audit of persisted states from completed live run-2; original runtime assertions completed before a test-harness double-stop cleanup hang (exit13).",
+  "careDuration": 110.901489257812,
+  "careSeconds": 110.901489257812,
+  "captiveBeforeRestart": true,
+  "negativeWorldPosition": [
+    1.50349986553192,
+    -83.0372009277344
+  ],
+  "companionAfterInvitation": true,
+  "actualConsumed": {
+    "apple": 2,
+    "water": 2,
+    "herb": 2
+  },
+  "stablePersonalRelation": {
+    "affection": 0,
+    "care": 8,
+    "chatAt": -1000,
+    "food": 2,
+    "giftAt": -1000,
+    "refusedUntil": 0,
+    "romanceAt": -1000,
+    "treatments": 2,
+    "trust": 74,
+    "water": 2
+  },
+  "noOtherPlayerCareCredit": true,
+  "romanceRefusalCooldownPersists": true,
+  "equipmentReturnedToCompanion": true
+}

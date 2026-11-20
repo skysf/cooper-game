@@ -1,0 +1,76 @@
+{
+  "started": "2026-11-19T11:48:40.017Z",
+  "transport": "Production Godot server and real loopback WebSocket clients",
+  "cases": {
+    "originalNavigationRegression": {
+      "initial": [
+        9.24904155731201,
+        -79.5625991821289
+      ],
+      "reached": [
+        3.37562847137451,
+        -84.3716735839844
+      ],
+      "movementBoundVerified": true,
+      "capturedThroughOrdinaryAttackAndCapture": true,
+      "finalPhase": "captive"
+    }
+  },
+  "events": [
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:48:41.015Z",
+      "room": "qa-lifecycle",
+      "index": 0,
+      "phase": "active",
+      "elapsed": 52.8196213333318
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:48:41.110Z",
+      "room": "qa-lifecycle",
+      "index": 1,
+      "phase": "active",
+      "elapsed": 52.9196213333318
+    },
+    {
+      "name": "original-failure-seed-loaded",
+      "at": "2026-11-19T11:48:41.143Z",
+      "elapsed": 52.9362879999985,
+      "x": 9.24904155731201,
+      "z": -79.5625991821289,
+      "player": [
+        1.51969265937805,
+        -84.5275039672852
+      ]
+    },
+    {
+      "name": "original-stall-now-cleared",
+      "at": "2026-11-19T11:48:45.439Z",
+      "elapsed": 57.2529546666649,
+      "x": 3.37562847137451,
+      "z": -84.3716735839844,
+      "seconds": 4.4333333333330955
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:48:48.691Z",
+      "room": "qa-lifecycle",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 60.5196213333314
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:48:48.692Z",
+      "room": "qa-lifecycle",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 60.5196213333314
+    }
+  ],
+  "errors": [],
+  "port": 49597,
+  "ok": true,
+  "finished": "2026-11-19T11:48:49.528Z"
+}

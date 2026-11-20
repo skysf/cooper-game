@@ -1,0 +1,396 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/CampHanSupplement.otf-eba0b69a815b00210cd21aa1c471a2ce.fontdata[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://fonts/CampHanSupplement.otf.import[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/TrailSans.otf-7ef613fc229836b6451dfbad6f323b14.fontdata[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://fonts/TrailSans.otf.import[39m[0m
+[   2% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ba2aa066c4bd6cca3a982a3972316b72-bark.res[39m[0m
+[   2% ] [90m[1msavepack[22m | Storing File: res://materials/camp_sky.gdshader[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ea30c4a4d0fe3d48c0ec7a66b617a153-fern.res[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-ad340fb98b3f9cb5e77fd52d882378f4-forest_floor.res[39m[0m
+[   4% ] [90m[1msavepack[22m | Storing File: res://materials/lake_bed.gdshader[39m[0m
+[   4% ] [90m[1msavepack[22m | Storing File: res://materials/lake_canopy.gdshader[39m[0m
+[   5% ] [90m[1msavepack[22m | Storing File: res://materials/lake_motes.gdshader[39m[0m
+[   5% ] [90m[1msavepack[22m | Storing File: res://materials/lantern_glass.gdshader[39m[0m
+[   6% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-85a1b977993202d86363ba2546f060e7-lantern_glass.res[39m[0m
+[   6% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-15b27caac67afb088545f04e1fd1dba7-mud.res[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-d2c06dc16a50c5c56701055a936f6f4a-needles.res[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://materials/pondweed.gdshader[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-99a063bbadd72e06b7d52ac5e16c1b82-rock.res[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://materials/spaceship_exhaust.gdshader[39m[0m
+[   9% ] [90m[1msavepack[22m | Storing File: res://materials/twilight.gdshaderinc[39m[0m
+[   9% ] [90m[1msavepack[22m | Storing File: res://materials/water.gdshader[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-6bab30075bec6dca5efb9a8285be1fb5-wood.res[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_bark.jpg-96fdaddc18d7e770b62a0dbd0049608c.ctex[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://pines/pine_bark.jpg.import[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_mature.glb-0f212c2cf2561fd6c03b55a67c73845f.scn[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://pines/pine_mature.glb.import[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_mature_refined.glb-125357caa8ab10658d531b8e19605420.scn[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://pines/pine_mature_refined.glb.import[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_mature_refined_Pine bark color.jpg-4d9c464a6b6672c90c6da26be61b67d5.ctex[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://pines/pine_mature_refined_Pine bark color.jpg.import[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_mature_refined_Pine bark normal.jpg-51789a2bde4e2d6877222b8ce3bf26e8.ctex[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://pines/pine_mature_refined_Pine bark normal.jpg.import[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_mature_refined_Pine bark roughness.png-a738e5c4be888576db2d37c3f58f894a.ctex[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://pines/pine_mature_refined_Pine bark roughness.png.import[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_mature_refined_pine_needles.png-61e249f4325358afbd63b19ed3e62496.ctex[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://pines/pine_mature_refined_pine_needles.png.import[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_needles.png-1a8d1b47f470a79793af5253a44f83d5.ctex[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://pines/pine_needles.png.import[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_sapling.glb-0687ff7a7184b636001f3fcbeac7f0f4.scn[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://pines/pine_sapling.glb.import[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_trunk.jpg-d21d60e9a2b053692c5c8054653de281.ctex[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://pines/pine_trunk.jpg.import[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/pine_young.glb-822745a200217372e912ab1dc884c40b.scn[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://pines/pine_young.glb.import[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_backpack.glb-bca4b48d6210e09af9e43ba5b21477a0.scn[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://props/camp_backpack.glb.import[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_backpack_Backpack Base Color.png-31b2c6638f2f0693f6c963abeefa89a7.ctex[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://props/camp_backpack_Backpack Base Color.png.import[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_backpack_Backpack Metallic Roughness.png-332bea32cbe3aac1bb7c6dd5bc403a6a.ctex[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://props/camp_backpack_Backpack Metallic Roughness.png.import[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_backpack_Backpack Normal.png-27f18426482ca36ea1254de9f5b0e767.ctex[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://props/camp_backpack_Backpack Normal.png.import[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_cap.glb-3fcff9c254d7a58a138424af80a531af.scn[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://props/camp_cap.glb.import[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_cap_Cap Base Color.png-8623876698fafeffd03af99b3611ebe9.ctex[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://props/camp_cap_Cap Base Color.png.import[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_cap_Cap Metallic Roughness.png-739158bf6747a82fdd20d6a41dc5da95.ctex[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://props/camp_cap_Cap Metallic Roughness.png.import[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_cap_Cap Normal.png-3ad382d87bb1fa392a0520cb5376157c.ctex[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://props/camp_cap_Cap Normal.png.import[39m[0m
+[  20% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_cap_Hat side panel.png-6383f53749fcbc526c6690ff2376a4d0.ctex[39m[0m
+[  20% ] [90m[1msavepack[22m | Storing File: res://props/camp_cap_Hat side panel.png.import[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_crocodile.glb-80afda6225845d4190b762bdc0a08570.scn[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://props/camp_crocodile.glb.import[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_crocodile_Crocodile Color.jpg-261fd990bb530c06ff32c1279a12d2ca.ctex[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://props/camp_crocodile_Crocodile Color.jpg.import[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_crocodile_Crocodile Metallic Roughness.jpg-23812e20639295ede597049cc66914ae.ctex[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://props/camp_crocodile_Crocodile Metallic Roughness.jpg.import[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_crocodile_Crocodile Normal.png-90405514f0c670b327e5cb85cb7cdcaf.ctex[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://props/camp_crocodile_Crocodile Normal.png.import[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_eagle.glb-640b778cca4a2e77a9e005616b51e304.scn[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://props/camp_eagle.glb.import[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_eagle_Eagle Color.jpg-6888e70bc4320dc293f1a9c7af4958cf.ctex[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://props/camp_eagle_Eagle Color.jpg.import[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_eagle_Eagle Metallic Roughness.png-2c04bc32709c7e3003aaec40bcab6dd3.ctex[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://props/camp_eagle_Eagle Metallic Roughness.png.import[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_eagle_Eagle Normal.png-5164ac826a73ea83eba3beecc33b39fa.ctex[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://props/camp_eagle_Eagle Normal.png.import[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_jacket.glb-dbc5540b4a1b516b5287380e55f14ff5.scn[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://props/camp_jacket.glb.import[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_jacket_Camp Jacket Base Color.png-8ad23c391e67191c6a07f47ef5b8836a.ctex[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://props/camp_jacket_Camp Jacket Base Color.png.import[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_jacket_Camp Jacket Metallic Roughness.png-6bc4f35a9cd06a995cd50b63dcf4b8b7.ctex[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://props/camp_jacket_Camp Jacket Metallic Roughness.png.import[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_lantern.glb-45df87945d6b8c0d7077aff111b8005c.scn[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://props/camp_lantern.glb.import[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_mastiff.glb-1aeab33951be07da9c832e2809bd89e8.scn[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://props/camp_mastiff.glb.import[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_mastiff_Mastiff Base Color.jpg-976e7c903592b623af7ad7af117772db.ctex[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://props/camp_mastiff_Mastiff Base Color.jpg.import[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_mastiff_Mastiff Metallic Roughness.jpg-1ff71de26a1f39b0a8a1e520849d4009.ctex[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://props/camp_mastiff_Mastiff Metallic Roughness.jpg.import[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_mastiff_Mastiff Normal.png-a2400934ab910b8958df3f8228145a1b.ctex[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://props/camp_mastiff_Mastiff Normal.png.import[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_pants.glb-0f3f346c99c530a8bb1328cf9d61e1a9.scn[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://props/camp_pants.glb.import[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_pants_Camp Pants Base Color.png-8b938948f4f69d5111f1b9f75035422e.ctex[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://props/camp_pants_Camp Pants Base Color.png.import[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_pants_Camp Pants Metallic Roughness.png-8031c978c5902604fb103d93d312c723.ctex[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://props/camp_pants_Camp Pants Metallic Roughness.png.import[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_pants_Camp Pants Normal.png-73b9c4709e486ec7a67530c2098ff372.ctex[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://props/camp_pants_Camp Pants Normal.png.import[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_red_spaceship.glb-aa5b4b39a9d28a683596ee226c42aa9b.scn[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://props/camp_red_spaceship.glb.import[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_red_spaceship_0.jpg-9573916251d1d230b4854cc0335fe473.ctex[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://props/camp_red_spaceship_0.jpg.import[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_red_spaceship_1.jpg-bf3c67b03ab96ba09b2f97276020578f.ctex[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://props/camp_red_spaceship_1.jpg.import[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_red_spaceship_2.jpg-4fc0fc71bd38cfb79d12657c62776dee.ctex[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://props/camp_red_spaceship_2.jpg.import[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_table.glb-f701525985aed5dc09b37a93564a003d.scn[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://props/camp_table.glb.import[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/camp_water_jug.glb-bb6edf6cee22fa2ba3a7e3fd9b1c119e.scn[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://props/camp_water_jug.glb.import[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/food_apple.glb-c8464a40fb3c494a0099a65689c384c8.scn[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://props/food_apple.glb.import[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/food_bread.glb-697cbf428d41116bdbaa15c77f162659.scn[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://props/food_bread.glb.import[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/material_tarp.glb-f7b5d91a43a4ab264dc492ebeb9de478.scn[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://props/material_tarp.glb.import[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/material_wood.glb-22a4d98ccfac8f9de08e05e47b0277ff.scn[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://props/material_wood.glb.import[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/material_wood_bark_diff.jpg-7ea5c28efd062a4796f1acd4101ec12f.ctex[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://props/material_wood_bark_diff.jpg.import[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/shore_boulder.glb-236d6d13af7e5fc371e3d680fea97610.scn[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://props/shore_boulder.glb.import[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/sky_character.glb-ee69aabb79334fdacd7918357372dc0e.scn[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://props/sky_character.glb.import[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone_flat.glb-290ae33f10d008a9d78bdba92025abc3.scn[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://props/stone_flat.glb.import[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone_round.glb-d40ebbff74cb1cc85abc882256b96b13.scn[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://props/stone_round.glb.import[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone_sharp.glb-95a5eefc76969ad12ddf5c81c1ffb5c6.scn[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://props/stone_sharp.glb.import[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/table_babushka.glb-cdffe3761484897ee6fd7263738cd5d7.scn[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://props/table_babushka.glb.import[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/table_gnome.glb-b89b3ef778f2ca80a2845af1542b2aa6.scn[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://props/table_gnome.glb.import[39m[0m
+[  39% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/engine-loop.wav-8e9cbfd6e4cd21a09ffdddc012ad1ca0.sample[39m[0m
+[  39% ] [90m[1msavepack[22m | Storing File: res://sounds/engine-loop.wav.import[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/engine-start.wav-2d9f14e92e45d25d085dcbc564c56b2d.sample[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://sounds/engine-start.wav.import[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/engine-stop.wav-3160ef77a754faa8119af1f973ad691e.sample[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://sounds/engine-stop.wav.import[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-leaves-1.wav-10df0fdab56b1c3df46986c1647136bf.sample[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://sounds/step-leaves-1.wav.import[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-leaves-2.wav-fcd9c8da274e3a19eb784049b134558e.sample[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://sounds/step-leaves-2.wav.import[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-trail-1.wav-87bd573ad374d6cf680209ee8bea6ef3.sample[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://sounds/step-trail-1.wav.import[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-trail-2.wav-dc98a4e4917efbbf07ea37bc0f6c95b1.sample[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://sounds/step-trail-2.wav.import[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-wade-1.wav-2593a078de27a982980a2704b58d34f3.sample[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://sounds/step-wade-1.wav.import[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-wade-2.wav-a31a4898b2f39d6f223bf649970f4fcf.sample[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://sounds/step-wade-2.wav.import[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-wood-1.wav-5cc58bd1ec877530b93c67bc90211b89.sample[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://sounds/step-wood-1.wav.import[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/step-wood-2.wav-027b470ac314e5e1a18e4cdf7428966a.sample[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://sounds/step-wood-2.wav.import[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone-earth.wav-388dffabce2816384b37e04014d70d08.sample[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://sounds/stone-earth.wav.import[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone-rock.wav-2cbf6f5ab55b4fe62372c299c7f8bfe3.sample[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://sounds/stone-rock.wav.import[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone-throw.wav-6e7c7b31d17813326d527dc183ae92d8.sample[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://sounds/stone-throw.wav.import[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone-water.wav-90f0b45cfee541c867b3131245fd86a7.sample[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://sounds/stone-water.wav.import[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/stone-wood.wav-f2fb76286a6b721a26e25e40060750d9.sample[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://sounds/stone-wood.wav.import[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/swim-deep.wav-6967ed1340c92c47122e3c8548fa1b44.sample[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://sounds/swim-deep.wav.import[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/swim-entry.wav-88dcf15ca3f4cac3e7283d02922d6e30.sample[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://sounds/swim-entry.wav.import[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/swim-stroke-1.wav-c07612b60472cca760a4aee7663efccc.sample[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://sounds/swim-stroke-1.wav.import[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/swim-stroke-2.wav-9d8293615be03e39fdd57f767343629f.sample[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://sounds/swim-stroke-2.wav.import[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/bark_arm.jpg-324305ec1aa135c103984d78b1373d0e.ctex[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://textures/bark_arm.jpg.import[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/bark_diff.jpg-0df068789d8b3071cc0963131dd5b2d4.ctex[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://textures/bark_diff.jpg.import[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/bark_nor_gl.jpg-38be1003379827ed34164399b1202afa.ctex[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://textures/bark_nor_gl.jpg.import[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/distant_fir.png-546a2ead4e2eec65286344f51593da9c.ctex[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://textures/distant_fir.png.import[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/evening_sky.jpg-dcc35c1fb86ca59c20c2bcf1a0b5c806.ctex[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://textures/evening_sky.jpg.import[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/fern.png-e735f3638aa0212da797193facb23c87.ctex[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://textures/fern.png.import[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/forest_floor_arm.jpg-8ddb147b7fd30f91e6ab42e5561a13ad.ctex[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://textures/forest_floor_arm.jpg.import[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/forest_floor_diff.jpg-02aa07e95bf166ae5d12d0395c911da8.ctex[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://textures/forest_floor_diff.jpg.import[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/forest_floor_nor_gl.jpg-e53d31a673ad2c8402506c5b286d3d83.ctex[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://textures/forest_floor_nor_gl.jpg.import[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_apple.png-99fae3696ea054c46e6bba03385b979a.ctex[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_apple.png.import[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_backpack.png-9629f3b02d3c922bbea9d934be68963e.ctex[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_backpack.png.import[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_bread.png-01c8bb13c0b75de55b641209120b597a.ctex[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_bread.png.import[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_cap.png-12d3eef202bcf4366f4a6ce98bb2f5f6.ctex[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_cap.png.import[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_club.png-777d702bf60053a71645996b66184a37.ctex[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_club.png.import[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_herb.png-8a9e1a3c823e6dd9fa192d01ef121192.ctex[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_herb.png.import[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_jacket.png-55d330653de099ead3015583f6f2e941.ctex[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_jacket.png.import[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_pants.png-876ca318069503618c8d41cf34e70e44.ctex[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_pants.png.import[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_shield.png-2eaaad9e8b2304dc0375ae739b1c8b84.ctex[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_shield.png.import[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_spear.png-7c3ed7cb5a7690eca3e02c41d766fba1.ctex[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_spear.png.import[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_stone.png-385f02478f2810ae471a3eaad30162a2.ctex[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_stone.png.import[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_tarp.png-67ad93e11216e572f07254eb67e80a13.ctex[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_tarp.png.import[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_water.png-311230ae8d00b3fc72815a3652f4e605.ctex[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_water.png.import[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/inventory_wood.png-57b22e85f42bba943e412c6df8a3edfe.ctex[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://textures/inventory_wood.png.import[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/lake_canopy.png-613bd8704fd791f291eaa52a354e9154.ctex[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://textures/lake_canopy.png.import[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/lake_gravel_diff.jpg-c921dbafd2b7103670d280060fe71090.ctex[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://textures/lake_gravel_diff.jpg.import[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/lake_gravel_nor_gl.jpg-83d067bf5e649eebf32d00f964576b11.ctex[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://textures/lake_gravel_nor_gl.jpg.import[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/lake_ripples.png-8b136b833c8a73027a6141de536f0827.ctex[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://textures/lake_ripples.png.import[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/lunar_surface.jpg-f017436d051668461f20bc58e0660dff.ctex[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://textures/lunar_surface.jpg.import[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/milky_way_photo.jpg-af9af73fbb14d12b64b9e6ff6c9a2a2a.ctex[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://textures/milky_way_photo.jpg.import[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/milky_way_stars.png-587e97f032d26d4bbad5c9e0f0246ead.ctex[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://textures/milky_way_stars.png.import[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/mud_arm.jpg-40fcce27147e8dddf40c29f6a63fc77e.ctex[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://textures/mud_arm.jpg.import[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/mud_diff.jpg-6f20154f06765c4bd244892075e04215.ctex[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://textures/mud_diff.jpg.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/mud_nor_gl.jpg-36b787b3d1f5052751dc5caf2f91b4d9.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://textures/mud_nor_gl.jpg.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/needles.png-8446107f1770b2153d0e71595910fefc.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://textures/needles.png.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/rock_arm.jpg-f031449f4ea2d6000ff8e68bf3dde0da.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://textures/rock_arm.jpg.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/rock_diff.jpg-82311784549c443a9ec78d343d9f8aa3.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://textures/rock_diff.jpg.import[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/rock_nor_gl.jpg-e33fdf6dd70a99f21bc5df032f5f7e88.ctex[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://textures/rock_nor_gl.jpg.import[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/wood_arm.jpg-bf64aa6a1b92c295d43de1ea6d8f382b.ctex[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://textures/wood_arm.jpg.import[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/wood_diff.jpg-9ac504cb743c2d17293a6a230bc4af80.ctex[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://textures/wood_diff.jpg.import[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/wood_nor_gl.jpg-51d762107bd0a752b1b382248b9a6b4c.ctex[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://textures/wood_nor_gl.jpg.import[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/birch_bark.jpg-dc7c29c237662719f7fff40045b6c1b5.ctex[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://trees/birch_bark.jpg.import[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/birch_leaves.png-d8e0872f8e836b1c1d42b716e1a759ea.ctex[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://trees/birch_leaves.png.import[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/birch_mature.glb-a37e283ed27db330d928f83c25115cdd.scn[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://trees/birch_mature.glb.import[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/birch_sapling.glb-0c1bd3e8308f709e459533ea2362c31c.scn[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://trees/birch_sapling.glb.import[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/birch_young.glb-9fc561a10b8f80cbdb4af7f143d48334.scn[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://trees/birch_young.glb.import[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spruce_mature.glb-77b79cbfff8140a218dfc1d24b09b843.scn[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://trees/spruce_mature.glb.import[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spruce_sapling.glb-b45cf6644ab2f4149d46a1cdb977aaf7.scn[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://trees/spruce_sapling.glb.import[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spruce_young.glb-27f552937db32ee70078893996f2a9f2.scn[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://trees/spruce_young.glb.import[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://vegetation/grass.gdshader[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/grass_medium_01.glb-7241d66854f668f1e7f39752e52a86c6.scn[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://vegetation/grass_medium_01.glb.import[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/grass_medium_01.png-79f6e8311b0779ae4a091342cd8f1834.ctex[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://vegetation/grass_medium_01.png.import[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/club.glb-c33a62bd1fcb0eb394b29a4096ece8a4.scn[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://wild_people/club.glb.import[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/female.glb-56d2cd75984d675bbb58390bcc48cc33.scn[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://wild_people/female.glb.import[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/female_elite.glb-a8ee9cd65ff956cb9a3d260e7621f8da.scn[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://wild_people/female_elite.glb.import[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/male.glb-e9a9d6c9647e5b74e9b009933309b377.scn[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://wild_people/male.glb.import[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/male_elite.glb-e30b55a785aed4f182810d0acb69f16b.scn[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://wild_people/male_elite.glb.import[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/shield.glb-88da4e7d91635adad66e48fcda772575.scn[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://wild_people/shield.glb.import[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/spear.glb-22c1a4a29842824d50ccf128d6341798.scn[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://wild_people/spear.glb.import[39m[0m
+[  78% ] [90m[1msavepack[22m | Storing File: res://atmosphere.gdc[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://camp_audio.gdc[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://camp_dog.gdc[39m[0m
+[  80% ] [90m[1msavepack[22m | Storing File: res://camp_dog_scene.gdc[39m[0m
+[  80% ] [90m[1msavepack[22m | Storing File: res://character_preview.gdc[39m[0m
+[  81% ] [90m[1msavepack[22m | Storing File: res://client.gdc[39m[0m
+[  81% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-28d74bcfaeb4b0ca75c8bfcbf615d89f-client.scn[39m[0m
+[  82% ] [90m[1msavepack[22m | Storing File: res://clothing.gdc[39m[0m
+[  82% ] [90m[1msavepack[22m | Storing File: res://follow_camera.gdc[39m[0m
+[  83% ] [90m[1msavepack[22m | Storing File: res://grass.gdc[39m[0m
+[  83% ] [90m[1msavepack[22m | Storing File: res://grove.gdc[39m[0m
+[  84% ] [90m[1msavepack[22m | Storing File: res://hiker.gdc[39m[0m
+[  84% ] [90m[1msavepack[22m | Storing File: res://hud.gdc[39m[0m
+[  85% ] [90m[1msavepack[22m | Storing File: res://lake.gdc[39m[0m
+[  85% ] [90m[1msavepack[22m | Storing File: res://lake_bed.gdc[39m[0m
+[  86% ] [90m[1msavepack[22m | Storing File: res://lake_layout.gdc[39m[0m
+[  86% ] [90m[1msavepack[22m | Storing File: res://network.gdc[39m[0m
+[  87% ] [90m[1msavepack[22m | Storing File: res://player_motion.gdc[39m[0m
+[  87% ] [90m[1msavepack[22m | Storing File: res://provision_scene.gdc[39m[0m
+[  88% ] [90m[1msavepack[22m | Storing File: res://rules.gdc[39m[0m
+[  88% ] [90m[1msavepack[22m | Storing File: res://fonts/APACHE-2.0.txt[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://spaceship.gdc[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://spaceship_ground.gdc[39m[0m
+[  90% ] [90m[1msavepack[22m | Storing File: res://spaceship_scene.gdc[39m[0m
+[  90% ] [90m[1msavepack[22m | Storing File: res://stones.gdc[39m[0m
+[  91% ] [90m[1msavepack[22m | Storing File: res://stone_scene.gdc[39m[0m
+[  91% ] [90m[1msavepack[22m | Storing File: res://survival.gdc[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://terrain.gdc[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://water_layout.json[39m[0m
+[  93% ] [90m[1msavepack[22m | Storing File: res://wildlife.gdc[39m[0m
+[  93% ] [90m[1msavepack[22m | Storing File: res://wildlife_scene.gdc[39m[0m
+[  94% ] [90m[1msavepack[22m | Storing File: res://wild_people.gdc[39m[0m
+[  94% ] [90m[1msavepack[22m | Storing File: res://wild_people_config.json[39m[0m
+[  95% ] [90m[1msavepack[22m | Storing File: res://wild_people_navigation.gdc[39m[0m
+[  95% ] [90m[1msavepack[22m | Storing File: res://wild_people_panel.gdc[39m[0m
+[  96% ] [90m[1msavepack[22m | Storing File: res://wild_people_scene.gdc[39m[0m
+[  96% ] [90m[1msavepack[22m | Storing File: res://world.json[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://sky-assets.LICENSE.txt[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://fonts/OFL-1.1.txt[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://fonts/NOTICE.txt[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/bark.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/fern.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/forest_floor.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/lantern_glass.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/mud.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/needles.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/rock.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://materials/wood.tres.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://atmosphere.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://camp_audio.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://camp_dog.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://camp_dog_scene.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://character_preview.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://client.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://client.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://clothing.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://follow_camera.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://grass.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://grove.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://hiker.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://hud.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://lake.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://lake_bed.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://lake_layout.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://network.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://player_motion.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://provision_scene.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://rules.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://spaceship.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://spaceship_ground.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://spaceship_scene.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://stones.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://stone_scene.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://survival.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://terrain.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://wildlife.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://wildlife_scene.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://wild_people.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://wild_people_navigation.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://wild_people_panel.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://wild_people_scene.gd.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://.godot/global_script_class_cache.cfg[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://.godot/uid_cache.bin[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
+[92m[ DONE ][39m [1msavepack[22m
+[0m
+ERROR: Cannot save file '/Users/sky/Library/Application Support/Godot/editor_settings-4.7.tres'.
+   at: save (scene/resources/resource_format_text.cpp:1768)
+ERROR: Error saving editor settings to /Users/sky/Library/Application Support/Godot/editor_settings-4.7.tres
+   at: save (editor/settings/editor_settings.cpp:1525)

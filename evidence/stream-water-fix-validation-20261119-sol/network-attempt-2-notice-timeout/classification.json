@@ -1,0 +1,5 @@
+{
+  "classification": "harness action notice timeout; no application exception in server log",
+  "observed": "three actual gather actions succeeded and bag/source are conserved; next request produced no notice before timeout.",
+  "mitigation": "Pace person requests from acknowledged reply instead of client send time; server existing 120ms limiter can discard closely processed packets."
+}

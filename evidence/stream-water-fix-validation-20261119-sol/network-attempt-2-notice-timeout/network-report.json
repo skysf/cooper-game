@@ -1,0 +1,10 @@
+{
+  "started": "2026-11-19T13:38:20.545Z",
+  "mode": "Independent real WebSockets against production server; authored disposable fixtures; no runtime state setters",
+  "checks": [],
+  "events": [],
+  "ownService": "http://127.0.0.1:49540",
+  "ok": false,
+  "error": "Error: Timed out {\"action\":\"gather\",\"item\":\"water\",\"id\":\"\"}\n    at until (file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/qa-lib.mjs:15:176)\n    at async command (file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/qa-lib.mjs:43:213)\n    at async file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/stream-water-fix-validation-20261119-sol/network-check.mjs:35:39",
+  "finished": "2026-11-19T13:38:27.908Z"
+}

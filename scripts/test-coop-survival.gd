@@ -49,7 +49,7 @@ func _verify() -> void:
 	var room: Dictionary = rooms[ROOM]
 	var alice_id: String = alice.id
 	var bob_id: String = bob.id
-	_expect(room.data.quest.wood and room.data.provisions.size() == 4, "legacy saves preserve quest state and seed table once")
+	_expect(room.data.quest.wood and _table_items(room.data.provisions) == 4, "legacy saves preserve quest state and seed table once")
 	_expect(_snapshot(alice).survival.worn == Survival.initial_wear(), "legacy players start with all three clothes equipped")
 	room.actors[alice_id].point = REACHABLE
 	room.actors[bob_id].point = REACHABLE
@@ -60,7 +60,7 @@ func _verify() -> void:
 	_expect(not _last_notice(bob).ok, "second claimant is rejected")
 
 	_action(alice, "put", "apple")
-	_expect(room.data.provisions.size() == 4 and room.data.survival[alice_id].bag.apple == 0, "food can be put back")
+	_expect(_table_items(room.data.provisions) == 4 and room.data.survival[alice_id].bag.apple == 0, "food can be put back")
 	var restored_apple := _find_food(room, "apple", "table", ["apple-2"])
 	_action(bob, "take", "", restored_apple)
 	_expect(room.data.survival[bob_id].bag.apple == 1, "one player's returned food can be taken by another")
@@ -90,13 +90,14 @@ func _verify() -> void:
 	_expect(room.data.provisions.has("apple-2") and room.data.survival[alice_id].bag.apple == 0 and not _last_notice(alice).ok, "failed checkpoint rolls back both table and bag")
 	save_dir = writable
 	_action(alice, "take", "", "apple-2")
-	_expect(room.data.provisions.is_empty() and room.data.survival[alice_id].bag.apple == 1, "the same action can retry successfully")
+	_expect(_table_items(room.data.provisions) == 0 and room.data.survival[alice_id].bag.apple == 1, "the same action can retry successfully")
 	_action(bob, "eat", "apple")
 	_expect(room.data.survival[bob_id].hunger == 75.0 and room.data.survival[bob_id].water == 100.0, "apple nutrition and saturation")
 
-	_expect(Survival.used_slots({"apple": 16, "bread": 0}) == 6, "six bag slots allow a partial final stack")
-	_expect(Survival.can_carry({"apple": 16, "bread": 0}, "apple") and not Survival.can_carry({"apple": 16, "bread": 0}, "bread"), "full bags can only add to a matching stack")
-	_expect(not Survival.can_carry({"apple": 15, "bread": 3}, "apple"), "full stacks enforce bag capacity")
+	_expect(Survival.used_slots({"apple": 16, "bread": 0}) == 1, "all apples share one inventory slot")
+	var six_kinds := {"apple": 16, "bread": 7, "herb": 7, "water": 10, "club": 4, "cap": 4}
+	_expect(Survival.can_carry(six_kinds, "apple") and not Survival.can_carry(six_kinds, "spear"), "a full bag can merge an existing kind but cannot add a seventh kind")
+	_expect(Survival.used_slots({"apple": 15, "bread": 3}) == 2, "inventory capacity counts different item kinds")
 	var inside := Survival.initial_state()
 	var outside := Survival.initial_state()
 	Survival.tick(inside, REACHABLE, true, 1.0, 60.0)
@@ -117,15 +118,15 @@ func _verify() -> void:
 	_expect(_last_notice(alice).ok and _snapshot(alice).backpackOwner == alice_id and _snapshot(bob).backpackOwner == alice_id, "one pickup equips the owner and updates both players")
 	_action(bob, "take_backpack")
 	_expect(not _last_notice(bob).ok, "another player cannot take an equipped backpack")
-	room.data.survival[alice_id].bag.apple = 18
-	room.data.survival[bob_id].bag.apple = 18
+	room.data.survival[alice_id].bag = {"apple": 18, "herb": 1, "water": 1, "club": 1, "spear": 1, "shield": 1}
+	room.data.survival[bob_id].bag = room.data.survival[alice_id].bag.duplicate()
 	var by_pack := Survival.BACKPACK
-	room.data.provisions["extra-apple"] = Survival.provision("apple", Vector3(by_pack.x, 0.04, by_pack.y), "ground")
-	_action(bob, "take", "", "extra-apple")
-	_expect(not _last_notice(bob).ok and room.data.provisions.has("extra-apple"), "a teammate without the backpack still has six slots")
-	_action(alice, "take", "", "extra-apple")
-	_expect(_last_notice(alice).ok and room.data.survival[alice_id].bag.apple == 19, "the equipped player can fill the extra space")
-	room.data.survival[bob_id].bag.apple = 0
+	room.data.provisions["extra-bread"] = Survival.provision("bread", Vector3(by_pack.x, 0.04, by_pack.y), "ground")
+	_action(bob, "take", "", "extra-bread")
+	_expect(not _last_notice(bob).ok and room.data.provisions.has("extra-bread"), "a teammate without the backpack still has six slots")
+	_action(alice, "take", "", "extra-bread")
+	_expect(_last_notice(alice).ok and room.data.survival[alice_id].bag.bread == 1, "the equipped player can carry a seventh different kind")
+	room.data.survival[bob_id].bag = {"apple": 0, "bread": 0}
 
 	var dock := Vector2(-10.45, -49.1)
 	room.actors[alice_id].point = dock
@@ -156,7 +157,7 @@ func _verify() -> void:
 	_leave(2)
 	_expect(not rooms.has(ROOM), "empty room can unload after successful checkpoint")
 	alice = _connect(3, ALICE_TOKEN)
-	_expect(_snapshot(alice).provisions.size() == 1 and not _snapshot(alice).survival.worn.pants and _snapshot(alice).survival.bag.apple == 19 and _snapshot(alice).backpackOwner == alice_id, "restart restores dropped and equipped clothing, the backpack and extra food")
+	_expect(not _find_food(rooms[ROOM], "pants", "ground").is_empty() and not _snapshot(alice).survival.worn.pants and _snapshot(alice).survival.bag.apple == 18 and _snapshot(alice).backpackOwner == alice_id, "restart restores dropped and equipped clothing, the backpack and extra food")
 	_expect(is_equal_approx(float(_snapshot(alice).survival.health), 82.0), "the bite's health loss survives a room restart")
 	var saved_dog: Dictionary = _snapshot(alice).dog
 	_expect(saved_dog.owner == alice_id and saved_dog.mode == "stay" and saved_dog.clip == CampDog.REST and CampDog.position(saved_dog).is_equal_approx(waiting_spot), "the adopted dog returns to its waiting spot and rest pose after restart")
@@ -332,7 +333,8 @@ func _verify_dog(room: Dictionary, alice: Dictionary, bob: Dictionary, fixture_p
 	_message(alice, {"t": "dog", "action": "adopt"})
 	_expect(not _last_notice(alice).ok and room.data.dog.owner.is_empty(), "a nearby player cannot adopt the dog through the wall")
 	actor.point = Rules.pair(world.sites.repair)
-	room.data.quest.tarp = true
+	# Repair now consumes the acting player's carried materials, never shared source flags.
+	room.data.survival[alice.id].bag.merge({"wood": 1, "tarp": 1}, true)
 	_message(alice, {"t": "act", "site": "repair"})
 	_step_dog(room, 1)
 	_expect(room.data.dog.clip == CampDog.DOWN, "repairing the roof and lighting the lamp starts the lie-down clip")
@@ -417,6 +419,9 @@ func _snapshot(con: Dictionary) -> Dictionary:
 
 func _last_notice(con: Dictionary) -> Dictionary:
 	return received[con.ws.get_instance_id()].notice
+
+func _table_items(provisions: Dictionary) -> int:
+	return provisions.values().filter(func(record: Dictionary) -> bool: return record.surface == "table").size()
 
 func _find_food(room: Dictionary, item: String, surface: String, skip: Array = []) -> String:
 	for id: String in room.data.provisions:

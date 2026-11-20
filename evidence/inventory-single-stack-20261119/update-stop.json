@@ -1,0 +1,14 @@
+{
+  "stopped_pid": 93107,
+  "backup": ".local-rooms/backups/inventory-single-stack-20261119",
+  "records": {
+    "pine.json": {
+      "sha256": "714081eaa36b273b2a50c241af887cc0238730c96aafb98d014e2eef6997c575",
+      "elapsed": 426.149150666577,
+      "players": 3
+    }
+  },
+  "client_sha": "76e0f02f945031a0308b7b053c450518fa4effb9806502f66a2b6850ef4278f9",
+  "time": "2026-11-19T22:59:32.839655",
+  "legacy_4184_pid": 76294
+}

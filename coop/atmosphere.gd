@@ -47,6 +47,7 @@ var moon_energy := 0.0
 var _last_sky_time := -1.0
 var _last_sky_rain := -1.0
 var daylight_shadow_range := 38.0
+var coastal_view := 0.0
 
 func _ready() -> void:
 	var world := WorldEnvironment.new()
@@ -57,7 +58,6 @@ func _ready() -> void:
 	environment.reflected_light_source = Environment.REFLECTION_SOURCE_DISABLED
 	environment.fog_enabled = true
 	environment.fog_mode = Environment.FOG_MODE_DEPTH
-	environment.fog_density = 1.0
 	environment.fog_sky_affect = 0.0
 	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
 	if OS.has_feature("web"):
@@ -171,18 +171,24 @@ func _update_sky(elapsed: float, wet: float) -> void:
 	var ambient_color := Color("#bccfe3").lerp(Color("#efc39c"), twilight * 0.42)
 	environment.ambient_light_color = ambient_color.lerp(Color("#849ab5"), night)
 	environment.ambient_light_energy = lerpf(0.77, 0.23, night) * lerpf(1.0, 0.78, wet) * lerpf(0.82, 1.0, maxf(daylight, night))
-	environment.fog_light_color = sky_horizon.lerp(Color("#d2ac87"), twilight * 0.31).lerp(Color("#35495a"), night * 0.21)
-	environment.fog_depth_begin = lerpf(20.0, 8.0, wet)
-	environment.fog_depth_end = lerpf(103.0, 49.0, wet)
+	var valley_haze := sky_horizon.lerp(Color("#d2ac87"), twilight * 0.31).lerp(Color("#35495a"), night * 0.21)
+	var sea_haze := valley_haze.lerp(sky_zenith, 0.22).darkened(0.12)
+	# Let haze separate the distant headlands while retaining the contrast of rock and trees.
+	var sea_density := lerpf(0.34, 0.62, wet)
+	environment.fog_density = lerpf(1.0, sea_density, coastal_view * (1.0 - immersion))
+	environment.fog_light_color = valley_haze.lerp(sea_haze, coastal_view)
+	environment.fog_depth_begin = lerpf(lerpf(20.0, 8.0, wet), lerpf(58.0, 20.0, wet), coastal_view)
+	environment.fog_depth_end = lerpf(lerpf(103.0, 49.0, wet), lerpf(248.0, 169.0, wet), coastal_view)
 	environment.fog_sky_affect = immersion * 0.91
 	if immersion > 0.0:
 		var depth_weight := smoothstep(0.10, 1.85, eye_depth)
 		var scatter := Color("#639185").lerp(Color("#345f5a"), depth_weight)
+		scatter = scatter.lerp(Color("#60a8ad").lerp(Color("#235c78"), depth_weight), coastal_view)
 		scatter = scatter.lerp(Color("#415f60"), wet * 0.63).lerp(Color("#102932"), night)
 		scatter = scatter.lerp(Color("#67786a"), twilight * 0.27)
 		environment.fog_light_color = environment.fog_light_color.lerp(scatter, immersion)
 		environment.fog_depth_begin = lerpf(environment.fog_depth_begin, 0.20, immersion)
-		var visibility := lerpf(15.2, 10.5, depth_weight) - wet * 2.0 - night * 3.8
+		var visibility := lerpf(15.2, 10.5, depth_weight) + coastal_view * 11.0 - wet * 2.0 - night * 3.8
 		environment.fog_depth_end = 1.0 / lerpf(1.0 / environment.fog_depth_end, 1.0 / visibility, immersion)
 		environment.ambient_light_color = environment.ambient_light_color.lerp(Color("#83b4a3"), immersion * 0.58)
 		environment.ambient_light_energy *= 1.0 - immersion * lerpf(0.16, 0.37, depth_weight)
@@ -243,15 +249,17 @@ void fragment() {
 	rain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(rain)
 
-func update_weather(at: Vector3, yaw: float, elapsed: float, wet: float, repaired: bool, below_water := false, camera_water_depth := NAN) -> void:
+func update_weather(at: Vector3, yaw: float, elapsed: float, wet: float, repaired: bool,
+		below_water := false, camera_water_depth := NAN, sea_view := 0.0) -> void:
 	# Older callers supply just whether the eye is submerged. A real camera can
 	# cross the waterline continuously, including in third person or from the ship.
 	var depth := camera_water_depth if not is_nan(camera_water_depth) else (1.0 if below_water else -1.0)
 	var blend := smoothstep(-0.045, 0.17, depth)
-	if absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01 \
-			or below_water != underwater or absf(immersion - blend) > 0.012:
+	if (absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01
+			or below_water != underwater or absf(immersion - blend) > 0.012 or absf(coastal_view - sea_view) > 0.008):
 		underwater = below_water
 		immersion = blend
+		coastal_view = sea_view
 		eye_depth = maxf(depth, 0.0)
 		_last_sky_time = elapsed
 		_last_sky_rain = wet

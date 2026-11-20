@@ -1,0 +1,122 @@
+{
+  "started": "2026-11-19T11:40:30.369Z",
+  "transport": "Production Godot server and real loopback WebSocket clients",
+  "cases": {
+    "resourceRace": {
+      "awards": 1,
+      "stock": 0,
+      "bags": [
+        {
+          "apple": 1,
+          "bread": 0
+        },
+        {
+          "apple": 0,
+          "bread": 0
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:30.882Z",
+      "room": "qa-resource-race",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 1000
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:30.929Z",
+      "room": "qa-resource-race",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 1000.05
+    },
+    {
+      "name": "resource-race-passed",
+      "at": "2026-11-19T11:40:30.978Z",
+      "awards": 1,
+      "stock": 0,
+      "bags": [
+        {
+          "apple": 1,
+          "bread": 0
+        },
+        {
+          "apple": 0,
+          "bread": 0
+        }
+      ]
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:31.013Z",
+      "room": "qa-lifecycle",
+      "index": 0,
+      "phase": "rest",
+      "elapsed": 0
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:31.048Z",
+      "room": "qa-lifecycle",
+      "index": 1,
+      "phase": "rest",
+      "elapsed": 0.032303
+    },
+    {
+      "name": "real-sources-collected",
+      "at": [
+        -10.1757469177246,
+        -62.5027656555176
+      ],
+      "elapsed": 9.59662766666672,
+      "bag": {
+        "apple": 2,
+        "bread": 0,
+        "herb": 2,
+        "water": 2
+      }
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:43.112Z",
+      "room": "qa-lifecycle",
+      "index": 0,
+      "phase": "warning",
+      "elapsed": 12.1132943333335
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:43.113Z",
+      "room": "qa-lifecycle",
+      "index": 1,
+      "phase": "warning",
+      "elapsed": 12.1132943333335
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:51.053Z",
+      "room": "qa-lifecycle",
+      "index": 0,
+      "phase": "active",
+      "elapsed": 20.0031546666668
+    },
+    {
+      "name": "phase",
+      "at": "2026-11-19T11:40:51.054Z",
+      "room": "qa-lifecycle",
+      "index": 1,
+      "phase": "active",
+      "elapsed": 20.0031546666668
+    }
+  ],
+  "errors": [
+    "Error: Timed out: raider approaches camp\n    at until (file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/network-scenario.mjs:30:8)\n    at async file:///Users/sky/Downloads/Sky_Studio_All/SkyStudio_APP_Master/Game/Cooper_Game/evidence/wild-people-validation-20261119-network/network-scenario.mjs:94:28"
+  ],
+  "port": 64832,
+  "ok": false,
+  "finished": "2026-11-19T11:41:23.837Z"
+}

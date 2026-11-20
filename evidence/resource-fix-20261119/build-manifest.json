@@ -1,0 +1,11 @@
+{
+  "web": {
+    "pck_bytes": 46735652,
+    "sha256": "cadb0db948bf8e02c50e377e7721d60dac8c77a5173fff5761020eac5daa6636",
+    "mtime": "2026-11-19T21:45:56.585189"
+  },
+  "mac": {
+    "path": ".cache/resource-fix-release/native/CooperCamp.app",
+    "mtime": "2026-11-19T21:46:00.937279"
+  }
+}

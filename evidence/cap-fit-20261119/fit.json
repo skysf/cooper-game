@@ -1,0 +1,119 @@
+{
+  "before": {
+    "sha256": "325cd4a99b6eaf10863ec9216a11b25468f1a6ca22e7561e5b0222e3bbc5597f",
+    "bbox_min_m": [
+      -0.11255,
+      1.65281,
+      -0.15482
+    ],
+    "bbox_max_m": [
+      0.11253,
+      1.7802,
+      0.12912
+    ],
+    "width_height_depth_m": [
+      0.22508,
+      0.12739,
+      0.28394
+    ],
+    "head_top_clearance_m": 0.05145,
+    "triangles": 4500,
+    "radial_clearance_by_height_m": {
+      "1.661": {
+        "min": 0.03216,
+        "median": 0.04326,
+        "sampled_directions": 21
+      },
+      "1.668": {
+        "min": 0.03116,
+        "median": 0.04891,
+        "sampled_directions": 42
+      },
+      "1.675": {
+        "min": 0.03031,
+        "median": 0.05029,
+        "sampled_directions": 60
+      },
+      "1.69": {
+        "min": 0.03668,
+        "median": 0.05019,
+        "sampled_directions": 72
+      },
+      "1.705": {
+        "min": 0.04207,
+        "median": 0.05666,
+        "sampled_directions": 72
+      },
+      "1.72": {
+        "min": 0.05602,
+        "median": 0.07337,
+        "sampled_directions": 72
+      }
+    }
+  },
+  "after": {
+    "sha256": "212967607aed2ecc66c7e266107948a84e7781c838e0133568b4dcf39d505f32",
+    "bbox_min_m": [
+      -0.08051,
+      1.644,
+      -0.12244
+    ],
+    "bbox_max_m": [
+      0.0865,
+      1.7421,
+      0.09477
+    ],
+    "width_height_depth_m": [
+      0.16701,
+      0.09809,
+      0.21721
+    ],
+    "head_top_clearance_m": 0.01334,
+    "triangles": 4500,
+    "radial_clearance_by_height_m": {
+      "1.661": {
+        "min": 0.0047,
+        "median": 0.01354,
+        "sampled_directions": 59
+      },
+      "1.668": {
+        "min": 0.00689,
+        "median": 0.01349,
+        "sampled_directions": 72
+      },
+      "1.675": {
+        "min": 0.00609,
+        "median": 0.01419,
+        "sampled_directions": 72
+      },
+      "1.69": {
+        "min": 0.00725,
+        "median": 0.01611,
+        "sampled_directions": 72
+      },
+      "1.705": {
+        "min": 0.00985,
+        "median": 0.02037,
+        "sampled_directions": 72
+      },
+      "1.72": {
+        "min": 0.01941,
+        "median": 0.03102,
+        "sampled_directions": 72
+      }
+    }
+  },
+  "test": "Sky character Stand pose. Real hiker.gd wear transform. Width and depth include the brim. Clearance is the outer-shell radius minus the scalp radius at each sampled height.",
+  "preview": {
+    "engine": "Godot 4.7.2 stable WebGL 2 Compatibility",
+    "method": "Actual character_preview.gd and hiker.gd, two rows in one isolated headless Chromium capture; upper original, lower corrected. Left to right: original full-body preview camera, front, left profile, rear. Same role, glasses, clothes and lens per column.",
+    "file": "role-preview.png"
+  },
+  "same_texture_images": true,
+  "unchanged_texture_names": [
+    "Cap Normal",
+    "Cap Base Color",
+    "Cap Metallic Roughness",
+    "Hat side panel"
+  ]
+}
