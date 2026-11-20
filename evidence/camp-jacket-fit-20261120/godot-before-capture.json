@@ -1,0 +1,14 @@
+{
+  "driver": "Apple M1",
+  "frames": [
+    "stand-full",
+    "stand-front",
+    "stand-back",
+    "remote-holding",
+    "recovery-knee",
+    "recovery-down",
+    "ground",
+    "wardrobe"
+  ],
+  "source": "c658f92618ec259e9c8e5d35173f097129dc49e77faaedff305172fdef6f788d"
+}

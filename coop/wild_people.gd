@@ -5,6 +5,7 @@ const Rules = preload("res://rules.gd")
 const Survival = preload("res://survival.gd")
 const Lake = preload("res://lake_layout.gd")
 const Navigator = preload("res://wild_people_navigation.gd")
+const Footing = preload("res://companion_footing.gd")
 const Motion = preload("res://player_motion.gd")
 const Weapons = preload("res://weapons.gd")
 const Ship = preload("res://spaceship.gd")
@@ -14,6 +15,13 @@ const FOOD := Vector2(6.0, -81.0)
 const HERBS := Vector2(6.4, -83.8)
 const WATER := Vector2(-10.4, -62.5)
 const REACH := 2.25
+# In-place stride distances authored by bake-wild-people-locomotion.py.
+const STRIDE_METERS := {"Walk": 1.38, "Run": 1.92, "Limp": 1.04, "LimpLeft": 1.04}
+const TURN_RADIANS := PI * 0.5
+const TURN_SPEED := 3.0
+const TURN_START := 0.80
+const TURN_END := 0.08
+const WORK_SECONDS := {"DrawWater": 1.50, "GatherFruit": 1.25}
 const SOURCES := {
 	"fruit": {"name": "林果采集点", "x": 6.0, "z": -81.0, "item": "apple", "capacity": 8, "period": 65.0},
 	"herbs": {"name": "药草采集点", "x": 6.4, "z": -83.8, "item": "herb", "capacity": 5, "period": 100.0},
@@ -77,13 +85,14 @@ static func from_save(value: Variant, elapsed: float, grid: Dictionary, config: 
 				continue
 			var npc := make_person(id, int(_number(saved, "tier", 0, 0, 5)), str(saved.get("sex", "male")), Vector2(_number(saved, "x", HOME.x, Rules.MIN_CORNER.x, Rules.MAX_CORNER.x), _number(saved, "z", HOME.y, Rules.MIN_CORNER.y, Rules.MAX_CORNER.y)), elapsed)
 			for key: String in npc:
-				if key in ["x", "z", "yaw", "maxHealth", "tier"]:
+				if key in ["x", "z", "yaw", "stepPhase", "maxHealth", "tier"]:
 					continue
 				if npc[key] is float or npc[key] is int:
 					npc[key] = _number(saved, key, float(npc[key]), -1000.0 if key.ends_with("At") else 0.0, maxf(elapsed + 10000.0, 100000.0))
 				elif npc[key] is bool:
 					npc[key] = saved.get(key) == true
 			npc.yaw = wrapf(_number(saved, "yaw", 0, -1000, 1000), -PI, PI)
+			npc.stepPhase = _number(saved, "stepPhase", 0.0, 0.0, 1.0)
 			npc.careNeed = int(_number(saved, "careNeed", npc.careNeed, 5, 7))
 			npc.careDuration = _number(saved, "careDuration", npc.careDuration, 65, 115)
 			npc.phase = saved.phase
@@ -96,6 +105,8 @@ static func from_save(value: Variant, elapsed: float, grid: Dictionary, config: 
 			if not Rules.free_at(position(npc), grid):
 				npc.x = HOME.x
 				npc.z = HOME.y
+			var ground := Lake.walk_height(position(npc))
+			npc.y = _number(saved,"y",ground,ground,ground+6.0)
 			npc.weapon = saved.get("weapon", "") if saved.get("weapon", "") in WEAPONS else ""
 			npc.shield = saved.get("shield") == true
 			npc.order = "rest" if saved.get("order") == "rest" else "guard"
@@ -153,10 +164,10 @@ static func make_person(id: String, tier: int, sex: String, at: Vector2, elapsed
 	return {"id": id, "name": names[rng.randi_range(0, names.size() - 1)], "sex": sex, "age": rng.randi_range(23, 45), "tier": tier, "elite": tier >= 4,
 		"x": at.x, "z": at.y, "yaw": 0.0, "phase": "raider", "health": 84.0 + tier * 17.0, "maxHealth": 84.0 + tier * 17.0,
 		"hunger": 48.0, "water": 42.0, "mood": 44.0, "legL": 0.0, "legR": 0.0, "stun": 0.0, "stunUntil": 0.0, "disease": 0.0,
-		"weapon": ["", "stone", "club", "spear", "spear", "spear"][tier], "shield": tier >= 4, "loot": {}, "looted": false,
+		"weapon": ["", "stone", "club", "spear", "spear", "spear"][tier], "shield": tier >= 4, "loot": {}, "looted": false, "bound": false,
 		"relations": {}, "careNeed": rng.randi_range(5, 7), "careDuration": rng.randf_range(65.0, 115.0), "careSeconds": 0.0,
 		"treatedUntil": 0.0, "joinedAt": 0.0, "capturedAt": 0.0, "partner": "", "romanceOpen": rng.randf() > 0.24, "order": "guard", "help": "",
-		"clip": "Idle", "clipAt": elapsed, "attackAt": -10.0, "hitAt": -10.0, "captureAt": -10.0, "swingAt": 0.0, "escapeAt": 0.0, "escapeWarned": false,
+		"clip": "Idle", "clipAt": elapsed, "stepPhase": 0.0, "attackAt": -10.0, "hitAt": -10.0, "captureAt": -10.0, "swingAt": 0.0, "escapeAt": 0.0, "escapeWarned": false,
 		"bornAt": elapsed, "deadAt": 0.0, "actionAt": elapsed, "sickProgress": 0.0, "workAt": 0.0, "resistance": 65.0}
 
 static func event(state: Dictionary, text: String, elapsed: float) -> void:
@@ -169,6 +180,20 @@ static func _clip(npc: Dictionary, name: String, elapsed: float) -> void:
 	if npc.clip != name:
 		npc.clip = name
 		npc.clipAt = elapsed
+
+static func _pace(npc: Dictionary, clip: String, advance: float, elapsed: float) -> void:
+	var keep_phase: bool = npc.clip == clip or STRIDE_METERS.has(npc.clip) and STRIDE_METERS.has(clip)
+	var phase := float(npc.stepPhase) if keep_phase else 0.0
+	_clip(npc, clip, elapsed)
+	npc.stepPhase = fposmod(phase + advance, 1.0)
+
+static func _work(npc: Dictionary, clip: String, target: Vector2, elapsed: float) -> void:
+	_face(npc, target)
+	npc.clip = clip
+	npc.clipAt = elapsed
+
+static func _leg_scale(npc: Dictionary) -> float:
+	return maxf(0.18, 1.0 - (float(npc.legL) + float(npc.legR)) * 0.0042)
 
 static func _alive(npc: Dictionary) -> bool:
 	return npc.phase not in ["dead", "gone", "released"] and npc.health > 0.0
@@ -222,7 +247,7 @@ static func harm(state: Dictionary, npc: Dictionary, damage: float, blunt: bool,
 
 static func ray_hit(npc: Dictionary, from: Vector3, to: Vector3) -> Dictionary:
 	var p := position(npc)
-	var base := Vector3(p.x, Lake.walk_height(p), p.y)
+	var base := Vector3(p.x, npc.get("y",Lake.walk_height(p)), p.y)
 	var basis := Basis(Vector3.UP, float(npc.yaw))
 	var down: bool = npc.phase in ["down", "dead"]
 	# Match the exported rig: Down chest/head extend toward local +Z; legs toward -Z.
@@ -324,14 +349,6 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 	var elapsed: float = room.data.elapsed
 	var command: String = str(msg.get("action", ""))
 	var item: String = str(msg.get("item", ""))
-	if command == "respawn":
-		if personal.health > 0 or elapsed < float(personal.get("downAt", elapsed)) + 12.0:
-			return _no("倒地满 12 秒后可回营恢复行动")
-		actor.point = HOME
-		actor.y = Lake.walk_height(HOME)
-		personal.health = 45.0
-		personal.downAt = -1.0
-		return _yes("已回营，健康尚需恢复")
 	if personal.health <= 0.0:
 		return _no("倒地时无法进行这项操作")
 	if command == "attack":
@@ -432,6 +449,7 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 		if npc.phase != "down" and npc.health > npc.maxHealth * 0.23:
 			personal.health = maxf(0.0, personal.health - 4.0)
 		npc.phase = "captive"
+		npc.bound = false
 		npc.capturedAt = elapsed
 		npc.stunUntil = elapsed + 8.0 if npc.stun > 70.0 else 0.0
 		npc.resistance = 70.0
@@ -440,10 +458,23 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 		_clip(npc, "Captive", elapsed)
 		event(state, npc.name + "被制服，仍需照料并尊重本人去留", elapsed)
 		return _yes("已制服；清醒后仍可能反抗，按 E 查看照料和释放选项")
+	if command == "bind":
+		if npc.phase != "captive" or npc.get("bound", false):
+			return _no("对方当前无法加固约束")
+		if int(personal.bag.get("wicker_strip", 0)) <= 0:
+			return _no("背包中需要一份编条")
+		personal.bag.wicker_strip -= 1
+		if int(personal.bag.wicker_strip) <= 0 and personal.weapon == "wicker_strip":
+			personal.weapon = ""
+		npc.bound = true
+		if npc.escapeAt > elapsed:
+			npc.escapeAt += 14.0
+		return _yes("用了编条加固约束")
 	if command == "release":
 		if npc.phase != "captive":
 			return _no("只有俘虏需要解除约束")
 		npc.phase = "released"
+		npc.bound = false
 		npc.escapeAt = 0.0
 		_clip(npc, "Walk", elapsed)
 		event(state, npc.name + "获释离开营地", elapsed)
@@ -593,10 +624,13 @@ func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 			resource.stock = mini(SOURCES[key].capacity, int(resource.stock) + 1)
 	_trim_records(room, 48)
 	_raid(room, grid)
+	var footing := Footing.for_room(room) as Footing
 	for id: String in state.people.keys():
 		var npc: Dictionary = state.people[id]
 		if npc.phase == "gone":
 			continue
+		var at := position(npc)
+		npc.y = footing.height(at,float(npc.get("y",Lake.walk_height(at))))
 		if npc.phase == "dead":
 			if elapsed - npc.deadAt > 600.0:
 				state.people.erase(id)
@@ -738,11 +772,13 @@ func _captive(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float)
 	npc.resistance = clampf(npc.resistance + delta * (-0.035 if cared else 0.12), 0, 100)
 	if not cared and elapsed >= npc.stunUntil:
 		if npc.escapeAt <= 0:
-			npc.escapeAt = elapsed + 24.0
-			npc.help = "缺乏照料，正在挣脱；24 秒内请提供食物、水或治疗"
+			var wait := 38.0 if npc.get("bound", false) else 24.0
+			npc.escapeAt = elapsed + wait
+			npc.help = "缺乏照料，正在挣脱。%d 秒内请提供食物、水或治疗" % int(wait)
 			event(state, npc.name + "因缺乏照料开始挣脱约束", elapsed)
 		elif elapsed >= npc.escapeAt:
 			npc.phase = "retreat"
+			npc.bound = false
 			npc.escapeAt = 0.0
 			npc.help = "挣脱后逃离；重伤减速仍可追上"
 			event(state, npc.name + "挣脱逃走了", elapsed)
@@ -821,6 +857,8 @@ func _enemy(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -
 			if state.facility <= 0.0:
 				room.data.quest.repaired = false
 			event(state, "营地设施遭到破坏，完整度 %d%%" % state.facility, elapsed)
+	elif elapsed > npc.actionAt + 1.0:
+		_clip(npc, "Guard", elapsed)
 
 func _companion(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -> void:
 	var state: Dictionary = room.data.wildPeople
@@ -857,8 +895,12 @@ func _companion(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: floa
 				npc.health = maxf(0, npc.health - (4.0 + other.tier * 1.8) * (0.65 if npc.shield else 1.0))
 				if npc.health <= 0:
 					kill(state, npc, elapsed)
+			elif elapsed > npc.attackAt + 1.1 or WORK_SECONDS.has(npc.clip):
+				_clip(npc, "Guard", elapsed)
 		else:
 			_drive(room, npc, position(other), 2.1, grid, delta)
+		return
+	if WORK_SECONDS.has(npc.clip) and elapsed < float(npc.clipAt) + float(WORK_SECONDS[npc.clip]):
 		return
 	if npc.disease > 0 or npc.health < npc.maxHealth * 0.75 or npc.legL + npc.legR > 15:
 		npc.help = "需要药草治疗；有食物和水时才会逐渐恢复"
@@ -867,14 +909,17 @@ func _companion(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: floa
 	else:
 		npc.help = "守家巡逻中；保留食物和水的生活需求"
 	if npc.water < 60:
-		if position(npc).distance_to(WATER) > 1.0:
+		if position(npc).distance_to(WATER) > 0.22:
 			_drive(room, npc, WATER, 1.55, grid, delta)
 		elif state.resources.water.stock > 0:
 			state.resources.water.stock -= 1
 			npc.water = minf(100.0, npc.water + 32.0)
-			_clip(npc, "Rest", elapsed)
+			var creek_index := (WATER.y - float(Lake.layout.creek.firstZ)) / float(Lake.layout.creek.spacing)
+			npc.help = "正在取水"
+			_work(npc, "DrawWater", Vector2(Lake.creek_sample(creek_index).x, WATER.y), elapsed)
 		else:
 			npc.help = "溪水暂时不足，请送一份装好的水"
+			_clip(npc, "Guard", elapsed)
 		return
 	if npc.hunger < 57:
 		var food_id := ""
@@ -896,11 +941,15 @@ func _companion(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: floa
 		elif state.resources.fruit.stock > 0:
 			if position(npc).distance_to(FOOD) > 0.85:
 				_drive(room, npc, FOOD, 1.35, grid, delta)
-			elif elapsed >= npc.workAt + 5.0:
-				npc.workAt = elapsed
-				state.resources.fruit.stock -= 1
-				Survival.eat(npc, "apple")
-				_clip(npc, "Rest", elapsed)
+			else:
+				if elapsed >= npc.workAt + 5.0:
+					npc.workAt = elapsed
+					state.resources.fruit.stock -= 1
+					Survival.eat(npc, "apple")
+					npc.help = "正在采集林果"
+					_work(npc, "GatherFruit", FOOD, elapsed)
+				else:
+					_clip(npc, "Rest", elapsed)
 		else:
 			npc.help = "找不到食物，请亲自送食物或开放桌上储备"
 			_clip(npc, "Guard", elapsed)
@@ -925,19 +974,39 @@ func _drive(room: Dictionary, npc: Dictionary, goal: Vector2, speed: float, grid
 	if float(route.get("stalled", 0.0)) > 0.8:
 		waypoint = navigator.recover(at, goal, route, grid, room.data.elapsed)
 		route.stalled = 0.0
+	var footing := Footing.for_room(room) as Footing
+	var feet := float(npc.get("y",Lake.walk_height(at)))
+	waypoint = footing.waypoint(at,waypoint,goal,route,grid,feet,Navigator.PEOPLE_BODY,room.data.elapsed)
 	var direction := at.direction_to(waypoint)
-	var leg_scale := maxf(0.18, 1.0 - (float(npc.legL) + float(npc.legR)) * 0.0042)
-	var next := Rules.move(at, direction, minf(delta, at.distance_to(waypoint) / maxf(0.01, speed * leg_scale)), grid, false, speed * leg_scale)
+	var elapsed: float = room.data.elapsed
+	var leg_scale := _leg_scale(npc)
+	var turn_limit := TURN_SPEED * delta * lerpf(0.65, 1.0, leg_scale)
+	if not direction.is_zero_approx():
+		var yaw_change := angle_difference(npc.yaw, atan2(-direction.x, -direction.y))
+		var turning: bool = npc.clip in ["TurnLeft", "TurnRight"]
+		if absf(yaw_change) > (TURN_END if turning else TURN_START):
+			var turn := clampf(yaw_change, -turn_limit, turn_limit)
+			npc.yaw = wrapf(float(npc.yaw) + turn, -PI, PI)
+			_pace(npc, "TurnLeft" if turn > 0 else "TurnRight", absf(turn) / TURN_RADIANS, elapsed)
+			return
+	var landing := footing.move(at,direction,minf(delta,at.distance_to(waypoint)/maxf(0.01,speed*leg_scale)),grid,
+		speed*leg_scale,feet,Navigator.PEOPLE_BODY)
+	var next := Vector2(landing.x,landing.z)
 	npc.x = next.x
 	npc.z = next.y
-	route.stalled = float(route.get("stalled", 0.0)) + delta if at.distance_to(next) < 0.006 and at.distance_to(goal) > 0.4 else 0.0
-	_face(npc, waypoint)
-	if at.distance_to(next) < 0.005:
-		_clip(npc, "Guard", room.data.elapsed)
+	npc.y = landing.y
+	var moved := next - at
+	var distance := moved.length()
+	route.stalled = float(route.get("stalled", 0.0)) + delta if distance < 0.006 and at.distance_to(goal) > 0.4 else 0.0
+	if moved.is_zero_approx():
+		_clip(npc, "Guard", elapsed)
 		if at.distance_to(goal) > 2.0 and npc.phase == "companion":
 			npc.help = "道路受阻，无法到达补给，请来帮助"
 	else:
-		_clip(npc, ("LimpLeft" if npc.legL > npc.legR else "Limp") if leg_scale < 0.75 else "Run" if speed > 1.75 else "Walk", room.data.elapsed)
+		var yaw_change := angle_difference(npc.yaw, atan2(-moved.x, -moved.y))
+		npc.yaw = wrapf(float(npc.yaw) + clampf(yaw_change, -turn_limit, turn_limit), -PI, PI)
+		var clip := ("LimpLeft" if npc.legL > npc.legR else "Limp") if leg_scale < 0.75 else "Run" if speed > 1.75 else "Walk"
+		_pace(npc, clip, distance / float(STRIDE_METERS[clip]), elapsed)
 
 static func snapshot(state: Dictionary, player: String, elapsed: float) -> Dictionary:
 	var people := {}
@@ -952,7 +1021,7 @@ static func snapshot(state: Dictionary, player: String, elapsed: float) -> Dicti
 		out.readyToJoin = ready_to_join(npc, out.relation)
 		out.relationship = "你的伴侣" if npc.partner == player else "已有伴侣" if not npc.partner.is_empty() else "尚未恋爱"
 		out.erase("partner")
-		out.y = Lake.walk_height(position(npc))
-		out.speedFactor = maxf(0.18, 1.0 - (float(npc.legL) + float(npc.legR)) * 0.0042)
+		out.y = npc.get("y",Lake.walk_height(position(npc)))
+		out.speedFactor = _leg_scale(npc)
 		people[id] = out
 	return {"people": people, "raid": state.raid.duplicate(), "resources": state.resources.duplicate(true), "publicFood": state.publicFood, "facility": state.facility, "log": state.log.duplicate(true), "settings": state.settings.duplicate(), "elapsed": elapsed}

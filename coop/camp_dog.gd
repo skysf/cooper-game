@@ -2,6 +2,8 @@ extends RefCounted
 
 const Rules = preload("res://rules.gd")
 const Survival = preload("res://survival.gd")
+const Footing = preload("res://companion_footing.gd")
+const Lake = preload("res://lake_layout.gd")
 
 const HOME := Vector2(3.56, -87.40)
 const CAMP_STOPS := [HOME, Vector2(2.22, -86.42), Vector2(1.12, -84.92), Vector2(3.58, -84.45), Vector2(4.16, -85.90)]
@@ -20,6 +22,7 @@ const REST_DELAY := 2.6
 const WALK_SPEED := 0.82
 const TROT_SPEED := 2.35
 const CATCHUP_SPEED := 4.05
+const BODY := Vector2(0.47,0.90)
 
 var navigation: AStarGrid2D
 
@@ -37,6 +40,9 @@ static func from_save(saved: Variant, players: Dictionary, grid: Dictionary, rep
 			dog.z = at.y
 	if Survival.finite_number(saved.get("yaw")):
 		dog.yaw = wrapf(saved.yaw, -PI, PI)
+	if Survival.finite_number(saved.get("y")):
+		var ground := Lake.walk_height(position(dog))
+		dog.y = clampf(float(saved.y),ground,ground+6.0)
 	return dog
 
 static func position(dog: Dictionary) -> Vector2:
@@ -58,6 +64,9 @@ func can_reach(dog: Dictionary, actor: Vector2, grid: Dictionary) -> bool:
 func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 	var dog: Dictionary = room.data.dog
 	var at := position(dog)
+	var footing := Footing.for_room(room) as Footing
+	dog.y = footing.height(at,float(dog.get("y",Lake.walk_height(at))))
+	dog.fixtureNear = footing.near(at)
 	var elapsed: float = room.data.elapsed
 	var route: Dictionary = room.dog_route
 	var owner: Dictionary = room.actors.get(dog.owner, {})
@@ -99,14 +108,15 @@ func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 	var distance := at.distance_to(goal)
 	var following: bool = route.get("following", false)
 	var gap := 0.15 if wandering else (1.55 if following else 2.15)
-	var moving := distance > gap or not _clear(at, goal, grid)
+	var moving := distance > gap or not _clear(at, goal, grid) or not footing.clear(at,goal,dog.y,BODY)
 	route.following = moving
 	var pace := 0.0
 	var waypoint := goal
 	if moving:
 		waypoint = _waypoint(at, goal, route, grid, elapsed)
+		waypoint = footing.waypoint(at,waypoint,goal,route,grid,dog.y,BODY,elapsed)
 		pace = minf(WALK_SPEED, distance * 2.8) if wandering else lerpf(WALK_SPEED, CATCHUP_SPEED, smoothstep(2.2, 6.4, distance))
-	_drive(dog, waypoint, pace, grid, elapsed, delta)
+	_drive(dog, waypoint, pace, grid, elapsed, delta, footing)
 
 func _camp_goal(at: Vector2, route: Dictionary, elapsed: float, repaired: bool) -> Vector2:
 	if repaired and not route.get("lamp_lit", false):
@@ -127,7 +137,7 @@ func _camp_goal(at: Vector2, route: Dictionary, elapsed: float, repaired: bool) 
 		goal = CAMP_STOPS[index]
 	return goal
 
-func _drive(dog: Dictionary, waypoint: Vector2, pace: float, grid: Dictionary, elapsed: float, delta: float) -> void:
+func _drive(dog: Dictionary, waypoint: Vector2, pace: float, grid: Dictionary, elapsed: float, delta: float, footing: Footing) -> void:
 	var at := position(dog)
 	var gap := at.distance_to(waypoint)
 	var motion := at.direction_to(waypoint)
@@ -139,10 +149,13 @@ func _drive(dog: Dictionary, waypoint: Vector2, pace: float, grid: Dictionary, e
 		pace = 0.0
 	var speed := move_toward(float(dog.speed), pace, delta * (4.9 if pace > float(dog.speed) else 6.5))
 	var step := minf(speed * delta, gap)
-	var next := Rules.move(at, motion, step / Rules.SPEED, grid)
+	var landing := footing.move(at,motion,step/Rules.SPEED,grid,Rules.SPEED,dog.y,BODY)
+	var next := Vector2(landing.x,landing.z)
 	var velocity := (next - at) / maxf(delta, 0.001)
 	dog.x = next.x
 	dog.z = next.y
+	dog.y = landing.y
+	dog.fixtureNear = footing.near(next)
 	dog.vx = velocity.x
 	dog.vz = velocity.y
 	dog.speed = velocity.length()
@@ -160,7 +173,7 @@ func _waypoint(at: Vector2, goal: Vector2, route: Dictionary, grid: Dictionary, 
 		return goal
 	if elapsed >= float(route.get("refresh", 0.0)):
 		if navigation == null:
-			_build_navigation(grid)
+			prepare_navigation(grid)
 		route.refresh = elapsed + 0.55
 		var start := _cell_near(at, grid)
 		var finish := _cell_near(goal, grid)
@@ -180,7 +193,9 @@ func _clear(at: Vector2, goal: Vector2, grid: Dictionary) -> bool:
 			return false
 	return true
 
-func _build_navigation(grid: Dictionary) -> void:
+func prepare_navigation(grid: Dictionary, shared_base: AStarGrid2D = null) -> void:
+	if navigation != null:
+		return
 	navigation = AStarGrid2D.new()
 	var first := Vector2i(Rules.MIN_CORNER / CELL)
 	var last := Vector2i(Rules.MAX_CORNER / CELL)
@@ -188,10 +203,24 @@ func _build_navigation(grid: Dictionary) -> void:
 	navigation.cell_size = Vector2.ONE * CELL
 	navigation.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 	navigation.update()
+	var margin := _route_margin()
 	for z in range(first.y, last.y + 1):
 		for x in range(first.x, last.x + 1):
-			if not Rules.free_at(Vector2(x, z) * CELL, grid):
-				navigation.set_point_solid(Vector2i(x, z))
+			var cell := Vector2i(x, z)
+			var point := Vector2(cell) * CELL
+			var solid := shared_base.is_point_solid(cell) if shared_base != null else not Rules.free_at(point, grid)
+			if solid or (margin > 0.0 and _inside_route_margin(point, grid, margin)):
+				navigation.set_point_solid(cell)
+
+func _route_margin() -> float:
+	return 0.0
+
+func _inside_route_margin(point: Vector2, grid: Dictionary, margin: float) -> bool:
+	var cell := Vector2i((point / Rules.GRID_SIZE).floor())
+	for circle: Vector3 in grid.get(cell, []):
+		if point.distance_squared_to(Vector2(circle.x, circle.y)) < pow(sqrt(circle.z) + margin, 2):
+			return true
+	return false
 
 func _cell_near(point: Vector2, grid: Dictionary) -> Vector2i:
 	var center := Vector2i((point / CELL).round())

@@ -1,0 +1,841 @@
+{
+  "key": "male_elite",
+  "object": "Body and regalia",
+  "scene": "Scene",
+  "triangles": 15084,
+  "bones": [
+    "root",
+    "hips",
+    "spine",
+    "chest",
+    "upper_chest",
+    "neck",
+    "head",
+    "clavicle_L",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "grip_L",
+    "clavicle_R",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "grip_R",
+    "thigh_L",
+    "shin_L",
+    "foot_L",
+    "toes_L",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "toes_R"
+  ],
+  "actions": [
+    "Attack",
+    "Block-loop",
+    "Captive-loop",
+    "Down",
+    "DrawWater",
+    "GatherFruit",
+    "Guard-loop",
+    "Idle-loop",
+    "Limp-loop",
+    "LimpLeft-loop",
+    "Rest-loop",
+    "Run-loop",
+    "Throw",
+    "TurnLeft-loop",
+    "TurnRight-loop",
+    "Walk-loop"
+  ],
+  "leg_components": [
+    {
+      "component": 13,
+      "range": [
+        1305,
+        1564
+      ],
+      "verts": 260,
+      "bounds": [
+        [
+          -0.164,
+          -0.088,
+          0.075
+        ],
+        [
+          -0.002,
+          0.092,
+          0.924
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 242
+      },
+      "groups": {
+        "foot_L": 40,
+        "shin_L": 140,
+        "thigh_L": 120,
+        "hips": 40
+      }
+    },
+    {
+      "component": 14,
+      "range": [
+        1565,
+        1608
+      ],
+      "verts": 44,
+      "bounds": [
+        [
+          -0.1524,
+          -0.069,
+          0.354
+        ],
+        [
+          -0.0396,
+          0.049,
+          0.359
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 24
+      },
+      "groups": {
+        "shin_L": 44
+      }
+    },
+    {
+      "component": 15,
+      "range": [
+        1609,
+        1652
+      ],
+      "verts": 44,
+      "bounds": [
+        [
+          -0.1524,
+          -0.069,
+          0.368
+        ],
+        [
+          -0.0396,
+          0.049,
+          0.373
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 24
+      },
+      "groups": {
+        "shin_L": 44
+      }
+    },
+    {
+      "component": 16,
+      "range": [
+        1653,
+        1696
+      ],
+      "verts": 44,
+      "bounds": [
+        [
+          -0.1524,
+          -0.069,
+          0.382
+        ],
+        [
+          -0.0396,
+          0.049,
+          0.387
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 24
+      },
+      "groups": {
+        "shin_L": 44
+      }
+    },
+    {
+      "component": 17,
+      "range": [
+        1697,
+        1728
+      ],
+      "verts": 32,
+      "bounds": [
+        [
+          -0.135,
+          -0.048,
+          0.12
+        ],
+        [
+          -0.065,
+          0.032,
+          0.126
+        ]
+      ],
+      "mats": {
+        "Palm green": 18
+      },
+      "groups": {
+        "shin_L": 32
+      }
+    },
+    {
+      "component": 18,
+      "range": [
+        1729,
+        1760
+      ],
+      "verts": 32,
+      "bounds": [
+        [
+          -0.135,
+          -0.048,
+          0.127
+        ],
+        [
+          -0.065,
+          0.032,
+          0.133
+        ]
+      ],
+      "mats": {
+        "Burnished fiber": 18
+      },
+      "groups": {
+        "shin_L": 32
+      }
+    },
+    {
+      "component": 19,
+      "range": [
+        1761,
+        1792
+      ],
+      "verts": 32,
+      "bounds": [
+        [
+          -0.135,
+          -0.048,
+          0.134
+        ],
+        [
+          -0.065,
+          0.032,
+          0.14
+        ]
+      ],
+      "mats": {
+        "Burnished fiber": 18
+      },
+      "groups": {
+        "shin_L": 32
+      }
+    },
+    {
+      "component": 20,
+      "range": [
+        1793,
+        1924
+      ],
+      "verts": 132,
+      "bounds": [
+        [
+          -0.1485,
+          -0.063,
+          0.014
+        ],
+        [
+          -0.0515,
+          0.171,
+          0.105
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 112
+      },
+      "groups": {
+        "foot_L": 132
+      }
+    },
+    {
+      "component": 21,
+      "range": [
+        1925,
+        1959
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          -0.0827,
+          0.1232,
+          0.011
+        ],
+        [
+          -0.0613,
+          0.184,
+          0.041
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_L": 35
+      }
+    },
+    {
+      "component": 22,
+      "range": [
+        1960,
+        1994
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          -0.0959,
+          0.1199,
+          0.012
+        ],
+        [
+          -0.0761,
+          0.175,
+          0.04
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_L": 35
+      }
+    },
+    {
+      "component": 23,
+      "range": [
+        1995,
+        2029
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          -0.1092,
+          0.1166,
+          0.013
+        ],
+        [
+          -0.0908,
+          0.166,
+          0.039
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_L": 35
+      }
+    },
+    {
+      "component": 24,
+      "range": [
+        2030,
+        2064
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          -0.1224,
+          0.1133,
+          0.014
+        ],
+        [
+          -0.1056,
+          0.157,
+          0.038
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_L": 35
+      }
+    },
+    {
+      "component": 25,
+      "range": [
+        2065,
+        2099
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          -0.1356,
+          0.11,
+          0.015
+        ],
+        [
+          -0.1204,
+          0.148,
+          0.037
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_L": 35
+      }
+    },
+    {
+      "component": 37,
+      "range": [
+        2545,
+        2804
+      ],
+      "verts": 260,
+      "bounds": [
+        [
+          0.002,
+          -0.088,
+          0.075
+        ],
+        [
+          0.164,
+          0.092,
+          0.924
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 242
+      },
+      "groups": {
+        "foot_R": 40,
+        "shin_R": 140,
+        "thigh_R": 120,
+        "hips": 40
+      }
+    },
+    {
+      "component": 38,
+      "range": [
+        2805,
+        2848
+      ],
+      "verts": 44,
+      "bounds": [
+        [
+          0.0396,
+          -0.069,
+          0.354
+        ],
+        [
+          0.1524,
+          0.049,
+          0.359
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 24
+      },
+      "groups": {
+        "shin_R": 44
+      }
+    },
+    {
+      "component": 39,
+      "range": [
+        2849,
+        2892
+      ],
+      "verts": 44,
+      "bounds": [
+        [
+          0.0396,
+          -0.069,
+          0.368
+        ],
+        [
+          0.1524,
+          0.049,
+          0.373
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 24
+      },
+      "groups": {
+        "shin_R": 44
+      }
+    },
+    {
+      "component": 40,
+      "range": [
+        2893,
+        2936
+      ],
+      "verts": 44,
+      "bounds": [
+        [
+          0.0396,
+          -0.069,
+          0.382
+        ],
+        [
+          0.1524,
+          0.049,
+          0.387
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 24
+      },
+      "groups": {
+        "shin_R": 44
+      }
+    },
+    {
+      "component": 41,
+      "range": [
+        2937,
+        2968
+      ],
+      "verts": 32,
+      "bounds": [
+        [
+          0.065,
+          -0.048,
+          0.12
+        ],
+        [
+          0.135,
+          0.032,
+          0.126
+        ]
+      ],
+      "mats": {
+        "Palm green": 18
+      },
+      "groups": {
+        "shin_R": 32
+      }
+    },
+    {
+      "component": 42,
+      "range": [
+        2969,
+        3000
+      ],
+      "verts": 32,
+      "bounds": [
+        [
+          0.065,
+          -0.048,
+          0.127
+        ],
+        [
+          0.135,
+          0.032,
+          0.133
+        ]
+      ],
+      "mats": {
+        "Burnished fiber": 18
+      },
+      "groups": {
+        "shin_R": 32
+      }
+    },
+    {
+      "component": 43,
+      "range": [
+        3001,
+        3032
+      ],
+      "verts": 32,
+      "bounds": [
+        [
+          0.065,
+          -0.048,
+          0.134
+        ],
+        [
+          0.135,
+          0.032,
+          0.14
+        ]
+      ],
+      "mats": {
+        "Burnished fiber": 18
+      },
+      "groups": {
+        "shin_R": 32
+      }
+    },
+    {
+      "component": 44,
+      "range": [
+        3033,
+        3164
+      ],
+      "verts": 132,
+      "bounds": [
+        [
+          0.0515,
+          -0.063,
+          0.014
+        ],
+        [
+          0.1485,
+          0.171,
+          0.105
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 112
+      },
+      "groups": {
+        "foot_R": 132
+      }
+    },
+    {
+      "component": 45,
+      "range": [
+        3165,
+        3199
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          0.0613,
+          0.1232,
+          0.011
+        ],
+        [
+          0.0827,
+          0.184,
+          0.041
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_R": 35
+      }
+    },
+    {
+      "component": 46,
+      "range": [
+        3200,
+        3234
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          0.0761,
+          0.1199,
+          0.012
+        ],
+        [
+          0.0959,
+          0.175,
+          0.04
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_R": 35
+      }
+    },
+    {
+      "component": 47,
+      "range": [
+        3235,
+        3269
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          0.0908,
+          0.1166,
+          0.013
+        ],
+        [
+          0.1092,
+          0.166,
+          0.039
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_R": 35
+      }
+    },
+    {
+      "component": 48,
+      "range": [
+        3270,
+        3304
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          0.1056,
+          0.1133,
+          0.014
+        ],
+        [
+          0.1224,
+          0.157,
+          0.038
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_R": 35
+      }
+    },
+    {
+      "component": 49,
+      "range": [
+        3305,
+        3339
+      ],
+      "verts": 35,
+      "bounds": [
+        [
+          0.1204,
+          0.11,
+          0.015
+        ],
+        [
+          0.1356,
+          0.148,
+          0.037
+        ]
+      ],
+      "mats": {
+        "Turnaround \u2022 male": 30
+      },
+      "groups": {
+        "foot_R": 35
+      }
+    },
+    {
+      "component": 486,
+      "range": [
+        8443,
+        8550
+      ],
+      "verts": 108,
+      "bounds": [
+        [
+          -0.1726,
+          -0.098,
+          0.1
+        ],
+        [
+          0.0026,
+          0.098,
+          0.79
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 92
+      },
+      "groups": {
+        "shin_L": 72,
+        "thigh_L": 54
+      }
+    },
+    {
+      "component": 487,
+      "range": [
+        8551,
+        8650
+      ],
+      "verts": 100,
+      "bounds": [
+        [
+          -0.158,
+          -0.077,
+          0.004
+        ],
+        [
+          -0.042,
+          0.189,
+          0.145
+        ]
+      ],
+      "mats": {
+        "Horn ridges": 82
+      },
+      "groups": {
+        "foot_L": 100
+      }
+    },
+    {
+      "component": 488,
+      "range": [
+        8651,
+        8758
+      ],
+      "verts": 108,
+      "bounds": [
+        [
+          -0.0026,
+          -0.098,
+          0.1
+        ],
+        [
+          0.1726,
+          0.098,
+          0.79
+        ]
+      ],
+      "mats": {
+        "Dark fiber": 92
+      },
+      "groups": {
+        "shin_R": 72,
+        "thigh_R": 54
+      }
+    },
+    {
+      "component": 489,
+      "range": [
+        8759,
+        8858
+      ],
+      "verts": 100,
+      "bounds": [
+        [
+          0.042,
+          -0.077,
+          0.004
+        ],
+        [
+          0.158,
+          0.189,
+          0.145
+        ]
+      ],
+      "mats": {
+        "Horn ridges": 82
+      },
+      "groups": {
+        "foot_R": 100
+      }
+    }
+  ]
+}

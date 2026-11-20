@@ -1,0 +1,173 @@
+{
+  "baseline_glb_sha256": "50159aaf84d83918ae645f6654d65b4326460a2dd7a36cafc7a678eb48f7e441",
+  "candidate_glb_sha256": "865e69d391ed382c26dfebf7cfcbdd42abc5382125f078d8ed00e53a237f6250",
+  "bones": 23,
+  "paw_vertices": {
+    "Fore.Paw.L": 248,
+    "Fore.Paw.R": 255,
+    "Hind.Paw.L": 233,
+    "Hind.Paw.R": 265
+  },
+  "clips": {
+    "Attack": {
+      "length_seconds": 0.933333337306976,
+      "loop_mode": 0,
+      "samples_per_variant": 23,
+      "floor_range_before_m": [
+        -0.00289328582584858,
+        0.0686646103858948
+      ],
+      "floor_range_after_m": [
+        -0.00396400131285191,
+        0.0686605423688889
+      ],
+      "max_floor_delta_m": 0.00128456414677203,
+      "max_paw_surface_height_delta_m": 0.0013115108013160015,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.0013129599600370744
+    },
+    "Eat": {
+      "length_seconds": 1.60000002384186,
+      "loop_mode": 1,
+      "samples_per_variant": 23,
+      "floor_range_before_m": [
+        -0.000399861601181328,
+        -0.00038513116305694
+      ],
+      "floor_range_after_m": [
+        -0.000399579061195254,
+        -0.000384847226087004
+      ],
+      "max_floor_delta_m": 3.0503724701702595e-07,
+      "max_paw_surface_height_delta_m": 6.797097739764019e-06,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 7.219597066793137e-06
+    },
+    "Idle": {
+      "length_seconds": 5.59999990463257,
+      "loop_mode": 1,
+      "samples_per_variant": 23,
+      "floor_range_before_m": [
+        -0.00163502828218043,
+        -5.79864426981658e-05
+      ],
+      "floor_range_after_m": [
+        -0.0015374084468931,
+        0.000159980554599315
+      ],
+      "max_floor_delta_m": 0.00032314902637153896,
+      "max_paw_surface_height_delta_m": 0.00034663709811866294,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.001574207329976783
+    },
+    "Lie-down": {
+      "length_seconds": 1.46666669845581,
+      "loop_mode": 0,
+      "samples_per_variant": 46,
+      "floor_range_before_m": [
+        -0.00141294300556183,
+        -0.000236996507737786
+      ],
+      "floor_range_after_m": [
+        -0.00289598107337952,
+        0.000137410097522661
+      ],
+      "max_floor_delta_m": 0.0023254156112670933,
+      "max_paw_surface_height_delta_m": 0.001378647924866528,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.0030978854461160277
+    },
+    "Limp": {
+      "length_seconds": 1.10000002384186,
+      "loop_mode": 1,
+      "samples_per_variant": 35,
+      "floor_range_before_m": [
+        -0.00125571596436203,
+        0.000119312040624209
+      ],
+      "floor_range_after_m": [
+        -0.00246771331876516,
+        0.000121474571642466
+      ],
+      "max_floor_delta_m": 0.001300810952670872,
+      "max_paw_surface_height_delta_m": 0.0013010948896408012,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.0015020521021215664
+    },
+    "Rest": {
+      "length_seconds": 4.40000009536743,
+      "loop_mode": 1,
+      "samples_per_variant": 23,
+      "floor_range_before_m": [
+        -0.00338490912690759,
+        -0.000137628812808543
+      ],
+      "floor_range_after_m": [
+        -0.00246396660804749,
+        8.168607018888e-05
+      ],
+      "max_floor_delta_m": 0.00139504019171,
+      "max_paw_surface_height_delta_m": 0.00139504019171,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.001429429052091015
+    },
+    "Rise": {
+      "length_seconds": 1.36666667461395,
+      "loop_mode": 0,
+      "samples_per_variant": 43,
+      "floor_range_before_m": [
+        -0.00195796508342028,
+        0.000147572965943255
+      ],
+      "floor_range_after_m": [
+        -0.00302381766960025,
+        0.00214354088529944
+      ],
+      "max_floor_delta_m": 0.0021893655066378462,
+      "max_paw_surface_height_delta_m": 0.0021893655066378462,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.0021905274371580314
+    },
+    "Run": {
+      "length_seconds": 0.5,
+      "loop_mode": 1,
+      "samples_per_variant": 16,
+      "floor_range_before_m": [
+        -0.000392482324969023,
+        0.00423954613506794
+      ],
+      "floor_range_after_m": [
+        -0.00175354746170342,
+        0.00435998104512691
+      ],
+      "max_floor_delta_m": 0.0013611461035907269,
+      "max_paw_surface_height_delta_m": 0.0013612881302832933,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.0013634126010050626
+    },
+    "Walk": {
+      "length_seconds": 0.899999976158142,
+      "loop_mode": 1,
+      "samples_per_variant": 28,
+      "floor_range_before_m": [
+        -0.000521626498084515,
+        0.000136643764562905
+      ],
+      "floor_range_after_m": [
+        -0.00148278824053705,
+        0.000142759905429557
+      ],
+      "max_floor_delta_m": 0.000979611300863328,
+      "max_paw_surface_height_delta_m": 0.0017559444822836672,
+      "max_paw_bone_path_delta_m_after_50mm_offset": 0.0017581839231951288
+    }
+  },
+  "identical_texture_payloads": {
+    "Mastiff Normal": "83cebe4cab8cae0673edfe667d96072d756eca98eb73bbde7035a5fe17a0ac8f",
+    "Mastiff Base Color": "84e4a79b84c75b5a5c700adebd2d1c41e45155377f82d216b402539f727841cc",
+    "Mastiff Metallic Roughness": "955e371ec861c4a36e7341cb13c5805debfafd1bbd653332e6caa048a22c17de"
+  },
+  "first_animation_keys_seconds": {
+    "Run-loop": 0,
+    "Eat-loop": 0,
+    "Attack": 0,
+    "Limp-loop": 0,
+    "Lie-down": 0,
+    "Rest-loop": 0,
+    "Rise": 0,
+    "Walk-loop": 0,
+    "Idle-loop": 0
+  }
+}

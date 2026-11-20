@@ -2,6 +2,7 @@ shader_type spatial;
 render_mode unshaded, cull_disabled, shadows_disabled, depth_draw_never;
 
 #include "res://materials/twilight.gdshaderinc"
+#include "res://materials/water_rain.gdshaderinc"
 
 uniform sampler2D scene_depth : hint_depth_texture, repeat_disable, filter_nearest;
 uniform sampler2D shore_reflection : hint_default_black, repeat_disable, filter_linear;
@@ -50,24 +51,6 @@ vec2 wave(vec2 point, vec2 direction, float frequency, float amplitude, float ph
 	return direction * cos(angle) * amplitude * detail;
 }
 
-vec2 hash2(vec2 cell) {
-	vec2 h = vec2(dot(cell, vec2(127.1, 311.7)), dot(cell, vec2(269.5, 183.3)));
-	return fract(sin(h) * 43758.55);
-}
-
-vec2 rain_ripple(vec2 point, float frequency, float time) {
-	vec2 grid = point * frequency;
-	vec2 h = hash2(floor(grid));
-	float clock = time * (1.7 + h.x * 0.55) + h.y * 16.0;
-	vec2 center = mix(vec2(0.27), vec2(0.73), fract(h + floor(clock) * vec2(0.379, 0.613)));
-	vec2 offset = fract(grid) - center;
-	float age = fract(clock);
-	float radius = length(offset);
-	float ring = radius - age * 0.30;
-	float envelope = (1.0 - age) * exp(-ring * ring * 440.0);
-	return offset / max(radius, 0.04) * sin(ring * 106.0) * envelope;
-}
-
 void fragment() {
 	vec2 point = world_position.xz;
 	if (!lake_surface && lake_distance(point) < 1.0) {
@@ -94,13 +77,7 @@ void fragment() {
 		waves += wave(surface_point, vec2(0.22, -0.975), 9.7, 0.029, time * 3.1);
 	}
 	waves = (waves + current * 0.034) * mix(1.0, 1.42, rain_amount) * mix(1.0, 0.48, distance_fade);
-	if (rain_amount > 0.01) {
-		float close_detail = 1.0 - smoothstep(10.0, 24.0, eye_distance);
-		if (close_detail > 0.0) {
-			waves += (rain_ripple(point, 2.9, time) + rain_ripple(point + vec2(0.23, 0.74), 2.1, time))
-				* rain_amount * close_detail * 0.045;
-		}
-	}
+	waves += water_rain_ripples(point, current, eye_distance, time, rain_amount, 1.0);
 
 	float splash_glow = 0.0;
 	if (active_impacts) {
@@ -155,7 +132,7 @@ void fragment() {
 			vec2 mirrored = vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y) + bend;
 			vec2 edge = min(mirrored, 1.0 - mirrored);
 			float visible = smoothstep(0.0, 0.035, min(edge.x, edge.y));
-			vec2 blur = vec2(0.55, 0.90) / vec2(textureSize(shore_reflection, 0));
+			vec2 blur = vec2(0.55, 0.90) / vec2(textureSize(shore_reflection, 0)) * (1.0 + rain_amount * 1.45);
 			vec3 trees = (texture(shore_reflection, mirrored - blur).rgb + texture(shore_reflection, mirrored + blur).rgb) * 0.5;
 			reflected_color = mix(sky, trees, visible * reflection_strength);
 		}
@@ -172,8 +149,10 @@ void fragment() {
 		float path = min(38.0, depth * eye_distance / max(-VERTEX.z, 0.07));
 		float absorbed = 1.0 - exp(-path * (0.36 + rain_amount * 0.075));
 		float vertical_depth = path * max(to_camera.y, 0.0);
-		vec3 water = mix(vec3(0.23, 0.29, 0.19), vec3(0.068, 0.223, 0.204),
-			smoothstep(0.08, 1.45, vertical_depth)) * ambient;
+		float depth_color = smoothstep(0.08, 1.45, vertical_depth);
+		vec3 water = mix(vec3(0.23, 0.29, 0.19), vec3(0.068, 0.223, 0.204), depth_color);
+		vec3 wet_water = mix(vec3(0.182, 0.232, 0.207), vec3(0.075, 0.179, 0.197), depth_color);
+		water = mix(water, wet_water, rain_amount * 0.73) * ambient;
 		// Hardware blending transmits the opaque lake bed. Weight the reflected
 		// sky and in-scattered light once, even across a few centimetres of water.
 		float scatter_weight = (1.0 - fresnel) * absorbed;
@@ -183,7 +162,8 @@ void fragment() {
 		float sun_glint = 0.0;
 		if (light_weights.y > 0.0) {
 			float sun_angle = max(dot(normal, normalize(to_camera + sun_direction)), 0.0);
-			sun_glint = (pow(sun_angle, mix(1380.0, 710.0, rain_amount)) * 2.05 + pow(sun_angle, 135.0) * 0.115) * light_weights.y;
+			sun_glint = (pow(sun_angle, mix(1380.0, 710.0, rain_amount)) * mix(2.05, 0.94, rain_amount)
+				+ pow(sun_angle, 135.0) * 0.115) * light_weights.y;
 			color += sun_color.rgb * sun_glint;
 		}
 		if (light_weights.z > 0.0) {

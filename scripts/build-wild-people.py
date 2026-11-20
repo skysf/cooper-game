@@ -2,6 +2,7 @@
 import bpy
 import math
 import random
+import runpy
 import subprocess
 import tempfile
 from pathlib import Path
@@ -9,6 +10,8 @@ from math import sin, cos, pi, exp, radians
 from mathutils import Vector, Quaternion
 
 ROOT = Path(__file__).resolve().parents[1]
+GAIT = runpy.run_path(str(ROOT / "scripts/bake-wild-people-locomotion.py"))
+WORK = runpy.run_path(str(ROOT / "scripts/bake-wild-people-work.py"))
 ART = ROOT / "art/wild_man"
 OUT = ROOT / "coop/wild_people"
 REFERENCE = ART / "source_images"
@@ -744,8 +747,8 @@ def elite_outfit(mesh,fem,rng):
 def animate(rig):
     # Bending axes are model-space directions transformed to the rest basis of each joint.
     def pair(x=0,y=0,z=0): return (x,y,z)
-    actions=[("Idle",48,True),("Walk",28,True),("Run",18,True),("Attack",20,False),
-             ("Throw",25,False),("Block",32,True),("Limp",36,True),("LimpLeft",36,True),("Down",24,False),
+    actions=[("Idle",48,True),("Attack",20,False),("Throw",25,False),
+             ("Block",32,True),("Down",24,False),
              ("Captive",56,True),("Rest",62,True),("Guard",48,True)]
     for name,duration,loop in actions:
         duration*=2
@@ -755,26 +758,11 @@ def animate(rig):
         for k in range(9):
             t=k/8
             a=TAU*t
-            swing=sin(a)
-            lift=(1-cos(a))*.5
             rotations={"chest":pair(1.0+1.2*sin(a)),"head":pair(.7*cos(a),0,1.1*sin(a))}
             dz=0; root_y=0; root_rot=0
             for sign,suffix in [(1,"L"),(-1,"R")]:
                 def setp(n,x=0,y=0,z=0): rotations[n+"_"+suffix]=pair(x,y,z)
                 setp("upper_arm",3,-sign*3,0);setp("forearm",9)
-                if name in ["Walk","Run","Limp","LimpLeft"]:
-                    run=name=="Run"; limp=name in ("Limp","LimpLeft")
-                    sore_side=1 if name=="LimpLeft" else -1
-                    amp=34 if run else 24
-                    if limp and sign==sore_side: amp=9
-                    v=sign*swing
-                    setp("thigh",v*amp+(9 if run else 4))
-                    setp("shin",-(7+(36 if run else 26)*max(0,-v)) if not (limp and sign==sore_side) else -22)
-                    setp("foot",4+9*max(0,-v))
-                    setp("upper_arm",-v*(32 if run else 16),-sign*3)
-                    setp("forearm",50 if run else 18)
-                    dz=(-.014 if run else -.008)*(1-cos(2*a))-.014
-                    if limp: rotations["spine"]=pair(4,-sore_side*7*lift,0)
                 if name in ["Guard","Block"]:
                     setp("thigh",10+sign*7);setp("shin",-17);setp("foot",7)
                     setp("upper_arm",32 if sign==1 else 15,-sign*12,sign*3)
@@ -828,7 +816,7 @@ def animate(rig):
         # kneeling use the lowest body/garment point, just as the runtime draws them.
         import numpy as np
         body_object=next(o for o in bpy.context.scene.objects if o.type=="MESH")
-        landing_frames=(range(1,duration+2) if name in ("Walk","Run") else [1+round(duration*k/8) for k in range(9)])
+        landing_frames=[1+round(duration*k/8) for k in range(9)]
         heights=[]
         for frame in landing_frames:
             bpy.context.scene.frame_set(frame)
@@ -838,10 +826,7 @@ def animate(rig):
             e.data.vertices.foreach_get("co",xyz)
             floor=float(xyz[2::3].min())
             pelvis=rig.pose.bones["root"]
-            phase=(frame-1)/duration
-            step=phase%.5
-            crossover=.012*(exp(-((step-.073)/.045)**2)+exp(-((step-.43)/.045)**2)) if name=="Run" else 0
-            heights.append((frame,pelvis.location.copy()+pelvis.bone.matrix_local.to_quaternion().inverted() @ Vector((0,0,-floor+.003+crossover))))
+            heights.append((frame,pelvis.location.copy()+pelvis.bone.matrix_local.to_quaternion().inverted() @ Vector((0,0,-floor+.003))))
         for frame,location in heights:
             pelvis.location=location
             pelvis.keyframe_insert("location",frame=frame,group="root")
@@ -890,7 +875,7 @@ def save(name,animated=False):
         export_anim_slide_to_zero=True)
 
 
-def character(key,elite):
+def character(key,elite,player_clips):
     reset()
     female=key=="female"
     rng=random.Random(531 if female else 311)
@@ -919,12 +904,15 @@ def character(key,elite):
     # All costume surfaces use a common armature, with at most two influences per vertex.
     for mat in ob.data.materials: mat.use_backface_culling=False
     animate(rig)
+    GAIT["build_actions"](rig, player_clips)
+    WORK["build_actions"](rig, GAIT)
     save(key+("_elite" if elite else ""),animated=True)
 
 
 if __name__=="__main__":
     import sys
     args=sys.argv[sys.argv.index("--")+1:] if "--" in sys.argv else ["weapons","male","female","male_elite","female_elite"]
+    player_clips = GAIT["player_samples"](ROOT) if any(asset != "weapons" for asset in args) else {}
     for asset in args:
         if asset=="weapons": wieldables()
-        else: character(asset.split("_")[0],asset.endswith("_elite"))
+        else: character(asset.split("_")[0],asset.endswith("_elite"),player_clips)

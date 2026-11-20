@@ -1,0 +1,42 @@
+{
+  "measuredWallVertices": 923,
+  "perimeterBuriedM": [
+    0.009999999999999995,
+    0.010000000000000002
+  ],
+  "centralReliefM": [
+    0.024770698190623656,
+    0.05116356921250082
+  ],
+  "sourcePolygons": 1590,
+  "isolatedGodot": {
+    "anchorRayTouchesDeposit": true,
+    "completePBR": true,
+    "materialSurfaces": 1,
+    "pass": true,
+    "testedNormals": 2054,
+    "triangles": 2930
+  },
+  "manifestSHA256": "2999970b8245d690c9e34b5cf83c0b979ed7544311ceeec397198188f56d4120",
+  "previousIronVeinSHA256": "a6e1f510e59ecd930b2f69d7b3a7bb95046c6e2c3556bed2ad500a4f8312dc88",
+  "newIronVeinSHA256": "42a8dd6f929e864bfa2f393f5434a41d2b34f6bac712fbe2118f8387b0bd6276",
+  "unchangedNearbyAssets": {
+    "coal_seam.glb": "9ae7215929ecccb38edde4a4a65f9e0d86f702d93a91cee021f717f7def1d804",
+    "iron_mine.glb": "8434cae3d0cffc8298a8918baed3a51af0f815c5f03933fc6c69f9d86bfd3c1a",
+    "iron_ingot.glb": "daaabb207f03770346e50e653a9b614c222c2ced5b8ebe938cb7167cdbf7550a",
+    "coal_mine.glb": "9336ea2b349e442d89bb9b05f14457f0013626b371d59a2ef19e3bea883b7d54",
+    "coal.glb": "8ad15b09bb0ce03375eecfc26c172ad709d3996358417a98bc198b33c5699c71",
+    "iron_ore.glb": "cf115d63f75142986d514b47306984df49a360bf4960dddab090031d82aa2684"
+  },
+  "worldRegression": {
+    "checks": 52,
+    "failures": [],
+    "ironSeam": {
+      "base": -0.346095025539398,
+      "size": "(0.199836, 0.73099, 2.165)",
+      "surfaces": 1,
+      "textured": 1,
+      "triangles": 2930
+    }
+  }
+}

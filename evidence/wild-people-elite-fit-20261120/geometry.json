@@ -1,0 +1,52 @@
+{
+  "male_elite": {
+    "boneNamesSame": true,
+    "bones": 25,
+    "animationTracks": 1200,
+    "clips": 16,
+    "animConversionMax": 0.0,
+    "exactAnimationChannels": true,
+    "animationMismatches": [],
+    "soleLocations": 120,
+    "exactSoles": true,
+    "exactInverseBind": true,
+    "textureBytesUnchanged": true,
+    "triangleCounts": [
+      15084,
+      13016
+    ],
+    "surfaceCounts": [
+      10,
+      10
+    ],
+    "fileSizes": [
+      1497748,
+      1432568
+    ]
+  },
+  "female_elite": {
+    "boneNamesSame": true,
+    "bones": 25,
+    "animationTracks": 1200,
+    "clips": 16,
+    "animConversionMax": 0.0,
+    "exactAnimationChannels": true,
+    "animationMismatches": [],
+    "soleLocations": 120,
+    "exactSoles": true,
+    "exactInverseBind": true,
+    "textureBytesUnchanged": true,
+    "triangleCounts": [
+      15300,
+      13016
+    ],
+    "surfaceCounts": [
+      10,
+      8
+    ],
+    "fileSizes": [
+      1530132,
+      1459064
+    ]
+  }
+}

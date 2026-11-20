@@ -33,6 +33,8 @@ COOP_SITE_DIR=dist/coop-coast COOP_PORT=4494 COOP_ROOM_PORT=4495 \
 node scripts/coop-coast-playtest.mjs .cache/coast/foreground
 ```
 
+用 `COOP_COAST_MINES=1` 可在岬顶途中绕行煤、铁矿洞并按 **F** 各开采一次。锁屏调试可同时设 `COOP_COAST_HEADLESS=1`。`COOP_COAST_GL_TRACE=1` 记录 GL 程序和长任务，可将停顿对应到路线坐标。无窗口和开启追踪的时间样本用于排查，正式硬件测试沿用前台运行。 [矿洞与海岸路线诊断](../evidence/world-detail-web-20261120/README.md)
+
 2026-11-20 在 Mac 内建屏、Apple M1、Chrome 157 和 Metal 上实测了海岸初版。七段累计约 115 秒、6,890 个帧间隔，整体 59.7 FPS。各段 P95 为 18.2–18.6 毫秒。6 个间隔超过 50 毫秒，最大 82.8 毫秒，没有连续两个慢帧。按 30 FPS、P95 34 毫秒及长帧门槛复核，七段均通过。首次诊断发现转向未出现过的材质会触发浏览器编译，发行包在开放输入前预绘营地到海岸的视角、角色和雨丝材质。[海岸初版前台逐帧报告](../evidence/coast-20261120/foreground-final/report.json)
 
 | 实际游玩路段 | FPS | P95 帧间隔 | 最长帧间隔 |

@@ -1,0 +1,17 @@
+{
+  "room": "cabin-27481906",
+  "worldCenter": [
+    9.8,
+    0,
+    -74.5
+  ],
+  "checks": [
+    "K recipe, green floor preview and G consume seven boards",
+    "Shift snaps the doorway to its floor and a left click confirms",
+    "unsupported roof is red and confirming leaves the bag unchanged",
+    "W navigation, three snapped walls and both sides supporting the same roof",
+    "walk through the finished doorway onto the raised floor"
+  ],
+  "errors": [],
+  "ok": true
+}

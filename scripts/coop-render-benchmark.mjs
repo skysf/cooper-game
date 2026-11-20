@@ -36,9 +36,21 @@ const dawnStart = 315.0;
 const declination = Math.asin(Math.sin(2.87341195) * Math.sin(0.4090928));
 const sunsetAngle = Math.acos(-Math.tan(0.75049158) * Math.tan(declination));
 const sunrise = 122 + (Math.PI - sunsetAngle) * 420 / Math.PI;
+const lakeWaterCamera = {at: [-10.82, -49.1], yaw: 1.53, pitch: -0.35};
+const coastWaterCamera = {at: [-85.1, -51.0], yaw: 1.48, pitch: -0.34, coast: true};
 const scenes = {
   forest: {at: [2.0, -71.5], yaw: -0.08, pitch: 0.10, clock: 0},
   lake: {at: [-10.82, -49.1], yaw: 1.53, pitch: -0.12, clock: 24},
+  'lake-water-clear': {...lakeWaterCamera, clock: 24},
+  'lake-water-rain': {...lakeWaterCamera, clock: 86, rain: 1},
+  'coast-water-clear': {...coastWaterCamera, clock: 24},
+  'coast-water-rain': {...coastWaterCamera, clock: 86, rain: 1},
+  'shelter-rain': {at: [1.42, -90.88], yaw: 3.119, pitch: -0.054, clock: 89, rain: 1, repaired: true},
+  'mine-rain': {at: [-74.045, -29.55], ground: 20.56, yaw: 0.029, pitch: -0.415, clock: 89, rain: 1, coast: true},
+  'creek-ferns': {at: [-6.55, -60.05], yaw: 2.234, pitch: -0.303, clock: 86, rain: 1},
+  'creek-spruce': {at: [-7.70, -63.50], yaw: 0.543, pitch: 0.557, clock: 24},
+  'camp-glazed-jug': {at: [3.36, -88.07], yaw: -0.322, pitch: -0.808, clock: 24, repaired: true},
+  'campfire-rain': {at: [5.16, -83.85], yaw: 2.752, pitch: -0.870, clock: 86, rain: 1, fire: true},
   lamp: {at: [2.15, -87.26], yaw: -1.75, pitch: 0.24, clock: 190, transition: 'repair'},
   dawn: {at: [2.0, -71.5], yaw: -1.47, pitch: 0.13, clock: dawnStart - warmup, transition: 'sunrise'},
   inventory: {at: [1.9, -85.0], yaw: -0.08, pitch: 0.10, clock: 30, inventory: true},
@@ -187,8 +199,10 @@ try {
       const [x, z] = scene.at;
       await writeFile(resolve(saves, room + '.json'), JSON.stringify({
         version: 1, elapsed: scene.clock, groveStartedAt: 0,
-        quest: {wood: scene.transition === 'repair', tarp: scene.transition === 'repair', repaired: false},
-        homes: {[id]: {x, z, yaw: scene.yaw}},
+        quest: {wood: !!scene.repaired || scene.transition === 'repair',
+          tarp: !!scene.repaired || scene.transition === 'repair', repaired: !!scene.repaired},
+        homes: {[id]: {x, y: scene.ground, z, yaw: scene.yaw}},
+        ...(scene.fire ? {storage: {'camp-storage-6': {kind: 'campfire', at: [4.75, 0, -82.85], fuelUntil: 122}}} : {}),
         ...(scene.inventory ? {survival: {[id]: {bag: {apple: 2, bread: 1, jacket: 1}}}} : {}),
       }));
       let recordedDiveY = null;
@@ -202,11 +216,16 @@ try {
       activeRun.step = 'load-room';
       await page.goto(`${origin}/coop/?room=${room}`, {waitUntil: 'domcontentloaded'});
       if (!headless) await focusWindow(page, windowPosition);
-      await page.waitForFunction(() => window.CooperStatus?.ready && CooperStatus.resident >= 3 &&
-        document.getElementById('loader').hidden, null, {timeout: software ? 120000 : 50000});
+      await page.waitForFunction(coast => window.CooperStatus?.ready &&
+        (coast ? CooperStatus.focusReady : CooperStatus.resident >= 3) &&
+        document.getElementById('loader').hidden, !!scene.coast, {timeout: software ? 120000 : 50000});
       const initial = await page.evaluate(() => window.CooperStatus);
       assert.ok(Math.hypot(initial.x - x, initial.z - z) < 0.05, 'Room spawn moved for ' + name);
-      assert.equal(initial.quest.repaired, false);
+      if (scene.ground !== undefined) {
+        assert.ok(Math.abs(initial.y - scene.ground) < 0.1,
+          `Room did not restore the expected floor for ${name}: ${initial.y} vs ${scene.ground}`);
+      }
+      assert.equal(initial.quest.repaired, !!scene.repaired);
       if (scene.transition === 'repair') {
         assert.equal(initial.quest.wood && initial.quest.tarp, true, 'Lamp fixture lacks materials');
         await page.waitForFunction(() => CooperStatus.nearby === 'repair', null, {timeout: interactionTimeout});
@@ -255,7 +274,7 @@ try {
         const screenshot = label + '-' + view + '.png';
         const beforeScreenshot = scene.transition ? label + '-' + view + '-before.png' : screenshot;
         const still = await page.evaluate(() => window.CooperStatus);
-        assert.equal(still.rain, name === 'storm' ? 1 : 0);
+        assert.equal(still.rain, scene.rain ?? (name === 'storm' ? 1 : 0));
         assert.equal(still.dayPart, name === 'dawn' ? 'dawn' : name === 'lamp' ? 'night' : 'day');
         if (!timeInventoryAction && (!software || scene.transition)) await canvasScreenshot(page, beforeScreenshot);
         await page.waitForTimeout(400);

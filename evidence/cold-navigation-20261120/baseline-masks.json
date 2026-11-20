@@ -1,0 +1,34 @@
+{
+  "buildUs": 886337,
+  "cells": 175421,
+  "dog": {
+    "blocked": 107947,
+    "cellSize": [
+      0.5,
+      0.5
+    ],
+    "diagonalMode": 3,
+    "region": [
+      -608,
+      -238,
+      667,
+      263
+    ],
+    "sha256": "7f56742243079a298d953c202c0938d239abb4752abf4892b7f2aab0324a0190"
+  },
+  "npc": {
+    "blocked": 109091,
+    "cellSize": [
+      0.5,
+      0.5
+    ],
+    "diagonalMode": 3,
+    "region": [
+      -608,
+      -238,
+      667,
+      263
+    ],
+    "sha256": "9add20d410d1dabf77defa7d1d89f41c2923c6d3f2f7b1308158a9aa37bf8e9b"
+  }
+}

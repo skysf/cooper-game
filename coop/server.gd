@@ -11,6 +11,12 @@ const WildPeople = preload("res://wild_people.gd")
 const Spaceship = preload("res://spaceship.gd")
 const PlayerMotion = preload("res://player_motion.gd")
 const Atlas = preload("res://field_atlas.gd")
+const Storage = preload("res://camp_storage.gd")
+const Mining = preload("res://mining.gd")
+const MinesLayout = preload("res://mines_layout.gd")
+const PlacementWorld = preload("res://placement_world.gd")
+const Placement = preload("res://placement.gd")
+const StorageWildlife = preload("res://storage_wildlife.gd")
 const MAX_PLAYERS := 4
 const SPAWN_OFFSETS := [Vector2.ZERO, Vector2(-1.25, 0), Vector2(1.25, 0), Vector2(0, 1.4)]
 const SNAPSHOT_PERIOD := 0.10
@@ -24,6 +30,7 @@ var connections: Dictionary = {}
 var rooms: Dictionary = {}
 var world: Dictionary
 var grid: Dictionary
+var placement_grid: Dictionary
 var ship_grid: Dictionary
 var save_dir := ""
 var next_connection := 1
@@ -60,12 +67,19 @@ func _initialize() -> void:
 		push_error("无法创建房间存档目录 " + save_dir)
 		quit(1)
 		return
+	_prepare_terrain_navigation()
 	result = listener.listen(port, bind_address)
 	if result != OK:
 		push_error("房间服务器监听失败 %s:%s (%s)" % [bind_address, port, error_string(result)])
 		quit(1)
 		return
 	print("ROOM_SERVER_READY ", bind_address, ":", port)
+
+func _prepare_terrain_navigation() -> void:
+	# Both actor types and every room share this static terrain. NPCs keep a
+	# separate avoidance margin; installed furniture remains room-local.
+	dog_motion.prepare_navigation(grid)
+	people_motion.navigator.prepare_navigation(grid, dog_motion.navigation)
 
 func _process(delta: float) -> bool:
 	while listener.is_connection_available():
@@ -116,9 +130,13 @@ func _process(delta: float) -> bool:
 		if room.ship.pilot.is_empty() and (room.ship.slipping or room.ship.surface == "tree"):
 			_tick_spaceship(room, {}, delta)
 		_tick_stones(room, delta)
-		dog_motion.tick(room, grid, delta)
-		_tick_wildlife(code, room, delta)
+		_tick_storage(room, delta)
+		if StorageWildlife.alive(room, "dog"):
+			dog_motion.tick(room, grid, delta)
+		if StorageWildlife.alive(room, "croc"):
+			_tick_wildlife(code, room, delta)
 		people_motion.tick(room, grid, minf(delta, 0.1))
+		_resolve_knockouts(code, room)
 	snapshot_in -= delta
 	save_in -= delta
 	if snapshot_in <= 0.0:
@@ -144,32 +162,122 @@ func _tick_player(room: Dictionary, id: String, rain: float, grove_time: float, 
 	if personal.health <= 0.0:
 		actor.direction = Vector2.ZERO
 		actor.lift = 0.0
-		if float(personal.get("downAt", -1.0)) < 0.0:
-			personal.downAt = room.data.elapsed
 	if piloting:
 		_tick_spaceship(room, actor, delta)
-	else:
-		PlayerMotion.step(actor, actor.direction, actor.lift, delta, grid, room.ship, ship_grid, grove_time)
+	elif not _tick_storage_pose(room, actor, personal.health > 0.0, delta):
+		PlayerMotion.step(actor, actor.direction, actor.lift, delta, grid, room.ship, ship_grid, grove_time,room.data.storage)
 	Survival.tick(room.data.survival[id], actor.point, room.data.quest.repaired and room.data.wildPeople.facility > 20.0, rain, delta, piloting)
+
+func _resolve_knockouts(code: String, room: Dictionary) -> void:
+	var changed := false
+	var elapsed: float = room.data.elapsed
+	for id: String in room.actors:
+		var personal: Dictionary = room.data.survival[id]
+		if float(personal.health) > 0.0:
+			continue
+		var actor: Dictionary = room.actors[id]
+		if float(personal.downAt) < 0.0 or float(personal.downAt) > elapsed:
+			personal.downAt = elapsed
+			changed = true
+			if room.ship.pilot == id:
+				room.ship = Spaceship.from_save(room.data.ship, ship_grid, _grove_time(room.data))
+				room.ship_velocity = Vector3.ZERO
+				actor.merge(PlayerMotion.put_ashore(_parked_exit(room, room.ship)), true)
+			_drop_carried(room, id)
+			actor.erase("revivedAt")
+			actor.erase("climbing")
+			actor.erase("storageSeat")
+			actor.direction = Vector2.ZERO
+			actor.lift = 0.0
+			actor.vx = 0.0
+			actor.vz = 0.0
+			actor.aimPitch = null
+			personal.blocking = false
+		if room.actors.size() == 1 or Survival.rescue_time_left(personal.downAt, elapsed) <= 0.0:
+			var camp := _atlas_landing(room, id, WildPeople.HOME, [0.0, 0.9, 1.6, 2.4, 3.2, 4.6, 6.4, 8.0])
+			if not camp.is_finite():
+				var spawn := Rules.pair(world.spawn)
+				camp = Vector3(spawn.x, LakeLayout.walk_height(spawn), spawn.y)
+			actor.merge(PlayerMotion.put_ashore(camp), true)
+			actor.y = camp.y
+			actor.floorY = camp.y
+			actor.grounded = true
+			personal.health = Survival.RECOVERY_HEALTH
+			personal.downAt = -1.0
+			changed = true
+			_recovery_notice(code, id, true, "已回到营地，可在棚内恢复健康")
+	if changed:
+		_checkpoint(code)
+
+func _rescue(con: Dictionary, room: Dictionary, target: Variant) -> void:
+	if target is not String or target == con.id or not room.actors.has(target):
+		_recovery_notice(con.room, con.id, false, "靠近需要救援的队友")
+		return
+	var elapsed: float = room.data.elapsed
+	var personal: Dictionary = room.data.survival[target]
+	var down_at := float(personal.downAt)
+	if float(personal.health) > 0.0 or Survival.rescue_time_left(down_at, elapsed) <= 0.0:
+		_recovery_notice(con.room, con.id, false, "队友已不需要救援")
+		return
+	var actor: Dictionary = room.actors[con.id]
+	var casualty: Dictionary = room.actors[target]
+	var helper_at := Vector3(actor.point.x, actor.y, actor.point.y)
+	var casualty_at := Vector3(casualty.point.x, casualty.y, casualty.point.y)
+	if not Survival.within_rescue_reach(helper_at, casualty_at):
+		_recovery_notice(con.room, con.id, false, "靠近需要救援的队友")
+		return
+	if (not casualty.grounded and not casualty.swimming) or room.ship.pilot == target:
+		_recovery_notice(con.room, con.id, false, "等队友落稳后再救援")
+		return
+	var from := helper_at + Vector3.UP * PlayerMotion.eye_offset(actor.swimming)
+	var to := casualty_at + Vector3.UP * Survival.rescue_contact_height(casualty.swimming)
+	var solids := PlacementWorld.nearby(placement_grid, room.data.storage, actor.point, Survival.RESCUE_REACH + 1.5)
+	if not Placement.trace(from, to, solids).is_empty() or Spaceship.blocks_sight(room.ship, from, to):
+		_recovery_notice(con.room, con.id, false, "队友身前有遮挡")
+		return
+	personal.health = Survival.RECOVERY_HEALTH
+	personal.downAt = -1.0
+	if not _checkpoint(con.room):
+		personal.health = 0.0
+		personal.downAt = down_at
+		_recovery_notice(con.room, con.id, false, "救援保存失败，请重试")
+		return
+	casualty.revivedAt = elapsed
+	_publish(con.room)
+	_recovery_notice(con.room, con.id, true, "已救起队友")
+	_recovery_notice(con.room, target, true, "队友已将你救起")
+
+func _recovery_notice(code: String, player: String, ok: bool, message: String) -> void:
+	for peer: Dictionary in connections.values():
+		if peer.room == code and peer.id == player:
+			_send(peer.ws, {"t":"notice", "ok":ok, "site":"rescue", "text":message})
+			return
 
 func _message(con: Dictionary, msg: Dictionary) -> void:
 	if con.room.is_empty():
 		if msg.get("t") == "join":
 			_join(con, msg)
 		return
-	var actor: Dictionary = rooms[con.room].actors[con.id]
+	var room: Dictionary = rooms[con.room]
+	var actor: Dictionary = room.actors[con.id]
+	var personal: Dictionary = room.data.survival[con.id]
 	var kind: String = str(msg.get("t", ""))
 	if kind == "atlas":
 		_atlas_action(con, msg)
 		return
-	if rooms[con.room].data.survival[con.id].health <= 0.0 and kind not in ["motion", "person"]:
+	if kind == "person" and msg.get("action") == "respawn":
+		_recovery_notice(con.room, con.id, false, "队友可以救援，时间到后自动回营")
 		return
-	if kind not in ["motion", "ship"] and rooms[con.room].ship.pilot == con.id:
+	if float(personal.health) <= 0.0 and kind != "motion":
+		return
+	if kind not in ["motion", "ship"] and room.ship.pilot == con.id:
 		return
 	match kind:
 		"motion":
 			if con.get("snapshot_flow", false) and msg.get("snapshotAck", -1) == con.snapshot_sent:
 				con.snapshot_acked = con.snapshot_sent
+			if float(personal.health) <= 0.0:
+				return
 			for field in ["x", "z", "yaw"]:
 				var v = msg.get(field)
 				if (typeof(v) != TYPE_FLOAT and typeof(v) != TYPE_INT) or not is_finite(float(v)):
@@ -179,11 +287,10 @@ func _message(con: Dictionary, msg: Dictionary) -> void:
 			var lift = msg.get("lift", 0.0)
 			actor.lift = clampf(float(lift), -1.0, 1.0) if _finite_number(lift) else 0.0
 			actor.input_age = 0.0
-			var personal: Dictionary = rooms[con.room].data.survival[con.id]
 			var gun := Weapons.firearm(personal.weapon)
 			personal.blocking = msg.get("blocking") == true and personal.shield and not gun
 			var aim: Variant = msg.get("aimPitch")
-			var can_aim: bool = gun and personal.health > 0.0 and not actor.swimming and rooms[con.room].ship.pilot != con.id
+			var can_aim: bool = gun and not actor.swimming and room.ship.pilot != con.id
 			actor.aimPitch = clampf(float(aim), -1.44, 1.44) if can_aim and _finite_number(aim) else null
 		"ship":
 			if msg.get("action") is String:
@@ -195,11 +302,17 @@ func _message(con: Dictionary, msg: Dictionary) -> void:
 			_stone_action(con, msg)
 		"provision":
 			_provision_action(con, msg)
+		"storage":
+			_storage_action(con, msg)
+		"mine":
+			_mining_action(con, msg)
 		"dog":
 			if msg.get("action") is String:
 				_dog_action(con, msg.action)
 		"person":
 			_wild_action(con, msg)
+		"rescue":
+			_rescue(con, room, msg.get("id"))
 
 func _load_room(code: String) -> bool:
 	var path := save_dir.path_join(code + ".json")
@@ -220,12 +333,28 @@ func _load_room(code: String) -> bool:
 	data.stones = Stones.from_save(data.get("stones"))
 	data.lineCut = data.get("lineCut", false) == true
 	data.provisions = Survival.provisions_from_save(data.get("provisions"))
+	data.storage = Storage.from_save(data.get("storage"), float(data.elapsed), grid)
+	if data.get("campFurniturePlaced",false) != true:
+		Storage.seed_furniture(data.storage,data.provisions)
+		data.campFurniturePlaced = true
+	if placement_grid.is_empty():
+		placement_grid = PlacementWorld.static_grid(world)
+	if data.get("campFurnacePlaced",false) != true:
+		data.campFurnacePlaced = Storage.seed_furnace(data.storage,placement_grid)
+	data.mines = Mining.from_save(data.get("mines"),float(data.elapsed))
+	data.storageWildlife = StorageWildlife.from_save(data.get("storageWildlife"))
 	if data.get("campWeaponsVersion", 0) == 0:
 		for item: String in Weapons.CAMP_START:
 			var point: Vector2 = Weapons.CAMP_START[item]
 			var at := Vector3(point.x, LakeLayout.walk_height(point) + 0.008, point.y)
 			data.provisions["camp-weapon-" + item] = Survival.provision(item, at, "ground")
 		data.campWeaponsVersion = 1
+	if data.get("campHelmetPlaced", false) != true:
+		var point := Survival.CAMP_HELMET
+		var at := Vector3(point.x, LakeLayout.walk_height(point) + 0.008, point.y)
+		if not data.provisions.has("camp-helmet"):
+			data.provisions["camp-helmet"] = Survival.provision("helmet", at, "ground")
+		data.campHelmetPlaced = true
 	var personal := {}
 	var saved_states: Variant = data.get("survival")
 	var saved_owner: Variant = data.get("backpackOwner", "")
@@ -305,6 +434,8 @@ func _join(con: Dictionary, msg: Dictionary) -> void:
 	var stored_height: Variant = home.get("y")
 	if Spaceship.float_value(stored_height) and stored == stored.clamp(Rules.MIN_CORNER, Rules.MAX_CORNER):
 		var foothold := Spaceship.Ground.walk_height(stored, float(stored_height), ship_grid, _grove_time(room.data))
+		foothold = PlacementWorld.floor_height(PlacementWorld.nearby(PlacementWorld.mine_grid(),room.data.storage,stored,3.15),
+			stored,float(stored_height),foothold)
 		if foothold > LakeLayout.walk_height(stored) + 0.23 and absf(foothold - float(stored_height)) < 0.50:
 			point = stored
 			starting_height = foothold
@@ -318,6 +449,7 @@ func _join(con: Dictionary, msg: Dictionary) -> void:
 		room.data.survival[id] = Survival.initial_state()
 	_claim_legacy_materials(code)
 	_welcome(con, room)
+	_resolve_knockouts(code, room)
 	_publish(code)
 	print("ROOM_JOIN ", code, " ", id, " peers=", room.actors.size())
 
@@ -392,6 +524,8 @@ func _atlas_travel(con: Dictionary, room: Dictionary, site: Variant) -> void:
 	var previous: Dictionary = room.actors[con.id]
 	var actor := previous.duplicate()
 	actor.merge(PlayerMotion.put_ashore(arrival), true)
+	actor.erase("storageSeat")
+	actor.erase("climbing")
 	actor.merge({"direction": Vector2.ZERO, "lift": 0.0, "input_age": 0.0, "aimPitch": null}, true)
 	var saved_homes: Dictionary = room.data.homes.duplicate()
 	var saved_ship: Dictionary = room.data.ship
@@ -422,15 +556,19 @@ func _atlas_travel(con: Dictionary, room: Dictionary, site: Variant) -> void:
 	_send(con.ws, result)
 	_publish(con.room)
 
-func _atlas_landing(room: Dictionary, id: String, center: Vector2) -> Vector3:
-	for ring: float in [0.0, 0.9, 1.6, 2.4, 3.2]:
+func _atlas_landing(room: Dictionary, id: String, center: Vector2, rings: Array = [0.0, 0.9, 1.6, 2.4, 3.2]) -> Vector3:
+	var solids := PlacementWorld.nearby(PlacementWorld.mine_grid(), room.data.storage, center, float(rings.back()) + 2.5)
+	for ring: float in rings:
 		for step: int in (1 if ring == 0.0 else 8):
 			var point := center + Vector2.from_angle(TAU * float(step) / 8.0) * ring
 			if not Atlas.contains(point) or not Rules.free_at(point, grid):
 				continue
 			var floor_y := LakeLayout.walk_height(point)
+			floor_y = PlacementWorld.floor_height(solids, point, floor_y, floor_y)
 			if LakeLayout.surface_height(point) > floor_y + 0.025 or Spaceship.blocks_player(
 					point + Vector2(8.0, 0), point, floor_y, floor_y + PlayerMotion.WALK_EYE, room.ship):
+				continue
+			if PlacementWorld.blocks_player(solids, point, floor_y):
 				continue
 			var safe := true
 			for offset: Vector2 in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
@@ -470,6 +608,15 @@ func _reject(con: Dictionary, code: String, message: String) -> void:
 	con.rejected = true
 	_send(con.ws, {"t":"reject", "code":code, "text":message})
 
+func _drop_carried(room: Dictionary, player: String) -> void:
+	var actor: Dictionary = room.actors[player]
+	var stone := Stones.held_by(room.data.stones, player)
+	if not stone.is_empty():
+		_set_ground(room.data.stones[stone], stone, actor.point)
+	var carried := Storage.held_by(room.data.storage, player)
+	if not carried.is_empty():
+		Storage.grounded(room.data.storage[carried], actor.point, actor.yaw)
+
 func _leave(key: int) -> void:
 	var con: Dictionary = connections[key]
 	if not con.room.is_empty():
@@ -478,16 +625,14 @@ func _leave(key: int) -> void:
 			room.ship = Spaceship.from_save(room.data.ship, ship_grid, _grove_time(room.data))
 			room.ship_velocity = Vector3.ZERO
 			room.actors[con.id].merge(PlayerMotion.put_ashore(_parked_exit(room, room.ship)), true)
-		var id := Stones.held_by(room.data.stones, con.id)
-		if not id.is_empty():
-			var actor: Dictionary = room.actors[con.id]
-			_set_ground(room.data.stones[id], id, actor.point)
+		_drop_carried(room, con.id)
 		# Save the last position before evicting an empty room from memory.
 		var saved := _checkpoint(con.room)
 		room.actors.erase(con.id)
 		if room.actors.is_empty() and saved:
 			rooms.erase(con.room)
 		else:
+			_resolve_knockouts(con.room, room)
 			_publish(con.room)
 		print("ROOM_LEAVE ", con.room, " ", con.id)
 	connections.erase(key)
@@ -521,6 +666,9 @@ func _spaceship_action(con: Dictionary, action: String) -> void:
 	var message := ""
 	var accepted := false
 	if action == "board":
+		if not Storage.held_by(room.data.storage, con.id).is_empty():
+			_send(con.ws, {"t":"notice", "ok":false, "site":"storage", "text":"先放下手中的物件"})
+			return
 		if not ship.pilot.is_empty():
 			message = "飞船正在由队友驾驶"
 		elif not ship.landed or actor.point.distance_to(Spaceship.point(ship)) > Spaceship.BOARD_RANGE:
@@ -596,7 +744,7 @@ func _provision_action(con: Dictionary, msg: Dictionary) -> void:
 	var state := before_state.duplicate(true)
 	var provisions := before_provisions.duplicate()
 	var slots := Survival.slot_count(room.data.backpackOwner == con.id)
-	var result := _use_provision(requested, msg, actor, state, provisions, slots)
+	var result := _use_provision(requested, msg, actor, state, provisions, slots,room.data.storage)
 	if not result.ok:
 		_provision_notice(con, false, result.text)
 		return
@@ -625,14 +773,15 @@ func _take_backpack(con: Dictionary, room: Dictionary, point: Vector2) -> void:
 		room.data.backpackOwner = ""
 		_provision_notice(con, false, "存档写入失败，请稍后重试")
 
-func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: Dictionary, provisions: Dictionary, slots: int) -> Dictionary:
+func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: Dictionary, provisions: Dictionary, slots: int, storage := {}) -> Dictionary:
 	var point: Vector2 = actor.point
 	if action in ["take", "eat_table", "drink_table"]:
 		var id: Variant = msg.get("id")
 		if id is not String or not provisions.has(id):
 			return {"ok": false, "text": "物品已不在这里"}
-		var record: Dictionary = provisions[id]
-		if not Survival.can_reach(point, Survival.horizontal(record.at), record.surface):
+		var record: Dictionary = provisions[id].duplicate()
+		var reach_surface: String = "ground" if record.has("tableId") else record.surface
+		if not Survival.can_reach(point, Survival.horizontal(record.at), reach_surface) or absf(float(record.at[1])-float(actor.y)) > 1.85:
 			return {"ok": false, "text": "走近物品后再互动"}
 		var item: String = record.item
 		if action == "take":
@@ -649,11 +798,17 @@ func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: D
 			if not Survival.FOOD_STATS.has(item):
 				return {"ok": false, "text": "按 E 捡起物品"}
 			Survival.eat(state, item)
-		provisions.erase(id)
+		var count := int(record.get("count", 1))
+		if count > 1:
+			record.count = count - 1
+			provisions[id] = record
+		else:
+			provisions.erase(id)
 		var verb := "捡起了" if action == "take" else "喝了一份" if action == "drink_table" else "吃掉了"
 		return {"ok": true, "text": verb + Survival.ITEM_NAMES[item]}
 	if action == "drink" and str(msg.get("item", "")).is_empty():
-		if not Survival.can_drink(point):
+		var jug: Dictionary = storage.get("camp-water-jug",{})
+		if jug.get("mode") != "ground" or not Storage.near(actor,jug,grid) or point.distance_squared_to(Survival.horizontal(jug.at)) > Survival.JUG_REACH ** 2:
 			return {"ok": false, "text": "靠近水壶后再喝水"}
 		if float(state.water) >= Survival.DRINK_THRESHOLD:
 			return {"ok": false, "text": "现在不渴"}
@@ -674,16 +829,22 @@ func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: D
 			state.worn[selected] = false
 			return {"ok": true, "text": "脱下了" + item_name}
 		state.worn[selected] = false
-		return _place_provision(selected, actor, provisions, "ground")
+		return _place_provision(selected, actor, provisions, storage)
 	if int(state.bag.get(selected, 0)) <= 0:
 		return {"ok": false, "text": "背包里没有这件物品"}
 	if action == "wear":
 		if not clothing or bool(state.worn.get(selected, false)):
 			return {"ok": false, "text": "先脱下同类衣物"}
 		state.bag[selected] -= 1
+		var displaced: String = Survival.HEAD_REPLACEMENT.get(selected, "")
+		if bool(state.worn.get(displaced, false)):
+			if not Survival.can_carry(state.bag, displaced, slots):
+				return {"ok": false, "text": "背包没有空位收起" + Survival.ITEM_NAMES[displaced]}
+			state.bag[displaced] = int(state.bag.get(displaced, 0)) + 1
+			state.worn[displaced] = false
 		state.worn[selected] = true
-		return {"ok": true, "text": "穿上了" + item_name}
-	if clothing and action != "drop":
+		return {"ok": true, "text": ("戴上了" if selected == "helmet" else "穿上了") + item_name}
+	if clothing and action not in ["drop","put"]:
 		return {"ok": false, "text": "衣物可以穿上或丢下"}
 	if action == "drink":
 		if not Survival.is_drinkable(selected):
@@ -700,13 +861,22 @@ func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: D
 		Survival.eat(state, selected)
 		return {"ok": true, "text": "吃掉了" + item_name}
 	var surface := "table" if action == "put" else "ground"
-	if not clothing and not Survival.FOOD_STATS.has(selected) and not Weapons.ATTACKS.has(selected) and selected not in ["shield", "water", "wood", "tarp"]:
-		return {"ok": false, "text": "药草用于 B 营地住民的治疗操作"}
-	if surface == "table" and not Survival.can_table(selected):
-		return {"ok": false, "text": "公共木桌存放食物与溪水"}
-	if surface == "table" and not Survival.can_put(point):
-		return {"ok": false, "text": "靠近桌子后再放一份"}
-	var result := _place_provision(selected, actor, provisions, surface)
+	var result: Dictionary
+	if surface == "table":
+		var table := Storage.table_at(storage,point)
+		if table.is_empty() or not Storage.near(actor,storage[table],grid):
+			return {"ok": false, "text": "靠近桌子后再放一份"}
+		var place := Storage.table_slot(storage,provisions,table)
+		if not place.is_finite():
+			return {"ok": false, "text": "桌上没有空位"}
+		var id := Crypto.new().generate_random_bytes(8).hex_encode()
+		while provisions.has(id):
+			id = Crypto.new().generate_random_bytes(8).hex_encode()
+		provisions[id] = Survival.provision(selected,place,"table" if table == Survival.CAMP_TABLE else "ground")
+		provisions[id].tableId = table
+		result = {"ok":true,"text":"放在木桌上：" + item_name}
+	else:
+		result = _place_provision(selected, actor, provisions, storage)
 	if result.ok:
 		state.bag[selected] -= 1
 		if int(state.bag[selected]) <= 0:
@@ -716,42 +886,39 @@ func _use_provision(action: String, msg: Dictionary, actor: Dictionary, state: D
 				state.shield = false
 	return result
 
-func _place_provision(item: String, actor: Dictionary, provisions: Dictionary, surface: String) -> Dictionary:
-	var place := Vector3.INF
-	if surface == "table":
-		place = Survival.free_table_slot(provisions)
-	else:
-		place = _provision_drop_position(actor, provisions, Survival.CLOTHING.has(item))
-	if not place.is_finite():
-		return {"ok": false, "text": "桌上没有空位" if surface == "table" else "脚边没有空地"}
+func _place_provision(item: String, actor: Dictionary, provisions: Dictionary, storage: Dictionary) -> Dictionary:
+	var landing := _provision_drop_position(actor,provisions,storage,Survival.CLOTHING.has(item))
+	if landing.is_empty():
+		return {"ok":false,"text":"脚边没有空地"}
 	var id := Crypto.new().generate_random_bytes(8).hex_encode()
 	while provisions.has(id):
 		id = Crypto.new().generate_random_bytes(8).hex_encode()
-	provisions[id] = Survival.provision(item, place, surface)
-	var verb := "放回桌上" if surface == "table" else "放下了"
-	return {"ok": true, "text": verb + Survival.ITEM_NAMES[item]}
+	provisions[id] = Survival.provision(item,landing.at,"ground")
+	if not landing.id.is_empty():
+		provisions[id].supportId = landing.id
+	return {"ok":true,"text":"放下了" + Survival.ITEM_NAMES[item]}
 
-func _provision_drop_position(actor: Dictionary, provisions: Dictionary, clothing := false) -> Vector3:
+func _provision_drop_position(actor: Dictionary, provisions: Dictionary, storage: Dictionary, clothing: bool) -> Dictionary:
 	var point: Vector2 = actor.point
 	var facing := Vector2(0.0, -0.58).rotated(-float(actor.yaw))
 	for offset: Vector2 in [facing, facing.rotated(PI / 3.0), facing.rotated(-PI / 3.0), Vector2.ZERO]:
 		var candidate := point + offset
 		if candidate != candidate.clamp(Rules.MIN_CORNER, Rules.MAX_CORNER) or not Rules.free_at(candidate, grid):
 			continue
-		var height := LakeLayout.walk_height(candidate)
-		var surface := LakeLayout.surface_height(candidate)
-		if height <= surface and not clothing:
+		var drop_from := Vector3(candidate.x,float(actor.y)+.40,candidate.y)
+		var landing := Storage.provision_landing(drop_from,storage,placement_grid,clothing)
+		if landing.is_empty():
 			continue
 		var crowded := false
 		for record: Dictionary in provisions.values():
-			if record.surface == "ground" and candidate.distance_squared_to(Survival.horizontal(record.at)) < 0.03:
+			if Stones.unpack(record.at).distance_squared_to(landing.at) < .03:
 				crowded = true
 				break
 		if not crowded:
-			return Vector3(candidate.x, maxf(height, surface) + 0.012, candidate.y)
+			return landing
 	if clothing:
-		return Vector3(point.x, maxf(LakeLayout.walk_height(point), LakeLayout.surface_height(point)) + 0.012, point.y)
-	return Vector3.INF
+		return Storage.provision_landing(Vector3(point.x,float(actor.y)+.40,point.y),storage,placement_grid,true)
+	return {}
 
 func _provision_notice(con: Dictionary, ok: bool, message: String) -> void:
 	_send(con.ws, {"t": "notice", "ok": ok, "site": "provision", "text": message})
@@ -768,7 +935,7 @@ func _stone_action(con: Dictionary, msg: Dictionary) -> void:
 	var action := ""
 	match operation:
 		"pick":
-			if not held.is_empty() or msg.get("id") is not String or not stones.has(msg.id):
+			if not held.is_empty() or not Storage.held_by(room.data.storage, con.id).is_empty() or msg.get("id") is not String or not stones.has(msg.id):
 				return
 			id = msg.id
 			var target: Dictionary = stones[id]
@@ -845,6 +1012,113 @@ func _stone_action(con: Dictionary, msg: Dictionary) -> void:
 		room.data.lineCut = line_was_cut
 		_send(con.ws, {"t": "notice", "ok": false, "site": id, "text": "存档写入失败，请稍后重试"})
 
+func _storage_action(con: Dictionary, msg: Dictionary) -> void:
+	if not msg.get("action") is String:
+		return
+	var room: Dictionary = rooms[con.room]
+	var old_storage: Dictionary = room.data.storage
+	var old_personal: Dictionary = room.data.survival[con.id]
+	var old_provisions: Dictionary = room.data.provisions
+	var old_actor: Dictionary = room.actors[con.id]
+	room.data.storage = old_storage.duplicate(true)
+	room.data.survival[con.id] = old_personal.duplicate(true)
+	room.data.provisions = old_provisions.duplicate()
+	room.actors[con.id] = old_actor.duplicate()
+	if placement_grid.is_empty():
+		placement_grid = PlacementWorld.static_grid(world)
+	var result := Storage.action(room, con.id, msg, grid, placement_grid)
+	if result.ok and not _checkpoint(con.room):
+		result = {"ok":false, "text":"存档写入失败，请稍后重试"}
+	if result.ok:
+		_publish(con.room)
+	else:
+		room.data.storage = old_storage
+		room.data.survival[con.id] = old_personal
+		room.data.provisions = old_provisions
+		room.actors[con.id] = old_actor
+	_send(con.ws, {"t":"notice", "ok":result.ok, "site":"storage", "text":result.text})
+
+func _mining_action(con: Dictionary, msg: Dictionary) -> void:
+	var id: Variant = msg.get("id")
+	if id is not String or not MinesLayout.data.has(id):
+		return
+	var room: Dictionary = rooms[con.room]
+	var old_veins: Dictionary = room.data.mines
+	var old_player: Dictionary = room.data.survival[con.id]
+	var old_actor: Dictionary = room.actors[con.id]
+	var veins := old_veins.duplicate(true)
+	var personal := old_player.duplicate(true)
+	var actor := old_actor.duplicate()
+	var slots := Survival.slot_count(room.data.backpackOwner == con.id)
+	var target := MinesLayout.gather(id)
+	var solids := PlacementWorld.nearby(placement_grid,room.data.storage,actor.point)
+	var result := Mining.extract(veins,id,personal,actor,room.data.elapsed,slots,target,solids)
+	if result.ok:
+		room.data.mines = veins
+		room.data.survival[con.id] = personal
+		room.actors[con.id] = actor
+		if _checkpoint(con.room):
+			_publish(con.room)
+		else:
+			room.data.mines = old_veins
+			room.data.survival[con.id] = old_player
+			room.actors[con.id] = old_actor
+			result = {"ok":false,"text":"存档写入失败，请稍后重试"}
+	_send(con.ws, {"t":"notice","ok":result.ok,"site":"mine","text":result.text})
+
+
+func _tick_storage(room: Dictionary, delta: float) -> void:
+	var now: float = room.data.elapsed
+	var records: Dictionary = room.data.storage
+	for id: String in records.keys():
+		var object: Dictionary = records[id]
+		if object.mode == "held" and room.actors.has(object.holder):
+			var owner: Dictionary = room.actors[object.holder]
+			if room.data.survival[object.holder].health <= 0.0 or owner.swimming:
+				Storage.grounded(object,owner.point,owner.yaw)
+		if object.mode != "air":
+			continue
+		var previous := Stones.flight_position(object,now-delta)
+		var at := Stones.flight_position(object,now)
+		var point := Vector2(at.x,at.z)
+		var last := Vector2(previous.x,previous.z)
+		var radius: float = Storage.KINDS[object.kind].radius
+		var damage := lerpf(13.0,30.0,minf(1.0,radius/0.8))
+		if point != point.clamp(Rules.MIN_CORNER,Rules.MAX_CORNER) or (at.y < LakeLayout.walk_height(point)+2.0 and not Rules.obstacle_free_at(point,grid)):
+			Storage.grounded(object,last,object.yaw)
+		elif _stone_person_hit(room,object,previous,at,damage) or StorageWildlife.hit(room,previous,at,radius,damage,grid):
+			Storage.grounded(object,point,object.yaw)
+			_record_stone_sound(room,"stone_wood",at,0.74)
+		elif at.y <= maxf(LakeLayout.walk_height(point),LakeLayout.surface_height(point)):
+			Storage.grounded(object,point,object.yaw)
+			_stone_rest_sound(room,Stones.unpack(object.at),0.68)
+
+
+func _tick_storage_pose(room: Dictionary, actor: Dictionary, able: bool, delta: float) -> bool:
+	var records: Dictionary = room.data.get("storage", {})
+	var ladder: Dictionary = records.get(actor.get("climbing",""),{})
+	var chair: Dictionary = records.get(actor.get("storageSeat",""),{})
+	if able and actor.lift <= 0.0 and ladder.get("mode") == "ground":
+		var base := Stones.unpack(ladder.at)
+		var heading := Vector2(0.0,-1.0).rotated(-float(ladder.yaw))
+		actor.point = Vector2(base.x,base.z) + heading * 0.36
+		actor.y = clampf(float(actor.y)+actor.direction.dot(Vector2(0,-1).rotated(-float(actor.yaw)))*delta*1.5,base.y,base.y+1.97)
+	elif able and actor.lift <= 0.0 and actor.direction.is_zero_approx() and chair.get("mode") == "ground":
+		var base := Stones.unpack(chair.at)
+		actor.point = Vector2(base.x,base.z)
+		actor.y = base.y + 0.04
+	else:
+		actor.erase("climbing")
+		actor.erase("storageSeat")
+		return false
+	actor.grounded = true
+	actor.swimming = false
+	actor.vy = 0.0
+	actor.vx = 0.0
+	actor.vz = 0.0
+	return true
+
+
 func _finite_number(value: Variant) -> bool:
 	return (value is float or value is int) and is_finite(float(value))
 
@@ -898,7 +1172,7 @@ func _tick_stones(room: Dictionary, delta: float) -> void:
 			_set_ground(stone, id, bounds)
 			_record_stone_sound(room, "stone_earth", at, 0.7)
 			continue
-		if Wildlife.stone_hit(room.crocodile, previous, at, elapsed):
+		if StorageWildlife.alive(room, "croc") and Wildlife.stone_hit(room.crocodile, previous, at, elapsed):
 			_set_ground(stone, id, bounds)
 			if LakeLayout.walk_height(bounds) <= LakeLayout.surface_height(bounds):
 				stone.mode = "submerged"
@@ -943,7 +1217,7 @@ func _tick_wildlife(code: String, room: Dictionary, delta: float) -> void:
 			var message := "被鳄鱼咬伤，回营可以恢复" if hurt else "鳄鱼要扑过来了，往后退"
 			_send(con.ws, {"t": "notice", "ok": false, "site": "crocodile", "text": message})
 
-func _stone_person_hit(room: Dictionary, stone: Dictionary, previous: Vector3, at: Vector3) -> bool:
+func _stone_person_hit(room: Dictionary, stone: Dictionary, previous: Vector3, at: Vector3, blunt_damage := 16.0) -> bool:
 	var nearest := INF
 	var victim := ""
 	var zone := "body"
@@ -959,7 +1233,7 @@ func _stone_person_hit(room: Dictionary, stone: Dictionary, previous: Vector3, a
 	if victim.is_empty():
 		return false
 	var blunt: bool = int(stone.get("edge", 0)) == 0
-	WildPeople.harm(room.data.wildPeople, room.data.wildPeople.people[victim], 16.0 if blunt else 22.0, blunt, zone, str(stone.get("thrower", "")), room.data.elapsed)
+	WildPeople.harm(room.data.wildPeople, room.data.wildPeople.people[victim], blunt_damage if blunt else 22.0, blunt, zone, str(stone.get("thrower", "")), room.data.elapsed)
 	return true
 
 func _wild_action(con: Dictionary, msg: Dictionary) -> void:
@@ -970,6 +1244,9 @@ func _wild_action(con: Dictionary, msg: Dictionary) -> void:
 		return
 	con.person_next_ms = now_ms + 120
 	var room: Dictionary = rooms[con.room]
+	if msg.action in ["attack", "equip", "shield"] and not Storage.held_by(room.data.storage, con.id).is_empty():
+		_send(con.ws, {"t":"notice", "ok":false, "site":"storage", "text":"先放下手中的物件"})
+		return
 	var before_people: Dictionary = room.data.wildPeople.duplicate(true)
 	var before_survival: Dictionary = room.data.survival.duplicate(true)
 	var before_provisions: Dictionary = room.data.provisions.duplicate(true)
@@ -1115,13 +1392,22 @@ func _publish(code: String) -> void:
 			"swimming": a.swimming, "yaw": a.yaw, "slot": a.slot, "worn": room.data.survival[id].worn,
 			"grounded": a.get("grounded", not a.swimming), "vx": a.get("vx", 0.0), "vz": a.get("vz", 0.0), "waterVy": a.get("waterVy", 0.0)}
 		var personal: Dictionary = room.data.survival[id]
+		actors[id].climbing = not str(a.get("climbing","")).is_empty()
+		actors[id].storageSeated = not str(a.get("storageSeat","")).is_empty()
 		actors[id].merge({"weapon": personal.get("weapon", ""), "shield": personal.get("shield", false),
 			"attackAt": personal.get("attackAt", -10.0), "attackWeapon": personal.get("attackWeapon", ""),
-			"aimPitch": a.get("aimPitch"), "blocking": personal.get("blocking", false), "health": personal.health})
+			"aimPitch": a.get("aimPitch"), "blocking": personal.get("blocking", false), "health": personal.health,
+			"downAt": personal.downAt, "revivedAt": a.get("revivedAt", -1.0)})
 	var grove_elapsed := _grove_time(room.data)
 	var snapshot := {"t":"snapshot", "quest":room.data.quest, "elapsed":room.data.elapsed, "groveElapsed":grove_elapsed, "players":actors, "stones":room.data.stones, "lineCut":room.data.lineCut, "waterImpacts":room.impacts, "backpackOwner":room.data.backpackOwner, "dog":room.data.dog, "materialSources":room.data.materialSources}
 	snapshot.stoneSounds = room.stone_sounds
-	snapshot.crocodile = Wildlife.crocodile_pose(room.crocodile)
+	snapshot.storage = room.data.storage
+	Mining.refresh(room.data.mines,float(room.data.elapsed))
+	snapshot.mines = room.data.mines
+	snapshot.eagleAlive = StorageWildlife.alive(room, "eagle")
+	if not StorageWildlife.alive(room, "dog"):
+		snapshot.dog = {}
+	snapshot.crocodile = Wildlife.crocodile_pose(room.crocodile) if StorageWildlife.alive(room, "croc") else {"dead":true}
 	var velocity: Vector3 = room.ship_velocity
 	snapshot.ship = room.ship.duplicate()
 	snapshot.ship.v = [velocity.x, velocity.y, velocity.z]
@@ -1159,6 +1445,7 @@ func _checkpoint(code: String) -> bool:
 	if file == null:
 		return false
 	var saved: Dictionary = room.data.duplicate(true)
+	Storage.settle_save(saved.storage, room.actors)
 	for id: String in saved.stones:
 		var stone: Dictionary = saved.stones[id]
 		if stone.mode == "held" and room.actors.has(stone.holder):

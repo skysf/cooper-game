@@ -27,6 +27,11 @@ var wake_age := 0.0
 func _ready() -> void:
 	body = MODEL.instantiate()
 	add_child(body)
+	for part: MeshInstance3D in body.find_children("*", "MeshInstance3D", true, false):
+		for surface in part.mesh.get_surface_count():
+			var material := part.get_active_material(surface) as BaseMaterial3D
+			if material != null:
+				material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 	seat.name = "PilotSeat"
 	seat.position = SEAT_ORIGIN
 	body.add_child(seat)

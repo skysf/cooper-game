@@ -174,6 +174,7 @@ func _verify() -> void:
 	var fruit_stock: int = state.resources.fruit.stock
 	people_motion.tick(room, grid, 0.1)
 	_expect(state.resources.fruit.stock == fruit_stock - 1 and npc.hunger > 45, "a free companion forages at the actual source and consumes its finite fruit stock")
+	room.data.elapsed = ceilf(room.data.elapsed + float(WildPeople.WORK_SECONDS["GatherFruit"]))
 	npc.hunger = 30
 	npc.x = Survival.TABLE_CENTER.x
 	npc.z = Survival.TABLE_CENTER.y + 0.85
@@ -248,13 +249,16 @@ func _verify() -> void:
 
 
 func _extra_behaviors() -> void:
+	connections.clear()
 	var a := _connect(3, TOKEN_A)
+	var b := _connect(5, TOKEN_B)
 	var room: Dictionary = rooms[ROOM]
 	var state: Dictionary = room.data.wildPeople
 	state.people.clear()
 	state.raid.nextAt = room.data.elapsed + 1000
 	state.raid.phase = "rest"
 	room.actors[a.id].point = Vector2(1.8, -84.9)
+	room.actors[b.id].point = Vector2(-10.0, -78.0)
 	var enemy := WildPeople.make_person("test-attacker", 0, "male", Vector2(1.8, -83.7), room.data.elapsed)
 	state.people[enemy.id] = enemy
 	room.data.survival[a.id].health = 6.0
@@ -266,6 +270,7 @@ func _extra_behaviors() -> void:
 	var before_point: Vector2 = room.actors[a.id].point
 	room.actors[a.id].direction = Vector2.RIGHT
 	_tick_player(room, a.id, 0.0, _grove_time(room.data), 0.1)
+	_resolve_knockouts(ROOM, room)
 	var down_at: float = personal.downAt
 	_expect(room.actors[a.id].point == before_point and room.actors[a.id].direction == Vector2.ZERO and down_at == room.data.elapsed, "incapacitated players cannot move and start an online down timer")
 	var before_health: float = enemy.health
@@ -273,20 +278,62 @@ func _extra_behaviors() -> void:
 	_message(a, {"t": "stone", "action": "pick", "id": "camp-round"})
 	_expect(enemy.health == before_health and Stones.held_by(room.data.stones, a.id).is_empty(), "down players cannot melee or pick/throw stones")
 	_do(a, "respawn")
-	_expect(not _notice(a).ok and personal.health == 0, "return-to-camp is rejected before twelve online seconds")
+	_expect(not _notice(a).ok and personal.health == 0, "the old manual return cannot shorten the team rescue window")
 	Survival.tick(personal, Survival.TABLE_CENTER, true, 0.0, 15.0)
 	_expect(personal.health == 0, "repaired shelter never auto-revives an incapacitated player")
 	_checkpoint(ROOM)
+	connections.clear()
 	rooms.clear()
 	_load_room(ROOM)
+	b = _connect(5, TOKEN_B)
 	a = _connect(4, TOKEN_A)
 	room = rooms[ROOM]
 	personal = room.data.survival[a.id]
-	_do(a, "respawn")
-	_expect(personal.health == 0 and personal.downAt == down_at and not _notice(a).ok, "reconnect preserves the down timer and cannot skip the recovery wait")
-	room.data.elapsed += 12.1
-	_do(a, "respawn")
-	_expect(personal.health == 45 and room.actors[a.id].point == WildPeople.HOME and personal.downAt < 0, "after twelve online seconds an explicit recovery returns to camp with 45 health")
+	_expect(personal.health == 0 and personal.downAt == down_at and room.actors[a.id].point == before_point,
+		"a reconnect with a teammate online restores the original countdown and fallen position")
+	room.actors[b.id].point = Vector2(3.8, -81.9)
+	_message(b, {"t":"rescue","id":a.id})
+	_expect(not _notice(b).ok and personal.health == 0, "teammates outside physical reach cannot rescue")
+	var helper_at := before_point + Vector2(1.35, 0.0)
+	room.actors[b.id].merge(PlayerMotion.spawn(helper_at), true)
+	var wall := Storage._record("cabin_wall", before_point + Vector2(.65, 0.0), PI * .5)
+	room.data.storage["rescue-test-wall"] = wall
+	_message(b, {"t":"rescue","id":a.id})
+	_expect(not _notice(b).ok and personal.health == 0 and _notice(b).text.contains("遮挡"), "a real placed cabin wall blocks the rescue ray")
+	room.data.storage.erase("rescue-test-wall")
+	var original_save_dir := save_dir
+	save_dir = original_save_dir.path_join("missing")
+	_message(b, {"t":"rescue","id":a.id})
+	_expect(not _notice(b).ok and personal.health == 0 and personal.downAt == down_at and _notice(b).text.contains("保存"),
+		"a failed checkpoint restores the down state and the original timer")
+	save_dir = original_save_dir
+	room.data.elapsed = down_at + 14.99
+	_message(b, {"t":"rescue","id":a.id})
+	_expect(_notice(b).ok and personal.health == 45 and personal.downAt < 0 and room.actors[a.id].point == before_point,
+		"the near teammate can revive at the original location just before the 15 second deadline")
+	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(save_dir.path_join(ROOM + ".json")))
+	_expect(saved.survival[a.id].health == 45 and is_equal_approx(float(saved.homes[a.id].x), before_point.x),
+		"successful recovery persists the player's health and exact position")
+	_message(b, {"t":"rescue","id":a.id})
+	_expect(not _notice(b).ok and personal.health == 45, "duplicate rescue requests cannot repeat health or equipment changes")
+	room.actors[a.id].point = before_point + Vector2(0, -2.0)
+	personal.health = 0.0
+	_resolve_knockouts(ROOM, room)
+	room.data.elapsed = float(personal.downAt) + 15.0
+	_resolve_knockouts(ROOM, room)
+	_expect(personal.health == 45 and room.actors[a.id].point == WildPeople.HOME and personal.downAt < 0,
+		"at exactly 15 room seconds the downed player returns to camp without pressing a key")
+	room.actors[a.id].point = before_point + Vector2(0, -2.0)
+	personal.health = 0.0
+	_resolve_knockouts(ROOM, room)
+	_leave(5)
+	_expect(personal.health == 45 and room.actors[a.id].point == WildPeople.HOME and personal.downAt < 0,
+		"a casualty gets the solo return when the last teammate disconnects")
+	room.actors[a.id].point = before_point + Vector2(0, -2.0)
+	personal.health = 0.0
+	_resolve_knockouts(ROOM, room)
+	_expect(personal.health == 45 and room.actors[a.id].point == WildPeople.HOME and personal.downAt < 0,
+		"the solo player returns to camp on the same update as the knockout")
 	state = room.data.wildPeople
 	state.people.clear()
 	var stone_target := WildPeople.make_person("stone-target", 0, "male", Vector2(1.8, -83.7), room.data.elapsed)

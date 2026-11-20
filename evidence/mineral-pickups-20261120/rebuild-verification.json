@@ -1,0 +1,42 @@
+{
+  "coop/props/mines/coal.glb": {
+    "identical": true,
+    "size": 21636,
+    "sha256": "ee07701486c0e8e324cbc5f68367743383d169888cac33b447ccc64965cbb031"
+  },
+  "coop/props/mines/maps/coal_chunk_diff.jpg": {
+    "identical": true,
+    "size": 23378,
+    "sha256": "8b1649d1ff3dfb234dfc4317f8919652e202ba2ecbda67524ad9b0de7f3691e6"
+  },
+  "coop/props/mines/maps/coal_chunk_rough.webp": {
+    "identical": true,
+    "size": 27226,
+    "sha256": "572ad209e1a98c320d5d80a2d21da52f42c3ec1b274a6adac7f7cf28c7a69eeb"
+  },
+  "coop/props/mines/maps/coal_chunk_nor_gl.webp": {
+    "identical": true,
+    "size": 132440,
+    "sha256": "6b4e0d60f6b7896842f4d4e51b7501c1089d8676d5afbd4cccd788d2fc90d090"
+  },
+  "coop/props/mines/iron_ore.glb": {
+    "identical": true,
+    "size": 18952,
+    "sha256": "de5ec3baae3f20e7e4e3d4a0ac51b27e0538cf17f92e0499c3b55161a87ee30b"
+  },
+  "coop/props/mines/maps/iron_ore_chunk_diff.jpg": {
+    "identical": true,
+    "size": 46175,
+    "sha256": "2de8cd122b8c57cfe0db279e9ca8fa4df1c40bcb5788d0d98efda595edb38799"
+  },
+  "coop/props/mines/maps/iron_ore_chunk_nor_gl.webp": {
+    "identical": true,
+    "size": 235920,
+    "sha256": "0c63f4b81c18a159bad0a574bcbc127b154c3381ef6ea11b7c3dd44645332a2d"
+  },
+  "coop/props/mines/maps/iron_ore_chunk_rough.webp": {
+    "identical": true,
+    "size": 26290,
+    "sha256": "d56022c47b8a58a3154aeafad45bda5afe0f0ceb486ae7d1d31ab9cfa1ef0834"
+  }
+}

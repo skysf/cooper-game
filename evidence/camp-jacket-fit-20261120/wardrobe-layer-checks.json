@@ -1,0 +1,22 @@
+{
+  "assetLods": 4,
+  "checks": {
+    "bare_legs_after_pants_removal": true,
+    "dropped_pants_original": true,
+    "fitted_after_redress": true,
+    "leg_geometry": true,
+    "liner_kept_behind_seam": true,
+    "lods": true,
+    "material_same": true,
+    "other_wearer_unaffected": true,
+    "separate_fit": true,
+    "shared_after_first_equip": true,
+    "skin_same": true,
+    "surface_arrays": true,
+    "untucked_after_jacket_removal": true
+  },
+  "coldEquipUs": 1768,
+  "fittedVertices": 1269,
+  "linerLocalBackM": -0.0141700012609363,
+  "meshFitAvgUs": 1322.2
+}

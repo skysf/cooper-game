@@ -1,0 +1,119 @@
+{
+  "views": [
+    {
+      "angle_rad": 0.0,
+      "foliage_span_m": {
+        "original": [
+          6.1875,
+          13.125
+        ],
+        "near": [
+          6.25,
+          13.0625
+        ],
+        "far": [
+          6.25,
+          13.0
+        ]
+      },
+      "foliage_area_m2": {
+        "original": 27.879,
+        "near": 21.137,
+        "far": 18.82
+      },
+      "outer_near_far_overlap": 0.9247,
+      "outer_original_near_overlap": 0.8669
+    },
+    {
+      "angle_rad": 0.67,
+      "foliage_span_m": {
+        "original": [
+          6.625,
+          13.125
+        ],
+        "near": [
+          6.1875,
+          13.0625
+        ],
+        "far": [
+          6.3125,
+          13.0625
+        ]
+      },
+      "foliage_area_m2": {
+        "original": 27.254,
+        "near": 21.02,
+        "far": 18.199
+      },
+      "outer_near_far_overlap": 0.9316,
+      "outer_original_near_overlap": 0.8778
+    },
+    {
+      "angle_rad": 1.43,
+      "foliage_span_m": {
+        "original": [
+          6.0,
+          13.125
+        ],
+        "near": [
+          5.9375,
+          13.0625
+        ],
+        "far": [
+          5.8125,
+          13.0625
+        ]
+      },
+      "foliage_area_m2": {
+        "original": 26.074,
+        "near": 19.801,
+        "far": 18.215
+      },
+      "outer_near_far_overlap": 0.8984,
+      "outer_original_near_overlap": 0.8711
+    },
+    {
+      "angle_rad": 2.39,
+      "foliage_span_m": {
+        "original": [
+          5.9375,
+          13.125
+        ],
+        "near": [
+          5.8125,
+          13.0625
+        ],
+        "far": [
+          5.4375,
+          13.0625
+        ]
+      },
+      "foliage_area_m2": {
+        "original": 26.191,
+        "near": 19.488,
+        "far": 17.367
+      },
+      "outer_near_far_overlap": 0.9105,
+      "outer_original_near_overlap": 0.8623
+    }
+  ],
+  "shadow": {
+    "original": {
+      "full_area_m2": 54.592,
+      "solid_patch_area_m2": 33.254
+    },
+    "near": {
+      "full_area_m2": 37.811,
+      "solid_patch_area_m2": 0.954
+    },
+    "far": {
+      "full_area_m2": 33.338,
+      "solid_patch_area_m2": 0.147
+    }
+  },
+  "sun_at_25": [
+    -0.215734,
+    0.781843,
+    0.584962
+  ]
+}

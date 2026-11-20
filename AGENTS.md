@@ -7,9 +7,11 @@
 | 新窗口续接与本机试玩 | [简短交接](docs/next-session.md) | 发行目录、启动命令、存档及待优化项目 |
 | 试玩、构建、运行测试 | [运行手册](docs/play.md) | `package.json`、`scripts/` |
 | 网页画质、30 FPS 与改动前后对照 | [画面与帧时基准](docs/render-benchmark.md) | `scripts/coop-render-benchmark.mjs`、`scripts/coop-flight-playtest.mjs` |
+| 长期模型质量、风雨植被、矿洞和建造 | [世界扩建工作记录](docs/world-upgrade.md) | `art/`、`coop/`、`evidence/` |
 | 联机、存档、分块、树木成长与实测 | [合作样片](docs/coop.md) | `coop/`、`shared/coop-grove.json`、`evidence/` |
 | 昼夜、湖岸水面、可拾取与投掷的石块 | [昼夜、鹿鸣湖与石块](docs/coop.md#昼夜鹿鸣湖与石块) | `coop/atmosphere.gd`、`coop/lake.gd`、`coop/stones.gd` |
 | 鹿鸣湖至浅湾、外海和岛，海岸生成与实际游玩复验 | [鹿鸣湖到外海](docs/coast.md) | `coop/coast/`、`coop/coast_layout.json`、`coop/coast_scene.gd`、`scripts/build-coast.py` |
+| 营地容器、拆解、燃料、木工、路牌与鳄鱼肉配方 | [营地储物与制作](docs/camp-storage.md) | `coop/camp_storage*.gd`、`coop/props/storage/` |
 | M 键野外图册、传送、队友位置与个人标记 | [野外图册](docs/field-atlas.md) | `coop/field_atlas*.gd`、`scripts/build-coop-atlas.py` |
 | 脚步、游泳、投石与红船音效 | [营地声音](docs/coop.md#营地声音) | `coop/camp_audio.gd`、`coop/sounds/` |
 | 木桌刻字、食物、背包、服装和第三人称 | [木屋里的桌子与补给](docs/coop.md#木屋里的桌子与补给) | `art/camp_table.blend`、`art/camp_backpack.blend`、`coop/provision_scene.gd`、`coop/survival.gd`、`coop/character_preview.gd`、`coop/follow_camera.gd` |

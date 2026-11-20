@@ -1,0 +1,30 @@
+{
+  "cabin_cut_endgrain_diff.jpg": {
+    "baseline": 331247,
+    "candidate": 404436
+  },
+  "cabin_cut_endgrain_nor_gl.webp": {
+    "baseline": 327555,
+    "candidate": 591725
+  },
+  "cabin_cut_endgrain_rough.webp": {
+    "baseline": 205205,
+    "candidate": 321793
+  },
+  "cabin_hewn_pine_diff.jpg": {
+    "baseline": 425143,
+    "candidate": 878665
+  },
+  "cabin_hewn_pine_nor_gl.webp": {
+    "baseline": 502919,
+    "candidate": 883957
+  },
+  "cabin_hewn_pine_rough.webp": {
+    "baseline": 303685,
+    "candidate": 471336
+  },
+  "total": {
+    "baseline": 2095754,
+    "candidate": 3551912
+  }
+}

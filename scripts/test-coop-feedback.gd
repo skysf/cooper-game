@@ -222,11 +222,11 @@ func _verify_travel_controls(client) -> void:
 	_check(client.avatars.teammate.visible and client.avatars.teammate.seated
 		and client.avatars.teammate.get_parent() == client.spaceship.seat,
 		"a remote pilot uses the same visible driving position")
-	client.weather.update_weather(Vector3(-26, -1, -50), 0.0, 30.0, 0.0, false, true)
+	client.weather.update_weather(Vector3(-26, -1, -50), 30.0, 0.0, false, true)
 	client._update_water()
 	_check(client.weather.underwater and client.weather.environment.fog_depth_end <= 16.0
 		and client.terrain.lake.lake_material.get_shader_parameter("underwater"), "diving selects underwater fog and water shading")
-	client.weather.update_weather(Vector3(-26, 1, -50), 0.0, 30.0, 0.0, false)
+	client.weather.update_weather(Vector3(-26, 1, -50), 30.0, 0.0, false)
 	_check(not client.weather.underwater and client.weather.environment.fog_depth_end > 90.0, "surfacing restores the sky and distance fog")
 
 func _verify_evening(client) -> void:
@@ -350,13 +350,13 @@ func _verify_clothing(client) -> void:
 	client.camera.look_at(spot + Vector3.UP * 0.05)
 	client._update_provisions()
 	_check(client.terrain.household.food_nodes.has("ground-jacket"), "the ground drop uses the same jacket mesh")
-	_check(client.food_target == "ground-jacket" and client._interaction_prompt(true) == "E    捡起夹克", "aiming at clothing offers the pickup key")
+	_check(client.food_target == "ground-jacket" and client._interaction_prompt(true) == "G    拿起夹克", "aiming at clothing offers the pickup key")
 	var pick_key := InputEventKey.new()
-	pick_key.physical_keycode = KEY_E
+	pick_key.physical_keycode = KEY_G
 	pick_key.pressed = true
 	client.locked = true
 	client._unhandled_input(pick_key)
-	_check(client.net.last_provision_input.get("action") == "take" and client.net.last_provision_input.get("id") == "ground-jacket", "E picks up the targeted garment")
+	_check(client.net.last_provision_input.get("action") == "take" and client.net.last_provision_input.get("id") == "ground-jacket", "G picks up the targeted garment")
 
 func _avatar_joint(hiker: Node3D, joint: StringName) -> Vector3:
 	return hiker.rig.get_bone_global_pose(hiker.rig.find_bone(joint)).origin

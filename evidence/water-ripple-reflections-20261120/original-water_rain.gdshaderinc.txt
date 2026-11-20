@@ -1,0 +1,41 @@
+vec2 water_rain_seed(vec2 cell) {
+	vec2 seed = fract(cell * vec2(0.1237, 0.3891) + cell.yx * vec2(0.4213, 0.1979));
+	return fract(seed * (seed + 19.19) + seed.yx * 0.77);
+}
+
+vec3 water_rain_cell(vec2 grid, float footprint, float time, float rain) {
+	vec2 seed = water_rain_seed(floor(grid));
+	float clock = time * (1.49 + 0.57 * seed.x) + seed.y * 57.0;
+	float event_id = floor(clock);
+	float age = fract(clock);
+	float probability = fract(seed.y * 4.371 + event_id * 0.414214) * 0.91;
+	float life = smoothstep(0.0, 0.09, age) * (1.0 - smoothstep(0.49, 0.98, age));
+	life *= smoothstep(probability, probability + 0.09, rain);
+	life *= 1.0 - smoothstep(0.08, 0.27, footprint);
+
+	// The ring fades inside its own cell, so the two layers need no neighbor search.
+	vec2 center = 0.30 + 0.40 * fract(seed + event_id * vec2(0.379, 0.613));
+	vec2 offset = fract(grid) - center;
+	float radius = length(offset);
+	float ring = radius - (0.018 + age * 0.211);
+	float widen = min(footprint * 0.43, 0.065);
+	float crest = 1.0 - smoothstep(0.009 + widen, 0.032 + widen, abs(ring));
+	float trough = 1.0 - smoothstep(0.008 + widen, 0.030 + widen, abs(ring + 0.037));
+	return vec3(offset / max(radius, 0.023) * (crest - 0.61 * trough), crest - 0.34 * trough) * life;
+}
+
+vec3 water_rain_ripples(vec2 point, float eye_distance, float time, float rain) {
+	// The uniform branch avoids ripple work in dry weather. Derivatives must
+	// be taken before the per-pixel distance cutoff in the wet path.
+	if (rain <= 0.01) {
+		return vec3(0.0);
+	}
+	float footprint = length(fwidth(point));
+	float detail = 1.0 - smoothstep(8.0, 21.0, eye_distance);
+	if (detail <= 0.0 || footprint >= 0.13) {
+		return vec3(0.0);
+	}
+	vec3 broad = water_rain_cell(point * 2.05, footprint * 2.05, time, rain);
+	vec3 small = water_rain_cell(point * 3.42 + vec2(0.27, 0.74), footprint * 3.42, time + 1.43, rain);
+	return (broad + small * 0.73) * detail * mix(0.44, 1.0, rain);
+}

@@ -11,11 +11,19 @@ const PINE = preload("res://pines/pine_mature.glb")
 const STONE = preload("res://props/shore_boulder.glb")
 const SEASIDE_COLOR = preload("res://coast/seaside_color.jpg")
 const SEASIDE_NORMAL = preload("res://coast/seaside_normal.jpg")
+const MinesLayout = preload("res://mines_layout.gd")
+const TreeWind = preload("res://vegetation/tree_wind.gd")
+const SHRUB_SHADER = preload("res://vegetation/coast_shrub.gdshader")
+const DUNE_SHADER = preload("res://vegetation/dunegrass.gdshader")
+const DUNEGRASS = preload("res://vegetation/coastal_dunegrass.glb")
 const TILE := 18.0
 
 var rock_shader := ShaderMaterial.new()
 var ocean_shader := ShaderMaterial.new()
 var last_light_time := -INF
+var tree_wind := TreeWind.new()
+var shrub_shader := ShaderMaterial.new()
+var dune_materials: Dictionary[Material, ShaderMaterial] = {}
 
 func _ready() -> void:
 	rock_shader.shader = GROUND_SHADER
@@ -69,6 +77,14 @@ func update_light(elapsed: float, rain: float, light: Dictionary) -> void:
 		if light.has(parameter):
 			ocean_shader.set_shader_parameter(parameter, light[parameter])
 
+func set_wind(elapsed: float, field: Vector4) -> void:
+	tree_wind.update(elapsed, field)
+	shrub_shader.set_shader_parameter("wind_time", elapsed)
+	shrub_shader.set_shader_parameter("wind_field", field)
+	for material: ShaderMaterial in dune_materials.values():
+		material.set_shader_parameter("wind_time", elapsed)
+		material.set_shader_parameter("wind_field", field)
+
 func _tiles(plants: Array) -> Dictionary:
 	var result := {}
 	for plant: Array in plants:
@@ -79,9 +95,9 @@ func _tiles(plants: Array) -> Dictionary:
 	return result
 
 func _batch(mesh: Mesh, cell: Vector2i, poses: Array[Transform3D], override: Material = null,
-		from_distance := 0.0, to_distance := 0.0, custom: Array[Color] = []) -> void:
+		from_distance := 0.0, to_distance := 0.0, custom: Array[Color] = [], cull_margin := 0.0) -> MultiMeshInstance3D:
 	if poses.is_empty():
-		return
+		return null
 	var multi := MultiMesh.new()
 	multi.transform_format = MultiMesh.TRANSFORM_3D
 	multi.use_custom_data = not custom.is_empty()
@@ -92,14 +108,17 @@ func _batch(mesh: Mesh, cell: Vector2i, poses: Array[Transform3D], override: Mat
 		if multi.use_custom_data:
 			multi.set_instance_custom_data(i, custom[i])
 	var node := MultiMeshInstance3D.new()
+	node.layers = MinesLayout.COAST_SCENERY_LAYER
 	node.position = Vector3((cell.x + 0.5) * TILE, 0.0, (cell.y + 0.5) * TILE)
 	node.multimesh = multi
 	node.material_override = override
+	node.extra_cull_margin = cull_margin
 	node.visibility_range_begin = from_distance
 	node.visibility_range_end = to_distance
 	if to_distance > 0.0:
 		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(node)
+	return node
 
 func _pose(plant: Array, cell: Vector2i, scale: Vector3, lift := 0.0) -> Transform3D:
 	var at := Vector2(plant[0], plant[1])
@@ -109,9 +128,16 @@ func _pose(plant: Array, cell: Vector2i, scale: Vector3, lift := 0.0) -> Transfo
 
 func _trees(scene: PackedScene, plants: Array, species: int, canopy_mat: ShaderMaterial) -> void:
 	var sample := scene.instantiate() as Node3D
-	sample.hide()
-	add_child(sample)
-	var parts := sample.find_children("*", "MeshInstance3D", true, false)
+	var meshes: Array[Mesh] = []
+	var poses: Array[Transform3D] = []
+	var name_of_species := "spruce" if species == 0 else "pine"
+	for part in TreeWind.meshes(sample):
+		var moving := part.mesh.duplicate() as Mesh
+		for slot in moving.get_surface_count():
+			moving.surface_set_material(slot, tree_wind.surface(part.get_active_material(slot), name_of_species, 7.0, -1, true))
+		meshes.append(moving)
+		poses.append(part.transform if part != sample else Transform3D.IDENTITY)
+	sample.free()
 	var billboard := QuadMesh.new()
 	var tiles := _tiles(plants)
 	for cell: Vector2i in tiles:
@@ -124,32 +150,29 @@ func _trees(scene: PackedScene, plants: Array, species: int, canopy_mat: ShaderM
 			details.append(_pose(plant, cell, Vector3.ONE * (h / 7.0)))
 			cards.append(_pose(plant, cell, Vector3(h * 0.55, h, 1.0), h * 0.5))
 			tint.append(Color(float(species), 0.0, 0.83 + 0.16 * float(plant[3]), floorf(2.0 * plant[3])))
-		for part: MeshInstance3D in parts:
+		# Tile visibility allows overlap. The per-tree shader crossfade uses each actual root.
+		for i in meshes.size():
 			var posed: Array[Transform3D] = []
 			for detail: Transform3D in details:
-				posed.append(detail * part.transform)
-			_batch(part.mesh, cell, posed, null, 0.0, 39.0)
-		_batch(billboard, cell, cards, canopy_mat, 39.0, 165.0, tint)
-	sample.queue_free()
+				posed.append(detail * poses[i])
+			_batch(meshes[i], cell, posed, null, 0.0, 57.0, [], 0.28)
+		_batch(billboard, cell, cards, canopy_mat, 22.0, 165.0, tint)
 
 func _build_vegetation() -> void:
 	var canopy_mat := ShaderMaterial.new()
 	canopy_mat.shader = preload("res://materials/lake_canopy.gdshader")
 	canopy_mat.set_shader_parameter("canopy_atlas", CANOPY)
+	canopy_mat.set_shader_parameter("coast_transition", true)
 	var spruce: Array = Coast.foliage.trees.filter(func(plant: Array) -> bool: return plant[3] < 0.65)
 	var pine: Array = Coast.foliage.trees.filter(func(plant: Array) -> bool: return plant[3] >= 0.65)
 	_trees(SPRUCE, spruce, 0, canopy_mat)
 	_trees(PINE, pine, 1, canopy_mat)
 
-	var fern_mat := StandardMaterial3D.new()
-	fern_mat.albedo_texture = preload("res://textures/fern.png")
-	fern_mat.albedo_color = Color("#a5b492")
-	fern_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-	fern_mat.alpha_scissor_threshold = 0.28
-	fern_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	fern_mat.roughness = 1.0
+	shrub_shader.shader = SHRUB_SHADER
+	shrub_shader.set_shader_parameter("leaf_texture", preload("res://textures/fern.png"))
+	shrub_shader.set_shader_parameter("leaf_tint", Color("#a5b492"))
 	var leaves := QuadMesh.new()
-	var tiles := _tiles(Coast.foliage.shrubs)
+	var tiles := _tiles(_clear_of_mines(Coast.foliage.shrubs))
 	for cell: Vector2i in tiles:
 		var poses: Array[Transform3D] = []
 		for plant: Array in tiles[cell]:
@@ -158,7 +181,37 @@ func _build_vegetation() -> void:
 			for i in 3:
 				var leaf := Basis.from_euler(Vector3(-0.47, TAU * float(i) / 3.0, 0.08))
 				poses.append(base * Transform3D(leaf.scaled_local(Vector3(h * 1.7, h, 1.0)), Vector3.ZERO))
-		_batch(leaves, cell, poses, fern_mat, 0.0, 51.0)
+		_batch(leaves, cell, poses, shrub_shader, 0.0, 51.0, [], 0.24)
+	_build_dunegrass(_clear_of_mines(Coast.foliage.get("dunegrass", [])))
+
+func _clear_of_mines(plants: Array) -> Array:
+	return plants.filter(func(plant: Array) -> bool:
+		return not MinesLayout.occludes_plant(Vector2(plant[0], plant[1])))
+
+func _build_dunegrass(plants: Array) -> void:
+	if plants.is_empty():
+		return
+	var sample := DUNEGRASS.instantiate() as Node3D
+	for part in TreeWind.meshes(sample):
+		var variant := 1 if part.name == &"Flowering" else 0
+		var prepared := part.mesh.duplicate() as Mesh
+		for slot in prepared.get_surface_count():
+			var source := part.get_active_material(slot) as StandardMaterial3D
+			if not dune_materials.has(source):
+				var material := ShaderMaterial.new()
+				material.shader = DUNE_SHADER
+				material.set_shader_parameter("plant_color", source.albedo_texture)
+				material.set_shader_parameter("surface_roughness", source.roughness)
+				dune_materials[source] = material
+			prepared.surface_set_material(slot, dune_materials[source])
+		var tiles := _tiles(plants.filter(func(plant: Array) -> bool: return int(plant[4]) == variant))
+		for cell: Vector2i in tiles:
+			var poses: Array[Transform3D] = []
+			for plant: Array in tiles[cell]:
+				poses.append(_pose(plant, cell, Vector3.ONE * float(plant[2]), -0.012))
+			var node := _batch(prepared, cell, poses, null, 0.0, 40.0, [], 0.17)
+			node.name = "DuneGrass%s%d_%d" % ["Flowering" if variant == 1 else "Leafy", -cell.x, -cell.y]
+	sample.free()
 
 func _build_stones() -> void:
 	var sample := STONE.instantiate() as Node3D

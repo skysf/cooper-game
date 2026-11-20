@@ -1,0 +1,41 @@
+{
+  "transport": "Production Godot server on 127.0.0.1 with two WebSocket peers",
+  "snapshotPairs": 53,
+  "startedWithOldSave": true,
+  "records": {
+    "walker": {
+      "clips": {
+        "Guard": 1,
+        "Walk": 20,
+        "Run": 25,
+        "TurnLeft": 7
+      },
+      "samples": 42,
+      "maxDistanceErrorM": 0.00034965041270576536,
+      "stationaryTurns": 6,
+      "traveledFromEntryM": 4.435240658076846
+    },
+    "wounded": {
+      "clips": {
+        "Guard": 1,
+        "LimpLeft": 44,
+        "TurnLeft": 8
+      },
+      "samples": 42,
+      "maxDistanceErrorM": 0.00016560219687583588,
+      "stationaryTurns": 7,
+      "traveledFromEntryM": 2.9824800727137983
+    },
+    "enemy": {
+      "clips": {
+        "Guard": 1,
+        "TurnRight": 6,
+        "Run": 46
+      },
+      "samples": 44,
+      "maxDistanceErrorM": 0.0028615330556345797,
+      "stationaryTurns": 4,
+      "traveledFromEntryM": 9.152450451774374
+    }
+  }
+}

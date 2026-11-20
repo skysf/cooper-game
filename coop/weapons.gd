@@ -18,6 +18,7 @@ const ATTACKS := {
 	"": {"damage": 7.0, "reach": 2.25, "time": 0.67, "sharp": false},
 	"stone": {"damage": 14.0, "reach": 2.25, "time": 0.67, "sharp": false},
 	"club": {"damage": 14.0, "reach": 2.25, "time": 0.67, "sharp": false},
+	"wicker_strip": {"damage": 5.0, "reach": 1.94, "time": 0.48, "sharp": false},
 	"spear": {"damage": 27.0, "reach": 2.95, "time": 0.67, "sharp": true},
 	"katana": {"damage": 36.0, "reach": 2.48, "time": 0.32, "sharp": true},
 	"rifle": {"damage": 58.0, "reach": 80.0, "time": 1.10, "sharp": true, "aim_fov": 27.0},

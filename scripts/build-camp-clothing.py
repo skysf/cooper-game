@@ -4,14 +4,13 @@ import math
 from pathlib import Path
 import runpy
 
-import bmesh
 import bpy
 from mathutils import Matrix, Vector
 
 ROOT = Path(__file__).resolve().parents[1]
 PROPS = ROOT / "coop/props"
 ITEMS = ("cap", "jacket", "pants")
-TRIANGLE_BUDGETS = {"cap": 4500, "jacket": 14500, "pants": 7500}
+TRIANGLE_BUDGETS = {"cap": 4500, "jacket": 52000, "pants": 7500}
 
 
 def fit(point, item):
@@ -19,10 +18,15 @@ def fit(point, item):
     if item == "jacket":
         height = 0.85 + z * 1.13
         hood = max(0.0, height - 1.43)
-        # Let the hood rest behind the neck when the face and glasses are visible.
-        folded_height = height - hood + 0.10 * (1.0 - math.exp(-hood / 0.10))
+        # Fold the crown behind the neck while keeping the throat opening rounded.
+        fold = smooth(0.025, 0.23, hood)
+        depth = y * 1.12
+        forward = smooth(-0.058, 0.066, depth)
+        folded_height = height - hood + 0.079 * (1.0 - math.exp(-hood / 0.079))
+        folded_height += (0.023 - 0.033 * forward) * fold
         sleeve_end = smooth(0.18, 0.25, abs(x * 1.10)) * (1.0 - smooth(0.95, 1.15, height))
-        return Vector((x * 1.10, y * 1.12 - 0.25 * hood, folded_height - 0.032 * sleeve_end))
+        return Vector((x * 1.10 * (1.0 - 0.13 * fold), depth * (1.0 - 0.27 * fold) - 0.033 * fold,
+                       folded_height - 0.032 * sleeve_end))
     if item == "pants":
         return Vector((x * 1.09, y * 0.94, 0.89 + z * 0.83))
     return Vector((x * 1.30, y * 1.15 + 0.027, 1.65 + z))
@@ -31,6 +35,20 @@ def fit(point, item):
 def smooth(low, high, value):
     t = min(1.0, max(0.0, (value - low) / (high - low)))
     return t * t * (3.0 - 2.0 * t)
+
+
+def jacket_detail_weight(point):
+    x, depth, height = fit(point, "jacket")
+    lateral = abs(x)
+    shoulder = (smooth(0.114, 0.181, lateral) * smooth(1.175, 1.254, height)
+                * (1.0 - smooth(1.414, 1.453, height)))
+    elbow = (smooth(0.154, 0.213, lateral) * smooth(0.97, 1.027, height)
+             * (1.0 - smooth(1.161, 1.232, height)))
+    body = 0.28 * smooth(0.89, 0.96, height) * (1.0 - smooth(0.110, 0.17, lateral))
+    zipper = 0.58 * (1.0 - smooth(0.018, 0.055, lateral)) * smooth(0.05, 0.09, depth)
+    rim = 0.33 * smooth(1.46, 1.50, height)
+    cuff = 0.34 * smooth(0.18, 0.245, lateral) * (1.0 - smooth(0.94, 1.00, height))
+    return max(shoulder, elbow, body, zipper, rim, cuff)
 
 
 def skin(obj, item):
@@ -82,44 +100,81 @@ def skin(obj, item):
     rig.select_set(True)
 
 
-def export(item):
+def ease_jacket_elbows(obj):
+    # The midpoint matches the player's fitted forearm joint in the running rig.
+    for vertex in obj.data.vertices:
+        if not 0.995 < vertex.co.z < 1.22:
+            continue
+        side = "L" if vertex.co.x < 0 else "R"
+        upper = obj.vertex_groups["Arm_" + side]
+        lower = obj.vertex_groups["Forearm_" + side]
+        weights = {group.group: group.weight for group in vertex.groups}
+        arm = weights.get(upper.index, 0.0) + weights.get(lower.index, 0.0)
+        if arm < 1e-6:
+            continue
+        lower_weight = arm * (1.0 - smooth(1.107 - 0.087, 1.107 + 0.087, vertex.co.z))
+        if upper.index in weights:
+            upper.remove([vertex.index])
+        if lower.index in weights:
+            lower.remove([vertex.index])
+        if arm - lower_weight > 1e-6:
+            upper.add([vertex.index], arm - lower_weight, "REPLACE")
+        if lower_weight > 1e-6:
+            lower.add([vertex.index], lower_weight, "REPLACE")
+
+
+def reduce_mesh(obj, target, protect_jacket=False):
+    obj.data.calc_loop_triangles()
+    count = len(obj.data.loop_triangles)
+    if count <= target:
+        return
+    simplify = obj.modifiers.new(name="Game mesh", type="DECIMATE")
+    simplify.ratio = target / count
+    group_name = "Temporary shoulder and elbow protection"
+    if protect_jacket:
+        protect = obj.vertex_groups.new(name=group_name)
+        for vertex in obj.data.vertices:
+            weight = 0.035 + 0.93 * jacket_detail_weight(obj.matrix_world @ vertex.co)
+            protect.add([vertex.index], weight, "REPLACE")
+        simplify.vertex_group = group_name
+        simplify.invert_vertex_group = True
+        simplify.vertex_group_factor = 3.0
+    bpy.ops.object.modifier_apply(modifier=simplify.name)
+    if protect_jacket:
+        obj.vertex_groups.remove(obj.vertex_groups[group_name])
+
+
+def export(item, directory=PROPS):
     bpy.ops.wm.read_factory_settings(use_empty=True)
     with bpy.data.libraries.load(str(ROOT / "art" / f"camp_{item}.blend")) as (source, target):
         target.objects = [f"Camp {item.title()}"]
     obj = next(obj for obj in target.objects if obj is not None)
     bpy.context.collection.objects.link(obj)
+    bpy.context.view_layer.objects.active = obj
+    obj.select_set(True)
     bpy.context.view_layer.update()
+    if item == "jacket":
+        # Reduce the authored surface before folding it. Welding the compressed
+        # hood and sleeves merged close layers and damaged UVs and cloth folds.
+        reduce_mesh(obj, TRIANGLE_BUDGETS[item], protect_jacket=True)
     matrix = obj.matrix_world.copy()
     for vertex in obj.data.vertices:
         vertex.co = fit(matrix @ vertex.co, item)
     obj.matrix_world = Matrix.Identity(4)
-    bpy.context.view_layer.objects.active = obj
-    obj.select_set(True)
-    if item == "jacket":
-        obj.data.validate(clean_customdata=False)
-        welded = bmesh.new()
-        welded.from_mesh(obj.data)
-        bmesh.ops.remove_doubles(welded, verts=list(welded.verts), dist=0.00020)
-        welded.to_mesh(obj.data)
-        welded.free()
-        if obj.data.has_custom_normals:
-            bpy.ops.mesh.customdata_custom_splitnormals_clear()
-        for face in obj.data.polygons:
-            face.use_smooth = True
-    obj.data.calc_loop_triangles()
-    triangles = len(obj.data.loop_triangles)
-    if triangles > TRIANGLE_BUDGETS[item]:
-        simplify = obj.modifiers.new(name="Game mesh", type="DECIMATE")
-        simplify.ratio = TRIANGLE_BUDGETS[item] / triangles
-        bpy.ops.object.modifier_apply(modifier=simplify.name)
-    if item == "jacket":
-        obj.data.validate(clean_customdata=False)
+    obj.data.update()
+    if item != "jacket":
+        reduce_mesh(obj, TRIANGLE_BUDGETS[item])
     for image in bpy.data.images:
-        if image.packed_file is not None and max(image.size) > 512:
-            image.scale(512, round(image.size[1] * 512 / image.size[0]))
+        edge = 1024 if item == "jacket" and image.colorspace_settings.name == "sRGB" else 512
+        if image.packed_file is not None and max(image.size) > edge:
+            scale = edge / max(image.size)
+            image.scale(round(image.size[0] * scale), round(image.size[1] * scale))
     if item != "cap":
         skin(obj, item)
-    bpy.ops.export_scene.gltf(filepath=str(PROPS / f"camp_{item}.glb"), export_format="GLB",
+    if item == "jacket":
+        ease_jacket_elbows(obj)
+        bpy.context.scene.name = "Camp Jacket"
+    bpy.ops.export_scene.gltf(filepath=str(directory / f"camp_{item}.glb"), export_format="GLB",
                               use_selection=True, export_animations=False)
 
 
@@ -128,4 +183,4 @@ if __name__ == "__main__":
     for item in ITEMS:
         export(item)
         thumbnail(PROPS / f"camp_{item}.glb", ROOT / "coop/textures" / f"inventory_{item}.png",
-                  (0.75, 2.9, 0.75), f"Camp {item.title()}", 208)
+                  (0.75, 2.9, 0.75), f"Camp {item.title()}", 448 if item == "jacket" else 208)

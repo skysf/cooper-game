@@ -1,0 +1,40 @@
+{
+  "checks": [
+    "Route starts with the existing distant-tree batch",
+    "Packet size matches world manifest for creek",
+    "Adjacent creek chunk loads first",
+    "Adjacent chunk does not spawn the pilot early",
+    "Packet size matches world manifest for approach",
+    "Owning approach chunk loads from its new packet",
+    "Pilot belongs to its actual loaded chunk",
+    "Exactly one tree and the usual distant batch hides",
+    "Original world pivot",
+    "Near mesh only beside the tree",
+    "Both detail models use the same existing needle scan",
+    "Identical shading tint across the transition",
+    "Model starts with current room wind even after a late chunk load",
+    "Model starts at current wind phase",
+    "Two levels available in the overlap",
+    "The two clips form an exact partition",
+    "Far mesh only before chunk unload",
+    "Original foot clearance",
+    "No duplicate physics body",
+    "Unloading restores the distant batch",
+    "Unloading the pilot leaves the adjacent creek resident",
+    "The unloaded pilot scene is freed",
+    "Packet size matches world manifest for approach",
+    "Reload approach from the same generated packet",
+    "Reload creates exactly one pilot with the proper current detail"
+  ],
+  "errors": [],
+  "files": {
+    "approach": {
+      "bytes": 1577152,
+      "sha256": "8a469355d6a40db7ae7b564a91a84397edc23538822fbc281695280293ffc1c5"
+    },
+    "creek": {
+      "bytes": 2090960,
+      "sha256": "c30fe3b2096dcd1c7741c5a79a587707abf612b733c0aef648aefb4313b05816"
+    }
+  }
+}

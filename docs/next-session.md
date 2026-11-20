@@ -4,22 +4,24 @@
 
 ## 最新试玩
 
-当前交接包包括从鹿鸣湖无缝进入海湾、从礁线游到外海小岛、实拍岩壁材质、营地开局的三件武器和 **M** 键野外图册。图册的六处地标可直接传送，同房间可看见队友，个人标记会随身份及房间保存。滚轮和 **+ / −** 缩放，放大、缩小各有原创电子音。 [图册操作](field-atlas.md) · [海岸路线](coast.md) · [拾取与瞄准](wild-people.md#营地开局武器)
+当前 Web 合并包是 [5584 试玩](http://127.0.0.1:5584/coop/?room=pine)。加入夹克贴合、陶壶与原矿拾取近景、鹿鸣溪上游的针叶树试点和多层家具支撑。矿洞、联机原地救援、原木建造、营火与风雨仍在同一个包中。此包的分块必须配随包链接的 `dist/coop-streamed-crown-20261120/zones`。 [长期进度与下一批问题](world-upgrade.md)
 
-本机 Web 包是 `dist/coop-atlas`，已签名的 Mac 包是 `dist/coop-atlas-native/CooperCamp.app`。两端 PCK 的 SHA256 均为 `e3862feddc0cff581b61ffc3e25f072420066e34fac07f2610986a8feab1cf94`。端口空闲时，从项目根目录重开同一试玩存档。
+端口空闲时，从项目根目录重新启动。`pine` 沿用这个版本自己的本机房间与浏览器身份。
 
 ```sh
-COOP_SITE_DIR=dist/coop-atlas COOP_PORT=4794 COOP_ROOM_PORT=4795 \
-  COOP_SAVE_DIR=.local-rooms/atlas-preview npm run coop
+COOP_SITE_DIR=dist/coop-detail-preview COOP_PORT=5584 COOP_ROOM_PORT=5585 \
+  COOP_SAVE_DIR=.local-rooms/detail-preview npm run coop
 ```
 
-网页进入 [野外图册试玩](http://localhost:4794/coop/?room=pine)。房间名 `pine` 和浏览器身份沿用原存档。需要从源码重建时用 `npm run coop:build`，发行物可先在隔离目录核对再替换。
+图册版包括从鹿鸣湖无缝进入海湾、从礁线游到外海小岛、实拍岩壁材质、营地开局的三件武器和 **M** 键野外图册。图册的六处地标可直接传送，同房间可看见队友，个人标记会随身份及房间保存。滚轮和 **+ / −** 缩放，放大、缩小各有原创电子音。 [图册操作](field-atlas.md) · [海岸路线](coast.md) · [拾取与瞄准](wild-people.md#营地开局武器)
+
+图册版的 Web 包为 `dist/coop-atlas`，已签名的 Mac 包为 `dist/coop-atlas-native/CooperCamp.app`。两端 PCK 的 SHA256 均为 `e3862feddc0cff581b61ffc3e25f072420066e34fac07f2610986a8feab1cf94`。需要从源码重建时用 `npm run coop:build`，发行物可先在隔离目录核对再替换。 [图册版试玩](http://localhost:4794/coop/?room=pine)
 
 ## 下一轮画面与帧时
 
-- **海湾远景** 减弱雾层后能从外海辨认崖壁与岬角。Apple M1 的前台 Chrome 路线平均 59.7 FPS，最长帧间隔 149.9 ms，九段中三段触发长帧门槛。已有固定机位前后对照和逐帧采样，可沿原路线对比。 [海岸远景专题](coast.md#远景与天气) · [逐帧报告](../evidence/coast-visibility-20261120/foreground/report.json)
-- **野外图册** 双前台 Chrome 通过六处传送、队友同步及个人标记存档。连续缩放与拖动的 4.1 秒采样平均 60 FPS，最长 18.8 ms。本机与普通 HTTP 均采到实际缩放声音。 [图册验证](field-atlas.md#实现与复验)
-- **林地和角色** 背包同类物品占一格，溪水和任务物资走玩家背包。行走、起落、水中动作由实际移动状态驱动。多人和 NPC 高负载场景仍有需定位的长帧。 [背包和玩家动作](coop.md) · [NPC 专题](wild-people.md)
+- **野人步态** 先用实际可见的靴底量脚滑。两套高级款修叠层的隔离方案已可用 Blender 重建。先复验走、跑、跛行、坐卧和持物，再进入四人房间测试。 [靴底与步态对照](../evidence/wild-people-elite-fit-20261120/README.md)
+- **首开与长帧** 5584 已用前台真键鼠走完两矿、下潜登岛和飞船越礁。七段超过长帧门槛，铁矿出洞最长 1.28 秒。开局的三件装备和五类容器贴图合占试玩包约 64%，先用单张全尺寸贴图验证压缩及首开时间。 [完整验收与包内盘点](../evidence/world-detail-web-20261120/README.md)
+- **林地与建造** 溪上游单株已接入树冠近远交接。沿林缘和矿洞外围扩展时对比真实落点、风动与长路线。多层地板的桌面物品已能保存落点，下一轮检验斜屋面和不同玩家同时移动物件。 [长期工作记录](world-upgrade.md#接下来做什么)
 
 ## 本机旧版与存档
 
@@ -27,6 +29,13 @@ COOP_SITE_DIR=dist/coop-atlas COOP_PORT=4794 COOP_ROOM_PORT=4795 \
 
 | 版本 | 网页 / 房间端口 | Web 发行目录 | 本机存档 |
 | --- | --- | --- | --- |
+| 溪岸木屋和燃烧细节 | 5484 / 5485 | `dist/coop-cabin-preview` | `.local-rooms/cabin-preview` |
+| 风雨、岩壁和同伴脚点 | 5384 / 5385 | `dist/coop-weather-preview` | `.local-rooms/weather-preview` |
+| 挡雨、植物与救援 | 5284 / 5285 | `dist/coop-recovery-preview` | `.local-rooms/recovery-preview` |
+| 矿洞与建造 | 5184 / 5185 | `dist/coop-mining-preview` | `.local-rooms/mining-preview` |
+| 原木建造 | 5084 / 5085 | `dist/coop-construction-preview` | `.local-rooms/construction-preview` |
+| 穿戴与飞船 | 4984 / 4985 | `dist/coop-wearables-preview` | `.local-rooms/wearables-preview` |
+| 野外图册 | 4794 / 4795 | `dist/coop-atlas` | `.local-rooms/atlas-preview` |
 | 武器 | 4394 / 4395 | `dist/coop-weapons` | `.local-rooms/weapon-preview` |
 | 海岸贴图 | 4494 / 4495 | `dist/coop-coast` | `.local-rooms/coast-preview` |
 | 海岸远景 | 4694 / 4695 | `.cache/coast/distance-view/release.Kbvepr/web` | `.cache/coast/distance-view/release.Kbvepr/test-rooms` |

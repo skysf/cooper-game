@@ -1,0 +1,283 @@
+{
+  "actualAim": true,
+  "assertions": 68,
+  "checks": [
+    {
+      "check": "new camps get a build buffer before one unarmed adult",
+      "passed": true
+    },
+    {
+      "check": "every real gathering source stands on walkable ground: fruit",
+      "passed": true
+    },
+    {
+      "check": "every real gathering source stands on walkable ground: herbs",
+      "passed": true
+    },
+    {
+      "check": "every real gathering source stands on walkable ground: water",
+      "passed": true
+    },
+    {
+      "check": "camp rest, guard and communal table access positions are walkable",
+      "passed": true
+    },
+    {
+      "check": "camp rest, guard and communal table access positions are walkable",
+      "passed": true
+    },
+    {
+      "check": "camp rest, guard and communal table access positions are walkable",
+      "passed": true
+    },
+    {
+      "check": "water source is a walkable bank within one metre of actual creek water",
+      "passed": true
+    },
+    {
+      "check": "normal camera ray aimed at left leg really injures only the left leg",
+      "passed": true
+    },
+    {
+      "check": "aiming at the real standing head registers a normal body/stun hit",
+      "passed": true
+    },
+    {
+      "check": "Down hit area follows the actual exported head behind the instance root",
+      "passed": true
+    },
+    {
+      "check": "an actual ray through the right leg injures only the right leg",
+      "passed": true
+    },
+    {
+      "check": "negative world position, yaw and leg wound survive JSON round trip",
+      "passed": true
+    },
+    {
+      "check": "both negative x/z coordinates and negative heading remain exact after save",
+      "passed": true
+    },
+    {
+      "check": "four real blunt attacks stun a wounded adult without killing",
+      "passed": true
+    },
+    {
+      "check": "stunned attacker can be explicitly restrained",
+      "passed": true
+    },
+    {
+      "check": "only one player can confiscate the same real weapon",
+      "passed": true
+    },
+    {
+      "check": "waiting or capture alone never recruits an uncared-for prisoner",
+      "passed": true
+    },
+    {
+      "check": "care consumes the actual caregiver's food; another player gains no trust or duplicate food",
+      "passed": true
+    },
+    {
+      "check": "food, water and medical care each deduct a real inventory item",
+      "passed": true
+    },
+    {
+      "check": "properly supplied treated prisoner recovers leg injury and accumulates effective care",
+      "passed": true
+    },
+    {
+      "check": "only completed care plus a voluntary invitation recruits a free companion",
+      "passed": true
+    },
+    {
+      "check": "trust stays personal after shared recruitment",
+      "passed": true
+    },
+    {
+      "check": "giving confiscated equipment transfers ownership without duplication",
+      "passed": true
+    },
+    {
+      "check": "fresh recruitment and another player's care do not unlock romance",
+      "passed": true
+    },
+    {
+      "check": "a refusal prevents repeated proposals for ten online minutes",
+      "passed": true
+    },
+    {
+      "check": "eligible free adults can mutually choose a relationship",
+      "passed": true
+    },
+    {
+      "check": "snapshots project each player's own relationship without exposing the relationship map",
+      "passed": true
+    },
+    {
+      "check": "failed atomic save rolls social state back",
+      "passed": true
+    },
+    {
+      "check": "remote and stale care requests cannot reach the NPC",
+      "passed": true
+    },
+    {
+      "check": "normal water collection consumes real creek source stock",
+      "passed": true
+    },
+    {
+      "check": "a free companion forages at the actual source and consumes its finite fruit stock",
+      "passed": true
+    },
+    {
+      "check": "authorized public food comes out of the shared table inventory",
+      "passed": true
+    },
+    {
+      "check": "dead NPCs cannot be damaged again or yield the same weapon twice",
+      "passed": true
+    },
+    {
+      "check": "NPC death ends relationships and cannot be undone by shelter, treatment or recruit requests",
+      "passed": true
+    },
+    {
+      "check": "final lifecycle checkpoint saves atomically",
+      "passed": true
+    },
+    {
+      "check": "death, exact position, random care requirement, treatment and personal trust persist on room reload",
+      "passed": true
+    },
+    {
+      "check": "first raid warns before spawning",
+      "passed": true
+    },
+    {
+      "check": "first raid is exactly one unarmed adult",
+      "passed": true
+    },
+    {
+      "check": "waves end with a conservative online rest period",
+      "passed": true
+    },
+    {
+      "check": "highest-tier adults have ordinary spear and shield equipment",
+      "passed": true
+    },
+    {
+      "check": "highest-tier adults have ordinary spear and shield equipment",
+      "passed": true
+    },
+    {
+      "check": "highest-tier adults have ordinary spear and shield equipment",
+      "passed": true
+    },
+    {
+      "check": "highest-tier adults have ordinary spear and shield equipment",
+      "passed": true
+    },
+    {
+      "check": "raid population respects the configured web-friendly cap",
+      "passed": true
+    },
+    {
+      "check": "64 fresh corpses with unclaimed equipment cannot block subsequent live raids",
+      "passed": true
+    },
+    {
+      "check": "an actual telegraphed enemy swing can incapacitate a player",
+      "passed": true
+    },
+    {
+      "check": "incapacitated players cannot move and start an online down timer",
+      "passed": true
+    },
+    {
+      "check": "down players cannot melee or pick/throw stones",
+      "passed": true
+    },
+    {
+      "check": "the old manual return cannot shorten the team rescue window",
+      "passed": true
+    },
+    {
+      "check": "repaired shelter never auto-revives an incapacitated player",
+      "passed": true
+    },
+    {
+      "check": "a reconnect with a teammate online restores the original countdown and fallen position",
+      "passed": true
+    },
+    {
+      "check": "teammates outside physical reach cannot rescue",
+      "passed": true
+    },
+    {
+      "check": "a real placed cabin wall blocks the rescue ray",
+      "passed": true
+    },
+    {
+      "check": "a failed checkpoint restores the down state and the original timer",
+      "passed": true
+    },
+    {
+      "check": "the near teammate can revive at the original location just before the 15 second deadline",
+      "passed": true
+    },
+    {
+      "check": "successful recovery persists the player's health and exact position",
+      "passed": true
+    },
+    {
+      "check": "duplicate rescue requests cannot repeat health or equipment changes",
+      "passed": true
+    },
+    {
+      "check": "at exactly 15 room seconds the downed player returns to camp without pressing a key",
+      "passed": true
+    },
+    {
+      "check": "a casualty gets the solo return when the last teammate disconnects",
+      "passed": true
+    },
+    {
+      "check": "the solo player returns to camp on the same update as the knockout",
+      "passed": true
+    },
+    {
+      "check": "an actual flying sharpened stone injures its physical leg contact and then lands",
+      "passed": true
+    },
+    {
+      "check": "an awake distrustful captive can physically resist a nearby player",
+      "passed": true
+    },
+    {
+      "check": "a raider steals one real table item, carries the loot and retreats",
+      "passed": true
+    },
+    {
+      "check": "unopposed ordinary attacks can really destroy the roof and extinguish camp lights",
+      "passed": true
+    },
+    {
+      "check": "seriously injured raiders withdraw instead of fighting forever",
+      "passed": true
+    },
+    {
+      "check": "neglected captives can become ill and visibly start escaping",
+      "passed": true
+    },
+    {
+      "check": "escape warning expires into a real fleeing person",
+      "passed": true
+    }
+  ],
+  "lifecycle": true,
+  "persistence": true,
+  "personalRelationships": true,
+  "raidCap": 4,
+  "resourceConsumption": true
+}

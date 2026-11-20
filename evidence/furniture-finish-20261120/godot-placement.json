@@ -1,0 +1,131 @@
+{
+  "checks": 39,
+  "failures": [],
+  "measurements": {
+    "wood_chair": {
+      "biggestFootDeltaM": 7.45058059692383e-09,
+      "biggestSurfaceDeltaM": 0.0,
+      "engravingTriangles": 0,
+      "footOutlineDeltaM": 7.98752279635677e-06,
+      "mappedMaterials": 2,
+      "newAABB": [
+        -0.209084436297417,
+        0.0,
+        -0.196999996900558,
+        0.418168872594833,
+        0.89300000667572,
+        0.426658987998962
+      ],
+      "newTriangles": 2436,
+      "oldAABB": [
+        -0.209084436297417,
+        0.0,
+        -0.196999996900558,
+        0.418168872594833,
+        0.89300000667572,
+        0.426658987998962
+      ],
+      "oldTriangles": 1124,
+      "slopeSupport": [
+        "comparison-slope"
+      ],
+      "baselineSHA256": "80320f506d252b2801d98540ead1431960a73cc783aaaae302118685b29edb3a",
+      "candidateSHA256": "d82ee3c2ea64fd4b7a9249f8a58f98230282e932514ae8e25fb92cffd0281d84",
+      "baselineBytes": 193332,
+      "candidateBytes": 101220,
+      "fixedCamera": "Blender renders of both imported GLBs using the same light and position",
+      "installedSourceSHA256": "5af0d5a56bcb8529531d9b5010312addd2707ac455ccd39b89d707a8172df1f1",
+      "installedTexturePaths": [
+        "../../textures/wood_nor_gl.jpg",
+        "../../textures/wood_diff.jpg",
+        "../furniture/furniture_endgrain_nor_gl.png",
+        "../furniture/furniture_endgrain_diff.jpg"
+      ]
+    },
+    "wood_table": {
+      "biggestFootDeltaM": 7.45058059692383e-09,
+      "biggestSurfaceDeltaM": 0.0,
+      "engravingTriangles": 4698,
+      "footOutlineDeltaM": 2.23580192651752e-05,
+      "mappedMaterials": 2,
+      "newAABB": [
+        -0.787500023841858,
+        0.0,
+        -0.358500003814697,
+        1.58249998092651,
+        0.790350019931793,
+        0.717000007629395
+      ],
+      "newTriangles": 56036,
+      "oldAABB": [
+        -0.787500023841858,
+        0.0,
+        -0.358500003814697,
+        1.58249998092651,
+        0.790350019931793,
+        0.717000007629395
+      ],
+      "oldTriangles": 56036,
+      "slopeSupport": [
+        "comparison-slope"
+      ],
+      "baselineSHA256": "c61254714b908f85cab2c6c32af7cfb8c6d71cacd2c0f0c8ad193987231a4218",
+      "candidateSHA256": "f76eb0af820c396998ba0e9c7a4683103b487c046b6a87c91ed7f49c32f6e5b1",
+      "baselineBytes": 1814236,
+      "candidateBytes": 1751884,
+      "fixedCamera": "Blender renders of both imported GLBs using the same light and position",
+      "installedSourceSHA256": "11a3abb20d3c638c2edcefbe42bfa0e6c0c88854f0b46787086e0ffab527fdc0",
+      "installedTexturePaths": [
+        "../textures/wood_nor_gl.jpg",
+        "../textures/wood_diff.jpg",
+        "furniture/furniture_endgrain_nor_gl.png",
+        "furniture/furniture_endgrain_diff.jpg"
+      ]
+    }
+  },
+  "realTableSupport": "Four placement contact points on the before and after meshes after placement on the same four-degree surface",
+  "editableSourceReopened": {
+    "tablePieces": 30,
+    "chairPieces": 20,
+    "pitcherPartsPreserved": 3
+  },
+  "installedGodotResourceReadback": {
+    "furniture": {
+      "wood_chair": {
+        "albedoMeanError": {
+          "endgrain": 0.0,
+          "longgrain": 0.0
+        },
+        "chairSeat": "(0.0, 0.455, 0.0)",
+        "normalRGMeanError": {
+          "endgrain": 0.0,
+          "longgrain": 0.0
+        },
+        "scene": "res://props/storage/wood_chair.glb"
+      },
+      "wood_table": {
+        "albedoMeanError": {
+          "endgrain": 0.00125395563932566,
+          "longgrain": 0.00207020978402588
+        },
+        "chairSeat": "",
+        "normalRGMeanError": {
+          "endgrain": 0.00761245811417092,
+          "longgrain": 0.00101144564637232
+        },
+        "scene": "res://props/camp_table.glb"
+      }
+    },
+    "installed": true
+  },
+  "roomRegression": {
+    "storage": {
+      "checks": 63,
+      "failures": 0
+    },
+    "construction": {
+      "checks": 19,
+      "failures": 0
+    }
+  }
+}

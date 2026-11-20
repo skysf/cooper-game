@@ -1,0 +1,141 @@
+{
+  "initial": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "webGL": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "results": [
+      {
+        "max_ms": 18.6,
+        "p50_ms": 16.7,
+        "p95_ms": 18.5,
+        "variant": "previous-dry"
+      },
+      {
+        "max_ms": 18.8,
+        "p50_ms": 16.7,
+        "p95_ms": 18.6,
+        "variant": "revised-dry"
+      },
+      {
+        "max_ms": 19.4,
+        "p50_ms": 16.7,
+        "p95_ms": 18.6,
+        "variant": "revised-storm"
+      },
+      {
+        "max_ms": 142.1,
+        "p50_ms": 16.5,
+        "p95_ms": 23.5,
+        "variant": "previous-storm"
+      },
+      {
+        "max_ms": 36.5,
+        "p50_ms": 16.6,
+        "p95_ms": 24.1,
+        "variant": "previous-storm"
+      },
+      {
+        "max_ms": 20,
+        "p50_ms": 16.8,
+        "p95_ms": 18.8,
+        "variant": "revised-storm"
+      },
+      {
+        "max_ms": 42.1,
+        "p50_ms": 16.6,
+        "p95_ms": 24.5,
+        "variant": "revised-dry"
+      },
+      {
+        "max_ms": 33,
+        "p50_ms": 16.8,
+        "p95_ms": 22.8,
+        "variant": "previous-dry"
+      }
+    ],
+    "errors": [],
+    "browser": "157.0.8103.79",
+    "frames_per_run": 75,
+    "fixture": "Mud and rock meshes from the actual camp and approach chunks with original textures and the production ground shader",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "repeat": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "webGL": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "results": [
+      {
+        "max_ms": 18.7,
+        "p50_ms": 16.8,
+        "p95_ms": 18.3,
+        "variant": "previous-dry"
+      },
+      {
+        "max_ms": 20.4,
+        "p50_ms": 16.7,
+        "p95_ms": 18.7,
+        "variant": "revised-dry"
+      },
+      {
+        "max_ms": 19.6,
+        "p50_ms": 16.8,
+        "p95_ms": 18.8,
+        "variant": "revised-storm"
+      },
+      {
+        "max_ms": 18.9,
+        "p50_ms": 16.6,
+        "p95_ms": 18.5,
+        "variant": "previous-storm"
+      },
+      {
+        "max_ms": 19.3,
+        "p50_ms": 16.6,
+        "p95_ms": 18.8,
+        "variant": "previous-storm"
+      },
+      {
+        "max_ms": 19.6,
+        "p50_ms": 16.8,
+        "p95_ms": 19,
+        "variant": "revised-storm"
+      },
+      {
+        "max_ms": 20.3,
+        "p50_ms": 16.7,
+        "p95_ms": 18.5,
+        "variant": "revised-dry"
+      },
+      {
+        "max_ms": 19.3,
+        "p50_ms": 16.7,
+        "p95_ms": 18.8,
+        "variant": "previous-dry"
+      }
+    ],
+    "errors": [],
+    "browser": "157.0.8103.79",
+    "frames_per_run": 75,
+    "fixture": "Mud and rock meshes from the actual camp and approach chunks with original textures and the production ground shader",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "scene_pixel_comparison": {
+    "dry": {
+      "mean_absolute_rgb": 0.0,
+      "changed_pixels": 0,
+      "max_rgb_channel_delta": 0,
+      "pixels_over_8_rgb_levels": 0
+    },
+    "storm": {
+      "mean_absolute_rgb": 5.50122613,
+      "changed_pixels": 481642,
+      "max_rgb_channel_delta": 165,
+      "pixels_over_8_rgb_levels": 217359
+    }
+  },
+  "production_shader_sha256": "99ab760d3324edadcc378b3caba6cba4a44b251cc2e23dfe5b998554b82030a2"
+}

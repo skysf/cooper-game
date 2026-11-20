@@ -1,0 +1,2166 @@
+{
+  "assets": [
+    {
+      "bounds_origin": [
+        -318.0,
+        -23.403980255127,
+        -287.0
+      ],
+      "bounds_size_m": [
+        288.0,
+        50.4272346496582,
+        468.0
+      ],
+      "file": "coop/coast/headlands.glb",
+      "glb_sha256": "a8c3043dfcffc6916880135783a05207bb528df8df9beed4000c6264b6107856",
+      "pose": "",
+      "viewable_meshes": 84,
+      "views": [
+        "models/headlands-1.jpg",
+        "models/headlands-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.1556,
+        0.2381
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.60053730010986,
+        0.0,
+        -1.56719219684601
+      ],
+      "bounds_size_m": [
+        3.22154450416565,
+        7.0,
+        3.36449027061462
+      ],
+      "file": "coop/pines/pine_mature.glb",
+      "glb_sha256": "a736c9f0d816db145072b585d90d921c2092ebb3f3b179d6e985333782e22ffe",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/pine_mature-1.jpg",
+        "models/pine_mature-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0319,
+        0.0275
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.65463614463806,
+        0.0,
+        -1.60449361801147
+      ],
+      "bounds_size_m": [
+        3.28121757507324,
+        7.0,
+        3.43843150138855
+      ],
+      "file": "coop/pines/pine_mature_refined.glb",
+      "glb_sha256": "800698f887123962256bcfa9e55c555baa48f1dd1d6e750fd1e0511410ed25a6",
+      "pose": "",
+      "viewable_meshes": 7,
+      "views": [
+        "models/pine_mature_refined-1.jpg",
+        "models/pine_mature_refined-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0383,
+        0.0345
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.223396316170692,
+        0.0,
+        -0.239973187446594
+      ],
+      "bounds_size_m": [
+        0.469101250171661,
+        0.649999976158142,
+        0.473964661359787
+      ],
+      "file": "coop/pines/pine_sapling.glb",
+      "glb_sha256": "8665328c3a8ff6aaad57068b7aae07c8d78fd784e4c874efd6aa86f99ae7b0ab",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/pine_sapling-1.jpg",
+        "models/pine_sapling-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0417,
+        0.0371
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.850937306880951,
+        0.0,
+        -0.862682580947876
+      ],
+      "bounds_size_m": [
+        1.71755599975586,
+        2.40000009536743,
+        1.86501479148865
+      ],
+      "file": "coop/pines/pine_young.glb",
+      "glb_sha256": "a072605e8058d936b3b0beafa52c977dc91e5b33309156f0b198c0ed673fbba6",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/pine_young-1.jpg",
+        "models/pine_young-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0633,
+        0.0582
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.196583092212677,
+        -0.280073672533035,
+        -0.191013902425766
+      ],
+      "bounds_size_m": [
+        0.396015465259552,
+        0.560160160064697,
+        0.372104465961456
+      ],
+      "file": "coop/props/camp_backpack.glb",
+      "glb_sha256": "da900e3a39e161fda7debf406a154538e79e0bee2b86098782e41e665611e0bf",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_backpack-1.jpg",
+        "models/camp_backpack-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.1602,
+        0.1223
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.193378239870071,
+        -7.45058059692383e-09,
+        -0.197798103094101
+      ],
+      "bounds_size_m": [
+        0.386794149875641,
+        0.183153122663498,
+        0.285760343074799
+      ],
+      "file": "coop/props/camp_boot.glb",
+      "glb_sha256": "d2cb760fea8c140004f06e21155758a8777e35ca98b30f48dc2715f0b61b09d2",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/camp_boot-1.jpg",
+        "models/camp_boot-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.2148,
+        0.2243
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.103218406438828,
+        1.60760068893433,
+        -0.155807882547379
+      ],
+      "bounds_size_m": [
+        0.214114144444466,
+        0.124168395996094,
+        0.255543053150177
+      ],
+      "file": "coop/props/camp_cap.glb",
+      "glb_sha256": "212967607aed2ecc66c7e266107948a84e7781c838e0133568b4dcf39d505f32",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_cap-1.jpg",
+        "models/camp_cap-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.2379,
+        0.2299
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.659509897232056,
+        0.0,
+        -1.23879480361938
+      ],
+      "bounds_size_m": [
+        1.27754640579224,
+        0.422048926353455,
+        3.49095296859741
+      ],
+      "file": "coop/props/camp_crocodile.glb",
+      "glb_sha256": "98fdd311ddbee215ecb9743f9aea24eebf91b9956d212ef9d28ae79b50c14a9a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_crocodile-1.jpg",
+        "models/camp_crocodile-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.0848,
+        0.0902
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.08840298652649,
+        0.00742845237255096,
+        -0.493051171302795
+      ],
+      "bounds_size_m": [
+        2.09810924530029,
+        0.557752668857574,
+        1.06882095336914
+      ],
+      "file": "coop/props/camp_eagle.glb",
+      "glb_sha256": "461c7aab0e519506ec0e767c4256ecb0e3c0e5cf3706db158f83ea79dd009dc6",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_eagle-1.jpg",
+        "models/camp_eagle-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.1009,
+        0.0574
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.135590180754662,
+        -0.21154198050499,
+        -0.149908110499382
+      ],
+      "bounds_size_m": [
+        0.271811842918396,
+        0.44150722026825,
+        0.304201126098633
+      ],
+      "file": "coop/props/camp_helmet.glb",
+      "glb_sha256": "5f26890aca2e95c1ecf15128ac8142bff01d614f2fa0b8c5579c0aac3345dd6d",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_helmet-1.jpg",
+        "models/camp_helmet-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.1541,
+        0.1573
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.314540535211563,
+        0.834450840950012,
+        -0.137666612863541
+      ],
+      "bounds_size_m": [
+        0.633823215961456,
+        0.695607662200928,
+        0.279066860675812
+      ],
+      "file": "coop/props/camp_jacket.glb",
+      "glb_sha256": "c658f92618ec259e9c8e5d35173f097129dc49e77faaedff305172fdef6f788d",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_jacket-1.jpg",
+        "models/camp_jacket-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.1718,
+        0.2062
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.136495172977448,
+        -0.582000017166138,
+        -0.0955254957079887
+      ],
+      "bounds_size_m": [
+        0.272990345954895,
+        0.582000017166138,
+        0.191261738538742
+      ],
+      "file": "coop/props/camp_lantern.glb",
+      "glb_sha256": "8eca46de8380ac7a82c4171cf80b567cb5bddf47322f52f2370033cef872b1c9",
+      "pose": "",
+      "viewable_meshes": 4,
+      "views": [
+        "models/camp_lantern-1.jpg",
+        "models/camp_lantern-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.0553,
+        0.0398
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.213236391544342,
+        -0.000392682559322566,
+        -0.496476799249649
+      ],
+      "bounds_size_m": [
+        0.504949331283569,
+        0.930470585823059,
+        0.965274810791016
+      ],
+      "file": "coop/props/camp_mastiff.glb",
+      "glb_sha256": "c9f2ab65d22edbb48dd5685909177b17665f05ac2fadf74ac3ed2c0a46b56536",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_mastiff-1.jpg",
+        "models/camp_mastiff-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.2036,
+        0.1748
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.210022389888763,
+        0.0683018416166306,
+        -0.122001238167286
+      ],
+      "bounds_size_m": [
+        0.437300562858582,
+        0.821829319000244,
+        0.28581577539444
+      ],
+      "file": "coop/props/camp_pants.glb",
+      "glb_sha256": "d61ce7053fdacc4c4e302892191fb01ba7b6d4d23ea52779227108a1aab5a727",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_pants-1.jpg",
+        "models/camp_pants-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.1525,
+        0.1232
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.00677597522736,
+        0.0,
+        -2.28263282775879
+      ],
+      "bounds_size_m": [
+        2.0144305229187,
+        1.64347195625305,
+        4.56363391876221
+      ],
+      "file": "coop/props/camp_red_spaceship.glb",
+      "glb_sha256": "ebad7d9bfb9ab7b324ea1b20f1f64033499b17a8786b19c4aea188a541ee138f",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_red_spaceship-1.jpg",
+        "models/camp_red_spaceship-2.jpg"
+      ],
+      "sheet": "player-gear-and-airship.jpg",
+      "visible_pixel_fraction": [
+        0.2485,
+        0.2401
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.787500023841858,
+        0.0,
+        -0.358500003814697
+      ],
+      "bounds_size_m": [
+        1.58249998092651,
+        0.790350019931793,
+        0.717000007629395
+      ],
+      "file": "coop/props/camp_table.glb",
+      "glb_sha256": "f76eb0af820c396998ba0e9c7a4683103b487c046b6a87c91ed7f49c32f6e5b1",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_table-1.jpg",
+        "models/camp_table-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.3101,
+        0.2925
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0920000001788139,
+        0.0,
+        -0.0920000001788139
+      ],
+      "bounds_size_m": [
+        0.236072570085526,
+        0.247999995946884,
+        0.184000000357628
+      ],
+      "file": "coop/props/camp_water_jug.glb",
+      "glb_sha256": "810930961ce1e333f4c9cdb28eda586f21a8e2a9349566dc694e144809cd60b4",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/camp_water_jug-1.jpg",
+        "models/camp_water_jug-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.185,
+        0.1952
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.44000005722046,
+        0.0,
+        -0.119999997317791
+      ],
+      "bounds_size_m": [
+        2.88000011444092,
+        2.29999995231628,
+        0.239999994635582
+      ],
+      "file": "coop/props/construction/cabin_doorway.glb",
+      "glb_sha256": "4fd1a471a5385fc3f39833b4993f3cebce3055ba6cdf9d8ee20c6ce61d42620a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/cabin_doorway-1.jpg",
+        "models/cabin_doorway-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.2794,
+        0.2627
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.5,
+        0.0,
+        -1.5
+      ],
+      "bounds_size_m": [
+        3.0,
+        0.180000007152557,
+        3.0
+      ],
+      "file": "coop/props/construction/cabin_floor.glb",
+      "glb_sha256": "6841cefbfc0a9cab0f6c0d361a9bf5a9613bb24a979cc5628f3296915d92aa02",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/cabin_floor-1.jpg",
+        "models/cabin_floor-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.193,
+        0.2272
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.61000001430511,
+        0.0,
+        -1.76490592956543
+      ],
+      "bounds_size_m": [
+        3.22000002861023,
+        1.18387877941132,
+        3.53293561935425
+      ],
+      "file": "coop/props/construction/cabin_roof.glb",
+      "glb_sha256": "c518bbd149c1851a7dcf639ad0c693921d4dae05679072b7ce4b6bcead823de1",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/cabin_roof-1.jpg",
+        "models/cabin_roof-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.2615,
+        0.271
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.44000005722046,
+        0.0,
+        -0.119999997317791
+      ],
+      "bounds_size_m": [
+        2.88000011444092,
+        2.29999995231628,
+        0.239999994635582
+      ],
+      "file": "coop/props/construction/cabin_wall.glb",
+      "glb_sha256": "4fb01bb7ff014654a43abb23664a6d215b0b040dd621d96dedab45c6ee5394a2",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/cabin_wall-1.jpg",
+        "models/cabin_wall-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.3768,
+        0.3529
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0377129018306732,
+        0.0,
+        -0.0384588986635208
+      ],
+      "bounds_size_m": [
+        0.0754258036613464,
+        0.0780000016093254,
+        0.0769177973270416
+      ],
+      "file": "coop/props/food_apple.glb",
+      "glb_sha256": "17d5e334322f99ef965199748a7b3a1fcb24047e5439f5790add9a2bcb35bfe6",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/food_apple-1.jpg",
+        "models/food_apple-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.2456,
+        0.2216
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0509999990463257,
+        0.0,
+        -0.0380258001387119
+      ],
+      "bounds_size_m": [
+        0.101999998092651,
+        0.056495800614357,
+        0.0760516002774239
+      ],
+      "file": "coop/props/food_bread.glb",
+      "glb_sha256": "02d8173260910d440900a0f96aefb040f8aeaa889db20dcf4f74fed3958d7608",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/food_bread-1.jpg",
+        "models/food_bread-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.3606,
+        0.3291
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.536857843399048,
+        0.0,
+        -0.541175186634064
+      ],
+      "bounds_size_m": [
+        1.0809463262558,
+        1.12999999523163,
+        1.01611876487732
+      ],
+      "file": "coop/props/iron_furnace.glb",
+      "glb_sha256": "4610a54e0d9c554d6d6067213e6496c8bb4f37ce1ed4956183dcb13fa012dd0f",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/iron_furnace-1.jpg",
+        "models/iron_furnace-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.2715,
+        0.2511
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.163599997758865,
+        0.0,
+        -0.0659999996423721
+      ],
+      "bounds_size_m": [
+        0.327199995517731,
+        0.13226455450058,
+        0.131999999284744
+      ],
+      "file": "coop/props/material_tarp.glb",
+      "glb_sha256": "f3c91fedffdfabea9958dca4e305d208b349181bef11c911122005c3c3a2c8f8",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/material_tarp-1.jpg",
+        "models/material_tarp-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.3782,
+        0.3832
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.200569733977318,
+        0.0,
+        -0.144823774695396
+      ],
+      "bounds_size_m": [
+        0.401139467954636,
+        0.128800570964813,
+        0.289647549390793
+      ],
+      "file": "coop/props/material_wood.glb",
+      "glb_sha256": "6742cd4378c455524a274c729f28fe3aaacb10cf089599ea908c3b00892c218c",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/material_wood-1.jpg",
+        "models/material_wood-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.292,
+        0.341
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.111337326467037,
+        0.0,
+        -0.0852773189544678
+      ],
+      "bounds_size_m": [
+        0.209463953971863,
+        0.139700353145599,
+        0.167827278375626
+      ],
+      "file": "coop/props/mines/coal.glb",
+      "glb_sha256": "8ad15b09bb0ce03375eecfc26c172ad709d3996358417a98bc198b33c5699c71",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/coal-1.jpg",
+        "models/coal-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.2913,
+        0.2539
+      ]
+    },
+    {
+      "bounds_origin": [
+        -3.1059410572052,
+        -5.23009967803955,
+        -20.3500003814697
+      ],
+      "bounds_size_m": [
+        7.8058910369873,
+        10.4215602874756,
+        32.0781059265137
+      ],
+      "file": "coop/props/mines/coal_mine.glb",
+      "glb_sha256": "9336ea2b349e442d89bb9b05f14457f0013626b371d59a2ef19e3bea883b7d54",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/coal_mine-1.jpg",
+        "models/coal_mine-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.1119,
+        0.1118
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.446054339408875,
+        -0.36003902554512,
+        -1.10000002384186
+      ],
+      "bounds_size_m": [
+        0.587144374847412,
+        0.78471302986145,
+        2.17000007629395
+      ],
+      "file": "coop/props/mines/coal_seam.glb",
+      "glb_sha256": "9ae7215929ecccb38edde4a4a65f9e0d86f702d93a91cee021f717f7def1d804",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/coal_seam-1.jpg",
+        "models/coal_seam-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.2321,
+        0.1685
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.150999993085861,
+        0.0,
+        -0.0759999975562096
+      ],
+      "bounds_size_m": [
+        0.301999986171722,
+        0.0523131527006626,
+        0.151999995112419
+      ],
+      "file": "coop/props/mines/iron_ingot.glb",
+      "glb_sha256": "daaabb207f03770346e50e653a9b614c222c2ced5b8ebe938cb7167cdbf7550a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/iron_ingot-1.jpg",
+        "models/iron_ingot-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.2455,
+        0.2648
+      ]
+    },
+    {
+      "bounds_origin": [
+        -5.78385496139526,
+        -7.5112624168396,
+        -13.5795545578003
+      ],
+      "bounds_size_m": [
+        8.64295291900635,
+        13.2418937683105,
+        25.3316802978516
+      ],
+      "file": "coop/props/mines/iron_mine.glb",
+      "glb_sha256": "8434cae3d0cffc8298a8918baed3a51af0f815c5f03933fc6c69f9d86bfd3c1a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/iron_mine-1.jpg",
+        "models/iron_mine-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.0867,
+        0.1048
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.100330211222172,
+        0.0,
+        -0.0834698975086212
+      ],
+      "bounds_size_m": [
+        0.200046539306641,
+        0.155408442020416,
+        0.166240870952606
+      ],
+      "file": "coop/props/mines/iron_ore.glb",
+      "glb_sha256": "cf115d63f75142986d514b47306984df49a360bf4960dddab090031d82aa2684",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/iron_ore-1.jpg",
+        "models/iron_ore-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.2706,
+        0.2466
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.127672582864761,
+        -0.346095025539398,
+        -1.10199999809265
+      ],
+      "bounds_size_m": [
+        0.199835538864136,
+        0.730990171432495,
+        2.16499996185303
+      ],
+      "file": "coop/props/mines/iron_seam.glb",
+      "glb_sha256": "940f15b37c3dedd57e44c38b1d6c3dbf94138f1bf266b8338dda41bd7f58da0c",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/iron_seam-1.jpg",
+        "models/iron_seam-2.jpg"
+      ],
+      "sheet": "mines.jpg",
+      "visible_pixel_fraction": [
+        0.2125,
+        0.165
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.635224997997284,
+        0.0,
+        -0.914479196071625
+      ],
+      "bounds_size_m": [
+        1.27044999599457,
+        1.00193095207214,
+        1.82895839214325
+      ],
+      "file": "coop/props/shore_boulder.glb",
+      "glb_sha256": "de9cb3fd981a4a5f1c5a30bc0e78d19c8b524e3a2222deb86ef4c3c679fe57ba",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/shore_boulder-1.jpg",
+        "models/shore_boulder-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.226,
+        0.2268
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.575241923332214,
+        0.000265121459960938,
+        -0.353738725185394
+      ],
+      "bounds_size_m": [
+        1.15039491653442,
+        1.749720454216,
+        0.491777956485748
+      ],
+      "file": "coop/props/sky_character.glb",
+      "glb_sha256": "d48af0ae379882aae2918a7695a6e0302cf2603c4ceb2f9c2fc610333cb18953",
+      "pose": "Stand",
+      "viewable_meshes": 8,
+      "views": [
+        "models/sky_character-1.jpg",
+        "models/sky_character-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.0716,
+        0.0702
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0575000010430813,
+        -0.0179999992251396,
+        -0.0395000018179417
+      ],
+      "bounds_size_m": [
+        0.115000002086163,
+        0.0359999984502792,
+        0.0790000036358833
+      ],
+      "file": "coop/props/stone_flat.glb",
+      "glb_sha256": "873690c1a6bd81d90e4c0c46db5ff8be1301f6b7db6fc38f2e1992acf52d6dbd",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/stone_flat-1.jpg",
+        "models/stone_flat-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1727,
+        0.1974
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.067500002682209,
+        -0.0384999997913837,
+        -0.0494999997317791
+      ],
+      "bounds_size_m": [
+        0.135000005364418,
+        0.0769999995827675,
+        0.0989999994635582
+      ],
+      "file": "coop/props/stone_round.glb",
+      "glb_sha256": "1649af9563461a697dd180cd549b763d5c97bafbc8fca2b42acc178ddbe58a96",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/stone_round-1.jpg",
+        "models/stone_round-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.3447,
+        0.314
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0575000010430813,
+        -0.0179999992251396,
+        -0.0395000018179417
+      ],
+      "bounds_size_m": [
+        0.115000002086163,
+        0.0359999984502792,
+        0.0732562020421028
+      ],
+      "file": "coop/props/stone_sharp.glb",
+      "glb_sha256": "bfd1063f6a5d2af3b38302a9e8a7b6106da5bae3b466ff678637dc97d874a5f3",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/stone_sharp-1.jpg",
+        "models/stone_sharp-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1801,
+        0.2041
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.319016695022583,
+        0.0,
+        -0.305147647857666
+      ],
+      "bounds_size_m": [
+        0.638033390045166,
+        0.38104259967804,
+        0.610295295715332
+      ],
+      "file": "coop/props/storage/campfire.glb",
+      "glb_sha256": "ef457c0da62e8ea920ab9d61d82d5dc536db75d3263b9949f14bb9b370bce56a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/campfire-1.jpg",
+        "models/campfire-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1879,
+        0.1759
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0576778165996075,
+        0.0,
+        -0.0515888929367065
+      ],
+      "bounds_size_m": [
+        0.115355633199215,
+        0.0220500007271767,
+        0.103177785873413
+      ],
+      "file": "coop/props/storage/crocodile_meat_grilled.glb",
+      "glb_sha256": "ea9c4d6156f7d13640c9961bed6ea0f0f8bdf7fea4c95d18426f755e35b2e52f",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/crocodile_meat_grilled-1.jpg",
+        "models/crocodile_meat_grilled-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1902,
+        0.2057
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0736409723758698,
+        0.0,
+        -0.043035164475441
+      ],
+      "bounds_size_m": [
+        0.14728194475174,
+        0.0267702974379063,
+        0.086070328950882
+      ],
+      "file": "coop/props/storage/crocodile_meat_raw.glb",
+      "glb_sha256": "e2633b48bb03ec88ad48dfefe1d51651f8dc09e7831eb8b831885cc0bd40cc20",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/crocodile_meat_raw-1.jpg",
+        "models/crocodile_meat_raw-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1741,
+        0.1762
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.116155467927456,
+        0.0,
+        -0.0505263358354568
+      ],
+      "bounds_size_m": [
+        0.232310935854912,
+        0.0472100004553795,
+        0.101052671670914
+      ],
+      "file": "coop/props/storage/crocodile_sandwich.glb",
+      "glb_sha256": "4145a701be924196abe139a361e865183ae2a76ad7a3388abc271faf64ae03df",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/crocodile_sandwich-1.jpg",
+        "models/crocodile_sandwich-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.2031,
+        0.2045
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0786122232675552,
+        0.0,
+        -0.0576289668679237
+      ],
+      "bounds_size_m": [
+        0.15722444653511,
+        0.0278857722878456,
+        0.115257933735847
+      ],
+      "file": "coop/props/storage/dog_meat.glb",
+      "glb_sha256": "041b01d9764f9ffa05c404a4175b9b27a0b62d32053eda81f31afbecad741911",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/dog_meat-1.jpg",
+        "models/dog_meat-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1386,
+        0.1445
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0469564385712147,
+        0.0,
+        -0.015060992911458
+      ],
+      "bounds_size_m": [
+        0.0939128771424294,
+        0.0543522201478481,
+        0.030121985822916
+      ],
+      "file": "coop/props/storage/eagle_claw.glb",
+      "glb_sha256": "52f05c5e45583a2e4a70a5c63dbe2c1156c04064820a8b61efad046f003cf81a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/eagle_claw-1.jpg",
+        "models/eagle_claw-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1787,
+        0.1695
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.136680364608765,
+        0.0,
+        -0.0283920597285032
+      ],
+      "bounds_size_m": [
+        0.273360729217529,
+        0.0173161271959543,
+        0.0567841231822968
+      ],
+      "file": "coop/props/storage/eagle_feather.glb",
+      "glb_sha256": "19f71cfbf566377ca098eabc2abb1bd71806bc68215339a1540fc039521c007c",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/eagle_feather-1.jpg",
+        "models/eagle_feather-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.0681,
+        0.0662
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0636929720640182,
+        0.0,
+        -0.0523161441087723
+      ],
+      "bounds_size_m": [
+        0.127385944128036,
+        0.0337350629270077,
+        0.104632288217545
+      ],
+      "file": "coop/props/storage/eagle_meat.glb",
+      "glb_sha256": "13a5a87b83c126555e9c2548e6d86345edd8493859394c30b8821fa927367a11",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/eagle_meat-1.jpg",
+        "models/eagle_meat-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1503,
+        0.1446
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.131053432822227,
+        0.0,
+        -0.000922897423151881
+      ],
+      "bounds_size_m": [
+        0.263581693172455,
+        0.12358096241951,
+        0.290025025606155
+      ],
+      "file": "coop/props/storage/herb_bundle.glb",
+      "glb_sha256": "5bb3c124b561b467241f103f8aa8487c6cc9f1569c408b224f827f7a05d5524a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/herb_bundle-1.jpg",
+        "models/herb_bundle-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1401,
+        0.1674
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.217847108840942,
+        0.0,
+        -0.161502540111542
+      ],
+      "bounds_size_m": [
+        0.435694217681885,
+        0.0265855602920055,
+        0.323005080223083
+      ],
+      "file": "coop/props/storage/hide.glb",
+      "glb_sha256": "e236603f69a68c09d716f1c1f35542ab85a69dd626a3e7b8a7c4249b140ff23f",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/hide-1.jpg",
+        "models/hide-2.jpg"
+      ],
+      "sheet": "food-and-harvests.jpg",
+      "visible_pixel_fraction": [
+        0.1352,
+        0.1489
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.481300383806229,
+        0.0,
+        -0.201414197683334
+      ],
+      "bounds_size_m": [
+        0.962600767612457,
+        0.360231757164001,
+        0.402828395366669
+      ],
+      "file": "coop/props/storage/military_crate.glb",
+      "glb_sha256": "abe6b9797b18eb9f18e1bc10dd2cb46b474551181183d41fdaf9ed4d41353694",
+      "pose": "",
+      "viewable_meshes": 3,
+      "views": [
+        "models/military_crate-1.jpg",
+        "models/military_crate-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.4179,
+        0.4328
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.117347955703735,
+        0.0,
+        -0.0991318970918655
+      ],
+      "bounds_size_m": [
+        0.234695911407471,
+        0.062913253903389,
+        0.198263794183731
+      ],
+      "file": "coop/props/storage/rope.glb",
+      "glb_sha256": "ea63eb8b145a66669a73c08e6610fc24d2bb18341923f7b3d6011514e98489c1",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/rope-1.jpg",
+        "models/rope-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1595,
+        0.1706
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.220071792602539,
+        0.0,
+        -0.0359999984502792
+      ],
+      "bounds_size_m": [
+        0.43934091925621,
+        2.01767587661743,
+        0.061535369604826
+      ],
+      "file": "coop/props/storage/rope_ladder.glb",
+      "glb_sha256": "8df7a380d884918c16585406e450e3b437439d485d48f88f446a86f87737ff3a",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/rope_ladder-1.jpg",
+        "models/rope_ladder-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.0328,
+        0.0337
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.193380460143089,
+        0.0,
+        -0.181720674037933
+      ],
+      "bounds_size_m": [
+        0.386760920286179,
+        0.452488243579865,
+        0.363441348075867
+      ],
+      "file": "coop/props/storage/wicker_basket.glb",
+      "glb_sha256": "69d27d929267ba16374a34171aff1ab2387213a4094eb613c362e9522adcf487",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/wicker_basket-1.jpg",
+        "models/wicker_basket-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.2629,
+        0.2482
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.112185172736645,
+        0.0,
+        -0.0629371702671051
+      ],
+      "bounds_size_m": [
+        0.224370345473289,
+        0.0253455191850662,
+        0.12587434053421
+      ],
+      "file": "coop/props/storage/wicker_strip.glb",
+      "glb_sha256": "1d4c1800139898c2d76a0df38c19942f44b698c046df121b3c87f31351889a2b",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/wicker_strip-1.jpg",
+        "models/wicker_strip-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1091,
+        0.1311
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.315773993730545,
+        0.0,
+        -0.315775156021118
+      ],
+      "bounds_size_m": [
+        0.631550133228302,
+        0.779263734817505,
+        0.631548047065735
+      ],
+      "file": "coop/props/storage/wood_barrel.glb",
+      "glb_sha256": "acd0e7b0b98a9864a3431c27b3e57ded33d859b94ec805e5e788c7f4fef14622",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/wood_barrel-1.jpg",
+        "models/wood_barrel-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.2712,
+        0.2539
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.371498823165894,
+        0.0,
+        -0.371476083993912
+      ],
+      "bounds_size_m": [
+        0.743000149726868,
+        0.919869720935822,
+        0.742952227592468
+      ],
+      "file": "coop/props/storage/wood_barrel_tall.glb",
+      "glb_sha256": "2094a457f431fa140f61e045d029507cc0c942bb5cf86115f04cb8da63da4cc4",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/wood_barrel_tall-1.jpg",
+        "models/wood_barrel_tall-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.2704,
+        0.2534
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.209084436297417,
+        0.0,
+        -0.196999996900558
+      ],
+      "bounds_size_m": [
+        0.418168872594833,
+        0.89300000667572,
+        0.426658987998962
+      ],
+      "file": "coop/props/storage/wood_chair.glb",
+      "glb_sha256": "d82ee3c2ea64fd4b7a9249f8a58f98230282e932514ae8e25fb92cffd0281d84",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/wood_chair-1.jpg",
+        "models/wood_chair-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.1453,
+        0.1481
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.412636458873749,
+        0.0,
+        -0.204476863145828
+      ],
+      "bounds_size_m": [
+        0.825272917747498,
+        0.349618285894394,
+        0.408953726291656
+      ],
+      "file": "coop/props/storage/wood_crate.glb",
+      "glb_sha256": "d8bec85e8abbc085a252feef3b177c119592e23a04814b5bdc816a733cac5ad8",
+      "pose": "",
+      "viewable_meshes": 3,
+      "views": [
+        "models/wood_crate-1.jpg",
+        "models/wood_crate-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.4426,
+        0.4575
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.217999994754791,
+        0.0,
+        -0.0579999983310699
+      ],
+      "bounds_size_m": [
+        0.435999989509583,
+        0.0245000012218952,
+        0.11599999666214
+      ],
+      "file": "coop/props/storage/wood_plank.glb",
+      "glb_sha256": "8bd27d30385beb2f427c8abce3495a8ffc546773c0925c5b9e5b1098fbcd98f4",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/wood_plank-1.jpg",
+        "models/wood_plank-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1465,
+        0.1634
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.28999999165535,
+        0.0,
+        -0.0406999997794628
+      ],
+      "bounds_size_m": [
+        0.579999983310699,
+        1.0440000295639,
+        0.0921939983963966
+      ],
+      "file": "coop/props/storage/wood_sign.glb",
+      "glb_sha256": "d06e4367086a72318a65c2cb74f01f47a6d5c2d5fe3eab381317fe4a9ed4c177",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/wood_sign-1.jpg",
+        "models/wood_sign-2.jpg"
+      ],
+      "sheet": "cabin-and-furniture.jpg",
+      "visible_pixel_fraction": [
+        0.0815,
+        0.0782
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.038520198315382,
+        0.0,
+        -0.0382847003638744
+      ],
+      "bounds_size_m": [
+        0.077040396630764,
+        0.155000001192093,
+        0.0765694007277489
+      ],
+      "file": "coop/props/table_babushka.glb",
+      "glb_sha256": "973e7f52260f90279a74739afa576f3c3c3ce287a2eb24f57899bf3562098903",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/table_babushka-1.jpg",
+        "models/table_babushka-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1932,
+        0.1862
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0541732981801033,
+        0.0,
+        -0.0568993985652924
+      ],
+      "bounds_size_m": [
+        0.108346596360207,
+        0.194999992847443,
+        0.113798797130585
+      ],
+      "file": "coop/props/table_gnome.glb",
+      "glb_sha256": "439d9a4acef57e94f9f801f43a4e2e9b7ddc3fae9de2eed148fb2b53d95e4408",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/table_gnome-1.jpg",
+        "models/table_gnome-2.jpg"
+      ],
+      "sheet": "camp-supplies.jpg",
+      "visible_pixel_fraction": [
+        0.1603,
+        0.1535
+      ]
+    },
+    {
+      "bounds_origin": [
+        -2.54953336715698,
+        0.0,
+        -2.49720978736877
+      ],
+      "bounds_size_m": [
+        5.39326477050781,
+        7.0,
+        5.62568330764771
+      ],
+      "file": "coop/trees/birch_mature.glb",
+      "glb_sha256": "5b4a3d17789615c1a64f55301146c7161d3047156df06bad383a4150ef7b87b8",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/birch_mature-1.jpg",
+        "models/birch_mature-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0995,
+        0.0872
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.196254670619965,
+        0.0,
+        -0.173099711537361
+      ],
+      "bounds_size_m": [
+        0.380019962787628,
+        0.649999976158142,
+        0.366654217243195
+      ],
+      "file": "coop/trees/birch_sapling.glb",
+      "glb_sha256": "b13b7646d6b54b4af412f3cb950f2698563841ade9186cadc8537d889cabeac9",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/birch_sapling-1.jpg",
+        "models/birch_sapling-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0316,
+        0.0282
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.921874821186066,
+        0.0,
+        -0.893287301063538
+      ],
+      "bounds_size_m": [
+        1.94150114059448,
+        2.40000009536743,
+        1.81489515304565
+      ],
+      "file": "coop/trees/birch_young.glb",
+      "glb_sha256": "3b1253c5790395b6077a29f438bdeccd64bc2088aa4f09237863f7d04ddc7e8b",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/birch_young-1.jpg",
+        "models/birch_young-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0636,
+        0.0585
+      ]
+    },
+    {
+      "bounds_origin": [
+        -1.81166195869446,
+        0.0,
+        -1.99828553199768
+      ],
+      "bounds_size_m": [
+        3.54208326339722,
+        7.0,
+        3.94840002059937
+      ],
+      "file": "coop/trees/spruce_mature.glb",
+      "glb_sha256": "fc44a0f5d2abb124de45913d81b524c5cd7beaacd61d13421f197630e60a1274",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/spruce_mature-1.jpg",
+        "models/spruce_mature-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0938,
+        0.0929
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.151451990008354,
+        0.0,
+        -0.172808825969696
+      ],
+      "bounds_size_m": [
+        0.331577718257904,
+        0.649999976158142,
+        0.327426493167877
+      ],
+      "file": "coop/trees/spruce_sapling.glb",
+      "glb_sha256": "b37f23b0ab9a6b07bf2fe59516c8d265c180872b8e5ad4a7f8d47adea20a290b",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/spruce_sapling-1.jpg",
+        "models/spruce_sapling-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0463,
+        0.05
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.637857794761658,
+        0.0,
+        -0.638345122337341
+      ],
+      "bounds_size_m": [
+        1.27596354484558,
+        2.40000009536743,
+        1.2437117099762
+      ],
+      "file": "coop/trees/spruce_young.glb",
+      "glb_sha256": "d53da2ed3e0ee7b583ab6f33a64c699b1c26d5922c12f61023a66cbd145f0c89",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/spruce_young-1.jpg",
+        "models/spruce_young-2.jpg"
+      ],
+      "sheet": "trees.jpg",
+      "visible_pixel_fraction": [
+        0.0811,
+        0.0822
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.267813086509705,
+        0.0,
+        -0.337108999490738
+      ],
+      "bounds_size_m": [
+        0.566842555999756,
+        0.795295834541321,
+        0.732107937335968
+      ],
+      "file": "coop/vegetation/coastal_dunegrass.glb",
+      "glb_sha256": "f3b71f34948cf693070e6c8b0ad2beeafafd8b1892b93f041bd351f43ab363d9",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/coastal_dunegrass-1.jpg",
+        "models/coastal_dunegrass-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.0294,
+        0.0295
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.534712672233582,
+        0.0,
+        -0.496413975954056
+      ],
+      "bounds_size_m": [
+        1.02058506011963,
+        0.97041380405426,
+        1.04005491733551
+      ],
+      "file": "coop/vegetation/creek_ostrich_fern.glb",
+      "glb_sha256": "8cabe92b7d45d6ff243402d760bcdc4a55e4e9f17a3dd7adff94a7e7603a0d5d",
+      "pose": "",
+      "viewable_meshes": 2,
+      "views": [
+        "models/creek_ostrich_fern-1.jpg",
+        "models/creek_ostrich_fern-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.0807,
+        0.0737
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0758287236094475,
+        -0.000261754263192415,
+        -0.0872249007225037
+      ],
+      "bounds_size_m": [
+        0.187231719493866,
+        0.177976235747337,
+        0.182402968406677
+      ],
+      "file": "coop/vegetation/grass_medium_01.glb",
+      "glb_sha256": "3f80e2295cd48ebfb49ed1e7e52fc1e3cca8910b03ea2c57d96e55eec6f5b65d",
+      "pose": "",
+      "viewable_meshes": 3,
+      "views": [
+        "models/grass_medium_01-1.jpg",
+        "models/grass_medium_01-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.1097,
+        0.0701
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.352622330188751,
+        -0.000570093456190079,
+        -0.430483460426331
+      ],
+      "bounds_size_m": [
+        0.741709470748901,
+        1.48459482192993,
+        0.760413527488708
+      ],
+      "file": "coop/vegetation/lakeside_bulrush.glb",
+      "glb_sha256": "6acef9d97f03965c5df577cf0288f5ca988b433e107021fcc1a2ff1d4df08af5",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/lakeside_bulrush-1.jpg",
+        "models/lakeside_bulrush-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.0237,
+        0.0214
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.606318414211273,
+        -0.00455713318660855,
+        -0.692010462284088
+      ],
+      "bounds_size_m": [
+        1.1956684589386,
+        1.47040235996246,
+        1.23967933654785
+      ],
+      "file": "coop/vegetation/lakeside_hazel.glb",
+      "glb_sha256": "16b38c780069d7adc9ffe04dc5adabd5dfd3a8488782d97b6c6f116723c88268",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/lakeside_hazel-1.jpg",
+        "models/lakeside_hazel-2.jpg"
+      ],
+      "sheet": "waterfront-and-understory.jpg",
+      "visible_pixel_fraction": [
+        0.0489,
+        0.0457
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0466863736510277,
+        -0.0466863736510277,
+        -0.856320023536682
+      ],
+      "bounds_size_m": [
+        0.0933727473020554,
+        0.0933727473020554,
+        1.00294375419617
+      ],
+      "file": "coop/weapons/katana.glb",
+      "glb_sha256": "cd92d793327f481733a7ccd5c68466f66173e5dd0400e20f05a832bc35f5b009",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/katana-1.jpg",
+        "models/katana-2.jpg"
+      ],
+      "sheet": "held-equipment.jpg",
+      "visible_pixel_fraction": [
+        0.0323,
+        0.0359
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0161253027617931,
+        -0.0591377913951874,
+        -0.171767085790634
+      ],
+      "bounds_size_m": [
+        0.0318244211375713,
+        0.130668371915817,
+        0.221917062997818
+      ],
+      "file": "coop/weapons/pistol.glb",
+      "glb_sha256": "b596f176cd9bc60db9d1ad83ffc7459302fe08b7f4f3030382f52a46bd041779",
+      "pose": "",
+      "viewable_meshes": 5,
+      "views": [
+        "models/pistol-1.jpg",
+        "models/pistol-2.jpg"
+      ],
+      "sheet": "held-equipment.jpg",
+      "visible_pixel_fraction": [
+        0.1382,
+        0.1213
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0263878088444471,
+        -0.0748260021209717,
+        -0.93590521812439
+      ],
+      "bounds_size_m": [
+        0.0665869638323784,
+        0.204512923955917,
+        1.23097479343414
+      ],
+      "file": "coop/weapons/rifle.glb",
+      "glb_sha256": "baa9761e90d199d87a66fa993cb8f1552739f450f5fd6c5f8738f93134e0b804",
+      "pose": "",
+      "viewable_meshes": 6,
+      "views": [
+        "models/rifle-1.jpg",
+        "models/rifle-2.jpg"
+      ],
+      "sheet": "held-equipment.jpg",
+      "visible_pixel_fraction": [
+        0.0739,
+        0.0733
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0750951543450356,
+        -0.174999997019768,
+        -0.0443702563643456
+      ],
+      "bounds_size_m": [
+        0.103431589901447,
+        0.685000002384186,
+        0.0855795592069626
+      ],
+      "file": "coop/wild_people/club.glb",
+      "glb_sha256": "035569abf2f4239ea43d618e197c5b80145906e987b183040bbd078a273a8255",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/club-1.jpg",
+        "models/club-2.jpg"
+      ],
+      "sheet": "held-equipment.jpg",
+      "visible_pixel_fraction": [
+        0.0463,
+        0.0453
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.280135124921799,
+        0.00600000005215406,
+        -0.184000000357628
+      ],
+      "bounds_size_m": [
+        0.560270249843597,
+        1.75101757049561,
+        0.360998302698135
+      ],
+      "file": "coop/wild_people/female.glb",
+      "glb_sha256": "f2698c061fa1b6464074c299299d4e6edb3df65592666796bc36c521863e245d",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/female-1.jpg",
+        "models/female-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.0931,
+        0.0941
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.298338383436203,
+        0.00400000018998981,
+        -0.188999995589256
+      ],
+      "bounds_size_m": [
+        0.596676766872406,
+        1.93242180347443,
+        0.377271354198456
+      ],
+      "file": "coop/wild_people/female_elite.glb",
+      "glb_sha256": "e0e2a78095850af0b02adfa6e85997f5b6e0d0cb30a2541c0d7d069b29a5e6fc",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/female_elite-1.jpg",
+        "models/female_elite-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.079,
+        0.0782
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.363000005483627,
+        0.0109999999403954,
+        -0.184000000357628
+      ],
+      "bounds_size_m": [
+        0.726000010967255,
+        1.84104716777802,
+        0.356496155261993
+      ],
+      "file": "coop/wild_people/male.glb",
+      "glb_sha256": "6c6442b6d835ba0569475a170238dad579cb581a206f64b30f11f4c0c9f4b9aa",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/male-1.jpg",
+        "models/male-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.0835,
+        0.0836
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.323338389396667,
+        0.00400000018998981,
+        -0.188999995589256
+      ],
+      "bounds_size_m": [
+        0.646676778793335,
+        1.93242180347443,
+        0.376244455575943
+      ],
+      "file": "coop/wild_people/male_elite.glb",
+      "glb_sha256": "d93a03755091a5b9b4cc821d33d589280765203b3bf8cfc6aa310d8a8cc64c1b",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/male_elite-1.jpg",
+        "models/male_elite-2.jpg"
+      ],
+      "sheet": "characters-and-wildlife.jpg",
+      "visible_pixel_fraction": [
+        0.0812,
+        0.0805
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.220749273896217,
+        -0.374749302864075,
+        -0.133199036121368
+      ],
+      "bounds_size_m": [
+        0.441498547792435,
+        0.749404847621918,
+        0.14519214630127
+      ],
+      "file": "coop/wild_people/shield.glb",
+      "glb_sha256": "a3ea5f065257a0c797b98ed5a0767870647e32d633271a1b6ff16136295eae4d",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/shield-1.jpg",
+        "models/shield-2.jpg"
+      ],
+      "sheet": "held-equipment.jpg",
+      "visible_pixel_fraction": [
+        0.1544,
+        0.1481
+      ]
+    },
+    {
+      "bounds_origin": [
+        -0.0399999991059303,
+        -0.720000028610229,
+        -0.0210192687809467
+      ],
+      "bounds_size_m": [
+        0.0799999982118607,
+        1.80400002002716,
+        0.0412895753979683
+      ],
+      "file": "coop/wild_people/spear.glb",
+      "glb_sha256": "4013bb821b2257af996e25b159d012315c6b45e0f3204dafd051046d00ca384b",
+      "pose": "",
+      "viewable_meshes": 1,
+      "views": [
+        "models/spear-1.jpg",
+        "models/spear-2.jpg"
+      ],
+      "sheet": "held-equipment.jpg",
+      "visible_pixel_fraction": [
+        0.0113,
+        0.0116
+      ]
+    }
+  ],
+  "failures": [],
+  "zones": [
+    {
+      "camera_m": [
+        1.10000002384186,
+        1.66999995708466,
+        -113.0
+      ],
+      "glb_sha256": "a295ee9bcf1861118fa769ba89f0eeb56b8525870e00d1e77369b34abfe56360",
+      "id": "backcountry",
+      "runtime_batches": 12,
+      "runtime_meshes": 22,
+      "view": "zones/backcountry.jpg"
+    },
+    {
+      "camera_m": [
+        1.89999997615814,
+        1.66999995708466,
+        -85.0
+      ],
+      "glb_sha256": "b6043879d935d9121d5f827165dec153c0f6612d026b98d93a9ab7afe0c90403",
+      "id": "camp",
+      "runtime_batches": 18,
+      "runtime_meshes": 23,
+      "view": "zones/camp.jpg"
+    },
+    {
+      "camera_m": [
+        0.100000001490116,
+        1.66999995708466,
+        -71.5
+      ],
+      "glb_sha256": "2143263ab802d484aee8f1c839df474ecccd504d1a6d63016a4447e9be5ba15f",
+      "id": "approach",
+      "runtime_batches": 21,
+      "runtime_meshes": 21,
+      "view": "zones/approach.jpg"
+    },
+    {
+      "camera_m": [
+        -4.19999980926514,
+        1.66999995708466,
+        -60.2000007629395
+      ],
+      "glb_sha256": "74aecc38ebd5fea24416529e52d7979e6c90f7c75efbc5f11090c16908235bab",
+      "id": "creek",
+      "runtime_batches": 29,
+      "runtime_meshes": 22,
+      "view": "zones/creek.jpg"
+    },
+    {
+      "camera_m": [
+        1.60000002384186,
+        1.66999995708466,
+        -40.0
+      ],
+      "glb_sha256": "1c244498b7c5f71d26baeeab95f91323188ca821f5b3d526640363438dd0a8c8",
+      "id": "crossing",
+      "runtime_batches": 27,
+      "runtime_meshes": 21,
+      "view": "zones/crossing.jpg"
+    },
+    {
+      "camera_m": [
+        6.30000019073486,
+        1.66999995708466,
+        -19.0
+      ],
+      "glb_sha256": "0c8982082529f8b15f7e4402f4fa1ea290eb6cc706fe154885dea56264380f26",
+      "id": "tower",
+      "runtime_batches": 17,
+      "runtime_meshes": 23,
+      "view": "zones/tower.jpg"
+    },
+    {
+      "camera_m": [
+        0.200000002980232,
+        1.66999995708466,
+        0.400000005960464
+      ],
+      "glb_sha256": "8e8ab1e25c5eafbe2026362cdab5c9efbda91b54355b6453fe887633802809d1",
+      "id": "ridge",
+      "runtime_batches": 12,
+      "runtime_meshes": 22,
+      "view": "zones/ridge.jpg"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ROOM_JOIN storage-qa dec35af4e4dbd819 peers=1
+ROOM_JOIN storage-qa f390f77638a22380 peers=2
+PASS legacy room sees one shared set of containers, furniture and a furnace
+PASS capacity declaration for wicker_basket
+PASS actual store path fills wicker_basket
+PASS full wicker_basket rejects new kinds and merges existing kinds
+PASS capacity declaration for wood_crate
+PASS actual store path fills wood_crate
+PASS full wood_crate rejects new kinds and merges existing kinds
+PASS capacity declaration for military_crate
+PASS actual store path fills military_crate
+PASS full military_crate rejects new kinds and merges existing kinds
+PASS capacity declaration for wood_barrel
+PASS actual store path fills wood_barrel
+PASS full wood_barrel rejects new kinds and merges existing kinds
+PASS capacity declaration for wood_barrel_tall
+PASS actual store path fills wood_barrel_tall
+PASS full wood_barrel_tall rejects new kinds and merges existing kinds
+PASS save failure rolls back store
+PASS retry commits once and shares basket contents
+PASS remote client cannot take from basket
+PASS full player cannot withdraw another kind
+PASS save failure rolls back withdraw
+PASS two peer withdrawals of last item conserve quantity
+PASS store two items in crate
+PASS taking crate carries original object
+PASS teammate cannot withdraw or carry already held crate
+PASS throw starts a shared flight with identical contents
+PASS mid-flight checkpoint retains contents in settled disk state
+PASS thrown crate lands with both stored items
+PASS landed crate supports teammate withdrawal and return
+PASS failed save rolls back dismantle and original storage
+PASS basket dismantle does not yield planks
+PASS full inventory spills three woven strips and all original rope as separate stacks
+PASS plank fuel consumes one item and starts visible fire time
+PASS can carry a barrel to fire
+PASS burn consumes whole wooden barrel, extends fuel, unloads original items
+PASS craft wood_table consumes exact recipe and makes one world object: 制作了木桌
+PASS craft wood_chair consumes exact recipe and makes one world object: 制作了木椅
+PASS craft rope_ladder consumes exact recipe and makes one world object: 制作了绳梯
+PASS craft wood_sign consumes exact recipe and makes one world object: 制作了木路牌
+PASS owner writes sanitized sign text and teammate sees it
+PASS teammate cannot edit another player's sign
+PASS chair enables real seated actor pose
+PASS moving stands up from chair
+PASS rope ladder use makes movement ascend
+PASS jump releases rope ladder
+PASS new table accepts a real rendered non-food provision: 放在木桌上：木板
+PASS real crocodile hit yields one corpse with three raw cuts
+PASS both teammates wait for the shoreline crocodile to finish collapsing
+PASS a reloaded active crocodile collapse preserves the same handoff time
+PASS legacy crocodile corpses load with settled loot
+PASS water crocodile death leaves a settled corpse at an accessible shore point
+PASS players harvest corpse loot and cannot deposit provisions
+PASS lit fire grills one raw crocodile cut
+PASS workbench assembles sandwich from grilled meat and bread
+ROOM_LEAVE storage-qa dec35af4e4dbd819
+ROOM_LEAVE storage-qa f390f77638a22380
+PASS empty room unloads after safe save
+ROOM_JOIN storage-qa dec35af4e4dbd819 peers=1
+ROOM_JOIN storage-qa f390f77638a22380 peers=2
+PASS legacy default basket stays dismantled and loose wicker stack retains all three after reload
+PASS thrown crate and both stored breads survive reload
+PASS campfire fuel remains shared after reload
+PASS sign ownership and sanitized text persist
+PASS provision stays associated with its crafted table
+PASS teammate can carry crafted table
+PASS carrying a reloaded table puts its physical provision on the ground
+PASS crocodile death and remaining loot survive reload
+STORAGE_AUTHORITY_QA checks=63 failures=0

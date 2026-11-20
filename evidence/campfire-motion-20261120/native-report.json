@@ -1,0 +1,20 @@
+{
+  "engine": "Godot 4.7.2 Compatibility / Apple M1",
+  "size": [
+    1280,
+    720
+  ],
+  "checks": 14,
+  "failures": 0,
+  "rain_clock_seconds": 97.4,
+  "night_clock_seconds": 190.0,
+  "flame_window_xyxy": [
+    500,
+    170,
+    770,
+    530
+  ],
+  "night_flame_pixels_changed_after_160ms": 16497,
+  "night_flame_pixels_changed_when_fuel_expires": 57394,
+  "rain_pixels_changed_with_ground_cover": 12709
+}

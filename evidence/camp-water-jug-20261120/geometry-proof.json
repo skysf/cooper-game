@@ -1,0 +1,48 @@
+{
+  "baselineTriangles": 1744,
+  "candidateTriangles": 1804,
+  "bothBoundsMinMaxGodotM": [
+    [
+      -0.09200000017881393,
+      0.0,
+      -0.09200000017881393
+    ],
+    [
+      0.14407256245613098,
+      0.24799999594688416,
+      0.09200000017881393
+    ]
+  ],
+  "identicalOriginalTrianglesIncludingWinding": true,
+  "extraHandleRootTriangles": 60,
+  "baselineGLBBytes": 51348,
+  "candidateGLBBytes": 51880,
+  "candidateMaterials": 2,
+  "maps": {
+    "camp_jug_celadon_nor_gl.webp": {
+      "sizeBytes": 605344,
+      "dimension": [
+        1024,
+        1024
+      ],
+      "sha256": "c191494abe3d9a092e541a3aa619ae30a8da1f4f11be30d69e238dbd07c1607a"
+    },
+    "camp_jug_celadon_diff.jpg": {
+      "sizeBytes": 87733,
+      "dimension": [
+        1024,
+        1024
+      ],
+      "sha256": "bdc9802a63ae3cb67601a3f5b0e0643f68fc28213cfdf14e622b12faa183ab82"
+    },
+    "camp_jug_celadon_rough.webp": {
+      "sizeBytes": 135348,
+      "dimension": [
+        1024,
+        1024
+      ],
+      "sha256": "fd66c28492e3cd6cbbc6b74957885b675a6a7974ad07a7645f077525870ddf69"
+    }
+  },
+  "candidateGLBSHA256": "9f5635e1a181507460d524b8e83745a4492e9c42a989e2d4263ec7ceacc65820"
+}

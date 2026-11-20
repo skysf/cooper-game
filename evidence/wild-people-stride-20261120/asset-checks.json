@@ -1,0 +1,120 @@
+{
+  "male": {
+    "previousGlbSha256": "ad202146189e0aac91ddcfa14c856874d24e95c4d2c5577afcab1ea17de65d33",
+    "glbSha256": "504b04307690de02dbe619e2b8240f8daf99d8dd133c9d55a6b08f23b00244d7",
+    "blendSha256": "afe3601951a5634ed6773d7be93adb3915fbb60cf713a1cf16abe25760503fe2",
+    "embeddedImageSha256": [
+      "bf0048505242dd5cf0d494e7f091d986c9d93341960e0faf9b48c90f57b966a4"
+    ],
+    "sameMeshAndSkinBuffers": true,
+    "sameMaterialsAndNodes": true,
+    "unchangedActions": [
+      "Attack",
+      "Block-loop",
+      "Captive-loop",
+      "Down",
+      "Guard-loop",
+      "Idle-loop",
+      "Rest-loop",
+      "Throw"
+    ],
+    "bakedActions": [
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Run-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop",
+      "Walk-loop"
+    ],
+    "bones": 25
+  },
+  "female": {
+    "previousGlbSha256": "85487ca43d4bb2760574df402f5f64131faeb170a9c9ebe359657e8bffcf79b5",
+    "glbSha256": "3d0f0291d186ef79da3ab711af2e151a3a5962ee52d8ffddb445d4e950583ffb",
+    "blendSha256": "9efd1a24a8b0f73c79914ee3285d7420a48adab12b00bdf1e0459d174d8d8c72",
+    "embeddedImageSha256": [
+      "79ba999a1d3a41f9ee63c0fd1eb364e86c4d16dafc4d5f85ffa3cdcc53388672"
+    ],
+    "sameMeshAndSkinBuffers": true,
+    "sameMaterialsAndNodes": true,
+    "unchangedActions": [
+      "Attack",
+      "Block-loop",
+      "Captive-loop",
+      "Down",
+      "Guard-loop",
+      "Idle-loop",
+      "Rest-loop",
+      "Throw"
+    ],
+    "bakedActions": [
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Run-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop",
+      "Walk-loop"
+    ],
+    "bones": 25
+  },
+  "male_elite": {
+    "previousGlbSha256": "7414ae9b68e424a155c7c70176286f233358bd241fe15ec1b0f889e683f25feb",
+    "glbSha256": "a6efc07181857cc3b098273a9fa63c4e19c24f48b437980fb95a9f5d7f8ed446",
+    "blendSha256": "f9134c8bb152a14cf4bf82d6a3c1e258395e1296313da59b644d50818559837f",
+    "embeddedImageSha256": [
+      "bf0048505242dd5cf0d494e7f091d986c9d93341960e0faf9b48c90f57b966a4",
+      "bf8eb1b9cb9f1832bd92efbe8bef436f02eb17a12925026eb38700e1ab040582"
+    ],
+    "sameMeshAndSkinBuffers": true,
+    "sameMaterialsAndNodes": true,
+    "unchangedActions": [
+      "Attack",
+      "Block-loop",
+      "Captive-loop",
+      "Down",
+      "Guard-loop",
+      "Idle-loop",
+      "Rest-loop",
+      "Throw"
+    ],
+    "bakedActions": [
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Run-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop",
+      "Walk-loop"
+    ],
+    "bones": 25
+  },
+  "female_elite": {
+    "previousGlbSha256": "aeef4a4c9db1834c572813ad60c7e54e63da34e3f5478786b95a55dc0548bb92",
+    "glbSha256": "590a1f9741f7881c6e8cca9d782014668dd30bc9ec2cf4904c967b9c5efa0b7f",
+    "blendSha256": "a38c5ca17c9292beeabe089895aad0ec7941ec364e374fcb876d19203f8dc7fc",
+    "embeddedImageSha256": [
+      "79ba999a1d3a41f9ee63c0fd1eb364e86c4d16dafc4d5f85ffa3cdcc53388672",
+      "bf8eb1b9cb9f1832bd92efbe8bef436f02eb17a12925026eb38700e1ab040582"
+    ],
+    "sameMeshAndSkinBuffers": true,
+    "sameMaterialsAndNodes": true,
+    "unchangedActions": [
+      "Attack",
+      "Block-loop",
+      "Captive-loop",
+      "Down",
+      "Guard-loop",
+      "Idle-loop",
+      "Rest-loop",
+      "Throw"
+    ],
+    "bakedActions": [
+      "Limp-loop",
+      "LimpLeft-loop",
+      "Run-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop",
+      "Walk-loop"
+    ],
+    "bones": 25
+  }
+}

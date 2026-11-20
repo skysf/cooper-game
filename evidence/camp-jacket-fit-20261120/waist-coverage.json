@@ -1,0 +1,38 @@
+{
+  "stand": {
+    "nearMidlineLoss": 0,
+    "edgeLoss": 34,
+    "baseCovered": 5780,
+    "newCovered": 5746
+  },
+  "carry_remote": {
+    "nearMidlineLoss": 0,
+    "edgeLoss": 34,
+    "baseCovered": 5780,
+    "newCovered": 5746
+  },
+  "get_up_knee": {
+    "nearMidlineLoss": 0,
+    "edgeLoss": 0,
+    "baseCovered": 5907,
+    "newCovered": 5907
+  },
+  "down": {
+    "nearMidlineLoss": 0,
+    "edgeLoss": 34,
+    "baseCovered": 5781,
+    "newCovered": 5747
+  },
+  "sit": {
+    "nearMidlineLoss": 0,
+    "edgeLoss": 0,
+    "baseCovered": 5949,
+    "newCovered": 5949
+  },
+  "swim": {
+    "nearMidlineLoss": 0,
+    "edgeLoss": 36,
+    "baseCovered": 5785,
+    "newCovered": 5749
+  }
+}

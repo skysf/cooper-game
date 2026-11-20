@@ -1,0 +1,40 @@
+{
+  "coal": {
+    "parts": 5,
+    "sourceGeometrySHA256": "e2b2325563a42ca2e8f211d0d6af13b7707049e46e9f877f2b185c380694dbd1",
+    "occupiedTexels": 124061,
+    "overlappingTexels": 0,
+    "srgbMeans": [
+      0.1772,
+      0.1879,
+      0.1965
+    ],
+    "roughnessRange": [
+      0.4659,
+      0.5683,
+      0.6605,
+      0.7009,
+      0.7529
+    ],
+    "normalSlopesP95": 0.12622001767158508
+  },
+  "iron_ore": {
+    "parts": 5,
+    "sourceGeometrySHA256": "2527ca049421e76d5645e0e818e11646f49e9f64f47f75a3456f9295f649453b",
+    "occupiedTexels": 143551,
+    "overlappingTexels": 0,
+    "srgbMeans": [
+      0.377,
+      0.3098,
+      0.2639
+    ],
+    "roughnessRange": [
+      0.5963,
+      0.6403,
+      0.7033,
+      0.8076,
+      0.8212
+    ],
+    "normalSlopesP95": 0.46227312088012695
+  }
+}

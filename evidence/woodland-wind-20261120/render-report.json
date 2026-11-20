@@ -1,0 +1,49 @@
+{
+  "bark_material": "res://vegetation/birch_wood.gdshader",
+  "grass_instances_in_camp_chunk": 1325,
+  "grass_material": "res://vegetation/grass.gdshader",
+  "gust_field": [
+    0.653020977973938,
+    -0.757339835166931,
+    0.660000026226044,
+    1.27980864048004
+  ],
+  "gust_time": 94.5,
+  "leaf_material": "res://vegetation/birch_leaves.gdshader",
+  "rain": 1.0,
+  "steady_field": [
+    0.51608669757843,
+    -0.856536328792572,
+    0.660000026226044,
+    1.69167869816522e-12
+  ],
+  "steady_time": 77.7,
+  "engine": "Godot 4.7.2 / OpenGL 4.1 Metal Compatibility / Apple M1",
+  "resolution": [
+    1280,
+    720
+  ],
+  "context": "Production camp chunk and assets. Same camera, tree age, light and rain within each pair. Only the wind sample changes.",
+  "wind_fields": "unit east and south components, steady strength, gust strength",
+  "motion_capture_step_s": 0.28,
+  "motion_capture_frames": 16,
+  "shader_motion_only": true,
+  "pixel_delta_at_fixed_camera_and_light": {
+    "whole": {
+      "pixels_over_8_levels": 59048,
+      "rgb_mean_absolute": 2.3888
+    },
+    "crown": {
+      "pixels_over_8_levels": 268967,
+      "rgb_mean_absolute": 9.3463
+    },
+    "wood": {
+      "pixels_over_8_levels": 40025,
+      "rgb_mean_absolute": 1.5305
+    },
+    "grass": {
+      "pixels_over_8_levels": 29716,
+      "rgb_mean_absolute": 0.7725
+    }
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "case": "reported-round-rock-stall",
+    "collisionPreserved": true,
+    "passed": true,
+    "seconds": 7.0
+  },
+  {
+    "case": "east-raid-to-camp",
+    "collisionPreserved": true,
+    "passed": true,
+    "seconds": 9.6
+  },
+  {
+    "case": "west-raid-to-camp",
+    "collisionPreserved": true,
+    "passed": true,
+    "seconds": 8.6
+  },
+  {
+    "case": "companion-to-real-creek",
+    "collisionPreserved": true,
+    "passed": true,
+    "seconds": 16.7
+  },
+  {
+    "case": "creek-to-fruit-through-woodland",
+    "collisionPreserved": true,
+    "passed": true,
+    "seconds": 14.9
+  },
+  {
+    "case": "injured-return-to-rest",
+    "collisionPreserved": true,
+    "passed": true,
+    "seconds": 4.8
+  }
+]

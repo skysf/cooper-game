@@ -135,6 +135,54 @@ func _verify() -> void:
 	h.wear_clothes(Survival.initial_wear())
 	_check(h.garments.cap.visible and not h.hair.visible and h.motion_clip == "Stand" and h.animator.assigned_animation == "Stand", "clothing changes and preview-style neutral standing remain natural")
 	samples.transitions = h.motion_events
+	_verify_recovery()
 	print("PLAYER_LOCOMOTION " + JSON.stringify({"checks": checks, "failed": failed, "total": checks.size(), "samples": samples}))
 	h.free()
 	quit(0 if failed == 0 else 1)
+
+func _head_height(hiker: Hiker) -> float:
+	return hiker.rig.to_global(hiker.rig.get_bone_global_pose(hiker.head_bone).origin).y
+
+func _verify_recovery() -> void:
+	var h := _person(Vector2.ZERO)
+	var state := Motion.spawn(Vector2.ZERO)
+	state.merge({"health":0.0,"downAt":20.0})
+	h.set_motion_state(state)
+	h.holding = true
+	h.shielding = true
+	var boot_low := INF
+	for index in 61:
+		h.set_recovery_state(state, 20.0 + float(index)/60.0)
+		h.advance(DT, true)
+		for boot: MeshInstance3D in h.boots:
+			for vertex: Vector3 in boot.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]:
+				boot_low = minf(boot_low, (boot.global_transform * vertex).y)
+	var down := _head_height(h)
+	var down_hand := h.rig.get_bone_global_pose(h.grip_bone)
+	_check(h.motion_clip == "recovery/Knockout" and down < .40 and h.holding_blend < .01 and h.shield_blend < .01,
+		"the equipped player lands prone and carried-item poses do not override the fall")
+	h.set_recovery_state(state, 34.5)
+	h.advance(DT, true)
+	_check(is_equal_approx(_head_height(h), down) and h.rig.get_bone_global_pose(h.grip_bone).is_equal_approx(down_hand),
+		"late observations hold the final fall pose on the shared room clock")
+	state.health = 45.0
+	state.downAt = -1.0
+	state.revivedAt = 34.5
+	h.holding = false
+	h.shielding = false
+	h.set_recovery_state(state, 34.5)
+	h.advance(DT, true)
+	_check(h.motion_clip == "recovery/Recover" and absf(_head_height(h) - down) < .025,
+		"the get-up starts from the settled fall pose at the same world position")
+	for index in range(1, 76):
+		h.set_recovery_state(state, 34.5 + float(index)/60.0)
+		h.advance(DT, true)
+		for boot: MeshInstance3D in h.boots:
+			for vertex: Vector3 in boot.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]:
+				boot_low = minf(boot_low, (boot.global_transform * vertex).y)
+	var rising := _head_height(h)
+	_check(h.motion_clip == "Stand" and rising > 1.50 and h.position == Vector3.ZERO,
+		"the equipped player returns to standing without changing the actor position")
+	_check(boot_low >= -.03, "the actual attached boots remain close to or above the floor during the fall and rise")
+	samples.recovery = {"fallenHead":down, "standingHead":rising, "minEquippedBoot":boot_low}
+	h.free()

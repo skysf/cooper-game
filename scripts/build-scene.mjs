@@ -102,9 +102,14 @@ function frond(b,base,theta,L,W,dy,dip,shade) {
 }
 const {x:sx,z:sz,width:sw,depth:sd}=cfg.shelter;
 const trees=[];
+const crownPilots=forCoop?JSON.parse(fs.readFileSync('shared/coop-streamed-crowns.json','utf8')):[];
+const crownAt=new Map(crownPilots.map(item=>[item.at.join(','),item]));
+if(forCoop)scene.streamedCrowns=[];
 function tree(x,z,h,r) {
   const orientation=rng()*TAU, leanX=between(-.5,.5),leanZ=between(-.5,.5);
   const hidden=lakeClearing(x,z,1.018);
+  const pilot=hidden?null:crownAt.get([rounded(x),rounded(z)].join(','));
+  const woodStart=bark.ix.length/3, needleStart=leaf.ix.length/3;
   const bookmark=hidden?meshBookmark(leaf):null;
   if(!hidden){
     placed('fir',x,z,{height:rounded(h),radius:rounded(r),yaw:rounded(orientation)});
@@ -139,6 +144,8 @@ function tree(x,z,h,r) {
     }
   }
   if(forCoop&&!hidden) woodlandFirWood(bark,vert,{x,z,h,radius:r,orientation,trunk:trunkPoint,snags,crowns});
+  if(pilot)scene.streamedCrowns.push({...pilot,height:rounded(h),triangles:{
+    bark:[woodStart,bark.ix.length/3],needles:[needleStart,leaf.ix.length/3]}});
   if(hidden)discardGeometry(bookmark);
 }
 function legacyBole(x,z,h,r,orientation,trunkPoint) {
@@ -322,6 +329,7 @@ beam([sx+.92,1.92,front-.16],[sx+.92,2.08,front-.16],.11,.11,1,lamp);
 beam([sx+.92,2.07,front-.16],[sx+.92,2.11,front-.16],.14,.14,.37);
 
 const output=forCoop?'.cache/coop-world-source':'shared';
+if(forCoop&&scene.streamedCrowns.length!==crownPilots.length)throw new Error('A streamed crown root was not found.');
 fs.mkdirSync(output,{recursive:true});
 const model=output+'/woodland.glb';
 scene.triangles=glb.write(model);

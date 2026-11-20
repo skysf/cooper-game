@@ -3,20 +3,10 @@ extends "res://camp_dog.gd"
 # Keep circular collision geometry authoritative. The route grid reserves a small
 # clearance so diagonals between free grid centres do not clip a curved rock edge.
 const ROUTE_MARGIN := 0.14
+const PEOPLE_BODY := Vector2(0.36,1.82)
 
-func _build_navigation(grid: Dictionary) -> void:
-	super._build_navigation(grid)
-	var end := navigation.region.end
-	for z in range(navigation.region.position.y, end.y):
-		for x in range(navigation.region.position.x, end.x):
-			var point := Vector2(x, z) * CELL
-			var cell := Vector2i(x, z)
-			if navigation.is_point_solid(cell):
-				continue
-			for circle: Vector3 in grid.get(Vector2i((point / Rules.GRID_SIZE).floor()), []):
-				if point.distance_squared_to(Vector2(circle.x, circle.y)) < pow(sqrt(circle.z) + ROUTE_MARGIN, 2):
-					navigation.set_point_solid(cell)
-					break
+func _route_margin() -> float:
+	return ROUTE_MARGIN
 
 func _waypoint(at: Vector2, goal: Vector2, route: Dictionary, grid: Dictionary, elapsed: float) -> Vector2:
 	if route.has("detour"):
@@ -26,6 +16,13 @@ func _waypoint(at: Vector2, goal: Vector2, route: Dictionary, grid: Dictionary, 
 		route.erase("detour")
 		route.refresh = 0.0
 	var result := super._waypoint(at, goal, route, grid, elapsed)
+	# A refreshed path can start at the nearest grid centre just behind the NPC.
+	# Step into the usable next segment before choosing a facing direction.
+	var path: PackedVector2Array = route.get("path", PackedVector2Array())
+	var index: int = route.get("index", 0)
+	if index + 1 < path.size() and result == path[index] and at.distance_to(result) < CELL and _clear(at, path[index + 1], grid):
+		route.index = index + 1
+		result = path[index + 1]
 	if (result.is_equal_approx(at) and at.distance_to(goal) > 0.4) or not _clear(at, result, grid):
 		return recover(at, goal, route, grid, elapsed)
 	return result

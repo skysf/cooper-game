@@ -2,8 +2,10 @@ extends Node3D
 
 const CHARACTER = preload("res://props/sky_character.glb")
 const BACKPACK = preload("res://props/camp_backpack.glb")
+const BOOT = preload("res://props/camp_boot.glb")
 const Clothing = preload("res://clothing.gd")
 const LOCOMOTION = preload("res://animations/player_locomotion.tres")
+const RECOVERY = preload("res://animations/player_recovery.tres")
 const WALK_REFERENCE_SPEED := 1.46
 const RUN_REFERENCE_SPEED := 3.56
 
@@ -19,13 +21,13 @@ const CLOTHING_BONES := {
 }
 const CLOTHING_FIT := {
 	"cap": [Vector3(0.78, 0.79, 0.85), Vector3(0.0, 0.374, 0.010)],
+	"helmet": [Vector3.ONE, Vector3(0.0, 1.634, -0.004)],
 	"jacket": [Vector3(0.93, 0.99, 0.96), Vector3(0.0, 0.045, 0.008)],
 	"pants": [Vector3(0.95, 1.157, 0.95), Vector3(0.0, -0.005, 0.0)],
 }
 const BACKPACK_REST := Transform3D(Basis.IDENTITY, Vector3(0.0, 1.19, 0.215))
 const JACKET_LINER_REST := Transform3D(
 	Basis(Vector3.RIGHT, Vector3.UP, Vector3(0.0, 0.0, 0.64)), Vector3(0.0, 1.13, 0.025))
-const BOOT_SCALE := Vector3(0.142, 0.138, 0.282)
 
 class GarmentRig:
 	var skeleton: Skeleton3D
@@ -51,6 +53,8 @@ var render_speed := 0.0
 var motion_clip := "Stand"
 var motion_rate := 1.0
 var motion_elapsed := 0.0
+var knockout_elapsed := -1.0
+var rise_elapsed := -1.0
 var last_grounded := true
 var last_swimming := false
 var motion_seen := false
@@ -66,6 +70,8 @@ var rig: Skeleton3D
 var animator: AnimationPlayer
 var backpack: Node3D
 var jacket_liner: MeshInstance3D
+var pants_instance: MeshInstance3D
+var pants_regular: ArrayMesh
 var garments: Dictionary = {}
 var garment_rigs: Dictionary = {}
 var worn: Dictionary = {}
@@ -85,8 +91,9 @@ var bend_base: Dictionary = {}
 var bend_axis: Dictionary = {}
 var bend_indices: Dictionary = {}
 var bend_angles: Dictionary = {}
-static var liner_mesh: CapsuleMesh
-static var boot_mesh: SphereMesh
+static var liner_mesh: ArrayMesh
+static var pants_waist_fit: ArrayMesh
+static var boot_meshes: Dictionary = {}
 
 func outfit(slot: int) -> void:
 	player_slot = slot
@@ -97,6 +104,7 @@ func outfit(slot: int) -> void:
 	animator = model.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
 	animator.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	animator.add_animation_library(&"move", LOCOMOTION)
+	animator.add_animation_library(&"recovery", RECOVERY)
 	torso = model.find_child("SkyTorso", true, false) as Node3D
 	bare_legs = model.find_child("SkyLegs", true, false) as Node3D
 	shorts = model.find_child("SkyShorts", true, false) as Node3D
@@ -118,19 +126,19 @@ func outfit(slot: int) -> void:
 
 func _add_boots() -> void:
 	model.find_child("SkyFeet", true, false).hide()
-	if boot_mesh == null:
-		boot_mesh = SphereMesh.new()
-		boot_mesh.radial_segments = 14
-		boot_mesh.rings = 8
-		var rubber := StandardMaterial3D.new()
-		rubber.albedo_color = Color("#343430")
-		rubber.roughness = 0.85
-		boot_mesh.material = rubber
+	if boot_meshes.is_empty():
+		var asset: Node3D = BOOT.instantiate()
+		for name in ["BootLeft", "BootRight"]:
+			boot_meshes[name] = (asset.get_node(name) as MeshInstance3D).mesh
+		asset.free()
 	for name: StringName in [&"foot_L", &"foot_R"]:
 		var index := rig.find_bone(name)
-		var rest := Transform3D(Basis.from_scale(BOOT_SCALE), _bone_in_body(index).origin + Vector3(0, 0.003, -0.067))
+		var ankle := _bone_in_body(index).origin
+		# The boot is authored with its sole at zero and its origin below the ankle.
+		var rest := Transform3D(Basis.IDENTITY, Vector3(ankle.x, 0.0, ankle.z))
 		var boot := MeshInstance3D.new()
-		boot.mesh = boot_mesh
+		boot.name = "BootLeft" if name == &"foot_L" else "BootRight"
+		boot.mesh = boot_meshes[String(boot.name)]
 		boot.transform = rest
 		body.add_child(boot)
 		foot_bones.append(index)
@@ -167,10 +175,13 @@ func _load_garment(item: String) -> void:
 	garment.scale = fit[0]
 	garment.position = fit[1]
 	garments[item] = garment
-	if item == "cap":
+	if item in ["cap", "helmet"]:
 		return
 	if item == "jacket":
 		_add_jacket_liner()
+	elif item == "pants":
+		pants_instance = garment.find_children("*", "MeshInstance3D", true, false)[0] as MeshInstance3D
+		pants_regular = pants_instance.mesh as ArrayMesh
 	var binding := GarmentRig.new()
 	binding.skeleton = garment.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	binding.to_body = body.global_transform.affine_inverse() * binding.skeleton.global_transform
@@ -185,32 +196,95 @@ func _load_garment(item: String) -> void:
 func _add_jacket_liner() -> void:
 	# The open jacket has an inner layer, while its sleeves cover the skinned torso.
 	if liner_mesh == null:
-		liner_mesh = CapsuleMesh.new()
-		liner_mesh.radius = 0.151
-		liner_mesh.height = 0.49
-		liner_mesh.radial_segments = 14
-		liner_mesh.rings = 5
+		var capsule := CapsuleMesh.new()
+		capsule.radius = 0.151
+		capsule.height = 0.49
+		capsule.radial_segments = 14
+		capsule.rings = 5
+		var arrays := capsule.get_mesh_arrays()
+		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+		var normals: PackedVector3Array = arrays[Mesh.ARRAY_NORMAL]
+		# Preserve the front of the dark inner layer and keep its back inside the coat.
+		for index in vertices.size():
+			var p := vertices[index]
+			var normal := normals[index]
+			p.x *= 0.90
+			normal.x /= 0.90
+			if p.z > -0.048:
+				p.z = -0.048 + (p.z + 0.048) * 0.17
+				normal.z /= 0.17
+			vertices[index] = p
+			normals[index] = normal.normalized()
+		arrays[Mesh.ARRAY_VERTEX] = vertices
+		arrays[Mesh.ARRAY_NORMAL] = normals
+		arrays[Mesh.ARRAY_TANGENT] = null
+		liner_mesh = ArrayMesh.new()
+		liner_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 		var fabric := StandardMaterial3D.new()
 		fabric.albedo_color = Color("#283431")
 		fabric.roughness = 0.95
-		liner_mesh.material = fabric
+		liner_mesh.surface_set_material(0, fabric)
 	jacket_liner = MeshInstance3D.new()
 	jacket_liner.mesh = liner_mesh
 	jacket_liner.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	body.add_child(jacket_liner)
 
+func _tucked_pants(source: ArrayMesh) -> ArrayMesh:
+	var fitted := ArrayMesh.new()
+	for surface in source.get_surface_count():
+		var arrays := source.surface_get_arrays(surface)
+		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+		var normals: PackedVector3Array = arrays[Mesh.ARRAY_NORMAL]
+		for index in vertices.size():
+			var p := vertices[index]
+			if p.y <= 0.72:
+				continue
+			var waist := smoothstep(0.745, 0.864, p.y)
+			var across := 1.0 - 0.19 * waist
+			var depth := 1.0 - 0.28 * waist
+			p.x *= across
+			p.z *= depth
+			p.y -= 0.12 * (p.y - 0.72) * smoothstep(0.72, 0.77, p.y)
+			vertices[index] = p
+			var normal := normals[index]
+			normals[index] = Vector3(normal.x / across, normal.y, normal.z / depth).normalized()
+		arrays[Mesh.ARRAY_VERTEX] = vertices
+		arrays[Mesh.ARRAY_NORMAL] = normals
+		# The fitted waist keeps the exact vertex order, so the imported LODs still apply.
+		var lods := {}
+		var surface_data := RenderingServer.mesh_get_surface(source.get_rid(), surface)
+		for level: Dictionary in surface_data.get("lods", []):
+			var raw: PackedByteArray = level.index_data
+			var indices := PackedInt32Array()
+			if vertices.size() <= 65536:
+				indices.resize(raw.size() >> 1)
+				for i in indices.size():
+					indices[i] = raw.decode_u16(i * 2)
+			else:
+				indices = raw.to_int32_array()
+			lods[float(level.edge_length)] = indices
+		var flags := source.surface_get_format(surface) & (Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS | Mesh.ARRAY_FLAG_COMPRESS_ATTRIBUTES)
+		fitted.add_surface_from_arrays(source.surface_get_primitive_type(surface), arrays, [], lods, flags)
+		fitted.surface_set_material(surface, source.surface_get_material(surface))
+	return fitted
+
 func _refresh_clothing() -> void:
 	var jacket := bool(worn.get("jacket", false))
 	var pants := bool(worn.get("pants", false))
-	var cap := bool(worn.get("cap", false))
+	var helmet := bool(worn.get("helmet", false))
+	var cap := bool(worn.get("cap", false)) and not helmet
 	torso.visible = not jacket
 	bare_legs.visible = not pants
 	shorts.visible = not pants
-	hair.visible = not cap
+	hair.visible = not (cap or helmet)
 	for item: String in garments:
-		garments[item].visible = bool(worn.get(item, false))
+		garments[item].visible = cap if item == "cap" else bool(worn.get(item, false))
 	if jacket_liner != null:
 		jacket_liner.visible = jacket
+	if pants_instance != null:
+		if pants and jacket and pants_waist_fit == null:
+			pants_waist_fit = _tucked_pants(pants_regular)
+		pants_instance.mesh = pants_waist_fit if pants and jacket else pants_regular
 	_update_garments()
 
 func _update_garments() -> void:
@@ -226,10 +300,11 @@ func _update_garments() -> void:
 			var local_pose := binding.pose[parent].affine_inverse() * pose if parent >= 0 else pose
 			binding.pose[index] = pose
 			binding.skeleton.set_bone_pose(index, local_pose)
-	if garments.has("cap") and garments.cap.visible:
-		var fit: Array = CLOTHING_FIT.cap
-		var fitted := Transform3D(Basis.from_scale(fit[0]), fit[1])
-		garments.cap.transform = _deformation(head_bone) * fitted
+	for item in ["cap", "helmet"]:
+		if garments.has(item) and garments[item].visible:
+			var fit: Array = CLOTHING_FIT[item]
+			var fitted := Transform3D(Basis.from_scale(fit[0]), fit[1])
+			garments[item].transform = _deformation(head_bone) * fitted
 	if backpack != null and backpack.visible:
 		backpack.transform = _deformation(backpack_bone) * BACKPACK_REST
 	if jacket_liner != null and jacket_liner.visible:
@@ -275,6 +350,12 @@ func set_motion_state(state: Dictionary) -> void:
 	water_vertical_speed = float(state.get("waterVy", 0.0))
 	grounded = state.get("grounded", not swimming and absf(vertical_speed) < 0.05)
 	physical_speed = Vector2(state.get("vx", 0.0), state.get("vz", 0.0)).length() if state.has("vx") else -1.0
+
+func set_recovery_state(state: Dictionary, elapsed: float) -> void:
+	var down_at := float(state.get("downAt", -1.0))
+	var lifted_at := float(state.get("revivedAt", -1.0))
+	knockout_elapsed = maxf(0.0, elapsed - down_at) if down_at >= 0.0 and float(state.health) <= 0.0 else -1.0
+	rise_elapsed = maxf(0.0, elapsed - lifted_at) if lifted_at >= 0.0 else -1.0
 
 func _select_motion(delta: float) -> String:
 	transition_left = maxf(0.0, transition_left - delta)
@@ -329,12 +410,18 @@ func advance(delta: float, local := false) -> void:
 	render_speed = lerpf(render_speed, actual_speed, 1.0 - exp(-dt * 18.0))
 	if actual_speed < 0.01 and (physical_speed < 0.01 or physical_speed < 0.0):
 		render_speed = move_toward(render_speed, 0.0, dt * 16.0)
-	var clip := _select_motion(dt)
+	var recovery_clip := ""
+	if not swimming:
+		if knockout_elapsed >= 0.0:
+			recovery_clip = "recovery/Knockout"
+		elif rise_elapsed >= 0.0 and rise_elapsed < RECOVERY.get_animation(&"Recover").length and render_speed < .18:
+			recovery_clip = "recovery/Recover"
+	var clip := _select_motion(dt) if recovery_clip.is_empty() else recovery_clip
 	var rate := clampf(render_speed / WALK_REFERENCE_SPEED, 0.05, 2.5) if clip == "move/Walk" else clampf(render_speed / RUN_REFERENCE_SPEED, 0.10, 1.65) if clip == "move/Run" else clampf(render_speed / 2.25, 0.75, 1.35) if clip == "move/Swim" else 1.0
 	if clip != motion_clip or not motion_seen:
 		var phase := animator.current_animation_position / maxf(0.01, animator.current_animation_length)
 		var keep_phase := motion_clip in ["move/Walk", "move/Run"] and clip in ["move/Walk", "move/Run"]
-		animator.play(clip, 0.12 if motion_seen else 0.0)
+		animator.play(clip, 0.12 if motion_seen and recovery_clip.is_empty() else 0.0)
 		if keep_phase:
 			animator.seek(phase * animator.get_animation(clip).length)
 		motion_events.append({"clip": clip, "atMs": Time.get_ticks_msec(), "grounded": grounded, "vy": vertical_speed, "swimming": swimming})
@@ -345,11 +432,20 @@ func advance(delta: float, local := false) -> void:
 		motion_seen = true
 	motion_rate = rate
 	animator.speed_scale = rate
-	animator.advance(dt)
-	motion_elapsed += dt
+	if recovery_clip.is_empty():
+		animator.advance(dt)
+		motion_elapsed += dt
+	else:
+		var age := knockout_elapsed if recovery_clip == "recovery/Knockout" else rise_elapsed
+		motion_elapsed = minf(age, animator.get_animation(clip).length)
+		animator.seek(motion_elapsed, true)
 	# This is the only bone writer after animation sampling: optional carried-item arm overlays.
-	holding_blend = move_toward(holding_blend, float(holding and not swimming), dt * 10.0)
-	shield_blend = move_toward(shield_blend, float(shielding and not swimming), dt * 10.0)
+	if recovery_clip.is_empty() and knockout_elapsed < 0.0:
+		holding_blend = move_toward(holding_blend, float(holding and not swimming), dt * 10.0)
+		shield_blend = move_toward(shield_blend, float(shielding and not swimming), dt * 10.0)
+	else:
+		holding_blend = 0.0
+		shield_blend = 0.0
 	block_blend = move_toward(block_blend, float(blocking), dt * 10.0)
 	_hold_arm(&"upper_arm_R", &"forearm_R", 0.84, 0.37, holding_blend)
 	_hold_arm(&"upper_arm_L", &"forearm_L", lerpf(0.52, 1.10, block_blend), lerpf(0.35, 0.75, block_blend), shield_blend)

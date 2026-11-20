@@ -51,6 +51,25 @@ func _verify() -> void:
 	var bob_id: String = bob.id
 	_expect(room.data.quest.wood and _table_items(room.data.provisions) == 4, "legacy saves preserve quest state and seed table once")
 	_expect(_snapshot(alice).survival.worn == Survival.initial_wear(), "legacy players start with all three clothes equipped")
+	_expect(_snapshot(alice).provisions["camp-helmet"].surface == "ground", "the camp helmet is placed once on the ground in legacy rooms")
+	room.actors[alice_id].point = Survival.CAMP_HELMET
+	room.actors[bob_id].point = Survival.CAMP_HELMET
+	_action(alice, "take", "", "camp-helmet")
+	_action(bob, "take", "", "camp-helmet")
+	_expect(not _last_notice(bob).ok and _snapshot(alice).survival.bag.helmet == 1, "one player can pick up the camp helmet")
+	_action(alice, "wear", "helmet")
+	var wearing: Dictionary = _snapshot(bob).players[alice_id].worn
+	_expect(wearing.helmet and not wearing.cap and _snapshot(alice).survival.bag.cap == 1, "wearing the helmet puts the hat in the bag and syncs the head slot")
+	_action(alice, "remove_worn", "helmet")
+	_expect(not _snapshot(alice).survival.worn.helmet and _snapshot(alice).survival.bag.helmet == 1, "the helmet can be taken off into a backpack")
+	_action(alice, "wear", "helmet")
+	_action(alice, "drop_worn", "helmet")
+	var helmet_on_ground := _find_food(room, "helmet", "ground")
+	_expect(not helmet_on_ground.is_empty() and not _snapshot(alice).survival.worn.helmet, "the equipped helmet becomes a real ground item when dropped")
+	_action(bob, "take", "", helmet_on_ground)
+	_expect(_snapshot(bob).survival.bag.helmet == 1, "a teammate can pick up the dropped helmet")
+	_action(bob, "drop", "helmet")
+	_action(alice, "wear", "cap")
 	room.actors[alice_id].point = REACHABLE
 	room.actors[bob_id].point = REACHABLE
 	_action(alice, "take", "", "apple-1")
@@ -157,6 +176,7 @@ func _verify() -> void:
 	_leave(2)
 	_expect(not rooms.has(ROOM), "empty room can unload after successful checkpoint")
 	alice = _connect(3, ALICE_TOKEN)
+	_expect(not rooms[ROOM].data.provisions.has("camp-helmet") and not _find_food(rooms[ROOM], "helmet", "ground").is_empty(), "a restart restores the dropped helmet without replenishing the original")
 	_expect(not _find_food(rooms[ROOM], "pants", "ground").is_empty() and not _snapshot(alice).survival.worn.pants and _snapshot(alice).survival.bag.apple == 18 and _snapshot(alice).backpackOwner == alice_id, "restart restores dropped and equipped clothing, the backpack and extra food")
 	_expect(is_equal_approx(float(_snapshot(alice).survival.health), 82.0), "the bite's health loss survives a room restart")
 	var saved_dog: Dictionary = _snapshot(alice).dog

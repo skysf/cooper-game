@@ -1,0 +1,65 @@
+{
+  "unchangedManifestSHA256": "2999970b8245d690c9e34b5cf83c0b979ed7544311ceeec397198188f56d4120",
+  "galleries": {
+    "coal_mine": {
+      "retainedTriangles": {
+        "Compact trail gravel": 2804,
+        "Fissured bedrock": 1839,
+        "Weathered Rainline cliff": 5511,
+        "Weathered mine timbers": 1116,
+        "Rusted lantern and brace iron": 264
+      },
+      "removedTriangles": {
+        "Rusted lantern and brace iron": 736,
+        "Honey-colored lamp glass": 208,
+        "Oil flame": 144
+      },
+      "sharedMaps": [
+        "../../coast/cliff_color.jpg",
+        "../../coast/cliff_normal.jpg",
+        "../../coast/seaside_color.jpg",
+        "../../coast/seaside_normal.jpg",
+        "../../textures/lake_gravel_diff.jpg",
+        "../../textures/lake_gravel_nor_gl.jpg",
+        "../../textures/wood_diff.jpg",
+        "../../textures/wood_nor_gl.jpg"
+      ],
+      "removedLegacyCrossSceneBracketTriangles": 24,
+      "runtimeSizeBytes": [
+        1330100,
+        1245784
+      ],
+      "candidateSHA256": "1e0e80801797585f88ddb60c55ceab4e666103205aa4c699706a7b5f2efa18ba"
+    },
+    "iron_mine": {
+      "retainedTriangles": {
+        "Compact trail gravel": 2603,
+        "Fissured bedrock": 1753,
+        "Weathered Rainline cliff": 5630,
+        "Weathered mine timbers": 1116,
+        "Rusted lantern and brace iron": 264
+      },
+      "removedTriangles": {
+        "Rusted lantern and brace iron": 736,
+        "Honey-colored lamp glass": 208,
+        "Oil flame": 144
+      },
+      "sharedMaps": [
+        "../../coast/cliff_color.jpg",
+        "../../coast/cliff_normal.jpg",
+        "../../coast/seaside_color.jpg",
+        "../../coast/seaside_normal.jpg",
+        "../../textures/lake_gravel_diff.jpg",
+        "../../textures/lake_gravel_nor_gl.jpg",
+        "../../textures/wood_diff.jpg",
+        "../../textures/wood_nor_gl.jpg"
+      ],
+      "removedLegacyCrossSceneBracketTriangles": 0,
+      "runtimeSizeBytes": [
+        1315264,
+        1233260
+      ],
+      "candidateSHA256": "6e0dd47c783f3232a0b2cd34ce405aba326a0f0f821c1782300fd1913c0a6e05"
+    }
+  }
+}

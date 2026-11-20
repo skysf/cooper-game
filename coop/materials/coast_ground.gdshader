@@ -30,8 +30,22 @@ void vertex() {
 void fragment() {
 	vec3 point = world_at;
 	vec3 n = normalize(world_normal);
-	vec3 side = pow(abs(n), vec3(5.0));
+	vec3 axes = abs(n);
+	vec3 side = pow(axes, vec3(5.0));
+	float shelf = 1.0;
+	if (!solid_stone) {
+		// The broad baked normal lights the wall smoothly, but can point
+		// across the wrong axis on an individual steep heightfield facet.
+		vec3 face = abs(normalize(cross(dFdx(point), dFdy(point))));
+		float agreement = smoothstep(0.82, 0.97, dot(face, axes));
+		side = pow(mix(face, axes, agreement), vec3(5.0));
+		side *= smoothstep(vec3(0.08), vec3(0.34), face);
+		// These deposits are projected from above. A near-vertical facet
+		// cannot carry the sand weights of its adjacent shoal vertices.
+		shelf = smoothstep(0.42, 0.83, face.y);
+	}
 	side /= max(dot(side, vec3(1.0)), 0.001);
+	float sand_weight = ground_mix.r * shelf;
 	vec3 p = rock_at;
 	vec2 a = vec2(p.z + p.y * 0.22, p.y - p.z * 0.17) * 0.26;
 	vec2 b = vec2(p.x + p.z * 0.21, p.z - p.x * 0.19) * 0.51 + vec2(0.43, 0.19);
@@ -47,15 +61,15 @@ void fragment() {
 	vec3 woodland = texture(forest_color, point.xz * 0.52).rgb;
 	vec3 scrub = mix(woodland * vec3(0.67, 0.93, 0.58), vec3(0.19, 0.29, 0.116), 0.50);
 	float sunward = 0.74 + ground_mix.a * 0.47;
-	vec3 soil = mix(stone, sand, ground_mix.r);
+	vec3 soil = mix(stone, sand, sand_weight);
 	soil = mix(soil, scrub * sunward, ground_mix.g * (0.82 + ground_mix.a * 0.18));
 	float approach = smoothstep(-54.0, -32.0, point.x);
 	soil = mix(soil, woodland * (0.78 + ground_mix.a * 0.24), approach);
-	vec3 grit = mix(stone, sand, 0.50) * vec3(0.89, 0.83, 0.74);
+	vec3 grit = mix(stone, sand, 0.50 * shelf) * vec3(0.89, 0.83, 0.74);
 	soil = mix(soil, grit, ground_mix.b * (0.56 - 0.28 * approach));
 
 	vec2 normal_a = texture(cliff_normal, a).xy * 2.0 - 1.0;
-	vec2 normal_b = mix(texture(seaside_normal, b).xy, texture(sand_normal, point.xz * 0.69).xy, ground_mix.r) * 2.0 - 1.0;
+	vec2 normal_b = mix(texture(seaside_normal, b).xy, texture(sand_normal, point.xz * 0.69).xy, sand_weight) * 2.0 - 1.0;
 	vec2 normal_c = texture(cliff_normal, c).xy * 2.0 - 1.0;
 	vec3 grain = vec3(0.0, normal_a.y, normal_a.x) * side.x
 		+ vec3(normal_b.x, 0.0, -normal_b.y) * side.y + vec3(normal_c.x, normal_c.y, 0.0) * side.z;

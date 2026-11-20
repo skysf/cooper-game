@@ -1,0 +1,366 @@
+[
+  {
+    "planting": [
+      -11.75,
+      -62.5,
+      0.81,
+      4.81,
+      "young",
+      0.0
+    ],
+    "site": {
+      "ground": 0.0,
+      "above_water": 0.075,
+      "from_creek_surface": 0.79936,
+      "lake_distance": 1.27074,
+      "canopy_lake_distance": 1.23734,
+      "clear_creek_center": 0.38851,
+      "slope": 0.07167,
+      "main_trail": 6.82294,
+      "dock_and_approach": 12.1043,
+      "wood_pile_access": 9.39432,
+      "tree_or_rock": 0.699,
+      "nearest_obstacle_type": "tree",
+      "hazel": 2.85701,
+      "maximum_extent": 0.4957
+    }
+  },
+  {
+    "planting": [
+      -11.06,
+      -59.27,
+      0.94,
+      0.94,
+      "mature",
+      -0.00176
+    ],
+    "site": {
+      "ground": -0.00176,
+      "above_water": 0.07324,
+      "from_creek_surface": 0.53796,
+      "lake_distance": 1.16295,
+      "canopy_lake_distance": 1.12075,
+      "clear_creek_center": 0.65168,
+      "slope": 0.09728,
+      "main_trail": 6.14297,
+      "dock_and_approach": 8.7192,
+      "wood_pile_access": 5.94893,
+      "tree_or_rock": 0.15948,
+      "nearest_obstacle_type": "rock",
+      "hazel": 3.12201,
+      "maximum_extent": 0.6508
+    }
+  },
+  {
+    "planting": [
+      -11.27,
+      -58.69,
+      0.88,
+      5.19,
+      "young",
+      0.0
+    ],
+    "site": {
+      "ground": 0.0,
+      "above_water": 0.075,
+      "from_creek_surface": 0.71644,
+      "lake_distance": 1.13049,
+      "canopy_lake_distance": 1.09602,
+      "clear_creek_center": 1.037,
+      "slope": 0.0,
+      "main_trail": 6.54861,
+      "dock_and_approach": 8.2614,
+      "wood_pile_access": 5.59749,
+      "tree_or_rock": 0.49299,
+      "nearest_obstacle_type": "tree",
+      "hazel": 3.19837,
+      "maximum_extent": 0.5286
+    }
+  },
+  {
+    "planting": [
+      -10.92,
+      -58.36,
+      0.91,
+      2.11,
+      "young",
+      -0.01225
+    ],
+    "site": {
+      "ground": -0.01225,
+      "above_water": 0.06275,
+      "from_creek_surface": 0.34552,
+      "lake_distance": 1.13923,
+      "canopy_lake_distance": 1.10366,
+      "clear_creek_center": 0.6982,
+      "slope": 0.19054,
+      "main_trail": 6.23025,
+      "dock_and_approach": 7.9173,
+      "wood_pile_access": 5.15081,
+      "tree_or_rock": 0.40562,
+      "nearest_obstacle_type": "tree",
+      "hazel": 2.74677,
+      "maximum_extent": 0.5427
+    }
+  },
+  {
+    "planting": [
+      -8.08,
+      -58.82,
+      0.89,
+      2.37,
+      "young",
+      0.0
+    ],
+    "site": {
+      "ground": 0.0,
+      "above_water": 0.075,
+      "from_creek_surface": 0.79405,
+      "lake_distance": 1.31929,
+      "canopy_lake_distance": 1.28414,
+      "clear_creek_center": 1.09191,
+      "slope": 0.0,
+      "main_trail": 3.36398,
+      "dock_and_approach": 8.4631,
+      "wood_pile_access": 5.2867,
+      "tree_or_rock": 0.36411,
+      "nearest_obstacle_type": "rock",
+      "hazel": 0.70308,
+      "maximum_extent": 0.5333
+    }
+  },
+  {
+    "planting": [
+      -8.24,
+      -58.38,
+      1.04,
+      3.43,
+      "mature",
+      0.0
+    ],
+    "site": {
+      "ground": 0.0,
+      "above_water": 0.075,
+      "from_creek_surface": 0.54077,
+      "lake_distance": 1.29709,
+      "canopy_lake_distance": 1.2504,
+      "clear_creek_center": 0.72756,
+      "slope": 0.08454,
+      "main_trail": 3.40518,
+      "dock_and_approach": 7.83214,
+      "wood_pile_access": 4.6722,
+      "tree_or_rock": 0.44304,
+      "nearest_obstacle_type": "rock",
+      "hazel": 0.2579,
+      "maximum_extent": 0.7078
+    }
+  },
+  {
+    "planting": [
+      -8.24,
+      -57.88,
+      0.82,
+      4.85,
+      "young",
+      -0.01157
+    ],
+    "site": {
+      "ground": -0.01157,
+      "above_water": 0.06343,
+      "from_creek_surface": 0.4554,
+      "lake_distance": 1.28319,
+      "canopy_lake_distance": 1.25016,
+      "clear_creek_center": 0.91292,
+      "slope": 0.15291,
+      "main_trail": 3.67741,
+      "dock_and_approach": 7.54326,
+      "wood_pile_access": 4.3796,
+      "tree_or_rock": 1.08717,
+      "nearest_obstacle_type": "rock",
+      "hazel": 0.13498,
+      "maximum_extent": 0.5004
+    }
+  },
+  {
+    "planting": [
+      -8.31,
+      -56.22,
+      1.0,
+      1.81,
+      "mature",
+      -0.03385
+    ],
+    "site": {
+      "ground": -0.03385,
+      "above_water": 0.04115,
+      "from_creek_surface": 0.30039,
+      "lake_distance": 1.23593,
+      "canopy_lake_distance": 1.19073,
+      "clear_creek_center": 0.72387,
+      "slope": 0.11249,
+      "main_trail": 3.77747,
+      "dock_and_approach": 5.70452,
+      "wood_pile_access": 2.535,
+      "tree_or_rock": 0.50095,
+      "nearest_obstacle_type": "tree",
+      "hazel": 0.18851,
+      "maximum_extent": 0.685
+    }
+  },
+  {
+    "planting": [
+      -8.29,
+      -55.11,
+      0.74,
+      0.17,
+      "young",
+      0.0
+    ],
+    "site": {
+      "ground": 0.0,
+      "above_water": 0.075,
+      "from_creek_surface": 0.56762,
+      "lake_distance": 1.20995,
+      "canopy_lake_distance": 1.17944,
+      "clear_creek_center": 1.21389,
+      "slope": 0.01676,
+      "main_trail": 4.12377,
+      "dock_and_approach": 4.83491,
+      "wood_pile_access": 1.6472,
+      "tree_or_rock": 0.1614,
+      "nearest_obstacle_type": "tree",
+      "hazel": 1.28716,
+      "maximum_extent": 0.4628
+    }
+  },
+  {
+    "planting": [
+      -11.4,
+      -56.12,
+      0.97,
+      4.41,
+      "mature",
+      -0.02915
+    ],
+    "site": {
+      "ground": -0.02915,
+      "above_water": 0.04585,
+      "from_creek_surface": 0.49204,
+      "lake_distance": 1.04527,
+      "canopy_lake_distance": 1.00118,
+      "clear_creek_center": 0.92313,
+      "slope": 0.05345,
+      "main_trail": 6.87145,
+      "dock_and_approach": 5.5521,
+      "wood_pile_access": 3.26839,
+      "tree_or_rock": 0.28916,
+      "nearest_obstacle_type": "tree",
+      "hazel": 3.06153,
+      "maximum_extent": 0.6679
+    }
+  },
+  {
+    "planting": [
+      -10.07,
+      -44.46,
+      0.8,
+      2.71,
+      "young",
+      -0.01323
+    ],
+    "site": {
+      "ground": -0.01323,
+      "above_water": 0.06177,
+      "from_creek_surface": 0.75479,
+      "lake_distance": 1.06719,
+      "canopy_lake_distance": 1.03582,
+      "clear_creek_center": 0.62036,
+      "slope": 0.06017,
+      "main_trail": 7.81676,
+      "dock_and_approach": 3.349,
+      "wood_pile_access": 8.11577,
+      "tree_or_rock": 0.33912,
+      "nearest_obstacle_type": "rock",
+      "hazel": 0.39939,
+      "maximum_extent": 0.491
+    }
+  },
+  {
+    "planting": [
+      -9.93,
+      -44.05,
+      0.96,
+      0.55,
+      "mature",
+      -0.00106
+    ],
+    "site": {
+      "ground": -0.00106,
+      "above_water": 0.07394,
+      "from_creek_surface": 0.75825,
+      "lake_distance": 1.08864,
+      "canopy_lake_distance": 1.04628,
+      "clear_creek_center": 0.40822,
+      "slope": 0.0025,
+      "main_trail": 7.70202,
+      "dock_and_approach": 3.5878,
+      "wood_pile_access": 8.33599,
+      "tree_or_rock": 0.50392,
+      "nearest_obstacle_type": "rock",
+      "hazel": 0.27731,
+      "maximum_extent": 0.6622
+    }
+  },
+  {
+    "planting": [
+      -9.73,
+      -43.58,
+      0.87,
+      5.37,
+      "young",
+      0.0
+    ],
+    "site": {
+      "ground": 0.0,
+      "above_water": 0.075,
+      "from_creek_surface": 0.82385,
+      "lake_distance": 1.11594,
+      "canopy_lake_distance": 1.08241,
+      "clear_creek_center": 0.5474,
+      "slope": 0.0,
+      "main_trail": 7.86964,
+      "dock_and_approach": 4.1961,
+      "wood_pile_access": 8.92434,
+      "tree_or_rock": 1.09554,
+      "nearest_obstacle_type": "rock",
+      "hazel": 0.59151,
+      "maximum_extent": 0.5239
+    }
+  },
+  {
+    "planting": [
+      -9.76,
+      -43.05,
+      0.77,
+      4.12,
+      "young",
+      -0.01122
+    ],
+    "site": {
+      "ground": -0.01122,
+      "above_water": 0.06378,
+      "from_creek_surface": 0.66735,
+      "lake_distance": 1.13337,
+      "canopy_lake_distance": 1.10283,
+      "clear_creek_center": 0.38104,
+      "slope": 0.16865,
+      "main_trail": 8.17871,
+      "dock_and_approach": 4.7731,
+      "wood_pile_access": 9.50208,
+      "tree_or_rock": 1.32113,
+      "nearest_obstacle_type": "tree",
+      "hazel": 0.64576,
+      "maximum_extent": 0.4769
+    }
+  }
+]

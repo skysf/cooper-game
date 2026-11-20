@@ -1,0 +1,106 @@
+{
+  "male": {
+    "beforeGlbSha256": "504b04307690de02dbe619e2b8240f8daf99d8dd133c9d55a6b08f23b00244d7",
+    "glbSha256": "6c6442b6d835ba0569475a170238dad579cb581a206f64b30f11f4c0c9f4b9aa",
+    "blendSha256": "912f2b856ab3a22c8f3820748dde97c69899dc4f2516d201c268689f7af222b4",
+    "unchangedClips": [
+      "Idle-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop"
+    ],
+    "newClips": [
+      "DrawWater",
+      "GatherFruit"
+    ],
+    "sameBonesMeshAndMaterials": true
+  },
+  "female": {
+    "beforeGlbSha256": "3d0f0291d186ef79da3ab711af2e151a3a5962ee52d8ffddb445d4e950583ffb",
+    "glbSha256": "f2698c061fa1b6464074c299299d4e6edb3df65592666796bc36c521863e245d",
+    "blendSha256": "dddcf3f7a250e167f0b388f3a7fcd72c8863f18718db26795cfe187c1bd326b0",
+    "unchangedClips": [
+      "Idle-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop"
+    ],
+    "newClips": [
+      "DrawWater",
+      "GatherFruit"
+    ],
+    "sameBonesMeshAndMaterials": true
+  },
+  "male_elite": {
+    "beforeGlbSha256": "a6efc07181857cc3b098273a9fa63c4e19c24f48b437980fb95a9f5d7f8ed446",
+    "glbSha256": "d93a03755091a5b9b4cc821d33d589280765203b3bf8cfc6aa310d8a8cc64c1b",
+    "blendSha256": "5408df41a8cb7645a7c91beef5335837d8078d01a8c558b8b70e8d613a8afd14",
+    "unchangedClips": [
+      "Idle-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop"
+    ],
+    "newClips": [
+      "DrawWater",
+      "GatherFruit"
+    ],
+    "sameBonesMeshAndMaterials": true
+  },
+  "female_elite": {
+    "beforeGlbSha256": "590a1f9741f7881c6e8cca9d782014668dd30bc9ec2cf4904c967b9c5efa0b7f",
+    "glbSha256": "e0e2a78095850af0b02adfa6e85997f5b6e0d0cb30a2541c0d7d069b29a5e6fc",
+    "blendSha256": "c9540363f86759a45e11ab58d935b9f4906c5b39de150592bfbfb7e7cd522b63",
+    "unchangedClips": [
+      "Idle-loop",
+      "Attack",
+      "Throw",
+      "Block-loop",
+      "Down",
+      "Captive-loop",
+      "Rest-loop",
+      "Guard-loop",
+      "Walk-loop",
+      "Run-loop",
+      "Limp-loop",
+      "LimpLeft-loop",
+      "TurnLeft-loop",
+      "TurnRight-loop"
+    ],
+    "newClips": [
+      "DrawWater",
+      "GatherFruit"
+    ],
+    "sameBonesMeshAndMaterials": true
+  }
+}

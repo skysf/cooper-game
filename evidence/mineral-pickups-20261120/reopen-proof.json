@@ -1,0 +1,36 @@
+{
+  "coal": {
+    "maps": {
+      "coal_chunk_diff": [
+        512,
+        512
+      ],
+      "coal_chunk_nor_gl": [
+        512,
+        512
+      ],
+      "coal_chunk_rough": [
+        256,
+        256
+      ]
+    },
+    "sameSourceTriangles": true
+  },
+  "iron_ore": {
+    "maps": {
+      "iron_ore_chunk_diff": [
+        512,
+        512
+      ],
+      "iron_ore_chunk_nor_gl": [
+        512,
+        512
+      ],
+      "iron_ore_chunk_rough": [
+        256,
+        256
+      ]
+    },
+    "sameSourceTriangles": true
+  }
+}\n

@@ -59,7 +59,7 @@ Godot 无窗口验证走通了服务端抢拾、压布、磨刃、割绳、投�
 
 每个房间共用一架飞船和一个驾驶位。位置、驾驶员和降落状态由房间服务同步。每次停稳都会记录停船位置，驾驶员在飞行中断线时，飞船回到最近一次停稳的地方。角色走入深水后自然切换到游泳，C 下潜，空格上浮。陆地空格用于跳跃，小石块可直接跨过。
 
-原件归档在 `art/vehicles/source/红色科幻飞船.glb`，运行资产为 [camp_red_spaceship.glb](../coop/props/camp_red_spaceship.glb)。[转换脚本](../scripts/build-camp-spaceship.py) 接收支持 `meshopt_simplifyWithAttributes` 的 meshoptimizer 动态库路径，保留 PBR 贴图、把机头对齐 Godot 的 `-Z`，并将模型缩为约 9 万三角面、3.44 MB。原件目录为本机素材目录，由 Git 忽略。
+原件归档在 `art/vehicles/source/红色科幻飞船.glb`，运行资产由 [转换脚本](../scripts/build-camp-spaceship.py) 生成，接收支持 `meshopt_simplifyWithAttributes` 的 meshoptimizer 动态库路径。模型保持 89,988 个三角面，机头朝 Godot 的 `-Z`。新版将颜色与法线贴图恢复到源文件的 2048 × 2048，金属度和粗糙度图为 1024 × 1024，启用各向异性过滤，GLB 为 5.72 MB。 [运行资产](../coop/props/camp_red_spaceship.glb) · [Godot 同机位对照](../evidence/airship-hull-detail.jpg)
 
 ## 营地声音
 
@@ -69,7 +69,9 @@ Godot 无窗口验证走通了服务端抢拾、压布、磨刃、割绳、投�
 
 ## 木屋里的桌子与补给
 
-进木棚后靠右是一张 1.58 × 0.72 米的木桌。桌面用四块带开缝的旧木板拼成，桌腿向外微斜，木销固定桌面。靠走道的木板上刻着 `SKY 1120`。在 Blender 中逐笔画出字形，再把深浅不一的 V 形刀槽直接做进桌板网格。桌子和石陶水壶为项目原创，编辑源文件在 [camp_table.blend](../art/camp_table.blend)，可用 [Blender 构建脚本](../scripts/build-camp-table.py) 重新导出游戏 GLB。
+进木棚后靠右是一张 1.58 × 0.72 米的木桌。桌面用四块带开缝的旧木板拼成，桌腿向外微斜，木销固定桌面。靠走道的木板上刻着 `SKY 1120`。在 Blender 中逐笔画出字形，再把深浅不一的 V 形刀槽直接做进桌板网格。桌子和石陶水壶共用一份可编辑的 Blender 源文件。 [编辑源件](../art/camp_table.blend) · [初始建模脚本](../scripts/build-camp-table.py)
+
+水壶使用一套 1024 × 1024 的颜色、法线和粗糙度贴图。青灰釉上有拉坯细纹，壶底露出陶胎脚圈，上把手和壶颈以一圈陶泥衔接。桌上、落地和携带状态载入同一模型，摆放包围与原水面位置沿用现有数据。 [游戏模型](../coop/props/camp_water_jug.glb) · [桌面与把手同机位对照](../evidence/camp-water-jug-20261120/same-camera.jpg) · [水面、落地和携带对照](../evidence/camp-water-jug-20261120/placement-and-water.jpg)
 
 桌上初始放两只苹果和两个面包。按 E 拾进个人物品栏，按 F 原地吃。看向水壶按 F 喝水。按 Tab 打开物品栏，苹果和面包显示各自模型渲染的缩略图，格子角落显示堆叠数量。背包统一按物品种类计格：同种食物、药草、溪水、材料、衣物、武器或盾牌，无论数量都合并在同一格；不同种类分别占格。选中后仍每次吃、放下或在桌边放回一份。
 
@@ -77,13 +79,13 @@ Godot 无窗口验证走通了服务端抢拾、压布、磨刃、割绳、投�
 
 按 V 在第一人称和第三人称之间切换。第三人称从肩后稍高处跟随角色，户外默认看见全身。靠近墙壁、树干或屋顶时镜头收近，离开障碍后逐渐拉回。
 
-Tab 面板有「背包」和「角色」两个页签。背包左栏按全部、食物和服装筛选，中间保留物品模型小图与堆叠数，右栏显示选中物品的大图、食材增益或穿戴部位以及可用操作。「角色」页有可拖动旋转的全身预览、装备部位和个人状态。选中部位可穿上包内同部位衣物、脱下收进背包，或直接丢到脚边。同种脱下衣物累加到同一格，队友可以拾取地上的衣物。穿戴状态和掉落地点随房间存档。旧房间首次加载会为玩家穿上帽子、夹克和长裤。
+Tab 面板有「背包」和「角色」两个页签。背包左栏按全部、食物和服装筛选，中间保留物品模型小图与堆叠数，右栏显示选中物品的大图、食材增益或穿戴部位以及可用操作。「角色」页有可拖动旋转的全身预览、装备部位和个人状态。选中部位可穿上包内同部位衣物、脱下收进背包，或直接丢到脚边。同种脱下衣物累加到同一格，队友可以拾取地上的衣物。穿戴状态和掉落地点随房间存档。旧房间首次加载会为玩家穿上帽子、夹克和长裤。木屋门内地面每个房间放一顶头盔。看向头盔按 G 拾取，从背包戴上时原有帽子收进背包。
 
 2026-11-19 帽子比例修正烘入 `art/camp_cap.blend` 并重导出 `coop/props/camp_cap.glb`、`coop/textures/inventory_cap.png`，原 Hiker 挂点与缩放保持。实际穿戴宽度由 22.50 cm 收到 16.70 cm，帽顶高出头皮由 5.14 cm 降到 1.33 cm；正侧背均贴合且保留眉眼、眼镜。 [相同机位旧新对照](../evidence/cap-fit-20261119/role-preview.png) · [最终发行包真实角色页](../evidence/cap-fit-20261119/character-page-cap-final.png)。Godot 导入、短资产/坐姿/脱戴检查、无头 Chrome 角色页与 Mac 最短独立入房已验证。22:37 通过完整静态目录原子交换热更新 4284，房间服务器与实时存档未重启或改写；服务 PID 93107、原 4184 PID 76294 保持。当前实际包版本见 `evidence/cap-fit-20261119/live-release.json`，刷新原标签页即可使用。
 
-服装源文件为 `art/camp_jacket.blend`、`art/camp_pants.blend` 与 `art/camp_cap.blend`。[服装导出脚本](../scripts/build-camp-clothing.py) 在 Blender 中适配比例并生成三件服装的运行模型和物品图。夹克和长裤跟随角色的手臂和腿摆动。更新服装交互时，房间服务和客户端一起更新。
+服装源文件为 `art/camp_jacket.blend`、`art/camp_pants.blend` 与 `art/camp_cap.blend`。[服装导出脚本](../scripts/build-camp-clothing.py) 在 Blender 中适配比例并生成运行模型和物品图。夹克在贴体前减面，保留原件的平滑法线、拉链、胸袋和 1024 像素颜色贴图。夹克和长裤跟随角色的手臂和腿摆动。头盔和左右登山靴的 [适配导出脚本](../scripts/build-camp-wearables.py) 读取用户提供的 GLB。 [头盔 Blender 源文件](../art/camp_helmet.blend) · [登山靴 Blender 源文件](../art/camp_boot.blend)
 
-[全身角色源文件](../art/characters/sky_character.blend) 的 [Godot 运行模型](../coop/props/sky_character.glb) 共用于角色预览、本地第三人称、队友和驾驶员。站姿骨骼驱动走路、游泳和右手持物，坐姿带动夹克和长裤的肘膝。游戏内深色鞋随脚骨移动。戴帽时收起帽下的发顶，眼镜仍跟随头部。
+[全身角色源文件](../art/characters/sky_character.blend) 的 [Godot 运行模型](../coop/props/sky_character.glb) 共用于角色预览、本地第三人称、队友和驾驶员。站姿骨骼驱动走路、游泳和右手持物，坐姿带动夹克和长裤的肘膝。左右登山靴默认穿戴，各自跟随脚骨。走路、跑步和落地按真实鞋底网格校准。帽子和头盔跟着头骨转动，穿戴时收起头发网格。 [夹克、靴子与头盔实装对照](../evidence/camp-ui/wearables-detail.jpg)
 
 网页加载时，角色预览在油灯预热后完成一次实际绘制。点开「角色」直接显示保留的纹理，拖动或穿脱时才更新，关闭后停止绘制。[首开角色页实测](render-benchmark.md#角色预览首开)
 
@@ -215,7 +217,7 @@ Tab 面板有「背包」和「角色」两个页签。背包左栏按全部、�
 /Users/sky/Downloads/Godot.app/Contents/MacOS/Godot --headless --path coop --script "$PWD/scripts/test-coop-player-locomotion.gd"
 ```
 
-实现证据在 `evidence/player-locomotion-20261119/`，独立双端验证在 `evidence/player-locomotion-validation-20261119-sol/`。真实球形靴子的着地检查使用变换后的网格顶点；旋转后的包围盒空角不代表鞋底穿地。
+实现证据在 `evidence/player-locomotion-20261119/`，独立双端验证在 `evidence/player-locomotion-validation-20261119-sol/`。着地检查使用变换后的实际鞋底顶点。新版登山靴以相同方式通过 16 项动作定向检查。
 
 动作集成已通过 16 项真实物理与骨架定向检查、原 Survival 与角色/衣物/握持回归，以及独立 9 项运动物理、15 项双端交互。46 组连续关键帧覆盖自动 Walk/Run、松键/撞树停步、双方起跳/空中/落地、浅岸到深水、划水/停游、潜浮、返岸、重连与装备守恒。浏览器全程无界面运行，没有录像工具安装或性能打分。最初撞树路径因测试转向等待过短而绕行，已保留原件并仅补正确方向的撞停检查。
 

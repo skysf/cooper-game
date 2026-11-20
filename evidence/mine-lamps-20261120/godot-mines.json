@@ -1,0 +1,69 @@
+{
+  "checks": 52,
+  "failures": [],
+  "measurements": {
+    "coal": {
+      "base": 0.0,
+      "size": "(0.209464, 0.1397, 0.167827)",
+      "surfaces": 2,
+      "textured": 2,
+      "triangles": 396
+    },
+    "coal_mine": {
+      "base": -5.23009967803955,
+      "floor_collision_error": 0.00103569030761719,
+      "height_above_terrain": 0.68852110253647,
+      "jump_apex_m": 0.540000000000003,
+      "obbs": 262,
+      "peak_floor_grade": 0.582596659660339,
+      "size": "(7.805891, 10.42156, 32.07811)",
+      "surfaces": 5,
+      "textured": 4,
+      "travel_ticks_30": 284,
+      "travel_ticks_60": 543,
+      "triangles": 11534
+    },
+    "coal_seam": {
+      "base": -0.36003902554512,
+      "size": "(0.587144, 0.784713, 2.17)",
+      "surfaces": 2,
+      "textured": 2,
+      "triangles": 2624
+    },
+    "iron_ingot": {
+      "base": 0.0,
+      "size": "(0.302, 0.052313, 0.152)",
+      "surfaces": 3,
+      "textured": 3,
+      "triangles": 128
+    },
+    "iron_mine": {
+      "base": -7.5112624168396,
+      "floor_collision_error": 0.00162315368652344,
+      "height_above_terrain": 1.05345071151532,
+      "jump_apex_m": 0.540000000000003,
+      "obbs": 240,
+      "peak_floor_grade": 0.601785182952881,
+      "size": "(8.642953, 13.24189, 25.33168)",
+      "surfaces": 5,
+      "textured": 4,
+      "travel_ticks_30": 240,
+      "travel_ticks_60": 438,
+      "triangles": 11366
+    },
+    "iron_ore": {
+      "base": 0.0,
+      "size": "(0.200047, 0.155408, 0.166241)",
+      "surfaces": 2,
+      "textured": 2,
+      "triangles": 396
+    },
+    "iron_seam": {
+      "base": -0.346095025539398,
+      "size": "(0.199836, 0.73099, 2.165)",
+      "surfaces": 1,
+      "textured": 1,
+      "triangles": 2930
+    }
+  }
+}

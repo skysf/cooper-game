@@ -35,7 +35,7 @@ func _verify() -> void:
 	for id: String in scene.actors:
 		var actor: Dictionary = scene.actors[id]
 		overhead_rules = overhead_rules and actor.label.visible == (sampled.people[id].phase == "companion")
-		for clip: String in ["Idle", "Walk", "Run", "Attack", "Throw", "Block", "Limp", "LimpLeft", "Down", "Captive", "Rest", "Guard"]:
+		for clip: String in ["Idle", "Walk", "Run", "Attack", "Throw", "Block", "Limp", "LimpLeft", "Down", "Captive", "Rest", "Guard", "TurnLeft", "TurnRight", "DrawWater", "GatherFruit"]:
 			if not actor.animator.has_animation(clip):
 				missing.append(id + "/" + clip)
 		animations.append(actor.animator.get_animation_list().size())
@@ -46,7 +46,7 @@ func _verify() -> void:
 		push_error("Missing real models/animations: " + str(missing))
 		quit(1)
 		return
-	for clip: String in ["Walk", "Run", "Attack", "Limp", "LimpLeft", "Down", "Captive", "Rest"]:
+	for clip: String in ["Walk", "Run", "Attack", "Limp", "LimpLeft", "TurnLeft", "TurnRight", "DrawWater", "GatherFruit", "Down", "Captive", "Rest"]:
 		for npc: Dictionary in sampled.people.values():
 			npc.clip = clip
 			npc.clipAt = 140.0

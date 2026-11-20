@@ -1,0 +1,18 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+FLOOR_LOST (-72.32, -62.4) expected=19.6561546325684 game=19.2770608066494 terrain=19.2770608066494 first={ "t": 0.32820484085086, "id": "iron_mine", "point": (-72.32, 19.66304, -62.4), "normal": (-0.416325, 0.533038, -0.736576), "support": false }
+FLOOR_LOST (-72.32, -61.94) expected=19.4408073425293 game=19.0057695101714 terrain=19.0057695101714 first={ "t": 0.28907259323275, "id": "iron_mine", "point": (-72.32, 19.45634, -61.94), "normal": (0.0, 0.511346, -0.859375), "support": false }
+WALKNORTH x=-72.32 startY=19.630012512207 reach=(-72.32, -60.85997) y=19.0541133880615 minY=19.0541133880615
+FLOOR_LOST (-72.2, -62.49) expected=19.6316223144531 game=19.3725338017393 terrain=19.3725338017393 first={ "t": 0.41671439316688, "id": "iron_mine", "point": (-72.2, 19.63239, -62.49), "normal": (-0.416325, 0.533038, -0.736576), "support": false }
+FLOOR_LOST (-72.2, -61.95) expected=19.4392280578613 game=19.059427643253 terrain=19.059427643253 first={ "t": 0.33822227041296, "id": "iron_mine", "point": (-72.2, 19.43953, -61.95), "normal": (0.0, 0.511346, -0.859375), "support": false }
+WALKNORTH x=-72.2 startY=19.5746822357178 reach=(-72.2, -60.85997) y=19.0541133880615 minY=19.0541133880615
+FLOOR_LOST (-72.079, -61.95) expected=19.4373588562012 game=19.1052761964384 terrain=19.1052761964384 first={ "t": 0.36252601982629, "id": "iron_mine", "point": (-72.079, 19.43953, -61.95), "normal": (0.0, 0.511346, -0.859375), "support": false }
+WALKNORTH x=-72.079 startY=19.5371742248535 reach=(-72.079, -60.85997) y=19.0541133880615 minY=19.0541133880615
+FLOOR_LOST (-72.05, -61.95) expected=19.4369125366211 game=19.1162656245288 terrain=19.1162656245288 first={ "t": 0.36895076210425, "id": "iron_mine", "point": (-72.05, 19.43953, -61.95), "normal": (0.0, 0.511346, -0.859375), "support": false }
+WALKNORTH x=-72.05 startY=19.5286769866943 reach=(-72.05, -60.85997) y=19.0541133880615 minY=19.0541133880615
+FLOOR_LOST (-71.92, -61.95) expected=19.4349040985107 game=19.1816362512182 terrain=19.1816362512182 first={ "t": 0.41391360256344, "id": "iron_mine", "point": (-71.92, 19.43953, -61.95), "normal": (0.0, 0.511346, -0.859375), "support": false }
+WALKNORTH x=-71.92 startY=19.4961109161377 reach=(-71.92, -60.85997) y=19.0541133880615 minY=19.0541133880615
+WALKNORTH x=-71.82 startY=19.4710655212402 reach=(-71.82, -60.85997) y=19.0541133880615 minY=19.0541133880615
+SAMPLES 872 LOST 13

@@ -1,0 +1,86 @@
+{
+  "coal_mine": [
+    {
+      "depthInMineM": 6.25,
+      "x": 633,
+      "y": 699,
+      "baselineMedianY": 0.35191,
+      "candidateMedianY": 0.36468,
+      "baselineP10Y": 0.26738,
+      "candidateP10Y": 0.27453,
+      "linearMedianChangePercent": 3.63
+    },
+    {
+      "depthInMineM": 6.65,
+      "x": 634,
+      "y": 627,
+      "baselineMedianY": 0.10946,
+      "candidateMedianY": 0.32331,
+      "baselineP10Y": 0.06783,
+      "candidateP10Y": 0.20928,
+      "linearMedianChangePercent": 195.37
+    },
+    {
+      "depthInMineM": 7.05,
+      "x": 636,
+      "y": 575,
+      "baselineMedianY": 0.15481,
+      "candidateMedianY": 0.32017,
+      "baselineP10Y": 0.11568,
+      "candidateP10Y": 0.24509,
+      "linearMedianChangePercent": 106.81
+    },
+    {
+      "depthInMineM": 7.55,
+      "x": 638,
+      "y": 522,
+      "baselineMedianY": 0.1417,
+      "candidateMedianY": 0.32481,
+      "baselineP10Y": 0.10419,
+      "candidateP10Y": 0.23994,
+      "linearMedianChangePercent": 129.22
+    },
+    {
+      "depthInMineM": 8.2,
+      "x": 639,
+      "y": 466,
+      "baselineMedianY": 0.11408,
+      "candidateMedianY": 0.24924,
+      "baselineP10Y": 0.08725,
+      "candidateP10Y": 0.19367,
+      "linearMedianChangePercent": 118.48
+    }
+  ],
+  "iron_mine": [
+    {
+      "depthInMineM": 7.05,
+      "x": 644,
+      "y": 649,
+      "baselineMedianY": 0.16594,
+      "candidateMedianY": 0.32914,
+      "baselineP10Y": 0.12935,
+      "candidateP10Y": 0.25572,
+      "linearMedianChangePercent": 98.35
+    },
+    {
+      "depthInMineM": 7.55,
+      "x": 643,
+      "y": 579,
+      "baselineMedianY": 0.14176,
+      "candidateMedianY": 0.30398,
+      "baselineP10Y": 0.09951,
+      "candidateP10Y": 0.2129,
+      "linearMedianChangePercent": 114.43
+    },
+    {
+      "depthInMineM": 8.2,
+      "x": 641,
+      "y": 494,
+      "baselineMedianY": 0.13661,
+      "candidateMedianY": 0.32957,
+      "baselineP10Y": 0.108,
+      "candidateP10Y": 0.25984,
+      "linearMedianChangePercent": 141.25
+    }
+  ]
+}

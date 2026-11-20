@@ -1,0 +1,30 @@
+{
+  "beforeGlbSha256": "f2dd7dc4a06bdea2f2e39f2f50a2dbaa4a76c203c9f5c0c15256173769d67863",
+  "glbSha256": "461c7aab0e519506ec0e767c4256ecb0e3c0e5cf3706db158f83ea79dd009dc6",
+  "blendSha256": "d036c0fdf7f982c4e5cbae802196cc6d6599c5dc04a702ee7c6eb1c0e18bcf8a",
+  "unchangedLiveClips": [
+    "GroundIdle-loop",
+    "PerchIdle-loop",
+    "Takeoff",
+    "Flap-loop",
+    "Glide-loop",
+    "BankLeft-loop",
+    "BankRight-loop",
+    "Dive",
+    "LandGround",
+    "LandPerch"
+  ],
+  "newClips": [
+    "Fall",
+    "Collapse",
+    "Dead"
+  ],
+  "unchangedMeshSkinMorphMaterial": true,
+  "bones": 36,
+  "imagesSHA256": [
+    "37732a70ab01d3ae5047c8eb26da45944cb57a441b24f70313560c9044d9fa16",
+    "8625c9cc396bd9f868ba99b44f2b196062d7b50bd39d84d11841c01eb7795c83",
+    "7bce438a0a9169f674e37c97f8b1ad96d8a97bd8adabd63513d60879039e56f7"
+  ],
+  "triangles": 28164
+}

@@ -1,0 +1,30 @@
+{
+  "bodyAndWaterPositionsSHA256": "258f8c42646d8ece81d4baf90a9703340d8c4051c43bcd930b3ed7fed79b9e51",
+  "tableGeometryAndSurfaceSHA256": "fea623110d77ff9ffaef53c875a71d252f1490f74e9550c0a7c1bac535d5d57f",
+  "tableObjectsVerified": 27,
+  "unchangedBodyLipFootAndWater": true,
+  "originalUpperNeckGapMM": [
+    0.5907048161933117,
+    10.442223720754713
+  ],
+  "rootOverlapWithOuterNeckAtSeamM": 0.00155,
+  "parts": {
+    "Water jug": [
+      612,
+      578
+    ],
+    "Hand-shaped jug handle": [
+      240,
+      230
+    ],
+    "Quiet waterline": [
+      64,
+      34
+    ]
+  },
+  "mapDimensions": [
+    1024,
+    1024
+  ],
+  "mapCount": 3
+}

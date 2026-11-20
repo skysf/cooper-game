@@ -1,0 +1,559 @@
+{
+  "baseline": false,
+  "errors": [],
+  "lane": "(0.0, -71.0)",
+  "models": {
+    "female": {
+      "limp_left": {
+        "clip": "LimpLeft",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00355947623029351,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.793762356042862,
+          "mean": 0.0734584796755371,
+          "samples": 40
+        },
+        "liftM": {
+          "L": 0.0516418777406216,
+          "R": 0.132897153496742
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.161304902285337,
+          "mean": 0.0150413432400339,
+          "samples": 47
+        }
+      },
+      "limp_right": {
+        "clip": "Limp",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00367063889279962,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.14221353456378,
+          "mean": 0.0147310570481869,
+          "samples": 46
+        },
+        "liftM": {
+          "L": 0.131783276796341,
+          "R": 0.0517191812396049
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.753464996814728,
+          "mean": 0.0667212875141558,
+          "samples": 40
+        }
+      },
+      "patrol": {
+        "clip": "Walk",
+        "contacts": 89,
+        "distance": 3.48496246337891,
+        "footLowestM": 0.00332063063979149,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.272369403392076,
+          "mean": 0.0272895482761338,
+          "samples": 44
+        },
+        "liftM": {
+          "L": 0.137172698974609,
+          "R": 0.137429445981979
+        },
+        "meanServerMps": 0.849990844726562,
+        "right": {
+          "max": 0.141143929213285,
+          "mean": 0.0185146543746948,
+          "samples": 39
+        }
+      },
+      "run": {
+        "clip": "Run",
+        "contacts": 59,
+        "distance": 9.02005004882812,
+        "footLowestM": 0.0024862065911293,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.359975248575211,
+          "mean": 0.0935038304305635,
+          "samples": 25
+        },
+        "liftM": {
+          "L": 0.188553020358086,
+          "R": 0.188565567135811
+        },
+        "meanServerMps": 2.20001220703125,
+        "right": {
+          "max": 0.376499481499195,
+          "mean": 0.0909869144205004,
+          "samples": 25
+        }
+      },
+      "turn_left": {
+        "clips": {
+          "Guard": 28,
+          "TurnLeft": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.00678486889228225,
+        "footRiseM": 0.108029305934906,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "turn_right": {
+        "clips": {
+          "Guard": 28,
+          "TurnRight": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.0067679793573916,
+        "footRiseM": 0.109085462987423,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "walk": {
+        "clip": "Walk",
+        "contacts": 87,
+        "distance": 5.53477478027344,
+        "footLowestM": 0.00336598232388496,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.23742999881506,
+          "mean": 0.0257780751225154,
+          "samples": 36
+        },
+        "liftM": {
+          "L": 0.137807756662369,
+          "R": 0.136857271194458
+        },
+        "meanServerMps": 1.34994506835938,
+        "right": {
+          "max": 0.140533642843366,
+          "mean": 0.0194760649605467,
+          "samples": 43
+        }
+      }
+    },
+    "female_elite": {
+      "limp_left": {
+        "clip": "LimpLeft",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00355944456532598,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.793914943933487,
+          "mean": 0.0721553192734063,
+          "samples": 40
+        },
+        "liftM": {
+          "L": 0.0516313053667545,
+          "R": 0.132890433073044
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.161153003573418,
+          "mean": 0.0148716706888158,
+          "samples": 47
+        }
+      },
+      "limp_right": {
+        "clip": "Limp",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00366837624460459,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.142671521753073,
+          "mean": 0.0151685177732598,
+          "samples": 46
+        },
+        "liftM": {
+          "L": 0.131696105003357,
+          "R": 0.0517222993075848
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.7536281645298,
+          "mean": 0.0665242921904792,
+          "samples": 40
+        }
+      },
+      "patrol": {
+        "clip": "Walk",
+        "contacts": 89,
+        "distance": 3.48496246337891,
+        "footLowestM": 0.0033382959663868,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.273437518626451,
+          "mean": 0.0287750634908496,
+          "samples": 44
+        },
+        "liftM": {
+          "L": 0.137048155069351,
+          "R": 0.137351930141449
+        },
+        "meanServerMps": 0.849990844726562,
+        "right": {
+          "max": 0.142211932688951,
+          "mean": 0.0187370340739644,
+          "samples": 39
+        }
+      },
+      "run": {
+        "clip": "Run",
+        "contacts": 59,
+        "distance": 9.02005004882812,
+        "footLowestM": 0.00249220617115498,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.320444032549858,
+          "mean": 0.0873981887008995,
+          "samples": 25
+        },
+        "liftM": {
+          "L": 0.188434138894081,
+          "R": 0.188501328229904
+        },
+        "meanServerMps": 2.20001220703125,
+        "right": {
+          "max": 0.33044807612896,
+          "mean": 0.0841034355806187,
+          "samples": 25
+        }
+      },
+      "turn_left": {
+        "clips": {
+          "Guard": 28,
+          "TurnLeft": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.00730853341519833,
+        "footRiseM": 0.107993237674236,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "turn_right": {
+        "clips": {
+          "Guard": 28,
+          "TurnRight": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.0073148850351572,
+        "footRiseM": 0.108177170157433,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "walk": {
+        "clip": "Walk",
+        "contacts": 87,
+        "distance": 5.53477478027344,
+        "footLowestM": 0.00338126346468925,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.237582437694073,
+          "mean": 0.0272727149442491,
+          "samples": 36
+        },
+        "liftM": {
+          "L": 0.137723281979561,
+          "R": 0.136735558509827
+        },
+        "meanServerMps": 1.34994506835938,
+        "right": {
+          "max": 0.140991220250726,
+          "mean": 0.0195137986875759,
+          "samples": 43
+        }
+      }
+    },
+    "male": {
+      "limp_left": {
+        "clip": "LimpLeft",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00355092342942953,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.792236477136612,
+          "mean": 0.0716472660469663,
+          "samples": 40
+        },
+        "liftM": {
+          "L": 0.051643256098032,
+          "R": 0.132964387536049
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.162523463368416,
+          "mean": 0.0177972470799509,
+          "samples": 47
+        }
+      },
+      "limp_right": {
+        "clip": "Limp",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00367183703929186,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.143433650955558,
+          "mean": 0.0171435989226587,
+          "samples": 46
+        },
+        "liftM": {
+          "L": 0.132357701659203,
+          "R": 0.0516338981688023
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.750366672873497,
+          "mean": 0.0653051407407474,
+          "samples": 40
+        }
+      },
+      "patrol": {
+        "clip": "Walk",
+        "contacts": 89,
+        "distance": 3.48496246337891,
+        "footLowestM": 0.00331922061741352,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.273590721189976,
+          "mean": 0.030807889892127,
+          "samples": 44
+        },
+        "liftM": {
+          "L": 0.137642472982407,
+          "R": 0.137631103396416
+        },
+        "meanServerMps": 0.849990844726562,
+        "right": {
+          "max": 0.139313759282231,
+          "mean": 0.0181213492517903,
+          "samples": 39
+        }
+      },
+      "run": {
+        "clip": "Run",
+        "contacts": 59,
+        "distance": 9.02005004882812,
+        "footLowestM": 0.00265232194215059,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.268605947494507,
+          "mean": 0.0671810655388981,
+          "samples": 25
+        },
+        "liftM": {
+          "L": 0.189314797520638,
+          "R": 0.188846737146378
+        },
+        "meanServerMps": 2.20001220703125,
+        "right": {
+          "max": 0.350827388465405,
+          "mean": 0.101699547684984,
+          "samples": 25
+        }
+      },
+      "turn_left": {
+        "clips": {
+          "Guard": 28,
+          "TurnLeft": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.00480234064161777,
+        "footRiseM": 0.108513742685318,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "turn_right": {
+        "clips": {
+          "Guard": 28,
+          "TurnRight": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.00555910263210535,
+        "footRiseM": 0.108516402542591,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "walk": {
+        "clip": "Walk",
+        "contacts": 87,
+        "distance": 5.53477478027344,
+        "footLowestM": 0.00336791854351759,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.237582940608263,
+          "mean": 0.0310755111735893,
+          "samples": 36
+        },
+        "liftM": {
+          "L": 0.137954100966454,
+          "R": 0.137419983744621
+        },
+        "meanServerMps": 1.34994506835938,
+        "right": {
+          "max": 0.134583031758666,
+          "mean": 0.0170148960421292,
+          "samples": 43
+        }
+      }
+    },
+    "male_elite": {
+      "limp_left": {
+        "clip": "LimpLeft",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00355933932587504,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.793914943933487,
+          "mean": 0.0742316321302496,
+          "samples": 40
+        },
+        "liftM": {
+          "L": 0.0516467206180096,
+          "R": 0.132859975099564
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.162221603095531,
+          "mean": 0.0157858081365703,
+          "samples": 47
+        }
+      },
+      "limp_right": {
+        "clip": "Limp",
+        "contacts": 96,
+        "distance": 4.96234130859375,
+        "footLowestM": 0.00366851268336177,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.14267192222178,
+          "mean": 0.0160991462745069,
+          "samples": 46
+        },
+        "liftM": {
+          "L": 0.131778255105019,
+          "R": 0.051735196262598
+        },
+        "meanServerMps": 1.2103271484375,
+        "right": {
+          "max": 0.754335895180702,
+          "mean": 0.0677120099362583,
+          "samples": 40
+        }
+      },
+      "patrol": {
+        "clip": "Walk",
+        "contacts": 89,
+        "distance": 3.48496246337891,
+        "footLowestM": 0.00340838357806206,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.272216796875,
+          "mean": 0.0289947490141044,
+          "samples": 44
+        },
+        "liftM": {
+          "L": 0.137205094099045,
+          "R": 0.137467503547668
+        },
+        "meanServerMps": 0.849990844726562,
+        "right": {
+          "max": 0.139923198148608,
+          "mean": 0.0200435353918949,
+          "samples": 39
+        }
+      },
+      "run": {
+        "clip": "Run",
+        "contacts": 59,
+        "distance": 9.02005004882812,
+        "footLowestM": 0.0025631170719862,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.416124649345875,
+          "mean": 0.104600050288718,
+          "samples": 25
+        },
+        "liftM": {
+          "L": 0.188556209206581,
+          "R": 0.187270268797874
+        },
+        "meanServerMps": 2.20001220703125,
+        "right": {
+          "max": 0.431996062397957,
+          "mean": 0.0999348785728216,
+          "samples": 25
+        }
+      },
+      "turn_left": {
+        "clips": {
+          "Guard": 28,
+          "TurnLeft": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.00730807846412063,
+        "footRiseM": 0.108006574213505,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "turn_right": {
+        "clips": {
+          "Guard": 28,
+          "TurnRight": 30,
+          "Walk": 54
+        },
+        "distanceRemainingM": 0.0,
+        "footLowestM": -0.00739693641662598,
+        "footRiseM": 0.108183771371841,
+        "maxTickRadians": 0.3,
+        "turnDriftM": 0.0,
+        "turnRadians": 1.5
+      },
+      "walk": {
+        "clip": "Walk",
+        "contacts": 87,
+        "distance": 5.53477478027344,
+        "footLowestM": 0.00344373658299446,
+        "gripErrorM": 0.0,
+        "left": {
+          "max": 0.236818995326757,
+          "mean": 0.0274305904096966,
+          "samples": 36
+        },
+        "liftM": {
+          "L": 0.137834966182709,
+          "R": 0.136885955929756
+        },
+        "meanServerMps": 1.34994506835938,
+        "right": {
+          "max": 0.13839740306139,
+          "mean": 0.0213646046955377,
+          "samples": 43
+        }
+      }
+    }
+  }
+}

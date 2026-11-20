@@ -1,12 +1,10 @@
 extends Node3D
 
 const Survival = preload("res://survival.gd")
+const Storage = preload("res://camp_storage.gd")
 const Weapons = preload("res://weapons.gd")
 const Clothing = preload("res://clothing.gd")
-const TABLE = preload("res://props/camp_table.glb")
 const JUG = preload("res://props/camp_water_jug.glb")
-const GNOME = preload("res://props/table_gnome.glb")
-const BABUSHKA = preload("res://props/table_babushka.glb")
 const BACKPACK = preload("res://props/camp_backpack.glb")
 const FOOD = {
 	"apple": preload("res://props/food_apple.glb"),
@@ -20,10 +18,6 @@ var weapon_models: Dictionary = {}
 var ground_backpack: Node3D
 
 func _ready() -> void:
-	_place(TABLE, Vector3(Survival.TABLE_CENTER.x, 0.0, Survival.TABLE_CENTER.y))
-	_place(JUG, Vector3(Survival.JUG.x, Survival.TABLE_TOP, Survival.JUG.y), -0.32)
-	_place(GNOME, Vector3(3.52, Survival.TABLE_TOP, -89.12), PI * 0.5 - 0.12)
-	_place(BABUSHKA, Vector3(3.74, Survival.TABLE_TOP, -89.12), 0.17)
 	ground_backpack = _place(BACKPACK, Vector3(Survival.BACKPACK.x, 0.28, Survival.BACKPACK.y), 0.3)
 	ground_backpack.hide()
 
@@ -39,7 +33,7 @@ func update_contents(provisions: Dictionary) -> void:
 	for id: String in provisions:
 		var info: Dictionary = provisions[id]
 		if not (FOOD.has(info.item) or Clothing.MODELS.has(info.item) or EQUIPMENT.has(info.item)
-			or SUPPLIES.has(info.item) or Weapons.CAMP_MODELS.has(info.item)):
+			or SUPPLIES.has(info.item) or Weapons.CAMP_MODELS.has(info.item) or Storage.ITEM_MODELS.has(info.item)):
 			continue
 		var at := Vector3(info.at[0], info.at[1], info.at[2])
 		if not food_nodes.has(id):
@@ -53,7 +47,15 @@ func update_contents(provisions: Dictionary) -> void:
 			elif Weapons.CAMP_MODELS.has(info.item):
 				food_nodes[id] = _place_ground_weapon(info.item, at, 1.47 if id.begins_with("camp-weapon-") else heading)
 			else:
-				var resource: PackedScene = load(EQUIPMENT[info.item]) if EQUIPMENT.has(info.item) else SUPPLIES[info.item] if SUPPLIES.has(info.item) else FOOD[info.item]
+				var resource: PackedScene
+				if Storage.ITEM_MODELS.has(info.item):
+					resource = load(Storage.ITEM_MODELS[info.item])
+				elif EQUIPMENT.has(info.item):
+					resource = load(EQUIPMENT[info.item])
+				else:
+					resource = SUPPLIES.get(info.item, FOOD.get(info.item))
+				if resource == null:
+					continue
 				food_nodes[id] = _place(resource, at, heading)
 				if EQUIPMENT.has(info.item):
 					food_nodes[id].rotation.x = PI * 0.5
@@ -90,8 +92,10 @@ func _place_ground_weapon(item: String, at: Vector3, yaw: float) -> Node3D:
 
 func pickup_point(id: String, at: Vector3, eye: Vector3, forward: Vector3) -> Vector3:
 	var node := food_nodes.get(id) as Node3D
-	if node == null or not node.has_meta("weapon_extent"):
+	if node == null:
 		return at + Vector3.UP * 0.05
+	if not node.has_meta("weapon_extent"):
+		return at + Vector3.UP * float(node.get_meta("pickup_height", 0.05))
 	var extent: Vector2 = node.get_meta("weapon_extent")
 	var center := at + Vector3.UP * extent.y
 	var axis := node.global_basis.z * extent.x

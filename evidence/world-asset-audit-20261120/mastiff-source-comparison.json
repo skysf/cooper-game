@@ -1,0 +1,110 @@
+{
+  "blender": "5.2.4 LTS",
+  "source": "art/animals/camp_mastiff.blend",
+  "source_sha256": "ef07db6cab00f9aa75c699b69b86dbec518147176e0010ff3a981c29f6c3564d",
+  "archive": "art/animals/camp_mastiff.glb",
+  "archive_sha256": "50159aaf84d83918ae645f6654d65b4326460a2dd7a36cafc7a678eb48f7e441",
+  "runtime": "coop/props/camp_mastiff.glb",
+  "runtime_sha256": "50159aaf84d83918ae645f6654d65b4326460a2dd7a36cafc7a678eb48f7e441",
+  "mesh_selection": "Only the one armature-skinned render mesh from each scene; unloaded source action pose, Blender Z up, +Y forward.",
+  "mesh_names": [
+    "Camp Mastiff",
+    "Camp Mastiff"
+  ],
+  "triangles": [
+    18274,
+    18274
+  ],
+  "vertices_source_imported_uvsplit": [
+    9139,
+    11726
+  ],
+  "bounds_xyz_m_source_imported": [
+    [
+      0.504949,
+      0.865275,
+      0.930471
+    ],
+    [
+      0.504949,
+      0.865275,
+      0.930471
+    ]
+  ],
+  "max_vertex_world_nearest_distance_m_both_directions": [
+    3.3320009151793784e-07,
+    3.3320009151793784e-07
+  ],
+  "source_rest_anchor_xyz_m": {
+    "Fore.Upper.L": [
+      -0.12600000202655792,
+      0.15000000596046448,
+      0.5720000267028809
+    ],
+    "Hind.Upper.L": [
+      -0.13199999928474426,
+      -0.24500000476837158,
+      0.5230000019073486
+    ],
+    "Fore.Upper.R": [
+      0.12600000202655792,
+      0.15000000596046448,
+      0.5720000267028809
+    ],
+    "Hind.Upper.R": [
+      0.13199999928474426,
+      -0.24500000476837158,
+      0.5230000019073486
+    ]
+  },
+  "runtime_rest_anchor_xyz_m": {
+    "Fore.Upper.L": [
+      -0.12599998712539673,
+      0.15000011026859283,
+      0.5719999074935913
+    ],
+    "Hind.Upper.L": [
+      -0.13199999928474426,
+      -0.2449999451637268,
+      0.5229998826980591
+    ],
+    "Fore.Upper.R": [
+      0.12599998712539673,
+      0.15000011026859283,
+      0.5719999074935913
+    ],
+    "Hind.Upper.R": [
+      0.13199999928474426,
+      -0.2449999451637268,
+      0.5229998826980591
+    ]
+  },
+  "same_joint_names": true,
+  "max_joint_origin_delta_m": 1.9082797281243946e-07,
+  "source_clip_seconds": {
+    "Attack": 0.933333,
+    "Eat-loop": 1.6,
+    "Idle-loop": 5.6,
+    "Lie-down": 1.466667,
+    "Limp-loop": 1.1,
+    "Rest-loop": 4.4,
+    "Rise": 1.366667,
+    "Run-loop": 0.5,
+    "Walk-loop": 0.9
+  },
+  "imported_clip_seconds": {
+    "Attack": 0.933333,
+    "Eat-loop": 1.6,
+    "Idle-loop": 5.6,
+    "Lie-down": 1.466667,
+    "Limp-loop": 1.1,
+    "Rest-loop": 4.4,
+    "Rise": 1.366667,
+    "Run-loop": 0.5,
+    "Walk-loop": 0.9
+  },
+  "fore_hind_projected_y_span_m": [
+    0.395,
+    0.395
+  ]
+}

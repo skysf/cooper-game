@@ -3,6 +3,7 @@ extends RefCounted
 const Rules = preload("res://rules.gd")
 const Lake = preload("res://lake_layout.gd")
 const Spaceship = preload("res://spaceship.gd")
+const PlacementWorld = preload("res://placement_world.gd")
 
 const WALK_EYE := 1.67
 const SWIM_EYE := 0.30
@@ -44,7 +45,7 @@ static func _standing_height(at: Vector2, feet: float, flight_grid: Dictionary, 
 	return Spaceship.Ground.walk_height(at, feet, flight_grid, grove_time)
 
 static func step(actor: Dictionary, direction: Vector2, lift: float, delta: float,
-		grid: Dictionary, ship: Dictionary, flight_grid := {}, grove_time := 0.0) -> void:
+		grid: Dictionary, ship: Dictionary, flight_grid := {}, grove_time := 0.0, fixtures := {}) -> void:
 	var dt := clampf(delta, 0.0, 0.08)
 	var was_swimming: bool = actor.swimming
 	var was_grounded: bool = actor.get("grounded", false)
@@ -52,6 +53,7 @@ static func step(actor: Dictionary, direction: Vector2, lift: float, delta: floa
 	actor.jumpHeld = lift > 0.0
 	var at: Vector2 = actor.point
 	var y: float = actor.y
+	var furniture := PlacementWorld.nearby(PlacementWorld.mine_grid(),fixtures,at,3.15)
 	var above_obstacles := not flight_grid.is_empty() and not was_swimming and y > Lake.walk_height(at) + 0.45
 	var next := Rules.move(at, direction, dt, {} if above_obstacles else grid, true,
 		SWIM_SPEED if was_swimming else Rules.SPEED, y)
@@ -60,13 +62,21 @@ static func step(actor: Dictionary, direction: Vector2, lift: float, delta: floa
 			next.x = at.x
 		if not Spaceship.Ground.actor_clear(next, y, flight_grid, grove_time):
 			next.y = at.y
-	var floor_y := _standing_height(next, y, flight_grid, grove_time)
+	if not furniture.is_empty() and next != at:
+		var across := Vector2(next.x,at.y)
+		var across_feet := maxf(y,PlacementWorld.floor_height(furniture,across,y,Lake.walk_height(across)))
+		if PlacementWorld.blocks_player(furniture,across,across_feet):
+			next.x = at.x
+		var along_feet := maxf(y,PlacementWorld.floor_height(furniture,next,y,Lake.walk_height(next)))
+		if PlacementWorld.blocks_player(furniture,next,along_feet):
+			next.y = at.y
+	var floor_y := PlacementWorld.floor_height(furniture,next,y,_standing_height(next,y,flight_grid,grove_time))
 	var surface := Lake.surface_height(next)
 	var can_swim := surface - floor_y >= SWIM_MIN_DEPTH
 	if Spaceship.blocks_player(at, next, y - (0.25 if was_swimming else 0.0), y + eye_offset(was_swimming), ship) \
 			or (was_swimming and y < Lake.water_y() - 0.43 and not can_swim):
 		next = at
-		floor_y = _standing_height(at, y, flight_grid, grove_time)
+		floor_y = PlacementWorld.floor_height(furniture,at,y,_standing_height(at,y,flight_grid,grove_time))
 		surface = Lake.surface_height(at)
 		can_swim = surface - floor_y >= SWIM_MIN_DEPTH
 	actor.point = next
@@ -94,7 +104,11 @@ static func step(actor: Dictionary, direction: Vector2, lift: float, delta: floa
 		vertical = JUMP_SPEED if actor.jumpHeld and not was_up else 0.0
 	if y > floor_y or vertical > 0.0:
 		vertical -= GRAVITY * dt
-		y += vertical * dt
+		var target_y := y + vertical * dt
+		if target_y > y and PlacementWorld.blocks_player(furniture,next,target_y):
+			vertical = 0.0
+		else:
+			y = target_y
 	actor.y = maxf(y, floor_y)
 	actor.vy = 0.0 if y <= floor_y and vertical < 0.0 else vertical
 	actor.grounded = y <= floor_y + 0.001 and float(actor.vy) <= 0.0

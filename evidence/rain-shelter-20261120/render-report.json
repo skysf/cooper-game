@@ -1,0 +1,185 @@
+{
+  "engine": "Godot 4.7.2 / OpenGL 4.1 Metal Compatibility / Apple M1",
+  "viewport": [
+    1280,
+    720
+  ],
+  "fixed_room_seconds": 94.5,
+  "rain_only_reference": "Rain emitter hidden at the identical camera. Lighting, geometry and wet surfaces stay fixed.",
+  "checks": {
+    "unrepaired_camp_unblocked": true,
+    "carried_and_dismantled_roofs_remove_proxies": true,
+    "roof_pose_matches_real_mesh": true,
+    "dry_and_submerged_hide_the_emitter": true,
+    "rain_slope_matches_wind_at_all_eight_cameras": true,
+    "construction_authority": {
+      "checks": 19,
+      "failures": 0
+    },
+    "web_shader_file": "web-check.json",
+    "mine_geometry_and_travel": {
+      "checks": 52,
+      "failures": 0
+    }
+  },
+  "scenes": {
+    "built": {
+      "cover_boxes": 2,
+      "position": [
+        9.65804004669189,
+        1.79999995231628,
+        -82.9490966796875
+      ],
+      "world_rain_slope": [
+        0.248419016599655,
+        -0.288103491067886
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 1497,
+        "interception_on_vs_dry": 382,
+        "interception_on_vs_off": 1115
+      }
+    },
+    "camp": {
+      "cover_boxes": 3,
+      "position": [
+        1.41999995708466,
+        1.6599999666214,
+        -90.879997253418
+      ],
+      "world_rain_slope": [
+        0.231715634465218,
+        -0.268731832504272
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 2468,
+        "interception_on_vs_dry": 969,
+        "interception_on_vs_off": 1499
+      }
+    },
+    "coal_mine": {
+      "cover_boxes": 117,
+      "position": [
+        -74.0445175170898,
+        22.5120410919189,
+        -29.5500011444092
+      ],
+      "world_rain_slope": [
+        0.175678700208664,
+        -0.203743025660515
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 2172,
+        "interception_on_vs_dry": 467,
+        "interception_on_vs_off": 1705
+      },
+      "mouth_inside_out_view_pixels": {
+        "interception_off_vs_dry": 1141,
+        "interception_on_vs_dry": 250,
+        "interception_on_vs_off": 891
+      },
+      "mouth_crop_xyxy": [
+        390,
+        185,
+        885,
+        535
+      ]
+    },
+    "iron_mine": {
+      "cover_boxes": 117,
+      "position": [
+        -74.3432388305664,
+        24.2561702728271,
+        -68.3500061035156
+      ],
+      "world_rain_slope": [
+        0.148343279957771,
+        -0.172040835022926
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 954,
+        "interception_on_vs_dry": 600,
+        "interception_on_vs_off": 354
+      },
+      "mouth_inside_out_view_pixels": {
+        "interception_off_vs_dry": 401,
+        "interception_on_vs_dry": 249,
+        "interception_on_vs_off": 152
+      },
+      "mouth_crop_xyxy": [
+        390,
+        185,
+        885,
+        535
+      ]
+    },
+    "mine-open-slope": {
+      "cover_boxes": 117,
+      "position": [
+        -74.25,
+        21.8678073883057,
+        -63.2500038146973
+      ],
+      "world_rain_slope": [
+        0.149799033999443,
+        -0.173729121685028
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 3746,
+        "interception_on_vs_dry": 3746,
+        "interception_on_vs_off": 0
+      }
+    },
+    "old-site": {
+      "cover_boxes": 2,
+      "position": [
+        9.65804004669189,
+        1.79999995231628,
+        -82.9490966796875
+      ],
+      "world_rain_slope": [
+        0.248419016599655,
+        -0.288103491067886
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 1878,
+        "interception_on_vs_dry": 1878,
+        "interception_on_vs_off": 0
+      }
+    },
+    "open-outside": {
+      "cover_boxes": 0,
+      "position": [
+        0.5,
+        1.70000004768372,
+        -61.5
+      ],
+      "world_rain_slope": [
+        0.248745203018188,
+        -0.288481771945953
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 2667,
+        "interception_on_vs_dry": 2666,
+        "interception_on_vs_off": 1
+      }
+    },
+    "tilted": {
+      "cover_boxes": 2,
+      "position": [
+        15.75,
+        1.65000009536743,
+        -82.1499938964844
+      ],
+      "world_rain_slope": [
+        0.263756841421127,
+        -0.305891513824463
+      ],
+      "pixels_with_max_rgb_delta_over_8": {
+        "interception_off_vs_dry": 2425,
+        "interception_on_vs_dry": 2296,
+        "interception_on_vs_off": 129
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "compatibilityRenderer": "Godot 4.7.2 Compatibility, Apple M1",
+  "assetPathInPlay": "res://props/camp_water_jug.glb",
+  "nativePairs": 7,
+  "visualScene": "Existing cabin kit and camp table with a fixed doorway light, isolated Godot project",
+  "storage": "Production CampStorageScene sync with table, ground, and held snapshots, and real Placement solves",
+  "tableAlreadyInGameUnmodified": true,
+  "candidateEditableSourceSHA256": "dad0234a7b8b22d76f41db1784547f0b295c2c561cc89c7e4cf11d885372d052",
+  "candidateRuntimeSHA256": "9f5635e1a181507460d524b8e83745a4492e9c42a989e2d4263ec7ceacc65820",
+  "candidateImportedBasisBytes": {
+    "albedo": 448994,
+    "normal": 515310,
+    "roughness": 381574
+  },
+  "candidateImportedBasisBytesTotal": 1345878,
+  "productionEditableSource": "art/camp_table.blend",
+  "productionRuntime": "coop/props/camp_water_jug.glb",
+  "originalTableRuntimeSHA256": "f76eb0af820c396998ba0e9c7a4683103b487c046b6a87c91ed7f49c32f6e5b1"
+}

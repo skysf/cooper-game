@@ -1,0 +1,17 @@
+PASS the room places one supported furnace near the camp
+PASS a player at camp cannot extract ore remotely
+PASS two players can reach the actual coal face
+PASS coal is awarded once per pick cycle
+PASS both players draw from the same coal seam
+PASS both clients receive the current stock
+PASS the actual iron face has a standing approach
+PASS a player can extract an iron ore from the iron mine
+PASS two ore pieces enter the normal bag stack
+PASS a failed ore save rolls back both inventory and the shared ore stock
+PASS coal alone fuels the campfire for the authored duration
+PASS the furnace reserves two ore and one coal
+PASS an active batch cannot be collected or moved early
+PASS rejoining restores the active batch and excavated ore
+PASS a teammate can collect exactly one finished ingot
+PASS room time reveals one fresh ore on the shared seam
+MINING_AUTHORITY_QA checks=16 failures=0

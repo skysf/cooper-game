@@ -5,7 +5,7 @@ const Lake = preload("res://lake_layout.gd")
 const Weapons = preload("res://weapons.gd")
 const MODELS := {"male": "res://wild_people/male.glb", "female": "res://wild_people/female.glb", "male_elite": "res://wild_people/male_elite.glb", "female_elite": "res://wild_people/female_elite.glb"}
 const WARM_LAYER := 1 << 19
-const EQUIPMENT := {"club": "res://wild_people/club.glb", "spear": "res://wild_people/spear.glb", "shield": "res://wild_people/shield.glb", "stone": "res://props/stone_round.glb"}
+const EQUIPMENT := {"wicker_strip": "res://props/storage/wicker_strip.glb", "club": "res://wild_people/club.glb", "spear": "res://wild_people/spear.glb", "shield": "res://wild_people/shield.glb", "stone": "res://props/stone_round.glb"}
 var actors: Dictionary = {}
 var player_gear: Dictionary = {}
 var sources: Dictionary = {}
@@ -47,6 +47,9 @@ func _create(npc: Dictionary) -> Dictionary:
 		var record: Dictionary = pools[key].pop_back()
 		record.root.name = npc.id
 		record.root.show()
+		record.clip = ""
+		if record.animator != null:
+			record.animator.stop()
 		pool_hits += 1
 		pool_by_key[key] = int(pool_by_key.get(key, 0)) + 1
 		return record
@@ -66,10 +69,13 @@ func _make_actor(npc: Dictionary) -> Dictionary:
 	root.add_child(model)
 	var rigs := model.find_children("*", "Skeleton3D", true, false)
 	var animators := model.find_children("*", "AnimationPlayer", true, false)
+	var animator := animators[0] as AnimationPlayer if not animators.is_empty() else null
+	if animator != null:
+		animator.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	var label := _label("")
 	root.add_child(label)
 	label.position.y = 2.12
-	var record := {"root": root, "model": model, "key": key, "rig": rigs[0] if not rigs.is_empty() else null, "animator": animators[0] if not animators.is_empty() else null, "label": label, "clip": "", "weapon": "?", "shield": false, "right": null, "left": null}
+	var record := {"root": root, "model": model, "key": key, "rig": rigs[0] if not rigs.is_empty() else null, "animator": animator, "label": label, "clip": "", "weapon": "?", "shield": false, "right": null, "left": null}
 	return record
 
 func _attach(rig: Skeleton3D, bone: String, item: String) -> Node3D:
@@ -129,9 +135,11 @@ func sync(people: Dictionary, elapsed: float, delta: float, eye := Vector3.ZERO,
 				continue
 			actors[id] = created
 			created.root.position = Vector3(npc.x, npc.get("y", 0), npc.z)
+			created.root.rotation.y = npc.yaw
 		var a: Dictionary = actors[id]
 		var root: Node3D = a.root
-		root.position = root.position.lerp(Vector3(npc.x, npc.get("y", 0), npc.z), 1.0 - exp(-delta * 13.0))
+		var target := Vector3(npc.x,npc.get("y",0),npc.z)
+		root.position = target if People.Footing.floor_transition(root.position,target) else root.position.lerp(target,1.0-exp(-delta*13.0))
 		root.rotation.y = lerp_angle(root.rotation.y, npc.yaw, 1.0 - exp(-delta * 12.0))
 		var distance := root.position.distance_to(eye)
 		root.visible = distance < 85.0
@@ -154,21 +162,35 @@ func sync(people: Dictionary, elapsed: float, delta: float, eye := Vector3.ZERO,
 			clip = "Idle"
 		if a.clip != clip:
 			var traced_at := Time.get_ticks_usec() if trace_enabled else 0
-			animator.play(clip, 0.13)
+			animator.play(clip, 0.13 if not a.clip.is_empty() else 0.0)
 			a.clip = clip
 			if trace_enabled:
 				_trace_event("clip", npc, traced_at)
 		var animation := animator.get_animation(clip)
-		var time := maxf(0, elapsed - float(npc.clipAt))
-		if clip in ["Down", "Attack", "Throw"]:
-			time = minf(time, maxf(0, animation.length - 0.001))
-		else:
-			time = fposmod(time, maxf(0.01, animation.length))
+		var time := _pose_time(npc, root, clip, elapsed, animation.length)
+		var loop := animation.loop_mode != Animation.LOOP_NONE
+		var clock_step := delta if loop else clampf(time, 0.0, delta)
+		if not loop:
+			time = minf(time, maxf(0.0, animation.length - 0.001))
+		# Advance the blend by frame time while sampling the clip at the shared phase.
+		var start := fposmod(time - clock_step, animation.length) if loop else maxf(0.0, time - clock_step)
 		var seek_at := Time.get_ticks_usec() if trace_enabled else 0
-		animator.seek(time, true)
-		animator.pause()
+		animator.seek(start, false)
+		animator.advance(clock_step)
 		if trace_enabled and Time.get_ticks_usec() - seek_at > 1500:
 			_trace_event("seek-slow", npc, seek_at)
+
+func _pose_time(npc: Dictionary, root: Node3D, clip: String, elapsed: float, length: float) -> float:
+	if npc.has("stepPhase"):
+		var phase: float = npc.stepPhase
+		if People.STRIDE_METERS.has(clip):
+			var lag := Vector2(npc.x - root.position.x, npc.z - root.position.z)
+			var forward := Vector2(0, -1).rotated(-npc.yaw)
+			return fposmod(phase - lag.dot(forward) / float(People.STRIDE_METERS[clip]), 1.0) * length
+		if clip in ["TurnLeft", "TurnRight"]:
+			var lag := absf(angle_difference(root.rotation.y, npc.yaw))
+			return fposmod(phase - lag / People.TURN_RADIANS, 1.0) * length
+	return maxf(0.0, elapsed - float(npc.clipAt))
 
 
 func _layers(root: Node3D, mask: int) -> void:
@@ -316,7 +338,8 @@ func equip_players(players: Dictionary, avatars: Dictionary, self_id: String, ca
 				gear.left.global_position = hiker.rig.to_global(hiker.rig.get_bone_global_pose(index).origin) if index >= 0 else hiker.position
 				gear.left.global_rotation = Vector3(0, hiker.rotation.y, 0)
 		var hands_hidden: bool = local_hands_hidden if id == self_id else person.get("swimming", false) or hiker != null and hiker.seated
-		gear.root.visible = (first or hiker != null and hiker.visible) and not hands_hidden
+		var incapacitated: bool = float(person.get("health", 100.0)) <= 0.0 or hiker != null and hiker.motion_clip == "recovery/Recover"
+		gear.root.visible = (first or hiker != null and hiker.visible) and not hands_hidden and not incapacitated
 
 func _pose_view_weapon(model: Node3D, weapon: String, swing: float, recoil: float, aim: float, sight: Vector3) -> void:
 	model.visible = weapon != "rifle" or aim < 0.82

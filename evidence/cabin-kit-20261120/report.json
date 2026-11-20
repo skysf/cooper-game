@@ -1,0 +1,172 @@
+{
+  "assets": {
+    "cabin_doorway": {
+      "dimensions": [
+        2.88000011444092,
+        2.29999995231628,
+        0.239999994635582
+      ],
+      "mapped_surfaces": 4,
+      "min": [
+        -1.44000005722046,
+        0.0,
+        -0.119999997317791
+      ],
+      "surfaces": 4,
+      "triangles": 7072
+    },
+    "cabin_floor": {
+      "dimensions": [
+        3.0,
+        0.180000007152557,
+        3.0
+      ],
+      "mapped_surfaces": 4,
+      "min": [
+        -1.5,
+        0.0,
+        -1.5
+      ],
+      "surfaces": 4,
+      "triangles": 3156
+    },
+    "cabin_roof": {
+      "dimensions": [
+        3.22000002861023,
+        1.18387877941132,
+        3.53293561935425
+      ],
+      "mapped_surfaces": 3,
+      "min": [
+        -1.61000001430511,
+        0.0,
+        -1.76490592956543
+      ],
+      "surfaces": 3,
+      "triangles": 34004
+    },
+    "cabin_wall": {
+      "dimensions": [
+        2.88000011444092,
+        2.29999995231628,
+        0.239999994635582
+      ],
+      "mapped_surfaces": 3,
+      "min": [
+        -1.44000005722046,
+        0.0,
+        -0.119999997317791
+      ],
+      "surfaces": 3,
+      "triangles": 3132
+    }
+  },
+  "checks": [
+    {
+      "name": "cabin_floor imported by Godot's resource loader",
+      "ok": true
+    },
+    {
+      "name": "cabin_floor actual min, max and support origin agree with JSON",
+      "ok": true
+    },
+    {
+      "name": "cabin_floor all surfaces retain color, tangent normal and roughness maps",
+      "ok": true
+    },
+    {
+      "name": "cabin_floor declared feet touch its actual exported underside",
+      "ok": true
+    },
+    {
+      "name": "cabin_wall imported by Godot's resource loader",
+      "ok": true
+    },
+    {
+      "name": "cabin_wall actual min, max and support origin agree with JSON",
+      "ok": true
+    },
+    {
+      "name": "cabin_wall all surfaces retain color, tangent normal and roughness maps",
+      "ok": true
+    },
+    {
+      "name": "cabin_wall declared feet touch its actual exported underside",
+      "ok": true
+    },
+    {
+      "name": "cabin_doorway imported by Godot's resource loader",
+      "ok": true
+    },
+    {
+      "name": "cabin_doorway actual min, max and support origin agree with JSON",
+      "ok": true
+    },
+    {
+      "name": "cabin_doorway all surfaces retain color, tangent normal and roughness maps",
+      "ok": true
+    },
+    {
+      "name": "cabin_doorway declared feet touch its actual exported underside",
+      "ok": true
+    },
+    {
+      "name": "cabin_roof imported by Godot's resource loader",
+      "ok": true
+    },
+    {
+      "name": "cabin_roof actual min, max and support origin agree with JSON",
+      "ok": true
+    },
+    {
+      "name": "cabin_roof all surfaces retain color, tangent normal and roughness maps",
+      "ok": true
+    },
+    {
+      "name": "cabin_roof declared feet touch its actual exported underside",
+      "ok": true
+    },
+    {
+      "name": "exported doorway is physically open across its clear span and a player-width path",
+      "ok": true
+    },
+    {
+      "name": "door lintel and log jambs still collide",
+      "ok": true
+    },
+    {
+      "name": "actual floor feet support the first module on game terrain",
+      "ok": true
+    },
+    {
+      "name": "wall 1 settles on deck with the neighboring log ends",
+      "ok": true
+    },
+    {
+      "name": "wall 2 settles on deck with the neighboring log ends",
+      "ok": true
+    },
+    {
+      "name": "wall 3 settles on deck with the neighboring log ends",
+      "ok": true
+    },
+    {
+      "name": "wall 4 settles on deck with the neighboring log ends",
+      "ok": true
+    },
+    {
+      "name": "roof rests on both same-height rails at the authored anchor",
+      "ok": true
+    },
+    {
+      "name": "missing opposite wall makes the same roof placement unstable",
+      "ok": true
+    },
+    {
+      "name": "rated object can rest on the visible pitched roof",
+      "ok": true
+    }
+  ],
+  "failures": 0,
+  "validation": "cabin-kit Godot import and compound placement"
+}

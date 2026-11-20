@@ -1,0 +1,32 @@
+{
+  "blender": "5.2.4 LTS",
+  "units": "METRIC",
+  "editable_parts": {
+    "Manchurian hazel": [
+      "Hazel · bark and forks",
+      "Hazel · bristly fruit husks",
+      "Hazel · serrated foliage"
+    ],
+    "Softstem bulrush": [
+      "Bulrush · basal sheaths and bracts",
+      "Bulrush · rounded culms",
+      "Bulrush · rust-coloured lateral spikelets"
+    ]
+  },
+  "packed_images": {
+    "Manchurian hazel atlas": {
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "75c41b68c3ef036a46e9dec1086f881b5822c3cb052d53194f4b88b1a7c63c5a"
+    },
+    "Softstem bulrush atlas": {
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "1b9453609373f5b1cec0b198451dc3ee119a11b217c5c6156dcf47bdc73f06de"
+    }
+  }
+}

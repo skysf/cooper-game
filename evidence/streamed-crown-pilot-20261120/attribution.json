@@ -1,0 +1,839 @@
+{
+  "photos": {
+    "backcountry": {
+      "actual_glb_sha256": "a295ee9bcf1861118fa769ba89f0eeb56b8525870e00d1e77369b34abfe56360",
+      "resident": [
+        "backcountry"
+      ],
+      "front": [
+        {
+          "pixel": [
+            54,
+            48
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/bark__10",
+            "distance_m": 5.021,
+            "at": [
+              -1.3816,
+              2.9724,
+              -117.1661
+            ],
+            "owner": null,
+            "triangle_width_m": 3.1905
+          }
+        },
+        {
+          "pixel": [
+            77,
+            92
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/needles__10",
+            "distance_m": 3.9156,
+            "at": [
+              -0.795,
+              2.4727,
+              -116.3311
+            ],
+            "owner": 69,
+            "triangle_width_m": 1.7327
+          }
+        },
+        {
+          "pixel": [
+            111,
+            65
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/needles__10",
+            "distance_m": 7.0323,
+            "at": [
+              -2.0044,
+              3.4303,
+              -119.0595
+            ],
+            "owner": 69,
+            "triangle_width_m": 1.4692
+          }
+        },
+        {
+          "pixel": [
+            205,
+            151
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/needles__10",
+            "distance_m": 3.8464,
+            "at": [
+              -0.2319,
+              2.192,
+              -116.5705
+            ],
+            "owner": 69,
+            "triangle_width_m": 1.7648
+          }
+        },
+        {
+          "pixel": [
+            301,
+            150
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/needles__10",
+            "distance_m": 4.2539,
+            "at": [
+              0.2604,
+              2.3049,
+              -117.1216
+            ],
+            "owner": 69,
+            "triangle_width_m": 1.7648
+          }
+        },
+        {
+          "pixel": [
+            922,
+            196
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/needles__11",
+            "distance_m": 10.3712,
+            "at": [
+              9.4381,
+              2.2139,
+              -119.1435
+            ],
+            "owner": 170,
+            "triangle_width_m": 0.7003
+          }
+        },
+        {
+          "pixel": [
+            977,
+            134
+          ],
+          "mesh_hit": {
+            "batch": "backcountry/needles__11",
+            "distance_m": 10.7982,
+            "at": [
+              10.0398,
+              3.1823,
+              -118.8646
+            ],
+            "owner": 170,
+            "triangle_width_m": 1.2443
+          }
+        }
+      ],
+      "shadow": [
+        {
+          "pixel": [
+            252,
+            304
+          ],
+          "ground": null,
+          "sun_ray_blocker": null
+        },
+        {
+          "pixel": [
+            331,
+            361
+          ],
+          "ground": {
+            "batch": "backcountry/mud",
+            "distance_m": 6.3809,
+            "at": [
+              0.0795,
+              0.0,
+              -119.0734
+            ],
+            "owner": null,
+            "triangle_width_m": 0.9434
+          },
+          "sun_ray_blocker": {
+            "batch": "backcountry/needles__10",
+            "distance_m": 3.1839,
+            "at": [
+              -0.6074,
+              2.4893,
+              -117.2109
+            ],
+            "owner": 69,
+            "triangle_width_m": 2.5655
+          }
+        },
+        {
+          "pixel": [
+            212,
+            316
+          ],
+          "ground": null,
+          "sun_ray_blocker": null
+        }
+      ]
+    },
+    "camp": {
+      "actual_glb_sha256": "b6043879d935d9121d5f827165dec153c0f6612d026b98d93a9ab7afe0c90403",
+      "resident": [
+        "backcountry",
+        "camp"
+      ],
+      "front": [
+        {
+          "pixel": [
+            44,
+            56
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__11",
+            "distance_m": 6.5604,
+            "at": [
+              7.1879,
+              3.2873,
+              -81.4699
+            ],
+            "owner": 54,
+            "triangle_width_m": 2.8493
+          }
+        },
+        {
+          "pixel": [
+            137,
+            58
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__11",
+            "distance_m": 5.7435,
+            "at": [
+              6.1418,
+              3.2002,
+              -81.4428
+            ],
+            "owner": 54,
+            "triangle_width_m": 2.6514
+          }
+        },
+        {
+          "pixel": [
+            326,
+            119
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__11",
+            "distance_m": 9.3284,
+            "at": [
+              6.9493,
+              3.6101,
+              -77.4
+            ],
+            "owner": 50,
+            "triangle_width_m": 1.2183
+          }
+        },
+        {
+          "pixel": [
+            864,
+            331
+          ],
+          "mesh_hit": {
+            "batch": "Grove/trail-spruce/spruce_mature/spruce_foliage",
+            "distance_m": 5.4046,
+            "at": [
+              -0.3961,
+              0.73,
+              -80.1985
+            ],
+            "owner": null,
+            "triangle_width_m": 0.5715
+          }
+        },
+        {
+          "pixel": [
+            924,
+            292
+          ],
+          "mesh_hit": null
+        },
+        {
+          "pixel": [
+            969,
+            350
+          ],
+          "mesh_hit": {
+            "batch": "Grove/trail-spruce/spruce_mature/spruce_bark",
+            "distance_m": 5.4106,
+            "at": [
+              -1.0049,
+              0.6744,
+              -80.5452
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0263
+          }
+        }
+      ],
+      "shadow": [
+        {
+          "pixel": [
+            733,
+            418
+          ],
+          "ground": {
+            "batch": "camp/mud",
+            "distance_m": 4.7002,
+            "at": [
+              0.8169,
+              0.0,
+              -80.7421
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0623
+          },
+          "sun_ray_blocker": null
+        },
+        {
+          "pixel": [
+            799,
+            456
+          ],
+          "ground": {
+            "batch": "camp/mud",
+            "distance_m": 4.2174,
+            "at": [
+              0.5126,
+              -0.0,
+              -81.3843
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0493
+          },
+          "sun_ray_blocker": null
+        },
+        {
+          "pixel": [
+            861,
+            435
+          ],
+          "ground": {
+            "batch": "camp/mud",
+            "distance_m": 4.8777,
+            "at": [
+              -0.119,
+              -0.0,
+              -80.8858
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0623
+          },
+          "sun_ray_blocker": {
+            "batch": "Grove/trail-spruce/spruce_mature/spruce_foliage",
+            "distance_m": 1.8753,
+            "at": [
+              -0.5236,
+              1.4662,
+              -79.7888
+            ],
+            "owner": null,
+            "triangle_width_m": 0.3062
+          }
+        },
+        {
+          "pixel": [
+            566,
+            506
+          ],
+          "ground": {
+            "batch": "camp/mud",
+            "distance_m": 3.1173,
+            "at": [
+              2.1376,
+              0.0,
+              -82.3786
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0142
+          },
+          "sun_ray_blocker": null
+        }
+      ]
+    },
+    "approach": {
+      "actual_glb_sha256": "2143263ab802d484aee8f1c839df474ecccd504d1a6d63016a4447e9be5ba15f",
+      "resident": [
+        "backcountry",
+        "camp",
+        "approach"
+      ],
+      "front": [
+        {
+          "pixel": [
+            41,
+            51
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__10",
+            "distance_m": 8.5347,
+            "at": [
+              -4.2279,
+              3.8234,
+              -78.5337
+            ],
+            "owner": 49,
+            "triangle_width_m": 1.7209
+          }
+        },
+        {
+          "pixel": [
+            123,
+            45
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__10",
+            "distance_m": 12.1518,
+            "at": [
+              -5.0361,
+              5.0835,
+              -81.9706
+            ],
+            "owner": 140,
+            "triangle_width_m": 1.8675
+          }
+        },
+        {
+          "pixel": [
+            218,
+            79
+          ],
+          "mesh_hit": {
+            "batch": "camp/bark__10",
+            "distance_m": 11.4277,
+            "at": [
+              -3.4711,
+              4.5773,
+              -81.9588
+            ],
+            "owner": null,
+            "triangle_width_m": 3.1121
+          }
+        },
+        {
+          "pixel": [
+            315,
+            248
+          ],
+          "mesh_hit": {
+            "batch": "Grove/trail-spruce/spruce_mature/spruce_foliage",
+            "distance_m": 8.1234,
+            "at": [
+              -1.3967,
+              1.3651,
+              -79.4785
+            ],
+            "owner": null,
+            "triangle_width_m": 0.5239
+          }
+        },
+        {
+          "pixel": [
+            321,
+            277
+          ],
+          "mesh_hit": {
+            "batch": "Grove/trail-spruce/spruce_mature/spruce_bark",
+            "distance_m": 8.8229,
+            "at": [
+              -1.4481,
+              0.8275,
+              -80.145
+            ],
+            "owner": null,
+            "triangle_width_m": 0.7667
+          }
+        },
+        {
+          "pixel": [
+            352,
+            229
+          ],
+          "mesh_hit": {
+            "batch": "Grove/trail-spruce/spruce_mature/spruce_foliage",
+            "distance_m": 8.71,
+            "at": [
+              -0.8921,
+              1.6697,
+              -80.1534
+            ],
+            "owner": null,
+            "triangle_width_m": 0.631
+          }
+        },
+        {
+          "pixel": [
+            346,
+            183
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__10",
+            "distance_m": 27.1198,
+            "at": [
+              -3.1803,
+              4.1406,
+              -98.3071
+            ],
+            "owner": 59,
+            "triangle_width_m": 4.0922
+          }
+        },
+        {
+          "pixel": [
+            799,
+            58
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__11",
+            "distance_m": 14.3038,
+            "at": [
+              9.4443,
+              5.7843,
+              -81.5178
+            ],
+            "owner": 52,
+            "triangle_width_m": 1.72
+          }
+        }
+      ],
+      "shadow": [
+        {
+          "pixel": [
+            568,
+            403
+          ],
+          "ground": {
+            "batch": "approach/mud",
+            "distance_m": 4.6289,
+            "at": [
+              1.5539,
+              0.0,
+              -75.5649
+            ],
+            "owner": null,
+            "triangle_width_m": 1.026
+          },
+          "sun_ray_blocker": null
+        },
+        {
+          "pixel": [
+            430,
+            455
+          ],
+          "ground": {
+            "batch": "approach/mud",
+            "distance_m": 3.7026,
+            "at": [
+              0.2051,
+              0.0,
+              -74.8029
+            ],
+            "owner": null,
+            "triangle_width_m": 0.9829
+          },
+          "sun_ray_blocker": null
+        }
+      ]
+    },
+    "creek": {
+      "actual_glb_sha256": "74aecc38ebd5fea24416529e52d7979e6c90f7c75efbc5f11090c16908235bab",
+      "resident": [
+        "backcountry",
+        "camp",
+        "approach",
+        "creek"
+      ],
+      "front": [
+        {
+          "pixel": [
+            78,
+            89
+          ],
+          "mesh_hit": {
+            "batch": "approach/needles__9",
+            "distance_m": 8.9854,
+            "at": [
+              -8.5328,
+              3.5517,
+              -67.8436
+            ],
+            "owner": 43,
+            "triangle_width_m": 3.3971
+          }
+        },
+        {
+          "pixel": [
+            148,
+            120
+          ],
+          "mesh_hit": {
+            "batch": "approach/needles__9",
+            "distance_m": 6.9148,
+            "at": [
+              -7.0573,
+              2.8947,
+              -66.3766
+            ],
+            "owner": 43,
+            "triangle_width_m": 3.3635
+          }
+        },
+        {
+          "pixel": [
+            269,
+            61
+          ],
+          "mesh_hit": {
+            "batch": "approach/needles__9",
+            "distance_m": 8.9199,
+            "at": [
+              -6.2805,
+              4.2874,
+              -68.4695
+            ],
+            "owner": 45,
+            "triangle_width_m": 2.7318
+          }
+        },
+        {
+          "pixel": [
+            365,
+            101
+          ],
+          "mesh_hit": {
+            "batch": "camp/needles__10",
+            "distance_m": 16.8045,
+            "at": [
+              -5.49,
+              5.7862,
+              -76.4414
+            ],
+            "owner": 49,
+            "triangle_width_m": 1.5216
+          }
+        },
+        {
+          "pixel": [
+            733,
+            60
+          ],
+          "mesh_hit": {
+            "batch": "approach/needles__10",
+            "distance_m": 11.5199,
+            "at": [
+              2.4015,
+              5.1205,
+              -68.9877
+            ],
+            "owner": 44,
+            "triangle_width_m": 0.8126
+          }
+        },
+        {
+          "pixel": [
+            797,
+            155
+          ],
+          "mesh_hit": {
+            "batch": "approach/needles__10",
+            "distance_m": 11.6352,
+            "at": [
+              3.7357,
+              3.2001,
+              -68.5703
+            ],
+            "owner": 46,
+            "triangle_width_m": 2.0387
+          }
+        },
+        {
+          "pixel": [
+            861,
+            95
+          ],
+          "mesh_hit": {
+            "batch": "approach/needles__10",
+            "distance_m": 13.0419,
+            "at": [
+              5.3156,
+              4.5136,
+              -68.6533
+            ],
+            "owner": 130,
+            "triangle_width_m": 6.4298
+          }
+        },
+        {
+          "pixel": [
+            905,
+            126
+          ],
+          "mesh_hit": {
+            "batch": "creek/bark__10",
+            "distance_m": 3.3302,
+            "at": [
+              -1.6145,
+              2.2125,
+              -62.2276
+            ],
+            "owner": null,
+            "triangle_width_m": 2.9597
+          }
+        }
+      ],
+      "shadow": [
+        {
+          "pixel": [
+            360,
+            420
+          ],
+          "ground": {
+            "batch": "approach/mud",
+            "distance_m": 4.4322,
+            "at": [
+              -4.6698,
+              0.0,
+              -64.2786
+            ],
+            "owner": null,
+            "triangle_width_m": 1.1011
+          },
+          "sun_ray_blocker": {
+            "batch": "creek/needles__9",
+            "distance_m": 12.2089,
+            "at": [
+              -7.3037,
+              9.5454,
+              -57.1369
+            ],
+            "owner": 37,
+            "triangle_width_m": 4.3504
+          }
+        },
+        {
+          "pixel": [
+            478,
+            415
+          ],
+          "ground": {
+            "batch": "approach/mud",
+            "distance_m": 4.3383,
+            "at": [
+              -3.6383,
+              0.0,
+              -64.1643
+            ],
+            "owner": null,
+            "triangle_width_m": 1.1011
+          },
+          "sun_ray_blocker": {
+            "batch": "creek/needles__10",
+            "distance_m": 11.9248,
+            "at": [
+              -6.2109,
+              9.3233,
+              -57.1887
+            ],
+            "owner": 37,
+            "triangle_width_m": 2.8347
+          }
+        },
+        {
+          "pixel": [
+            547,
+            455
+          ],
+          "ground": {
+            "batch": "creek/mud",
+            "distance_m": 3.662,
+            "at": [
+              -3.2438,
+              0.0,
+              -63.3157
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0532
+          },
+          "sun_ray_blocker": {
+            "batch": "creek/needles__10",
+            "distance_m": 11.5338,
+            "at": [
+              -5.732,
+              9.0176,
+              -56.5689
+            ],
+            "owner": 37,
+            "triangle_width_m": 3.0474
+          }
+        },
+        {
+          "pixel": [
+            320,
+            476
+          ],
+          "ground": {
+            "batch": "creek/mud",
+            "distance_m": 3.6358,
+            "at": [
+              -4.8398,
+              0.0,
+              -63.3656
+            ],
+            "owner": null,
+            "triangle_width_m": 1.0532
+          },
+          "sun_ray_blocker": {
+            "batch": "creek/needles__9",
+            "distance_m": 10.4927,
+            "at": [
+              -7.1034,
+              8.2037,
+              -57.2278
+            ],
+            "owner": 37,
+            "triangle_width_m": 3.584
+          }
+        }
+      ]
+    }
+  },
+  "pilot": {
+    "origin": [
+      -9.299,
+      0.0,
+      -66.152
+    ],
+    "tree": {
+      "type": "fir",
+      "x": -9.299,
+      "z": -66.152,
+      "height": 15.796,
+      "radius": 0.233,
+      "yaw": 2.008
+    },
+    "tree_id": 43,
+    "chunk": "approach",
+    "collision": {
+      "type": "tree",
+      "x": -9.299,
+      "z": -66.152,
+      "r": 0.268
+    },
+    "original_wood_triangles": 893,
+    "original_needle_triangles": 756,
+    "original_sprays": 189,
+    "plane_material": "res://materials/needles.tres"
+  },
+  "sun_at_25": [
+    -0.215734,
+    0.781843,
+    0.584962
+  ]
+}

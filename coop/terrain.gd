@@ -9,11 +9,19 @@ const SURFACES = {
 	"bark": preload("res://materials/bark.tres"),
 	"rock": preload("res://materials/rock.tres"),
 	"needles": preload("res://materials/needles.tres"),
-	"fern": preload("res://materials/fern.tres")
 }
+const GROUND_SHADER = preload("res://materials/woodland_ground.gdshader")
+const Rules = preload("res://rules.gd")
+# Older rain contributes less to soil moisture. Offsets are in room seconds.
+const GROUND_RAIN_HISTORY := [
+	Vector2(4.0, 0.28), Vector2(9.0, 0.16), Vector2(15.0, 0.11),
+	Vector2(24.0, 0.062), Vector2(36.0, 0.034), Vector2(50.0, 0.014),
+]
 const FAR_FIR = preload("res://textures/distant_fir.png")
 const Grove = preload("res://grove.gd")
 const Grass = preload("res://grass.gd")
+const WindField = preload("res://vegetation/wind_field.gd")
+const StreamedCrown = preload("res://vegetation/streamed_crown.gd")
 const LakeLayout = preload("res://lake_layout.gd")
 const Lake = preload("res://lake.gd")
 const CoastScene = preload("res://coast_scene.gd")
@@ -36,8 +44,13 @@ var focus := Vector3(1.9, 1.67, -85.0)
 var chunks: Array
 var loaded := {}
 var far_trees := {}
+var streamed_crowns: Dictionary[String, Array] = {}
+var crown_wind_time := 0.0
+var crown_wind_field := WindField.sample(0.0, 0.0)
 var background_floor: MeshInstance3D
 var materials := {}
+var ground_materials: Dictionary[String, ShaderMaterial] = {}
+var _ground_moisture := Vector2.ZERO
 var pending := ""
 var web_request: JavaScriptObject
 var next_try := {}
@@ -74,6 +87,9 @@ func _ready() -> void:
 			configure("http://localhost:4184/coop/zones/")
 	for key in SURFACES:
 		materials[key] = SURFACES[key].duplicate()
+	for key: String in ["mud", "rock"]:
+		ground_materials[key] = _ground_material(SURFACES[key], key == "rock")
+	materials["fern"] = grass.fern_material
 	add_child(http)
 	http.timeout = 25.0
 	http.request_completed.connect(_received)
@@ -91,6 +107,9 @@ func _ready() -> void:
 func update_focus(pos: Vector3) -> void:
 	focus = pos
 	grove.update_focus(pos)
+	for crowns: Array in streamed_crowns.values():
+		for crown in crowns:
+			crown.set_focus(pos)
 
 func focus_zone() -> String:
 	var at := Vector2(focus.x, focus.z)
@@ -211,6 +230,7 @@ func _next_chunk() -> String:
 
 func _unload_chunk(id: String) -> void:
 	far_trees[id].show()
+	streamed_crowns.erase(id)
 	loaded[id].hide()
 	loaded[id].queue_free()
 	loaded.erase(id)
@@ -265,19 +285,33 @@ func _parse_chunk(id: String, bytes: PackedByteArray) -> void:
 	for object in part.find_children("*", "MeshInstance3D", true, false):
 		var mesh_node := object as MeshInstance3D
 		var surface := str(mesh_node.name).get_slice("__", 0)
-		var material = materials.get(surface)
+		var material: Material = ground_materials.get(surface, materials.get(surface))
 		if material != null:
 			mesh_node.material_override = material
 		if surface == "mud" or surface == "forest_floor":
 			mesh_node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		if surface == "forest_floor" and id in ["approach", "creek", "crossing"]:
 			mesh_node.layers |= Lake.REFLECTION_LAYER
+	var crowns := []
+	for spec: Dictionary in world.get("streamedCrowns", {}).get(id, []):
+		var crown := StreamedCrown.new()
+		if not crown.configure(spec):
+			crown.free()
+			part.free()
+			_failed(id, "Missing streamed crown " + str(spec.id))
+			return
+		crown.set_focus(focus)
+		crown.set_wind(crown_wind_time, crown_wind_field)
+		part.add_child(crown)
+		crowns.append(crown)
 	part.name = id
 	grass.add_to_chunk(part, world.get("grass", {}).get(id, []))
 	if not replace.is_empty():
 		_unload_chunk(replace.id)
 	add_child(part)
 	loaded[id] = part
+	if not crowns.is_empty():
+		streamed_crowns[id] = crowns
 	far_trees[id].visible = false
 	next_try.erase(id)
 	pending = ""
@@ -354,6 +388,31 @@ func _floor_sector(mesh: SurfaceTool, lo: Vector2, hi: Vector2, columns: int, ro
 				mesh.set_color(Color(0.66, 0.67, 0.60))
 				mesh.add_vertex(point)
 
+func _ground_material(source: StandardMaterial3D, stone: bool) -> ShaderMaterial:
+	var material := ShaderMaterial.new()
+	material.shader = GROUND_SHADER
+	material.set_shader_parameter("ground_color", source.albedo_texture)
+	material.set_shader_parameter("ground_normal", source.normal_texture)
+	material.set_shader_parameter("surface_data", source.roughness_texture)
+	material.set_shader_parameter("base_roughness", source.roughness)
+	material.set_shader_parameter("normal_depth", source.normal_scale)
+	material.set_shader_parameter("ao_light_affect", source.ao_light_affect)
+	material.set_shader_parameter("stone", stone)
+	return material
+
+func _update_ground_moisture(elapsed: float, rain: float) -> void:
+	# Sampling the shared weather timeline keeps reconnecting players and an
+	# already-visible path in the same drying phase.
+	var retained := rain * 0.36
+	for sample: Vector2 in GROUND_RAIN_HISTORY:
+		retained += sample.y * Rules.rain_at(elapsed - sample.x)
+	var moisture := Vector2(retained, rain)
+	if moisture.is_equal_approx(_ground_moisture):
+		return
+	_ground_moisture = moisture
+	for material: ShaderMaterial in ground_materials.values():
+		material.set_shader_parameter("moisture", moisture)
+
 func set_wet(value: float) -> void:
 	if materials.is_empty() or absf(value - wetness) < 0.003:
 		return
@@ -384,8 +443,19 @@ func update_flame(elapsed: float, delta: float) -> void:
 	fire_lamp.light_energy = 1.35 * ignition * (1.0 + 0.5 * draft)
 
 func update_water(elapsed: float, rain: float, lighting: Dictionary) -> void:
+	_update_ground_moisture(elapsed, rain)
 	lake.update_water(elapsed, rain, lighting)
 	coast.update_light(elapsed, rain, lighting)
+	var wind := WindField.sample(elapsed, rain)
+	grass.material.set_shader_parameter("wind_time", elapsed)
+	grass.material.set_shader_parameter("wind_field", wind)
+	grove.set_wind(elapsed, wind)
+	coast.set_wind(elapsed, wind)
+	crown_wind_time = elapsed
+	crown_wind_field = wind
+	for crowns: Array in streamed_crowns.values():
+		for crown in crowns:
+			crown.set_wind(elapsed, wind)
 
 func add_water_impact(point: Vector3, elapsed: float) -> void:
 	lake.add_impact(point, elapsed)

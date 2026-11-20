@@ -20,17 +20,19 @@ func sync(state: Dictionary, elapsed: float, received_at: float, delta: float) -
 		clip = ""
 		return
 	var at := Dog.position(state)
-	if received_at >= 0.0 and state.clip in [Dog.WALK, Dog.RUN]:
+	var feet := float(state.get("y",LakeLayout.walk_height(at)))
+	if received_at >= 0.0 and not state.get("fixtureNear",false) and state.clip in [Dog.WALK, Dog.RUN]:
 		var drift := clampf(elapsed - received_at, 0.0, 0.10)
 		at += Vector2(float(state.get("vx", 0.0)), float(state.get("vz", 0.0))) * drift
-	var target := Vector3(at.x, LakeLayout.walk_height(at), at.y)
+		feet = LakeLayout.walk_height(at)
+	var target := Vector3(at.x, feet, at.y)
 	var angle := float(state.yaw)
 	if clip.is_empty():
 		position = target
 		rotation.y = angle
 	else:
 		var blend := 1.0 - exp(-12.0 * delta)
-		position = position.lerp(target, blend)
+		position = target if Dog.Footing.floor_transition(position,target) else position.lerp(target,blend)
 		rotation.y = lerp_angle(rotation.y, angle, blend)
 	var next: String = state.clip
 	var rate := 1.0

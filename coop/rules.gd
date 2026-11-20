@@ -27,6 +27,8 @@ static func rain_at(elapsed: float) -> float:
 static func collision_grid(obstacles: Array) -> Dictionary:
 	var grid := {}
 	for obstacle in obstacles + LakeLayout.Coast.obstacles:
+		if obstacle.get("type") == "table":
+			continue
 		if obstacle.get("type") == "rock" and float(obstacle.r) <= STEP_OVER_ROCK:
 			continue
 		var center := Vector2(obstacle.x, obstacle.z)

@@ -1,0 +1,1082 @@
+{
+  "checks": [
+    "Actual lake terrain chunks",
+    "Lake, creek and ocean meshes identified",
+    "before water sources",
+    "before ocean sources",
+    "after water sources",
+    "after ocean sources",
+    "slope-only water sources",
+    "slope-only ocean sources",
+    "rain-without-rings water sources",
+    "rain-without-rings ocean sources",
+    "lake-rain camera medium",
+    "lake-rain lake clock",
+    "lake-rain sea clock",
+    "lake-rain frozen live shore reflection",
+    "Captured lake-rain before",
+    "Captured lake-rain slope-only",
+    "Captured lake-rain rain-without-rings",
+    "Captured lake-rain after",
+    "coast-rain camera medium",
+    "coast-rain lake clock",
+    "coast-rain sea clock",
+    "Captured coast-rain before",
+    "Captured coast-rain slope-only",
+    "Captured coast-rain rain-without-rings",
+    "Captured coast-rain after",
+    "lake-weather camera medium",
+    "lake-weather lake clock",
+    "lake-weather sea clock",
+    "lake-weather frozen live shore reflection",
+    "Captured lake-weather before",
+    "Captured lake-weather after",
+    "coast-weather camera medium",
+    "coast-weather lake clock",
+    "coast-weather sea clock",
+    "Captured coast-weather before",
+    "Captured coast-weather after",
+    "lake-distant camera medium",
+    "lake-distant lake clock",
+    "lake-distant sea clock",
+    "lake-distant frozen live shore reflection",
+    "Captured lake-distant before",
+    "Captured lake-distant after",
+    "coast-offshore camera medium",
+    "coast-offshore lake clock",
+    "coast-offshore sea clock",
+    "Captured coast-offshore before",
+    "Captured coast-offshore after",
+    "lake-clear camera medium",
+    "lake-clear lake clock",
+    "lake-clear sea clock",
+    "lake-clear frozen live shore reflection",
+    "Captured lake-clear before",
+    "Captured lake-clear after",
+    "Captured lake-clear before-repeat",
+    "coast-clear camera medium",
+    "coast-clear lake clock",
+    "coast-clear sea clock",
+    "Captured coast-clear before",
+    "Captured coast-clear after",
+    "lake-submerged camera medium",
+    "lake-submerged lake clock",
+    "lake-submerged sea clock",
+    "Captured lake-submerged before",
+    "Captured lake-submerged after",
+    "coast-submerged camera medium",
+    "coast-submerged lake clock",
+    "coast-submerged sea clock",
+    "Captured coast-submerged before",
+    "Captured coast-submerged after",
+    "lake-creek-join camera medium",
+    "lake-creek-join lake clock",
+    "lake-creek-join sea clock",
+    "lake-creek-join frozen live shore reflection",
+    "Captured lake-creek-join before",
+    "Captured lake-creek-join after",
+    "coast-wash camera medium",
+    "coast-wash lake clock",
+    "coast-wash sea clock",
+    "Captured coast-wash before",
+    "Captured coast-wash after",
+    "lake-easing camera medium",
+    "lake-easing lake clock",
+    "lake-easing sea clock",
+    "lake-easing frozen live shore reflection",
+    "Captured lake-easing before",
+    "Captured lake-easing after",
+    "lake-room-phase camera medium",
+    "lake-room-phase lake clock",
+    "lake-room-phase sea clock",
+    "lake-room-phase frozen live shore reflection",
+    "Captured lake-room-phase after",
+    "Stone impact exists for the dry water comparison",
+    "lake-stone-clear camera medium",
+    "lake-stone-clear lake clock",
+    "lake-stone-clear sea clock",
+    "lake-stone-clear frozen live shore reflection",
+    "Captured lake-stone-clear before",
+    "Captured lake-stone-clear after"
+  ],
+  "errors": [],
+  "shots": {
+    "coast-clear": {
+      "clock": 24.0,
+      "eye": [
+        -85.0999984741211,
+        2.06769394874573,
+        -51.0
+      ],
+      "rain": 0.0,
+      "rotation": [
+        1.48090004920959,
+        -0.340750008821487
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": null
+    },
+    "coast-offshore": {
+      "clock": 90.321148,
+      "eye": [
+        -104.199996948242,
+        1.64999997615814,
+        -56.5999984741211
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.567999958992,
+        -0.349999994039536
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": -1.72499997615814
+    },
+    "coast-rain": {
+      "clock": 90.321148,
+      "eye": [
+        -85.0999984741211,
+        2.06769394874573,
+        -51.0
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.48090004920959,
+        -0.340750008821487
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "slope-only",
+        "rain-without-rings",
+        "after"
+      ],
+      "water_depth": null
+    },
+    "coast-submerged": {
+      "clock": 90.321148,
+      "eye": [
+        -95.0,
+        -0.839999973773956,
+        -53.0
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.48000001907349,
+        0.319999992847443
+      ],
+      "underwater": true,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": 0.764999973773956
+    },
+    "coast-wash": {
+      "clock": 90.321148,
+      "eye": [
+        -83.379997253418,
+        2.25447225570679,
+        -51.2000007629395
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.38300001621246,
+        -0.294999986886978
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": null
+    },
+    "coast-weather": {
+      "clock": 90.321148,
+      "eye": [
+        -85.0999984741211,
+        2.06769394874573,
+        -51.0
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.48090004920959,
+        -0.340750008821487
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": null
+    },
+    "lake-clear": {
+      "clock": 24.0,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 0.0,
+      "rotation": [
+        1.53034996986389,
+        -0.34935000538826
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after",
+        "before-repeat"
+      ],
+      "water_depth": -1.86499996185303
+    },
+    "lake-creek-join": {
+      "clock": 92.688612,
+      "eye": [
+        -8.42000007629395,
+        1.61000001430511,
+        -51.6300010681152
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.72000002861023,
+        -0.400000005960464
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": null
+    },
+    "lake-distant": {
+      "clock": 92.688612,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.53034996986389,
+        -0.105999998748302
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": -1.86499996185303
+    },
+    "lake-easing": {
+      "clock": 111.0,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 0.42,
+      "rotation": [
+        1.53034996986389,
+        -0.34935000538826
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": -1.86499996185303
+    },
+    "lake-rain": {
+      "clock": 92.688612,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.53034996986389,
+        -0.34935000538826
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "slope-only",
+        "rain-without-rings",
+        "after"
+      ],
+      "water_depth": -1.86499996185303
+    },
+    "lake-room-phase": {
+      "clock": 92.878612,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.53034996986389,
+        -0.34935000538826
+      ],
+      "underwater": false,
+      "variants": [
+        "after"
+      ],
+      "water_depth": -1.86499996185303
+    },
+    "lake-stone-clear": {
+      "clock": 27.0,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 0.0,
+      "rotation": [
+        1.53034996986389,
+        -0.34935000538826
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": -1.86499996185303
+    },
+    "lake-submerged": {
+      "clock": 92.688612,
+      "eye": [
+        -17.6000003814697,
+        -0.779999971389771,
+        -50.0
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.52999997138977,
+        0.28999999165535
+      ],
+      "underwater": true,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": 0.704999971389771
+    },
+    "lake-weather": {
+      "clock": 92.688612,
+      "eye": [
+        -10.8199996948242,
+        1.78999996185303,
+        -49.0999984741211
+      ],
+      "rain": 1.0,
+      "rotation": [
+        1.53034996986389,
+        -0.34935000538826
+      ],
+      "underwater": false,
+      "variants": [
+        "before",
+        "after"
+      ],
+      "water_depth": -1.86499996185303
+    }
+  },
+  "pixel_comparison": {
+    "coast-clear": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 0,
+        "peak_rgb_delta": 0,
+        "mae_rgb": 0.0,
+        "luma_rms": 0.0,
+        "luma_percentiles_01_50_95_99": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "luma_brightening_ge_7": 0,
+        "luma_darkening_le_minus_7": 0,
+        "signed_luma_average": 0.0
+      }
+    },
+    "coast-offshore": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 75808,
+        "peak_rgb_delta": 88,
+        "mae_rgb": 0.64682,
+        "luma_rms": 2.92286,
+        "luma_percentiles_01_50_95_99": [
+          -14.2848,
+          0.0,
+          0.0,
+          2.0
+        ],
+        "luma_brightening_ge_7": 1919,
+        "luma_darkening_le_minus_7": 28264,
+        "signed_luma_average": -0.5094
+      }
+    },
+    "coast-rain": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 55800,
+        "peak_rgb_delta": 57,
+        "mae_rgb": 0.41617,
+        "luma_rms": 2.09273,
+        "luma_percentiles_01_50_95_99": [
+          -10.7874,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "luma_brightening_ge_7": 592,
+        "luma_darkening_le_minus_7": 19110,
+        "signed_luma_average": -0.34288
+      },
+      "near": {
+        "original_minus_unmarked_rain": {
+          "pixels": 237119,
+          "rgb_counts_above_one": 27258,
+          "peak_rgb_delta": 54,
+          "mae_rgb": 0.80805,
+          "luma_rms": 2.87888,
+          "luma_percentiles_01_50_95_99": [
+            -1.9278,
+            0.0,
+            6.5026,
+            13.5748
+          ],
+          "luma_brightening_ge_7": 10240,
+          "luma_darkening_le_minus_7": 151,
+          "signed_luma_average": 0.7096
+        },
+        "old_normal_minus_unmarked_rain": {
+          "pixels": 237119,
+          "rgb_counts_above_one": 13452,
+          "peak_rgb_delta": 39,
+          "mae_rgb": 0.25441,
+          "luma_rms": 1.20531,
+          "luma_percentiles_01_50_95_99": [
+            -3.0,
+            0.0,
+            0.2848,
+            4.0
+          ],
+          "luma_brightening_ge_7": 918,
+          "luma_darkening_le_minus_7": 487,
+          "signed_luma_average": 0.03296
+        },
+        "new_normal_minus_unmarked_rain": {
+          "pixels": 237119,
+          "rgb_counts_above_one": 1791,
+          "peak_rgb_delta": 32,
+          "mae_rgb": 0.03473,
+          "luma_rms": 0.41717,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0722
+          ],
+          "luma_brightening_ge_7": 127,
+          "luma_darkening_le_minus_7": 60,
+          "signed_luma_average": 0.00633
+        },
+        "direct_old_stamp_color": {
+          "pixels": 237119,
+          "rgb_counts_above_one": 28190,
+          "peak_rgb_delta": 26,
+          "mae_rgb": 0.76241,
+          "luma_rms": 2.50422,
+          "luma_percentiles_01_50_95_99": [
+            -2.0,
+            0.0,
+            6.7874,
+            12.0
+          ],
+          "luma_brightening_ge_7": 10160,
+          "luma_darkening_le_minus_7": 2,
+          "signed_luma_average": 0.67664
+        }
+      },
+      "mid": {
+        "original_minus_unmarked_rain": {
+          "pixels": 97247,
+          "rgb_counts_above_one": 9478,
+          "peak_rgb_delta": 57,
+          "mae_rgb": 0.69225,
+          "luma_rms": 2.97716,
+          "luma_percentiles_01_50_95_99": [
+            -1.0,
+            0.0,
+            4.0,
+            14.0
+          ],
+          "luma_brightening_ge_7": 2821,
+          "luma_darkening_le_minus_7": 128,
+          "signed_luma_average": 0.60276
+        },
+        "old_normal_minus_unmarked_rain": {
+          "pixels": 97247,
+          "rgb_counts_above_one": 7778,
+          "peak_rgb_delta": 42,
+          "mae_rgb": 0.45396,
+          "luma_rms": 2.02491,
+          "luma_percentiles_01_50_95_99": [
+            -5.7874,
+            0.0,
+            0.9278,
+            6.7874
+          ],
+          "luma_brightening_ge_7": 902,
+          "luma_darkening_le_minus_7": 694,
+          "signed_luma_average": 0.03898
+        },
+        "new_normal_minus_unmarked_rain": {
+          "pixels": 97247,
+          "rgb_counts_above_one": 516,
+          "peak_rgb_delta": 26,
+          "mae_rgb": 0.02571,
+          "luma_rms": 0.33414,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 24,
+          "luma_darkening_le_minus_7": 11,
+          "signed_luma_average": 0.00287
+        },
+        "direct_old_stamp_color": {
+          "pixels": 97247,
+          "rgb_counts_above_one": 10227,
+          "peak_rgb_delta": 23,
+          "mae_rgb": 0.58247,
+          "luma_rms": 2.04063,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            4.7152,
+            10.0722
+          ],
+          "luma_brightening_ge_7": 2599,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": 0.56379
+        }
+      },
+      "far": {
+        "original_minus_unmarked_rain": {
+          "pixels": 20489,
+          "rgb_counts_above_one": 0,
+          "peak_rgb_delta": 0,
+          "mae_rgb": 0.0,
+          "luma_rms": 0.0,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": 0.0
+        },
+        "old_normal_minus_unmarked_rain": {
+          "pixels": 20489,
+          "rgb_counts_above_one": 0,
+          "peak_rgb_delta": 0,
+          "mae_rgb": 0.0,
+          "luma_rms": 0.0,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": 0.0
+        },
+        "new_normal_minus_unmarked_rain": {
+          "pixels": 20489,
+          "rgb_counts_above_one": 0,
+          "peak_rgb_delta": 0,
+          "mae_rgb": 0.0,
+          "luma_rms": 0.0,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": 0.0
+        },
+        "direct_old_stamp_color": {
+          "pixels": 20489,
+          "rgb_counts_above_one": 0,
+          "peak_rgb_delta": 0,
+          "mae_rgb": 0.0,
+          "luma_rms": 0.0,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": 0.0
+        }
+      }
+    },
+    "coast-submerged": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 63,
+        "peak_rgb_delta": 11,
+        "mae_rgb": 0.00033,
+        "luma_rms": 0.04353,
+        "luma_percentiles_01_50_95_99": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "luma_brightening_ge_7": 0,
+        "luma_darkening_le_minus_7": 11,
+        "signed_luma_average": -0.00034
+      }
+    },
+    "coast-wash": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 46035,
+        "peak_rgb_delta": 52,
+        "mae_rgb": 0.33484,
+        "luma_rms": 1.87759,
+        "luma_percentiles_01_50_95_99": [
+          -9.2855,
+          0.0,
+          0.0,
+          0.7152
+        ],
+        "luma_brightening_ge_7": 662,
+        "luma_darkening_le_minus_7": 14216,
+        "signed_luma_average": -0.2774
+      }
+    },
+    "coast-weather": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 55786,
+        "peak_rgb_delta": 57,
+        "mae_rgb": 0.416,
+        "luma_rms": 2.09214,
+        "luma_percentiles_01_50_95_99": [
+          -10.7874,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "luma_brightening_ge_7": 591,
+        "luma_darkening_le_minus_7": 19103,
+        "signed_luma_average": -0.34276
+      }
+    },
+    "lake-clear": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 3793,
+        "peak_rgb_delta": 114,
+        "mae_rgb": 0.06017,
+        "luma_rms": 1.60889,
+        "luma_percentiles_01_50_95_99": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "luma_brightening_ge_7": 989,
+        "luma_darkening_le_minus_7": 1028,
+        "signed_luma_average": -0.00048
+      },
+      "repeat_original_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 5996,
+        "peak_rgb_delta": 122,
+        "mae_rgb": 0.09396,
+        "luma_rms": 2.01795,
+        "luma_percentiles_01_50_95_99": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "luma_brightening_ge_7": 1577,
+        "luma_darkening_le_minus_7": 1597,
+        "signed_luma_average": -1e-05
+      }
+    },
+    "lake-creek-join": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 27775,
+        "peak_rgb_delta": 56,
+        "mae_rgb": 0.18951,
+        "luma_rms": 1.45822,
+        "luma_percentiles_01_50_95_99": [
+          -5.1444,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "luma_brightening_ge_7": 653,
+        "luma_darkening_le_minus_7": 6710,
+        "signed_luma_average": -0.14631
+      }
+    },
+    "lake-distant": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 52060,
+        "peak_rgb_delta": 59,
+        "mae_rgb": 0.39072,
+        "luma_rms": 2.14555,
+        "luma_percentiles_01_50_95_99": [
+          -10.0,
+          0.0,
+          0.0,
+          0.8556
+        ],
+        "luma_brightening_ge_7": 1113,
+        "luma_darkening_le_minus_7": 15637,
+        "signed_luma_average": -0.31558
+      }
+    },
+    "lake-easing": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 29542,
+        "peak_rgb_delta": 96,
+        "mae_rgb": 0.16268,
+        "luma_rms": 1.13529,
+        "luma_percentiles_01_50_95_99": [
+          -4.7152,
+          0.0,
+          0.0,
+          0.0722
+        ],
+        "luma_brightening_ge_7": 602,
+        "luma_darkening_le_minus_7": 4696,
+        "signed_luma_average": -0.1188
+      }
+    },
+    "lake-rain": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 71002,
+        "peak_rgb_delta": 58,
+        "mae_rgb": 0.4997,
+        "luma_rms": 2.47142,
+        "luma_percentiles_01_50_95_99": [
+          -10.7874,
+          0.0,
+          0.0,
+          1.2848
+        ],
+        "luma_brightening_ge_7": 2209,
+        "luma_darkening_le_minus_7": 17156,
+        "signed_luma_average": -0.36496
+      },
+      "near": {
+        "original_minus_unmarked_rain": {
+          "pixels": 276429,
+          "rgb_counts_above_one": 33787,
+          "peak_rgb_delta": 55,
+          "mae_rgb": 0.87066,
+          "luma_rms": 3.28082,
+          "luma_percentiles_01_50_95_99": [
+            -2.0722,
+            0.0,
+            5.8596,
+            14.9278
+          ],
+          "luma_brightening_ge_7": 10552,
+          "luma_darkening_le_minus_7": 913,
+          "signed_luma_average": 0.69129
+        },
+        "old_normal_minus_unmarked_rain": {
+          "pixels": 276429,
+          "rgb_counts_above_one": 18827,
+          "peak_rgb_delta": 55,
+          "mae_rgb": 0.38264,
+          "luma_rms": 1.97389,
+          "luma_percentiles_01_50_95_99": [
+            -4.7152,
+            0.0,
+            0.7152,
+            6.0
+          ],
+          "luma_brightening_ge_7": 2264,
+          "luma_darkening_le_minus_7": 1525,
+          "signed_luma_average": 0.04099
+        },
+        "new_normal_minus_unmarked_rain": {
+          "pixels": 276429,
+          "rgb_counts_above_one": 4799,
+          "peak_rgb_delta": 55,
+          "mae_rgb": 0.15553,
+          "luma_rms": 1.79246,
+          "luma_percentiles_01_50_95_99": [
+            -1.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "luma_brightening_ge_7": 1008,
+          "luma_darkening_le_minus_7": 950,
+          "signed_luma_average": 0.00263
+        },
+        "direct_old_stamp_color": {
+          "pixels": 276429,
+          "rgb_counts_above_one": 33579,
+          "peak_rgb_delta": 48,
+          "mae_rgb": 0.75916,
+          "luma_rms": 2.56116,
+          "luma_percentiles_01_50_95_99": [
+            -1.9278,
+            0.0,
+            6.0,
+            11.0722
+          ],
+          "luma_brightening_ge_7": 10202,
+          "luma_darkening_le_minus_7": 329,
+          "signed_luma_average": 0.6503
+        }
+      },
+      "mid": {
+        "original_minus_unmarked_rain": {
+          "pixels": 122607,
+          "rgb_counts_above_one": 13421,
+          "peak_rgb_delta": 59,
+          "mae_rgb": 0.76385,
+          "luma_rms": 3.31167,
+          "luma_percentiles_01_50_95_99": [
+            -2.2846,
+            0.0,
+            4.0,
+            14.8596
+          ],
+          "luma_brightening_ge_7": 3582,
+          "luma_darkening_le_minus_7": 470,
+          "signed_luma_average": 0.55782
+        },
+        "old_normal_minus_unmarked_rain": {
+          "pixels": 122607,
+          "rgb_counts_above_one": 10237,
+          "peak_rgb_delta": 59,
+          "mae_rgb": 0.45147,
+          "luma_rms": 2.18706,
+          "luma_percentiles_01_50_95_99": [
+            -5.9278,
+            0.0,
+            0.9278,
+            6.2126
+          ],
+          "luma_brightening_ge_7": 1074,
+          "luma_darkening_le_minus_7": 923,
+          "signed_luma_average": 0.01765
+        },
+        "new_normal_minus_unmarked_rain": {
+          "pixels": 122607,
+          "rgb_counts_above_one": 2443,
+          "peak_rgb_delta": 59,
+          "mae_rgb": 0.14505,
+          "luma_rms": 1.78734,
+          "luma_percentiles_01_50_95_99": [
+            -1.0,
+            0.0,
+            0.0,
+            1.1404
+          ],
+          "luma_brightening_ge_7": 371,
+          "luma_darkening_le_minus_7": 326,
+          "signed_luma_average": 0.00518
+        },
+        "direct_old_stamp_color": {
+          "pixels": 122607,
+          "rgb_counts_above_one": 13600,
+          "peak_rgb_delta": 57,
+          "mae_rgb": 0.66101,
+          "luma_rms": 2.57468,
+          "luma_percentiles_01_50_95_99": [
+            -1.0,
+            0.0,
+            4.0722,
+            11.7874
+          ],
+          "luma_brightening_ge_7": 3467,
+          "luma_darkening_le_minus_7": 273,
+          "signed_luma_average": 0.54017
+        }
+      },
+      "far": {
+        "original_minus_unmarked_rain": {
+          "pixels": 2100,
+          "rgb_counts_above_one": 8,
+          "peak_rgb_delta": 3,
+          "mae_rgb": 0.01079,
+          "luma_rms": 0.15614,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": -0.0016
+        },
+        "old_normal_minus_unmarked_rain": {
+          "pixels": 2100,
+          "rgb_counts_above_one": 6,
+          "peak_rgb_delta": 4,
+          "mae_rgb": 0.0073,
+          "luma_rms": 0.13342,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": 0.00462
+        },
+        "new_normal_minus_unmarked_rain": {
+          "pixels": 2100,
+          "rgb_counts_above_one": 7,
+          "peak_rgb_delta": 2,
+          "mae_rgb": 0.00619,
+          "luma_rms": 0.10504,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": -0.00337
+        },
+        "direct_old_stamp_color": {
+          "pixels": 2100,
+          "rgb_counts_above_one": 9,
+          "peak_rgb_delta": 4,
+          "mae_rgb": 0.01143,
+          "luma_rms": 0.18028,
+          "luma_percentiles_01_50_95_99": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "luma_brightening_ge_7": 0,
+          "luma_darkening_le_minus_7": 0,
+          "signed_luma_average": -0.00623
+        }
+      }
+    },
+    "lake-stone-clear": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 3191,
+        "peak_rgb_delta": 120,
+        "mae_rgb": 0.06263,
+        "luma_rms": 1.83712,
+        "luma_percentiles_01_50_95_99": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "luma_brightening_ge_7": 860,
+        "luma_darkening_le_minus_7": 869,
+        "signed_luma_average": -0.0001
+      }
+    },
+    "lake-submerged": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 30323,
+        "peak_rgb_delta": 58,
+        "mae_rgb": 0.16722,
+        "luma_rms": 1.50915,
+        "luma_percentiles_01_50_95_99": [
+          -1.8556,
+          0.0,
+          0.0,
+          1.8556
+        ],
+        "luma_brightening_ge_7": 1160,
+        "luma_darkening_le_minus_7": 2248,
+        "signed_luma_average": -0.03295
+      }
+    },
+    "lake-weather": {
+      "current_minus_original": {
+        "pixels": 921600,
+        "rgb_counts_above_one": 66860,
+        "peak_rgb_delta": 49,
+        "mae_rgb": 0.45092,
+        "luma_rms": 2.19719,
+        "luma_percentiles_01_50_95_99": [
+          -10.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "luma_brightening_ge_7": 1083,
+        "luma_darkening_le_minus_7": 16053,
+        "signed_luma_average": -0.36443
+      }
+    }
+  },
+  "source_sha256": {
+    "water_rain.gdshaderinc": {
+      "baseline": "e45ec14b1e9ece95515f104164ed5b25f34fb47f3c047bb17fc915fca87c1fb0",
+      "candidate": "e86a88a1a137de27b4f24d2fe3b936ed6d51dea7b6a3fed299b17372a22cd627",
+      "installed": "e86a88a1a137de27b4f24d2fe3b936ed6d51dea7b6a3fed299b17372a22cd627"
+    },
+    "water.gdshader": {
+      "baseline": "db938ca26852043c643ec14293eec208f18b3048176b5a791de1c666fb41774a",
+      "candidate": "a87b241aa1047f8d6874c6cd07721812817043a3f2aced596f987f0b23a3e4cd",
+      "installed": "a87b241aa1047f8d6874c6cd07721812817043a3f2aced596f987f0b23a3e4cd"
+    },
+    "ocean.gdshader": {
+      "baseline": "3409109bec14a74602d6dcaa4cf0e048017218e329511b97c602393d8d6308ae",
+      "candidate": "176ce7cc2e9a32481bb7b3e605b5ae7898889ee2061d286ab6020bf604c97a88",
+      "installed": "176ce7cc2e9a32481bb7b3e605b5ae7898889ee2061d286ab6020bf604c97a88"
+    }
+  },
+  "renderer": "Godot 4.7.2 OpenGL 4.1 Metal Compatibility Apple M1",
+  "size": [
+    1280,
+    720
+  ]
+}

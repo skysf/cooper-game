@@ -1,0 +1,12 @@
+{
+  "transport": "production Godot server and two loopback WebSocket peers",
+  "sameTickSnapshots": 40,
+  "rejectsBeforeShore": 2,
+  "claimsAfterShore": 1,
+  "settledPoseOnRestart": true,
+  "landAt": 24.12456620084158,
+  "remainingDrops": {
+    "eagle_feather": 1,
+    "eagle_meat": 1
+  }
+}

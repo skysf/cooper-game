@@ -1,0 +1,62 @@
+{
+  "legacy_sha256": {
+    "tower.glb": "0c8982082529f8b15f7e4402f4fa1ea290eb6cc706fe154885dea56264380f26",
+    "crossing.glb": "1c244498b7c5f71d26baeeab95f91323188ca821f5b3d526640363438dd0a8c8",
+    "camp.glb": "b6043879d935d9121d5f827165dec153c0f6612d026b98d93a9ab7afe0c90403",
+    "backcountry.glb": "a295ee9bcf1861118fa769ba89f0eeb56b8525870e00d1e77369b34abfe56360",
+    "approach.glb": "2143263ab802d484aee8f1c839df474ecccd504d1a6d63016a4447e9be5ba15f",
+    "creek.glb": "74aecc38ebd5fea24416529e52d7979e6c90f7c75efbc5f11090c16908235bab",
+    "ridge.glb": "8e8ab1e25c5eafbe2026362cdab5c9efbda91b54355b6453fe887633802809d1"
+  },
+  "new_directory": "dist/coop-streamed-crown-20261120/zones",
+  "new_chunk_sha256": {
+    "tower.glb": "0c8982082529f8b15f7e4402f4fa1ea290eb6cc706fe154885dea56264380f26",
+    "crossing.glb": "1c244498b7c5f71d26baeeab95f91323188ca821f5b3d526640363438dd0a8c8",
+    "camp.glb": "b6043879d935d9121d5f827165dec153c0f6612d026b98d93a9ab7afe0c90403",
+    "backcountry.glb": "a295ee9bcf1861118fa769ba89f0eeb56b8525870e00d1e77369b34abfe56360",
+    "approach.glb": "8a469355d6a40db7ae7b564a91a84397edc23538822fbc281695280293ffc1c5",
+    "creek.glb": "c30fe3b2096dcd1c7741c5a79a587707abf612b733c0aef648aefb4313b05816",
+    "ridge.glb": "8e8ab1e25c5eafbe2026362cdab5c9efbda91b54355b6453fe887633802809d1"
+  },
+  "world_manifest_sha256": "d0301f69d40be7872b512f1e1102fae23f8585eb6c4ba311b5c9676e5cc7b450",
+  "retained_old_fields": [
+    "shelter",
+    "player",
+    "weather",
+    "route",
+    "render",
+    "sunDirection",
+    "spawn",
+    "sites",
+    "obstacles",
+    "trees",
+    "grove",
+    "grass"
+  ],
+  "removed_triangles": {
+    "approach.glb": {
+      "bark__9": 889,
+      "needles__9": 751
+    },
+    "creek.glb": {
+      "bark__9": 4,
+      "needles__9": 5
+    }
+  },
+  "pilot": {
+    "approach": [
+      {
+        "id": "luming-upper-creek",
+        "at": [
+          -9.299,
+          -66.152
+        ],
+        "height": 15.796,
+        "model": "res://trees/luming_streamed_crown.glb"
+      }
+    ]
+  },
+  "model_sha256": "9d3e1e5d1c075faf6595a67c0ae8e6598e365a5d31d6a5726dc50f5e82ebdcce",
+  "model_bytes": 544104,
+  "editable_blender_sha256": "5762fbedd7dfe65d2bc7f87ba6804c2db0f31636aa8c67094ed6fb1f62a02901"
+}

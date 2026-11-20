@@ -1,0 +1,71 @@
+[
+  {
+    "file": "coop/vegetation/creek_ostrich_fern.glb",
+    "bytes": 1176476,
+    "triangles": 16710,
+    "materials": 1,
+    "meshes": [
+      {
+        "name": "FernMatureFar",
+        "primitives": [
+          {
+            "vertices": 3840,
+            "triangles": 2854,
+            "material": 0,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          }
+        ]
+      },
+      {
+        "name": "FernMatureNear",
+        "primitives": [
+          {
+            "vertices": 8381,
+            "triangles": 8827,
+            "material": 0,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          }
+        ]
+      },
+      {
+        "name": "FernYoungFar",
+        "primitives": [
+          {
+            "vertices": 1844,
+            "triangles": 1190,
+            "material": 0,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          }
+        ]
+      },
+      {
+        "name": "FernYoungNear",
+        "primitives": [
+          {
+            "vertices": 3874,
+            "triangles": 3839,
+            "material": 0,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "name": "Ostrich fern · tissue atlas",
+        "mime_type": "image/png",
+        "embedded_bytes": 353868,
+        "dimensions": [
+          512,
+          512
+        ]
+      }
+    ],
+    "skins": [],
+    "animations": []
+  }
+]

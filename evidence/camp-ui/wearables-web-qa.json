@@ -1,0 +1,10 @@
+{
+  "room": "gear-c1d87a3d",
+  "errors": [],
+  "checks": [
+    "rendered the camp helmet on the ground and picked it up with G",
+    "equipped the helmet through the bag and returned the cap to inventory",
+    "swapped back to the cap and retained exactly one helmet"
+  ],
+  "ok": true
+}

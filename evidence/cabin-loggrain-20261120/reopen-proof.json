@@ -1,0 +1,60 @@
+{
+  "packedImages": {
+    "cabin_hewn_pine_diff": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packedBytes": 151882,
+      "colorSpace": "sRGB"
+    },
+    "cabin_hewn_pine_nor_gl": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packedBytes": 1506452,
+      "colorSpace": "Non-Color"
+    },
+    "cabin_hewn_pine_rough": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packedBytes": 387699,
+      "colorSpace": "Non-Color"
+    },
+    "cabin_cut_endgrain_diff": {
+      "size": [
+        768,
+        768
+      ],
+      "packedBytes": 77521,
+      "colorSpace": "sRGB"
+    },
+    "cabin_cut_endgrain_nor_gl": {
+      "size": [
+        768,
+        768
+      ],
+      "packedBytes": 1084952,
+      "colorSpace": "Non-Color"
+    },
+    "cabin_cut_endgrain_rough": {
+      "size": [
+        768,
+        768
+      ],
+      "packedBytes": 335133,
+      "colorSpace": "Non-Color"
+    }
+  },
+  "sceneNames": [
+    "Assembled cabin",
+    "cabin_doorway",
+    "cabin_floor",
+    "cabin_roof",
+    "cabin_wall"
+  ],
+  "sameSourceGeometry": true
+}\n

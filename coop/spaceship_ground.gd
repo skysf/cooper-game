@@ -31,6 +31,8 @@ static func collision_grid(world: Dictionary) -> Dictionary:
 	for tree: Dictionary in grove.get("trees", []):
 		saplings[Vector2(tree.x, tree.z)] = tree
 	for item: Dictionary in world.get("obstacles", []) + Lake.Coast.obstacles:
+		if item.type == "table":
+			continue
 		var at := Vector2(item.x, item.z)
 		var base := Lake.ground_height(at)
 		var radius := float(item.r)

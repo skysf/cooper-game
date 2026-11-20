@@ -1,0 +1,552 @@
+{
+  "renderer": "Godot 4.7.2 OpenGL 4.1 Metal Compatibility Apple M1",
+  "frame_size": [
+    1024,
+    576
+  ],
+  "primary_checks": 59,
+  "supplementary_checks": 41,
+  "chunk_sha256": {
+    "approach": "2143263ab802d484aee8f1c839df474ecccd504d1a6d63016a4447e9be5ba15f",
+    "camp": "b6043879d935d9121d5f827165dec153c0f6612d026b98d93a9ab7afe0c90403",
+    "creek": "74aecc38ebd5fea24416529e52d7979e6c90f7c75efbc5f11090c16908235bab",
+    "crossing": "1c244498b7c5f71d26baeeab95f91323188ca821f5b3d526640363438dd0a8c8"
+  },
+  "triangles_removed": 1649,
+  "meshes_replaced": 4,
+  "horizon_lods": [
+    6437,
+    2783
+  ],
+  "shots": {
+    "a-far-after": {
+      "detail": [
+        false,
+        true
+      ],
+      "draws": 279,
+      "fov": 53.0,
+      "position": [
+        8.14140033721924,
+        18.7000007629395,
+        -61.6986999511719
+      ],
+      "shadow_triangles": 192334,
+      "tree_range": 17.9999828338623,
+      "triangles": 280430
+    },
+    "a-far-before": {
+      "detail": [],
+      "draws": 275,
+      "fov": 53.0,
+      "position": [
+        8.14140033721924,
+        18.7000007629395,
+        -61.6986999511719
+      ],
+      "shadow_triangles": 191200,
+      "tree_range": 17.9999828338623,
+      "triangles": 279296
+    },
+    "a-near-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 241,
+      "fov": 63.0,
+      "position": [
+        -2.32283067703247,
+        1.66999995708466,
+        -64.3706893920898
+      ],
+      "shadow_triangles": 183616,
+      "tree_range": 7.20000028610229,
+      "triangles": 340651
+    },
+    "a-near-before": {
+      "detail": [],
+      "draws": 232,
+      "fov": 63.0,
+      "position": [
+        -2.32283067703247,
+        1.66999995708466,
+        -64.3706893920898
+      ],
+      "shadow_triangles": 174040,
+      "tree_range": 7.20000028610229,
+      "triangles": 335863
+    },
+    "b-far-after": {
+      "detail": [
+        false,
+        true
+      ],
+      "draws": 242,
+      "fov": 53.0,
+      "position": [
+        -2.11088752746582,
+        16.5,
+        -49.649543762207
+      ],
+      "shadow_triangles": 194971,
+      "tree_range": 18.0,
+      "triangles": 261500
+    },
+    "b-far-before": {
+      "detail": [],
+      "draws": 238,
+      "fov": 53.0,
+      "position": [
+        -2.11088752746582,
+        16.5,
+        -49.649543762207
+      ],
+      "shadow_triangles": 193846,
+      "tree_range": 18.0,
+      "triangles": 260366
+    },
+    "b-near-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 237,
+      "fov": 63.0,
+      "position": [
+        -6.42375516891479,
+        2.04999995231628,
+        -59.5510177612305
+      ],
+      "shadow_triangles": 219884,
+      "tree_range": 7.20000028610229,
+      "triangles": 252882
+    },
+    "b-near-before": {
+      "detail": [],
+      "draws": 228,
+      "fov": 63.0,
+      "position": [
+        -6.42375516891479,
+        2.04999995231628,
+        -59.5510177612305
+      ],
+      "shadow_triangles": 210308,
+      "tree_range": 7.20000028610229,
+      "triangles": 248094
+    },
+    "c-far-after": {
+      "detail": [
+        false,
+        true
+      ],
+      "draws": 328,
+      "fov": 53.0,
+      "position": [
+        -25.4406509399414,
+        17.3999996185303,
+        -74.1173706054688
+      ],
+      "shadow_triangles": 230287,
+      "tree_range": 18.0,
+      "triangles": 309443
+    },
+    "c-far-before": {
+      "detail": [],
+      "draws": 324,
+      "fov": 53.0,
+      "position": [
+        -25.4406509399414,
+        17.3999996185303,
+        -74.1173706054688
+      ],
+      "shadow_triangles": 229904,
+      "tree_range": 18.0,
+      "triangles": 308309
+    },
+    "c-near-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 318,
+      "fov": 63.0,
+      "position": [
+        -15.7556610107422,
+        3.46000003814697,
+        -69.3381500244141
+      ],
+      "shadow_triangles": 243342,
+      "tree_range": 7.20000171661377,
+      "triangles": 330006
+    },
+    "c-near-before": {
+      "detail": [],
+      "draws": 309,
+      "fov": 63.0,
+      "position": [
+        -15.7556610107422,
+        3.46000003814697,
+        -69.3381500244141
+      ],
+      "shadow_triangles": 233766,
+      "tree_range": 7.20000171661377,
+      "triangles": 325218
+    },
+    "d-far-after": {
+      "detail": [
+        false,
+        true
+      ],
+      "draws": 332,
+      "fov": 53.0,
+      "position": [
+        -12.7406778335571,
+        16.7999992370605,
+        -83.8199081420898
+      ],
+      "shadow_triangles": 213870,
+      "tree_range": 18.0000038146973,
+      "triangles": 267490
+    },
+    "d-far-before": {
+      "detail": [],
+      "draws": 328,
+      "fov": 53.0,
+      "position": [
+        -12.7406778335571,
+        16.7999992370605,
+        -83.8199081420898
+      ],
+      "shadow_triangles": 213487,
+      "tree_range": 18.0000038146973,
+      "triangles": 266356
+    },
+    "d-near-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 316,
+      "fov": 63.0,
+      "position": [
+        -10.6756706237793,
+        1.91999995708466,
+        -73.2191619873047
+      ],
+      "shadow_triangles": 210401,
+      "tree_range": 7.19999933242798,
+      "triangles": 290813
+    },
+    "d-near-before": {
+      "detail": [],
+      "draws": 307,
+      "fov": 63.0,
+      "position": [
+        -10.6756706237793,
+        1.91999995708466,
+        -73.2191619873047
+      ],
+      "shadow_triangles": 200825,
+      "tree_range": 7.19999933242798,
+      "triangles": 286025
+    },
+    "ground-shadow-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 176,
+      "fov": 62.0,
+      "position": [
+        -4.84999990463257,
+        1.69000005722046,
+        -66.5199966430664
+      ],
+      "shadow_triangles": 270813,
+      "tree_range": 4.46419334411621,
+      "triangles": 94511
+    },
+    "ground-shadow-before": {
+      "detail": [],
+      "draws": 167,
+      "fov": 62.0,
+      "position": [
+        -4.84999990463257,
+        1.69000005722046,
+        -66.5199966430664
+      ],
+      "shadow_triangles": 261237,
+      "tree_range": 4.46419334411621,
+      "triangles": 89719
+    },
+    "ground-shadow-without-tree": {
+      "detail": [],
+      "draws": 167,
+      "fov": 62.0,
+      "position": [
+        -4.84999990463257,
+        1.69000005722046,
+        -66.5199966430664
+      ],
+      "shadow_triangles": 257939,
+      "tree_range": 4.46419334411621,
+      "triangles": 88074
+    },
+    "gust": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 181,
+      "fov": 75.0,
+      "position": [
+        -7.69999980926514,
+        1.75,
+        -63.5
+      ],
+      "shadow_triangles": 124148,
+      "tree_range": 3.09675741195679,
+      "triangles": 238358
+    },
+    "lod-blend": {
+      "detail": [
+        true,
+        true
+      ],
+      "draws": 262,
+      "fov": 59.0,
+      "position": [
+        4.02354621887207,
+        1.66999995708466,
+        -62.7501945495605
+      ],
+      "shadow_triangles": 193805,
+      "tree_range": 13.7500009536743,
+      "triangles": 355414
+    },
+    "lod-far": {
+      "detail": [
+        false,
+        true
+      ],
+      "draws": 258,
+      "fov": 59.0,
+      "position": [
+        4.02354621887207,
+        1.66999995708466,
+        -62.7501945495605
+      ],
+      "shadow_triangles": 188261,
+      "tree_range": 13.7500009536743,
+      "triangles": 349870
+    },
+    "lod-near": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 260,
+      "fov": 59.0,
+      "position": [
+        4.02354621887207,
+        1.66999995708466,
+        -62.7501945495605
+      ],
+      "shadow_triangles": 191915,
+      "tree_range": 13.7500009536743,
+      "triangles": 353524
+    },
+    "steady": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 181,
+      "fov": 75.0,
+      "position": [
+        -7.69999980926514,
+        1.75,
+        -63.5
+      ],
+      "shadow_triangles": 124148,
+      "tree_range": 3.09675741195679,
+      "triangles": 238358
+    },
+    "under-bough-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 207,
+      "fov": 75.0,
+      "position": [
+        -7.69999980926514,
+        1.75,
+        -63.5
+      ],
+      "shadow_triangles": 212299,
+      "tree_range": 3.09675741195679,
+      "triangles": 238358
+    },
+    "under-bough-before": {
+      "detail": [],
+      "draws": 198,
+      "fov": 75.0,
+      "position": [
+        -7.69999980926514,
+        1.75,
+        -63.5
+      ],
+      "shadow_triangles": 202723,
+      "tree_range": 3.09675741195679,
+      "triangles": 233570
+    },
+    "ground-side-after": {
+      "detail": [
+        true,
+        false
+      ],
+      "draws": 160,
+      "fov": 62.0,
+      "position": [
+        -5.03000020980835,
+        1.61000001430511,
+        -69.379997253418
+      ],
+      "shadow_triangles": 189106,
+      "tree_range": 5.35203886032104,
+      "triangles": 220198
+    },
+    "ground-side-before": {
+      "detail": [],
+      "draws": 152,
+      "fov": 62.0,
+      "position": [
+        -5.03000020980835,
+        1.61000001430511,
+        -69.379997253418
+      ],
+      "shadow_triangles": 179530,
+      "tree_range": 5.35203886032104,
+      "triangles": 216418
+    },
+    "ground-side-without-tree": {
+      "detail": [],
+      "draws": 152,
+      "fov": 62.0,
+      "position": [
+        -5.03000020980835,
+        1.61000001430511,
+        -69.379997253418
+      ],
+      "shadow_triangles": 176232,
+      "tree_range": 5.35203886032104,
+      "triangles": 214769
+    }
+  },
+  "camera_comparisons": {
+    "a-near": {
+      "pixels_above_14_rgb_levels": 80526,
+      "mean_rgb_error": 4.87825,
+      "added_triangles": 4788,
+      "added_draws": 9,
+      "added_shadow_triangles": 9576
+    },
+    "b-near": {
+      "pixels_above_14_rgb_levels": 60082,
+      "mean_rgb_error": 3.85584,
+      "added_triangles": 4788,
+      "added_draws": 9,
+      "added_shadow_triangles": 9576
+    },
+    "c-near": {
+      "pixels_above_14_rgb_levels": 48882,
+      "mean_rgb_error": 3.64614,
+      "added_triangles": 4788,
+      "added_draws": 9,
+      "added_shadow_triangles": 9576
+    },
+    "d-near": {
+      "pixels_above_14_rgb_levels": 53604,
+      "mean_rgb_error": 3.33302,
+      "added_triangles": 4788,
+      "added_draws": 9,
+      "added_shadow_triangles": 9576
+    },
+    "a-far": {
+      "pixels_above_14_rgb_levels": 25132,
+      "mean_rgb_error": 1.9143,
+      "added_triangles": 1134,
+      "added_draws": 4,
+      "added_shadow_triangles": 1134
+    },
+    "b-far": {
+      "pixels_above_14_rgb_levels": 20543,
+      "mean_rgb_error": 1.74173,
+      "added_triangles": 1134,
+      "added_draws": 4,
+      "added_shadow_triangles": 1125
+    },
+    "c-far": {
+      "pixels_above_14_rgb_levels": 16067,
+      "mean_rgb_error": 1.49898,
+      "added_triangles": 1134,
+      "added_draws": 4,
+      "added_shadow_triangles": 383
+    },
+    "d-far": {
+      "pixels_above_14_rgb_levels": 13932,
+      "mean_rgb_error": 1.25932,
+      "added_triangles": 1134,
+      "added_draws": 4,
+      "added_shadow_triangles": 383
+    }
+  },
+  "ground_shadow_with_other_trees_unchanged": {
+    "ground-shadow": {
+      "before": {
+        "darkened_seven_luma_levels": 59557,
+        "continuous_15px_square_samples": 5343,
+        "mean_positive_darkening": 4.45904
+      },
+      "after": {
+        "darkened_seven_luma_levels": 31763,
+        "continuous_15px_square_samples": 172,
+        "mean_positive_darkening": 1.9766
+      }
+    },
+    "ground-side": {
+      "before": {
+        "darkened_seven_luma_levels": 40247,
+        "continuous_15px_square_samples": 5064,
+        "mean_positive_darkening": 4.20394
+      },
+      "after": {
+        "darkened_seven_luma_levels": 21237,
+        "continuous_15px_square_samples": 513,
+        "mean_positive_darkening": 1.69527
+      }
+    }
+  },
+  "gust": {
+    "steady": {
+      "flow": [
+        0.34061723947525,
+        -0.565313994884491
+      ],
+      "magnitude": 0.660000026226044,
+      "time": 77.7
+    },
+    "gust": {
+      "flow": [
+        1.24003994464874,
+        -1.43813395500183
+      ],
+      "magnitude": 1.89892828464508,
+      "time": 94.5
+    },
+    "pixels_above_14_rgb_levels": 36018,
+    "mean_rgb_error": 2.06037
+  }
+}

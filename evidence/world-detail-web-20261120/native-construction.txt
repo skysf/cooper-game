@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ROOM_JOIN cabin-qa a8b06affaf79edb4 peers=1
+ROOM_JOIN cabin-qa 5a8c1a5e7af80247 peers=2
+PASS one movable camp table owns the original tabletop food
+PASS decorative gnome can be picked up from the camp table
+PASS gnome can be rotated and placed at a new point on the tabletop
+PASS table placement retains its elevation and physical support
+PASS the original table can be moved with decorations above it
+PASS removing the table lets former tabletop objects settle and drops its original food
+PASS an older drop request can still put down a held fixture
+PASS the shared world offers an unobstructed cabin site
+PASS authoritative build places a floor and spends its seven boards
+PASS the upper deck has physical support from the lower deck
+PASS the second player carries the original table to the stack
+PASS the table rests on the upper deck
+PASS the second player places an apple on the elevated table
+PASS the apple touches the raised tabletop
+PASS an inventory ore can be dropped onto the built deck
+PASS the dropped mesh contacts the upper deck at the correct height
+REJECT dismantle 80d19f0a4ac34c8d 存档写入失败，请稍后重试
+PASS a checkpoint failure restores the upper deck, both objects and the builder inventory
+PASS dismantling an occupied upper deck resolves its dependencies
+PASS the table and apple descend together to the lower deck
+PASS the loose ore lands on the lower deck and records its new support
+PASS a teammate can lift the resettled table
+PASS food falls onto the deck beneath the removed table
+PASS the other player receives the same apple contact and support
+PASS the teammate puts the carried table back down away from the cabin
+PASS wall or door frame snaps onto the deck at (0.0, 1.0)
+PASS wall or door frame snaps onto the deck at (-1.0, 0.0)
+PASS wall or door frame snaps onto the deck at (0.0, -1.0)
+PASS wall or door frame snaps onto the deck at (1.0, 0.0)
+PASS aiming at the upper wall from the ground seats the roof on both sides
+REJECT build cabin_floor 支撑不足，物件放不稳
+PASS an invalid placement leaves inventory and the existing cabin unchanged
+PASS the peer receives the same assembly and transforms
+PASS the real avatar can walk through the opening onto the floor
+PASS the neighboring solid wall blocks the same walk
+ROOM_LEAVE cabin-qa a8b06affaf79edb4
+ROOM_LEAVE cabin-qa 5a8c1a5e7af80247
+ROOM_JOIN cabin-qa a8b06affaf79edb4 peers=1
+PASS a reloaded roof retains orientation, elevation and supports
+PASS table food that landed on the lower floor keeps its attachment and height after reconnect
+PASS the apple can be collected from the saved deck
+CONSTRUCTION_AUTHORITY_QA checks=36 failures=0

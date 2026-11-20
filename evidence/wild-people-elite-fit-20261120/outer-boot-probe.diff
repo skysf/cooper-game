@@ -1,0 +1,33 @@
+--- test-coop-wild-people-stride.gd
++++ test-boot-outer-only.gd
+@@ -77,7 +77,7 @@
+ 	var actor: Dictionary = scene.actors[key]
+ 	var rig: Skeleton3D = actor.rig
+ 	var mesh := _skin(actor.model)
+-	var soles := _soles(mesh)
++	var soles := _soles(mesh,key.ends_with("_elite"))
+ 	var slip := {"L": [], "R": []}
+ 	var lift := {"L": 0.0, "R": 0.0}
+ 	var min_clearance := INF
+@@ -157,7 +157,7 @@
+ 	var min_bottom := INF
+ 	var frames := 0
+ 	var mesh := _skin(actor.model)
+-	var soles := _soles(mesh)
++	var soles := _soles(mesh,key.ends_with("_elite"))
+ 	for frame in 112:
+ 		var time := 160.0 + frame * DT
+ 		if frame % 6 == 0:
+@@ -200,9 +200,11 @@
+ 	assert(false, "No skinned mesh")
+ 	return null
+ 
+-func _soles(mesh: MeshInstance3D) -> Dictionary:
++func _soles(mesh: MeshInstance3D, elite: bool) -> Dictionary:
+ 	var fields := {"L": [], "R": []}
+ 	for surface in mesh.mesh.get_surface_count():
++		if elite and mesh.mesh.surface_get_material(surface).resource_name != "Horn ridges":
++			continue
+ 		var arrays := mesh.mesh.surface_get_arrays(surface)
+ 		var positions: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+ 		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]

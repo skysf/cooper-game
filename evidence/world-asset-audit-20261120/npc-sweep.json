@@ -1,0 +1,899 @@
+{
+  "clips": {
+    "female": {
+      "Attack": {
+        "length": 0.833333313465118,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Block": {
+        "length": 1.33333337306976,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Captive": {
+        "length": 2.33333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Down": {
+        "length": 1.0,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Guard": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Idle": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Limp": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "LimpLeft": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Rest": {
+        "length": 2.58333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Run": {
+        "length": 0.75,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Throw": {
+        "length": 1.04166662693024,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Walk": {
+        "length": 1.16666662693024,
+        "loop": 1,
+        "tracks": 20
+      },
+      "bones": 25,
+      "captive-side_bounds": [
+        -0.273493945598602,
+        0.00300000607967377,
+        -0.432894766330719,
+        0.54673182964325,
+        1.35721218585968,
+        0.744229078292847
+      ],
+      "captive_bounds": [
+        -0.273493945598602,
+        0.00300000607967377,
+        -0.432894766330719,
+        0.54673182964325,
+        1.35721218585968,
+        0.744229078292847
+      ],
+      "down-profile_bounds": [
+        -0.518667340278625,
+        0.00299954414367676,
+        -0.904830634593964,
+        1.05289697647095,
+        0.430094093084335,
+        1.75159621238708
+      ],
+      "down_bounds": [
+        -0.518667340278625,
+        0.00299954414367676,
+        -0.904830634593964,
+        1.05289697647095,
+        0.430094093084335,
+        1.75159621238708
+      ],
+      "female-back_bounds": [
+        -0.253766357898712,
+        0.00299992971122265,
+        -0.183999970555305,
+        0.507532715797424,
+        1.75034177303314,
+        0.373808681964874
+      ],
+      "female-front_bounds": [
+        -0.253766357898712,
+        0.00299992971122265,
+        -0.183999970555305,
+        0.507532715797424,
+        1.75034177303314,
+        0.373808681964874
+      ],
+      "female-opposite_bounds": [
+        -0.253766357898712,
+        0.00299992971122265,
+        -0.183999970555305,
+        0.507532715797424,
+        1.75034177303314,
+        0.373808681964874
+      ],
+      "female-portrait_bounds": [
+        -0.253766357898712,
+        0.00299992971122265,
+        -0.183999970555305,
+        0.507532715797424,
+        1.75041580200195,
+        0.371005415916443
+      ],
+      "female-side_bounds": [
+        -0.253766357898712,
+        0.00299992971122265,
+        -0.183999970555305,
+        0.507532715797424,
+        1.75034177303314,
+        0.373808681964874
+      ],
+      "limp-left_bounds": [
+        -0.25871068239212,
+        0.0038417624309659,
+        -0.314159721136093,
+        0.515739679336548,
+        1.74057078361511,
+        0.866888642311096
+      ],
+      "limp-other_bounds": [
+        -0.258298933506012,
+        0.00389079935848713,
+        -0.307021498680115,
+        0.520539164543152,
+        1.74210369586945,
+        0.860066890716553
+      ],
+      "limp_bounds": [
+        -0.260683625936508,
+        0.00383170694112778,
+        -0.523417770862579,
+        0.519659876823425,
+        1.73566436767578,
+        0.821094155311584
+      ],
+      "phase_sweep": {
+        "Attack": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299995206296444,
+          "ground_min_m": 0.00299995206296444,
+          "samples": 17
+        },
+        "Block": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990363419056,
+          "ground_min_m": 0.00299990363419056,
+          "samples": 17
+        },
+        "Captive": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00300000607967377,
+          "ground_min_m": 0.00300000607967377,
+          "samples": 17
+        },
+        "Down": {
+          "ankle_swing_left_m": 0.800059614703059,
+          "ankle_swing_right_m": 0.800059614703059,
+          "ground_max_m": 0.0119733512401581,
+          "ground_min_m": 0.00261887907981873,
+          "samples": 17
+        },
+        "Guard": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990363419056,
+          "ground_min_m": 0.00299990363419056,
+          "samples": 17
+        },
+        "Idle": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299992971122265,
+          "ground_min_m": 0.00299992971122265,
+          "samples": 17
+        },
+        "Limp": {
+          "ankle_swing_left_m": 0.760080069303513,
+          "ankle_swing_right_m": 0.235750839114189,
+          "ground_max_m": 0.00424719601869583,
+          "ground_min_m": 0.00186459347605705,
+          "samples": 17
+        },
+        "LimpLeft": {
+          "ankle_swing_left_m": 0.235731735825539,
+          "ankle_swing_right_m": 0.760205566883087,
+          "ground_max_m": 0.00417169183492661,
+          "ground_min_m": 0.00186459720134735,
+          "samples": 17
+        },
+        "Rest": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00302219390869141,
+          "ground_min_m": 0.00302219390869141,
+          "samples": 17
+        },
+        "Run": {
+          "ankle_swing_left_m": 1.01226630806923,
+          "ankle_swing_right_m": 1.0122663974762,
+          "ground_max_m": 0.0117791127413511,
+          "ground_min_m": 0.00296033546328545,
+          "samples": 49
+        },
+        "Throw": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299992971122265,
+          "ground_min_m": 0.00299992971122265,
+          "samples": 17
+        },
+        "Walk": {
+          "ankle_swing_left_m": 0.759974718093872,
+          "ankle_swing_right_m": 0.759974598884583,
+          "ground_max_m": 0.00625148368999362,
+          "ground_min_m": 0.00218820199370384,
+          "samples": 49
+        }
+      },
+      "rest_bounds": [
+        -0.321325987577438,
+        0.00302219390869141,
+        -0.967647910118103,
+        0.640019416809082,
+        0.971498548984528,
+        1.09364676475525
+      ],
+      "run_bounds": [
+        -0.259552538394928,
+        0.00299990549683571,
+        -0.69448447227478,
+        0.519100964069366,
+        1.58960425853729,
+        1.33163928985596
+      ],
+      "throw_bounds": [
+        -0.252922296524048,
+        0.00299992971122265,
+        -0.445757329463959,
+        0.597193896770477,
+        1.74793124198914,
+        0.648884356021881
+      ]
+    },
+    "female_elite": {
+      "Attack": {
+        "length": 0.833333313465118,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Block": {
+        "length": 1.33333337306976,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Captive": {
+        "length": 2.33333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Down": {
+        "length": 1.0,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Guard": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Idle": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Limp": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "LimpLeft": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Rest": {
+        "length": 2.58333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Run": {
+        "length": 0.75,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Throw": {
+        "length": 1.04166662693024,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Walk": {
+        "length": 1.16666662693024,
+        "loop": 1,
+        "tracks": 20
+      },
+      "bones": 25,
+      "female_elite-back_bounds": [
+        -0.280087321996689,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.560174643993378,
+        1.93208742141724,
+        0.376631855964661
+      ],
+      "female_elite-front_bounds": [
+        -0.280087321996689,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.560174643993378,
+        1.93208742141724,
+        0.376631855964661
+      ],
+      "female_elite-opposite_bounds": [
+        -0.280087321996689,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.560174643993378,
+        1.93208742141724,
+        0.376631855964661
+      ],
+      "female_elite-portrait_bounds": [
+        -0.280087321996689,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.560174643993378,
+        1.93215095996857,
+        0.376762270927429
+      ],
+      "female_elite-side_bounds": [
+        -0.280087321996689,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.560174643993378,
+        1.93208742141724,
+        0.376631855964661
+      ],
+      "phase_sweep": {
+        "Attack": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299993902444839,
+          "ground_min_m": 0.00299993902444839,
+          "samples": 17
+        },
+        "Block": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.0029999315738678,
+          "ground_min_m": 0.0029999315738678,
+          "samples": 17
+        },
+        "Captive": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299997627735138,
+          "ground_min_m": 0.00299997627735138,
+          "samples": 17
+        },
+        "Down": {
+          "ankle_swing_left_m": 0.800059614703059,
+          "ankle_swing_right_m": 0.800059614703059,
+          "ground_max_m": 0.00470936298370361,
+          "ground_min_m": -0.000365257263183594,
+          "samples": 17
+        },
+        "Guard": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.0029999315738678,
+          "ground_min_m": 0.0029999315738678,
+          "samples": 17
+        },
+        "Idle": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990316852927,
+          "ground_min_m": 0.00299990316852927,
+          "samples": 17
+        },
+        "Limp": {
+          "ankle_swing_left_m": 0.760080069303513,
+          "ankle_swing_right_m": 0.235750839114189,
+          "ground_max_m": 0.00430369842797518,
+          "ground_min_m": 0.00163524225354195,
+          "samples": 17
+        },
+        "LimpLeft": {
+          "ankle_swing_left_m": 0.235731735825539,
+          "ankle_swing_right_m": 0.760205566883087,
+          "ground_max_m": 0.0041675940155983,
+          "ground_min_m": 0.00163524597883224,
+          "samples": 17
+        },
+        "Rest": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299996137619019,
+          "ground_min_m": 0.00299996137619019,
+          "samples": 17
+        },
+        "Run": {
+          "ankle_swing_left_m": 1.01226630806923,
+          "ankle_swing_right_m": 1.0122663974762,
+          "ground_max_m": 0.0124719850718975,
+          "ground_min_m": 0.00295978412032127,
+          "samples": 49
+        },
+        "Throw": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990316852927,
+          "ground_min_m": 0.00299990316852927,
+          "samples": 17
+        },
+        "Walk": {
+          "ankle_swing_left_m": 0.759974718093872,
+          "ankle_swing_right_m": 0.759974598884583,
+          "ground_max_m": 0.00653766747564077,
+          "ground_min_m": 0.00202722102403641,
+          "samples": 49
+        }
+      }
+    },
+    "male": {
+      "Attack": {
+        "length": 0.833333313465118,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Block": {
+        "length": 1.33333337306976,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Captive": {
+        "length": 2.33333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Down": {
+        "length": 1.0,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Guard": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Idle": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Limp": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "LimpLeft": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Rest": {
+        "length": 2.58333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Run": {
+        "length": 0.75,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Throw": {
+        "length": 1.04166662693024,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Walk": {
+        "length": 1.16666662693024,
+        "loop": 1,
+        "tracks": 20
+      },
+      "bones": 25,
+      "club-attack_bounds": [
+        -0.340283542871475,
+        0.00299998000264168,
+        -0.488607704639435,
+        0.699644267559052,
+        1.8271951675415,
+        0.697278499603271
+      ],
+      "club-attack_grip_R_origin_error_m": 0.0,
+      "club-grip_bounds": [
+        -0.340283542871475,
+        0.00299998000264168,
+        -0.488607704639435,
+        0.699644267559052,
+        1.8271951675415,
+        0.697278499603271
+      ],
+      "club-grip_grip_R_origin_error_m": 0.0,
+      "male-back_bounds": [
+        -0.362094879150391,
+        0.0029999352991581,
+        -0.183999970555305,
+        0.724189758300781,
+        1.83751368522644,
+        0.356496095657349
+      ],
+      "male-front_bounds": [
+        -0.362094879150391,
+        0.0029999352991581,
+        -0.183999970555305,
+        0.724189758300781,
+        1.83751368522644,
+        0.356496095657349
+      ],
+      "male-opposite_bounds": [
+        -0.362094879150391,
+        0.0029999352991581,
+        -0.183999970555305,
+        0.724189758300781,
+        1.83751368522644,
+        0.356496095657349
+      ],
+      "male-portrait_bounds": [
+        -0.362094879150391,
+        0.0029999352991581,
+        -0.183999970555305,
+        0.724189758300781,
+        1.83794987201691,
+        0.356496095657349
+      ],
+      "male-side_bounds": [
+        -0.362094879150391,
+        0.0029999352991581,
+        -0.183999970555305,
+        0.724189758300781,
+        1.83751368522644,
+        0.356496095657349
+      ],
+      "phase_sweep": {
+        "Attack": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299998000264168,
+          "ground_min_m": 0.00299998000264168,
+          "samples": 17
+        },
+        "Block": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299992691725492,
+          "ground_min_m": 0.00299992691725492,
+          "samples": 17
+        },
+        "Captive": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00300000607967377,
+          "ground_min_m": 0.00300000607967377,
+          "samples": 17
+        },
+        "Down": {
+          "ankle_swing_left_m": 0.800059614703059,
+          "ankle_swing_right_m": 0.800059614703059,
+          "ground_max_m": 0.0124129056930542,
+          "ground_min_m": 0.00222817994654179,
+          "samples": 17
+        },
+        "Guard": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299992691725492,
+          "ground_min_m": 0.00299992691725492,
+          "samples": 17
+        },
+        "Idle": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.0029999352991581,
+          "ground_min_m": 0.0029999352991581,
+          "samples": 17
+        },
+        "Limp": {
+          "ankle_swing_left_m": 0.760080069303513,
+          "ankle_swing_right_m": 0.235750839114189,
+          "ground_max_m": 0.00416036322712898,
+          "ground_min_m": 0.00182665884494781,
+          "samples": 17
+        },
+        "LimpLeft": {
+          "ankle_swing_left_m": 0.235731735825539,
+          "ankle_swing_right_m": 0.760205566883087,
+          "ground_max_m": 0.00417051464319229,
+          "ground_min_m": 0.00182666070759296,
+          "samples": 17
+        },
+        "Rest": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00301092863082886,
+          "ground_min_m": 0.00301092863082886,
+          "samples": 17
+        },
+        "Run": {
+          "ankle_swing_left_m": 1.01226630806923,
+          "ankle_swing_right_m": 1.0122663974762,
+          "ground_max_m": 0.0109174698591232,
+          "ground_min_m": 0.00296162627637386,
+          "samples": 49
+        },
+        "Throw": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.0029999352991581,
+          "ground_min_m": 0.0029999352991581,
+          "samples": 17
+        },
+        "Walk": {
+          "ankle_swing_left_m": 0.759974718093872,
+          "ankle_swing_right_m": 0.759974598884583,
+          "ground_max_m": 0.00813932530581951,
+          "ground_min_m": 0.0021975189447403,
+          "samples": 49
+        }
+      }
+    },
+    "male_elite": {
+      "Attack": {
+        "length": 0.833333313465118,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Block": {
+        "length": 1.33333337306976,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Captive": {
+        "length": 2.33333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Down": {
+        "length": 1.0,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Guard": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Idle": {
+        "length": 2.0,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Limp": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "LimpLeft": {
+        "length": 1.5,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Rest": {
+        "length": 2.58333325386047,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Run": {
+        "length": 0.75,
+        "loop": 1,
+        "tracks": 20
+      },
+      "Throw": {
+        "length": 1.04166662693024,
+        "loop": 0,
+        "tracks": 20
+      },
+      "Walk": {
+        "length": 1.16666662693024,
+        "loop": 1,
+        "tracks": 20
+      },
+      "bones": 25,
+      "male_elite-back_bounds": [
+        -0.305087268352509,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.610174536705017,
+        1.93208742141724,
+        0.375729709863663
+      ],
+      "male_elite-front_bounds": [
+        -0.305087268352509,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.610174536705017,
+        1.93208742141724,
+        0.375729709863663
+      ],
+      "male_elite-opposite_bounds": [
+        -0.305087268352509,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.610174536705017,
+        1.93208742141724,
+        0.375729709863663
+      ],
+      "male_elite-portrait_bounds": [
+        -0.305087268352509,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.610174536705017,
+        1.93215095996857,
+        0.375836610794067
+      ],
+      "male_elite-side_bounds": [
+        -0.305087268352509,
+        0.00299990316852927,
+        -0.188999965786934,
+        0.610174536705017,
+        1.93208742141724,
+        0.375729709863663
+      ],
+      "phase_sweep": {
+        "Attack": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299993902444839,
+          "ground_min_m": 0.00299993902444839,
+          "samples": 17
+        },
+        "Block": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.0029999315738678,
+          "ground_min_m": 0.0029999315738678,
+          "samples": 17
+        },
+        "Captive": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299997627735138,
+          "ground_min_m": 0.00299997627735138,
+          "samples": 17
+        },
+        "Down": {
+          "ankle_swing_left_m": 0.800059614703059,
+          "ankle_swing_right_m": 0.800059614703059,
+          "ground_max_m": 0.00529557466506958,
+          "ground_min_m": -0.00122207403182983,
+          "samples": 17
+        },
+        "Guard": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.0029999315738678,
+          "ground_min_m": 0.0029999315738678,
+          "samples": 17
+        },
+        "Idle": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990316852927,
+          "ground_min_m": 0.00299990316852927,
+          "samples": 17
+        },
+        "Limp": {
+          "ankle_swing_left_m": 0.760080069303513,
+          "ankle_swing_right_m": 0.235750839114189,
+          "ground_max_m": 0.00430369842797518,
+          "ground_min_m": 0.00163524225354195,
+          "samples": 17
+        },
+        "LimpLeft": {
+          "ankle_swing_left_m": 0.235731735825539,
+          "ankle_swing_right_m": 0.760205566883087,
+          "ground_max_m": 0.0041675940155983,
+          "ground_min_m": 0.00163524597883224,
+          "samples": 17
+        },
+        "Rest": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990177154541,
+          "ground_min_m": 0.00299990177154541,
+          "samples": 17
+        },
+        "Run": {
+          "ankle_swing_left_m": 1.01226630806923,
+          "ankle_swing_right_m": 1.0122663974762,
+          "ground_max_m": 0.0124719850718975,
+          "ground_min_m": 0.00295978412032127,
+          "samples": 49
+        },
+        "Throw": {
+          "ankle_swing_left_m": 0.0,
+          "ankle_swing_right_m": 0.0,
+          "ground_max_m": 0.00299990316852927,
+          "ground_min_m": 0.00299990316852927,
+          "samples": 17
+        },
+        "Walk": {
+          "ankle_swing_left_m": 0.759974718093872,
+          "ankle_swing_right_m": 0.759974598884583,
+          "ground_max_m": 0.00653766747564077,
+          "ground_min_m": 0.00202722102403641,
+          "samples": 49
+        }
+      },
+      "shield-block_bounds": [
+        -0.277091801166534,
+        0.0029999315738678,
+        -0.453370094299316,
+        0.557515561580658,
+        1.9355800151825,
+        0.655197978019714
+      ],
+      "shield-block_grip_L_origin_error_m": 0.0,
+      "shield-block_grip_R_origin_error_m": 0.0,
+      "shield-grip_bounds": [
+        -0.276607483625412,
+        0.0029999315738678,
+        -0.429009556770325,
+        0.557528495788574,
+        1.93662464618683,
+        0.628213703632355
+      ],
+      "shield-grip_grip_L_origin_error_m": 0.0,
+      "shield-grip_grip_R_origin_error_m": 0.0,
+      "shield-guard_bounds": [
+        -0.276607483625412,
+        0.0029999315738678,
+        -0.429009556770325,
+        0.557528495788574,
+        1.93662464618683,
+        0.628213703632355
+      ],
+      "shield-guard_grip_L_origin_error_m": 0.0,
+      "shield-guard_grip_R_origin_error_m": 0.0,
+      "spear-grip_bounds": [
+        -0.276607483625412,
+        0.0029999315738678,
+        -0.429009556770325,
+        0.557528495788574,
+        1.93662464618683,
+        0.628213703632355
+      ],
+      "spear-grip_grip_L_origin_error_m": 0.0,
+      "spear-grip_grip_R_origin_error_m": 0.0
+    }
+  },
+  "errors": []
+}

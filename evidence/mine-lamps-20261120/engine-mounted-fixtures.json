@@ -1,0 +1,73 @@
+{
+  "failures": 0,
+  "lanternMounts": {
+    "coal_mine": [
+      {
+        "bailHeightRelativeToStationM": 0.00199985504150391,
+        "energy": 0.699999988079071,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern0",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      },
+      {
+        "bailHeightRelativeToStationM": 0.00199985504150391,
+        "energy": 0.892499983310699,
+        "lightInsetM": 0.160000026226044,
+        "name": "HurricaneLantern1",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      },
+      {
+        "bailHeightRelativeToStationM": 0.00199997425079346,
+        "energy": 0.892499983310699,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern2",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      },
+      {
+        "bailHeightRelativeToStationM": 0.00199997425079346,
+        "energy": 0.892499983310699,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern3",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      }
+    ],
+    "iron_mine": [
+      {
+        "bailHeightRelativeToStationM": 0.00199985504150391,
+        "energy": 0.699999988079071,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern0",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      },
+      {
+        "bailHeightRelativeToStationM": 0.00199985504150391,
+        "energy": 0.892499983310699,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern1",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      },
+      {
+        "bailHeightRelativeToStationM": 0.00199985504150391,
+        "energy": 0.892499983310699,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern2",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      },
+      {
+        "bailHeightRelativeToStationM": 0.00199985504150391,
+        "energy": 0.892499983310699,
+        "lightInsetM": 0.159999966621399,
+        "name": "HurricaneLantern3",
+        "pass": true,
+        "visibleHeightM": 0.279336010700519
+      }
+    ]
+  }
+}

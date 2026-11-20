@@ -1,0 +1,100 @@
+{
+  "coal_mine": {
+    "caveGeometrySignature": "d9968d7813bc56492095dfc3c01f6934a1e85ea4d5b1803c2eaf4eb001c2e114",
+    "retainedObjectCount": 105,
+    "removedShellObjectCount": 32,
+    "removedShellTriangles": 1088,
+    "anchors": 4,
+    "placedLanterns": [
+      {
+        "name": "Hurricane lantern 1",
+        "at": [
+          1.1170539855957031,
+          2.2046420574188232,
+          0.3199999928474426
+        ],
+        "yaw": -1.5707963705062866,
+        "scale": 0.5199999809265137
+      },
+      {
+        "name": "Hurricane lantern 2",
+        "at": [
+          -0.9310839772224426,
+          2.867108106613159,
+          3.75
+        ],
+        "yaw": 1.5707963705062866,
+        "scale": 0.5199999809265137
+      },
+      {
+        "name": "Hurricane lantern 3",
+        "at": [
+          1.375046968460083,
+          1.2590370178222656,
+          7.960000038146973
+        ],
+        "yaw": -1.5707963705062866,
+        "scale": 0.5199999809265137
+      },
+      {
+        "name": "Hurricane lantern 4",
+        "at": [
+          -1.576786994934082,
+          1.346647024154663,
+          10.15999984741211
+        ],
+        "yaw": 1.5707963705062866,
+        "scale": 0.5199999809265137
+      }
+    ]
+  },
+  "iron_mine": {
+    "caveGeometrySignature": "14a37070d90ed464fe77b13ec8d57360e6b68a42a6d89155a0b7806bfb058ee9",
+    "retainedObjectCount": 105,
+    "removedShellObjectCount": 32,
+    "removedShellTriangles": 1088,
+    "anchors": 4,
+    "placedLanterns": [
+      {
+        "name": "Hurricane lantern 1.001",
+        "at": [
+          -1.0562059879302979,
+          2.028712034225464,
+          0.3199999928474426
+        ],
+        "yaw": 1.5707963705062866,
+        "scale": 0.5199999809265137
+      },
+      {
+        "name": "Hurricane lantern 2.001",
+        "at": [
+          1.244508981704712,
+          3.2966148853302,
+          3.75
+        ],
+        "yaw": -1.5707963705062866,
+        "scale": 0.5199999809265137
+      },
+      {
+        "name": "Hurricane lantern 3.001",
+        "at": [
+          -1.7689770460128784,
+          2.6237130165100098,
+          7.960000038146973
+        ],
+        "yaw": 1.5707963705062866,
+        "scale": 0.5199999809265137
+      },
+      {
+        "name": "Hurricane lantern 4.001",
+        "at": [
+          0.8880339860916138,
+          3.133047103881836,
+          10.15999984741211
+        ],
+        "yaw": -1.5707963705062866,
+        "scale": 0.5199999809265137
+      }
+    ]
+  }
+}

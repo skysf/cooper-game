@@ -13,6 +13,19 @@
 
 同一资产在 Blender 源目录和 `coop/` 运行目录可能有不同版本。核对具体包围盒、面数或动画时，检查实际交付或加载的文件。
 
+## 煤块与铁矿拾取件
+
+煤块和铁矿各保留 396 个三角形与原有接地点。煤块的亮哑纹理沿断面延续，铁矿的钢灰矿粒与红褐氧化斑分布在连续的矿物和母岩表面。两件各用一个材质，颜色与法线为 512 像素，粗糙度为 256 像素。实拍覆盖实际木屋桌面、手臂距离和雨天脚边。双人房间验证了采出、落地、捡回和上桌的坐标与数量。 [正式 Blender 源件](../art/mines/rainline_mines.blend) · [煤块同机位](../evidence/mineral-pickups-20261120/coal-same-camera.jpg) · [铁矿同机位](../evidence/mineral-pickups-20261120/iron_ore-same-camera.jpg) · [采集和拾回坐标](../evidence/mineral-pickups-20261120/mined-pickup-authority.json)
+
+从项目根目录用下面两步重导出拾取件。第一步读取源件里的 `coal` 和 `iron_ore` 场景以及已打包的贴图。第二步用装有 Pillow 的 Python 生成运行 GLB、外置贴图与 Godot 导入参数，输出在临时目录中的 `runtime/coop/props/mines`。 [拾取件导出脚本](../scripts/refine-mine-pickups.py)
+
+```sh
+pickup_output=$(mktemp -d)
+./scripts/start-blender.sh --background art/mines/rainline_mines.blend \
+  --python-exit-code 1 --python scripts/refine-mine-pickups.py -- export "$pickup_output/raw"
+python3 scripts/refine-mine-pickups.py pack "$pickup_output/raw" "$pickup_output/runtime"
+```
+
 ## 营地开局武器
 
 游戏构建直接使用 `coop/weapons/` 中的模型与贴图。要重导出模型和背包图标，从下方素材页下载三件模型的 4K Blender 版本，分别解包到 `art/weapons/source/<素材名>_4k.blend/`，保留同名的 `.blend` 文件和 `textures/` 子目录，然后在项目根目录运行 `./scripts/start-blender.sh --background --python-exit-code 1 --python scripts/build-camp-weapons.py`。

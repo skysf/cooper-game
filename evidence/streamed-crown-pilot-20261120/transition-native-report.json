@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Installed chunk approach",
+    "Installed chunk creek",
+    "Installed chunk camp",
+    "Installed chunk crossing",
+    "Installed tree pivot",
+    "Both crown surfaces select whole branches",
+    "Former midpoint now stays in the detailed model",
+    "20.5 m is the new midpoint",
+    "Near and far branch rank ranges partition the model",
+    "matched-near",
+    "matched-mix",
+    "matched-far",
+    "actual-near",
+    "actual-mix",
+    "actual-far"
+  ],
+  "errors": []
+}

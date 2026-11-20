@@ -1,0 +1,48 @@
+{
+  "boundsMin": [
+    -0.0920000001788139,
+    0.0,
+    -0.0920000001788139
+  ],
+  "boundsSize": [
+    0.236072570085526,
+    0.247999995946884,
+    0.184000000357628
+  ],
+  "checks": {
+    "expected1804Triangles": true,
+    "original68mmMouthAnd84mmRim": true,
+    "originalGroundedAabb": true,
+    "originalPlacementEnvelope": true,
+    "originalWaterSurfaceAt174mm": true,
+    "preservedTableSHA256": true,
+    "reviewedRuntimeSHA256": true,
+    "singleMappedClayMaterial": true
+  },
+  "failureCount": 0,
+  "materialTextureSizes": {
+    "color": [
+      1024,
+      1024
+    ],
+    "normal": [
+      1024,
+      1024
+    ],
+    "roughness": [
+      1024,
+      1024
+    ]
+  },
+  "originalRimVertices": [
+    74,
+    37
+  ],
+  "sha256": {
+    "jug": "9f5635e1a181507460d524b8e83745a4492e9c42a989e2d4263ec7ceacc65820",
+    "table": "f76eb0af820c396998ba0e9c7a4683103b487c046b6a87c91ed7f49c32f6e5b1"
+  },
+  "triangleCount": 1804,
+  "waterRadius": 0.0520012266933918,
+  "waterY": 0.17399999499321
+}

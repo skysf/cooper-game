@@ -1,0 +1,262 @@
+{
+  "female": {
+    "stand": {
+      "bones": 25,
+      "clip": "Idle",
+      "time": 0.169999999999987,
+      "duration": 2.0,
+      "poseSha256": "c6fe0c818eac4e82c30b4520aed109ec5c98c32732865dac3df68aba115af785",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    }
+  },
+  "female_elite": {
+    "crossing": {
+      "bones": 25,
+      "clip": "Walk",
+      "time": 0.44,
+      "duration": 1.0,
+      "poseSha256": "faff77a7f3cf204969961e5fdb19b0ef69f43b45d24ccdd7c85eadd92b404378",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "down": {
+      "bones": 25,
+      "clip": "Down",
+      "time": 0.99799999999999,
+      "duration": 1.0,
+      "poseSha256": "8a988ccc4dac52f48389f757b6d84feba854382f4fb4c6000f4f64cd1534b424",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "fetch": {
+      "bones": 25,
+      "clip": "DrawWater",
+      "time": 0.710000000000008,
+      "duration": 1.5,
+      "poseSha256": "48f7646d68b0c78c1553e50b7acc98dea330b7bcf1600131260c77a75a8b3fd3",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "held": {
+      "bones": 25,
+      "clip": "Guard",
+      "time": 0.310000000000002,
+      "duration": 2.0,
+      "poseSha256": "12bb820ae3c39bf7462627d8a7c0bd2687a7441a0d40fbda7db4d157424041fc",
+      "rightGripErrorM": 0.0,
+      "leftGripErrorM": 0.0
+    },
+    "kneel": {
+      "bones": 25,
+      "clip": "Captive",
+      "time": 0.370000000000005,
+      "duration": 2.33333325386047,
+      "poseSha256": "35203e63107bda85cbed0b8d0650237b8ebf9cb67de620e517d90b1445fa8500",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "limp": {
+      "bones": 25,
+      "clip": "Limp",
+      "time": 0.4725,
+      "duration": 1.125,
+      "poseSha256": "70f5d596bd9d8baa5f977912c3acc075cc1305d1c16a5c7799815a6bd9e1c58d",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "limp_left": {
+      "bones": 25,
+      "clip": "LimpLeft",
+      "time": 0.4725,
+      "duration": 1.125,
+      "poseSha256": "0490268f6d83e6bba32da5e846c85c20522681a45c6d158d897baf5125b10aa1",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "other_step": {
+      "bones": 25,
+      "clip": "Walk",
+      "time": 0.73,
+      "duration": 1.0,
+      "poseSha256": "bfa9821baa57d132188281e2861da278acdc5dae26955ee411cee840ba8f76a1",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "run": {
+      "bones": 25,
+      "clip": "Run",
+      "time": 0.1425,
+      "duration": 0.75,
+      "poseSha256": "e985fb4178d2ab622b285ee389841272f9cdc2cb99ade4eb98dd6faff3f46091",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "sit": {
+      "bones": 25,
+      "clip": "Rest",
+      "time": 0.47999999999999,
+      "duration": 2.58333325386047,
+      "poseSha256": "9987160668a364989ca708bde22633eefead61b84cda20cca57e1a0c3678e9b2",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "stand": {
+      "bones": 25,
+      "clip": "Idle",
+      "time": 0.169999999999987,
+      "duration": 2.0,
+      "poseSha256": "a0f50e02a466066a9df855fecc34585dcc59ada5a91bf5c0280f6dc94e2d0f5f",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "stride": {
+      "bones": 25,
+      "clip": "Walk",
+      "time": 0.19,
+      "duration": 1.0,
+      "poseSha256": "c2710f732492b238d6807357087152d23bb72481dc5e6d55cece1b3f65cd88f2",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "turn": {
+      "bones": 25,
+      "clip": "TurnRight",
+      "time": 0.15,
+      "duration": 0.625,
+      "poseSha256": "8b6003d20e6121189d1884efe381af030190f4fa4860371101d71ff2dfcb00ff",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    }
+  },
+  "male": {
+    "stand": {
+      "bones": 25,
+      "clip": "Idle",
+      "time": 0.169999999999987,
+      "duration": 2.0,
+      "poseSha256": "3c01f683955192a14c5b9d97f4d2f989919b75a0e03c60f17520abdba3ac97dc",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    }
+  },
+  "male_elite": {
+    "crossing": {
+      "bones": 25,
+      "clip": "Walk",
+      "time": 0.44,
+      "duration": 1.0,
+      "poseSha256": "0bee90579f8da25900ca1eb3b3186553902e5d1a903d6eb6a52a2a14c09b95ea",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "down": {
+      "bones": 25,
+      "clip": "Down",
+      "time": 0.99799999999999,
+      "duration": 1.0,
+      "poseSha256": "dcaa65ca76b61e61ef119b3a6abbf9b60ca9c90bc397bb88874f5d3576edc822",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "fetch": {
+      "bones": 25,
+      "clip": "DrawWater",
+      "time": 0.710000000000008,
+      "duration": 1.5,
+      "poseSha256": "7556b37e5dd842d76d449c1021c1453b4aba8d9b04bfbb5092850fddd938f82d",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "held": {
+      "bones": 25,
+      "clip": "Guard",
+      "time": 0.310000000000002,
+      "duration": 2.0,
+      "poseSha256": "21f0d2493c276d604224066b1bdfd41a482e69f3a7648bb616dc534647d7df2f",
+      "rightGripErrorM": 0.0,
+      "leftGripErrorM": 0.0
+    },
+    "kneel": {
+      "bones": 25,
+      "clip": "Captive",
+      "time": 0.370000000000005,
+      "duration": 2.33333325386047,
+      "poseSha256": "81f3c5b4bc1cbfdb86af400753698cad00089551aaec05210116e01f87c286f2",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "limp": {
+      "bones": 25,
+      "clip": "Limp",
+      "time": 0.4725,
+      "duration": 1.125,
+      "poseSha256": "de2ce8a36401d11dcaa8346379c76fe5ef5126bd3f10222f7621a7acacc62045",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "limp_left": {
+      "bones": 25,
+      "clip": "LimpLeft",
+      "time": 0.4725,
+      "duration": 1.125,
+      "poseSha256": "c5024c8a02b726421679c243ba52749442ed3e8eec9c00053196e61cf502fb89",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "other_step": {
+      "bones": 25,
+      "clip": "Walk",
+      "time": 0.73,
+      "duration": 1.0,
+      "poseSha256": "78adfe11f275eb054ede124ac09886f334f0c20902116b18d17384d6b2afbac0",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "run": {
+      "bones": 25,
+      "clip": "Run",
+      "time": 0.1425,
+      "duration": 0.75,
+      "poseSha256": "fab99337a5dad6e0421179e061ad27a9670669d5fc7a559aba65cde16edabc47",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "sit": {
+      "bones": 25,
+      "clip": "Rest",
+      "time": 0.47999999999999,
+      "duration": 2.58333325386047,
+      "poseSha256": "704cadd2307e4e6dc811fb580984a64d069c09ba8a8a622253896d70df24fbf0",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "stand": {
+      "bones": 25,
+      "clip": "Idle",
+      "time": 0.169999999999987,
+      "duration": 2.0,
+      "poseSha256": "290706db42038f220f34c0efc6cebce976555782be9f1bdc26045e6a5852ac7e",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "stride": {
+      "bones": 25,
+      "clip": "Walk",
+      "time": 0.19,
+      "duration": 1.0,
+      "poseSha256": "095f615baaaf1a895557d01e6526ffe8f91719723de52f3f727d09bd0b8e3c24",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    },
+    "turn": {
+      "bones": 25,
+      "clip": "TurnRight",
+      "time": 0.15,
+      "duration": 0.625,
+      "poseSha256": "5b2a41aaa4b46bda1d8f47819d09e7dd51b22e6200cfada5a0abc7d2270131bd",
+      "rightGripErrorM": null,
+      "leftGripErrorM": null
+    }
+  }
+}

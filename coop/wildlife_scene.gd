@@ -23,7 +23,7 @@ func _ready() -> void:
 	perch_offset = eagle.to_local(contact.global_position)
 	eagle.hide()
 
-func sync(croc: Dictionary, elapsed: float, observer: Vector3, delta: float) -> void:
+func sync(croc: Dictionary, elapsed: float, observer: Vector3, delta: float, eagle_alive := true) -> void:
 	if croc.is_empty():
 		_hide(crocodile, crocodile_player)
 		_hide(eagle, eagle_player)
@@ -32,7 +32,7 @@ func sync(croc: Dictionary, elapsed: float, observer: Vector3, delta: float) -> 
 
 	var position_data: Array = croc.at
 	var at := Vector3(position_data[0], position_data[1], position_data[2])
-	if observer.distance_squared_to(at) <= 52.0 * 52.0:
+	if not croc.get("dead", false) and observer.distance_squared_to(at) <= 52.0 * 52.0:
 		var was_visible := crocodile.visible
 		var previous := crocodile_player.assigned_animation
 		var depth_handoff: bool = (previous == "Dive" and croc.clip == "Swim") or (previous == "Swim" and croc.clip == "Surface")
@@ -49,6 +49,10 @@ func sync(croc: Dictionary, elapsed: float, observer: Vector3, delta: float) -> 
 	else:
 		_hide(crocodile, crocodile_player)
 
+	if not eagle_alive:
+		_hide(eagle, eagle_player)
+		flight_time = -1.0
+		return
 	if flight_time < 0.0 or absf(elapsed - flight_time) > 0.8:
 		flight_time = elapsed
 	else:

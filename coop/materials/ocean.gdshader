@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, shadows_disabled, depth_draw_never, fog_disabled;
 
+#include "res://materials/water_rain.gdshaderinc"
+
 uniform sampler2D scene_depth : hint_depth_texture, repeat_disable, filter_nearest;
 uniform sampler2D wave_slopes : filter_linear_mipmap, repeat_enable;
 uniform sampler2D tide_field : filter_linear, repeat_disable;
@@ -34,6 +36,8 @@ void fragment() {
 	vec2 waves = wind * 0.25 + vec2(chop.y, -chop.x) * 0.13;
 	waves += (vec2(0.036, 0.024) * cos(swell) + vec2(0.018, -0.015) * cos(short_swell)) * swell_detail * (1.0 - smoothstep(45.0, 105.0, distance_to_eye));
 	waves *= 1.0 + rain_amount * 0.62;
+	// The same impacts resolve against a broader sky reflection on the open sea.
+	waves += water_rain_ripples(point, current, distance_to_eye, water_time, rain_amount, 1.32);
 	vec3 normal = normalize(vec3(waves.x, 1.0, waves.y));
 	float daylight = mix(0.09, 1.0, max(sunlight, clamp(sky_zenith.b * 0.72, 0.0, 0.44)));
 	if (eye.y < 0.0) {
@@ -72,7 +76,8 @@ void fragment() {
 		float fresnel = 0.024 + 0.976 * pow(1.0 - max(dot(normal, eye), 0.0), 5.0);
 		vec3 lagoon = mix(vec3(0.13, 0.65, 0.55), vec3(0.018, 0.49, 0.49), smoothstep(0.65, 5.1, sea_depth));
 		vec3 ocean = mix(lagoon, vec3(0.013, 0.16, 0.317), smoothstep(3.8, 19.0, sea_depth));
-		ocean = mix(ocean, vec3(0.12, 0.31, 0.36), rain_amount * 0.51) * daylight;
+		vec3 wet_ocean = mix(vec3(0.113, 0.444, 0.437), vec3(0.067, 0.212, 0.283), smoothstep(1.2, 16.0, sea_depth));
+		ocean = mix(ocean, wet_ocean, rain_amount * 0.62) * daylight;
 		float scatter = (1.0 - fresnel) * (1.0 - exp(-optical_path * (0.188 + rain_amount * 0.075)));
 		float substrate_weight = field_inside * (1.0 - fresnel) * exp(-optical_path * 0.185) * 0.92;
 		vec2 bed_point = point + transmitted.xz * optical_path;
@@ -86,7 +91,8 @@ void fragment() {
 		float opacity = max(0.012, fresnel + scatter + substrate_weight);
 		vec3 color = ocean * scatter + sky * fresnel + floor_color * substrate_weight;
 		float half_reflect = max(dot(normal, normalize(eye + sun_direction)), 0.0);
-		float glint = sunlight * (pow(half_reflect, 890.0) * 1.26 + pow(half_reflect, 98.0) * 0.16);
+		float glint = sunlight * (pow(half_reflect, mix(890.0, 410.0, rain_amount)) * mix(1.26, 0.64, rain_amount)
+			+ pow(half_reflect, 98.0) * 0.16);
 		color += sun_color.rgb * glint;
 
 		vec2 shift = vec2(0.61 + .36 * sin(swell), 0.21 * sin(short_swell + 1.5)) / field_rect.zw;

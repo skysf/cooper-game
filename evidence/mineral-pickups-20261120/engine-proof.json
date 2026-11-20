@@ -1,0 +1,23 @@
+{
+  "failures": 0,
+  "models": {
+    "coal": {
+      "mapResolution": "{ \"color\": (512.0, 512.0), \"normal\": (512.0, 512.0), \"roughness\": (256.0, 256.0) }",
+      "minimumY": 0.0,
+      "ok": true,
+      "surfaceCount": 1,
+      "triangles": 396
+    },
+    "iron_ore": {
+      "mapResolution": "{ \"color\": (512.0, 512.0), \"normal\": (512.0, 512.0), \"roughness\": (256.0, 256.0) }",
+      "minimumY": 0.0,
+      "ok": true,
+      "surfaceCount": 1,
+      "triangles": 396
+    }
+  },
+  "basisWireBytes": {
+    "coal": 358924,
+    "iron_ore": 547080
+  }
+}

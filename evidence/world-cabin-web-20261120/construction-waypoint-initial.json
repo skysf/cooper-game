@@ -1,0 +1,45 @@
+{
+  "room": "cabin-4b3cf8d0",
+  "worldCenter": [
+    9.8,
+    0,
+    -74.5
+  ],
+  "checks": [
+    "K recipe, green floor preview and G consume seven boards",
+    "Shift snaps the doorway to its floor and a left click confirms",
+    "unsupported roof is red and confirming leaves the bag unchanged"
+  ],
+  "errors": [],
+  "failure": "avatar reached the walking waypoint",
+  "state": {
+    "x": 7.97644233703613,
+    "y": 0,
+    "z": -75.2472763061523,
+    "yaw": -0.0219500000000001,
+    "pitch": -0.00105000000000011,
+    "bag": {
+      "apple": 0,
+      "bread": 0,
+      "wood_plank": 47
+    },
+    "status": "已连接 · cabin-4b3cf8d0",
+    "locked": true,
+    "target": "",
+    "panel": {
+      "mode": "",
+      "recipes": {}
+    },
+    "preview": {
+      "at": [
+        8.02583122253418,
+        1.66763710975647,
+        -77.4969940185547
+      ],
+      "ok": false,
+      "reason": "unsupported_face",
+      "recipe": "cabin_wall",
+      "visible": true
+    }
+  }
+}

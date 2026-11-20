@@ -1,0 +1,26 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ROOM_JOIN mining-qa c781119415454b4c peers=1
+ROOM_JOIN mining-qa 63aad2475451847c peers=2
+PASS the room places one supported furnace near the camp
+PASS a player at camp cannot extract ore remotely
+PASS two players can reach the actual coal face
+PASS coal is awarded once per pick cycle
+PASS both players draw from the same coal seam
+PASS both clients receive the current stock
+PASS the actual iron face has a standing approach
+PASS a player can extract an iron ore from the iron mine
+PASS two ore pieces enter the normal bag stack
+PASS a failed ore save rolls back both inventory and the shared ore stock
+PASS coal alone fuels the campfire for the authored duration
+PASS the furnace reserves two ore and one coal
+PASS an active batch cannot be collected or moved early
+ROOM_LEAVE mining-qa c781119415454b4c
+ROOM_LEAVE mining-qa 63aad2475451847c
+ROOM_JOIN mining-qa 63aad2475451847c peers=1
+PASS rejoining restores the active batch and excavated ore
+PASS a teammate can collect exactly one finished ingot
+PASS room time reveals one fresh ore on the shared seam
+MINING_AUTHORITY_QA checks=16 failures=0

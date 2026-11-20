@@ -1,0 +1,342 @@
+{
+  "engine": "Godot 4.7.2 / OpenGL API 4.1 Metal Compatibility / Apple M1",
+  "viewport": [
+    1280,
+    720
+  ],
+  "models": "Original streamed camp and approach GLBs",
+  "baseline": {
+    "119.0": {
+      "materials": {
+        "mud": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.850000023841858,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "rock": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.720000028610229,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rain": 0.0
+    },
+    "128.0": {
+      "materials": {
+        "mud": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.850000023841858,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "rock": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.720000028610229,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rain": 0.0
+    },
+    "143.0": {
+      "materials": {
+        "mud": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.850000023841858,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "rock": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.720000028610229,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rain": 0.0
+    },
+    "172.0": {
+      "materials": {
+        "mud": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.850000023841858,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "rock": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.720000028610229,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rain": 0.0
+    },
+    "53.0": {
+      "materials": {
+        "mud": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.850000023841858,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "rock": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.720000028610229,
+          "uniform_tint": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rain": 0.0
+    },
+    "94.5": {
+      "materials": {
+        "mud": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.340000003576279,
+          "uniform_tint": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ]
+        },
+        "rock": {
+          "type": "StandardMaterial3D",
+          "uniform_roughness": 0.46000000834465,
+          "uniform_tint": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ]
+        }
+      },
+      "rain": 1.0
+    },
+    "camera_rock": [
+      -0.88,
+      0.82,
+      -77.61
+    ],
+    "camera_trail": [
+      2.22,
+      0.47,
+      -84.18
+    ],
+    "scope": {
+      "mud": 2,
+      "rock": 5
+    },
+    "water_scene_included": false
+  },
+  "revised": {
+    "119.0": {
+      "materials": {
+        "mud": {
+          "film": 0.0,
+          "retained": 0.316921263933182,
+          "type": "ShaderMaterial"
+        },
+        "rock": {
+          "film": 0.0,
+          "retained": 0.316921263933182,
+          "type": "ShaderMaterial"
+        }
+      },
+      "rain": 0.0
+    },
+    "128.0": {
+      "materials": {
+        "mud": {
+          "film": 0.0,
+          "retained": 0.132059261202812,
+          "type": "ShaderMaterial"
+        },
+        "rock": {
+          "film": 0.0,
+          "retained": 0.132059261202812,
+          "type": "ShaderMaterial"
+        }
+      },
+      "rain": 0.0
+    },
+    "143.0": {
+      "materials": {
+        "mud": {
+          "film": 0.0,
+          "retained": 0.0391851887106895,
+          "type": "ShaderMaterial"
+        },
+        "rock": {
+          "film": 0.0,
+          "retained": 0.0391851887106895,
+          "type": "ShaderMaterial"
+        }
+      },
+      "rain": 0.0
+    },
+    "172.0": {
+      "materials": {
+        "mud": {
+          "film": 0.0,
+          "retained": 0.0,
+          "type": "ShaderMaterial"
+        },
+        "rock": {
+          "film": 0.0,
+          "retained": 0.0,
+          "type": "ShaderMaterial"
+        }
+      },
+      "rain": 0.0
+    },
+    "53.0": {
+      "materials": {
+        "mud": {
+          "film": 0.0,
+          "retained": 0.0,
+          "type": "ShaderMaterial"
+        },
+        "rock": {
+          "film": 0.0,
+          "retained": 0.0,
+          "type": "ShaderMaterial"
+        }
+      },
+      "rain": 0.0
+    },
+    "94.5": {
+      "materials": {
+        "mud": {
+          "film": 1.0,
+          "retained": 0.92906665802002,
+          "type": "ShaderMaterial"
+        },
+        "rock": {
+          "film": 1.0,
+          "retained": 0.92906665802002,
+          "type": "ShaderMaterial"
+        }
+      },
+      "rain": 1.0
+    },
+    "camera_rock": [
+      -0.88,
+      0.82,
+      -77.61
+    ],
+    "camera_trail": [
+      2.22,
+      0.47,
+      -84.18
+    ],
+    "scope": {
+      "mud": 2,
+      "rock": 5
+    },
+    "textures": {
+      "mud": [
+        "res://textures/mud_diff.jpg",
+        "res://textures/mud_nor_gl.jpg",
+        "res://textures/mud_arm.jpg"
+      ],
+      "rock": [
+        "res://textures/rock_diff.jpg",
+        "res://textures/rock_nor_gl.jpg",
+        "res://textures/rock_arm.jpg"
+      ]
+    },
+    "water_scene_included": false
+  },
+  "scene_pixel_comparison": {
+    "trail-dry": {
+      "mean_absolute_rgb": 0.0,
+      "changed_pixels": 0,
+      "max_rgb_channel_delta": 0,
+      "pixels_over_8_rgb_levels": 0
+    },
+    "rock-dry": {
+      "mean_absolute_rgb": 8.68e-06,
+      "changed_pixels": 7,
+      "max_rgb_channel_delta": 4,
+      "pixels_over_8_rgb_levels": 0
+    },
+    "trail-wet-frozen-light": {
+      "mean_absolute_rgb": 0.93302951,
+      "changed_pixels": 481296,
+      "max_rgb_channel_delta": 78,
+      "pixels_over_8_rgb_levels": 3353
+    },
+    "rock-wet-frozen-light": {
+      "mean_absolute_rgb": 1.6498376,
+      "changed_pixels": 439559,
+      "max_rgb_channel_delta": 41,
+      "pixels_over_8_rgb_levels": 33438
+    },
+    "trail-storm": {
+      "mean_absolute_rgb": 1.19669922,
+      "changed_pixels": 476349,
+      "max_rgb_channel_delta": 28,
+      "pixels_over_8_rgb_levels": 25587
+    },
+    "rock-storm": {
+      "mean_absolute_rgb": 3.13015734,
+      "changed_pixels": 434628,
+      "max_rgb_channel_delta": 192,
+      "pixels_over_8_rgb_levels": 92343
+    }
+  },
+  "same_storm_rock_camera_bottom_crop_highlights": {
+    "crop_xyxy": [
+      0,
+      400,
+      1280,
+      720
+    ],
+    "definition": "every RGB channel is at least 240 / 255",
+    "counts": {
+      "baseline": 3981,
+      "candidate": 0
+    }
+  },
+  "texture_sha256": {
+    "textures/mud_diff.jpg": "df72f405b9ee956442e0cd72b8c28e77c9c2ceba6be0cbbf7c0e621a68839578",
+    "textures/mud_nor_gl.jpg": "8104f17adecef5ea07cfe60db424f2f334028cf58a08764870a29bb5e4257870",
+    "textures/mud_arm.jpg": "144d098b8f7265c3f2304a61779ca193d528199ab5d7b51fef64993ae8ed3077",
+    "textures/rock_diff.jpg": "99a36697bd7a9869cb47c516f099b9e0bc7acce1eba0e06b0686a5e0290bdbc7",
+    "textures/rock_nor_gl.jpg": "91d3beaf699a8e8c2387efeeae2df7024369df2b0a2bf18c2f4155baccd29e7a",
+    "textures/rock_arm.jpg": "b13c10a2a8f6da5dfef771120a4f743f31bea35cc60e97210a3c1bee0338d694"
+  },
+  "web_results": "web-check.json"
+}

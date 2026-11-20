@@ -1,0 +1,185 @@
+{
+  "scene": "鹿鸣溪岸 · Ostrich fern",
+  "unit": "METRIC",
+  "version": "5.2.4 LTS",
+  "isolation": true,
+  "groups": {
+    "Mature · Near": [
+      {
+        "object": "Rhizome, old stipe bases and scales",
+        "vertices": 363,
+        "faces": 281
+      },
+      {
+        "object": "Sterile frond 01",
+        "vertices": 792,
+        "faces": 402
+      },
+      {
+        "object": "Sterile frond 02",
+        "vertices": 864,
+        "faces": 434
+      },
+      {
+        "object": "Sterile frond 03",
+        "vertices": 826,
+        "faces": 414
+      },
+      {
+        "object": "Sterile frond 04",
+        "vertices": 792,
+        "faces": 402
+      },
+      {
+        "object": "Sterile frond 05",
+        "vertices": 805,
+        "faces": 407
+      },
+      {
+        "object": "Sterile frond 06",
+        "vertices": 849,
+        "faces": 425
+      },
+      {
+        "object": "Sterile frond 07",
+        "vertices": 813,
+        "faces": 409
+      },
+      {
+        "object": "Fertile frond 01 · enclosed sori",
+        "vertices": 784,
+        "faces": 659
+      },
+      {
+        "object": "Fertile frond 02 · enclosed sori",
+        "vertices": 793,
+        "faces": 668
+      }
+    ],
+    "Mature · Far": [
+      {
+        "object": "Rhizome, old stipe bases and scales.001",
+        "vertices": 175,
+        "faces": 133
+      },
+      {
+        "object": "Sterile frond 01.001",
+        "vertices": 365,
+        "faces": 113
+      },
+      {
+        "object": "Sterile frond 02.001",
+        "vertices": 397,
+        "faces": 121
+      },
+      {
+        "object": "Sterile frond 03.001",
+        "vertices": 389,
+        "faces": 119
+      },
+      {
+        "object": "Sterile frond 04.001",
+        "vertices": 365,
+        "faces": 113
+      },
+      {
+        "object": "Sterile frond 05.001",
+        "vertices": 373,
+        "faces": 115
+      },
+      {
+        "object": "Sterile frond 06.001",
+        "vertices": 397,
+        "faces": 121
+      },
+      {
+        "object": "Sterile frond 07.001",
+        "vertices": 381,
+        "faces": 117
+      },
+      {
+        "object": "Fertile frond 01 · enclosed sori.001",
+        "vertices": 336,
+        "faces": 255
+      },
+      {
+        "object": "Fertile frond 02 · enclosed sori.001",
+        "vertices": 336,
+        "faces": 255
+      }
+    ],
+    "Young · Near": [
+      {
+        "object": "Rhizome, old stipe bases and scales.002",
+        "vertices": 318,
+        "faces": 251
+      },
+      {
+        "object": "Sterile frond 01.002",
+        "vertices": 677,
+        "faces": 347
+      },
+      {
+        "object": "Sterile frond 02.002",
+        "vertices": 692,
+        "faces": 356
+      },
+      {
+        "object": "Sterile frond 03.002",
+        "vertices": 700,
+        "faces": 358
+      },
+      {
+        "object": "Sterile frond 04.002",
+        "vertices": 677,
+        "faces": 347
+      },
+      {
+        "object": "Sterile frond 05.002",
+        "vertices": 674,
+        "faces": 348
+      }
+    ],
+    "Young · Far": [
+      {
+        "object": "Rhizome, old stipe bases and scales.003",
+        "vertices": 148,
+        "faces": 115
+      },
+      {
+        "object": "Sterile frond 01.003",
+        "vertices": 325,
+        "faces": 103
+      },
+      {
+        "object": "Sterile frond 02.003",
+        "vertices": 325,
+        "faces": 103
+      },
+      {
+        "object": "Sterile frond 03.003",
+        "vertices": 333,
+        "faces": 105
+      },
+      {
+        "object": "Sterile frond 04.003",
+        "vertices": 325,
+        "faces": 103
+      },
+      {
+        "object": "Sterile frond 05.003",
+        "vertices": 317,
+        "faces": 101
+      }
+    ]
+  },
+  "images": {
+    "Ostrich fern · tissue atlas": {
+      "pixels": [
+        512,
+        512
+      ],
+      "packed": true
+    }
+  }
+}

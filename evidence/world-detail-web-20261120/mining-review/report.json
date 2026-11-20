@@ -1,0 +1,40 @@
+{
+  "checks": [
+    "F at coal_mine adds one modeled item and reduces the shared seam stock",
+    "F at iron_mine adds one modeled item and reduces the shared seam stock",
+    "the campfire accepts coal through the same E panel as wood",
+    "the furnace spends two ores and one coal, waits and returns one ingot"
+  ],
+  "pickups": [
+    {
+      "item": "coal",
+      "placement": [
+        -74.8300018310547,
+        19.2264823913574,
+        -23.009765625
+      ],
+      "visibleMesh": [
+        -74.8300018310547,
+        19.2264823913574,
+        -23.009765625
+      ],
+      "recovered": true
+    },
+    {
+      "item": "iron_ore",
+      "placement": [
+        -74.8300018310547,
+        22.8025188446045,
+        -75.2497634887695
+      ],
+      "visibleMesh": [
+        -74.8300018310547,
+        22.8025188446045,
+        -75.2497634887695
+      ],
+      "recovered": true
+    }
+  ],
+  "errors": [],
+  "ok": true
+}

@@ -1,0 +1,45 @@
+{
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+  "webGL": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "results": [
+    {
+      "max_ms": 19.6,
+      "p50_ms": 16.7,
+      "p95_ms": 18.8,
+      "selected_proxies": 0
+    },
+    {
+      "max_ms": 19.5,
+      "p50_ms": 16.6,
+      "p95_ms": 18.3,
+      "selected_proxies": 117
+    },
+    {
+      "max_ms": 19.8,
+      "p50_ms": 16.7,
+      "p95_ms": 19.2,
+      "selected_proxies": 117
+    },
+    {
+      "max_ms": 18.9,
+      "p50_ms": 16.6,
+      "p95_ms": 18.5,
+      "selected_proxies": 0
+    }
+  ],
+  "errors": [],
+  "browser": "157.0.8103.79",
+  "frames_per_run": 75,
+  "shade_boxes_from": "actual nearby coal mine collision shell, in a minimal rain-only Godot Web Compatibility package",
+  "origin": "ephemeral loopback Web server",
+  "viewport": [
+    1280,
+    720
+  ],
+  "pixels_with_max_rgb_delta_over_8": {
+    "interception_off_vs_dry": 4765,
+    "interception_on_vs_dry": 2211,
+    "interception_on_vs_off": 2558
+  },
+  "production_shader_sha256": "ea510d428da6d41b62cb585ce6d9b3e71a9dfb313634033225f9ceac674b4a9e"
+}

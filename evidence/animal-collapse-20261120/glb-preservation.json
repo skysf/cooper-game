@@ -1,0 +1,32 @@
+{
+  "crocodile": {
+    "liveClipsRetained": 7,
+    "newClips": {
+      "Collapse": {
+        "seconds": 0.9,
+        "channels": 78
+      },
+      "Dead": {
+        "seconds": 0.1,
+        "channels": 78
+      }
+    },
+    "bytesAdded": 49992,
+    "baselineSHA256": "7dfacc897b7fce7fb1a0a67a96b828702a0ad9063b96b8c794d2519cd662961d",
+    "currentSHA256": "98fdd311ddbee215ecb9743f9aea24eebf91b9956d212ef9d28ae79b50c14a9a",
+    "geometryMaterialsSkinAndLiveAnimationsBitwiseEqual": true
+  },
+  "mastiff": {
+    "liveClipsRetained": 9,
+    "newClips": {
+      "Dead": {
+        "seconds": 0.1,
+        "channels": 69
+      }
+    },
+    "bytesAdded": 17028,
+    "baselineSHA256": "865e69d391ed382c26dfebf7cfcbdd42abc5382125f078d8ed00e53a237f6250",
+    "currentSHA256": "c9f2ab65d22edbb48dd5685909177b17665f05ac2fadf74ac3ed2c0a46b56536",
+    "geometryMaterialsSkinAndLiveAnimationsBitwiseEqual": true
+  }
+}

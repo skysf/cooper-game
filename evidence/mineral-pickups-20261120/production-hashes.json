@@ -1,0 +1,21 @@
+{
+  "productionSource": "art/mines/rainline_mines.blend",
+  "productionSourceSHA256": "0f9191dbd9d6a490d66a6cf62452fcca60a1d9db96d3225345b567769596643f",
+  "preservedAssetsSHA256": {
+    "coop/props/mines/coal_mine.glb": "1e0e80801797585f88ddb60c55ceab4e666103205aa4c699706a7b5f2efa18ba",
+    "coop/props/mines/iron_mine.glb": "6e0dd47c783f3232a0b2cd34ce405aba326a0f0f821c1782300fd1913c0a6e05",
+    "coop/props/mines/coal_seam.glb": "9ae7215929ecccb38edde4a4a65f9e0d86f702d93a91cee021f717f7def1d804",
+    "coop/props/mines/iron_seam.glb": "940f15b37c3dedd57e44c38b1d6c3dbf94138f1bf266b8338dda41bd7f58da0c",
+    "coop/props/mines/iron_ingot.glb": "daaabb207f03770346e50e653a9b614c222c2ced5b8ebe938cb7167cdbf7550a",
+    "coop/props/mines/mines_manifest.json": "2999970b8245d690c9e34b5cf83c0b979ed7544311ceeec397198188f56d4120",
+    "coop/props/mines/inventory_coal.png": "81186191d6d4ac62df3102e2cef575c42df548cad54187f958d241682f76d30b",
+    "coop/props/mines/inventory_iron_ore.png": "c327ca4517579dd77746d08cc72d53babb9324a4de828c7beeb9177d3504e575",
+    "coop/props/mines/inventory_iron_ingot.png": "6852db75622f1b68eeff6c5b248ea0858b84c834a9662f34d5596655db4b34c7",
+    "coop/props/iron_furnace.glb": "4610a54e0d9c554d6d6067213e6496c8bb4f37ce1ed4956183dcb13fa012dd0f",
+    "art/iron_furnace.blend": "837c53ef381ca1dd70e82c16e1b670b3f3d97a5342b0ed3ad80b2fb17bdcd556"
+  },
+  "adoptedGlbsSHA256": {
+    "coal": "ee07701486c0e8e324cbc5f68367743383d169888cac33b447ccc64965cbb031",
+    "iron_ore": "de5ec3baae3f20e7e4e3d4a0ac51b27e0538cf17f92e0499c3b55161a87ee30b"
+  }
+}

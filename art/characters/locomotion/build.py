@@ -11,6 +11,7 @@ from pathlib import Path
 import numpy as np
 
 RIG = Path("coop/props/sky_character.glb")
+BOOT = Path("coop/props/camp_boot.glb")
 OUTPUT = Path(".cache/player-locomotion/probe/baked.glb")
 PI = math.pi
 TAU = 2 * PI
@@ -75,10 +76,13 @@ def curve(points, t):
     return np.asarray(points[-1][1:])
 
 
-raw = RIG.read_bytes()
-size = struct.unpack_from("<I", raw, 12)[0]
-doc = json.loads(raw[20:20+size])
-data = bytearray(raw[28+size:])
+def read_glb(path):
+    raw = path.read_bytes()
+    size = struct.unpack_from("<I", raw, 12)[0]
+    return json.loads(raw[20:20+size]), bytearray(raw[28+size:])
+
+
+doc, data = read_glb(RIG)
 nodes = doc["nodes"]
 names = {n["name"]: i for i,n in enumerate(nodes)}
 parents = {c:i for i,n in enumerate(nodes) for c in n.get("children",[])}
@@ -107,6 +111,27 @@ def pos(n):
 def orient(n):
     b = rest[n][:3,:3]
     return b/np.linalg.norm(b,axis=0)
+
+
+boot_doc, boot_data = read_glb(BOOT)
+
+
+def boot_positions(name):
+    node = next(node for node in boot_doc["nodes"] if node["name"] == name)
+    surface, = boot_doc["meshes"][node["mesh"]]["primitives"]
+    points = boot_doc["accessors"][surface["attributes"]["POSITION"]]
+    view = boot_doc["bufferViews"][points["bufferView"]]
+    return np.ndarray((points["count"], 3), dtype="<f4", buffer=boot_data,
+                      offset=view.get("byteOffset", 0) + points.get("byteOffset", 0),
+                      strides=(view.get("byteStride", 12), 4)).astype(float)
+
+
+boot_vertices = {"foot_L": boot_positions("BootLeft"), "foot_R": boot_positions("BootRight")}
+
+
+def sole_height(foot, delta):
+    # The boot's base is on the stand floor. Measure the rotated sole about the ankle.
+    return float(np.min(boot_vertices[foot] @ delta[1]) - pos(foot)[1] * delta[1, 1])
 
 class Pose:
     def __init__(self):
@@ -156,11 +181,8 @@ def stride(p, t, fast):
             heel = curve([(0,24 if fast else 17),(.25,31),(.65,-2),(1,-12)],v)[0]
             clearance = (.25 if fast else .15)*math.sin(PI*v)**1.3
         foot, shin, thigh = ("foot_"+side,"shin_"+side,"thigh_"+side)
-        # The production boot is an ellipsoid on the ankle, offset toward the toes.
         pitch = rotation(0,heel)
-        boot_y = (pitch@np.array([0,.003,-.067]))[1]
-        radius_y = np.linalg.norm(pitch[1]*np.array([.071,.069,.141]))
-        ankle_y = radius_y - boot_y + clearance + (.013 if fast else .004)
+        ankle_y = -sole_height(foot, pitch) + clearance + (.013 if fast else .004)
         hip_rot = p.rot["hips"]@orient("hips").T
         origin = pos("hips")+p.shift + hip_rot@(pos(thigh)-pos("hips"))
         goal_z = z + pos(foot)[2]
@@ -223,8 +245,7 @@ def jump(p, t, clip):
                 offset = offset + p.rot[last]@orient(last).T@(pos(bone)-pos(last))
                 last = bone
             q = p.rot[foot]@orient(foot).T
-            center = offset + q@np.array([0,.003,-.067])
-            lower.append(center[1]-np.linalg.norm(q[1]*np.array([.071,.069,.141])))
+            lower.append(offset[1] + sole_height(foot, q))
         p.shift[1] -= min(lower)-.003
 
 def water(p,t,travel):

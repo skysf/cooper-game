@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "F at coal_mine adds one modeled item and reduces the shared seam stock",
+    "F at iron_mine adds one modeled item and reduces the shared seam stock",
+    "the campfire accepts coal through the same E panel as wood",
+    "the furnace spends two ores and one coal, waits and returns one ingot"
+  ],
+  "errors": [],
+  "ok": true
+}

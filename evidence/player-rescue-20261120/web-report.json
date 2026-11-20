@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Web E rescues the visible fallen teammate at the same position; rise and save confirmed",
+    "solo knockout resolves before the first room snapshot",
+    "without help the player returns to camp at the 15-second room deadline"
+  ],
+  "errors": [],
+  "onlineTimeout": 15.0660286666672,
+  "ok": true
+}

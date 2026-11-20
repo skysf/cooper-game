@@ -1,0 +1,44 @@
+{
+  "checks": 14,
+  "failures": 0,
+  "positions": {
+    "coal": {
+      "gather": [
+        -75.9742813110352,
+        20.2545166015625,
+        -23.0100002288818
+      ],
+      "ground": [
+        -74.25,
+        19.2137641906738,
+        -22.4300003051758
+      ],
+      "groundPeerMatches": true,
+      "modeledResource": "res://props/mines/coal.glb",
+      "table": [
+        3.0,
+        0.790000021457672,
+        -88.8199996948242
+      ]
+    },
+    "iron_ore": {
+      "gather": [
+        -75.4948043823242,
+        23.830587387085,
+        -75.25
+      ],
+      "ground": [
+        -74.25,
+        22.6357574462891,
+        -74.6699981689453
+      ],
+      "groundPeerMatches": true,
+      "modeledResource": "res://props/mines/iron_ore.glb",
+      "table": [
+        3.0,
+        0.790000021457672,
+        -88.8199996948242
+      ]
+    }
+  }
+}

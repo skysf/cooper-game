@@ -3,9 +3,11 @@ extends RefCounted
 const Weapons = preload("res://weapons.gd")
 
 const TABLE_CENTER := Vector2(3.10, -88.95)
+const CAMP_TABLE := "camp-table"
 const TABLE_TOP := 0.79
 const JUG := Vector2(3.59, -88.76)
 const BACKPACK := Vector2(0.55, -88.85)
+const CAMP_HELMET := Vector2(1.30, -87.67)
 const TABLE_SLOTS := [
 	Vector2(2.50, -88.82), Vector2(2.75, -88.82),
 	Vector2(2.50, -89.11), Vector2(2.75, -89.11),
@@ -20,11 +22,21 @@ const BACKPACK_SLOTS := 6
 # Every registered kind occupies one slot. Count is separate and bounded for save/network safety.
 const MAX_ITEM_COUNT := 2147483647
 const MATERIAL_RESTOCK := 180.0
-const CLOTHING := {"cap": "帽子", "jacket": "夹克", "pants": "长裤"}
-const ITEM_NAMES := {"apple": "苹果", "bread": "面包", "cap": "帽子", "jacket": "夹克", "pants": "长裤", "herb": "药草包", "water": "装好的溪水", "stone": "缴获圆石", "club": "木棍", "spear": "长矛", "shield": "编织盾牌", "wood": "木料", "tarp": "防水布", "katana": "日本刀", "rifle": "栓动步枪", "pistol": "手枪"}
+const CLOTHING := {"cap": "帽子", "helmet": "头盔", "jacket": "夹克", "pants": "长裤"}
+const HEAD_REPLACEMENT := {"cap": "helmet", "helmet": "cap"}
+const ITEM_NAMES := {"apple": "苹果", "bread": "面包", "cap": "帽子", "helmet": "头盔", "jacket": "夹克", "pants": "长裤", "herb": "药草包", "water": "装好的溪水", "stone": "缴获圆石", "club": "木棍", "spear": "长矛", "shield": "编织盾牌", "wood": "木料", "tarp": "防水布", "katana": "日本刀", "rifle": "栓动步枪", "pistol": "手枪",
+	"wood_plank": "木板", "wicker_strip": "编条", "rope": "绳子", "crocodile_hide": "鳄鱼皮",
+	"crocodile_meat_raw": "生鳄鱼肉", "crocodile_meat_grilled": "烤鳄鱼肉", "crocodile_sandwich": "鳄鱼肉三明治",
+	"eagle_meat": "老鹰肉", "dog_meat": "狗肉", "eagle_feather": "鹰羽", "eagle_claw": "鹰爪",
+	"coal": "煤块", "iron_ore": "铁矿石", "iron_ingot": "铁锭"}
 const FOOD_STATS := {
 	"apple": {"hunger": 19.0, "water": 9.0, "mood": 4.0},
 	"bread": {"hunger": 31.0, "water": 0.0, "mood": 3.0},
+	"crocodile_meat_raw": {"hunger": 14.0, "water": 0.0, "mood": 0.0},
+	"crocodile_meat_grilled": {"hunger": 33.0, "water": 0.0, "mood": 5.0},
+	"crocodile_sandwich": {"hunger": 56.0, "water": 0.0, "mood": 9.0},
+	"eagle_meat": {"hunger": 18.0, "water": 0.0, "mood": 0.0},
+	"dog_meat": {"hunger": 20.0, "water": 0.0, "mood": 0.0},
 }
 const MAX_STAT := 100.0
 const DRINK_GAIN := 32.0
@@ -35,13 +47,17 @@ const INDOOR_MOOD := 0.06
 const DECOR_MOOD := 0.045
 const WARMTH_MOOD := 0.075
 const RAIN_MOOD_LOSS := 0.17
+const RESCUE_SECONDS := 15.0
+const RESCUE_REACH := 2.10
+const RESCUE_HEIGHT := 1.15
+const RECOVERY_HEALTH := 45.0
 
 static func initial_state() -> Dictionary:
 	return {"health": MAX_STAT, "hunger": 86.0, "water": 82.0, "mood": 65.0, "bag": {"apple": 0, "bread": 0},
 		"worn": initial_wear(), "weapon": "", "shield": false, "attackAt": -10.0, "attackWeapon": "", "downAt": -1.0}
 
 static func initial_wear() -> Dictionary:
-	return {"cap": true, "jacket": true, "pants": true}
+	return {"cap": true, "helmet": false, "jacket": true, "pants": true}
 
 static func stack_limit(item: String) -> int:
 	return MAX_ITEM_COUNT if ITEM_NAMES.has(item) else 0
@@ -64,7 +80,7 @@ static func is_drinkable(item: String) -> bool:
 	return item == "water"
 
 static func can_table(item: String) -> bool:
-	return FOOD_STATS.has(item) or is_drinkable(item)
+	return ITEM_NAMES.has(item)
 
 static func drink(state: Dictionary) -> void:
 	state.water = minf(MAX_STAT, float(state.water) + DRINK_GAIN)
@@ -84,6 +100,8 @@ static func state_from_save(value: Variant, slots: int = SLOT_COUNT) -> Dictiona
 	if worn is Dictionary:
 		for item: String in CLOTHING:
 			state.worn[item] = worn.get(item) == true
+		if state.worn.helmet:
+			state.worn.cap = false
 	var bag: Variant = value.get("bag")
 	if bag is Dictionary:
 		var available := slots
@@ -124,7 +142,17 @@ static func provisions_from_save(value: Variant) -> Dictionary:
 			continue
 		var at: Variant = saved.get("at")
 		if at is Array and at.size() == 3 and finite_number(at[0]) and finite_number(at[1]) and finite_number(at[2]):
-			provisions[id] = provision(saved.item, Vector3(float(at[0]), float(at[1]), float(at[2])), saved.surface)
+			var record := provision(saved.item, Vector3(float(at[0]), float(at[1]), float(at[2])), saved.surface)
+			var count := _quantity(saved.get("count", 1))
+			if count > 1:
+				record.count = count
+			var table: Variant = saved.get("tableId", "")
+			if table is String and (table == CAMP_TABLE or table.length() == 16 and table.is_valid_hex_number(false)):
+				record.tableId = table
+			var support: Variant = saved.get("supportId", "")
+			if not record.has("tableId") and support is String and not support.is_empty() and support.length() <= 40:
+				record.supportId = support
+			provisions[id] = record
 	return provisions
 
 static func finite_number(amount: Variant) -> bool:
@@ -138,6 +166,16 @@ static func horizontal(at: Array) -> Vector2:
 
 static func inside_shelter(point: Vector2) -> bool:
 	return SHELTER.has_point(point)
+
+static func rescue_time_left(down_at: float, elapsed: float) -> float:
+	return clampf(down_at + RESCUE_SECONDS - elapsed, 0.0, RESCUE_SECONDS) if down_at >= 0.0 else 0.0
+
+static func within_rescue_reach(helper: Vector3, downed: Vector3) -> bool:
+	var difference := helper - downed
+	return absf(difference.y) <= RESCUE_HEIGHT and Vector2(difference.x, difference.z).length_squared() <= RESCUE_REACH ** 2
+
+static func rescue_contact_height(swimming: bool) -> float:
+	return 0.22 if swimming else 0.36
 
 static func can_reach(point: Vector2, target: Vector2, surface: String) -> bool:
 	return point.distance_squared_to(target) <= REACH * REACH and (surface != "table" or inside_shelter(point))
@@ -192,8 +230,9 @@ static func tick(state: Dictionary, point: Vector2, roof_repaired: bool, rain: f
 	state.mood = clampf(float(state.mood) + mood_change * delta, 0.0, MAX_STAT)
 
 static func snapshot(state: Dictionary) -> Dictionary:
+	var health := float(state.health)
 	return {
-		"health": snappedf(float(state.health), 0.1),
+		"health": maxf(.1, snappedf(health, 0.1)) if health > 0.0 else 0.0,
 		"hunger": snappedf(float(state.hunger), 0.1),
 		"water": snappedf(float(state.water), 0.1),
 		"mood": snappedf(float(state.mood), 0.1),

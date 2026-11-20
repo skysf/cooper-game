@@ -1,0 +1,82 @@
+{
+  "coal": {
+    "triangles": 396,
+    "identicalSourceTrianglePositionAndWinding": true,
+    "minMaxGodotMetres": [
+      [
+        -0.1113373264670372,
+        0.0,
+        -0.08527731895446777
+      ],
+      [
+        0.09812663495540619,
+        0.13970035314559937,
+        0.08254995942115784
+      ]
+    ],
+    "drawSurfaces": [
+      2,
+      1
+    ],
+    "geometryBytesBeforeAfter": [
+      38612,
+      21636
+    ],
+    "sha256": "ee07701486c0e8e324cbc5f68367743383d169888cac33b447ccc64965cbb031",
+    "textures": {
+      "coal_chunk_diff.jpg": {
+        "sizeBytes": 23378,
+        "pixels": 512
+      },
+      "coal_chunk_rough.webp": {
+        "sizeBytes": 27226,
+        "pixels": 256
+      },
+      "coal_chunk_nor_gl.webp": {
+        "sizeBytes": 132440,
+        "pixels": 512
+      }
+    },
+    "mapBytes": 183044
+  },
+  "iron_ore": {
+    "triangles": 396,
+    "identicalSourceTrianglePositionAndWinding": true,
+    "minMaxGodotMetres": [
+      [
+        -0.10033021122217178,
+        0.0,
+        -0.08346989750862122
+      ],
+      [
+        0.09971633553504944,
+        0.15540844202041626,
+        0.08277097344398499
+      ]
+    ],
+    "drawSurfaces": [
+      2,
+      1
+    ],
+    "geometryBytesBeforeAfter": [
+      38552,
+      18952
+    ],
+    "sha256": "de5ec3baae3f20e7e4e3d4a0ac51b27e0538cf17f92e0499c3b55161a87ee30b",
+    "textures": {
+      "iron_ore_chunk_diff.jpg": {
+        "sizeBytes": 46175,
+        "pixels": 512
+      },
+      "iron_ore_chunk_nor_gl.webp": {
+        "sizeBytes": 235920,
+        "pixels": 512
+      },
+      "iron_ore_chunk_rough.webp": {
+        "sizeBytes": 26290,
+        "pixels": 256
+      }
+    },
+    "mapBytes": 308385
+  }
+}

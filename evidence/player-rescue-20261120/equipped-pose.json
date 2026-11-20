@@ -1,0 +1,217 @@
+{
+  "checks": [
+    {
+      "check": "real partial-direction motion selects a speed-matched walk without a new input mode",
+      "ok": true
+    },
+    {
+      "check": "walking plants and lifts the actual attached boots without sinking into the floor",
+      "ok": true
+    },
+    {
+      "check": "actual default-speed boots remain above the floor through walk/run blending",
+      "ok": true
+    },
+    {
+      "check": "existing full-speed movement automatically selects the authored run",
+      "ok": true
+    },
+    {
+      "check": "holding movement into a real collision stops the feet instead of running in place",
+      "ok": true
+    },
+    {
+      "check": "the actual ballistic jump drives takeoff, flight and contact landing",
+      "ok": true
+    },
+    {
+      "check": "zero vertical speed at the jump apex remains airborne rather than falsely landing",
+      "ok": true
+    },
+    {
+      "check": "holding jump cannot repeat; the real landing has a short recovery and returns to idle",
+      "ok": true
+    },
+    {
+      "check": "real deep-water movement selects the authored swim without the old whole-body rotation",
+      "ok": true
+    },
+    {
+      "check": "swimming has real arm strokes and leg kicks, with free arms while carried gear is stowed",
+      "ok": true
+    },
+    {
+      "check": "stopping in deep water treads rather than holding a frozen stroke",
+      "ok": true
+    },
+    {
+      "check": "a real dive drives swimming even with no horizontal movement",
+      "ok": true
+    },
+    {
+      "check": "rising back to the water surface returns to floating tread",
+      "ok": true
+    },
+    {
+      "check": "crossing the real shallow bank resumes grounded locomotion",
+      "ok": true
+    },
+    {
+      "check": "the existing seated pose and hat attachment remain compatible",
+      "ok": true
+    },
+    {
+      "check": "clothing changes and preview-style neutral standing remain natural",
+      "ok": true
+    },
+    {
+      "check": "the equipped player lands prone and carried-item poses do not override the fall",
+      "ok": true
+    },
+    {
+      "check": "late observations hold the final fall pose on the shared room clock",
+      "ok": true
+    },
+    {
+      "check": "the get-up starts from the settled fall pose at the same world position",
+      "ok": true
+    },
+    {
+      "check": "the equipped player returns to standing without changing the actor position",
+      "ok": true
+    },
+    {
+      "check": "the actual attached boots remain close to or above the floor during the fall and rise",
+      "ok": true
+    }
+  ],
+  "failed": 0,
+  "samples": {
+    "jump": {
+      "contacts": 1,
+      "height": 0.778333333333333,
+      "landingFrames": 14,
+      "stages": [
+        "move/Takeoff",
+        "move/Air",
+        "move/Land",
+        "Stand"
+      ]
+    },
+    "recovery": {
+      "fallenHead": 0.147242873907089,
+      "minEquippedBoot": -0.0123151913285255,
+      "standingHead": 1.57066142559052
+    },
+    "run": {
+      "footLowIncludingBlend": -0.00191793125122786,
+      "rate": 1.01122695408396,
+      "speed": 3.59996795653891
+    },
+    "swim": {
+      "footExcursion": 0.337208271026611,
+      "grounded": true,
+      "handExcursion": 0.456167787313461,
+      "shore": [
+        -26.0,
+        -26.0650463104248
+      ]
+    },
+    "transitions": [
+      {
+        "atMs": 1134,
+        "clip": "Stand",
+        "grounded": true,
+        "swimming": false,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1139,
+        "clip": "move/Takeoff",
+        "grounded": false,
+        "swimming": false,
+        "vy": 4.52
+      },
+      {
+        "atMs": 1139,
+        "clip": "move/Air",
+        "grounded": false,
+        "swimming": false,
+        "vy": 2.45
+      },
+      {
+        "atMs": 1141,
+        "clip": "move/Land",
+        "grounded": true,
+        "swimming": false,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1141,
+        "clip": "Stand",
+        "grounded": true,
+        "swimming": false,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1143,
+        "clip": "move/Swim",
+        "grounded": false,
+        "swimming": true,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1147,
+        "clip": "move/Tread",
+        "grounded": false,
+        "swimming": true,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1150,
+        "clip": "move/Swim",
+        "grounded": false,
+        "swimming": true,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1153,
+        "clip": "move/Tread",
+        "grounded": false,
+        "swimming": true,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1154,
+        "clip": "move/Swim",
+        "grounded": false,
+        "swimming": true,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1161,
+        "clip": "move/Walk",
+        "grounded": true,
+        "swimming": false,
+        "vy": 0.0
+      },
+      {
+        "atMs": 1161,
+        "clip": "move/Run",
+        "grounded": true,
+        "swimming": false,
+        "vy": 0.0
+      }
+    ],
+    "walk": {
+      "footBottomRange": [
+        0.00210635829716921,
+        0.153194323182106
+      ],
+      "rate": 0.986308267671768,
+      "speed": 1.44001007080078,
+      "steadyFootLow": 0.00210635829716921
+    }
+  },
+  "total": 21
+}

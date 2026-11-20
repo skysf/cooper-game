@@ -1,0 +1,14 @@
+PASS coal gather position is reachable
+PASS coal actual seam extraction adds one to the bag
+PASS coal drop uses the authored landing and replicates the same world position
+PASS coal remote teammate cannot take the floor pickup
+PASS coal a local teammate picks up exactly one from that position
+PASS coal actual table placement preserves the authored tabletop height
+PASS coal is recoverable from the same table slot
+PASS iron_ore gather position is reachable
+PASS iron_ore actual seam extraction adds one to the bag
+PASS iron_ore drop uses the authored landing and replicates the same world position
+PASS iron_ore remote teammate cannot take the floor pickup
+PASS iron_ore a local teammate picks up exactly one from that position
+PASS iron_ore actual table placement preserves the authored tabletop height
+PASS iron_ore is recoverable from the same table slot

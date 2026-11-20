@@ -1,0 +1,611 @@
+{
+  "captures": {
+    "bank-after": {
+      "draw_calls": 198,
+      "eye": [
+        -6.55000019073486,
+        1.66999995708466,
+        -60.0499992370605
+      ],
+      "fov": 78.0,
+      "objects": 198,
+      "triangles": 288428
+    },
+    "bank-before": {
+      "draw_calls": 193,
+      "eye": [
+        -6.55000019073486,
+        1.66999995708466,
+        -60.0499992370605
+      ],
+      "fov": 78.0,
+      "objects": 193,
+      "triangles": 221551
+    },
+    "crown": {
+      "draw_calls": 179,
+      "eye": [
+        -7.88000011444092,
+        0.119000002741814,
+        -58.6100006103516
+      ],
+      "fov": 70.0,
+      "objects": 179,
+      "triangles": 266279
+    },
+    "distant-after": {
+      "draw_calls": 174,
+      "eye": [
+        4.84000015258789,
+        1.75999999046326,
+        -48.9700012207031
+      ],
+      "fov": 37.0,
+      "objects": 174,
+      "triangles": 234497
+    },
+    "distant-before": {
+      "draw_calls": 171,
+      "eye": [
+        4.84000015258789,
+        1.75999999046326,
+        -48.9700012207031
+      ],
+      "fov": 37.0,
+      "objects": 171,
+      "triangles": 215941
+    },
+    "dock-after": {
+      "draw_calls": 202,
+      "eye": [
+        -8.85000038146973,
+        1.66999995708466,
+        -49.0999984741211
+      ],
+      "fov": 78.0,
+      "objects": 202,
+      "triangles": 229223
+    },
+    "dock-before": {
+      "draw_calls": 202,
+      "eye": [
+        -8.85000038146973,
+        1.66999995708466,
+        -49.0999984741211
+      ],
+      "fov": 78.0,
+      "objects": 202,
+      "triangles": 229223
+    },
+    "lod-after": {
+      "draw_calls": 161,
+      "eye": [
+        -1.0,
+        1.75999999046326,
+        -51.5999984741211
+      ],
+      "fov": 45.0,
+      "objects": 161,
+      "triangles": 267716
+    },
+    "lod-before": {
+      "draw_calls": 156,
+      "eye": [
+        -1.0,
+        1.75999999046326,
+        -51.5999984741211
+      ],
+      "fov": 45.0,
+      "objects": 156,
+      "triangles": 194657
+    },
+    "lod-far": {
+      "draw_calls": 161,
+      "eye": [
+        -1.0,
+        1.75999999046326,
+        -51.5999984741211
+      ],
+      "fov": 45.0,
+      "objects": 161,
+      "triangles": 267716
+    },
+    "lod-near": {
+      "draw_calls": 161,
+      "eye": [
+        -1.0,
+        1.75999999046326,
+        -51.5999984741211
+      ],
+      "fov": 45.0,
+      "objects": 161,
+      "triangles": 267716
+    },
+    "mature-after": {
+      "draw_calls": 145,
+      "eye": [
+        -6.80000019073486,
+        1.12999999523163,
+        -59.3300018310547
+      ],
+      "fov": 70.0,
+      "objects": 145,
+      "triangles": 241687
+    },
+    "mature-before": {
+      "draw_calls": 143,
+      "eye": [
+        -6.80000019073486,
+        1.12999999523163,
+        -59.3300018310547
+      ],
+      "fov": 70.0,
+      "objects": 143,
+      "triangles": 187184
+    },
+    "north-bank-after": {
+      "draw_calls": 137,
+      "eye": [
+        -8.10000038146973,
+        1.64999997615814,
+        -46.560001373291
+      ],
+      "fov": 76.0,
+      "objects": 137,
+      "triangles": 208182
+    },
+    "north-bank-before": {
+      "draw_calls": 135,
+      "eye": [
+        -8.10000038146973,
+        1.64999997615814,
+        -46.560001373291
+      ],
+      "fov": 76.0,
+      "objects": 135,
+      "triangles": 187838
+    },
+    "pinna": {
+      "draw_calls": 164,
+      "eye": [
+        -7.78000020980835,
+        0.660000026226044,
+        -58.1199989318848
+      ],
+      "fov": 56.0,
+      "objects": 164,
+      "triangles": 267837
+    },
+    "rain-after": {
+      "draw_calls": 131,
+      "eye": [
+        -6.80000019073486,
+        1.12999999523163,
+        -59.3300018310547
+      ],
+      "fov": 70.0,
+      "objects": 131,
+      "triangles": 244247
+    },
+    "rain-before": {
+      "draw_calls": 129,
+      "eye": [
+        -6.80000019073486,
+        1.12999999523163,
+        -59.3300018310547
+      ],
+      "fov": 70.0,
+      "objects": 129,
+      "triangles": 189744
+    },
+    "underleaf": {
+      "draw_calls": 212,
+      "eye": [
+        -7.5,
+        0.370000004768372,
+        -58.0200004577637
+      ],
+      "fov": 76.0,
+      "objects": 212,
+      "triangles": 309393
+    },
+    "underwater-after": {
+      "draw_calls": 106,
+      "eye": [
+        -14.1700000762939,
+        -0.152999997138977,
+        -44.3800010681152
+      ],
+      "fov": 78.0,
+      "objects": 106,
+      "triangles": 187369
+    },
+    "underwater-before": {
+      "draw_calls": 104,
+      "eye": [
+        -14.1700000762939,
+        -0.152999997138977,
+        -44.3800010681152
+      ],
+      "fov": 78.0,
+      "objects": 104,
+      "triangles": 167025
+    },
+    "wind-gust": {
+      "draw_calls": 130,
+      "eye": [
+        -6.80000019073486,
+        1.12999999523163,
+        -59.3300018310547
+      ],
+      "fov": 70.0,
+      "objects": 130,
+      "triangles": 241687
+    },
+    "wind-steady": {
+      "draw_calls": 130,
+      "eye": [
+        -6.80000019073486,
+        1.12999999523163,
+        -59.3300018310547
+      ],
+      "fov": 70.0,
+      "objects": 130,
+      "triangles": 241687
+    }
+  },
+  "checks": [
+    "Current generated creek and crossing chunks",
+    "Original hazel and bulrush materials load",
+    "YoungNear_2_11 has reflection layer",
+    "YoungNear_2_11 has bounded visibility",
+    "Dry root (-11.75, -62.5)",
+    "Grounded root (-11.75, -62.5)",
+    "YoungFar_2_11 has reflection layer",
+    "YoungFar_2_11 has bounded visibility",
+    "Dry root (-11.75, -62.5)",
+    "Grounded root (-11.75, -62.5)",
+    "Same near and far root (-11.75, -62.5)",
+    "MatureNear_2_10 has reflection layer",
+    "MatureNear_2_10 has bounded visibility",
+    "Dry root (-11.06, -59.27)",
+    "Grounded root (-11.06, -59.27)",
+    "Dry root (-8.240001, -58.38)",
+    "Grounded root (-8.240001, -58.38)",
+    "Dry root (-8.31, -56.22)",
+    "Grounded root (-8.31, -56.22)",
+    "Dry root (-11.4, -56.12)",
+    "Grounded root (-11.4, -56.12)",
+    "MatureFar_2_10 has reflection layer",
+    "MatureFar_2_10 has bounded visibility",
+    "Dry root (-11.06, -59.27)",
+    "Grounded root (-11.06, -59.27)",
+    "Same near and far root (-11.06, -59.27)",
+    "Dry root (-8.240001, -58.38)",
+    "Grounded root (-8.240001, -58.38)",
+    "Same near and far root (-8.240001, -58.38)",
+    "Dry root (-8.31, -56.22)",
+    "Grounded root (-8.31, -56.22)",
+    "Same near and far root (-8.31, -56.22)",
+    "Dry root (-11.4, -56.12)",
+    "Grounded root (-11.4, -56.12)",
+    "Same near and far root (-11.4, -56.12)",
+    "YoungNear_2_10 has reflection layer",
+    "YoungNear_2_10 has bounded visibility",
+    "Dry root (-11.27, -58.69)",
+    "Grounded root (-11.27, -58.69)",
+    "Dry root (-10.92, -58.36)",
+    "Grounded root (-10.92, -58.36)",
+    "Dry root (-8.08, -58.82)",
+    "Grounded root (-8.08, -58.82)",
+    "Dry root (-8.240001, -57.88)",
+    "Grounded root (-8.240001, -57.88)",
+    "Dry root (-8.29, -55.11)",
+    "Grounded root (-8.29, -55.11)",
+    "YoungFar_2_10 has reflection layer",
+    "YoungFar_2_10 has bounded visibility",
+    "Dry root (-11.27, -58.69)",
+    "Grounded root (-11.27, -58.69)",
+    "Same near and far root (-11.27, -58.69)",
+    "Dry root (-10.92, -58.36)",
+    "Grounded root (-10.92, -58.36)",
+    "Same near and far root (-10.92, -58.36)",
+    "Dry root (-8.08, -58.82)",
+    "Grounded root (-8.08, -58.82)",
+    "Same near and far root (-8.08, -58.82)",
+    "Dry root (-8.240001, -57.88)",
+    "Grounded root (-8.240001, -57.88)",
+    "Same near and far root (-8.240001, -57.88)",
+    "Dry root (-8.29, -55.11)",
+    "Grounded root (-8.29, -55.11)",
+    "Same near and far root (-8.29, -55.11)",
+    "YoungNear_2_8 has reflection layer",
+    "YoungNear_2_8 has bounded visibility",
+    "Dry root (-10.07, -44.46)",
+    "Grounded root (-10.07, -44.46)",
+    "Dry root (-9.73, -43.58)",
+    "Grounded root (-9.73, -43.58)",
+    "Dry root (-9.76, -43.05)",
+    "Grounded root (-9.76, -43.05)",
+    "YoungFar_2_8 has reflection layer",
+    "YoungFar_2_8 has bounded visibility",
+    "Dry root (-10.07, -44.46)",
+    "Grounded root (-10.07, -44.46)",
+    "Same near and far root (-10.07, -44.46)",
+    "Dry root (-9.73, -43.58)",
+    "Grounded root (-9.73, -43.58)",
+    "Same near and far root (-9.73, -43.58)",
+    "Dry root (-9.76, -43.05)",
+    "Grounded root (-9.76, -43.05)",
+    "Same near and far root (-9.76, -43.05)",
+    "MatureNear_2_8 has reflection layer",
+    "MatureNear_2_8 has bounded visibility",
+    "Dry root (-9.93, -44.05)",
+    "Grounded root (-9.93, -44.05)",
+    "MatureFar_2_8 has reflection layer",
+    "MatureFar_2_8 has bounded visibility",
+    "Dry root (-9.93, -44.05)",
+    "Grounded root (-9.93, -44.05)",
+    "Same near and far root (-9.93, -44.05)",
+    "Each surveyed clump has both meshes",
+    "Fern has no colliders",
+    "One embedded fern atlas",
+    "boardwalk remains traversable",
+    "wood remains traversable",
+    "wade remains traversable",
+    "Rendered bank-before",
+    "Rendered bank-after",
+    "Rendered mature-before",
+    "Rendered mature-after",
+    "Rendered rain-before",
+    "Rendered rain-after",
+    "Shared room gust steady",
+    "Rendered wind-steady",
+    "Shared room gust gust",
+    "Rendered wind-gust",
+    "Rendered underleaf",
+    "Rendered pinna",
+    "Rendered crown",
+    "Rendered dock-before",
+    "Rendered dock-after",
+    "Rendered north-bank-before",
+    "Rendered north-bank-after",
+    "Underwater atmosphere and particles",
+    "Rendered underwater-before",
+    "Rendered underwater-after",
+    "Rendered lod-before",
+    "Rendered lod-after",
+    "Rendered lod-near",
+    "Rendered lod-far",
+    "Rendered distant-before",
+    "Rendered distant-after",
+    "All lake plants share the live room wind vector",
+    "All lake plants share the live room wind vector",
+    "All lake plants share the live room wind vector",
+    "All lake plants share the live room wind vector"
+  ],
+  "errors": [],
+  "gust": {
+    "speed": 1.59520626068115,
+    "time": 94.5,
+    "wind": [
+      1.04170310497284,
+      -1.20811319351196
+    ]
+  },
+  "planting": {
+    "batches": [
+      5,
+      5
+    ],
+    "clumps": [
+      14,
+      14
+    ],
+    "root_clearance_above_water": [
+      0.0371499992907047,
+      0.0710000023245811
+    ],
+    "traversal": {
+      "boardwalk": {
+        "distance_to_goal": 0.0800113677978516,
+        "point": [
+          -8.28001117706299,
+          -49.1599998474121
+        ]
+      },
+      "wade": {
+        "distance_to_goal": 0.0960111618041992,
+        "point": [
+          -8.32601070404053,
+          -54.189998626709
+        ]
+      },
+      "wood": {
+        "distance_to_goal": 0.00841936562210321,
+        "point": [
+          -6.65824890136719,
+          -53.0283126831055
+        ]
+      }
+    }
+  },
+  "steady": {
+    "speed": 0.660000026226044,
+    "time": 77.7,
+    "wind": [
+      0.34061723947525,
+      -0.565313994884491
+    ]
+  },
+  "fixed_camera_deltas": {
+    "bank": {
+      "changed_pixels_above_18_of_255": 47383,
+      "new_visible_primitive_submissions": 66877,
+      "new_visible_draw_calls": 5
+    },
+    "mature": {
+      "changed_pixels_above_18_of_255": 104874,
+      "new_visible_primitive_submissions": 54503,
+      "new_visible_draw_calls": 2
+    },
+    "north-bank": {
+      "changed_pixels_above_18_of_255": 17125,
+      "new_visible_primitive_submissions": 20344,
+      "new_visible_draw_calls": 2
+    },
+    "rain": {
+      "changed_pixels_above_18_of_255": 94274,
+      "new_visible_primitive_submissions": 54503,
+      "new_visible_draw_calls": 2
+    },
+    "dock": {
+      "changed_pixels_above_18_of_255": 107,
+      "new_visible_primitive_submissions": 0,
+      "new_visible_draw_calls": 0
+    },
+    "underwater": {
+      "changed_pixels_above_18_of_255": 0,
+      "new_visible_primitive_submissions": 20344,
+      "new_visible_draw_calls": 2
+    },
+    "lod": {
+      "changed_pixels_above_18_of_255": 18737,
+      "new_visible_primitive_submissions": 73059,
+      "new_visible_draw_calls": 5
+    },
+    "distant": {
+      "changed_pixels_above_18_of_255": 7540,
+      "new_visible_primitive_submissions": 18556,
+      "new_visible_draw_calls": 3
+    }
+  },
+  "lod_coverage_in_fixed_frame": {
+    "lod-near": 17667,
+    "lod-after": 17729,
+    "lod-far": 17482
+  },
+  "wind_comparison": {
+    "leaf_region_xyxy": [
+      275,
+      55,
+      750,
+      300
+    ],
+    "crown_region_xyxy": [
+      542,
+      545,
+      593,
+      590
+    ],
+    "changes_above_18_of_255_in_leaf_region": 20950,
+    "changes_above_18_of_255_in_crown_region": 1
+  },
+  "frame_pixels": [
+    1280,
+    720
+  ],
+  "driver": "Godot 4.7.2 OpenGL 4.1 Metal Compatibility Apple M1",
+  "checks_passed": 128,
+  "original_hazel_and_bulrush_regression": {
+    "plants": {
+      "batches": {
+        "Bulrush": 4,
+        "Hazel": 8
+      },
+      "bulrush_bed_depth": [
+        0.174843937158585,
+        0.349653095006943
+      ],
+      "cells": [
+        [
+          "Hazel",
+          -4.0,
+          -44.0,
+          1
+        ],
+        [
+          "Hazel",
+          -12.0,
+          -44.0,
+          2
+        ],
+        [
+          "Hazel",
+          -12.0,
+          -36.0,
+          2
+        ],
+        [
+          "Hazel",
+          -4.0,
+          -60.0,
+          1
+        ],
+        [
+          "Hazel",
+          -12.0,
+          -60.0,
+          1
+        ],
+        [
+          "Hazel",
+          -4.0,
+          -36.0,
+          1
+        ],
+        [
+          "Hazel",
+          -44.0,
+          -44.0,
+          1
+        ],
+        [
+          "Hazel",
+          -44.0,
+          -60.0,
+          1
+        ],
+        [
+          "Bulrush",
+          -20.0,
+          -60.0,
+          6
+        ],
+        [
+          "Bulrush",
+          -12.0,
+          -52.0,
+          2
+        ],
+        [
+          "Bulrush",
+          -12.0,
+          -44.0,
+          7
+        ],
+        [
+          "Bulrush",
+          -20.0,
+          -36.0,
+          5
+        ]
+      ],
+      "closest_hazel_extent_to_route": 2.50796647012234,
+      "closest_new_extent_to_rock": 0.111152789592743,
+      "counts": {
+        "Bulrush": 20,
+        "Hazel": 10
+      },
+      "hazel_bank_grade": [
+        0.0,
+        0.513982653617859
+      ],
+      "hazel_height_above_water": [
+        0.0750000029802322,
+        0.831957161426544
+      ],
+      "remaining_lane_clearance": 2.2020200252533
+    }
+  }
+}

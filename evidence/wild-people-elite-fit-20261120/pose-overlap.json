@@ -1,0 +1,1272 @@
+{
+  "male_elite": {
+    "crossing": {
+      "choice": "Walk",
+      "time": 0.44,
+      "allLowestMm": [
+        3.532954523445855,
+        3.532954523445855
+      ],
+      "solesLowestMm": [
+        3.532954523445855,
+        3.532954523445855
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9963662790697675,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            60,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "down": {
+      "choice": "Down",
+      "time": 0.99799999999999,
+      "allLowestMm": [
+        3.0851018519355566,
+        3.0851018519355566
+      ],
+      "solesLowestMm": [
+        150.76088074356878,
+        150.76088074356878
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 1.0,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            44,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            3,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9947187747557433,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            55,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "fetch": {
+      "choice": "DrawWater",
+      "time": 0.710000000000008,
+      "allLowestMm": [
+        -21.111864469345438,
+        -21.111864469345438
+      ],
+      "solesLowestMm": [
+        2.9331578204438764,
+        2.9331578204438764
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9961439588688946,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            63,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            85,
+            0
+          ]
+        }
+      ]
+    },
+    "held": {
+      "choice": "Guard",
+      "time": 0.310000000000002,
+      "allLowestMm": [
+        2.9999314439532743,
+        2.9999314439532743
+      ],
+      "solesLowestMm": [
+        2.9999314439532743,
+        2.9999314439532743
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9911657384290379,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            60,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            3,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9946210268948655,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            2,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "kneel": {
+      "choice": "Captive",
+      "time": 0.370000000000005,
+      "allLowestMm": [
+        2.9999709313758283,
+        2.9999709313758283
+      ],
+      "solesLowestMm": [
+        2.9999709313758283,
+        2.9999709313758283
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9963669391462306,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            1462,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            181,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9897209985315712,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            47,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            101,
+            0
+          ]
+        }
+      ]
+    },
+    "limp": {
+      "choice": "Limp",
+      "time": 0.4725,
+      "allLowestMm": [
+        3.8525191107513104,
+        3.8525191107513104
+      ],
+      "solesLowestMm": [
+        3.8525191107513104,
+        3.8525191107513104
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.99430503648336,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            64,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "limp_left": {
+      "choice": "LimpLeft",
+      "time": 0.4725,
+      "allLowestMm": [
+        3.7350737157943104,
+        3.7350737157943104
+      ],
+      "solesLowestMm": [
+        3.7350737157943104,
+        3.7350737157943104
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9965379008746356,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            65,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            5,
+            0
+          ]
+        }
+      ]
+    },
+    "other_step": {
+      "choice": "Walk",
+      "time": 0.73,
+      "allLowestMm": [
+        3.824129825050849,
+        3.824129825050849
+      ],
+      "solesLowestMm": [
+        3.824129825050849,
+        3.824129825050849
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9938181818181818,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            64,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            5,
+            0
+          ]
+        }
+      ]
+    },
+    "run": {
+      "choice": "Run",
+      "time": 0.1425,
+      "allLowestMm": [
+        3.159265465472219,
+        3.159265465472219
+      ],
+      "solesLowestMm": [
+        3.159265465472219,
+        3.159265465472219
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9956871201725151,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            64,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            52,
+            0
+          ]
+        }
+      ]
+    },
+    "sit": {
+      "choice": "Rest",
+      "time": 0.47999999999999,
+      "allLowestMm": [
+        2.999901771545188,
+        2.999901771545188
+      ],
+      "solesLowestMm": [
+        158.49649271125037,
+        158.49649271125037
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9970544918998527,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            69,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            5,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9911710037174721,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            66,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            6,
+            0
+          ]
+        }
+      ]
+    },
+    "stand": {
+      "choice": "Idle",
+      "time": 0.169999999999987,
+      "allLowestMm": [
+        2.9999034092735237,
+        2.9999034092735237
+      ],
+      "solesLowestMm": [
+        2.9999034092735237,
+        2.9999034092735237
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9927047236914098,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            63,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            6,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9950666008880118,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            61,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            6,
+            0
+          ]
+        }
+      ]
+    },
+    "stride": {
+      "choice": "Walk",
+      "time": 0.19,
+      "allLowestMm": [
+        3.773564759722424,
+        3.773564759722424
+      ],
+      "solesLowestMm": [
+        3.773564759722424,
+        3.773564759722424
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9948586118251928,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            60,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            6,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9888440541182055,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            66,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            10,
+            0
+          ]
+        }
+      ]
+    },
+    "turn": {
+      "choice": "TurnRight",
+      "time": 0.15,
+      "allLowestMm": [
+        3.030091242772212,
+        3.030091242772212
+      ],
+      "solesLowestMm": [
+        3.030091242772212,
+        3.030091242772212
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9957929394549113,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            55,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            0,
+            0
+          ],
+          "bodyBarePixels": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "female_elite": {
+    "crossing": {
+      "choice": "Walk",
+      "time": 0.44,
+      "allLowestMm": [
+        3.596362380499635,
+        3.596362380499635
+      ],
+      "solesLowestMm": [
+        3.596362380499635,
+        3.596362380499635
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9917664670658682,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            60,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            86,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "down": {
+      "choice": "Down",
+      "time": 0.99799999999999,
+      "allLowestMm": [
+        3.03155571890551,
+        3.03155571890551
+      ],
+      "solesLowestMm": [
+        153.42917207390576,
+        153.42917207390576
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 1.0,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            44,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            19,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9933368869936035,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            50,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            81,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "fetch": {
+      "choice": "DrawWater",
+      "time": 0.710000000000008,
+      "allLowestMm": [
+        -21.11432968584412,
+        -21.11432968584412
+      ],
+      "solesLowestMm": [
+        2.9331578204438764,
+        2.9331578204438764
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9953764861294584,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            63,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            82,
+            0
+          ],
+          "bodyBarePixels": [
+            74,
+            0
+          ]
+        }
+      ]
+    },
+    "held": {
+      "choice": "Guard",
+      "time": 0.310000000000002,
+      "allLowestMm": [
+        2.9999314439532743,
+        2.9999314439532743
+      ],
+      "solesLowestMm": [
+        2.9999314439532743,
+        2.9999314439532743
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.98499699939988,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            60,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            90,
+            0
+          ],
+          "bodyBarePixels": [
+            6,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9919610231425091,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            2,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            50,
+            0
+          ],
+          "bodyBarePixels": [
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "kneel": {
+      "choice": "Captive",
+      "time": 0.370000000000005,
+      "allLowestMm": [
+        2.9999709313758283,
+        2.9999709313758283
+      ],
+      "solesLowestMm": [
+        2.9999709313758283,
+        2.9999709313758283
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.993468626078843,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            1462,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            61,
+            0
+          ],
+          "bodyBarePixels": [
+            183,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9917951268025857,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            38,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            102,
+            0
+          ],
+          "bodyBarePixels": [
+            95,
+            0
+          ]
+        }
+      ]
+    },
+    "limp": {
+      "choice": "Limp",
+      "time": 0.4725,
+      "allLowestMm": [
+        3.8527316602519894,
+        3.8527316602519894
+      ],
+      "solesLowestMm": [
+        3.8527316602519894,
+        3.8527316602519894
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9873138444567016,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            65,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            86,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "limp_left": {
+      "choice": "LimpLeft",
+      "time": 0.4725,
+      "allLowestMm": [
+        3.746424807639717,
+        3.746424807639717
+      ],
+      "solesLowestMm": [
+        3.746424807639717,
+        3.746424807639717
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9902347417840376,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            64,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            88,
+            0
+          ],
+          "bodyBarePixels": [
+            6,
+            0
+          ]
+        }
+      ]
+    },
+    "other_step": {
+      "choice": "Walk",
+      "time": 0.73,
+      "allLowestMm": [
+        3.824040490261186,
+        3.824040490261186
+      ],
+      "solesLowestMm": [
+        3.824040490261186,
+        3.824040490261186
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.986003404577265,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            65,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            77,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "run": {
+      "choice": "Run",
+      "time": 0.1425,
+      "allLowestMm": [
+        3.1599943114734304,
+        3.1599943114734304
+      ],
+      "solesLowestMm": [
+        3.1599943114734304,
+        3.1599943114734304
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9906160750713995,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            60,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            82,
+            0
+          ],
+          "bodyBarePixels": [
+            49,
+            0
+          ]
+        }
+      ]
+    },
+    "sit": {
+      "choice": "Rest",
+      "time": 0.47999999999999,
+      "allLowestMm": [
+        2.9999613761905186,
+        2.9999613761905186
+      ],
+      "solesLowestMm": [
+        160.22872289771237,
+        160.22872289771237
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.997181655137074,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            69,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            69,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9941656942823804,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            61,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            102,
+            0
+          ],
+          "bodyBarePixels": [
+            5,
+            0
+          ]
+        }
+      ]
+    },
+    "stand": {
+      "choice": "Idle",
+      "time": 0.169999999999987,
+      "allLowestMm": [
+        2.9999034092735237,
+        2.9999034092735237
+      ],
+      "solesLowestMm": [
+        2.9999034092735237,
+        2.9999034092735237
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.985134362492853,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            63,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            87,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9937872763419483,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            56,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            103,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    "stride": {
+      "choice": "Walk",
+      "time": 0.19,
+      "allLowestMm": [
+        3.7735539610368947,
+        3.7735539610368947
+      ],
+      "solesLowestMm": [
+        3.7735539610368947,
+        3.7735539610368947
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9850230414746544,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            58,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            76,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        },
+        {
+          "direction": [
+            -0.92,
+            0.19,
+            -0.32
+          ],
+          "outlineIoU": 0.9902843601895734,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            59,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            99,
+            0
+          ],
+          "bodyBarePixels": [
+            7,
+            0
+          ]
+        }
+      ]
+    },
+    "turn": {
+      "choice": "TurnRight",
+      "time": 0.15,
+      "allLowestMm": [
+        3.0369298175554165,
+        3.0369298175554165
+      ],
+      "solesLowestMm": [
+        3.0369298175554165,
+        3.0369298175554165
+      ],
+      "twoLegTriangleIntersectionsBelowKnee": [
+        0,
+        0
+      ],
+      "views": [
+        {
+          "direction": [
+            0.22,
+            0.13,
+            -0.97
+          ],
+          "outlineIoU": 0.9870253768364816,
+          "footGridMm": 3,
+          "bareFootPixels": [
+            51,
+            0
+          ],
+          "legacyFootTrimPixels": [
+            78,
+            0
+          ],
+          "bodyBarePixels": [
+            4,
+            0
+          ]
+        }
+      ]
+    }
+  }
+}

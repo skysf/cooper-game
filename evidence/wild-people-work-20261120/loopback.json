@@ -1,0 +1,22 @@
+{
+  "transport": "production Godot server with two loopback WebSocket peers",
+  "sameTickSnapshots": 27,
+  "work": {
+    "waterer": {
+      "clip": "DrawWater",
+      "fullSeconds": 1.5,
+      "sameWorkSnapshots": 13,
+      "resumedClip": "TurnLeft",
+      "timingDriftS": 0.10339133333400241,
+      "remaining": 15
+    },
+    "gatherer": {
+      "clip": "GatherFruit",
+      "fullSeconds": 1.25,
+      "sameWorkSnapshots": 11,
+      "resumedClip": "Walk",
+      "timingDriftS": 0.13133566666701313,
+      "remaining": 7
+    }
+  }
+}

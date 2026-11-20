@@ -133,7 +133,6 @@ func _ready() -> void:
 	for item: String in ["", "club", "spear", "stone"]:
 		_button(equipment, People.WEAPONS[item], "equip", item, false)
 	_button(equipment, "盾牌 开 / 关", "shield", "", false)
-	_button(left, "倒地后返回营地（12秒）", "respawn", "", false)
 	var right_scroll := ScrollContainer.new()
 	right_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	right_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -150,7 +149,7 @@ func _ready() -> void:
 	actions.add_theme_constant_override("v_separation", 7)
 	right.add_child(actions)
 	for spec: Array in [
-		["制服（清醒者会反抗）", "capture", ""], ["缴获 / 取回战利品", "loot", ""], ["解除约束并释放", "release", ""],
+		["制服（清醒者会反抗）", "capture", ""], ["编条加固束缚", "bind", ""], ["缴获 / 取回战利品", "loot", ""], ["解除约束并释放", "release", ""],
 		["给一份苹果", "feed", "apple"], ["给一份面包", "feed", "bread"], ["给一份装好的溪水", "water", ""],
 		["用一份药草治疗", "treat", ""], ["邀请自愿留下", "invite", ""], ["协商守家", "order", "guard"],
 		["协商回营休养", "order", "rest"], ["交给木棍", "give_equipment", "club"], ["交给长矛", "give_equipment", "spear"],
@@ -241,6 +240,7 @@ func refresh(data: Dictionary, survival: Dictionary, at: Vector2, elapsed: float
 		var visible := false
 		match command:
 			"capture": visible = phase in ["raider", "retreat", "down"]
+			"bind": visible = phase == "captive" and not npc.get("bound", false)
 			"loot": visible = phase in ["down", "captive", "dead"]
 			"release", "invite": visible = phase == "captive"
 			"feed", "water", "treat": visible = phase in ["captive", "companion", "down"]

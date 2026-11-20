@@ -97,12 +97,18 @@ def main(library):
         if target == 34963:
             record["componentType"] = 5123 if array.dtype.itemsize == 2 else 5125
 
-    for record in document["images"]:
+    material = document["materials"][primitive["material"]]
+    normal_image = document["textures"][material["normalTexture"]["index"]]["source"]
+    pbr = material["pbrMetallicRoughness"]
+    reflectance_image = document["textures"][pbr["metallicRoughnessTexture"]["index"]]["source"]
+    for index, record in enumerate(document["images"]):
         with Image.open(io.BytesIO(view(record["bufferView"]))) as image:
             texture = image.convert("RGB")
-            texture.thumbnail((1024, 1024), Image.Resampling.LANCZOS)
+            edge = 1024 if index == reflectance_image else 2048
+            texture.thumbnail((edge, edge), Image.Resampling.LANCZOS)
             buffer = io.BytesIO()
-            texture.save(buffer, format="JPEG", quality=89, subsampling=0, optimize=True)
+            quality = 94 if index == normal_image else 92
+            texture.save(buffer, format="JPEG", quality=quality, subsampling=0, optimize=True)
         record["bufferView"] = append(buffer.getvalue())
 
     document["bufferViews"] = new_views

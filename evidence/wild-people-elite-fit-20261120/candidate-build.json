@@ -1,0 +1,20 @@
+[
+  {
+    "asset": "male_elite",
+    "originalTriangles": 15084,
+    "triangles": 13016,
+    "removedVertices": 1806,
+    "fittedBootUpperVertices": 80,
+    "sourceSha256": "5408df41a8cb7645a7c91beef5335837d8078d01a8c558b8b70e8d613a8afd14",
+    "exportSha256": "e5346eebb7b09e557125a806dd7c4b74cbc5fd134273d4c1018c253d2a6a4899"
+  },
+  {
+    "asset": "female_elite",
+    "originalTriangles": 15300,
+    "triangles": 13016,
+    "removedVertices": 1918,
+    "fittedBootUpperVertices": 80,
+    "sourceSha256": "c9540363f86759a45e11ab58d935b9f4906c5b39de150592bfbfb7e7cd522b63",
+    "exportSha256": "faddc6a8bcd20b641fcfa41c5a7f3b6560226157d18d7a62ffa959a1ff94b74c"
+  }
+]

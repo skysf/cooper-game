@@ -1,0 +1,50 @@
+{
+  "old_eye_pixel_switch": {
+    "sample_yx_bounds": [
+      42,
+      506,
+      385,
+      643
+    ],
+    "luma_near_midpoint_far": [
+      64.35995,
+      69.27888,
+      65.50018
+    ],
+    "average_midpoint_excess": 3.77871,
+    "pixel_brightening_above_both_by_7": 8720,
+    "sky_pixels_only_in_overlap": 1522
+  },
+  "same_eye_whole_branches": {
+    "sample_yx_bounds": [
+      42,
+      506,
+      385,
+      643
+    ],
+    "luma_near_midpoint_far": [
+      64.15032,
+      64.77122,
+      65.29054
+    ],
+    "average_midpoint_excess": -0.51932,
+    "pixel_brightening_above_both_by_7": 268,
+    "sky_pixels_only_in_overlap": 17
+  },
+  "real_distance_20_5m": {
+    "sample_yx_bounds": [
+      42,
+      506,
+      385,
+      643
+    ],
+    "luma_near_midpoint_far": [
+      98.88609,
+      99.10739,
+      99.27809
+    ],
+    "average_midpoint_excess": -0.17069,
+    "pixel_brightening_above_both_by_7": 275,
+    "sky_pixels_only_in_overlap": 0
+  }
+}

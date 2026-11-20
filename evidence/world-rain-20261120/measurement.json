@@ -1,0 +1,109 @@
+{
+  "engine": "Godot 4.7.2 / OpenGL 4.1 Metal Compatibility / Apple M1",
+  "viewport": [
+    1280,
+    720
+  ],
+  "room_seconds": 94.5,
+  "rain_pixels_rgb_delta_over_8": {
+    "before": {
+      "open-outside": {
+        "without_cover": 2668,
+        "with_cover": 2667,
+        "changed_by_cover": 1
+      },
+      "camp": {
+        "without_cover": 2468,
+        "with_cover": 969,
+        "changed_by_cover": 1499
+      },
+      "built": {
+        "without_cover": 1497,
+        "with_cover": 382,
+        "changed_by_cover": 1115
+      },
+      "coal_mine": {
+        "without_cover": 2172,
+        "with_cover": 467,
+        "changed_by_cover": 1705
+      },
+      "iron_mine": {
+        "without_cover": 954,
+        "with_cover": 600,
+        "changed_by_cover": 354
+      },
+      "old-site": {
+        "without_cover": 1878,
+        "with_cover": 1878,
+        "changed_by_cover": 0
+      },
+      "tilted": {
+        "without_cover": 2425,
+        "with_cover": 2296,
+        "changed_by_cover": 129
+      },
+      "mine-open-slope": {
+        "without_cover": 3746,
+        "with_cover": 3746,
+        "changed_by_cover": 0
+      }
+    },
+    "after": {
+      "open-outside": {
+        "without_cover": 768,
+        "with_cover": 767,
+        "changed_by_cover": 0
+      },
+      "camp": {
+        "without_cover": 743,
+        "with_cover": 200,
+        "changed_by_cover": 544
+      },
+      "built": {
+        "without_cover": 276,
+        "with_cover": 137,
+        "changed_by_cover": 139
+      },
+      "coal_mine": {
+        "without_cover": 321,
+        "with_cover": 156,
+        "changed_by_cover": 165
+      },
+      "iron_mine": {
+        "without_cover": 361,
+        "with_cover": 325,
+        "changed_by_cover": 36
+      },
+      "old-site": {
+        "without_cover": 507,
+        "with_cover": 507,
+        "changed_by_cover": 0
+      },
+      "tilted": {
+        "without_cover": 1096,
+        "with_cover": 883,
+        "changed_by_cover": 213
+      },
+      "mine-open-slope": {
+        "without_cover": 1193,
+        "with_cover": 1193,
+        "changed_by_cover": 0
+      }
+    }
+  },
+  "outdoor_rain_pixels_rgb_delta_over_64": {
+    "before": 1811,
+    "after": 286
+  },
+  "world_anchoring": {
+    "window_shift_m": [
+      0.56,
+      0.29,
+      -0.21
+    ],
+    "original_rain_pixels": 767,
+    "retained_rain_pixels": 764,
+    "changed_by_window_shift": 4,
+    "changed_after_one_sixtieth_room_second": 1775
+  }
+}

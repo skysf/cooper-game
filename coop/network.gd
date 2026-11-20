@@ -23,6 +23,10 @@ var line_cut := false
 var water_impacts: Array = []
 var stone_sounds: Array = []
 var provisions: Dictionary = {}
+var storage: Dictionary = {}
+var mines: Dictionary = {}
+var storage_available := false
+var eagle_alive := true
 var survival: Dictionary = {}
 var dog: Dictionary = {}
 var dog_sample_time := -1.0
@@ -37,6 +41,7 @@ var backpack_enabled := false
 var ready_in_room := false
 var status := "尚未连接"
 var last_notice := ""
+var last_notice_site := ""
 var notice_number := 0
 var room := ""
 var atlas_available := false
@@ -134,6 +139,9 @@ func _retry(reason: String = "") -> void:
 	water_impacts = []
 	stone_sounds = []
 	provisions = {}
+	storage = {}
+	storage_available = false
+	eagle_alive = true
 	survival = {}
 	dog = {}
 	dog_sample_time = -1.0
@@ -172,6 +180,10 @@ func interact_ship(action: String) -> void:
 	if ready_in_room:
 		_send({"t": "ship", "action": action})
 
+func rescue_player(id: String) -> void:
+	if ready_in_room and not id.is_empty():
+		_send({"t": "rescue", "id": id})
+
 func travel_to(site: String) -> void:
 	if ready_in_room and atlas_available:
 		set_motion(Vector2.ZERO, _yaw)
@@ -200,6 +212,17 @@ func interact_stone(action: String, id := "", yaw := 0.0, pitch := 0.0) -> void:
 func interact_provision(action: String, item := "", id := "") -> void:
 	if ready_in_room and not survival.is_empty():
 		_send({"t": "provision", "action": action, "item": item, "id": id})
+
+func mine(id: String) -> void:
+	if ready_in_room:
+		_send({"t":"mine","id":id})
+
+func interact_storage(action: String, fields: Dictionary = {}) -> void:
+	if ready_in_room and storage_available:
+		var message := fields.duplicate()
+		message.t = "storage"
+		message.action = action
+		_send(message)
 
 func interact_dog(action: String) -> void:
 	if ready_in_room and not dog.is_empty():
@@ -280,9 +303,11 @@ func _process(delta: float) -> void:
 	rain = Rules.rain_at(elapsed)
 	if is_piloting():
 		_predict_ship(delta)
-	else:
+	elif not player_motion.get("climbing", false) and not player_motion.get("storageSeated", false):
 		player_motion.point = local_position
-		PlayerMotion.step(player_motion, _direction, _lift, delta, _grid, ship, _ship_grid, grove_elapsed)
+		var able: bool = survival.get("health", 100.0) > 0.0
+		PlayerMotion.step(player_motion, _direction if able else Vector2.ZERO, _lift if able else 0.0,
+			delta, _grid, ship, _ship_grid, grove_elapsed, storage)
 		local_position = player_motion.point
 	# Ease small drift until the next authoritative sample.
 	var blend := minf(1.0, delta * 12.0)
@@ -351,7 +376,13 @@ func _receive(msg: Dictionary) -> void:
 			water_impacts = msg.get("waterImpacts", [])
 			stone_sounds = msg.get("stoneSounds", [])
 			provisions = msg.get("provisions", {})
+			storage = msg.get("storage", {})
+			mines = msg.get("mines",{})
+			storage_available = msg.has("storage")
+			eagle_alive = msg.get("eagleAlive", true)
+			var was_down: bool = survival.get("health", 100.0) <= 0.0
 			survival = msg.get("survival", {})
+			var down: bool = survival.get("health", 100.0) <= 0.0
 			dog = msg.get("dog", {})
 			dog_sample_time = float(msg.elapsed)
 			crocodile = msg.get("crocodile", {})
@@ -368,7 +399,7 @@ func _receive(msg: Dictionary) -> void:
 			var position_from_server := Vector2(actor.x, actor.z)
 			var swimming: bool = actor.get("swimming", false)
 			var height: float = actor.get("y", PlayerMotion.Lake.walk_height(position_from_server))
-			if not ready_in_room or was_piloting or is_piloting() or local_position.distance_to(position_from_server) > 1.2:
+			if not ready_in_room or was_down != down or was_piloting or is_piloting() or local_position.distance_to(position_from_server) > 1.2:
 				local_position = position_from_server
 				_correction = Vector2.ZERO
 				player_motion = PlayerMotion.spawn(local_position)
@@ -392,11 +423,14 @@ func _receive(msg: Dictionary) -> void:
 					_height_correction = 0.0
 				else:
 					_height_correction = height - float(player_motion.y)
+			player_motion.climbing = actor.get("climbing", false)
+			player_motion.storageSeated = actor.get("storageSeated", false)
 			ready_in_room = true
 		"atlas":
 			_receive_atlas(msg)
 		"notice":
 			last_notice = msg.text
+			last_notice_site = str(msg.get("site", ""))
 			notice_number += 1
 		"reject":
 			if msg.code == "identity":

@@ -2,6 +2,7 @@ extends RefCounted
 
 const MODELS := {
 	"cap": preload("res://props/camp_cap.glb"),
+	"helmet": preload("res://props/camp_helmet.glb"),
 	"jacket": preload("res://props/camp_jacket.glb"),
 	"pants": preload("res://props/camp_pants.glb"),
 }
@@ -18,9 +19,11 @@ static func on_ground(item: String) -> Node3D:
 	var root := Node3D.new()
 	var garment := MeshInstance3D.new()
 	garment.mesh = drop_meshes[item]
-	if item != "cap":
+	if item in ["jacket", "pants"]:
 		garment.basis = Basis(Vector3.RIGHT, PI * 0.5).scaled(Vector3(0.76, 0.34, 0.68))
 	var bounds := Transform3D(garment.basis, Vector3.ZERO) * garment.get_aabb()
 	garment.position = Vector3(-bounds.get_center().x, -bounds.position.y, -bounds.get_center().z)
 	root.add_child(garment)
+	if item == "helmet":
+		root.set_meta("pickup_height", bounds.size.y * 0.46)
 	return root

@@ -1,0 +1,14 @@
+{
+  "male_elite": {
+    "sha": "e5346eebb7b09e557125a806dd7c4b74cbc5fd134273d4c1018c253d2a6a4899",
+    "bones": 25,
+    "actions": 16,
+    "oneSkinnedMesh": true
+  },
+  "female_elite": {
+    "sha": "faddc6a8bcd20b641fcfa41c5a7f3b6560226157d18d7a62ffa959a1ff94b74c",
+    "bones": 25,
+    "actions": 16,
+    "oneSkinnedMesh": true
+  }
+}

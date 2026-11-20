@@ -1,0 +1,380 @@
+{
+  "cave_excluded_shrubs": 23,
+  "coast_canopy_billboards": 158,
+  "coast_fern_cards": 2496,
+  "coast_tree": [
+    -69.75,
+    -62.75,
+    5.518,
+    0.688
+  ],
+  "coast_tree_surface_instances": 363,
+  "dunegrass": {
+    "batches": 4,
+    "heights_rel_to_sea": [
+      0.578760731296779,
+      1.50881625157326
+    ],
+    "planted": 26,
+    "sample": [
+      -83.282,
+      -50.414,
+      1.004,
+      0.334,
+      1.0
+    ],
+    "seeded": 26,
+    "wide_camera": [
+      -86.0999984741211,
+      1.83746433258057,
+      -50.5
+    ]
+  },
+  "gust_time": 94.5,
+  "pine": {
+    "bark": 4,
+    "leaves": 3,
+    "normal_map": 2,
+    "roughness_map": 2
+  },
+  "pine_lod_band": {
+    "16.95": {
+      "active": [
+        false,
+        true,
+        false
+      ],
+      "blend": [
+        1.0,
+        0.0
+      ]
+    },
+    "17.5": {
+      "active": [
+        false,
+        true,
+        true
+      ],
+      "blend": [
+        1.0,
+        0.156248033046722
+      ]
+    },
+    "18.0": {
+      "active": [
+        false,
+        true,
+        true
+      ],
+      "blend": [
+        1.0,
+        0.499997466802597
+      ]
+    },
+    "18.5": {
+      "active": [
+        false,
+        true,
+        true
+      ],
+      "blend": [
+        1.0,
+        0.843747675418854
+      ]
+    },
+    "19.05": {
+      "active": [
+        false,
+        false,
+        true
+      ],
+      "blend": [
+        1.0,
+        1.0
+      ]
+    },
+    "6.95": {
+      "active": [
+        true,
+        false,
+        false
+      ],
+      "blend": [
+        0.0,
+        0.0
+      ]
+    },
+    "7.5": {
+      "active": [
+        true,
+        true,
+        false
+      ],
+      "blend": [
+        0.15625,
+        0.0
+      ]
+    },
+    "8.0": {
+      "active": [
+        true,
+        true,
+        false
+      ],
+      "blend": [
+        0.5,
+        0.0
+      ]
+    },
+    "8.5": {
+      "active": [
+        true,
+        true,
+        false
+      ],
+      "blend": [
+        0.84375,
+        0.0
+      ]
+    },
+    "9.05": {
+      "active": [
+        false,
+        true,
+        false
+      ],
+      "blend": [
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "rain_vector": [
+    {
+      "local": [
+        0.234723955392838,
+        -0.27222067117691
+      ],
+      "world": [
+        0.234723955392838,
+        -0.27222067117691
+      ],
+      "yaw": 0.0
+    },
+    {
+      "local": [
+        0.27222067117691,
+        0.234723955392838
+      ],
+      "world": [
+        0.234723940491676,
+        -0.27222067117691
+      ],
+      "yaw": 1.5707963267949
+    },
+    {
+      "local": [
+        -0.234723970293999,
+        0.272220641374588
+      ],
+      "world": [
+        0.234723940491676,
+        -0.27222067117691
+      ],
+      "yaw": 3.14159265358979
+    },
+    {
+      "local": [
+        -0.27222067117691,
+        -0.234723955392838
+      ],
+      "world": [
+        0.234723955392838,
+        -0.27222067117691
+      ],
+      "yaw": 4.71238898038469
+    }
+  ],
+  "spruce": {
+    "bark": 1,
+    "leaves": 1,
+    "normal_map": 0,
+    "roughness_map": 0
+  },
+  "steady_time": 77.7,
+  "runtime": {
+    "engine": "Godot 4.7.2",
+    "renderer": "OpenGL API 4.1 Metal Compatibility",
+    "device": "Apple M1",
+    "viewport": [
+      1280,
+      720
+    ],
+    "scene": "Native isolated project rendering the actual camp.glb, coast and floor resources."
+  },
+  "rain_checks": {
+    "four_yaws_same_world_vector": true,
+    "hidden_in_dry_and_underwater_views": true
+  },
+  "cave_excluded_shrubs_by_cave": {
+    "iron_mine": 13,
+    "coal_mine": 10
+  },
+  "coast_tree_fade_metres": [
+    36.0,
+    43.0
+  ],
+  "dunegrass_mesh": {
+    "file": "coop/vegetation/coastal_dunegrass.glb",
+    "bytes": 321192,
+    "triangles": 4862,
+    "materials": 2,
+    "meshes": [
+      {
+        "name": "Flowering",
+        "primitives": [
+          {
+            "vertices": 1490,
+            "triangles": 2146,
+            "material": 0,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          },
+          {
+            "vertices": 2412,
+            "triangles": 804,
+            "material": 1,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          }
+        ]
+      },
+      {
+        "name": "Leafy",
+        "primitives": [
+          {
+            "vertices": 1325,
+            "triangles": 1912,
+            "material": 0,
+            "joint_attribute_sets": 0,
+            "morph_targets": 0
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "name": "Dunegrass wax and parallel ribs",
+        "mime_type": "image/png",
+        "embedded_bytes": 61542,
+        "dimensions": [
+          128,
+          512
+        ]
+      },
+      {
+        "name": "Dunegrass husk",
+        "mime_type": "image/png",
+        "embedded_bytes": 17631,
+        "dimensions": [
+          128,
+          128
+        ]
+      }
+    ],
+    "skins": [],
+    "animations": []
+  },
+  "dunegrass_blender_reopened": {
+    "blender": "5.2.4 LTS",
+    "units": "METRIC",
+    "editable_parts": {
+      "Leafy": [
+        "Leafy · blades",
+        "Leafy · culms"
+      ],
+      "Flowering": [
+        "Flowering · blades",
+        "Flowering · culms",
+        "Flowering · spikes"
+      ]
+    },
+    "packed_maps": {
+      "Dunegrass husk": [
+        128,
+        128
+      ],
+      "Dunegrass wax and parallel ribs": [
+        128,
+        512
+      ]
+    }
+  },
+  "changes_at_fixed_view": {
+    "pine": {
+      "channel_max_difference_over_8_of_255_pixels": 26563,
+      "mean_absolute_rgb_difference": 0.7862
+    },
+    "spruce": {
+      "channel_max_difference_over_8_of_255_pixels": 73028,
+      "mean_absolute_rgb_difference": 2.8415
+    },
+    "coast-fern": {
+      "channel_max_difference_over_8_of_255_pixels": 166540,
+      "mean_absolute_rgb_difference": 3.1544
+    },
+    "dunegrass": {
+      "channel_max_difference_over_8_of_255_pixels": 72772,
+      "mean_absolute_rgb_difference": 2.0105
+    },
+    "dunegrass-present": {
+      "channel_max_difference_over_8_of_255_pixels": 8471,
+      "mean_absolute_rgb_difference": 0.8498
+    }
+  },
+  "capture_script": "evidence/coastal-wind-dunegrass-20261120/capture.gd",
+  "coast_movement_regression": {
+    "checks": [
+      {
+        "check": "The inland and coastal height fields meet at the old western edge",
+        "ok": true
+      },
+      {
+        "check": "Normal player movement walks from the lake up to the clifftop",
+        "ok": true
+      },
+      {
+        "check": "The descending trail reaches the shore with the same collision data",
+        "ok": true
+      },
+      {
+        "check": "Normal movement switches to swimming and crosses the outer reef",
+        "ok": true
+      },
+      {
+        "check": "A swimmer can land and walk to the top of the offshore island",
+        "ok": true
+      },
+      {
+        "check": "The bay and ocean route includes sustained swimming",
+        "ok": true
+      },
+      {
+        "check": "The same ship flies at full speed from the mainland across the reef to the island",
+        "ok": true
+      },
+      {
+        "check": "The ship can park on sea water and let a player get out to swim",
+        "ok": true
+      },
+      {
+        "check": "A saved island location restores on the new terrain",
+        "ok": true
+      }
+    ],
+    "fastestShip": 11.0000276565552,
+    "seamError": 0.0174716525757708,
+    "shipTargetDistance": 0.181463733315468,
+    "swimFrames": 1975
+  }
+}

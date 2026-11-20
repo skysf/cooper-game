@@ -183,6 +183,42 @@ def sandbar_texture(x, z, geo):
     Image.fromarray((np.clip(fields, 0, 1) * 255 + .5).astype(np.uint8)).save(OUT / "tide_field.png")
 
 
+def dunegrass_positions(trees, shrubs, stones, crags):
+    """Place small colonies of coastal Leymus mollis in the mainland upper beach."""
+    rng = np.random.default_rng(81742)
+    patches = [(-79.40, -58.8, 1.18, 1.13, 6), (-80.18, -54.1, 1.05, 1.12, 7),
+               (-82.68, -50.45, .98, 1.08, 7), (-80.18, -49.25, 1.01, .95, 6)]
+    obstructions = [(entry, .44) for entry in trees]
+    obstructions += [(entry, entry[2] * .36 + .16) for entry in shrubs]
+    obstructions += [(entry, entry[2] * .61 + .34) for entry in stones + crags]
+    planted = []
+    for cx, cz, rx, rz, count in patches:
+        turn = rng.uniform(0, 2 * np.pi, 112)
+        reach = np.sqrt(rng.uniform(0, 1, turn.shape))
+        x = cx + rx * reach * np.cos(turn)
+        z = cz + rz * reach * np.sin(turn)
+        height, sand, *_ = geography(x, z)
+        coast_dx = (geography(x + .24, z)[0] - geography(x - .24, z)[0]) / .48
+        coast_dz = (geography(x, z + .24)[0] - geography(x, z - .24)[0]) / .48
+        clear_path = route_field(x, z, LAYOUT["beachTrail"])[0] > 1.48
+        suitable = (SEA + .56 < height) & (height < SEA + 1.82) & (sand > .59)
+        suitable &= (np.hypot(coast_dx, coast_dz) < .61) & clear_path
+        used = 0
+        for ax, az in zip(x[suitable], z[suitable]):
+            if any((ax - item[0]) ** 2 + (az - item[1]) ** 2 < radius ** 2
+                   for item, radius in obstructions):
+                continue
+            scale = rng.uniform(.70, 1.16)
+            variant = float(rng.random() < .67)
+            entry = [float(ax), float(az), float(scale), float(rng.random()), variant]
+            planted.append(entry)
+            obstructions.append((entry, .36 + .09 * scale))
+            used += 1
+            if used == count:
+                break
+    return planted
+
+
 def shrubs_and_trees(x, z, geo):
     rng = np.random.default_rng(44931)
     ground, _sand, green, _lichen, path, _reef, _crest, lake, radius = geo
@@ -219,6 +255,7 @@ def shrubs_and_trees(x, z, geo):
                     crags.append([x[j,i], z[j,i], rng.uniform(1.8, 4.15), rng.random()])
     placement = {name: np.round(values, 3).tolist() for name, values in
                  (("trees", trees), ("shrubs", shrubs), ("stones", stones), ("crags", crags))}
+    placement["dunegrass"] = np.round(dunegrass_positions(trees, shrubs, stones, crags), 3).tolist()
     (OUT / "foliage.json").write_text(json.dumps(placement, separators=(",", ":")) + "\n")
 
 

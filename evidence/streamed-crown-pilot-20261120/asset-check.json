@@ -1,0 +1,13 @@
+{
+  "unchanged_unique_wood_vertices": 536,
+  "glb_sha256": "14cccb1f44d0fcbcc3415dbd94e21550414d0e96ed49a7fbf0868cfeb2f1ba9a",
+  "blend_sha256": "e85a8b302f16cb79af11725c499ca38a10eb9e20795194bea4771ed79dba3289",
+  "near_triangles": 6437,
+  "far_triangles": 2783,
+  "origin": [
+    -9.29899978637695,
+    0.0,
+    -66.1520004272461
+  ],
+  "collision_radius": 0.268
+}

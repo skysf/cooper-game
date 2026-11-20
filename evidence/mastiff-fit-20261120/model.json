@@ -1,0 +1,82 @@
+{
+  "source": "art/animals/camp_mastiff.blend",
+  "source_sha256": "ef07db6cab00f9aa75c699b69b86dbec518147176e0010ff3a981c29f6c3564d",
+  "candidate": "dist/asset-work/mastiff/retargeted/camp_mastiff.glb",
+  "sha256": "865e69d391ed382c26dfebf7cfcbdd42abc5382125f078d8ed00e53a237f6250",
+  "candidate_editable": "dist/asset-work/mastiff/retargeted/camp_mastiff.blend",
+  "blend_sha256": "cabe0b56e6293968350a9ef28e56fb59adb6bdd2faa2978bee022de443dea661",
+  "width_length_height_m_before": [
+    0.504949,
+    0.865275,
+    0.930471
+  ],
+  "width_length_height_m_after": [
+    0.504949,
+    0.965275,
+    0.930471
+  ],
+  "shoulder_hip_longitudinal_m_before": [
+    0.395,
+    0.395
+  ],
+  "shoulder_hip_longitudinal_m_after": [
+    0.495,
+    0.495
+  ],
+  "transition_y_m": [
+    -0.222,
+    0.125
+  ],
+  "max_trunk_translation_m": 0.1,
+  "clip_names": [
+    "Attack",
+    "Eat-loop",
+    "Idle-loop",
+    "Lie-down",
+    "Limp-loop",
+    "Rest-loop",
+    "Rise",
+    "Run-loop",
+    "Walk-loop"
+  ],
+  "custom_normals_adjusted": true,
+  "retargeted_source_frames": {
+    "Run-loop": 16,
+    "Eat-loop": 49,
+    "Attack": 29,
+    "Limp-loop": 34,
+    "Lie-down": 45,
+    "Rest-loop": 133,
+    "Rise": 42,
+    "Walk-loop": 28,
+    "Idle-loop": 169
+  },
+  "vertex_count": 9139,
+  "normalized_clip_starts": true,
+  "reopened_shader_images": [
+    {
+      "name": "Mastiff Base Color.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Mastiff Metallic Roughness.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": true
+    },
+    {
+      "name": "Mastiff Normal.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": true
+    }
+  ]
+}

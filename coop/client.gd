@@ -22,6 +22,14 @@ const Spaceship = preload("res://spaceship.gd")
 const SpaceshipScene = preload("res://spaceship_scene.gd")
 const PlayerMotion = preload("res://player_motion.gd")
 const CampAudio = preload("res://camp_audio.gd")
+const Storage = preload("res://camp_storage.gd")
+const StorageScene = preload("res://camp_storage_scene.gd")
+const StoragePanel = preload("res://camp_storage_panel.gd")
+const Placement = preload("res://placement.gd")
+const PlacementWorld = preload("res://placement_world.gd")
+const MinesLayout = preload("res://mines_layout.gd")
+const MinesScene = preload("res://mines_scene.gd")
+const Mining = preload("res://mining.gd")
 const EYE_HEIGHT := PlayerMotion.WALK_EYE
 const VIEW_FOV := 78.0
 const MOUSE_SENSITIVITY := .00215
@@ -35,6 +43,20 @@ var atlas_resume_lock := false
 var weather := Weather.new()
 var hud := Hud.new()
 var stone_scene := StoneScene.new()
+var storage_scene := StorageScene.new()
+var mines_scene := MinesScene.new()
+var mine_target := ""
+var rescue_target := ""
+var storage_panel := StoragePanel.new()
+var storage_resume_lock := false
+var storage_target := ""
+var held_storage := ""
+var storage_notice := -1
+var placement_grid: Dictionary
+var placement: Dictionary = {}
+var placement_rotation := 0.0
+var placement_item := ""
+var construction_recipe := ""
 var camp_audio := CampAudio.new()
 var camera := Camera3D.new()
 var follow_camera := FollowCamera.new()
@@ -106,6 +128,7 @@ var ship_camera_arm := -1.0
 
 func _ready() -> void:
 	world = JSON.parse_string(FileAccess.get_file_as_string("res://world.json"))
+	placement_grid = PlacementWorld.static_grid(world)
 	follow_camera.configure(world)
 	for key in world.sites:
 		var p: Array = world.sites[key]
@@ -126,6 +149,8 @@ func _ready() -> void:
 	terrain.update_focus(camera.position)
 	add_child(weather)
 	add_child(stone_scene)
+	add_child(storage_scene)
+	add_child(mines_scene)
 	camp_audio.configure(world.route)
 	add_child(camp_audio)
 	add_child(wildlife)
@@ -141,6 +166,9 @@ func _ready() -> void:
 	atlas.pin_requested.connect(net.place_atlas_pin)
 	atlas.remove_requested.connect(net.remove_atlas_pin)
 	net.atlas_reply.connect(_atlas_reply)
+	add_child(storage_panel)
+	storage_panel.close_requested.connect(_set_storage.bind(false))
+	storage_panel.action_requested.connect(_storage_panel_action)
 	add_child(people_panel)
 	people_panel.close_requested.connect(_set_people.bind(false))
 	people_panel.action_requested.connect(_person_action)
@@ -203,6 +231,20 @@ func _warm_world_views() -> void:
 		[Vector3(-88.0, 6.1, -46.0), Vector3(-77.0, 4.3, -49.0), 290.0],
 		[Vector3(-89.0, 1.7, -51.8), Vector3(-120.0, 0.5, -54.0), 290.0],
 	]
+	# Cave rock and lantern surfaces need the local point-light and shadow variants
+	# that only appear once a route takes the player past the trail fork.
+	for id: String in MinesLayout.data:
+		var mine: Dictionary = MinesLayout.data[id]
+		var passage := MinesLayout.pose(id)
+		var route: Array = mine.route
+		var entrance := MinesLayout.vector(route.back())
+		var approach := MinesLayout.vector(route[maxi(0,route.size()-19)])
+		views.append([approach + Vector3.UP * EYE_HEIGHT, entrance + Vector3.UP * 1.05, 290.0])
+		var floor: Array = mine.floor
+		var middle: Array = floor[(floor.size()*2)/3]
+		var at := passage * Vector3(middle[2],float(middle[1]) + EYE_HEIGHT,middle[0])
+		views.append([at, MinesLayout.gather(id), 290.0])
+		views.append([at, entrance + Vector3.UP * 0.9, 290.0])
 	for view: Array in views:
 		lens.position = view[0]
 		lens.look_at(view[1])
@@ -296,7 +338,8 @@ func _set_atlas(open: bool) -> void:
 	if atlas.is_open == open or open and not _playable():
 		return
 	if open:
-		atlas_resume_lock = _mouse_locked() or backpack_open and backpack_resume_lock
+		atlas_resume_lock = _mouse_locked() or backpack_open and backpack_resume_lock or storage_panel.is_open and storage_resume_lock
+		_set_storage(false)
 	atlas.set_open(open)
 	if open:
 		_set_backpack(false)
@@ -329,13 +372,15 @@ func _set_backpack(open: bool) -> void:
 		return
 	if open and (not _playable() or net.is_piloting() or net.survival.is_empty()):
 		return
-	if open and people_open:
-		_set_people(false)
+	if open:
+		if people_open:
+			_set_people(false)
+		_set_storage(false)
 	if open:
 		backpack_resume_lock = _mouse_locked()
 		hud.set_equipment(net.survival, _bag_slots() > Survival.SLOT_COUNT, int(net.players.get(net.self_id, {}).get("slot", 1)))
 	backpack_open = open
-	hud.set_backpack_open(open, net.survival.get("bag", {}), Survival.can_put(body_pos), _bag_slots())
+	hud.set_backpack_open(open, net.survival.get("bag", {}), _can_put_on_table(), _bag_slots())
 	if web and web_join != null:
 		web_join.setBackpackOpen(open or people_open)
 	if open:
@@ -362,6 +407,15 @@ func _input(event: InputEvent) -> void:
 				return
 		get_viewport().set_input_as_handled()
 		return
+	if storage_panel.is_open:
+		if event.physical_keycode == KEY_ESCAPE:
+			_set_storage(false)
+			get_viewport().set_input_as_handled()
+		return
+	if event.physical_keycode == KEY_K and not (event.alt_pressed or event.ctrl_pressed or event.meta_pressed):
+		_set_storage(true, "craft")
+		get_viewport().set_input_as_handled()
+		return
 	if event.physical_keycode == KEY_B and not (event.alt_pressed or event.ctrl_pressed or event.meta_pressed):
 		_set_people(not people_open)
 		get_viewport().set_input_as_handled()
@@ -385,8 +439,10 @@ func _use_backpack(action: String, item: String) -> void:
 func _set_people(open: bool) -> void:
 	if people_open == open or open and (not _playable() or net.is_piloting()):
 		return
-	if open and backpack_open:
-		_set_backpack(false)
+	if open:
+		if backpack_open:
+			_set_backpack(false)
+		_set_storage(false)
 	people_open = open
 	hud.modal_open = open
 	people_panel.set_open(open, people_target if open else "")
@@ -398,6 +454,58 @@ func _set_people(open: bool) -> void:
 		locked = false
 		net.set_motion(Vector2.ZERO, yaw)
 		people_panel.refresh(net.wild_people, net.survival, body_pos, net.elapsed, net.last_notice, net.notice_number)
+
+func _set_storage(open: bool, mode := "storage", id := "") -> void:
+	if storage_panel.is_open == open or open and (not _playable() or not net.storage_available or net.is_piloting()):
+		return
+	if open:
+		storage_resume_lock = _mouse_locked()
+		_set_backpack(false)
+		_set_people(false)
+	storage_panel.set_open(open, mode, id)
+	hud.modal_open = open
+	if web and web_join != null:
+		web_join.setBackpackOpen(open)
+	if open:
+		_release()
+		locked = false
+		net.blocking = false
+		net.set_motion(Vector2.ZERO, yaw)
+		storage_panel.sync(net.storage, net.survival.get("bag", {}), net.elapsed, net.self_id, _bag_slots())
+	elif not web and storage_resume_lock and net.ready_in_room:
+		_capture()
+
+
+func _storage_panel_action(action: String, fields: Dictionary) -> void:
+	if action == "build_preview":
+		if not held_storage.is_empty() or not held_stone.is_empty():
+			storage_panel.feedback("先放下手中的物件")
+			return
+		construction_recipe = fields.recipe
+		placement_rotation = 0.0
+		_set_storage(false)
+		return
+	net.interact_storage(action, fields)
+	if action in ["use", "carry"]:
+		_set_storage(false)
+
+
+func _open_storage_object(id: String) -> void:
+	if not net.storage.has(id):
+		return
+	var kind: String = net.storage[id].kind
+	match kind:
+		"campfire": _set_storage(true, "fire", id)
+		"iron_furnace": _set_storage(true, "furnace", id)
+		"wood_sign": _set_storage(true, "sign", id)
+		_:
+			_set_storage(true, "storage" if Storage.KINDS[kind].capacity > 0 else "fixture", id)
+
+
+func _can_carry_storage_target() -> bool:
+	var record: Dictionary = net.storage.get(storage_target, {})
+	return record.get("mode") == "ground" and Storage.KINDS[record.kind].carry
+
 
 func _person_action(action: String, item: String, id: String) -> void:
 	if people_open:
@@ -432,11 +540,15 @@ func _attack() -> void:
 func _look_fov(weapon: String) -> float:
 	return lerpf(VIEW_FOV, Weapons.stats(weapon).get("aim_fov", VIEW_FOV), smoothstep(0.0, 1.0, sight_blend))
 
+func _can_put_on_table() -> bool:
+	return not Storage.table_at(net.storage,body_pos).is_empty()
+
+
 func _bag_slots() -> int:
 	return Survival.slot_count(net.backpack_enabled and not net.backpack_owner.is_empty() and net.backpack_owner == net.self_id)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not setup_ok or backpack_open or people_open or atlas.is_open:
+	if not setup_ok or backpack_open or people_open or atlas.is_open or storage_panel.is_open:
 		return
 	if event is InputEventMouseMotion and _mouse_locked():
 		var motion: Vector2 = event.screen_relative
@@ -446,7 +558,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		pitch = clampf(pitch - motion.y * sensitivity, -1.44, 1.51)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if _mouse_locked() and not net.is_piloting():
-			if not held_stone.is_empty():
+			if net.survival.get("health", 100.0) <= 0.0:
+				return
+			if not construction_recipe.is_empty():
+				_confirm_placement()
+			elif not held_storage.is_empty():
+				var object: Dictionary = net.storage.get(held_storage,{})
+				if Storage.KINDS.get(object.get("kind",""),{}).get("throwable",true):
+					net.interact_storage("throw", {"yaw":yaw,"pitch":_follow_pitch() if third_person else pitch})
+				else:
+					_confirm_placement()
+			elif not held_stone.is_empty():
 				net.interact_stone("throw", "", yaw, _follow_pitch() if third_person else pitch)
 			else:
 				_attack()
@@ -462,11 +584,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		match event.physical_keycode:
 			KEY_ESCAPE:
+				if not construction_recipe.is_empty():
+					construction_recipe = ""
+					placement.clear()
+					return
 				if not web:
 					_release()
 			KEY_E:
-				if locked:
-					if not people_target.is_empty():
+				if locked and net.survival.get("health", 100.0) > 0.0:
+					if not rescue_target.is_empty():
+						net.rescue_player(rescue_target)
+					elif net.storage.has(storage_target) and (held_storage.is_empty() or net.storage[storage_target].kind == "campfire"):
+						_open_storage_object(storage_target)
+					elif not held_storage.is_empty():
+						_open_storage_object(held_storage)
+					elif not people_target.is_empty():
 						_set_people(true)
 					elif ship_target and net.ship.get("pilot", "") == "":
 						net.interact_ship("board")
@@ -485,9 +617,9 @@ func _unhandled_input(event: InputEvent) -> void:
 					elif not nearby.is_empty():
 						net.interact(nearby)
 			KEY_F:
-				if locked and not dog_target:
-					if net.survival.get("health", 100.0) <= 0.0:
-						net.interact_person("respawn")
+				if locked and not dog_target and net.survival.get("health", 100.0) > 0.0:
+					if not mine_target.is_empty():
+						net.mine(mine_target)
 					elif not source_target.is_empty():
 						net.interact_person("gather", source_target)
 					elif not food_target.is_empty():
@@ -505,8 +637,20 @@ func _unhandled_input(event: InputEvent) -> void:
 					elif not pickup_stone.is_empty():
 						hud.say("按 E 捡起扁石片" if Stones.flat(pickup_stone) else "按 E 捡起圆石")
 			KEY_G:
-				if locked and not held_stone.is_empty():
-					net.interact_stone("drop")
+				if locked and net.survival.get("health", 100.0) > 0.0:
+					if not held_storage.is_empty() or not construction_recipe.is_empty():
+						_confirm_placement()
+					elif not Stones.held_by(net.stones, net.self_id).is_empty():
+						net.interact_stone("drop")
+					elif jug_target:
+						net.interact_storage("carry", {"id":"camp-water-jug"})
+					elif _can_carry_storage_target():
+						net.interact_storage("carry", {"id": storage_target})
+					elif net.provisions.has(food_target):
+						net.interact_provision("take", str(net.provisions[food_target].item), food_target)
+			KEY_R:
+				if locked and (not held_storage.is_empty() or not construction_recipe.is_empty()):
+					placement_rotation = wrapf(placement_rotation + deg_to_rad(15.0),-PI,PI)
 			KEY_Q:
 				if locked:
 					prefer_tarp = not prefer_tarp
@@ -521,10 +665,52 @@ func _unhandled_input(event: InputEvent) -> void:
 					third_person = not third_person
 					follow_arm = -1.0
 
+func _placement_input() -> Dictionary:
+	return {"yaw":yaw, "pitch":_follow_pitch() if third_person else pitch, "rotation":placement_rotation,
+		"snap":Input.is_physical_key_pressed(KEY_SHIFT)}
+
+func _update_placement(feet: float, active: bool) -> void:
+	if placement_item != held_storage:
+		placement_item = held_storage
+		if not placement_item.is_empty():
+			placement_rotation = float(net.storage[placement_item].yaw)
+	if not active or (held_storage.is_empty() and construction_recipe.is_empty()):
+		placement.clear()
+		storage_scene.show_placement("",placement)
+		return
+	var kind: String = Storage.RECIPES.get(construction_recipe,{}).get("kind","") if held_storage.is_empty() else net.storage[held_storage].kind
+	var aim := _placement_input()
+	placement = PlacementWorld.preview(placement_grid,net.storage,held_storage,body_pos,feet,
+		PlayerMotion.WALK_EYE,aim.yaw,aim.pitch,aim.rotation,aim.snap,kind)
+	if placement.get("ok",false) and net.players.size() > 1:
+		var parts := Placement.bodies(held_storage,PlacementWorld.profile(kind),placement.pose)
+		for id: String in net.players:
+			if id == net.self_id:
+				continue
+			var other: Dictionary = net.players[id]
+			if PlacementWorld.blocks_player(parts,Vector2(other.x,other.z),other.y):
+				placement.ok = false
+				placement.reason = "player"
+				break
+	storage_scene.show_placement(kind,placement)
+
+func _confirm_placement() -> void:
+	_update_placement(float(net.player_motion.y),true)
+	if not placement.get("ok",false):
+		hud.say(Storage.place_hint(placement.get("reason","no_surface")))
+		return
+	var action := _placement_input()
+	if held_storage.is_empty():
+		action.recipe = construction_recipe
+		net.interact_storage("build",action)
+	else:
+		action.id = held_storage
+		net.interact_storage("place",action)
+
 func _physics_process(_delta: float) -> void:
 	if not setup_ok:
 		return
-	locked = _mouse_locked() and not backpack_open and not people_open and not atlas.is_open
+	locked = _mouse_locked() and not backpack_open and not people_open and not atlas.is_open and not storage_panel.is_open
 	if locked and _playable():
 		field_entered = true
 	var move := Vector2.ZERO
@@ -557,6 +743,8 @@ func _process(delta: float) -> void:
 		_set_people(false)
 	if backpack_open and not net.ready_in_room:
 		_set_backpack(false)
+	if storage_panel.is_open and not net.ready_in_room:
+		_set_storage(false)
 	if atlas.is_open:
 		atlas.sync(net.self_id, net.players, net.local_position, yaw, net.atlas_pins, net.atlas_available and net.ready_in_room)
 	if locked and not net.ready_in_room:
@@ -569,6 +757,7 @@ func _process(delta: float) -> void:
 		body_pos = net.local_position
 	var piloting := net.is_piloting()
 	var swimming: bool = net.ready_in_room and net.player_motion.swimming
+	var down: bool = net.ready_in_room and net.survival.get("health", 100.0) <= 0.0
 	var weapon: String = net.survival.get("weapon", "")
 	if Weapons.firearm(weapon) and _can_aim(piloting, swimming):
 		var aimed := Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
@@ -593,7 +782,8 @@ func _process(delta: float) -> void:
 	var stride := minf(body_pos.distance_to(previous),.18)
 	leg_phase += stride * 4.7
 	var bob := sin(leg_phase*2.) * .019 * clampf(stride / maxf(delta,.001),0.,1.)
-	var height := actor_height + PlayerMotion.eye_offset(swimming) + bob
+	var view_height := 0.45 if down and not swimming else PlayerMotion.eye_offset(swimming)
+	var height := actor_height + view_height + bob
 	eye_height = lerpf(eye_height, height, minf(delta * 15.0, 1.0))
 	var eye := Vector3(body_pos.x, eye_height, body_pos.y)
 	if piloting:
@@ -616,7 +806,8 @@ func _process(delta: float) -> void:
 	terrain.update_flame(net.elapsed, delta)
 	terrain.set_wet(net.rain)
 	var camera_water := LakeLayout.surface_height(Vector2(camera.position.x, camera.position.z))
-	weather.update_weather(camera.position, ship_view_yaw if piloting else yaw, net.elapsed, net.rain,
+	weather.set_rain_roofs(net.storage)
+	weather.update_weather(camera.position, net.elapsed, net.rain,
 		repaired, camera.position.y < camera_water - 0.035, camera_water - camera.position.y, coastal_view)
 	_update_water()
 	if trace_wild:
@@ -629,7 +820,13 @@ func _process(delta: float) -> void:
 	_update_provisions()
 	_update_dog(delta)
 	_update_ship_target()
-	wildlife.sync(net.crocodile if net.ready_in_room else {}, net.elapsed, eye, delta)
+	storage_scene.sync(net.storage, net.players, net.self_id, camera, first_person_view, net.elapsed, net.rain)
+	held_storage = Storage.held_by(net.storage, net.self_id)
+	storage_target = storage_scene.target(net.storage, body_pos, actor_height, camera,placement_grid) if _playable() and not piloting else ""
+	mine_target = _find_mine(actor_height) if _playable() and not piloting and not swimming else ""
+	rescue_target = _find_rescue_target(Vector3(body_pos.x, actor_height, body_pos.y), swimming) if _playable() and not piloting and not down else ""
+	_update_placement(actor_height,locked and _playable() and not piloting and not swimming and not down)
+	wildlife.sync(net.crocodile if net.ready_in_room else {}, net.elapsed, eye, delta, net.eagle_alive)
 	if trace_wild:
 		trace_marks.append(["other_scene", Time.get_ticks_usec() - trace_start])
 	people_scene.sync(net.wild_people.get("people", {}) if net.ready_in_room and not preview_warming else {}, net.elapsed, delta, camera.position, people_target)
@@ -650,9 +847,17 @@ func _process(delta: float) -> void:
 	telemetry_clock -= delta
 	if hud_clock <= 0.0:
 		hud_clock = .12
+		terrain.grass.set_ground_cover(net.storage,camera.position)
+		for id: String in net.mines:
+			mines_scene.set_remaining(id, int(net.mines[id].stock))
 		var state := _state()
 		hud.refresh(state,plan,sites[plan]-body_pos,_interaction_prompt(own_wood and own_tarp))
 		people_panel.refresh(net.wild_people, net.survival, body_pos, net.elapsed, net.last_notice, net.notice_number)
+		if storage_panel.is_open:
+			storage_panel.sync(net.storage, own_bag, net.elapsed, net.self_id, _bag_slots())
+			if storage_notice != net.notice_number and net.last_notice_site == "storage":
+				storage_panel.feedback(net.last_notice)
+				storage_notice = net.notice_number
 		if not tracked_source.is_empty():
 			var source: Dictionary = WildPeople.SOURCES[tracked_source]
 			var offset := Vector2(source.x, source.z) - body_pos
@@ -794,15 +999,17 @@ func _update_provisions() -> void:
 	for id: String in net.provisions:
 		var food: Dictionary = net.provisions[id]
 		var at := Stones.unpack(food.at)
-		if not Survival.can_reach(body_pos, Vector2(at.x, at.z), str(food.surface)):
+		var reach_surface: String = "ground" if food.has("tableId") else food.surface
+		if not Survival.can_reach(body_pos, Vector2(at.x, at.z), reach_surface):
 			continue
 		var aim_point: Vector3 = terrain.household.pickup_point(id, at, camera.position, forward)
 		var score := forward.dot(camera.position.direction_to(aim_point))
 		if score > best:
 			food_target = id
 			best = score
-	if Survival.can_drink(body_pos):
-		var jug := Vector3(Survival.JUG.x, Survival.TABLE_TOP + 0.14, Survival.JUG.y)
+	var jug_record: Dictionary = net.storage.get("camp-water-jug",{})
+	if jug_record.get("mode") == "ground" and body_pos.distance_squared_to(Survival.horizontal(jug_record.at)) <= Survival.JUG_REACH ** 2:
+		var jug := Stones.unpack(jug_record.at) + Vector3.UP*0.14
 		var score := forward.dot(camera.position.direction_to(jug))
 		if score > best:
 			food_target = ""
@@ -837,7 +1044,31 @@ func _update_dog(delta: float) -> void:
 
 func _interaction_prompt(can_fix: bool) -> String:
 	if not net.is_piloting() and net.survival.get("health", 100.0) <= 0.0:
-		return "F    失去行动力，倒地满12秒后返回营地"
+		var left := ceili(Survival.rescue_time_left(net.survival.get("downAt", -1.0), net.elapsed))
+		return "倒地 · 等待队友救援（还有 %d 秒）" % left if left > 0 else "正在返回营地"
+	if not rescue_target.is_empty() and net.players.has(rescue_target):
+		var ally: Dictionary = net.players[rescue_target]
+		var left := ceili(Survival.rescue_time_left(ally.get("downAt", -1.0), net.elapsed))
+		return "E    救起队友 %d · 还有 %d 秒" % [int(ally.slot), left]
+	if not held_storage.is_empty() and net.storage.has(held_storage):
+		var spec: Dictionary = Storage.KINDS[net.storage[held_storage].kind]
+		var place_note := "G  摆放" if placement.get("ok",false) else Storage.place_hint(placement.get("reason","no_surface"))
+		return "%s  ·  %s    R  旋转%s" % [spec.name,place_note,"    左键  投掷    E  操作" if spec.get("throwable",true) else "    Shift  对齐"]
+	if not construction_recipe.is_empty():
+		var note := "G  建造" if placement.get("ok",false) else Storage.place_hint(placement.get("reason","no_surface"))
+		return "%s  ·  %s    R  旋转    Shift  对齐    Esc  退出" % [Storage.RECIPES[construction_recipe].name,note]
+	if not mine_target.is_empty():
+		var stock: int = net.mines[mine_target].stock
+		var name: String = Mining.VEINS[mine_target].name
+		return "F    开采%s  ·  余 %d 块" % [name,stock] if stock > 0 else "%s    表层已采完" % name
+	if jug_target:
+		return "F    喝水    G  拿起水壶"
+	if not storage_target.is_empty() and net.storage.has(storage_target):
+		var kind: String = net.storage[storage_target].kind
+		var spec: Dictionary = Storage.KINDS[kind]
+		var detail := " · %d 格" % spec.capacity if spec.capacity > 0 and not kind.begins_with("corpse_") else ""
+		var actions := "互动    G  拿起" if spec.carry else "互动"
+		return "E    %s · %s%s" % [actions, spec.name, detail]
 	if not people_target.is_empty():
 		var npc: Dictionary = net.wild_people.people[people_target]
 		return "E    %s · %s · 健康 %d%%\n左腿伤 %d / 右腿伤 %d · 查看照料、制服与缴获" % [npc.name, WildPeople.PHASE_NAMES.get(npc.phase, npc.phase), roundi(100.0 * npc.health / npc.maxHealth), roundi(npc.legL), roundi(npc.legR)]
@@ -864,6 +1095,8 @@ func _interaction_prompt(can_fix: bool) -> String:
 		return "E    捡起并背上背包"
 	if not food_target.is_empty():
 		var item: String = net.provisions[food_target].item
+		if Survival.CLOTHING.has(item):
+			return "G    拿起%s" % Survival.ITEM_NAMES[item]
 		if Survival.is_drinkable(item):
 			return "%s    E  拾取    F  喝" % Survival.ITEM_NAMES[item]
 		return "%s    E  拾取    F  吃" % Survival.ITEM_NAMES[item] if Survival.FOOD_STATS.has(item) else "E    捡起%s" % Survival.ITEM_NAMES[item]
@@ -887,6 +1120,47 @@ func _interaction_prompt(can_fix: bool) -> String:
 		var depth := maxf(0.0, LakeLayout.water_y() - (float(net.player_motion.y) + PlayerMotion.SWIM_EYE))
 		return "水下 %.1f m    空格 上浮" % depth if depth > 0.05 else "C    下潜"
 	return _action(nearby, can_fix)
+
+func _find_rescue_target(at: Vector3, swimming: bool) -> String:
+	var selected := ""
+	var best := 0.85
+	var from := at + Vector3.UP * PlayerMotion.eye_offset(swimming)
+	for id: String in net.players:
+		var ally: Dictionary = net.players[id]
+		if id == net.self_id or float(ally.health) > 0.0:
+			continue
+		if Survival.rescue_time_left(ally.get("downAt", -1.0), net.elapsed) <= 0.0:
+			continue
+		if not ally.get("grounded", false) and not ally.swimming:
+			continue
+		var feet := Vector3(ally.x, ally.y, ally.z)
+		if not Survival.within_rescue_reach(at, feet):
+			continue
+		var to := feet + Vector3.UP * Survival.rescue_contact_height(ally.swimming)
+		var facing := (-camera.global_basis.z).dot(camera.global_position.direction_to(to))
+		if facing <= best:
+			continue
+		var solids := PlacementWorld.nearby(placement_grid, net.storage, body_pos, Survival.RESCUE_REACH + 1.5)
+		if Placement.trace(from, to, solids).is_empty() and not Spaceship.blocks_sight(net.ship, from, to):
+			selected = id
+			best = facing
+	return selected
+
+func _find_mine(feet: float) -> String:
+	var eye := camera.global_position
+	var forward := -camera.global_basis.z
+	for id: String in net.mines:
+		if not MinesLayout.data.has(id):
+			continue
+		var target := MinesLayout.gather(id)
+		if body_pos.distance_squared_to(Vector2(target.x,target.z)) > Mining.REACH*Mining.REACH:
+			continue
+		if forward.dot((target-eye).normalized()) < .982:
+			continue
+		var solids := PlacementWorld.nearby(placement_grid,net.storage,body_pos)
+		if Mining.reachable({"point":body_pos,"y":feet},target,solids):
+			return id
+	return ""
 
 func _update_people_target() -> void:
 	people_target = ""
@@ -1001,7 +1275,9 @@ func _sync_hikers(delta: float) -> void:
 			_seat_hiker(local_hiker)
 		else:
 			_stand_hiker(local_hiker, Vector3(body_pos.x, net.player_motion.y, body_pos.y))
+			_storage_seat(local_hiker, net.player_motion)
 			local_hiker.set_motion_state(net.player_motion)
+			local_hiker.set_recovery_state(net.players.get(net.self_id, {}), net.elapsed)
 			local_hiker.heading = yaw
 			local_hiker.holding = not Stones.held_by(net.stones, net.self_id).is_empty() or not str(net.survival.get("weapon", "")).is_empty()
 			local_hiker.shielding = net.survival.get("shield", false)
@@ -1027,13 +1303,24 @@ func _sync_hikers(delta: float) -> void:
 			person.show()
 		else:
 			_stand_hiker(person, at)
+			_storage_seat(person, data)
 			person.set_motion_state(data)
+			person.set_recovery_state(data, net.elapsed)
 			person.heading = float(data.get("yaw", 0.0))
 			person.holding = not Stones.held_by(net.stones, key).is_empty() or not str(data.get("weapon", "")).is_empty()
 			person.shielding = data.get("shield", false)
 			person.blocking = data.get("blocking", false)
 			person.advance(delta)
-			person.visible = Vector2(person.position.x, person.position.z).distance_squared_to(body_pos) > 0.20
+			person.visible = float(data.health) <= 0.0 or Vector2(person.position.x, person.position.z).distance_squared_to(body_pos) > 0.20
+
+func _storage_seat(hiker: Node3D, actor: Dictionary) -> void:
+	var seated: bool = actor.get("storageSeated", false)
+	if hiker.seated != seated:
+		hiker.set_seated(seated)
+	if seated:
+		hiker.position = hiker.target
+		hiker.rotation.y = float(actor.get("yaw", yaw))
+
 
 func _seat_hiker(hiker: Node3D) -> void:
 	if hiker.get_parent() != spaceship.seat:
@@ -1059,6 +1346,14 @@ func _state() -> Dictionary:
 	return {
 		"ready": _playable(),
 		"atlas": atlas.observables(),
+		"storageOpen": storage_panel.is_open, "storageTarget": storage_target, "heldStorage": held_storage,
+		"storagePanel": storage_panel.observables(),
+		"mineTarget": mine_target, "mines": net.mines,
+		"rescueTarget": rescue_target, "rescueSeconds": Survival.rescue_time_left(net.survival.get("downAt", -1.0), net.elapsed),
+		"storageRendered": storage_scene.live.size(),
+		"placementPreview": {"visible":storage_scene.ghost != null and storage_scene.ghost.visible,
+			"ok":placement.get("ok",false),"reason":placement.get("reason",""),"recipe":construction_recipe,
+			"at":Stones.pack(placement.pose.origin) if placement.has("pose") else []},
 		"connected":net.ready_in_room, "locked":locked, "room":room_code, "selfId":net.self_id,
 		"members":net.players.size(), "players":net.players, "remoteAvatars":avatars.size(), "playerMotion":_motion_observables(), "localPhysics":{"grounded":net.player_motion.get("grounded", true), "vy":net.player_motion.get("vy", 0.0), "vx":net.player_motion.get("vx", 0.0), "vz":net.player_motion.get("vz", 0.0), "waterVy":net.player_motion.get("waterVy", 0.0)}, "x":body_pos.x, "z":body_pos.y,
 		"yaw":yaw, "pitch":pitch, "quest":net.quest, "elapsed":net.elapsed, "rain":net.rain,
@@ -1076,7 +1371,7 @@ func _state() -> Dictionary:
 		"shipCameraYaw": ship_view_yaw,
 		"fps": Engine.get_frames_per_second(),
 		"swimming": net.player_motion.swimming and not net.is_piloting(), "y": net.player_motion.y,
-		"canPutProvision":Survival.can_put(body_pos), "foodTarget":food_target, "jugTarget":jug_target,
+		"canPutProvision":_can_put_on_table(), "foodTarget":food_target, "jugTarget":jug_target,
 		"groveElapsed":net.grove_elapsed, "grove":terrain.grove.render_state(),
 		"groveHint":terrain.grove.observe(camera.position, -camera.basis.z) if net.ready_in_room else "",
 		"sheltered":bool(net.quest.get("repaired",false)) and absf(body_pos.x-1.9)<2.6 and absf(body_pos.y+89.6)<2.7,

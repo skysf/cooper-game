@@ -1,5 +1,8 @@
 extends Node3D
 
+const LakePlants = preload("res://lake_plants.gd")
+const CreekFerns = preload("res://creek_ferns.gd")
+const WindField = preload("res://vegetation/wind_field.gd")
 const Layout = preload("res://lake_layout.gd")
 const LakeBed = preload("res://lake_bed.gd")
 const WATER_SHADER = preload("res://materials/water.gdshader")
@@ -20,6 +23,8 @@ const WATER_PARAMETERS := ["sun_direction", "moon_direction", "sky_zenith", "sky
 var lake_material := ShaderMaterial.new()
 var creek_material := ShaderMaterial.new()
 var bed := LakeBed.new()
+var plants := LakePlants.new()
+var creek_ferns := CreekFerns.new()
 var reflection := SubViewport.new()
 var reflection_camera := Camera3D.new()
 var reflection_updated_at := -1.0
@@ -70,6 +75,12 @@ func _ready() -> void:
 	_build_far_shore()
 	_build_boulders()
 	_build_reeds()
+	plants.name = "LakesidePlants"
+	add_child(plants)
+	plants.build(REFLECTION_LAYER)
+	creek_ferns.name = "CreekOstrichFerns"
+	add_child(creek_ferns)
+	creek_ferns.build(REFLECTION_LAYER)
 	_build_splashes()
 	_build_reflection()
 
@@ -78,6 +89,9 @@ func set_bank_wet(wet: float) -> void:
 	boulder_material.albedo_color = Color.WHITE.lerp(Color("#c9ccd0"), wet)
 
 func update_water(elapsed: float, rain: float, lighting: Dictionary) -> void:
+	var wind := WindField.sample(elapsed, rain)
+	plants.set_wind(elapsed, wind, rain)
+	creek_ferns.set_wind(elapsed, wind, rain)
 	bed.light_bed(elapsed, lighting.get("sun_direction", Vector3.UP), lighting.get("cloud_cover", 0.3))
 	bed.motes.visible = lighting.get("underwater", false)
 	for material in [lake_material, creek_material]:

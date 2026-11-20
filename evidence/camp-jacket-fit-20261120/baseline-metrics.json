@@ -1,0 +1,1586 @@
+{
+  "rest": {
+    "shoulder": {
+      "triangles": 1319,
+      "faceAlignmentDeg": [
+        19.32,
+        52.449,
+        71.401,
+        118.4,
+        163.225
+      ],
+      "edgeNormalChangeDeg": [
+        23.052,
+        76.31,
+        103.542,
+        148.046,
+        178.473
+      ],
+      "cornerNormalChangeDeg": [
+        0.0,
+        0.0,
+        0.0,
+        0.028,
+        0.034
+      ],
+      "edgeLengthsCm": [
+        2.117,
+        5.119,
+        6.247,
+        8.591,
+        11.713
+      ],
+      "uvSeams": 741,
+      "refAreaCm2": [
+        1.188,
+        4.725,
+        5.778,
+        8.747,
+        19.121
+      ],
+      "lumSeamDiff": [
+        0.005,
+        0.024,
+        0.042,
+        0.071,
+        0.091
+      ],
+      "highLumAtUvSeams": 0
+    },
+    "elbow": {
+      "triangles": 995,
+      "faceAlignmentDeg": [
+        17.043,
+        43.114,
+        59.511,
+        100.995,
+        149.602
+      ],
+      "edgeNormalChangeDeg": [
+        22.501,
+        65.843,
+        89.622,
+        136.704,
+        176.365
+      ],
+      "cornerNormalChangeDeg": [
+        0.0,
+        0.0,
+        0.0,
+        0.028,
+        0.028
+      ],
+      "edgeLengthsCm": [
+        2.537,
+        5.102,
+        5.977,
+        7.935,
+        10.64
+      ],
+      "uvSeams": 500,
+      "refAreaCm2": [
+        1.776,
+        5.481,
+        7.516,
+        11.219,
+        16.652
+      ],
+      "lumSeamDiff": [
+        0.003,
+        0.011,
+        0.015,
+        0.022,
+        0.055
+      ],
+      "highLumAtUvSeams": 0
+    },
+    "cuff": {
+      "triangles": 6077,
+      "faceAlignmentDeg": [
+        35.444,
+        107.589,
+        131.932,
+        161.249,
+        177.766
+      ],
+      "edgeNormalChangeDeg": [
+        38.816,
+        137.16,
+        155.428,
+        173.613,
+        179.694
+      ],
+      "cornerNormalChangeDeg": [
+        0.0,
+        0.0,
+        0.0,
+        0.028,
+        164.962
+      ],
+      "edgeLengthsCm": [
+        0.247,
+        1.811,
+        2.659,
+        4.455,
+        9.876
+      ],
+      "uvSeams": 2801,
+      "refAreaCm2": [
+        0.012,
+        0.527,
+        1.479,
+        4.099,
+        17.046
+      ],
+      "lumSeamDiff": [
+        0.009,
+        0.043,
+        0.059,
+        0.085,
+        0.117
+      ],
+      "highLumAtUvSeams": 0
+    },
+    "frontBody": {
+      "triangles": 4975,
+      "faceAlignmentDeg": [
+        27.379,
+        88.387,
+        110.014,
+        145.508,
+        176.556
+      ],
+      "edgeNormalChangeDeg": [
+        28.963,
+        119.207,
+        143.365,
+        169.231,
+        179.916
+      ],
+      "cornerNormalChangeDeg": [
+        0.0,
+        0.0,
+        0.0,
+        0.028,
+        68.041
+      ],
+      "edgeLengthsCm": [
+        0.754,
+        4.635,
+        6.15,
+        9.736,
+        15.397
+      ],
+      "uvSeams": 2758,
+      "refAreaCm2": [
+        0.061,
+        4.108,
+        6.121,
+        11.56,
+        29.632
+      ],
+      "lumSeamDiff": [
+        0.005,
+        0.021,
+        0.032,
+        0.091,
+        0.159
+      ],
+      "highLumAtUvSeams": 0
+    },
+    "collar": {
+      "triangles": 10535,
+      "faceAlignmentDeg": [
+        38.346,
+        100.413,
+        121.126,
+        150.886,
+        175.303
+      ],
+      "edgeNormalChangeDeg": [
+        33.612,
+        145.584,
+        163.019,
+        177.026,
+        179.952
+      ],
+      "cornerNormalChangeDeg": [
+        0.0,
+        0.0,
+        0.0,
+        0.028,
+        13.75
+      ],
+      "edgeLengthsCm": [
+        0.29,
+        2.06,
+        2.87,
+        5.029,
+        10.097
+      ],
+      "uvSeams": 5510,
+      "refAreaCm2": [
+        0.011,
+        0.786,
+        1.33,
+        3.242,
+        12.609
+      ],
+      "lumSeamDiff": [
+        0.009,
+        0.053,
+        0.069,
+        0.091,
+        0.175
+      ],
+      "highLumAtUvSeams": 0
+    }
+  },
+  "poses": {
+    "block": {
+      "lowestY": 0.884686246687036,
+      "highestY": 1.5597576562634448,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            0.974,
+            1.158,
+            1.24,
+            1.453,
+            1.903
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 29,
+          "skinnedAlignmentDeg": [
+            22.648,
+            56.46,
+            76.798,
+            119.607,
+            164.342
+          ],
+          "faceOver90Degrees": 39
+        },
+        "elbow": {
+          "lengthRatios": [
+            0.988,
+            1.08,
+            1.168,
+            1.411,
+            2.74
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 8,
+          "skinnedAlignmentDeg": [
+            19.357,
+            46.2,
+            64.718,
+            104.324,
+            172.981
+          ],
+          "faceOver90Degrees": 18
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.0,
+            1.016,
+            1.019,
+            1.025,
+            1.03
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.482,
+            107.641,
+            132.145,
+            161.162,
+            178.226
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.028,
+            1.122
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.416,
+            88.519,
+            110.014,
+            145.508,
+            176.556
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.172
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.376,
+            100.472,
+            121.126,
+            150.886,
+            175.303
+          ],
+          "faceOver90Degrees": 1404
+        }
+      }
+    },
+    "carry_local": {
+      "lowestY": 0.8711061947746004,
+      "highestY": 1.5597576562634448,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            1.0,
+            1.077,
+            1.17,
+            1.341,
+            1.877
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 14,
+          "skinnedAlignmentDeg": [
+            20.416,
+            52.314,
+            71.448,
+            118.883,
+            163.225
+          ],
+          "faceOver90Degrees": 37
+        },
+        "elbow": {
+          "lengthRatios": [
+            1.0,
+            1.021,
+            1.077,
+            1.181,
+            1.635
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 2,
+          "skinnedAlignmentDeg": [
+            17.548,
+            42.93,
+            63.223,
+            104.058,
+            150.039
+          ],
+          "faceOver90Degrees": 17
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.0,
+            1.013,
+            1.016,
+            1.02,
+            1.021
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.439,
+            107.643,
+            131.71,
+            161.211,
+            178.226
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.015,
+            1.076
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.373,
+            88.387,
+            110.014,
+            145.508,
+            176.556
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.172
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.376,
+            100.472,
+            121.126,
+            150.886,
+            175.303
+          ],
+          "faceOver90Degrees": 1404
+        }
+      }
+    },
+    "carry_remote": {
+      "lowestY": 0.8711061947746004,
+      "highestY": 1.5597576562634448,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            1.0,
+            1.077,
+            1.17,
+            1.341,
+            1.877
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 14,
+          "skinnedAlignmentDeg": [
+            20.416,
+            52.314,
+            71.448,
+            118.883,
+            163.225
+          ],
+          "faceOver90Degrees": 37
+        },
+        "elbow": {
+          "lengthRatios": [
+            1.0,
+            1.021,
+            1.077,
+            1.181,
+            1.635
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 2,
+          "skinnedAlignmentDeg": [
+            17.548,
+            42.93,
+            63.223,
+            104.058,
+            150.039
+          ],
+          "faceOver90Degrees": 17
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.0,
+            1.013,
+            1.016,
+            1.02,
+            1.021
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.439,
+            107.643,
+            131.71,
+            161.211,
+            178.226
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.015,
+            1.076
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.373,
+            88.387,
+            110.014,
+            145.508,
+            176.556
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.172
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.376,
+            100.472,
+            121.126,
+            150.886,
+            175.303
+          ],
+          "faceOver90Degrees": 1404
+        }
+      }
+    },
+    "down": {
+      "lowestY": 0.006922872804271327,
+      "highestY": 0.3078490312811546,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            1.002,
+            1.064,
+            1.124,
+            1.235,
+            1.482
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            18.93,
+            51.28,
+            73.3,
+            118.718,
+            163.561
+          ],
+          "faceOver90Degrees": 38
+        },
+        "elbow": {
+          "lengthRatios": [
+            0.995,
+            1.044,
+            1.076,
+            1.201,
+            1.6
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 3,
+          "skinnedAlignmentDeg": [
+            17.051,
+            42.956,
+            59.071,
+            101.834,
+            150.461
+          ],
+          "faceOver90Degrees": 17
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.005,
+            1.035,
+            1.039,
+            1.043,
+            1.045
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.722,
+            107.552,
+            131.943,
+            160.514,
+            178.445
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.02,
+            1.031,
+            1.031,
+            1.031,
+            1.116
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.327,
+            88.559,
+            110.002,
+            144.904,
+            177.272
+          ],
+          "faceOver90Degrees": 477
+        },
+        "collar": {
+          "lengthRatios": [
+            0.993,
+            1.004,
+            1.012,
+            1.026,
+            1.065
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            37.839,
+            100.577,
+            121.597,
+            151.502,
+            175.057
+          ],
+          "faceOver90Degrees": 1403
+        }
+      }
+    },
+    "fall_knees": {
+      "lowestY": 0.7441323029896075,
+      "highestY": 1.3999027772692658,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            1.002,
+            1.023,
+            1.041,
+            1.076,
+            1.154
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            19.131,
+            52.668,
+            72.427,
+            118.089,
+            163.033
+          ],
+          "faceOver90Degrees": 37
+        },
+        "elbow": {
+          "lengthRatios": [
+            0.998,
+            1.012,
+            1.021,
+            1.056,
+            1.161
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            17.153,
+            43.518,
+            59.935,
+            101.192,
+            149.782
+          ],
+          "faceOver90Degrees": 16
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.002,
+            1.008,
+            1.009,
+            1.009,
+            1.009
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.518,
+            107.612,
+            131.963,
+            161.115,
+            177.602
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.005,
+            1.007,
+            1.008,
+            1.008,
+            1.036
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.385,
+            88.415,
+            110.073,
+            145.395,
+            176.829
+          ],
+          "faceOver90Degrees": 476
+        },
+        "collar": {
+          "lengthRatios": [
+            0.998,
+            1.001,
+            1.003,
+            1.006,
+            1.018
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.214,
+            100.511,
+            121.267,
+            151.04,
+            174.967
+          ],
+          "faceOver90Degrees": 1403
+        }
+      }
+    },
+    "get_up_knee": {
+      "lowestY": 0.5031201975379592,
+      "highestY": 1.1821828058451898,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            0.997,
+            1.067,
+            1.103,
+            1.188,
+            1.474
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            20.113,
+            52.801,
+            73.167,
+            119.4,
+            163.312
+          ],
+          "faceOver90Degrees": 38
+        },
+        "elbow": {
+          "lengthRatios": [
+            0.986,
+            1.137,
+            1.277,
+            1.471,
+            1.573
+          ],
+          "compressedBelow35Pct": 16,
+          "stretchedAbove150Pct": 21,
+          "skinnedAlignmentDeg": [
+            24.645,
+            58.536,
+            72.332,
+            121.123,
+            160.089
+          ],
+          "faceOver90Degrees": 26
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.004,
+            1.021,
+            1.022,
+            1.024,
+            1.025
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.59,
+            107.658,
+            131.841,
+            160.742,
+            178.684
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.011,
+            1.067
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.404,
+            88.457,
+            110.013,
+            145.508,
+            176.558
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.088
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.347,
+            100.413,
+            121.127,
+            150.887,
+            175.302
+          ],
+          "faceOver90Degrees": 1403
+        }
+      }
+    },
+    "sit": {
+      "lowestY": 0.4547859813075577,
+      "highestY": 1.1298573908839664,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            1.0,
+            1.067,
+            1.101,
+            1.193,
+            1.425
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            19.543,
+            52.512,
+            72.692,
+            118.679,
+            163.234
+          ],
+          "faceOver90Degrees": 36
+        },
+        "elbow": {
+          "lengthRatios": [
+            0.986,
+            1.143,
+            1.286,
+            1.479,
+            1.583
+          ],
+          "compressedBelow35Pct": 22,
+          "stretchedAbove150Pct": 24,
+          "skinnedAlignmentDeg": [
+            25.386,
+            60.287,
+            78.489,
+            127.379,
+            163.342
+          ],
+          "faceOver90Degrees": 32
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.005,
+            1.022,
+            1.024,
+            1.026,
+            1.026
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.595,
+            107.61,
+            131.818,
+            160.588,
+            178.776
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.009,
+            1.056
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.416,
+            88.5,
+            110.014,
+            145.508,
+            176.556
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.08
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.346,
+            100.413,
+            121.126,
+            150.886,
+            175.303
+          ],
+          "faceOver90Degrees": 1403
+        }
+      }
+    },
+    "stand": {
+      "lowestY": 0.8711061947746004,
+      "highestY": 1.5597576562634448,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            19.32,
+            52.449,
+            71.401,
+            118.399,
+            163.225
+          ],
+          "faceOver90Degrees": 37
+        },
+        "elbow": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            17.043,
+            43.114,
+            59.511,
+            100.995,
+            149.602
+          ],
+          "faceOver90Degrees": 16
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.444,
+            107.589,
+            131.932,
+            161.249,
+            177.766
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            27.379,
+            88.387,
+            110.014,
+            145.508,
+            176.556
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            38.346,
+            100.413,
+            121.126,
+            150.886,
+            175.303
+          ],
+          "faceOver90Degrees": 1403
+        }
+      }
+    },
+    "swim": {
+      "lowestY": -0.2096626630784203,
+      "highestY": 0.285032696708981,
+      "regions": {
+        "shoulder": {
+          "lengthRatios": [
+            0.839,
+            1.166,
+            1.366,
+            1.919,
+            2.621
+          ],
+          "compressedBelow35Pct": 56,
+          "stretchedAbove150Pct": 138,
+          "skinnedAlignmentDeg": [
+            32.699,
+            69.323,
+            87.203,
+            125.967,
+            171.129
+          ],
+          "faceOver90Degrees": 59
+        },
+        "elbow": {
+          "lengthRatios": [
+            1.01,
+            1.237,
+            1.313,
+            1.606,
+            4.211
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 35,
+          "skinnedAlignmentDeg": [
+            18.92,
+            46.697,
+            70.599,
+            112.145,
+            165.552
+          ],
+          "faceOver90Degrees": 25
+        },
+        "cuff": {
+          "lengthRatios": [
+            1.016,
+            1.041,
+            1.043,
+            1.045,
+            1.046
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            35.669,
+            107.555,
+            132.071,
+            160.868,
+            177.009
+          ],
+          "faceOver90Degrees": 919
+        },
+        "frontBody": {
+          "lengthRatios": [
+            1.018,
+            1.026,
+            1.026,
+            1.091,
+            1.598
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 4,
+          "skinnedAlignmentDeg": [
+            27.23,
+            88.334,
+            110.106,
+            145.009,
+            177.246
+          ],
+          "faceOver90Degrees": 475
+        },
+        "collar": {
+          "lengthRatios": [
+            0.994,
+            1.004,
+            1.011,
+            1.024,
+            1.347
+          ],
+          "compressedBelow35Pct": 0,
+          "stretchedAbove150Pct": 0,
+          "skinnedAlignmentDeg": [
+            37.944,
+            100.565,
+            121.514,
+            151.416,
+            175.136
+          ],
+          "faceOver90Degrees": 1404
+        }
+      }
+    }
+  },
+  "references": {
+    "raw": {
+      "shoulder": {
+        "triangles": 38600,
+        "faceAlignmentDeg": [
+          2.765,
+          10.518,
+          15.126,
+          28.917,
+          133.051
+        ],
+        "edgeNormalChangeDeg": [
+          5.0,
+          20.547,
+          29.112,
+          54.682,
+          180.0
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.399,
+          0.637,
+          0.71,
+          0.853,
+          1.381
+        ],
+        "uvSeams": 5767,
+        "refAreaCm2": [
+          0.056,
+          0.119,
+          0.142,
+          0.188,
+          0.346
+        ],
+        "lumSeamDiff": [
+          0.005,
+          0.017,
+          0.024,
+          0.046,
+          0.09
+        ],
+        "highLumAtUvSeams": 0
+      },
+      "elbow": {
+        "triangles": 29037,
+        "faceAlignmentDeg": [
+          3.261,
+          8.226,
+          11.897,
+          24.991,
+          156.708
+        ],
+        "edgeNormalChangeDeg": [
+          4.546,
+          16.451,
+          22.841,
+          47.149,
+          180.0
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.457,
+          0.712,
+          0.794,
+          0.965,
+          1.384
+        ],
+        "uvSeams": 3215,
+        "refAreaCm2": [
+          0.076,
+          0.15,
+          0.176,
+          0.231,
+          0.472
+        ],
+        "lumSeamDiff": [
+          0.003,
+          0.011,
+          0.015,
+          0.023,
+          0.038
+        ],
+        "highLumAtUvSeams": 0
+      },
+      "cuff": {
+        "triangles": 31979,
+        "faceAlignmentDeg": [
+          9.135,
+          50.829,
+          76.83,
+          136.117,
+          178.867
+        ],
+        "edgeNormalChangeDeg": [
+          9.327,
+          70.837,
+          106.162,
+          179.98,
+          180.0
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.3,
+          0.603,
+          0.696,
+          0.876,
+          1.707
+        ],
+        "uvSeams": 9053,
+        "refAreaCm2": [
+          0.028,
+          0.111,
+          0.137,
+          0.191,
+          0.392
+        ],
+        "lumSeamDiff": [
+          0.009,
+          0.042,
+          0.055,
+          0.083,
+          0.153
+        ],
+        "highLumAtUvSeams": 0
+      },
+      "frontBody": {
+        "triangles": 93911,
+        "faceAlignmentDeg": [
+          2.576,
+          14.634,
+          22.913,
+          56.307,
+          169.191
+        ],
+        "edgeNormalChangeDeg": [
+          4.192,
+          25.429,
+          41.476,
+          84.22,
+          180.0
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.412,
+          0.645,
+          0.714,
+          0.85,
+          1.284
+        ],
+        "uvSeams": 17087,
+        "refAreaCm2": [
+          0.06,
+          0.13,
+          0.152,
+          0.197,
+          0.355
+        ],
+        "lumSeamDiff": [
+          0.005,
+          0.018,
+          0.029,
+          0.071,
+          0.155
+        ],
+        "highLumAtUvSeams": 0
+      },
+      "collar": {
+        "triangles": 113559,
+        "faceAlignmentDeg": [
+          32.567,
+          67.014,
+          77.015,
+          95.423,
+          179.534
+        ],
+        "edgeNormalChangeDeg": [
+          3.636,
+          37.222,
+          67.795,
+          152.487,
+          180.0
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.236,
+          0.484,
+          0.56,
+          0.711,
+          1.192
+        ],
+        "uvSeams": 25073,
+        "refAreaCm2": [
+          0.015,
+          0.067,
+          0.089,
+          0.135,
+          0.315
+        ],
+        "lumSeamDiff": [
+          0.007,
+          0.036,
+          0.056,
+          0.084,
+          0.174
+        ],
+        "highLumAtUvSeams": 0
+      }
+    },
+    "blend": {
+      "shoulder": {
+        "triangles": 8182,
+        "faceAlignmentDeg": [
+          6.735,
+          22.758,
+          30.272,
+          57.561,
+          139.159
+        ],
+        "edgeNormalChangeDeg": [
+          9.915,
+          35.749,
+          50.192,
+          93.485,
+          176.258
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.867,
+          1.837,
+          2.174,
+          2.829,
+          5.236
+        ],
+        "uvSeams": 2473,
+        "refAreaCm2": [
+          0.215,
+          0.654,
+          0.858,
+          1.369,
+          2.74
+        ]
+      },
+      "elbow": {
+        "triangles": 6539,
+        "faceAlignmentDeg": [
+          5.699,
+          17.444,
+          24.649,
+          43.624,
+          152.137
+        ],
+        "edgeNormalChangeDeg": [
+          8.854,
+          27.817,
+          38.481,
+          78.7,
+          171.989
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "edgeLengthsCm": [
+          0.977,
+          1.935,
+          2.258,
+          3.006,
+          5.169
+        ],
+        "uvSeams": 1484,
+        "refAreaCm2": [
+          0.281,
+          0.768,
+          1.006,
+          1.63,
+          3.105
+        ]
+      },
+      "cuff": {
+        "triangles": 11973,
+        "faceAlignmentDeg": [
+          19.351,
+          77.852,
+          106.547,
+          152.263,
+          176.93
+        ],
+        "edgeNormalChangeDeg": [
+          19.187,
+          96.904,
+          127.536,
+          162.628,
+          179.875
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          117.997
+        ],
+        "edgeLengthsCm": [
+          0.354,
+          1.246,
+          1.531,
+          2.155,
+          3.684
+        ],
+        "uvSeams": 4819,
+        "refAreaCm2": [
+          0.025,
+          0.365,
+          0.551,
+          0.953,
+          2.767
+        ]
+      },
+      "frontBody": {
+        "triangles": 19608,
+        "faceAlignmentDeg": [
+          8.778,
+          39.521,
+          59.528,
+          105.654,
+          171.353
+        ],
+        "edgeNormalChangeDeg": [
+          10.161,
+          59.946,
+          87.197,
+          134.828,
+          179.826
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          9.627
+        ],
+        "edgeLengthsCm": [
+          0.827,
+          1.977,
+          2.356,
+          3.109,
+          5.562
+        ],
+        "uvSeams": 7077,
+        "refAreaCm2": [
+          0.182,
+          0.792,
+          1.061,
+          1.758,
+          6.858
+        ]
+      },
+      "collar": {
+        "triangles": 31520,
+        "faceAlignmentDeg": [
+          32.269,
+          72.995,
+          87.366,
+          123.859,
+          175.147
+        ],
+        "edgeNormalChangeDeg": [
+          10.81,
+          90.888,
+          129.178,
+          168.675,
+          179.988
+        ],
+        "cornerNormalChangeDeg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          84.522
+        ],
+        "edgeLengthsCm": [
+          0.375,
+          1.117,
+          1.413,
+          2.096,
+          4.285
+        ],
+        "uvSeams": 12291,
+        "refAreaCm2": [
+          0.034,
+          0.228,
+          0.335,
+          0.711,
+          4.685
+        ]
+      }
+    }
+  }
+}

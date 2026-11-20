@@ -22,6 +22,7 @@ __pycache__/
 /art/animals/source/
 /art/clothing/source/
 /art/weapons/source/
+/art/containers_storage/*_4k.blend/textures/
 /art/characters/sky_head.blend
 /art/characters/sky_head_v2.blend
 /art/characters/sky_head_v2_head_neck.blend
@@ -30,6 +31,7 @@ __pycache__/
 /evidence/**/coop-playtest-web.json
 /evidence/*web-start.json
 /evidence/**/saves/
+/evidence/**/rooms-*/
 /evidence/**/isolated-rooms/
 /evidence/**/fixture-*.log
 /evidence/**/fixture-*-output.txt

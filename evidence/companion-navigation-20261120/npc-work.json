@@ -1,0 +1,76 @@
+{
+  "cases": {
+    "female_elite/DrawWater": {
+      "alignment": 1.0,
+      "clips": [
+        "TurnLeft",
+        "Walk",
+        "DrawWater"
+      ],
+      "gearBackOffsetM": 0.179099082946777,
+      "lowestHipsM": 0.351030170917511,
+      "maxFootDriftM": 0.00142850482370704,
+      "maxForwardHandM": 0.567824363708496,
+      "minimumHandHeightM": 0.0424049496650696,
+      "renderedApproachM": 0.0859689712524414,
+      "seconds": 1.5,
+      "skinnedFloorErrorM": null,
+      "waterContactErrorM": null,
+      "weaponAnchorErrorM": 3.814697265625e-06
+    },
+    "female_elite/GatherFruit": {
+      "alignment": 1.0,
+      "clips": [
+        "Walk",
+        "GatherFruit"
+      ],
+      "gearBackOffsetM": 0.173553466796875,
+      "lowestHipsM": 0.75013655424118,
+      "maxFootDriftM": 0.000957901473157108,
+      "maxForwardHandM": 0.468841552734375,
+      "minimumHandHeightM": 0.943275094032288,
+      "renderedApproachM": 0.0739059448242188,
+      "seconds": 1.25,
+      "skinnedFloorErrorM": null,
+      "waterContactErrorM": null,
+      "weaponAnchorErrorM": 0.0
+    },
+    "male/DrawWater": {
+      "alignment": 1.0,
+      "clips": [
+        "TurnLeft",
+        "Walk",
+        "DrawWater"
+      ],
+      "gearBackOffsetM": null,
+      "lowestHipsM": 0.344030171632767,
+      "maxFootDriftM": 0.00142850482370704,
+      "maxForwardHandM": 0.567824363708496,
+      "minimumHandHeightM": 0.0362630188465118,
+      "renderedApproachM": 0.0859689712524414,
+      "seconds": 1.5,
+      "skinnedFloorErrorM": null,
+      "waterContactErrorM": null,
+      "weaponAnchorErrorM": 0.0
+    },
+    "male/GatherFruit": {
+      "alignment": 1.0,
+      "clips": [
+        "Walk",
+        "GatherFruit",
+        "TurnLeft"
+      ],
+      "gearBackOffsetM": null,
+      "lowestHipsM": 0.743136525154114,
+      "maxFootDriftM": 0.000957843265496194,
+      "maxForwardHandM": 0.468826293945312,
+      "minimumHandHeightM": 0.937081158161163,
+      "renderedApproachM": 0.0739059448242188,
+      "seconds": 1.25,
+      "skinnedFloorErrorM": null,
+      "waterContactErrorM": null,
+      "weaponAnchorErrorM": 0.0
+    }
+  },
+  "errors": []
+}

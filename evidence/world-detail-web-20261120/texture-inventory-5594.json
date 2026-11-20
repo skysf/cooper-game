@@ -1,0 +1,866 @@
+{
+  "pck": "/private/tmp/rainline-detail-package.tCl4yh/index.pck",
+  "pckBytes": 265848716,
+  "directoryEntries": 860,
+  "weaponMapBytes": 125344546,
+  "storageMapBytes": 44608702,
+  "models": {
+    "katana": {
+      "scene": "coop/weapons/katana.glb",
+      "use": "开局地面和拿取、装备、丢下，再由同伴显示手中的同一模型。刀身与刀柄共图。",
+      "closestInitialSpawnDistanceM": 1.38,
+      "mapBytes": 17115095,
+      "maps": [
+        {
+          "source": "coop/weapons/maps/antique_katana_01_nor_gl.webp",
+          "pathInPck": ".godot/imported/antique_katana_01_nor_gl.webp-3f825e393606f6174e86f8b1b7908488.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 6430121,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "antique_katana_01",
+              "meshNodes": [
+                "antique_katana_01"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/antique_katana_01_diff_4k.jpg",
+          "pathInPck": ".godot/imported/antique_katana_01_diff_4k.jpg-76d64948a4db6df65caf01c1823813c7.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 8202015,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "antique_katana_01",
+              "meshNodes": [
+                "antique_katana_01"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/antique_katana_01_metal-antique_katana_01_rough.webp",
+          "pathInPck": ".godot/imported/antique_katana_01_metal-antique_katana_01_rough.webp-1a5299d4ed3f607881b6531ac3775d9a.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 2482959,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "antique_katana_01",
+              "meshNodes": [
+                "antique_katana_01"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    },
+    "rifle": {
+      "scene": "coop/weapons/rifle.glb",
+      "use": "开局地面、再拾取与丢下、持枪和开镜、同伴装备，机匣和光学配件分材质。",
+      "closestInitialSpawnDistanceM": 1.6,
+      "mapBytes": 78410428,
+      "maps": [
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_nor_gl.webp",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_nor_gl.webp-c63dced9a13d537f00e93d949b4a80a2.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 12609295,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62",
+              "meshNodes": [
+                "bolt_action_rifle_7_62",
+                "bolt_action_rifle_7_62_bolt_a",
+                "bolt_action_rifle_7_62_bolt_b",
+                "bolt_action_rifle_7_62_trigger"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_diff_4k.jpg",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_diff_4k.jpg-a2ec752eafdf6443c51f8843e972b7d2.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 20490230,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62",
+              "meshNodes": [
+                "bolt_action_rifle_7_62",
+                "bolt_action_rifle_7_62_bolt_a",
+                "bolt_action_rifle_7_62_bolt_b",
+                "bolt_action_rifle_7_62_trigger"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_metal-bolt_action_rifle_7_62_rough.webp",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_metal-bolt_action_rifle_7_62_rough.webp-19522881da4167dd47fd880a35f9ff1c.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4361739,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62",
+              "meshNodes": [
+                "bolt_action_rifle_7_62",
+                "bolt_action_rifle_7_62_bolt_a",
+                "bolt_action_rifle_7_62_bolt_b",
+                "bolt_action_rifle_7_62_trigger"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_accesories_nor_gl_4k.webp",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_accesories_nor_gl_4k.webp-5faf0546143fd1756fc2abdea09dead1.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 16114177,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62_accesories",
+              "meshNodes": [
+                "bolt_action_rifle_7_62_scope",
+                "bolt_action_rifle_7_62_wrap"
+              ]
+            },
+            {
+              "material": "bolt_action_rifle_7_62_accesories_glass",
+              "meshNodes": [
+                "bolt_action_rifle_7_62_scope"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_accesories_diff_4k.jpg",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_accesories_diff_4k.jpg-b4b92fce9d6f07378729d865e8b156f1.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 19549396,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62_accesories",
+              "meshNodes": [
+                "bolt_action_rifle_7_62_scope",
+                "bolt_action_rifle_7_62_wrap"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_accesories_metal-bolt_action_rifle_7_62_accesories_rough.webp",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_accesories_metal-bolt_action_rifle_7_62_accesories_rough.webp-403e9d329033dcf8e10b0231d46422de.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4154158,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62_accesories",
+              "meshNodes": [
+                "bolt_action_rifle_7_62_scope",
+                "bolt_action_rifle_7_62_wrap"
+              ]
+            },
+            {
+              "material": "bolt_action_rifle_7_62_accesories_glass",
+              "meshNodes": [
+                "bolt_action_rifle_7_62_scope"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/weapons/maps/bolt_action_rifle_7_62_accesories_diff-bolt_action_rifle_7_62_accesories_alpha.webp",
+          "pathInPck": ".godot/imported/bolt_action_rifle_7_62_accesories_diff-bolt_action_rifle_7_62_accesories_alpha.webp-937de0df73b070d202f639b036cc8cd8.ctex",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "sizeBytes": 1131433,
+          "role": "透镜底色和透明度",
+          "channels": "RGB 为 sRGB 底色，A 为透明度。",
+          "materialUses": [
+            {
+              "material": "bolt_action_rifle_7_62_accesories_glass",
+              "meshNodes": [
+                "bolt_action_rifle_7_62_scope"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    },
+    "pistol": {
+      "scene": "coop/weapons/pistol.glb",
+      "use": "开局地面、再拾取与丢下、第一及第三人称装备和同伴，木握把、枪身和各独立钢件共图。",
+      "closestInitialSpawnDistanceM": 0.73,
+      "mapBytes": 29819023,
+      "maps": [
+        {
+          "source": "coop/weapons/maps/service_pistol_nor_gl.webp",
+          "pathInPck": ".godot/imported/service_pistol_nor_gl.webp-c12a52b678f55edb939e104abb600b54.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 7191191,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "service_pistol",
+              "meshNodes": [
+                "service_pistol_hammer_a",
+                "service_pistol_magazine_loaded",
+                "service_pistol_pistol_a",
+                "service_pistol_slide_a",
+                "service_pistol_trigger_a"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true,
+          "payloadHeadersFirst320": [
+            "KTX2"
+          ]
+        },
+        {
+          "source": "coop/weapons/maps/service_pistol_diff_4k.jpg",
+          "pathInPck": ".godot/imported/service_pistol_diff_4k.jpg-fb10d645cdf0c06e3741b2463c4e26f1.ctex",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "sizeBytes": 18640745,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "service_pistol",
+              "meshNodes": [
+                "service_pistol_hammer_a",
+                "service_pistol_magazine_loaded",
+                "service_pistol_pistol_a",
+                "service_pistol_slide_a",
+                "service_pistol_trigger_a"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true,
+          "payloadHeadersFirst320": [
+            "KTX2"
+          ],
+          "KTX2": {
+            "ctexOffsetOfKtx2": 60,
+            "ktx2SupercompressionScheme": 2,
+            "levels": [
+              {
+                "level": 0,
+                "encodedBytes": 13915642,
+                "rawBlockBytes": 16777216,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 1,
+                "encodedBytes": 3521491,
+                "rawBlockBytes": 4194304,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 2,
+                "encodedBytes": 895079,
+                "rawBlockBytes": 1048576,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 3,
+                "encodedBytes": 229041,
+                "rawBlockBytes": 262144,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 4,
+                "encodedBytes": 58076,
+                "rawBlockBytes": 65536,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 5,
+                "encodedBytes": 15330,
+                "rawBlockBytes": 16384,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 6,
+                "encodedBytes": 4106,
+                "rawBlockBytes": 4096,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 7,
+                "encodedBytes": 1034,
+                "rawBlockBytes": 1024,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 8,
+                "encodedBytes": 266,
+                "rawBlockBytes": 256,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 9,
+                "encodedBytes": 73,
+                "rawBlockBytes": 64,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 10,
+                "encodedBytes": 25,
+                "rawBlockBytes": 16,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 11,
+                "encodedBytes": 25,
+                "rawBlockBytes": 16,
+                "frameMagic": "28b52ffd"
+              },
+              {
+                "level": 12,
+                "encodedBytes": 25,
+                "rawBlockBytes": 16,
+                "frameMagic": "28b52ffd"
+              }
+            ]
+          }
+        },
+        {
+          "source": "coop/weapons/maps/service_pistol_metal-service_pistol_rough.webp",
+          "pathInPck": ".godot/imported/service_pistol_metal-service_pistol_rough.webp-58da9841c0b022ca6fbfdfda1a0d74c0.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 3987087,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "service_pistol",
+              "meshNodes": [
+                "service_pistol_hammer_a",
+                "service_pistol_magazine_loaded",
+                "service_pistol_pistol_a",
+                "service_pistol_slide_a",
+                "service_pistol_trigger_a"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true,
+          "payloadHeadersFirst320": [
+            "KTX2"
+          ]
+        }
+      ]
+    },
+    "wicker_basket": {
+      "scene": "coop/props/storage/wicker_basket.glb",
+      "use": "开局两篮、容器放置、搬运、投掷以及可制作的篮子。编藤、盖与脚共图。",
+      "closestInitialSpawnDistanceM": 2.37,
+      "mapBytes": 10579064,
+      "maps": [
+        {
+          "source": "coop/props/storage/maps/wicker_basket_02_nor_gl.webp",
+          "pathInPck": ".godot/imported/wicker_basket_02_nor_gl.webp-88526903de4235958b7bb20d1eb31996.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4466103,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "wicker_basket_02",
+              "meshNodes": [
+                "wicker_basket_02_base",
+                "wicker_basket_02_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wicker_basket_02_diff_4k.jpg",
+          "pathInPck": ".godot/imported/wicker_basket_02_diff_4k.jpg-763dea1344028aa77a9c5266305d61b5.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 5256799,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "wicker_basket_02",
+              "meshNodes": [
+                "wicker_basket_02_base",
+                "wicker_basket_02_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wicker_basket_02_rough.webp",
+          "pathInPck": ".godot/imported/wicker_basket_02_rough.webp-fbef479f108a8355d24a692d1e69aad6.ctex",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "sizeBytes": 856162,
+          "role": "粗糙度",
+          "channels": "G 粗糙度。金属度系数为 0，B 不影响材质。R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "wicker_basket_02",
+              "meshNodes": [
+                "wicker_basket_02_base",
+                "wicker_basket_02_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    },
+    "wood_crate": {
+      "scene": "coop/props/storage/wood_crate.glb",
+      "use": "开局箱、放置、搬运、投掷。旧木纹、板缝、盖与紧固件共图。",
+      "closestInitialSpawnDistanceM": 2.25,
+      "mapBytes": 9222575,
+      "maps": [
+        {
+          "source": "coop/props/storage/maps/wooden_crate_01_nor_gl.webp",
+          "pathInPck": ".godot/imported/wooden_crate_01_nor_gl.webp-852d8c2364fdfa48b6a9e67af89dbd98.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 3356196,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "wooden_crate_01",
+              "meshNodes": [
+                "wooden_crate_01",
+                "wooden_crate_01_latch",
+                "wooden_crate_01_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_crate_01_diff_4k.jpg",
+          "pathInPck": ".godot/imported/wooden_crate_01_diff_4k.jpg-5df6aa3e3aa19d6873db8f538645910f.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4887455,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "wooden_crate_01",
+              "meshNodes": [
+                "wooden_crate_01",
+                "wooden_crate_01_latch",
+                "wooden_crate_01_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_crate_01_metal-wooden_crate_01_rough.webp",
+          "pathInPck": ".godot/imported/wooden_crate_01_metal-wooden_crate_01_rough.webp-a461bdc697de399caaa1e43fc1a9fe08.ctex",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "sizeBytes": 978924,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "wooden_crate_01",
+              "meshNodes": [
+                "wooden_crate_01",
+                "wooden_crate_01_latch",
+                "wooden_crate_01_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    },
+    "military_crate": {
+      "scene": "coop/props/storage/military_crate.glb",
+      "use": "开局装绳的箱、放置、搬运、投掷。掉漆、搭扣和盖共图。",
+      "closestInitialSpawnDistanceM": 4.1,
+      "mapBytes": 9599574,
+      "maps": [
+        {
+          "source": "coop/props/storage/maps/wooden_military_crate_nor_gl.webp",
+          "pathInPck": ".godot/imported/wooden_military_crate_nor_gl.webp-7b31e44211d969b252d0664ae6450aeb.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 3786229,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "wooden_military_crate",
+              "meshNodes": [
+                "wooden_military_crate",
+                "wooden_military_crate_latch",
+                "wooden_military_crate_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_military_crate_diff_4k.jpg",
+          "pathInPck": ".godot/imported/wooden_military_crate_diff_4k.jpg-f758115fa690b84efc1d428797d933b8.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4962306,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "wooden_military_crate",
+              "meshNodes": [
+                "wooden_military_crate",
+                "wooden_military_crate_latch",
+                "wooden_military_crate_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_military_crate_metal-wooden_military_crate_rough.webp",
+          "pathInPck": ".godot/imported/wooden_military_crate_metal-wooden_military_crate_rough.webp-aa005c39dd84f39f139e1c8c96ca6ea2.ctex",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "sizeBytes": 851039,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "wooden_military_crate",
+              "meshNodes": [
+                "wooden_military_crate",
+                "wooden_military_crate_latch",
+                "wooden_military_crate_lid"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    },
+    "wood_barrel": {
+      "scene": "coop/props/storage/wood_barrel.glb",
+      "use": "开局普通桶、放置、搬运、投掷。桶箍、木板、盖与堵头共图。",
+      "closestInitialSpawnDistanceM": 3.91,
+      "mapBytes": 7526504,
+      "maps": [
+        {
+          "source": "coop/props/storage/maps/wooden_barrels_01_barrel01_nor_gl_4k.webp",
+          "pathInPck": ".godot/imported/wooden_barrels_01_barrel01_nor_gl_4k.webp-56df3110775fc9397af3461a2cb26ce5.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 2200952,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "wooden_barrels_01_barrel01",
+              "meshNodes": [
+                "wooden_barrels_01_barrel01"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_barrels_01_barrel01_diff_4k.jpg",
+          "pathInPck": ".godot/imported/wooden_barrels_01_barrel01_diff_4k.jpg-0a6a74b908cae70a39da65e8add2b93b.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4405034,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "wooden_barrels_01_barrel01",
+              "meshNodes": [
+                "wooden_barrels_01_barrel01"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_barrels_01_barrel01_metal-wooden_barrels_01_barrel01_rough.webp",
+          "pathInPck": ".godot/imported/wooden_barrels_01_barrel01_metal-wooden_barrels_01_barrel01_rough.webp-d01bd06010541951e1c55c895a781cb2.ctex",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "sizeBytes": 920518,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "wooden_barrels_01_barrel01",
+              "meshNodes": [
+                "wooden_barrels_01_barrel01"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    },
+    "wood_barrel_tall": {
+      "scene": "coop/props/storage/wood_barrel_tall.glb",
+      "use": "开局大桶、放置、搬运、投掷。材质为第二套扫描，桶箍与木板共图。",
+      "closestInitialSpawnDistanceM": 5.16,
+      "mapBytes": 7680985,
+      "maps": [
+        {
+          "source": "coop/props/storage/maps/wooden_barrels_01_barrel02_nor_gl_4k.webp",
+          "pathInPck": ".godot/imported/wooden_barrels_01_barrel02_nor_gl_4k.webp-91f174a3d5694f9aae250dd1199e06bc.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 2313313,
+          "role": "切线法线",
+          "channels": "R/G 为切线分量，标准材质重建 Z，法线导入已开启。",
+          "materialUses": [
+            {
+              "material": "wooden_barrels_01_barrel02",
+              "meshNodes": [
+                "wooden_barrels_01_barrel02"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.65,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_barrels_01_barrel02_diff_4k.jpg",
+          "pathInPck": ".godot/imported/wooden_barrels_01_barrel02_diff_4k.jpg-9d67fa8db9e2922c64b2ed6ffd52c2a6.ctex",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "sizeBytes": 4453915,
+          "role": "底色",
+          "channels": "sRGB RGB。",
+          "materialUses": [
+            {
+              "material": "wooden_barrels_01_barrel02",
+              "meshNodes": [
+                "wooden_barrels_01_barrel02"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        },
+        {
+          "source": "coop/props/storage/maps/wooden_barrels_01_barrel02_metal-wooden_barrels_01_barrel02_rough.webp",
+          "pathInPck": ".godot/imported/wooden_barrels_01_barrel02_metal-wooden_barrels_01_barrel02_rough.webp-81ef6de0fc76cf870d7e186c71beb202.ctex",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "sizeBytes": 913757,
+          "role": "粗糙度/金属度",
+          "channels": "G 粗糙度，B 金属度，R 无材质引用。",
+          "materialUses": [
+            {
+              "material": "wooden_barrels_01_barrel02",
+              "meshNodes": [
+                "wooden_barrels_01_barrel02"
+              ]
+            }
+          ],
+          "uastcLevel": 1,
+          "rdoQualityLoss": 0.45,
+          "mode": 4,
+          "mips": true
+        }
+      ]
+    }
+  },
+  "verifiedGodot472Defaults": {
+    "rendering/textures/basis_universal/rdo_dict_size": 1024,
+    "rendering/textures/basis_universal/zstd_supercompression": true,
+    "rendering/textures/basis_universal/zstd_supercompression_level": 6
+  }
+}

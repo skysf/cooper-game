@@ -1,0 +1,33 @@
+{
+  "sharedEditableParts": [
+    "Bail handle",
+    "Chimney",
+    "Cold air ducts and hinges",
+    "Flame",
+    "Fluted vent cap",
+    "Fuel reservoir",
+    "Wick assembly and wire guard"
+  ],
+  "sourceScenes": {
+    "coal_mine": {
+      "mounted": 4,
+      "retainedShapeMatch": true,
+      "previewLampEnergiesWatts": [
+        18.0,
+        23.0,
+        23.0,
+        23.0
+      ]
+    },
+    "iron_mine": {
+      "mounted": 4,
+      "retainedShapeMatch": true,
+      "previewLampEnergiesWatts": [
+        18.0,
+        23.0,
+        23.0,
+        23.0
+      ]
+    }
+  }
+}\n

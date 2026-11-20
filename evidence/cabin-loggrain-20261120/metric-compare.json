@@ -1,0 +1,375 @@
+{
+  "models": {
+    "cabin_floor": {
+      "baseline": {
+        "cabin_fieldstone": {
+          "triangles": 352,
+          "exactWindingAndPositionSHA256": "cd4deead0a1f3cc9fbcfcb74f003de404f851f7ee4916ae68b71d455b633b95e"
+        },
+        "cabin_hewn_pine": {
+          "triangles": 560,
+          "exactWindingAndPositionSHA256": "27cf5deef3c2be79f8fe663ad48b43add953bfcd08c21b64ef71eec5e47942f8",
+          "uvMedian": 2.3446924686431885,
+          "uvP95": 2.911330413818359,
+          "areaWeightedP95": 2.3448312282562256,
+          "minimumTexelsPerMetreMedian": 752.9388122558594
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 228,
+          "exactWindingAndPositionSHA256": "9a35e13ae4a14f03c8c9aaeb59f8d5cbf306d190b9a3532f08c17a1b07f971d1",
+          "uvMedian": 1.0000036358833313,
+          "uvP95": 1.0000197291374207,
+          "areaWeightedP95": 1.0000081062316895,
+          "minimumTexelsPerMetreMedian": 2150.397491455078
+        },
+        "cabin_sawn_boards": {
+          "triangles": 2016,
+          "exactWindingAndPositionSHA256": "f92264af9dde7fddbf6d998c6cc62f5fd5b9f7613ce59ce5c2fdecb635be2936"
+        }
+      },
+      "candidate": {
+        "cabin_fieldstone": {
+          "triangles": 352,
+          "exactWindingAndPositionSHA256": "cd4deead0a1f3cc9fbcfcb74f003de404f851f7ee4916ae68b71d455b633b95e"
+        },
+        "cabin_hewn_pine": {
+          "triangles": 560,
+          "exactWindingAndPositionSHA256": "27cf5deef3c2be79f8fe663ad48b43add953bfcd08c21b64ef71eec5e47942f8",
+          "uvMedian": 1.094872534275055,
+          "uvP95": 1.655217683315277,
+          "areaWeightedP95": 1.2309247255325317,
+          "minimumTexelsPerMetreMedian": 271.88165283203125
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 228,
+          "exactWindingAndPositionSHA256": "9a35e13ae4a14f03c8c9aaeb59f8d5cbf306d190b9a3532f08c17a1b07f971d1",
+          "uvMedian": 1.0000030398368835,
+          "uvP95": 1.0000148594379425,
+          "areaWeightedP95": 1.0000056028366089,
+          "minimumTexelsPerMetreMedian": 1533.8869171142578
+        },
+        "cabin_sawn_boards": {
+          "triangles": 2016,
+          "exactWindingAndPositionSHA256": "f92264af9dde7fddbf6d998c6cc62f5fd5b9f7613ce59ce5c2fdecb635be2936"
+        }
+      },
+      "identicalFloat32CoordinatesAndWinding": true,
+      "baselineBytes": 219368,
+      "candidateBytes": 219452
+    },
+    "cabin_wall": {
+      "baseline": {
+        "cabin_hewn_pine": {
+          "triangles": 1760,
+          "exactWindingAndPositionSHA256": "ccce11af4b8b042350c96f12522fac9035a1749d2a1f5c1370b3878963d9de8e",
+          "uvMedian": 2.3446109294891357,
+          "uvP95": 2.7955341815948485,
+          "areaWeightedP95": 2.3449366092681885,
+          "minimumTexelsPerMetreMedian": 752.9117126464844
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 132,
+          "exactWindingAndPositionSHA256": "fffb6e2b7ade303374c49cbd15119ee34c5b4beb04cd8d049ca9cd4a1ca8ecfb",
+          "uvMedian": 1.0000011324882507,
+          "uvP95": 1.0000074863433839,
+          "areaWeightedP95": 1.0000026226043701,
+          "minimumTexelsPerMetreMedian": 2150.3994140625
+        },
+        "cabin_chinking_clay": {
+          "triangles": 1240,
+          "exactWindingAndPositionSHA256": "a05d5d744df0ffabc192b72db58d93587bf4f5d57c4a674986e0490815eeb404"
+        }
+      },
+      "candidate": {
+        "cabin_hewn_pine": {
+          "triangles": 1760,
+          "exactWindingAndPositionSHA256": "ccce11af4b8b042350c96f12522fac9035a1749d2a1f5c1370b3878963d9de8e",
+          "uvMedian": 1.14089435338974,
+          "uvP95": 1.64722398519516,
+          "areaWeightedP95": 1.289982557296753,
+          "minimumTexelsPerMetreMedian": 260.913330078125
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 132,
+          "exactWindingAndPositionSHA256": "fffb6e2b7ade303374c49cbd15119ee34c5b4beb04cd8d049ca9cd4a1ca8ecfb",
+          "uvMedian": 1.0000014901161194,
+          "uvP95": 1.000006914138794,
+          "areaWeightedP95": 1.0000027418136597,
+          "minimumTexelsPerMetreMedian": 1321.8805389404297
+        },
+        "cabin_chinking_clay": {
+          "triangles": 1240,
+          "exactWindingAndPositionSHA256": "a05d5d744df0ffabc192b72db58d93587bf4f5d57c4a674986e0490815eeb404"
+        }
+      },
+      "identicalFloat32CoordinatesAndWinding": true,
+      "baselineBytes": 217880,
+      "candidateBytes": 217944
+    },
+    "cabin_doorway": {
+      "baseline": {
+        "cabin_hewn_pine": {
+          "triangles": 3360,
+          "exactWindingAndPositionSHA256": "c56a672c200161199ccd02200bd3a9ac9fb3f4d9fc1e8e74e3eb4d8611661e99",
+          "uvMedian": 2.344749093055725,
+          "uvP95": 2.7638157248497004,
+          "areaWeightedP95": 2.3476850986480713,
+          "minimumTexelsPerMetreMedian": 752.5943298339844
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 896,
+          "exactWindingAndPositionSHA256": "195708071f8d82612bae9ef4329f11817186edd8fc54d14ce5a6a6b60c95ec18",
+          "uvMedian": 1.6392254829406738,
+          "uvP95": 2.65394389629364,
+          "areaWeightedP95": 1.0000029802322388,
+          "minimumTexelsPerMetreMedian": 564.7019348144531
+        },
+        "cabin_chinking_clay": {
+          "triangles": 2480,
+          "exactWindingAndPositionSHA256": "fa0c27d515e9c23246739e5d9f597b7b0de54dc65581f18dc2c5612c235685c7"
+        },
+        "cabin_sawn_boards": {
+          "triangles": 336,
+          "exactWindingAndPositionSHA256": "f8a11788d6201c3741968da0ec6139a3377eddc66243e605c040421196bf573c"
+        }
+      },
+      "candidate": {
+        "cabin_hewn_pine": {
+          "triangles": 3360,
+          "exactWindingAndPositionSHA256": "c56a672c200161199ccd02200bd3a9ac9fb3f4d9fc1e8e74e3eb4d8611661e99",
+          "uvMedian": 1.1362848281860352,
+          "uvP95": 1.6376221358776086,
+          "areaWeightedP95": 1.298567295074463,
+          "minimumTexelsPerMetreMedian": 261.9716491699219
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 896,
+          "exactWindingAndPositionSHA256": "195708071f8d82612bae9ef4329f11817186edd8fc54d14ce5a6a6b60c95ec18",
+          "uvMedian": 1.000066339969635,
+          "uvP95": 1.629076510667801,
+          "areaWeightedP95": 1.0000072717666626,
+          "minimumTexelsPerMetreMedian": 3794.7396240234375
+        },
+        "cabin_chinking_clay": {
+          "triangles": 2480,
+          "exactWindingAndPositionSHA256": "fa0c27d515e9c23246739e5d9f597b7b0de54dc65581f18dc2c5612c235685c7"
+        },
+        "cabin_sawn_boards": {
+          "triangles": 336,
+          "exactWindingAndPositionSHA256": "f8a11788d6201c3741968da0ec6139a3377eddc66243e605c040421196bf573c"
+        }
+      },
+      "identicalFloat32CoordinatesAndWinding": true,
+      "baselineBytes": 486592,
+      "candidateBytes": 486628
+    },
+    "cabin_roof": {
+      "baseline": {
+        "cabin_hewn_pine": {
+          "triangles": 4480,
+          "exactWindingAndPositionSHA256": "83d98aa158880feb2287acb90db00db3042dba7dfca68e53f7041ca1b46ae248",
+          "uvMedian": 2.344591975212097,
+          "uvP95": 2.931478571891785,
+          "areaWeightedP95": 2.3448386192321777,
+          "minimumTexelsPerMetreMedian": 752.937255859375
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 4260,
+          "exactWindingAndPositionSHA256": "983954432344dfd18499588ea5f8929be8f6c9e07185234278ca59f27caf8825",
+          "uvMedian": 1.0000061988830566,
+          "uvP95": 1.0000461399555207,
+          "areaWeightedP95": 1.0000102519989014,
+          "minimumTexelsPerMetreMedian": 2150.3953857421875
+        },
+        "cabin_weathered_oak": {
+          "triangles": 25264,
+          "exactWindingAndPositionSHA256": "3f6501adcd393ef663c2e9771ed879ec50bbd9bc9673739b7e47946b5b6c238c"
+        }
+      },
+      "candidate": {
+        "cabin_hewn_pine": {
+          "triangles": 4480,
+          "exactWindingAndPositionSHA256": "83d98aa158880feb2287acb90db00db3042dba7dfca68e53f7041ca1b46ae248",
+          "uvMedian": 1.120839238166809,
+          "uvP95": 1.694400680065155,
+          "areaWeightedP95": 1.2812656164169312,
+          "minimumTexelsPerMetreMedian": 265.5817413330078
+        },
+        "cabin_cut_endgrain": {
+          "triangles": 4260,
+          "exactWindingAndPositionSHA256": "983954432344dfd18499588ea5f8929be8f6c9e07185234278ca59f27caf8825",
+          "uvMedian": 1.0004138946533203,
+          "uvP95": 1.000901472568512,
+          "areaWeightedP95": 1.0008872747421265,
+          "minimumTexelsPerMetreMedian": 1673.8359375
+        },
+        "cabin_weathered_oak": {
+          "triangles": 25264,
+          "exactWindingAndPositionSHA256": "3f6501adcd393ef663c2e9771ed879ec50bbd9bc9673739b7e47946b5b6c238c"
+        }
+      },
+      "identicalFloat32CoordinatesAndWinding": true,
+      "baselineBytes": 2290996,
+      "candidateBytes": 2291012
+    }
+  },
+  "maps": {
+    "cabin_cut_endgrain_diff.jpg": {
+      "baseline": {
+        "fileBytes": 52025,
+        "dimension": [
+          768,
+          768
+        ],
+        "mean": [
+          69.41,
+          40.58,
+          17.85
+        ]
+      },
+      "candidate": {
+        "fileBytes": 77521,
+        "dimension": [
+          768,
+          768
+        ],
+        "mean": [
+          88.32,
+          71.03,
+          53.38
+        ]
+      }
+    },
+    "cabin_cut_endgrain_nor_gl.webp": {
+      "baseline": {
+        "fileBytes": 265580,
+        "dimension": [
+          768,
+          768
+        ],
+        "mean": [
+          127.51,
+          127.46,
+          254.6
+        ]
+      },
+      "candidate": {
+        "fileBytes": 829690,
+        "dimension": [
+          768,
+          768
+        ],
+        "mean": [
+          127.51,
+          127.5,
+          253.28
+        ]
+      }
+    },
+    "cabin_cut_endgrain_rough.webp": {
+      "baseline": {
+        "fileBytes": 59416,
+        "dimension": [
+          768,
+          768
+        ],
+        "mean": [
+          255.0,
+          187.66,
+          255.0
+        ]
+      },
+      "candidate": {
+        "fileBytes": 157362,
+        "dimension": [
+          768,
+          768
+        ],
+        "mean": [
+          255.0,
+          186.83,
+          255.0
+        ]
+      }
+    },
+    "cabin_hewn_pine_diff.jpg": {
+      "baseline": {
+        "fileBytes": 74663,
+        "dimension": [
+          1024,
+          1024
+        ],
+        "mean": [
+          46.78,
+          25.77,
+          11.98
+        ]
+      },
+      "candidate": {
+        "fileBytes": 151882,
+        "dimension": [
+          1024,
+          1024
+        ],
+        "mean": [
+          92.57,
+          69.57,
+          49.6
+        ]
+      }
+    },
+    "cabin_hewn_pine_nor_gl.webp": {
+      "baseline": {
+        "fileBytes": 353478,
+        "dimension": [
+          1024,
+          1024
+        ],
+        "mean": [
+          127.5,
+          127.51,
+          254.24
+        ]
+      },
+      "candidate": {
+        "fileBytes": 1114254,
+        "dimension": [
+          1024,
+          1024
+        ],
+        "mean": [
+          127.5,
+          127.28,
+          253.25
+        ]
+      }
+    },
+    "cabin_hewn_pine_rough.webp": {
+      "baseline": {
+        "fileBytes": 69312,
+        "dimension": [
+          1024,
+          1024
+        ],
+        "mean": [
+          255.0,
+          202.22,
+          255.0
+        ]
+      },
+      "candidate": {
+        "fileBytes": 173472,
+        "dimension": [
+          1024,
+          1024
+        ],
+        "mean": [
+          255.0,
+          193.91,
+          255.0
+        ]
+      }
+    }
+  },
+  "unchangedKitManifest": true
+}

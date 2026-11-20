@@ -1,0 +1,192 @@
+[
+  {
+    "path": "before-stand-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.29252272844314575,
+        -0.14374424517154694,
+        0.8711060881614685
+      ],
+      [
+        0.2969328761100769,
+        0.12415990233421326,
+        1.5597575902938843
+      ]
+    ],
+    "pose": "stand",
+    "look": "fabric",
+    "meshVertices": 52142,
+    "silhouetteAlphaIoU": 0.992382
+  },
+  {
+    "path": "before-stand-clay.png",
+    "bboxBlenderWorld": [
+      [
+        -0.29252272844314575,
+        -0.14374424517154694,
+        0.8711060881614685
+      ],
+      [
+        0.2969328761100769,
+        0.12415990233421326,
+        1.5597575902938843
+      ]
+    ],
+    "pose": "stand",
+    "look": "clay",
+    "meshVertices": 52142,
+    "silhouetteAlphaIoU": 0.992382
+  },
+  {
+    "path": "before-carry_remote-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.29252272844314575,
+        -0.14374424517154694,
+        0.8711060881614685
+      ],
+      [
+        0.2969328761100769,
+        0.43228626251220703,
+        1.5597575902938843
+      ]
+    ],
+    "pose": "carry_remote",
+    "look": "fabric",
+    "meshVertices": 52142,
+    "silhouetteAlphaIoU": 0.990179
+  },
+  {
+    "path": "before-get_up_knee-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.23942072689533234,
+        -0.3041032552719116,
+        0.5031201243400574
+      ],
+      [
+        0.29739102721214294,
+        0.18396319448947906,
+        1.1821826696395874
+      ]
+    ],
+    "pose": "get_up_knee",
+    "look": "fabric",
+    "meshVertices": 52142,
+    "silhouetteAlphaIoU": 0.991701
+  },
+  {
+    "path": "before-down-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.44953233003616333,
+        -0.820785403251648,
+        0.006922878324985504
+      ],
+      [
+        0.4706386923789978,
+        -0.14458151161670685,
+        0.3078489899635315
+      ]
+    ],
+    "pose": "down",
+    "look": "fabric",
+    "meshVertices": 52142,
+    "silhouetteAlphaIoU": 0.986335
+  },
+  {
+    "path": "candidate-stand-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.29308751225471497,
+        -0.14447659254074097,
+        0.8687188029289246
+      ],
+      [
+        0.296721488237381,
+        0.12001615762710571,
+        1.5597575902938843
+      ]
+    ],
+    "pose": "stand",
+    "look": "fabric",
+    "meshVertices": 60770,
+    "silhouetteAlphaIoU": 0.992382
+  },
+  {
+    "path": "candidate-stand-clay.png",
+    "bboxBlenderWorld": [
+      [
+        -0.29308751225471497,
+        -0.14447659254074097,
+        0.8687188029289246
+      ],
+      [
+        0.296721488237381,
+        0.12001615762710571,
+        1.5597575902938843
+      ]
+    ],
+    "pose": "stand",
+    "look": "clay",
+    "meshVertices": 60770,
+    "silhouetteAlphaIoU": 0.992382
+  },
+  {
+    "path": "candidate-carry_remote-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.29308751225471497,
+        -0.14447659254074097,
+        0.8687188029289246
+      ],
+      [
+        0.296721488237381,
+        0.43301084637641907,
+        1.5597575902938843
+      ]
+    ],
+    "pose": "carry_remote",
+    "look": "fabric",
+    "meshVertices": 60770,
+    "silhouetteAlphaIoU": 0.990179
+  },
+  {
+    "path": "candidate-get_up_knee-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.2385079711675644,
+        -0.30476388335227966,
+        0.5026406645774841
+      ],
+      [
+        0.2972484230995178,
+        0.18524126708507538,
+        1.1821702718734741
+      ]
+    ],
+    "pose": "get_up_knee",
+    "look": "fabric",
+    "meshVertices": 60770,
+    "silhouetteAlphaIoU": 0.991701
+  },
+  {
+    "path": "candidate-down-fabric.png",
+    "bboxBlenderWorld": [
+      [
+        -0.448660284280777,
+        -0.8207912445068359,
+        0.006229232996702194
+      ],
+      [
+        0.46934106945991516,
+        -0.1447930634021759,
+        0.3036283850669861
+      ]
+    ],
+    "pose": "down",
+    "look": "fabric",
+    "meshVertices": 60770,
+    "silhouetteAlphaIoU": 0.986335
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "matchedOriginalBodyAndTable": true,
+  "sharedEditableClayMaterial": "Rainline stoneware \u2022 worked celadon",
+  "packedImages": {
+    "camp_jug_celadon_diff": {
+      "colorSpace": "sRGB",
+      "size": [
+        1024,
+        1024
+      ],
+      "packedBytes": 87733
+    },
+    "camp_jug_celadon_nor_gl": {
+      "colorSpace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ],
+      "packedBytes": 995112
+    },
+    "camp_jug_celadon_rough": {
+      "colorSpace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ],
+      "packedBytes": 337288
+    }
+  }
+}\n

@@ -11,3 +11,9 @@ Copyright 2014–2021 Adobe (http://www.adobe.com/).
 Modifications: retained additional HUD glyphs and renamed the subset.
 Source family: https://github.com/notofonts/noto-cjk
 See OFL-1.1.txt.
+
+CampSignCJK.otf is also a subset of Noto Sans CJK SC Regular 2.004.
+Copyright 2014–2021 Adobe (http://www.adobe.com/).
+Modifications: retained common GB2312 Chinese glyphs, punctuation, Latin, and
+the project's existing interface characters for player-entered road signs.
+Renamed the subset. See OFL-1.1.txt.

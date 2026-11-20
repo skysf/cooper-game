@@ -1,0 +1,98 @@
+{
+  "baseline-coal": {
+    "groundProvisionPosition": [
+      14.5900001525879,
+      -0.00999999791383743,
+      -81.5699996948242
+    ],
+    "productionPath": "res://props/mines/coal.glb",
+    "sameFileShapeOnBothSurfaces": true,
+    "tableProvisionPosition": [
+      9.96000003814697,
+      1.0900000333786,
+      -82.379997253418
+    ],
+    "visualMin": [
+      -0.111337326467037,
+      0.0,
+      -0.0852773189544678
+    ],
+    "visualSize": [
+      0.209463953971863,
+      0.139700353145599,
+      0.167827278375626
+    ]
+  },
+  "baseline-iron_ore": {
+    "groundProvisionPosition": [
+      14.5900001525879,
+      -0.00999999791383743,
+      -81.5699996948242
+    ],
+    "productionPath": "res://props/mines/iron_ore.glb",
+    "sameFileShapeOnBothSurfaces": true,
+    "tableProvisionPosition": [
+      9.96000003814697,
+      1.0900000333786,
+      -82.379997253418
+    ],
+    "visualMin": [
+      -0.100330211222172,
+      0.0,
+      -0.0834698975086212
+    ],
+    "visualSize": [
+      0.200046539306641,
+      0.155408442020416,
+      0.166240870952606
+    ]
+  },
+  "candidate-coal": {
+    "groundProvisionPosition": [
+      14.5900001525879,
+      -0.00999999791383743,
+      -81.5699996948242
+    ],
+    "productionPath": "res://props/mines/coal.glb",
+    "sameFileShapeOnBothSurfaces": true,
+    "tableProvisionPosition": [
+      9.96000003814697,
+      1.0900000333786,
+      -82.379997253418
+    ],
+    "visualMin": [
+      -0.111337326467037,
+      0.0,
+      -0.0852773189544678
+    ],
+    "visualSize": [
+      0.209463953971863,
+      0.139700353145599,
+      0.167827278375626
+    ]
+  },
+  "candidate-iron_ore": {
+    "groundProvisionPosition": [
+      14.5900001525879,
+      -0.00999999791383743,
+      -81.5699996948242
+    ],
+    "productionPath": "res://props/mines/iron_ore.glb",
+    "sameFileShapeOnBothSurfaces": true,
+    "tableProvisionPosition": [
+      9.96000003814697,
+      1.0900000333786,
+      -82.379997253418
+    ],
+    "visualMin": [
+      -0.100330211222172,
+      0.0,
+      -0.0834698975086212
+    ],
+    "visualSize": [
+      0.200046539306641,
+      0.155408442020416,
+      0.166240870952606
+    ]
+  }
+}

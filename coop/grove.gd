@@ -15,6 +15,7 @@ const PINE_DETAIL_NAMES := ["LOD0", "LOD1", "LOD2"]
 const PINE_NEAR_DISTANCE := 8.0
 const PINE_FAR_DISTANCE := 18.0
 const PINE_DETAIL_MARGIN := 1.0
+const TreeWind = preload("res://vegetation/tree_wind.gd")
 
 var trees: Array[Dictionary] = []
 var species_catalog: Dictionary
@@ -23,6 +24,7 @@ var pine_pilot_model: PackedScene
 var viewer_position := Vector3.ZERO
 var seconds_per_year := 5.0
 var last_sample := -1.0
+var tree_wind := TreeWind.new()
 
 func configure(config: Dictionary) -> void:
 	if config.is_empty():
@@ -51,6 +53,7 @@ func configure(config: Dictionary) -> void:
 		trees.append({
 			"spec": tree, "species": species, "root": root, "model": null,
 			"stage": -1, "height": 0.0, "age": 0.0, "details": [], "detail": -1,
+			"detail_materials": [], "detail_mix": Vector2(-1.0, -1.0),
 		})
 
 func update_focus(focus: Vector3) -> void:
@@ -80,6 +83,9 @@ func set_room_time(seconds: float) -> void:
 		tree.height = height
 		tree.age = age
 
+func set_wind(elapsed: float, field: Vector4) -> void:
+	tree_wind.update(elapsed, field)
+
 static func growth_age(spec: Dictionary, seconds: float, years: float) -> float:
 	return minf(FINAL_AGE, float(spec.initialAge) + seconds / years)
 
@@ -105,6 +111,8 @@ func _replace_model(tree: Dictionary, stage: int) -> void:
 		root.remove_child(old_model)
 		old_model.queue_free()
 	tree.details.clear()
+	tree.detail_materials.clear()
+	tree.detail_mix = Vector2(-1.0, -1.0)
 	tree.detail = -1
 	var model: Node3D
 	if tree.spec.id == PINE_PILOT_ID and tree.species == "pine" and STAGES[stage].id == "mature" and pine_pilot_model != null:
@@ -120,30 +128,44 @@ func _replace_model(tree: Dictionary, stage: int) -> void:
 			tree.details.append(detail)
 	if model == null:
 		model = models[tree.species][stage].instantiate() as Node3D
+	var source_height := float(STAGES[stage].mesh_height)
+	if tree.details.is_empty():
+		_wind_surfaces(model, tree.species, source_height)
+	else:
+		for i in tree.details.size():
+			tree.detail_materials.append(_wind_surfaces(tree.details[i], tree.species, source_height, i))
 	root.add_child(model)
 	tree.model = model
 	tree.stage = stage
 	if not tree.details.is_empty():
 		_update_pine_detail(tree, _distance_squared(root.position, viewer_position))
 
+func _wind_surfaces(model: Node3D, species: String, source_height: float, detail := -1) -> Array[ShaderMaterial]:
+	var active: Array[ShaderMaterial] = []
+	for part: MeshInstance3D in TreeWind.meshes(model):
+		for slot in part.mesh.get_surface_count():
+			var material := tree_wind.surface(part.get_active_material(slot), species, source_height, detail)
+			if material is ShaderMaterial:
+				part.set_surface_override_material(slot, material)
+				if not active.has(material):
+					active.append(material)
+		part.extra_cull_margin = maxf(part.extra_cull_margin, 0.28)
+	return active
+
 func _update_pine_detail(tree: Dictionary, distance_squared: float) -> void:
-	var previous := int(tree.detail)
-	var near_limit := PINE_NEAR_DISTANCE
-	var far_limit := PINE_FAR_DISTANCE
-	# Widen the active band so walking sideways along a boundary does not flicker.
-	if previous >= 0:
-		near_limit += PINE_DETAIL_MARGIN if previous == 0 else -PINE_DETAIL_MARGIN
-		far_limit += PINE_DETAIL_MARGIN if previous <= 1 else -PINE_DETAIL_MARGIN
-	var detail := 2
-	if distance_squared < near_limit * near_limit:
-		detail = 0
-	elif distance_squared < far_limit * far_limit:
-		detail = 1
-	if detail == previous:
+	var metres := sqrt(distance_squared)
+	var near_mix := smoothstep(PINE_NEAR_DISTANCE - PINE_DETAIL_MARGIN, PINE_NEAR_DISTANCE + PINE_DETAIL_MARGIN, metres)
+	var far_mix := smoothstep(PINE_FAR_DISTANCE - PINE_DETAIL_MARGIN, PINE_FAR_DISTANCE + PINE_DETAIL_MARGIN, metres)
+	var blend := Vector2(near_mix, far_mix)
+	if blend == tree.detail_mix:
 		return
+	tree.detail_mix = blend
+	var clip := [Vector2(near_mix, 1.0), Vector2(far_mix, near_mix), Vector2(0.0, far_mix)]
 	for i in tree.details.size():
-		tree.details[i].visible = i == detail
-	tree.detail = detail
+		tree.details[i].visible = clip[i].x < clip[i].y
+		for material: ShaderMaterial in tree.detail_materials[i]:
+			material.set_shader_parameter("lod_clip", clip[i])
+	tree.detail = 2 if far_mix > 0.5 else int(near_mix > 0.5)
 
 func _distance_squared(a: Vector3, b: Vector3) -> float:
 	return Vector2(a.x, a.z).distance_squared_to(Vector2(b.x, b.z))

@@ -1,0 +1,2954 @@
+{
+  "stand": {
+    "original": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 216,
+          "visibleP95Mm": 133.88095796108246,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 927,
+          "visibleP95Mm": 28.431606292724606,
+          "visibleMaxMm": 148.90801906585693,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2546,
+          "visibleCount": 562,
+          "visibleP95Mm": 214.09521400928497,
+          "visibleMaxMm": 221.13758325576782,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2546,
+          "visibleCount": 785,
+          "visibleP95Mm": 29.336094856262207,
+          "visibleMaxMm": 229.43097352981567,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "innerTrim": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 216,
+          "visibleP95Mm": 133.88095796108246,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 68,
+          "visibleP95Mm": 120.58125734329224,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2546,
+          "visibleCount": 562,
+          "visibleP95Mm": 214.09521400928497,
+          "visibleMaxMm": 221.13758325576782,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2546,
+          "visibleCount": 785,
+          "visibleP95Mm": 29.336094856262207,
+          "visibleMaxMm": 229.43097352981567,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6646,
+          "visibleCount": 214,
+          "visibleP95Mm": 141.64827466011047,
+          "visibleMaxMm": 147.1884250640869,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6646,
+          "visibleCount": 65,
+          "visibleP95Mm": 128.81046533584595,
+          "visibleMaxMm": 143.50110292434692,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2563,
+          "visibleCount": 315,
+          "visibleP95Mm": 222.97891974449158,
+          "visibleMaxMm": 228.67828607559204,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2563,
+          "visibleCount": 359,
+          "visibleP95Mm": 28.355085849761938,
+          "visibleMaxMm": 237.4635934829712,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6652,
+          "visibleCount": 212,
+          "visibleP95Mm": 147.26114571094513,
+          "visibleMaxMm": 152.94188261032104,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6652,
+          "visibleCount": 65,
+          "visibleP95Mm": 138.41766119003296,
+          "visibleMaxMm": 153.75787019729614,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2565,
+          "visibleCount": 268,
+          "visibleP95Mm": 228.96293699741364,
+          "visibleMaxMm": 234.42941904067993,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2565,
+          "visibleCount": 140,
+          "visibleP95Mm": 237.09767758846283,
+          "visibleMaxMm": 259.68730449676514,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.9690000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 216,
+          "visibleP95Mm": 133.88095796108246,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 68,
+          "visibleP95Mm": 120.58125734329224,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2236,
+          "visibleCount": 333,
+          "visibleP95Mm": 214.0958309173584,
+          "visibleMaxMm": 220.16984224319458,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9850000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2236,
+          "visibleCount": 499,
+          "visibleP95Mm": 28.23373675346372,
+          "visibleMaxMm": 228.6035418510437,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.933
+            ]
+          ]
+        }
+      }
+    },
+    "tuck14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 216,
+          "visibleP95Mm": 133.88095796108246,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 68,
+          "visibleP95Mm": 120.58125734329224,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2064,
+          "visibleCount": 292,
+          "visibleP95Mm": 213.31032812595367,
+          "visibleMaxMm": 219.36076879501343,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9730000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2064,
+          "visibleCount": 385,
+          "visibleP95Mm": 31.370854377746557,
+          "visibleMaxMm": 227.96404361724854,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        }
+      }
+    },
+    "tuck20mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 216,
+          "visibleP95Mm": 133.88095796108246,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 68,
+          "visibleP95Mm": 120.58125734329224,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 1995,
+          "visibleCount": 261,
+          "visibleP95Mm": 212.2688889503479,
+          "visibleMaxMm": 218.4748649597168,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 1995,
+          "visibleCount": 313,
+          "visibleP95Mm": 32.74065256118769,
+          "visibleMaxMm": 227.38969326019287,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.921
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "carry_remote": {
+    "original": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 212,
+          "visibleP95Mm": 133.88833701610565,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 935,
+          "visibleP95Mm": 31.229102611541744,
+          "visibleMaxMm": 148.90801906585693,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2546,
+          "visibleCount": 562,
+          "visibleP95Mm": 214.09521400928497,
+          "visibleMaxMm": 221.13758325576782,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2546,
+          "visibleCount": 785,
+          "visibleP95Mm": 29.336094856262207,
+          "visibleMaxMm": 229.43097352981567,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "innerTrim": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 212,
+          "visibleP95Mm": 133.88833701610565,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 74,
+          "visibleP95Mm": 120.20589113235474,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2546,
+          "visibleCount": 562,
+          "visibleP95Mm": 214.09521400928497,
+          "visibleMaxMm": 221.13758325576782,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2546,
+          "visibleCount": 785,
+          "visibleP95Mm": 29.336094856262207,
+          "visibleMaxMm": 229.43097352981567,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6646,
+          "visibleCount": 210,
+          "visibleP95Mm": 141.7100489139557,
+          "visibleMaxMm": 147.1884250640869,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6646,
+          "visibleCount": 71,
+          "visibleP95Mm": 128.7660300731659,
+          "visibleMaxMm": 143.50110292434692,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2563,
+          "visibleCount": 315,
+          "visibleP95Mm": 222.97891974449158,
+          "visibleMaxMm": 228.67828607559204,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2563,
+          "visibleCount": 359,
+          "visibleP95Mm": 28.355085849761938,
+          "visibleMaxMm": 237.4635934829712,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6652,
+          "visibleCount": 208,
+          "visibleP95Mm": 147.2729355096817,
+          "visibleMaxMm": 152.94188261032104,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6652,
+          "visibleCount": 71,
+          "visibleP95Mm": 137.74505257606506,
+          "visibleMaxMm": 153.75787019729614,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2565,
+          "visibleCount": 268,
+          "visibleP95Mm": 228.96293699741364,
+          "visibleMaxMm": 234.42941904067993,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2565,
+          "visibleCount": 140,
+          "visibleP95Mm": 237.09767758846283,
+          "visibleMaxMm": 259.68730449676514,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.9690000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 212,
+          "visibleP95Mm": 133.88833701610565,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 74,
+          "visibleP95Mm": 120.20589113235474,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2236,
+          "visibleCount": 333,
+          "visibleP95Mm": 214.0958309173584,
+          "visibleMaxMm": 220.16984224319458,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9850000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2236,
+          "visibleCount": 499,
+          "visibleP95Mm": 28.23373675346372,
+          "visibleMaxMm": 228.6035418510437,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.933
+            ]
+          ]
+        }
+      }
+    },
+    "tuck14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 212,
+          "visibleP95Mm": 133.88833701610565,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 74,
+          "visibleP95Mm": 120.20589113235474,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2064,
+          "visibleCount": 292,
+          "visibleP95Mm": 213.31032812595367,
+          "visibleMaxMm": 219.36076879501343,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9730000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2064,
+          "visibleCount": 385,
+          "visibleP95Mm": 31.370854377746557,
+          "visibleMaxMm": 227.96404361724854,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        }
+      }
+    },
+    "tuck20mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 212,
+          "visibleP95Mm": 133.88833701610565,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 74,
+          "visibleP95Mm": 120.20589113235474,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 1995,
+          "visibleCount": 261,
+          "visibleP95Mm": 212.2688889503479,
+          "visibleMaxMm": 218.4748649597168,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 1995,
+          "visibleCount": 313,
+          "visibleP95Mm": 32.74065256118769,
+          "visibleMaxMm": 227.38969326019287,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.921
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "get_up_knee": {
+    "original": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6668,
+          "visibleCount": 86,
+          "visibleP95Mm": 134.6479207277298,
+          "visibleMaxMm": 139.5518183708191,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6668,
+          "visibleCount": 963,
+          "visibleP95Mm": 49.17538762092587,
+          "visibleMaxMm": 148.992121219635,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2552,
+          "visibleCount": 285,
+          "visibleP95Mm": 37.46632337570192,
+          "visibleMaxMm": 91.54462814331055,
+          "visibleBounds": [
+            [
+              -0.16499999999999998,
+              0.897
+            ],
+            [
+              0.16700000000000031,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2552,
+          "visibleCount": 231,
+          "visibleP95Mm": 22.24498987197876,
+          "visibleMaxMm": 193.6967372894287,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "innerTrim": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6668,
+          "visibleCount": 86,
+          "visibleP95Mm": 134.6479207277298,
+          "visibleMaxMm": 139.5518183708191,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6668,
+          "visibleCount": 105,
+          "visibleP95Mm": 114.20977115631098,
+          "visibleMaxMm": 124.9346137046814,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2552,
+          "visibleCount": 285,
+          "visibleP95Mm": 37.46632337570192,
+          "visibleMaxMm": 91.54462814331055,
+          "visibleBounds": [
+            [
+              -0.16499999999999998,
+              0.897
+            ],
+            [
+              0.16700000000000031,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2552,
+          "visibleCount": 231,
+          "visibleP95Mm": 22.24498987197876,
+          "visibleMaxMm": 193.6967372894287,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6671,
+          "visibleCount": 84,
+          "visibleP95Mm": 142.07816421985626,
+          "visibleMaxMm": 147.2223997116089,
+          "visibleBounds": [
+            [
+              -0.13299999999999995,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6671,
+          "visibleCount": 102,
+          "visibleP95Mm": 127.18684673309325,
+          "visibleMaxMm": 143.48775148391724,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2571,
+          "visibleCount": 210,
+          "visibleP95Mm": 35.248166322708116,
+          "visibleMaxMm": 85.07031202316284,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2571,
+          "visibleCount": 45,
+          "visibleP95Mm": 197.798752784729,
+          "visibleMaxMm": 204.91009950637817,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.16700000000000031,
+              1.0010000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6677,
+          "visibleCount": 82,
+          "visibleP95Mm": 148.02531599998474,
+          "visibleMaxMm": 152.97752618789673,
+          "visibleBounds": [
+            [
+              -0.13299999999999995,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6677,
+          "visibleCount": 102,
+          "visibleP95Mm": 134.24333333969113,
+          "visibleMaxMm": 154.62368726730347,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2573,
+          "visibleCount": 204,
+          "visibleP95Mm": 40.5669242143631,
+          "visibleMaxMm": 71.52765989303589,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2573,
+          "visibleCount": 16,
+          "visibleP95Mm": 214.19329941272736,
+          "visibleMaxMm": 224.7598171234131,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.011000000000000176,
+              0.9690000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6668,
+          "visibleCount": 86,
+          "visibleP95Mm": 134.6479207277298,
+          "visibleMaxMm": 139.5518183708191,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6668,
+          "visibleCount": 105,
+          "visibleP95Mm": 114.20977115631098,
+          "visibleMaxMm": 124.9346137046814,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2250,
+          "visibleCount": 197,
+          "visibleP95Mm": 29.2499303817749,
+          "visibleMaxMm": 54.37201261520386,
+          "visibleBounds": [
+            [
+              -0.16899999999999998,
+              0.897
+            ],
+            [
+              0.16700000000000031,
+              0.9890000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2250,
+          "visibleCount": 114,
+          "visibleP95Mm": 84.84981060027988,
+          "visibleMaxMm": 192.24196672439575,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        }
+      }
+    },
+    "tuck14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6668,
+          "visibleCount": 86,
+          "visibleP95Mm": 134.6479207277298,
+          "visibleMaxMm": 139.5518183708191,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6668,
+          "visibleCount": 105,
+          "visibleP95Mm": 114.20977115631098,
+          "visibleMaxMm": 124.9346137046814,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2084,
+          "visibleCount": 186,
+          "visibleP95Mm": 29.739707708358765,
+          "visibleMaxMm": 55.46528100967407,
+          "visibleBounds": [
+            [
+              -0.16899999999999998,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              0.9770000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2084,
+          "visibleCount": 66,
+          "visibleP95Mm": 186.4444464445114,
+          "visibleMaxMm": 190.9138560295105,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.921
+            ]
+          ]
+        }
+      }
+    },
+    "tuck20mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6668,
+          "visibleCount": 86,
+          "visibleP95Mm": 134.6479207277298,
+          "visibleMaxMm": 139.5518183708191,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2130000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6668,
+          "visibleCount": 105,
+          "visibleP95Mm": 114.20977115631098,
+          "visibleMaxMm": 124.9346137046814,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2020,
+          "visibleCount": 179,
+          "visibleP95Mm": 31.46979808807373,
+          "visibleMaxMm": 55.86516857147217,
+          "visibleBounds": [
+            [
+              -0.16899999999999998,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              0.9410000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2020,
+          "visibleCount": 43,
+          "visibleP95Mm": 185.8892798423767,
+          "visibleMaxMm": 189.39006328582764,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.913
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "down": {
+    "original": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6643,
+          "visibleCount": 183,
+          "visibleP95Mm": 134.14649367332458,
+          "visibleMaxMm": 139.504075050354,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6643,
+          "visibleCount": 904,
+          "visibleP95Mm": 29.63260710239398,
+          "visibleMaxMm": 202.7609348297119,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2543,
+          "visibleCount": 479,
+          "visibleP95Mm": 212.73545026779175,
+          "visibleMaxMm": 219.35045719146729,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2543,
+          "visibleCount": 636,
+          "visibleP95Mm": 26.341989636421204,
+          "visibleMaxMm": 224.84230995178223,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "innerTrim": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6643,
+          "visibleCount": 183,
+          "visibleP95Mm": 134.14649367332458,
+          "visibleMaxMm": 139.504075050354,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6643,
+          "visibleCount": 58,
+          "visibleP95Mm": 121.72478437423706,
+          "visibleMaxMm": 135.5711817741394,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2543,
+          "visibleCount": 479,
+          "visibleP95Mm": 212.73545026779175,
+          "visibleMaxMm": 219.35045719146729,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2543,
+          "visibleCount": 636,
+          "visibleP95Mm": 26.341989636421204,
+          "visibleMaxMm": 224.84230995178223,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6647,
+          "visibleCount": 180,
+          "visibleP95Mm": 142.07061231136322,
+          "visibleMaxMm": 147.1714973449707,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6647,
+          "visibleCount": 54,
+          "visibleP95Mm": 129.95795011520383,
+          "visibleMaxMm": 143.50777864456177,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2559,
+          "visibleCount": 283,
+          "visibleP95Mm": 223.07008504867554,
+          "visibleMaxMm": 227.02449560165405,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2559,
+          "visibleCount": 239,
+          "visibleP95Mm": 32.293015718460076,
+          "visibleMaxMm": 232.5112819671631,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6653,
+          "visibleCount": 179,
+          "visibleP95Mm": 147.61791229248047,
+          "visibleMaxMm": 152.9242992401123,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6653,
+          "visibleCount": 54,
+          "visibleP95Mm": 142.4757689237594,
+          "visibleMaxMm": 153.32061052322388,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2562,
+          "visibleCount": 267,
+          "visibleP95Mm": 229.0353238582611,
+          "visibleMaxMm": 232.78087377548218,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2562,
+          "visibleCount": 90,
+          "visibleP95Mm": 236.4159107208252,
+          "visibleMaxMm": 253.72105836868286,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.9690000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6643,
+          "visibleCount": 183,
+          "visibleP95Mm": 134.14649367332458,
+          "visibleMaxMm": 139.504075050354,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6643,
+          "visibleCount": 58,
+          "visibleP95Mm": 121.72478437423706,
+          "visibleMaxMm": 135.5711817741394,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2236,
+          "visibleCount": 298,
+          "visibleP95Mm": 214.83055055141446,
+          "visibleMaxMm": 218.6286449432373,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9850000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2236,
+          "visibleCount": 349,
+          "visibleP95Mm": 30.866432189941392,
+          "visibleMaxMm": 223.09339046478271,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.9570000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6643,
+          "visibleCount": 183,
+          "visibleP95Mm": 134.14649367332458,
+          "visibleMaxMm": 139.504075050354,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6643,
+          "visibleCount": 58,
+          "visibleP95Mm": 121.72478437423706,
+          "visibleMaxMm": 135.5711817741394,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2061,
+          "visibleCount": 261,
+          "visibleP95Mm": 215.14379978179932,
+          "visibleMaxMm": 218.08373928070068,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9730000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2061,
+          "visibleCount": 247,
+          "visibleP95Mm": 32.89538621902465,
+          "visibleMaxMm": 221.73291444778442,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.9570000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck20mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6643,
+          "visibleCount": 183,
+          "visibleP95Mm": 134.14649367332458,
+          "visibleMaxMm": 139.504075050354,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.07500000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6643,
+          "visibleCount": 58,
+          "visibleP95Mm": 121.72478437423706,
+          "visibleMaxMm": 135.5711817741394,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 1983,
+          "visibleCount": 236,
+          "visibleP95Mm": 215.49439430236816,
+          "visibleMaxMm": 217.58174896240234,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 1983,
+          "visibleCount": 186,
+          "visibleP95Mm": 38.483768701553345,
+          "visibleMaxMm": 220.58755159378052,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.9570000000000001
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "sit": {
+    "original": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 197,
+          "visibleP95Mm": 133.96267890930176,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 929,
+          "visibleP95Mm": 29.335093498229863,
+          "visibleMaxMm": 148.90801906585693,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2770000000000004
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2547,
+          "visibleCount": 237,
+          "visibleP95Mm": 37.55502700805663,
+          "visibleMaxMm": 89.52558040618896,
+          "visibleBounds": [
+            [
+              -0.16499999999999998,
+              0.897
+            ],
+            [
+              0.16700000000000031,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2547,
+          "visibleCount": 267,
+          "visibleP95Mm": 23.58465194702147,
+          "visibleMaxMm": 195.57178020477295,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "innerTrim": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 197,
+          "visibleP95Mm": 133.96267890930176,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 70,
+          "visibleP95Mm": 120.45613527297974,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2547,
+          "visibleCount": 237,
+          "visibleP95Mm": 37.55502700805663,
+          "visibleMaxMm": 89.52558040618896,
+          "visibleBounds": [
+            [
+              -0.16499999999999998,
+              0.897
+            ],
+            [
+              0.16700000000000031,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2547,
+          "visibleCount": 267,
+          "visibleP95Mm": 23.58465194702147,
+          "visibleMaxMm": 195.57178020477295,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6646,
+          "visibleCount": 195,
+          "visibleP95Mm": 141.9098973274231,
+          "visibleMaxMm": 147.1884250640869,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6646,
+          "visibleCount": 67,
+          "visibleP95Mm": 128.79573702812195,
+          "visibleMaxMm": 143.50104331970215,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2568,
+          "visibleCount": 209,
+          "visibleP95Mm": 33.17921161651611,
+          "visibleMaxMm": 83.02438259124756,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2568,
+          "visibleCount": 91,
+          "visibleP95Mm": 198.5446810722351,
+          "visibleMaxMm": 207.01336860656738,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6652,
+          "visibleCount": 193,
+          "visibleP95Mm": 147.41748571395874,
+          "visibleMaxMm": 152.9420018196106,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6652,
+          "visibleCount": 67,
+          "visibleP95Mm": 138.1935715675354,
+          "visibleMaxMm": 153.7577509880066,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2570,
+          "visibleCount": 206,
+          "visibleP95Mm": 38.04875910282135,
+          "visibleMaxMm": 69.58794593811035,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.897
+            ],
+            [
+              0.1510000000000003,
+              1.0010000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2570,
+          "visibleCount": 21,
+          "visibleP95Mm": 222.28187322616577,
+          "visibleMaxMm": 225.83627700805664,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.011000000000000176,
+              0.9690000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 197,
+          "visibleP95Mm": 133.96267890930176,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 70,
+          "visibleP95Mm": 120.45613527297974,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2242,
+          "visibleCount": 189,
+          "visibleP95Mm": 27.09182500839233,
+          "visibleMaxMm": 49.82006549835205,
+          "visibleBounds": [
+            [
+              -0.16899999999999998,
+              0.897
+            ],
+            [
+              0.16700000000000031,
+              0.9850000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2242,
+          "visibleCount": 144,
+          "visibleP95Mm": 30.10790348052978,
+          "visibleMaxMm": 194.21732425689697,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.933
+            ]
+          ]
+        }
+      }
+    },
+    "tuck14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 197,
+          "visibleP95Mm": 133.96267890930176,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 70,
+          "visibleP95Mm": 120.45613527297974,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2077,
+          "visibleCount": 185,
+          "visibleP95Mm": 27.86076068878173,
+          "visibleMaxMm": 50.71556568145752,
+          "visibleBounds": [
+            [
+              -0.16899999999999998,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              0.9730000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2077,
+          "visibleCount": 104,
+          "visibleP95Mm": 164.0212565660468,
+          "visibleMaxMm": 192.96056032180786,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.921
+            ]
+          ]
+        }
+      }
+    },
+    "tuck20mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6642,
+          "visibleCount": 197,
+          "visibleP95Mm": 133.96267890930176,
+          "visibleMaxMm": 139.5200490951538,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.897
+            ],
+            [
+              0.1470000000000003,
+              1.2650000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6642,
+          "visibleCount": 70,
+          "visibleP95Mm": 120.45613527297974,
+          "visibleMaxMm": 124.850332736969,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2690000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2016,
+          "visibleCount": 179,
+          "visibleP95Mm": 29.65567111968994,
+          "visibleMaxMm": 50.94796419143677,
+          "visibleBounds": [
+            [
+              -0.16899999999999998,
+              0.897
+            ],
+            [
+              0.17100000000000032,
+              0.9410000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2016,
+          "visibleCount": 70,
+          "visibleP95Mm": 186.9328737258911,
+          "visibleMaxMm": 191.48552417755127,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.889
+            ],
+            [
+              0.17100000000000032,
+              0.917
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "swim": {
+    "original": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6627,
+          "visibleCount": 139,
+          "visibleP95Mm": 124.19490218162535,
+          "visibleMaxMm": 134.38266515731812,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6627,
+          "visibleCount": 872,
+          "visibleP95Mm": 35.35099029541015,
+          "visibleMaxMm": 207.02069997787476,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.2250000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2688,
+          "visibleCount": 409,
+          "visibleP95Mm": 207.03808069229126,
+          "visibleMaxMm": 216.3901925086975,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2688,
+          "visibleCount": 1077,
+          "visibleP95Mm": 33.18855762481687,
+          "visibleMaxMm": 245.3014850616455,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              1.0130000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "innerTrim": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6627,
+          "visibleCount": 139,
+          "visibleP95Mm": 124.19490218162535,
+          "visibleMaxMm": 134.38266515731812,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6627,
+          "visibleCount": 66,
+          "visibleP95Mm": 136.6799920797348,
+          "visibleMaxMm": 138.37116956710815,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2688,
+          "visibleCount": 409,
+          "visibleP95Mm": 207.03808069229126,
+          "visibleMaxMm": 216.3901925086975,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2688,
+          "visibleCount": 1077,
+          "visibleP95Mm": 33.18855762481687,
+          "visibleMaxMm": 245.3014850616455,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              1.0130000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6634,
+          "visibleCount": 136,
+          "visibleP95Mm": 127.58554518222809,
+          "visibleMaxMm": 139.809250831604,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6634,
+          "visibleCount": 66,
+          "visibleP95Mm": 145.28347551822662,
+          "visibleMaxMm": 145.68603038787842,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2707,
+          "visibleCount": 204,
+          "visibleP95Mm": 218.6114251613617,
+          "visibleMaxMm": 223.5037088394165,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0050000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2707,
+          "visibleCount": 610,
+          "visibleP95Mm": 30.39551973342895,
+          "visibleMaxMm": 253.89057397842407,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              1.0130000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "hem14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6637,
+          "visibleCount": 134,
+          "visibleP95Mm": 133.59493613243103,
+          "visibleMaxMm": 145.7040309906006,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6637,
+          "visibleCount": 62,
+          "visibleP95Mm": 150.89594721794128,
+          "visibleMaxMm": 151.41689777374268,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2707,
+          "visibleCount": 155,
+          "visibleP95Mm": 225.56388974189758,
+          "visibleMaxMm": 229.3984889984131,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              1.0090000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2707,
+          "visibleCount": 255,
+          "visibleP95Mm": 241.86993837356567,
+          "visibleMaxMm": 258.938729763031,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              1.0090000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck8mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6627,
+          "visibleCount": 139,
+          "visibleP95Mm": 124.19490218162535,
+          "visibleMaxMm": 134.38266515731812,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6627,
+          "visibleCount": 66,
+          "visibleP95Mm": 136.6799920797348,
+          "visibleMaxMm": 138.37116956710815,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2358,
+          "visibleCount": 234,
+          "visibleP95Mm": 208.58113169670105,
+          "visibleMaxMm": 214.75976705551147,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9890000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2358,
+          "visibleCount": 746,
+          "visibleP95Mm": 34.29292142391205,
+          "visibleMaxMm": 245.0929880142212,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              0.9970000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck14mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6627,
+          "visibleCount": 139,
+          "visibleP95Mm": 124.19490218162535,
+          "visibleMaxMm": 134.38266515731812,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6627,
+          "visibleCount": 66,
+          "visibleP95Mm": 136.6799920797348,
+          "visibleMaxMm": 138.37116956710815,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2184,
+          "visibleCount": 187,
+          "visibleP95Mm": 208.09401869773865,
+          "visibleMaxMm": 213.1274938583374,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.9690000000000001
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2184,
+          "visibleCount": 592,
+          "visibleP95Mm": 37.130454182624796,
+          "visibleMaxMm": 244.93056535720825,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              0.9730000000000001
+            ]
+          ]
+        }
+      }
+    },
+    "tuck20mm": {
+      "liner": {
+        "front": {
+          "overlapSamples": 6627,
+          "visibleCount": 139,
+          "visibleP95Mm": 124.19490218162535,
+          "visibleMaxMm": 134.38266515731812,
+          "visibleBounds": [
+            [
+              -0.14499999999999996,
+              0.901
+            ],
+            [
+              0.07100000000000023,
+              1.2370000000000003
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 6627,
+          "visibleCount": 66,
+          "visibleP95Mm": 136.6799920797348,
+          "visibleMaxMm": 138.37116956710815,
+          "visibleBounds": [
+            [
+              -0.14099999999999996,
+              0.889
+            ],
+            [
+              0.1470000000000003,
+              1.1850000000000003
+            ]
+          ]
+        }
+      },
+      "pants": {
+        "front": {
+          "overlapSamples": 2085,
+          "visibleCount": 167,
+          "visibleP95Mm": 207.12510347366333,
+          "visibleMaxMm": 211.44765615463257,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.893
+            ],
+            [
+              0.17100000000000032,
+              0.929
+            ]
+          ]
+        },
+        "back": {
+          "overlapSamples": 2085,
+          "visibleCount": 508,
+          "visibleP95Mm": 39.28559422492979,
+          "visibleMaxMm": 244.7822093963623,
+          "visibleBounds": [
+            [
+              -0.173,
+              0.885
+            ],
+            [
+              0.17100000000000032,
+              0.9730000000000001
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "transport": "production Godot server + two loopback WebSocket clients",
+  "results": {
+    "sharedUnowned": true,
+    "ownerConfirmedByBoth": true,
+    "waiting": {
+      "mode": "stay",
+      "clip": "Rest",
+      "clipAt": 5.016388,
+      "at": [
+        3.55999994277954,
+        -87.4000015258789
+      ]
+    },
+    "risePhase": 5.13305466666666,
+    "bothSawFollow": true,
+    "restoredOwnerAndWaiting": true
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "plants": {
+    "batches": {
+      "Bulrush": 4,
+      "Hazel": 8
+    },
+    "bulrush_bed_depth": [
+      0.174843937158585,
+      0.349653095006943
+    ],
+    "cells": [
+      [
+        "Hazel",
+        -4.0,
+        -44.0,
+        1
+      ],
+      [
+        "Hazel",
+        -12.0,
+        -44.0,
+        2
+      ],
+      [
+        "Hazel",
+        -12.0,
+        -36.0,
+        2
+      ],
+      [
+        "Hazel",
+        -4.0,
+        -60.0,
+        1
+      ],
+      [
+        "Hazel",
+        -12.0,
+        -60.0,
+        1
+      ],
+      [
+        "Hazel",
+        -4.0,
+        -36.0,
+        1
+      ],
+      [
+        "Hazel",
+        -44.0,
+        -44.0,
+        1
+      ],
+      [
+        "Hazel",
+        -44.0,
+        -60.0,
+        1
+      ],
+      [
+        "Bulrush",
+        -20.0,
+        -60.0,
+        6
+      ],
+      [
+        "Bulrush",
+        -12.0,
+        -52.0,
+        2
+      ],
+      [
+        "Bulrush",
+        -12.0,
+        -44.0,
+        7
+      ],
+      [
+        "Bulrush",
+        -20.0,
+        -36.0,
+        5
+      ]
+    ],
+    "closest_hazel_extent_to_route": 2.50796647012234,
+    "closest_new_extent_to_rock": 0.111152789592743,
+    "counts": {
+      "Bulrush": 20,
+      "Hazel": 10
+    },
+    "hazel_bank_grade": [
+      0.0,
+      0.513982653617859
+    ],
+    "hazel_height_above_water": [
+      0.0750000029802322,
+      0.831957161426544
+    ],
+    "remaining_lane_clearance": 2.2020200252533
+  },
+  "renderer": {
+    "device": "Apple M1",
+    "engine": "Godot 4.7.2",
+    "renderer": "OpenGL API 4.1 Metal Compatibility",
+    "viewport": [
+      1280,
+      720
+    ],
+    "loaded_production_chunks": [
+      "creek",
+      "crossing",
+      "approach"
+    ],
+    "temporary_staging_build": false,
+    "project": "coop/ source and live terrain resources"
+  },
+  "coast_movement_checks": {
+    "checks": [
+      {
+        "check": "The inland and coastal height fields meet at the old western edge",
+        "ok": true
+      },
+      {
+        "check": "Normal player movement walks from the lake up to the clifftop",
+        "ok": true
+      },
+      {
+        "check": "The descending trail reaches the shore with the same collision data",
+        "ok": true
+      },
+      {
+        "check": "Normal movement switches to swimming and crosses the outer reef",
+        "ok": true
+      },
+      {
+        "check": "A swimmer can land and walk to the top of the offshore island",
+        "ok": true
+      },
+      {
+        "check": "The bay and ocean route includes sustained swimming",
+        "ok": true
+      },
+      {
+        "check": "The same ship flies at full speed from the mainland across the reef to the island",
+        "ok": true
+      },
+      {
+        "check": "The ship can park on sea water and let a player get out to swim",
+        "ok": true
+      },
+      {
+        "check": "A saved island location restores on the new terrain",
+        "ok": true
+      }
+    ],
+    "fastestShip": 11.0000276565552,
+    "seamError": 0.0174716525757708,
+    "shipTargetDistance": 0.181463733315468,
+    "swimFrames": 1975
+  },
+  "same_view_change": {
+    "hazel_present": {
+      "pixels_max_channel_difference_over_8": 23332,
+      "rgb_mean_absolute_difference": 0.722
+    },
+    "bulrush_present": {
+      "pixels_max_channel_difference_over_8": 21164,
+      "rgb_mean_absolute_difference": 0.936
+    },
+    "dock_present": {
+      "pixels_max_channel_difference_over_8": 25881,
+      "rgb_mean_absolute_difference": 0.9072
+    },
+    "hazel_gust": {
+      "pixels_max_channel_difference_over_8": 68599,
+      "rgb_mean_absolute_difference": 3.3464
+    },
+    "bulrush_gust": {
+      "pixels_max_channel_difference_over_8": 81430,
+      "rgb_mean_absolute_difference": 1.8862
+    }
+  },
+  "models": [
+    {
+      "file": "coop/vegetation/lakeside_hazel.glb",
+      "bytes": 664984,
+      "triangles": 8768,
+      "materials": 1,
+      "meshes": [
+        {
+          "name": "Manchurian hazel Mesh",
+          "primitives": [
+            {
+              "vertices": 7620,
+              "triangles": 8768,
+              "material": 0,
+              "joint_attribute_sets": 0,
+              "morph_targets": 0
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "name": "Manchurian hazel atlas",
+          "mime_type": "image/png",
+          "embedded_bytes": 305936,
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "skins": [],
+      "animations": [],
+      "metres_xyz": [
+        1.19567,
+        1.4704,
+        1.23968
+      ],
+      "sha256": "16b38c780069d7adc9ffe04dc5adabd5dfd3a8488782d97b6c6f116723c88268"
+    },
+    {
+      "file": "coop/vegetation/lakeside_bulrush.glb",
+      "bytes": 465232,
+      "triangles": 4032,
+      "materials": 1,
+      "meshes": [
+        {
+          "name": "Softstem bulrush Mesh",
+          "primitives": [
+            {
+              "vertices": 3133,
+              "triangles": 4032,
+              "material": 0,
+              "joint_attribute_sets": 0,
+              "morph_targets": 0
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "name": "Softstem bulrush atlas",
+          "mime_type": "image/png",
+          "embedded_bytes": 314071,
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "skins": [],
+      "animations": [],
+      "metres_xyz": [
+        0.74171,
+        1.48459,
+        0.76041
+      ],
+      "sha256": "6acef9d97f03965c5df577cf0288f5ca988b433e107021fcc1a2ff1d4df08af5"
+    }
+  ],
+  "risk_notes": [
+    "No browser timing for this source-only integration."
+  ],
+  "blender_source": {
+    "blender": "5.2.4 LTS",
+    "units": "METRIC",
+    "editable_parts": {
+      "Manchurian hazel": [
+        "Hazel · bark and forks",
+        "Hazel · bristly fruit husks",
+        "Hazel · serrated foliage"
+      ],
+      "Softstem bulrush": [
+        "Bulrush · basal sheaths and bracts",
+        "Bulrush · rounded culms",
+        "Bulrush · rust-coloured lateral spikelets"
+      ]
+    },
+    "packed_images": {
+      "Manchurian hazel atlas": {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "75c41b68c3ef036a46e9dec1086f881b5822c3cb052d53194f4b88b1a7c63c5a"
+      },
+      "Softstem bulrush atlas": {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "1b9453609373f5b1cec0b198451dc3ee119a11b217c5c6156dcf47bdc73f06de"
+      }
+    }
+  },
+  "formal_source_recheck": {
+    "counts_and_locations_match_validated_candidate": true,
+    "original_lake_effects_unchanged_in_source": true
+  },
+  "husk_palette_audit": {
+    "comparison": "Same scene and camera. Only the husk atlas region changes.",
+    "rain": 0.0,
+    "stations": [
+      [
+        "(-6.12, 1.13, -43.42)",
+        "(-6.575, 1.137, -43.529)"
+      ],
+      [
+        "(-7.1, 0.98, -44.48)",
+        "(-7.145, 0.974, -44.029)"
+      ]
+    ],
+    "view_time": 46.0,
+    "capture_size": [
+      1280,
+      720
+    ],
+    "compared_husk_crop": [
+      356,
+      127,
+      811,
+      647
+    ],
+    "mesh_vertex_uv_and_index_buffers_match": true,
+    "changed_atlas_columns": [
+      400,
+      511
+    ],
+    "frame_delta": [
+      {
+        "pixels_max_channel_difference_over_8": 8565,
+        "rgb_mean_absolute_difference": 0.1152
+      },
+      {
+        "pixels_max_channel_difference_over_8": 10190,
+        "rgb_mean_absolute_difference": 0.134
+      }
+    ],
+    "atlas_sha256": "75c41b68c3ef036a46e9dec1086f881b5822c3cb052d53194f4b88b1a7c63c5a"
+  },
+  "running_web_pack_releases_preserved": [
+    5184,
+    5084,
+    4984
+  ]
+}

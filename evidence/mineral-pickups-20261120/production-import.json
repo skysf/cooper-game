@@ -1,0 +1,27 @@
+{
+  "resourceErrors": [],
+  "reimported": [
+    "coal.glb",
+    "iron_ore.glb"
+  ],
+  "textures": {
+    "coal": {
+      "cachedTextures": {
+        "coal_chunk_diff.jpg-c48ed07f8b8535006b7115bb811398cc.ctex": 125939,
+        "coal_chunk_nor_gl.webp-fd0fb48b4b21fff05f81a08060503390.ctex": 182662,
+        "coal_chunk_rough.webp-a805bb5589953d695db518d21cfef9c8.ctex": 50323
+      },
+      "bytes": 358924
+    },
+    "iron_ore": {
+      "cachedTextures": {
+        "iron_ore_chunk_rough.webp-49b7ec036a15be9d0548a915d563d777.ctex": 48831,
+        "iron_ore_chunk_diff.jpg-baa95db790ee7190f9d74c8092820137.ctex": 263349,
+        "iron_ore_chunk_nor_gl.webp-24d4cf789115ee552e49c80368bca6c0.ctex": 234900
+      },
+      "bytes": 547080
+    }
+  },
+  "godotVersion": "4.7.2",
+  "nativeImagePairs": 6
+}

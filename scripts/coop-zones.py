@@ -79,7 +79,7 @@ def materials():
     card.save(TEXTURES / "distant_fir.png", optimize=True)
 
 
-def source_meshes():
+def source_meshes(crowns):
     data=(SOURCE/"woodland.glb").read_bytes()
     size=struct.unpack_from("<I", data, 12)[0]
     doc=json.loads(data[20:20+size])
@@ -96,6 +96,14 @@ def source_meshes():
         prim=mesh["primitives"][0]
         attributes={k:accessor(v) for k,v in prim["attributes"].items()}
         triangles=accessor(prim["indices"]).reshape(-1,3)
+        if name in ("bark", "needles") and crowns:
+            keep = np.ones(len(triangles), dtype=bool)
+            for crown in crowns:
+                start, end = crown["triangles"][name]
+                if not 0 <= start < end <= len(triangles) or not keep[start:end].all():
+                    raise ValueError(f"Invalid {name} range for {crown['id']}")
+                keep[start:end] = False
+            triangles = triangles[keep]
         if name == "forest_floor":
             # The resident coastal field supplies the former western backdrop.
             triangles = triangles[attributes["POSITION"][triangles, 0].mean(axis=1) >= -30.0]
@@ -168,14 +176,26 @@ def grass_cells(plants, chunks):
             for chunk, patches in cells.items()}
 
 
-def main():
+def main(reuse_materials=False):
     subprocess.run(["node", "scripts/build-scene.mjs", "--coop"], cwd=ROOT, check=True)
     layout = json.loads((SOURCE / "scene.json").read_text())
     for d in (OUT,TEXTURES,MATERIALS):
         d.mkdir(parents=True,exist_ok=True)
-    materials()
+    if not reuse_materials:
+        materials()
+    crowns = layout["streamedCrowns"]
+    crown_catalog = {}
+    for crown in crowns:
+        model = crown["model"]
+        if not (PROJECT / model).is_file():
+            raise ValueError(f"Missing streamed crown: {model}")
+        z = crown["at"][1]
+        chunk = next(name for name, lo, hi in CHUNKS if lo <= z < hi)
+        entry = {key: crown[key] for key in ("id", "at", "height")}
+        entry["model"] = "res://" + model
+        crown_catalog.setdefault(chunk, []).append(entry)
     chunks=[Chunk() for _ in CHUNKS]
-    for name,attrs,tri,z in source_meshes():
+    for name,attrs,tri,z in source_meshes(crowns):
         if name in TILED_SURFACES:
             center_x = attrs["POSITION"][tri, 0].mean(axis=1)
             columns = np.floor(center_x / TILE_WIDTH + 0.5).astype(np.int16)
@@ -216,7 +236,7 @@ def main():
         obstacles.append(dict(type=tree.get("species", "pine"), x=tree["x"], z=tree["z"], r=tree["radius"]))
     trees=[[o['x'],o['z'],o['height'],o['yaw']] for o in layout["objects"] if o["type"]=="fir"]
     world.update(spawn=[1.9,-85],sites={"wood":[-9,-53],"tarp":[9,-17],"repair":[1.9,-89.6]},
-                 obstacles=obstacles,chunks=manifest,trees=trees,grove=GROVE,
+                 obstacles=obstacles,chunks=manifest,trees=trees,grove=GROVE,streamedCrowns=crown_catalog,
                  grass=grass_cells(layout["grass"], manifest))
     (PROJECT/"world.json").write_text(json.dumps(world,separators=(',',':')))
     print("Resident material source bytes:",sum(p.stat().st_size for p in TEXTURES.iterdir() if p.suffix in ('.png','.jpg')))
@@ -224,4 +244,7 @@ def main():
 
 
 if __name__=="__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--reuse-materials", action="store_true", help="Keep the existing runtime texture and material files")
+    main(parser.parse_args().reuse_materials)

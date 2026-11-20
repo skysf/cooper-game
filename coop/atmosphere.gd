@@ -1,10 +1,15 @@
 extends Node3D
 
+const WindField = preload("res://vegetation/wind_field.gd")
+const RainShelter = preload("res://rain_shelter.gd")
+const RAIN_SHADER = preload("res://materials/rain_streaks.gdshader")
 const SKY_SHADER := preload("res://materials/camp_sky.gdshader")
 const STAR_CATALOG := preload("res://textures/milky_way_stars.png")
 const EVENING_SKY := preload("res://textures/evening_sky.jpg")
 const DAY_SECONDS := 420.0
 const FIRST_SUNSET := 122.0
+const RAIN_FALL_SPEED := 15.0
+const RAIN_PREVAILING_DRIFT := Vector2(2.6, -1.7)
 const LATITUDE := 0.75049158 # 43 degrees north
 const SOLAR_LONGITUDE := 2.87341195 # Early September
 const OBLIQUITY := 0.4090928
@@ -26,6 +31,7 @@ var sun := DirectionalLight3D.new()
 var moon := DirectionalLight3D.new()
 var rain := MultiMeshInstance3D.new()
 var streaks := ShaderMaterial.new()
+var _rain_shelter := RainShelter.new()
 var sky_material := ShaderMaterial.new()
 
 var sun_direction := Vector3.UP
@@ -69,7 +75,7 @@ func _ready() -> void:
 	add_child(sun)
 	add_child(moon)
 	_init_streaks()
-	update_weather(Vector3.ZERO, 0.0, 0.0, 0.0, false)
+	update_weather(Vector3.ZERO, 0.0, 0.0, false)
 
 func _init_sky() -> void:
 	var noise := FastNoiseLite.new()
@@ -210,35 +216,14 @@ func _update_sky(elapsed: float, wet: float) -> void:
 	sky_material.set_shader_parameter("galactic_north", _stars_axis(sidereal_angle, GALACTIC_NORTH))
 
 func _init_streaks() -> void:
-	var shader := Shader.new()
-	shader.code = """
-shader_type spatial;
-render_mode unshaded, cull_disabled, fog_disabled, depth_draw_never;
-uniform float fallen;
-uniform float wet;
-uniform bool repaired;
-varying vec3 world_point;
-void vertex() {
-	vec3 s = INSTANCE_CUSTOM.xyz;
-	float y = mod(s.y * 10.0 - fallen, 10.0) - 2.0;
-	VERTEX += vec3((s.x-.5)*18.0 + VERTEX.y*.16, y, (s.z-.5)*18.0);
-	world_point = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-}
-void fragment() {
-	if(repaired && abs(world_point.x-1.9)<2.6 && abs(world_point.z+89.6)<2.7 && world_point.y<2.7) discard;
-	ALBEDO = vec3(.67, .77, .82);
-	ALPHA = wet*.45;
-}
-"""
-	streaks.shader = shader
+	streaks.shader = RAIN_SHADER
 	var quad := QuadMesh.new()
-	quad.size = Vector2(.012, .20)
 	quad.material = streaks
 	var drops := MultiMesh.new()
 	drops.transform_format = MultiMesh.TRANSFORM_3D
 	drops.use_custom_data = true
 	drops.mesh = quad
-	drops.instance_count = 960
+	drops.instance_count = 1280
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 29121
 	for i in drops.instance_count:
@@ -249,7 +234,10 @@ void fragment() {
 	rain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(rain)
 
-func update_weather(at: Vector3, yaw: float, elapsed: float, wet: float, repaired: bool,
+func set_rain_roofs(records: Dictionary) -> void:
+	_rain_shelter.set_roofs(records)
+
+func update_weather(at: Vector3, elapsed: float, wet: float, repaired: bool,
 		below_water := false, camera_water_depth := NAN, sea_view := 0.0) -> void:
 	# Older callers supply just whether the eye is submerged. A real camera can
 	# cross the waterline continuously, including in third person or from the ship.
@@ -265,8 +253,13 @@ func update_weather(at: Vector3, yaw: float, elapsed: float, wet: float, repaire
 		_last_sky_rain = wet
 		_update_sky(elapsed, wet)
 		streaks.set_shader_parameter("wet", wet)
+		streaks.set_shader_parameter("light_level", clampf(environment.ambient_light_energy / 0.5, 0.28, 1.0))
 	rain.visible = wet > .005 and not underwater
-	rain.position = at
-	rain.rotation.y = yaw
-	streaks.set_shader_parameter("fallen", elapsed * 15.)
-	streaks.set_shader_parameter("repaired", repaired)
+	if rain.visible:
+		rain.global_position = at
+		streaks.set_shader_parameter("wind_time", elapsed)
+		streaks.set_shader_parameter("wind_field", WindField.sample(elapsed, wet))
+		streaks.set_shader_parameter("fallen", fposmod(elapsed * RAIN_FALL_SPEED, 10.0))
+		streaks.set_shader_parameter("rain_drift", Vector2(fposmod(elapsed * RAIN_PREVAILING_DRIFT.x, 18.0),
+			fposmod(elapsed * RAIN_PREVAILING_DRIFT.y, 18.0)))
+		_rain_shelter.apply(at, repaired, streaks)
