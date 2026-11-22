@@ -13,6 +13,9 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 
+[editor]
+import/use_multiple_threads.macos=false
+
 [importer_defaults]
 texture={"compress/mode": 1, "compress/lossy_quality": 0.84, "mipmaps/generate": true}
 

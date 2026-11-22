@@ -38,6 +38,8 @@ npm run coop:lan
 
 服务端使用已安装的标准版 Godot 4.7.2，无需导出模板即可启动。用 `npm run coop:build:web` 从源构建网页，需 Node.js、Python 3、NumPy、Pillow 和同版 Godot。Mac 上的 `npm run coop:build` 会同时构建网页和 Mac 客户端。网页使用 WebGL 2、Compatibility 渲染器与单线程导出，分块、WASM 和 PCK 均可用 gzip 传输。对外可访问的公网房间、Steam 好友邀请和手机触控尚未实现。
 
+macOS 上的编辑器会逐项导入资源，避免 Godot 4.7.2 在首次并行导入营地字体时崩溃。
+
 - [合作样片验证记录](coop.md)　·　[素材来源与许可](woodland-assets.md)。新地图沿用该页的 CC0 林地材质，新增木塔、溪流、物资和营地构件为本项目程序化几何。HUD 字体的来源及许可在 [NOTICE](../coop/fonts/NOTICE.txt)。
 - 房间逻辑与断线复验可运行 `npm run coop:test`。服务启动后，用 `node scripts/coop-playtest.mjs` 复验网页与 Mac 的任务流程，用 `node scripts/coop-web-check.mjs` 复验浏览器限速首开和双浏览器入房，用 `node scripts/coop-flight-playtest.mjs` 复验飞行与停泊。自动化使用独立房间、无窗口浏览器和页面内输入。跨端试玩用 `--headless` 启动 Mac 发行版的可执行文件。
 - 来袭者完整生命周期和真实模型/动作/面板复验运行 `npm run coop:test:wild -- evidence/wild-people-lifecycle.json`。浏览器加速验收可生成独立存档夹具：`npm run coop:fixture:wild -- .cache/wild-ui-rooms captive`；场景及独立端口启动方法见[专题验证入口](wild-people.md#实现与验证入口)。
