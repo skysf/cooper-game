@@ -7,7 +7,7 @@ const COAST_SCENERY_LAYER := 1 << 14
 const Placement = preload("res://placement.gd")
 const PATH := "res://props/mines/mines_manifest.json"
 
-static var data: Dictionary = _load()
+static var data: Dictionary = preload("res://east/mine_ground.gd").data
 static var _colliders: Dictionary = _build_solids()
 static var _poses: Dictionary = _build_poses()
 
@@ -62,6 +62,6 @@ static func solids(id := "") -> Array[Dictionary]:
 static func occludes_plant(at: Vector2) -> bool:
 	for id: String in data:
 		var local := pose(id).affine_inverse() * Vector3(at.x, 0.0, at.y)
-		if local.z >= -0.32 and local.z <= 11.9 and absf(local.x) < 2.40:
+		if local.z >= -0.32 and local.z <= float(data[id].floor.back()[0])+.5 and absf(local.x) < 2.40:
 			return true
 	return false

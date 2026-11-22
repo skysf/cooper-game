@@ -5,11 +5,24 @@ const Survival = preload("res://survival.gd")
 const Weapons = preload("res://weapons.gd")
 const CharacterPreview = preload("res://character_preview.gd")
 const Storage = preload("res://camp_storage.gd")
+const FieldGuidePanel = preload("res://field_guide_panel.gd")
+const CAMP_CONTOURS = preload("res://textures/camp_menu_contours.webp")
 const ITEM_ICONS := {
+	"reed_bundle": preload("res://textures/inventory_reed_bundle.png"),
 	"crocodile_meat_raw": preload("res://textures/inventory_crocodile_meat_raw.png"),
 	"crocodile_meat_grilled": preload("res://textures/inventory_crocodile_meat_grilled.png"),
 	"crocodile_sandwich": preload("res://textures/inventory_crocodile_sandwich.png"),
 	"eagle_meat": preload("res://textures/inventory_eagle_meat.png"),
+	"boar_raw":preload("res://textures/inventory_boar_raw.png"),
+	"boar_grilled":preload("res://textures/inventory_boar_grilled.png"),
+	"boar_tusk":preload("res://textures/inventory_boar_tusk.png"),
+	"boar_hide":preload("res://textures/inventory_boar_hide.png"),
+	"boar_cloak":preload("res://textures/inventory_boar_cloak.png"),
+	"tusk_whistle":preload("res://textures/inventory_tusk_whistle.png"),
+	"boar_bedroll":preload("res://textures/inventory_boar_bedroll.png"),
+	"wool": preload("res://textures/inventory_wool.png"),
+	"lamb_raw": preload("res://textures/inventory_lamb_raw.png"),
+	"lamb_grilled": preload("res://textures/inventory_lamb_grilled.png"),
 	"dog_meat": preload("res://textures/inventory_dog_meat.png"),
 	"crocodile_hide": preload("res://textures/inventory_crocodile_hide.png"),
 	"eagle_feather": preload("res://textures/inventory_eagle_feather.png"),
@@ -36,13 +49,15 @@ const ITEM_ICONS := {
 	"rifle": preload("res://textures/inventory_rifle.png"),
 	"pistol": preload("res://textures/inventory_pistol.png"),
 }
-const EQUIPMENT_SLOTS := {"cap": "头部", "jacket": "上身", "pants": "下身", "backpack": "背部"}
-const CATEGORIES := {"all": "全部", "food": "食物与水", "clothing": "服装", "tools": "补给与武器"}
+const EQUIPMENT_SLOTS := {"cap": "头部", "jacket": "上身", "pants": "下身", "backpack": "背部","boar_cloak":"肩部"}
+const CATEGORIES := {"all": "全部", "food": "食物", "material": "材料", "gear": "装备"}
 
 signal resume_requested
 signal invite_requested
 signal backpack_close_requested
 signal backpack_action_requested(action: String, item: String)
+signal camp_page_requested(page: String)
+signal habitat_requested(site: String)
 
 const INK := Color("#f0eee4")
 const MUTED := Color("#aebfbb")
@@ -53,8 +68,16 @@ const WELL := Color("#131d1e")
 const TILE := Color("#223031")
 const EDGE := Color("#3e5250")
 const HUD_FILL := Color("#122022ec")
-const AREA := {"camp": "林间营地", "creek": "鹿鸣溪谷", "tower": "北坡瞭望塔", "lake": "鹿鸣湖岸",
-	"coast-trail": "西岸山径", "headland": "海湾崖顶", "beach": "海湾浅滩", "ocean": "外海", "island": "外海小岛"}
+const CAMP_PAPER := Color("#efe6ce")
+const CAMP_SOFT := Color("#bac1a8")
+const CAMP_FRAME := Color("#1f271e")
+const CAMP_SURFACE := Color("#252e24")
+const CAMP_BUTTON := Color("#354133")
+const CAMP_TILE := Color("#192018")
+const CAMP_GOLD := Color("#cab895")
+const AREA := {"vine_gap":"藤蔓谷口","shale_steps":"赤层岩坡","reed_bank":"湖岸芦苇荡","root_trail":"根影林径","flower_valley":"箭袋树花谷","east_ridge":"层岩台地","coal_mine":"林坡煤矿","iron_mine":"层岩铁矿",
+	"camp": "林间营地", "creek": "鹿鸣溪谷", "tower": "北坡瞭望塔", "lake": "鹿鸣湖岸",
+	"coast-trail": "西岸山径", "headland": "海湾崖顶", "beach": "海湾浅滩", "ocean": "外海", "island": "外海小岛", "buddha": "乐山大佛"}
 const GOALS := {"wood": "溪谷木料", "tarp": "瞭望塔防水布", "repair": "营地木棚"}
 const HEADING := ["北", "西北", "西", "西南", "南", "东南", "东", "东北"]
 const VITALS := [
@@ -117,14 +140,16 @@ var backpack_shade: ColorRect
 var backpack_panel: PanelContainer
 var backpack_capacity: Label
 var material_pending: Label
-var capacity_bar: ProgressBar
 var backpack_grid: GridContainer
+var inventory_view: VBoxContainer
+var character_view: VBoxContainer
 var inventory_page: HBoxContainer
 var character_page: HBoxContainer
-var inventory_tab: Button
-var character_tab: Button
+var guide_page: FieldGuidePanel
+var camp_tabs: Dictionary = {}
+var camp_location: Label
+var camp_room: Label
 var category_buttons: Dictionary = {}
-var category_counts: Dictionary = {}
 var category := "all"
 var backpack_slots: Array[Button] = []
 var backpack_items: Array[String] = []
@@ -145,6 +170,9 @@ var equipment_detail: Dictionary = {}
 var equipment_buttons: Dictionary = {}
 var equipment_names: Dictionary = {}
 var equipment_actions: Dictionary = {}
+var headgear_buttons: Dictionary = {}
+var headgear_row: HBoxContainer
+var headgear_choice := ""
 var selection := "jacket"
 var worn: Dictionary = {}
 var wearing_backpack := false
@@ -235,14 +263,47 @@ func _button(text: String, primary := false) -> Button:
 		button.add_theme_font_override("font", strong_font)
 	return button
 
-func _choice(text := "") -> Button:
-	var button := _button(text)
-	button.toggle_mode = true
-	var selected := _style(Color("#414035"), AMBER)
-	for state: String in ["pressed", "hover_pressed"]:
-		button.add_theme_stylebox_override(state, selected)
-		button.add_theme_color_override("font_%s_color" % state, AMBER)
+func _camp_button(text := "", toggle := false, variant := "") -> Button:
+	var button := Button.new()
+	button.text = text
+	button.toggle_mode = toggle
+	button.focus_mode = Control.FOCUS_NONE
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	button.custom_minimum_size.y = 35
+	if not variant.is_empty():
+		button.theme_type_variation = variant
 	return button
+
+func _camp_theme() -> Theme:
+	var theme := Theme.new()
+	theme.default_font = base.theme.default_font
+	theme.default_font_size = 15
+	theme.set_color("font_color", "Label", CAMP_PAPER)
+	theme.set_stylebox("panel", "PanelContainer", _style(CAMP_FRAME, Color.TRANSPARENT, Vector2(13, 11)))
+	theme.set_stylebox("normal", "Button", _style(CAMP_BUTTON, Color.TRANSPARENT, Vector2(10, 5)))
+	theme.set_stylebox("hover", "Button", _style(Color("#465542"), Color.TRANSPARENT, Vector2(10, 5)))
+	theme.set_stylebox("pressed", "Button", _style(Color("#495942"), CAMP_GOLD, Vector2(10, 5)))
+	theme.set_stylebox("hover_pressed", "Button", theme.get_stylebox("pressed", "Button"))
+	theme.set_stylebox("disabled", "Button", _style(CAMP_TILE, Color.TRANSPARENT, Vector2(10, 5)))
+	for state: String in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color"]:
+		theme.set_color(state, "Button", CAMP_PAPER)
+	theme.set_color("font_disabled_color", "Button", Color("#84907d"))
+	theme.set_type_variation("CampPrimary", "Button")
+	for state: String in ["normal", "hover", "pressed", "hover_pressed"]:
+		theme.set_stylebox(state, "CampPrimary", _style(CAMP_GOLD.lightened(0.13) if state == "hover" else CAMP_GOLD, Color.TRANSPARENT, Vector2(10, 5)))
+	for state: String in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color"]:
+		theme.set_color(state, "CampPrimary", CAMP_TILE)
+	theme.set_type_variation("CampSlot", "Button")
+	for state: String in ["normal", "hover", "pressed", "hover_pressed", "disabled"]:
+		var style := theme.get_stylebox(state, "Button").duplicate() as StyleBoxFlat
+		style.content_margin_top = 9
+		style.content_margin_bottom = 31
+		if state == "normal":
+			style.bg_color = CAMP_TILE
+		elif state == "disabled":
+			style.bg_color = Color("#1c251c")
+		theme.set_stylebox(state, "CampSlot", style)
+	return theme
 
 func _ready() -> void:
 	add_child(base)
@@ -400,7 +461,7 @@ func _update_key_guide(piloting: bool, swimming: bool, has_survival: bool, holdi
 	if holding and not piloting:
 		keys.append_array([["左键", "投掷"], ["G", "放下"]])
 	keys.append(["M", "地图"])
-	keys.append(["Esc", "菜单"])
+	keys.append(["Shift+Esc", "菜单"])
 	for index in key_groups.size():
 		var group := key_groups[index]
 		group.visible = index < keys.size()
@@ -523,39 +584,45 @@ func _build_vitals(parent: HBoxContainer) -> void:
 
 func _build_backpack() -> void:
 	backpack_shade = ColorRect.new()
-	backpack_shade.color = Color("#091213b5")
+	backpack_shade.color = Color("#0d150edb")
 	base.add_child(backpack_shade)
 	backpack_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	backpack_shade.mouse_filter = Control.MOUSE_FILTER_STOP
 	backpack_panel = _hud_card(base, Vector4(0.5, 0.5, 0.5, 0.5), Rect2())
-	var frame := _style(PANEL, EDGE, Vector2(16, 14))
-	frame.shadow_color = Color("#07101185")
+	backpack_panel.theme = _camp_theme()
+	var frame := _style(CAMP_SURFACE, Color("#56604b"), Vector2(0, 0))
+	frame.shadow_color = Color("#0d150eaa")
 	frame.shadow_size = 12
 	frame.shadow_offset = Vector2(0, 5)
 	backpack_panel.add_theme_stylebox_override("panel", frame)
 	backpack_panel.mouse_filter = Control.MOUSE_FILTER_STOP
-	var content := _column(backpack_panel, 12)
-	var header := _row(content, 8)
-	var title := _label(header, 26, INK, "随身装备", true)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	inventory_tab = _choice("背包")
-	character_tab = _choice("角色")
-	for tab: Button in [inventory_tab, character_tab]:
-		tab.custom_minimum_size.x = 84
-		header.add_child(tab)
-	inventory_tab.pressed.connect(_show_character.bind(false))
-	character_tab.pressed.connect(_show_character.bind(true))
-	var close := _button("Esc  关闭")
+	var shell := _column(backpack_panel, 0)
+	var top := _column(_camp_band(shell, CAMP_FRAME, Vector2(18, 11)), 9)
+	var header := _row(top, 14)
+	_label(header, 27, CAMP_PAPER, "雨线营地", true)
+	camp_location = _label(header, 14, CAMP_SOFT)
+	camp_location.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	camp_location.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	var room := _camp_button("房间  Shift+Esc")
+	room.pressed.connect(func(): camp_page_requested.emit("room"))
+	header.add_child(room)
+	var close := _camp_button("关闭  Esc")
 	close.pressed.connect(func(): backpack_close_requested.emit())
 	header.add_child(close)
-	var line := ColorRect.new()
-	line.color = EDGE
-	line.custom_minimum_size.y = 1
-	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	content.add_child(line)
+	var nav := _row(top, 7)
+	for entry: Array in [["map", "地图  M"], ["guide", "图鉴"], ["bag", "背包  Tab"], ["storage", "储物"],
+			["role", "角色"], ["people", "住民  B"], ["field", "探索"]]:
+		var local_page: bool = entry[0] in ["guide", "bag", "role"]
+		var tab := _camp_button(entry[1], local_page)
+		nav.add_child(tab)
+		if local_page:
+			camp_tabs[entry[0]] = tab
+			tab.pressed.connect(_show_camp_page.bind(entry[0]))
+		else:
+			tab.pressed.connect(camp_page_requested.emit.bind(entry[0]))
 
 	var colors := Gradient.new()
-	colors.colors = PackedColorArray([Color("#334746"), Color("#192627"), WELL])
+	colors.colors = PackedColorArray([Color("#445241"), Color("#333f32"), Color("#2b352b")])
 	colors.offsets = PackedFloat32Array([0.00, 0.62, 1.00])
 	stage_gradient = GradientTexture2D.new()
 	stage_gradient.gradient = colors
@@ -565,12 +632,20 @@ func _build_backpack() -> void:
 	stage_gradient.width = 192
 	stage_gradient.height = 192
 
+	var content_pane := _camp_band(shell, Color.TRANSPARENT, Vector2(18, 14))
+	content_pane.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var content := _column(content_pane, 10)
 	_build_inventory_page(content)
 	_build_character_page(content)
-	menu_notice = _label(content, 13, AMBER)
-	menu_notice.custom_minimum_size.y = 18
+	guide_page = FieldGuidePanel.new()
+	content.add_child(guide_page)
+	guide_page.habitat_requested.connect(habitat_requested.emit)
+	var footer := _row(_camp_band(shell, CAMP_FRAME, Vector2(18, 6)), 14)
+	menu_notice = _label(footer, 13, CAMP_GOLD)
+	menu_notice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	menu_notice.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	_show_character(false)
+	camp_room = _label(footer, 13, CAMP_SOFT)
+	_show_camp_page("bag")
 	backpack_panel.hide()
 	backpack_shade.hide()
 	_refresh_backpack({}, false, Survival.SLOT_COUNT)
@@ -587,77 +662,74 @@ func _pane(parent: Node, bg: Color, padding := Vector2(12, 12)) -> PanelContaine
 	parent.add_child(pane)
 	return pane
 
+func _camp_band(parent: Node, bg: Color, padding: Vector2) -> PanelContainer:
+	var pane := _pane(parent, bg, padding)
+	pane.add_theme_stylebox_override("panel", _style(bg, Color.TRANSPARENT, padding))
+	return pane
+
 func _build_inventory_page(content: VBoxContainer) -> void:
-	inventory_page = _menu_page(content)
-	var sidebar := _column(_pane(inventory_page, WELL), 8)
-	_label(sidebar, 14, MUTED, "物品类别")
+	inventory_view = _column(content, 12)
+	inventory_view.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var heading := _row(inventory_view, 10)
+	_label(heading, 26, CAMP_PAPER, "背包", true)
+	backpack_capacity = _label(heading, 14, CAMP_SOFT)
+	backpack_capacity.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	inventory_page = _menu_page(inventory_view)
+	var sidebar := _column(inventory_page, 6)
 	for filter: String in CATEGORIES:
-		var button := _choice(CATEGORIES[filter])
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		var button := _camp_button(CATEGORIES[filter], true)
+		button.custom_minimum_size = Vector2(68, 48)
 		button.pressed.connect(_select_category.bind(filter))
 		sidebar.add_child(button)
-		var count := _label(button, 13, MUTED)
-		count.set_anchors_and_offsets_preset(Control.PRESET_CENTER_RIGHT)
-		count.offset_left = -43
-		count.offset_right = -12
-		count.offset_top = -11
-		count.offset_bottom = 11
-		count.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		category_buttons[filter] = button
-		category_counts[filter] = count
-	_spacer(sidebar)
-	_label(sidebar, 13, MUTED, "背包容量")
-	backpack_capacity = _label(sidebar, 21, INK, "", true)
-	capacity_bar = _bar(AMBER)
-	sidebar.add_child(capacity_bar)
-	material_pending = _label(sidebar, 12, AMBER)
-	material_pending.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	material_pending.hide()
 
-	var items := _column(inventory_page, 10)
+	var items := ScrollContainer.new()
+	items.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	items.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	inventory_page.add_child(items)
 	backpack_grid = GridContainer.new()
-	backpack_grid.add_theme_constant_override("h_separation", 8)
-	backpack_grid.add_theme_constant_override("v_separation", 8)
+	backpack_grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	backpack_grid.add_theme_constant_override("h_separation", 6)
+	backpack_grid.add_theme_constant_override("v_separation", 6)
 	backpack_grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	items.add_child(backpack_grid)
 	for index in Survival.slot_count(true):
 		_build_inventory_slot(index)
 	inventory_detail = _build_detail(inventory_page, [
 		["eat", "吃一份", true], ["drink", "喝一份", true], ["wear", "穿上", true],
-		["equip", "装备", true], ["put", "放桌上", false], ["drop", "丢下", false],
+		["whistle","吹哨召回",true], ["unroll","铺开休息",true],
+		["equip", "装备", true], ["put", "放桌上", false], ["drop", "丢下", false], ["guide", "查看图鉴", false],
 	], _submit_backpack_action)
 	backpack_actions = inventory_detail.actions
 	detail_title = inventory_detail.title
 	backpack_actions.drop.tooltip_text = "丢到脚边"
 	backpack_actions.put.tooltip_text = "将一份食物或溪水放到木桌"
+	material_pending = _label(inventory_view, 13, CAMP_GOLD)
+	material_pending.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	material_pending.hide()
 
 func _build_inventory_slot(index: int) -> void:
-	var slot := _choice()
+	var slot := _camp_button("", true, "CampSlot")
 	slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	slot.expand_icon = true
 	slot.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	slot.add_theme_constant_override("icon_max_width", 111)
-	for state: String in ["normal", "hover", "pressed", "hover_pressed", "disabled"]:
-		var style := (slot.get_theme_stylebox(state) as StyleBoxFlat).duplicate() as StyleBoxFlat
-		style.content_margin_top = 6
-		style.content_margin_bottom = 30
-		slot.add_theme_stylebox_override(state, style)
 	slot.pressed.connect(_select_slot.bind(index))
 	backpack_grid.add_child(slot)
-	var name_label := _label(slot, 14, INK)
+	var name_label := _label(slot, 14, CAMP_PAPER)
 	name_label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	name_label.offset_left = 9
-	name_label.offset_right = -37
-	name_label.offset_top = -29
-	name_label.offset_bottom = -8
+	name_label.offset_left = 4
+	name_label.offset_right = -4
+	name_label.offset_top = -25
+	name_label.offset_bottom = -4
+	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var quantity := _label(slot, 13, MUTED)
-	quantity.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
-	quantity.offset_left = -33
-	quantity.offset_right = -9
-	quantity.offset_top = -29
-	quantity.offset_bottom = -8
+	var quantity := _label(slot, 13, CAMP_PAPER)
+	quantity.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	quantity.offset_left = -73
+	quantity.offset_right = -6
+	quantity.offset_top = 3
+	quantity.offset_bottom = 24
 	quantity.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	backpack_slots.append(slot)
 	backpack_items.append("")
@@ -665,43 +737,62 @@ func _build_inventory_slot(index: int) -> void:
 	backpack_quantities.append(quantity)
 
 func _build_character_page(content: VBoxContainer) -> void:
-	character_page = _menu_page(content)
-	var sidebar := _column(_pane(character_page, WELL), 8)
-	_label(sidebar, 14, MUTED, "装备部位")
-	for item: String in EQUIPMENT_SLOTS:
-		var button := _choice()
-		button.custom_minimum_size.y = 60
-		button.expand_icon = true
-		button.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		button.add_theme_constant_override("icon_max_width", 49)
-		button.pressed.connect(_select_equipment.bind(item))
-		sidebar.add_child(button)
-		var text := _column(button, 1)
-		text.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT)
-		text.offset_left = 11
-		text.offset_top = -23
-		_label(text, 12, MUTED, EQUIPMENT_SLOTS[item])
-		equipment_names[item] = _label(text, 15, INK)
-		equipment_buttons[item] = button
-
+	character_view = _column(content, 12)
+	character_view.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_label(character_view, 26, CAMP_PAPER, "角色", true)
+	character_page = _menu_page(character_view)
 	var center := _column(character_page, 9)
 	center.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var stage := _stage(center)
+	var stage := _stage(center, true)
+	var layout := _row(stage, 8)
+	layout.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	layout.offset_left = 12
+	layout.offset_top = 10
+	layout.offset_right = -12
+	layout.offset_bottom = -10
+	var layers := _column(layout, 8)
+	layers.alignment = BoxContainer.ALIGNMENT_CENTER
+	var stand := _column(layout, 5)
+	stand.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var kit := _column(layout, 8)
+	kit.alignment = BoxContainer.ALIGNMENT_CENTER
+	for item: String in EQUIPMENT_SLOTS:
+		var button := _camp_button("", true, "CampSlot")
+		button.custom_minimum_size = Vector2(86, 96)
+		button.expand_icon = true
+		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		button.add_theme_constant_override("icon_max_width", 70)
+		button.pressed.connect(_select_equipment.bind(item))
+		(kit if item in ["backpack","boar_cloak"] else layers).add_child(button)
+		var label := _label(button, 14, CAMP_PAPER)
+		label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+		label.offset_top = -26
+		label.offset_bottom = -4
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		button.tooltip_text = EQUIPMENT_SLOTS[item]
+		equipment_names[item] = label
+		equipment_buttons[item] = button
+
 	character_preview = CharacterPreview.new()
-	stage.add_child(character_preview)
-	character_preview.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var hint := _label(stage, 13, MUTED, "拖动旋转")
-	hint.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	hint.offset_left = -55
-	hint.offset_right = 55
-	hint.offset_top = -32
-	hint.offset_bottom = -10
-	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var metrics := _row(_pane(center, WELL, Vector2(10, 7)), 8)
+	character_preview.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	stand.add_child(character_preview)
+	var turns := _row(stand, 6)
+	turns.alignment = BoxContainer.ALIGNMENT_CENTER
+	var left := _camp_button("‹")
+	left.tooltip_text = "向左旋转角色"
+	left.pressed.connect(character_preview.rotate_by.bind(-PI / 4.0))
+	turns.add_child(left)
+	var hint := _label(turns, 13, CAMP_SOFT, "拖动旋转")
+	hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	var right := _camp_button("›")
+	right.tooltip_text = "向右旋转角色"
+	right.pressed.connect(character_preview.rotate_by.bind(PI / 4.0))
+	turns.add_child(right)
+	var metrics := _row(_camp_band(center, CAMP_FRAME, Vector2(10, 7)), 8)
 	for entry: Array in VITALS:
 		var group := _column(metrics, 0)
 		group.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var stat := _label(group, 12, MUTED, entry[1])
+		var stat := _label(group, 12, CAMP_SOFT, entry[1])
 		stat.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		var value := _label(group, 18, entry[2], "", true)
 		value.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -713,8 +804,14 @@ func _build_character_page(content: VBoxContainer) -> void:
 	equipment_actions = equipment_detail.actions
 	equipment_actions.remove_worn.tooltip_text = "脱下并收进背包"
 	equipment_actions.drop_worn.tooltip_text = "脱下并丢到脚边"
+	headgear_row = _row(equipment_detail.header, 6)
+	for item: String in ["cap", "helmet"]:
+		var button := _camp_button(Survival.ITEM_NAMES[item], true)
+		button.pressed.connect(_select_headgear.bind(item))
+		headgear_row.add_child(button)
+		headgear_buttons[item] = button
 
-func _stage(parent: Node) -> Control:
+func _stage(parent: Node, contours := false) -> Control:
 	var stage := Control.new()
 	stage.custom_minimum_size.y = 112
 	stage.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -726,14 +823,27 @@ func _stage(parent: Node) -> Control:
 	glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	stage.add_child(glow)
 	glow.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	if contours:
+		var map := TextureRect.new()
+		map.texture = CAMP_CONTOURS
+		map.modulate.a = 0.18
+		map.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		map.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		map.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		stage.add_child(map)
+		map.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	return stage
 
 func _build_detail(parent: Node, options: Array, submit: Callable) -> Dictionary:
-	var pane := _pane(parent, TILE)
+	var pane := _camp_band(parent, CAMP_FRAME, Vector2(13, 11))
 	var detail := _column(pane, 9)
-	var header := _column(detail, 0)
-	var type := _label(header, 13, AMBER)
-	var title := _label(header, 25, INK, "", true)
+	var header := _column(detail, 6)
+	var heading := _row(header, 7)
+	var title := _label(heading, 24, CAMP_PAPER, "", true)
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var type := _label(heading, 13, CAMP_SOFT)
+	type.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	var stage := _stage(detail)
 	var image := TextureRect.new()
 	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -745,39 +855,36 @@ func _build_detail(parent: Node, options: Array, submit: Callable) -> Dictionary
 	image.offset_top = 8
 	image.offset_right = -8
 	image.offset_bottom = -8
-	var info := _label(detail, 15, INK)
+	var info := _label(detail, 15, CAMP_PAPER)
 	var stats := _row(detail, 10)
 	var values := {}
 	for entry: Array in VITALS:
 		values[entry[0]] = _label(stats, 13, entry[2])
-	var note := _label(detail, 13, MUTED)
+	var note := _label(detail, 13, CAMP_SOFT)
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var actions := _row(detail, 6)
 	var buttons := {}
 	for entry: Array in options:
-		var button := _button(entry[1], entry[2])
+		var button := _camp_button(entry[1], false, "CampPrimary" if entry[2] else "")
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.pressed.connect(submit.bind(entry[0]))
 		actions.add_child(button)
 		buttons[entry[0]] = button
-	return {"pane": pane, "type": type, "title": title, "stage": stage, "image": image, "info": info,
+	return {"pane": pane, "header": header, "type": type, "title": title, "stage": stage, "image": image, "info": info,
 		"stats": stats, "values": values, "note": note, "actions": buttons}
 
 func _layout_backpack() -> void:
-	var compact := base.size.x < 1020.0
-	var short := base.size.y < 560.0
-	for page: HBoxContainer in [inventory_page, character_page]:
-		page.get_child(0).custom_minimum_size.x = 142.0 if compact else 171.0
+	var short := base.size.y < 650.0
 	for detail: Dictionary in [inventory_detail, equipment_detail]:
-		detail.pane.custom_minimum_size.x = 263.0 if compact else 302.0
+		detail.pane.custom_minimum_size.x = clampf(base.size.x * .35, 288.0, 456.0)
 		detail.stage.custom_minimum_size.y = 94.0 if short else 112.0
 	for button: Button in equipment_buttons.values():
-		button.custom_minimum_size.y = 49.0 if short else 60.0
+		button.custom_minimum_size.y = 72.0 if short else 96.0
 	_layout_grid()
 	_fit_backpack.call_deferred()
 
 func _fit_backpack() -> void:
-	var dimensions := Vector2(minf(base.size.x - 32.0, 1120.0), minf(base.size.y - 30.0, 600.0))
+	var dimensions := Vector2(minf(base.size.x - 32.0, 1220.0), minf(base.size.y - 30.0, 682.0))
 	backpack_panel.offset_left = -dimensions.x * 0.5
 	backpack_panel.offset_right = dimensions.x * 0.5
 	backpack_panel.offset_top = -dimensions.y * 0.5
@@ -785,20 +892,21 @@ func _fit_backpack() -> void:
 
 func _layout_grid() -> void:
 	var expanded := bag_capacity > Survival.SLOT_COUNT
-	var compact := base.size.x < 1020.0
+	var compact := base.size.x < 960.0
 	backpack_grid.columns = (3 if compact else 4) if expanded else 3
 	var rows := maxi(1, ceili(float(bag_capacity) / backpack_grid.columns))
-	var available_height := minf(base.size.y - 30.0, 600.0) - 125.0
-	var slot_height := clampf(floorf((available_height - 8 * (rows - 1)) / rows), 60.0, 124.0 if expanded else 144.0)
+	var available_height := minf(base.size.y - 30.0, 682.0) - 205.0
+	var slot_height := clampf(floorf((available_height - 6 * (rows - 1)) / rows), 73.0, 137.0 if expanded else 156.0)
 	for slot: Button in backpack_slots:
 		slot.custom_minimum_size = Vector2(74.0, slot_height)
 
-func _show_character(show: bool) -> void:
-	inventory_page.visible = not show
-	character_page.visible = show
-	inventory_tab.set_pressed_no_signal(not show)
-	character_tab.set_pressed_no_signal(show)
-	if show:
+func _show_camp_page(page: String) -> void:
+	inventory_view.visible = page == "bag"
+	character_view.visible = page == "role"
+	guide_page.visible = page == "guide"
+	for id: String in camp_tabs:
+		camp_tabs[id].set_pressed_no_signal(id == page)
+	if character_view.visible:
 		character_preview.update_character(worn, wearing_backpack, preview_slot)
 	_fit_backpack.call_deferred()
 
@@ -809,7 +917,9 @@ func _select_category(filter: String) -> void:
 func _item_category(item: String) -> String:
 	if Survival.FOOD_STATS.has(item) or Survival.is_drinkable(item):
 		return "food"
-	return "clothing" if Survival.CLOTHING.has(item) else "tools"
+	if Storage.ORE_ICONS.has(item) or item in ["boar_hide","boar_tusk", "wood", "tarp", "wood_plank", "reed_bundle", "wicker_strip", "rope", "crocodile_hide", "eagle_feather", "eagle_claw"]:
+		return "material"
+	return "gear"
 
 func _select_slot(index: int) -> void:
 	selected_slot = index
@@ -817,26 +927,26 @@ func _select_slot(index: int) -> void:
 
 func _submit_backpack_action(action: String) -> void:
 	if selected_slot >= 0 and backpack_actions[action].visible and not backpack_actions[action].disabled:
-		backpack_action_requested.emit(action, backpack_items[selected_slot])
+		var item := backpack_items[selected_slot]
+		if action == "guide":
+			guide_page.show_recipe(item)
+			_show_camp_page("guide")
+		else:
+			backpack_action_requested.emit(action, item)
 
 func _update_slot_controls() -> void:
 	var first := -1
-	var counts := {"all": 0, "food": 0, "clothing": 0, "tools": 0}
 	for index in backpack_slots.size():
 		var item := backpack_items[index]
 		var group := _item_category(item)
 		var visible_slot := index < bag_capacity and (category == "all" or not item.is_empty() and group == category)
 		backpack_slots[index].visible = visible_slot
-		if not item.is_empty():
-			counts.all += 1
-			counts[group] += 1
-			if visible_slot and first == -1:
-				first = index
+		if not item.is_empty() and visible_slot and first == -1:
+			first = index
 	if selected_slot < 0 or backpack_items[selected_slot].is_empty() or not backpack_slots[selected_slot].visible:
 		selected_slot = first
 	for filter: String in category_buttons:
 		category_buttons[filter].set_pressed_no_signal(filter == category)
-		category_counts[filter].text = str(counts[filter])
 	for index in backpack_slots.size():
 		backpack_slots[index].set_pressed_no_signal(index == selected_slot)
 	_update_inventory_detail()
@@ -858,10 +968,10 @@ func _update_inventory_detail() -> void:
 	var weapon := Weapons.CAMP_MODELS.has(item) or item == "wicker_strip"
 	var benefits: Dictionary = {"water": Survival.DRINK_GAIN} if drinkable else food
 	var detail := inventory_detail
-	detail.type.text = "服装" if clothing else ("溪水" if drinkable else "食物" if not food.is_empty() else "材料" if Storage.ORE_ICONS.has(item) or item in ["wood", "tarp"] else "补给与武器")
+	detail.type.text = "服装" if clothing else ("溪水" if drinkable else CATEGORIES[_item_category(item)])
 	detail.type.visible = not item.is_empty()
 	detail_title.text = Survival.ITEM_NAMES.get(item, "背包为空" if category == "all" else "没有%s" % CATEGORIES[category])
-	detail.image.texture = _item_icon(item)
+	detail.image.texture = FieldGuidePanel.COOKING[item][2] if item in Survival.COOKING_DISCOVERIES else _item_icon(item)
 	detail.image.modulate = Color(1.18, 1.18, 1.18) if clothing else Color.WHITE
 	detail.info.visible = not item.is_empty()
 	if clothing:
@@ -883,6 +993,12 @@ func _update_inventory_detail() -> void:
 		note = "此房间未开放穿戴"
 	elif clothing and already_worn:
 		note = "此部位已有装备"
+	elif item=="boar_cloak":
+		note="穿在夹克外，雨天的心情损耗减少三分之一。"
+	elif item=="tusk_whistle":
+		note="吹哨可唤回 36 米内自己收养的藏獒。"
+	elif item=="boar_bedroll":
+		note="在平地铺开，每次可供一人休息。空置时按 G 收卷。"
 	elif item == "wicker_strip":
 		note = "装备后左键抽击。也可编织、引火或加固俘虏约束。"
 	elif item in ["wood", "tarp"]:
@@ -903,9 +1019,12 @@ func _update_inventory_detail() -> void:
 	backpack_actions.put.disabled = not can_put_food
 	backpack_actions.wear.visible = clothing
 	backpack_actions.wear.disabled = not clothing_supported or already_worn
+	backpack_actions.whistle.visible=item=="tusk_whistle"
+	backpack_actions.unroll.visible=item=="boar_bedroll"
 	backpack_actions.equip.visible = weapon
 	backpack_actions.equip.text = "收起" if equipped_weapon == item else "装备"
 	backpack_actions.drop.visible = not item.is_empty()
+	backpack_actions.guide.visible = guide_page.has_recipe_page(item)
 
 func _refresh_backpack(contents: Dictionary, can_put: bool, slot_capacity: int) -> void:
 	slot_capacity = clampi(slot_capacity, 0, backpack_slots.size())
@@ -929,8 +1048,6 @@ func _refresh_backpack(contents: Dictionary, can_put: bool, slot_capacity: int) 
 	if selected_slot >= 0 and backpack_items[selected_slot] != former_item:
 		selected_slot = backpack_items.find(former_item) if not former_item.is_empty() else -1
 	backpack_capacity.text = "%d / %d 格" % [index, slot_capacity]
-	capacity_bar.max_value = maxi(1, slot_capacity)
-	capacity_bar.value = index
 	_layout_grid()
 	_update_slot_controls()
 	_refresh_equipment_controls()
@@ -938,7 +1055,7 @@ func _refresh_backpack(contents: Dictionary, can_put: bool, slot_capacity: int) 
 func _set_stack(index: int, item: String, quantity: int) -> void:
 	backpack_items[index] = item
 	var slot := backpack_slots[index]
-	slot.icon = ITEM_ICONS.get(item)
+	slot.icon = _item_icon(item)
 	slot.disabled = item.is_empty()
 	slot.tooltip_text = Survival.ITEM_NAMES.get(item, "")
 	backpack_names[index].text = slot.tooltip_text
@@ -946,7 +1063,15 @@ func _set_stack(index: int, item: String, quantity: int) -> void:
 
 func _select_equipment(item: String) -> void:
 	selection = item
+	headgear_choice = ""
 	_refresh_equipment_controls()
+
+func _select_headgear(item: String) -> void:
+	headgear_choice = item
+	_refresh_equipment_controls()
+
+func _selected_equipment() -> String:
+	return headgear_choice if selection == "cap" and not headgear_choice.is_empty() else _equipment_at(selection)
 
 func _equipment_at(slot: String) -> String:
 	if slot == "cap" and (bool(worn.get("helmet", false)) or (not bool(worn.get("cap", false)) and int(bag.get("helmet", 0)) > 0)):
@@ -955,9 +1080,11 @@ func _equipment_at(slot: String) -> String:
 
 func _submit_equipment_action(action: String) -> void:
 	if equipment_actions[action].visible and not equipment_actions[action].disabled:
-		backpack_action_requested.emit(action, _equipment_at(selection))
+		backpack_action_requested.emit(action, _selected_equipment())
 
 func set_equipment(survival: Dictionary, equipped_pack: bool, slot: int) -> void:
+	if guide_page.set_progress(survival.get("fieldGuide", {})):
+		_update_inventory_detail()
 	var pending: Dictionary = survival.get("materialPending", {})
 	material_pending.visible = int(pending.get("wood", 0)) + int(pending.get("tarp", 0)) > 0
 	material_pending.text = "营地保留的材料待收取：木料 %d / 布 %d。空出格子后会放入背包。" % [pending.get("wood", 0), pending.get("tarp", 0)]
@@ -979,7 +1106,7 @@ func set_equipment(survival: Dictionary, equipped_pack: bool, slot: int) -> void
 		preview_slot = slot
 		_refresh_equipment_controls()
 		_update_inventory_detail()
-		if character_preview.started or character_page.visible:
+		if character_preview.started or character_view.visible:
 			character_preview.update_character(worn, wearing_backpack, slot)
 
 func _refresh_equipment_controls() -> void:
@@ -990,10 +1117,13 @@ func _refresh_equipment_controls() -> void:
 		var button: Button = equipment_buttons[slot]
 		button.icon = ITEM_ICONS[item] if equipped else null
 		button.set_pressed_no_signal(slot == selection)
-		equipment_names[slot].text = item_name if equipped else "空"
-		equipment_names[slot].modulate = Color.WHITE if equipped else MUTED
+		equipment_names[slot].text = item_name if equipped else EQUIPMENT_SLOTS[slot]
+		equipment_names[slot].modulate = Color.WHITE if equipped else CAMP_SOFT
 
-	var selected_item := _equipment_at(selection)
+	var selected_item := _selected_equipment()
+	headgear_row.visible = selection == "cap"
+	for item: String in headgear_buttons:
+		headgear_buttons[item].set_pressed_no_signal(selected_item == item)
 	var pack := selection == "backpack"
 	var equipped := wearing_backpack if pack else bool(worn.get(selected_item, false))
 	var can_wear := not pack and clothing_supported and not equipped and int(bag.get(selected_item, 0)) > 0
@@ -1095,13 +1225,15 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 	bearing_distance.text = "%d m" % roundi(delta_to_target.length())
 	bearing.tooltip_text = "面向%s，目标在%s" % [_direction(s.yaw),_direction(direction)]
 	var active: bool = s.locked
+	var show_world := not backpack_open and not modal_open
+	var waiting_for_mouse: bool = s.ready and not s.menuOpen and not active
 	entered_field = entered_field or active
-	field_dock.visible = active
-	prompt_panel.visible = active and not action.is_empty()
+	field_dock.visible = active or waiting_for_mouse
+	prompt_panel.visible = waiting_for_mouse or (active and not action.is_empty())
 	if prompt_panel.visible:
-		_update_prompt(action)
-	panel.visible = not active and not backpack_open and not modal_open
-	field.visible = not modal_open and not backpack_open
+		_update_prompt("点击画面继续探索" if waiting_for_mouse else action)
+	panel.visible = s.menuOpen and not active and show_world
+	field.visible = show_world
 	if active:
 		_hide_invitation()
 	var survival_state: Dictionary = s.get("survival", {})
@@ -1115,6 +1247,8 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 		vital_numbers[entry[0]].text = str(roundi(value))
 	vitals.visible = has_survival
 	if backpack_open:
+		camp_location.text = area_title.text
+		camp_room.text = "%s  ·  %s" % [room_line.text, room_count.text]
 		var expanded := int(s.get("bagSlots", Survival.SLOT_COUNT)) > Survival.SLOT_COUNT
 		set_equipment(survival_state, expanded, int(s.players.get(s.selfId, {}).get("slot", 1)))
 		_refresh_backpack(survival_state.get("bag", {}), bool(s.get("canPutProvision", false)), int(s.get("bagSlots", Survival.SLOT_COUNT)))
@@ -1130,7 +1264,7 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 		briefing_title.text = "营地菜单" if entered_field else "雨线营地"
 		enter.text = "继续探索" if entered_field else "进入林地"
 		if entered_field:
-			briefing.text = "Esc 放开鼠标。"
+			briefing.text = "Shift+Esc 放开鼠标。"
 		else:
 			briefing.text = "去溪谷找木料，到瞭望塔取防水布。带回营地修好木棚。木屋旁可按 E 拾取武器，Tab 打开背包装备，B 查看住民与补给。"
 	if s.noticeNo != last_notice:
@@ -1155,4 +1289,8 @@ func inventory_observables() -> Dictionary:
 		var rect := button.get_global_rect()
 		actions[key] = {"visible": button.is_visible_in_tree(), "disabled": button.disabled, "text": button.text,
 			"rect": [rect.position.x, rect.position.y, rect.size.x, rect.size.y]}
-	return {"open": backpack_open, "slots": slots, "selectedItem": backpack_items[selected_slot] if selected_slot >= 0 else "", "actions": actions}
+	var pages := {}
+	for id: String in camp_tabs:
+		var rect: Rect2 = camp_tabs[id].get_global_rect()
+		pages[id] = [rect.position.x, rect.position.y, rect.size.x, rect.size.y]
+	return {"open": backpack_open, "slots": slots, "selectedItem": backpack_items[selected_slot] if selected_slot >= 0 else "", "actions": actions, "pages": pages}

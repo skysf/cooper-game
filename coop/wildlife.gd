@@ -77,7 +77,8 @@ static func crocodile(elapsed: float) -> Dictionary:
 
 static func crocodile_pose(croc: Dictionary) -> Dictionary:
 	var point: Vector2 = croc.point
-	return {"at": [point.x, _height(croc), point.y], "yaw": croc.yaw, "clip": croc.clip, "clipAt": croc.clipAt}
+	return {"at": [point.x, _height(croc), point.y], "yaw": croc.yaw, "clip": croc.clip,
+		"clipAt": croc.clipAt, "underwater": croc.underwater}
 
 static func tick_crocodile(croc: Dictionary, actors: Dictionary, grid: Dictionary, elapsed: float, delta: float) -> Dictionary:
 	if elapsed < float(croc.holdUntil) and croc.clip in ["Attack", "Dive", "Surface", "Hit"]:
@@ -126,22 +127,15 @@ static func tick_crocodile(croc: Dictionary, actors: Dictionary, grid: Dictionar
 	_play(croc, "Walk" if _walks(next) else "Swim", elapsed)
 	return {}
 
-static func stone_hit(croc: Dictionary, from: Vector3, to: Vector3, elapsed: float) -> bool:
-	if croc.underwater or croc.clip in ["Dive", "Surface", "Hit"]:
-		return false
-	# The forward section is the head and torso. The moving tail is outside this capsule.
+static func recoil(croc: Dictionary, elapsed: float) -> void:
+	if croc.clip == "Hit":
+		return
 	var point: Vector2 = croc.point
-	var middle := Vector3(point.x, _height(croc) + 0.22, point.y)
-	var basis := Basis(Vector3.UP, float(croc.yaw))
-	var nearest := Geometry3D.get_closest_points_between_segments(from, to, middle + basis.z * 0.65, middle - basis.z * 0.78)
-	if nearest[0].distance_squared_to(nearest[1]) > 0.31 * 0.31:
-		return false
 	croc.cooldown = elapsed + 13.0
 	croc.target = ""
 	if _walks(point):
 		croc.leg = 2
 	_play(croc, "Hit", elapsed, CROC_HIT_TIME)
-	return true
 
 static func _yaw(direction: Vector2) -> float:
 	return atan2(-direction.x, -direction.y)

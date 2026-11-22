@@ -14,6 +14,8 @@ const CELL_SIZE := 4.0
 const PLAYER := AABB(Vector3(-0.28, 0.20, -0.28), Vector3(0.56, 1.45, 0.56))
 const RAMP_CLEARANCE := AABB(Vector3(-0.13, 0.20, -0.13), Vector3(0.26, 1.45, 0.26))
 const FLAT_FIXTURES := {
+	"boar_bedding":[Vector2(.36,.94),.15,Vector2(.32,.87),0],
+	"camp_rope_bed": [Vector2(.475,1.01), .70, Vector2(.42,.94), 0],
 	"wicker_basket": [Vector2(0.193, 0.182), 0.452, Vector2(0.091, 0.09), 0],
 	"wood_crate": [Vector2(0.413, 0.205), 0.35, Vector2(0.365, 0.161), Placement.TOP],
 	"military_crate": [Vector2(0.481, 0.201), 0.360, Vector2(0.427, 0.172), Placement.TOP],
@@ -128,9 +130,9 @@ static func _register(grid: Dictionary, part: Dictionary) -> void:
 static func static_grid(world: Dictionary) -> Dictionary:
 	var grid := {}
 	var index := 0
-	for obstacle: Dictionary in world.get("obstacles", []) + Lake.Coast.obstacles:
+	for obstacle: Dictionary in world.get("obstacles", []) + Lake.Coast.obstacles + Lake.East.obstacles:
 		var kind: String = obstacle.type
-		if kind == "table":
+		if kind == "table" or obstacle.has("profile"):
 			continue
 		var point := Vector2(obstacle.x,obstacle.z)
 		var origin := Vector3(point.x,Lake.ground_height(point),point.y)

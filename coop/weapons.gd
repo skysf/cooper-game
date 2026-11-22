@@ -30,3 +30,25 @@ static func stats(item: String) -> Dictionary:
 
 static func firearm(item: String) -> bool:
 	return stats(item).has("aim_fov")
+
+const PUNCHES := [&"PunchJab", &"PunchCross", &"PunchHook", &"PunchCross"]
+
+static func melee_clip(item: String, step: int, shield: bool) -> StringName:
+	match item:
+		"":
+			return &"PunchCross" if shield else PUNCHES[posmod(step, PUNCHES.size())]
+		"stone", "club", "wicker_strip":
+			return &"ClubSwing"
+		"spear":
+			return &"SpearThrust"
+		"katana":
+			return &"BladeCut"
+	return &""
+
+static func box_hit_distance(from: Vector3, to: Vector3, origin: Vector3, basis: Basis, bounds: AABB) -> float:
+	var inverse := basis.transposed()
+	var start := inverse * (from - origin)
+	if bounds.has_point(start):
+		return 0.0
+	var contact: Variant = bounds.intersects_segment(start, inverse * (to - origin))
+	return start.distance_squared_to(contact) if contact is Vector3 else INF

@@ -1,0 +1,75 @@
+{
+  "lakeRulesPassed": 88,
+  "reedChecks": [
+    "simultaneous shearing gives a single bundle",
+    "a remote reed patch cannot be harvested",
+    "full bag leaves reed heads standing",
+    "failed checkpoint restores both reeds and inventory",
+    "two players picking one stand receive one bundle",
+    "other player receives the cut patch",
+    "saved stubble and player harvest survive together",
+    "legacy and invalid reed records normalize",
+    "neighbouring patches and inventory stacks are independent",
+    "one bundle makes two usable weaving strips at the bench",
+    "reed strips work in the existing rope recipe",
+    "one bundle fuels a shared fire for 15 seconds",
+    "cut stalks stay unavailable until the room clock reaches regrowth",
+    "regrown reeds can be harvested again",
+    "restarting the room reloads the same harvest and cut stand"
+  ],
+  "rootContacts": {
+    "bank_roots": {
+      "instances": 526,
+      "leastCoverM": 0.0379984811879694
+    },
+    "crooked_tree": {
+      "instances": 132,
+      "leastCoverM": 0.0845060859064688
+    },
+    "fork_tree": {
+      "instances": 37,
+      "leastCoverM": 0.0845278968190541
+    },
+    "grove_tree": {
+      "instances": 182,
+      "leastCoverM": 0.0845101206223262
+    },
+    "old_stump": {
+      "instances": 46,
+      "leastCoverM": 0.037999120177119
+    },
+    "quiver_tree": {
+      "instances": 44,
+      "leastCoverM": 0.0845252241947492
+    },
+    "tangled_roots": {
+      "instances": 38,
+      "leastCoverM": 0.0379994049289962
+    }
+  },
+  "testedRockApproaches": [
+    {
+      "advanceM": 0.3599853515625,
+      "fps": 30.0
+    },
+    {
+      "advanceM": 0.41998291015625,
+      "fps": 60.0
+    },
+    {
+      "advanceM": 0.8399658203125,
+      "fps": 30.0
+    },
+    {
+      "advanceM": 0.8399658203125,
+      "fps": 60.0
+    }
+  ],
+  "portalEdges": {
+    "portal_ground_coal_mine": 184,
+    "spring_bank_coal_mine": 192,
+    "portal_ground_iron_mine": 184,
+    "spring_bank_iron_mine": 192
+  },
+  "terrainErrors": []
+}

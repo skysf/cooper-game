@@ -438,7 +438,7 @@ def measured_bounds(collection):
     return {"position": minimum, "size": [b-a for a,b in zip(minimum, maximum)]}
 
 
-def export_part(scene, part, scratch):
+def export_part(scene, part, scratch, active_scene_only=False):
     import bpy
 
     bpy.context.window.scene = scene
@@ -460,7 +460,7 @@ def export_part(scene, part, scratch):
     merged.data.name = part.name
     bpy.ops.export_scene.gltf(
         filepath=str(scratch / (part.name+".glb")), export_format="GLB",
-        use_selection=True, export_apply=True, export_animations=False,
+        use_selection=True, use_active_scene=active_scene_only, export_apply=True, export_animations=False,
         export_tangents=True, export_image_format="AUTO",
     )
     bpy.data.objects.remove(merged, do_unlink=True)

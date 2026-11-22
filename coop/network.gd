@@ -1,8 +1,9 @@
 extends Node
 
-signal atlas_reply(action: String, accepted: bool, text: String)
+signal atlas_reply(action: String, accepted: bool, text: String, site: String)
 
 const Rules = preload("res://rules.gd")
+const Boar=preload("res://woodland_boar.gd")
 const PlayerMotion = preload("res://player_motion.gd")
 const Spaceship = preload("res://spaceship.gd")
 const SEND_INTERVAL := 0.075
@@ -26,6 +27,13 @@ var provisions: Dictionary = {}
 var storage: Dictionary = {}
 var mines: Dictionary = {}
 var storage_available := false
+var lake_household := false
+var ferry_departure := -1.0
+var reed_cuts := {}
+var reeds_available := false
+var sheared_at := -1.0
+var boar: Dictionary = {}
+var sheep_alive := false
 var eagle_alive := true
 var survival: Dictionary = {}
 var dog: Dictionary = {}
@@ -54,6 +62,7 @@ var _session := ""
 var _direction := Vector2.ZERO
 var _yaw := 0.0
 var _lift := 0.0
+var _crouch := false
 var _grid: Dictionary
 var _ship_grid: Dictionary
 var _predicted_ship := {}
@@ -141,6 +150,13 @@ func _retry(reason: String = "") -> void:
 	provisions = {}
 	storage = {}
 	storage_available = false
+	lake_household = false
+	boar = {}
+	sheep_alive = false
+	ferry_departure = -1.0
+	reed_cuts = {}
+	reeds_available = false
+	sheared_at = -1.0
 	eagle_alive = true
 	survival = {}
 	dog = {}
@@ -169,16 +185,25 @@ func rendered_ship() -> Dictionary:
 func ship_camera_clearance(pivot: Vector3, offset: Vector3) -> float:
 	return Spaceship.Ground.camera_clearance(pivot, offset, _ship_grid, grove_elapsed)
 
-func set_motion(direction: Vector2, yaw: float, lift := 0.0) -> void:
-	if not direction.is_equal_approx(_direction) or not is_equal_approx(_lift, lift):
+func set_motion(direction: Vector2, yaw: float, lift := 0.0, crouch := false) -> void:
+	if not direction.is_equal_approx(_direction) or not is_equal_approx(_lift, lift) or crouch != _crouch:
 		_send_in = 0.0
 	_direction = direction.limit_length()
 	_yaw = yaw
 	_lift = lift
+	_crouch = crouch
 
 func interact_ship(action: String) -> void:
 	if ready_in_room:
 		_send({"t": "ship", "action": action})
+
+func harvest_reeds(id: String) -> void:
+	if ready_in_room and reeds_available:
+		_send({"t":"reed", "id":id})
+
+func interact_lake(action: String) -> void:
+	if ready_in_room and lake_household:
+		_send({"t":"lake", "action":action})
 
 func rescue_player(id: String) -> void:
 	if ready_in_room and not id.is_empty():
@@ -225,8 +250,14 @@ func interact_storage(action: String, fields: Dictionary = {}) -> void:
 		_send(message)
 
 func interact_dog(action: String) -> void:
-	if ready_in_room and not dog.is_empty():
+	if ready_in_room and (action=="whistle" or not dog.is_empty()):
 		_send({"t": "dog", "action": action})
+
+func report_sighting(species: String, yaw: float, pitch: float) -> void:
+	if ready_in_room:
+		_yaw = yaw
+		_send_motion()
+		_send({"t": "sighting", "species": species, "pitch": pitch})
 
 func interact_person(action: String, item := "", id := "", yaw := 0.0, pitch := 0.0) -> void:
 	if ready_in_room:
@@ -240,7 +271,7 @@ func attack_person(body_yaw: float, sight_yaw: float, sight_pitch: float) -> voi
 
 func _send_motion() -> void:
 	var motion := {"t": "motion", "x": _direction.x, "z": _direction.y, "yaw": _yaw, "lift": _lift,
-		"blocking": blocking, "aimPitch": aim_pitch}
+		"blocking": blocking, "aimPitch": aim_pitch, "crouch":_crouch}
 	if _snapshot_seq > 0:
 		motion.snapshotAck = _snapshot_seq
 	_send(motion)
@@ -303,11 +334,18 @@ func _process(delta: float) -> void:
 	rain = Rules.rain_at(elapsed)
 	if is_piloting():
 		_predict_ship(delta)
+	elif not str(player_motion.get("bed","")).is_empty():
+		if PlayerMotion.Ferry.on_deck(player_motion.get("ferryLocal", Vector2.INF)) and player_motion.onFerry:
+			var hull := PlayerMotion.Ferry.pose(elapsed,ferry_departure)
+			local_position = PlayerMotion.Ferry.world_point(player_motion.ferryLocal,hull)
+			player_motion.bedYaw = float(hull.yaw) + PI*.5
 	elif not player_motion.get("climbing", false) and not player_motion.get("storageSeated", false):
 		player_motion.point = local_position
+		player_motion.crouchHeld = _crouch
 		var able: bool = survival.get("health", 100.0) > 0.0
 		PlayerMotion.step(player_motion, _direction if able else Vector2.ZERO, _lift if able else 0.0,
-			delta, _grid, ship, _ship_grid, grove_elapsed, storage)
+			delta, _grid, ship, _ship_grid, grove_elapsed, storage, ferry_departure, elapsed if lake_household else -1.0)
+		Boar.clear_body(player_motion,local_position,boar,_grid)
 		local_position = player_motion.point
 	# Ease small drift until the next authoritative sample.
 	var blend := minf(1.0, delta * 12.0)
@@ -379,6 +417,13 @@ func _receive(msg: Dictionary) -> void:
 			storage = msg.get("storage", {})
 			mines = msg.get("mines",{})
 			storage_available = msg.has("storage")
+			lake_household = msg.has("ferryDepartedAt")
+			ferry_departure = float(msg.get("ferryDepartedAt", -1.0))
+			reeds_available = msg.has("reedCuts")
+			reed_cuts = msg.get("reedCuts", {})
+			sheared_at = float(msg.get("shearedAt", -1.0))
+			boar=msg.get("boar",{})
+			sheep_alive = msg.get("sheepAlive", false)
 			eagle_alive = msg.get("eagleAlive", true)
 			var was_down: bool = survival.get("health", 100.0) <= 0.0
 			survival = msg.get("survival", {})
@@ -399,7 +444,8 @@ func _receive(msg: Dictionary) -> void:
 			var position_from_server := Vector2(actor.x, actor.z)
 			var swimming: bool = actor.get("swimming", false)
 			var height: float = actor.get("y", PlayerMotion.Lake.walk_height(position_from_server))
-			if not ready_in_room or was_down != down or was_piloting or is_piloting() or local_position.distance_to(position_from_server) > 1.2:
+			var aboard: bool = actor.get("onFerry", false)
+			if not ready_in_room or actor.get("bed","") != player_motion.get("bed","") or aboard != player_motion.get("onFerry", false) or was_down != down or was_piloting or is_piloting() or local_position.distance_to(position_from_server) > 1.2:
 				local_position = position_from_server
 				_correction = Vector2.ZERO
 				player_motion = PlayerMotion.spawn(local_position)
@@ -423,6 +469,16 @@ func _receive(msg: Dictionary) -> void:
 					_height_correction = 0.0
 				else:
 					_height_correction = height - float(player_motion.y)
+			player_motion.onFerry = aboard
+			if aboard:
+				var ferry := PlayerMotion.Ferry.pose(elapsed, ferry_departure)
+				if not str(actor.get("bed","")).is_empty() and actor.has("deck"):
+					player_motion.ferryLocal = Vector2(actor.deck[0],actor.deck[1])
+				else:
+					player_motion.ferryLocal = PlayerMotion.Ferry.local_point(local_position, ferry)
+			player_motion.bed = actor.get("bed","")
+			player_motion.bedYaw = actor.get("bedYaw",0.0)
+			player_motion.crouched = actor.get("crouched",false)
 			player_motion.climbing = actor.get("climbing", false)
 			player_motion.storageSeated = actor.get("storageSeated", false)
 			ready_in_room = true
@@ -454,4 +510,4 @@ func _receive_atlas(msg: Dictionary) -> void:
 			var was_piloting := is_piloting()
 			ship = msg.ship
 			_reconcile_ship(was_piloting)
-	atlas_reply.emit(action, accepted, str(msg.get("text", "")))
+	atlas_reply.emit(action, accepted, str(msg.get("text", "")), str(msg.get("site", "")))

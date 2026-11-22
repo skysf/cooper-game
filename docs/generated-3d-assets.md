@@ -26,6 +26,21 @@ pickup_output=$(mktemp -d)
 python3 scripts/refine-mine-pickups.py pack "$pickup_output/raw" "$pickup_output/runtime"
 ```
 
+## 乐山大佛与大脚趾甲尺度
+
+佛像是参照乐山大佛坐姿制作的独立游戏雕刻，足底基准面至螺髻高 70.94 米，脚下石台向下延伸 1.65 米。两脚各有五趾，每只脚朝内的大脚趾甲约宽 2.21 米、长 1.92 米。Blender 使用米制、正面朝 −Y，导出至 Godot 后正面朝 +Z。游戏以原尺寸把雕像安放在外海小岛对岸，朝向岛顶步道。重导出后运行 `python3 scripts/build-coast.py` 可同步游戏 GLB 和房间碰撞数据。[可编辑源件](../art/landmarks/leshan_buddha/leshan_buddha.blend) · [游戏 GLB](../coop/coast/leshan_buddha.glb) · [海岸实景](../evidence/leshan-coast/island.png)
+
+Godot 4.7.2 识别 `HalluxNail_L-col` 和 `HalluxNail_R-col`，为两块可见甲面各建了三角网碰撞。独立场景使用正式营地角色和游戏的 0.29 米碰撞半径，每次让四人落到同一枚甲面。两脚均通过。每只脚另取 132 个脚印采样点，命中同一枚甲面，最近的两人之间有约 0.20 米余量。游戏版雕像有 157,574 个三角面，躯体与足部各用一套 2K 底色和法线。[四人脚底近景](../evidence/leshan-buddha-scale/four-on-one-toenail.png) · [尺度对照](../evidence/leshan-buddha-scale/scale-review.jpg) · [碰撞实测数据](../evidence/leshan-buddha-scale/grounding.json)
+
+从项目根目录执行下列命令可重新制作两份模型。只重导出手工调整过的源件时，可使用第二条命令。
+
+```sh
+./scripts/start-blender.sh --background --factory-startup --python-exit-code 1 --python art/landmarks/leshan_buddha/build.py
+./scripts/start-blender.sh --background art/landmarks/leshan_buddha/leshan_buddha.blend --python-exit-code 1 --python art/landmarks/leshan_buddha/package_glb.py
+```
+
+砂岩细纹取自营地已有的 Poly Haven 岩面材质。雕刻参考了用户提供的正面照片、Christels 的头部近照和 Jan Kranendonk 的全身及脚边参照。[Rock Face 03](https://polyhaven.com/a/rock_face_03) · [头部近照](https://commons.wikimedia.org/wiki/File:The_head_of_the_Leshan_Giant_Buddha.jpg) · [坐姿](https://commons.wikimedia.org/wiki/File:Leshan_giant_Buddha.jpg) · [脚边尺度](https://commons.wikimedia.org/wiki/File:Tourists_at_the_giant_Buddha_of_Leshan.jpg)
+
 ## 营地开局武器
 
 游戏构建直接使用 `coop/weapons/` 中的模型与贴图。要重导出模型和背包图标，从下方素材页下载三件模型的 4K Blender 版本，分别解包到 `art/weapons/source/<素材名>_4k.blend/`，保留同名的 `.blend` 文件和 `textures/` 子目录，然后在项目根目录运行 `./scripts/start-blender.sh --background --python-exit-code 1 --python scripts/build-camp-weapons.py`。

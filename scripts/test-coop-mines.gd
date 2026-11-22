@@ -119,19 +119,19 @@ func _geometry(id: String, entry: Dictionary, solids: Array[Dictionary]) -> void
 	var maximum_error := 0.0
 	var maximum_grade := 0.0
 	var previous := _section(floor, -.4).y
-	for i in range(1,112):
+	for i in range(1,319):
 		var z := -.4 + float(i)*.1
 		var section := _section(floor,z)
 		var local := Vector3(section.x,section.y,z)
 		var world := cave * local
-		var test_ground := Lake.walk_height(_xz(world))
+		var test_ground := Lake.walk_height(_xz(world),world.y)
 		var floor_height := PlacementWorld.floor_height(solids,_xz(world),world.y,test_ground)
 		maximum_error = maxf(maximum_error,absf(floor_height-world.y))
 		maximum_grade = maxf(maximum_grade,absf(section.y-previous)*10.0)
 		previous = section.y
 		opening = opening and not PlacementWorld.blocks_player(solids,_xz(world),floor_height)
 		support = support and absf(floor_height-world.y) < .038 and world.y >= test_ground - .02
-		if i % 8 == 0 and z > .1 and z < 10.5:
+		if i % 8 == 0 and z > .1 and z < 31.6:
 			var l: Variant = _mesh_intersection(id,local+Vector3.UP*.22,local-Vector3.UP*.18)
 			visual_clear = visual_clear and l != null and absf((l as Vector3).y-local.y)<.042
 			visual_clear = visual_clear and _mesh_intersection(id,local+Vector3.UP*.14,local+Vector3.UP*1.70)==null
@@ -145,17 +145,18 @@ func _geometry(id: String, entry: Dictionary, solids: Array[Dictionary]) -> void
 			blocked = blocked and Placement.trace(cave*(local+Vector3.UP*1.68),cave*high,solids).get("id","") == id
 			blocked = blocked and _mesh_intersection(id,local+Vector3.UP*1.70,high) != null
 	_check(opening, id + " adult player corridor is clear through the open entrance")
-	_check(support and maximum_grade < .755, id + " floor supports continuous travel above original terrain")
+	_check(support and maximum_grade < .755, id + " floor supports continuous travel down the gallery")
 	_check(visual_clear, id + " glTF shows real walkable tread and an empty head cavity")
 	_check(blocked, id + " rock walls and roof block matching OBB and visual rays")
-	var end := _section(floor,10.9)
-	var before := Vector3(end.x,end.y+1.2,10.9)
-	var after := Vector3(end.x,end.y+1.2,12.38)
+	var back := float(floor.back()[0])
+	var end := _section(floor,back-.45)
+	var before := Vector3(end.x,end.y+1.2,back-.45)
+	var after := Vector3(end.x,end.y+1.2,back+.9)
 	_check(Placement.trace(cave*before,cave*after,solids).get("id","") == id and _mesh_intersection(id,before,after) != null,
 		id + " terminates at a sealed back wall")
 	var gather: Vector3 = Mines.vector(entry.gather)
 	var aim := Vector3(_section(floor,gather.z).x,gather.y,gather.z)
-	_check(Mines.gather(id).distance_to(cave*gather)<.00001 and aim.distance_to(gather)<2.0,
+	_check(Mines.gather(id).distance_to(cave*gather)<.00001 and aim.distance_to(gather)<float(_section(floor,gather.z).z)+.1,
 		id + " shared gather target is accessible from the gallery")
 	measurements[id]["peak_floor_grade"] = maximum_grade
 	measurements[id]["floor_collision_error"] = maximum_error
@@ -188,7 +189,7 @@ func _motion_contacts(id: String, entry: Dictionary, solids: Array[Dictionary], 
 	measurements[id]["jump_apex_m"] = travel
 	var gather := Mines.vector(entry.gather)
 	var p := _section(entry.floor,gather.z)
-	var center := cave * Vector3(p.x,p.y,gather.z)
+	var center := cave * Vector3(lerpf(p.x,gather.x,.35),p.y,gather.z)
 	var side := signf(gather.x-p.x)
 	var outside := cave * Vector3(p.x+side*(p.z+1.06),p.y,gather.z)
 	var focus := Mines.gather(id)
@@ -205,7 +206,7 @@ func _walk(id: String, entry: Dictionary, grid: Dictionary, fps: float) -> void:
 	for at: Array in entry.route:
 		waypoints.append(_xz(Mines.vector(at)))
 	var z := .13
-	while z <= 10.5:
+	while z <= float(entry.floor.back()[0])-.55:
 		var p := _section(entry.floor,z)
 		waypoints.append(_xz(cave*Vector3(p.x,p.y,z)))
 		z+=.23
@@ -235,23 +236,20 @@ func _walk(id: String, entry: Dictionary, grid: Dictionary, fps: float) -> void:
 	measurements[id]["travel_ticks_%d" % fps] = travelled
 	measurements[id]["height_above_terrain"] = stepped
 
-func _verify_iron_ramp_bend(grid: Dictionary) -> void:
-	for sample: Vector3 in [Vector3(-72.32,19.656,-62.40),Vector3(-72.32,19.441,-61.94),
-			Vector3(-72.20,19.439,-61.95), Vector3(-72.079,19.437,-61.95), Vector3(-71.92,19.435,-61.95)]:
-		var point := _xz(sample)
-		var solids := PlacementWorld.nearby(PlacementWorld.mine_grid(),{},point,3.15)
-		var terrain := Lake.walk_height(point)
-		var floor_y := PlacementWorld.floor_height(solids,point,sample.y,terrain)
-		_check(absf(floor_y-sample.y) < .015 and floor_y-terrain > .22,
-			"the iron approach top still holds a player at a ramp seam %s" % point)
-		var player := Motion.spawn(point)
-		player.y = floor_y
-		var feet := floor_y
-		for _frame in 12:
-			Motion.step(player,Vector2(0,1),0.0,1.0/60.0,grid,{})
-			feet = minf(feet, float(player.y))
-		_check(player.point.y > point.y+.45 and feet > floor_y-.52,
-			"the player walks down from the iron approach seam %s" % point)
+func _verify_levels() -> void:
+	for id: String in Mines.data:
+		var previous_dark := -1.0
+		var previous_y := INF
+		for z: float in [0.0,3.0,7.0,14.0,23.0,30.0]:
+			var at := Lake.Gallery.station(id,z)
+			var dark := Lake.Gallery.darkness(at+Vector3.UP*1.65)
+			_check(previous_dark < dark and previous_y > at.y,id+" descends and darkens at "+str(z))
+			_check(absf(Lake.walk_height(_xz(at),at.y)-at.y)<.01,id+" rests on the underground floor")
+			if z>=7:
+				var hill := Lake.ground_height(_xz(at))
+				_check(hill>at.y+3.0 and absf(Lake.walk_height(_xz(at),hill)-hill)<.01,id+" supports the hillside above the same gallery")
+			previous_y = at.y
+			previous_dark = dark
 
 func _verify() -> void:
 	_check(Mines.data.keys().size() == 2, "Exactly one world source per mineral")
@@ -266,7 +264,7 @@ func _verify() -> void:
 		_walk(id,entry,grid,60.0)
 		_walk(id,entry,grid,30.0)
 		_motion_contacts(id,entry,solids,grid)
-	_verify_iron_ramp_bend(grid)
+	_verify_levels()
 	var scene := MinesScene.new()
 	root.add_child(scene)
 	var lamps := scene.find_children("*", "OmniLight3D", true, false)

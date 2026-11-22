@@ -1,0 +1,119 @@
+{
+  "rocks": {
+    "rock_shelf": {
+      "openEdges": 0,
+      "volumeM3": 172.01
+    },
+    "rock_shelf_far": {
+      "openEdges": 0,
+      "volumeM3": 171.87
+    },
+    "granite_tor": {
+      "openEdges": 0,
+      "volumeM3": 33.89
+    },
+    "granite_tor_far": {
+      "openEdges": 0,
+      "volumeM3": 33.82
+    },
+    "weathered_rock": {
+      "openEdges": 0,
+      "volumeM3": 5.84
+    },
+    "weathered_rock_far": {
+      "openEdges": 0,
+      "volumeM3": 5.82
+    },
+    "wood_rock": {
+      "openEdges": 0,
+      "volumeM3": 3.0
+    },
+    "wood_rock_far": {
+      "openEdges": 0,
+      "volumeM3": 2.99
+    }
+  },
+  "portals": {
+    "coal_mine": {
+      "verticalRays": 2408,
+      "uncovered": 0
+    },
+    "iron_mine": {
+      "verticalRays": 2408,
+      "uncovered": 0
+    }
+  },
+  "treeRims": {
+    "grove_tree": {
+      "trees": 141,
+      "probes": 8319,
+      "smallestBurialM": 0.0845
+    },
+    "crooked_tree": {
+      "trees": 92,
+      "probes": 4876,
+      "smallestBurialM": 0.0845
+    },
+    "quiver_tree": {
+      "trees": 44,
+      "probes": 13684,
+      "smallestBurialM": 0.0845
+    },
+    "fork_tree": {
+      "trees": 35,
+      "probes": 1995,
+      "smallestBurialM": 0.0845
+    }
+  },
+  "coal_mineSpring": {
+    "shoreVertices": 114,
+    "maxShoreErrorM": 4e-06,
+    "depthM": 0.4
+  },
+  "iron_mineSpring": {
+    "shoreVertices": 116,
+    "maxShoreErrorM": 7e-06,
+    "depthM": 0.4
+  },
+  "collisionFixture": {
+    "pose": [
+      297.66,
+      0.454,
+      -48.2,
+      1.865,
+      1.295
+    ],
+    "roof": [
+      293.9607704222539,
+      5.507754126480283,
+      -49.24416990050878
+    ],
+    "oldFeet": 2.3560464159036294,
+    "approaches": [
+      {
+        "start": [
+          288.61573909069176,
+          -47.624643715287064
+        ],
+        "aim": [
+          289.84074179515005,
+          -47.99581533875775
+        ],
+        "top": 3.051300949417359,
+        "ground": 1.4248237228722593
+      },
+      {
+        "start": [
+          296.2911466608133,
+          -49.950265918595605
+        ],
+        "aim": [
+          295.066143956355,
+          -49.57909429512492
+        ],
+        "top": 3.61717891178509,
+        "ground": 2.6352793917324107
+      }
+    ]
+  }
+}

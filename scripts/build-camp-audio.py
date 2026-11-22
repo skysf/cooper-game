@@ -46,17 +46,11 @@ def debris(t, count, start, end, high):
     return sound
 
 
-def step(surface):
+def wooden_step():
     t = seconds(0.30)
     heel = strike(t, 0.018, 0.012, 0.047)
     toe = strike(t, RNG.uniform(0.092, 0.120), 0.019, 0.039)
-    weight = 0.18 * tone(t, RNG.uniform(75, 98)) * heel
-    if surface == "trail":
-        scuff = noise(t, 180, 1900) * (0.47 * heel + 0.18 * toe)
-        return t, weight + scuff + debris(t, 13, 0.031, 0.19, 2000)
-    if surface == "leaves":
-        crush = noise(t, 650, 3700) * (0.31 * heel + 0.23 * toe)
-        return t, weight * 0.6 + crush + debris(t, 25, 0.022, 0.23, 4700)
+    RNG.bit_generator.advance(1)  # Historical unused weight draw in the wooden take.
     board = np.zeros_like(t)
     for frequency, weight_at_frequency in [(122, 0.50), (207, 0.23), (343, 0.13), (628, 0.06)]:
         board += weight_at_frequency * tone(t, frequency * RNG.uniform(0.93, 1.07))
@@ -156,9 +150,11 @@ def write(name, signal, peak, looping=False):
 
 def main():
     OUTPUT.mkdir(exist_ok=True)
-    for number in (1, 2):
-        for surface in ("trail", "leaves", "wood"):
-            write(f"step-{surface}-{number}", step(surface), 0.62)
+    # Skip the retired trail/leaf takes in the seeded sequence so rebuilding
+    # reproduces the original wooden boards, water and subsequent effects.
+    for number, retired_draws in enumerate((14871, 14862), start=1):
+        RNG.bit_generator.advance(retired_draws)
+        write(f"step-wood-{number}", wooden_step(), 0.62)
         write(f"step-wade-{number}", water(0.33, 0.2), 0.59)
         write(f"swim-stroke-{number}", water(0.41, 0.39), 0.59)
     write("swim-deep", water(0.40, 0.44, underwater=True), 0.54)

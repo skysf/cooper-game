@@ -120,7 +120,8 @@ def lane(collection, entry, mat):
     # Jagged edges extend into the rock and down to the existing ground.
     rng = random.Random(951)
     height = m["CoastHeight"]()
-    for z,y,x,w in entry["floor"]:
+    stations=[row for row in entry["floor"] if row[0]>=-.50]
+    for z,y,x,w in stations:
         left, right = x-w-.035, x+w+.035
         row = [left, x-w*.52, x, x+w*.52, right]
         for j,v in enumerate(row):
@@ -131,46 +132,12 @@ def lane(collection, entry, mat):
             v += sign*extension
             skirt_y = min(y-.16,m["height_at"](height,entry,v,z)-.018)
             points.append((v,skirt_y,z))
-    for i in range(len(entry["floor"])-1):
+    for i in range(len(stations)-1):
         a, b = i*7,(i+1)*7
         for j in range(4):
             faces.append((a+j,b+j,b+j+1,a+j+1))
         faces += [(a+5,b+5,b,a),(a+4,b+4,b+6,a+6)]
     mesh(collection,"Continuous gravel tread and earthen skirts",points,faces,[mat],[0]*len(faces),.61)
-
-
-def trail_grade(collection,entry,mats):
-    m = LAYOUT
-    rng = random.Random(708)
-    coast = m["CoastHeight"]()
-    samples = entry["footpath"]
-    points,faces,indices=[],[],[]
-    for i,(x,y,z,w) in enumerate(samples):
-        left,right = samples[max(0,i-1)],samples[min(i+1,len(samples)-1)]
-        direction = (right[2]-left[2],0.,left[0]-right[0])
-        dx,_,dz = m["unit"](direction)
-        profile = []
-        for t in (-2,-1,0,1,2):
-            sx,sz = x+dx*w*t*.5,z+dz*w*t*.5
-            tipped = y
-            if abs(t)==1:
-                tipped += rng.uniform(-.012,.008)
-            profile.append((sx,tipped,sz))
-        for sign in (-1,1):
-            edge = profile[0] if sign < 0 else profile[-1]
-            under = m["height_at"](coast,entry,edge[0],edge[2])
-            flare = .22 + .65*max(0,y-under)+rng.uniform(.005,.064)
-            ax,az = x+dx*sign*(w+flare),z+dz*sign*(w+flare)
-            raw = m["height_at"](coast,entry,ax,az)-.019
-            profile.append((ax,min(raw,y-.045),az))
-        points.extend(profile)
-        if i>0:
-            a,b=(i-1)*7,i*7
-            faces.extend((a+j,b+j,b+j+1,a+j+1) for j in range(4))
-            faces += [(a+5,b+5,b,a),(a+4,b+4,b+6,a+6)]
-            indices += [0,0,0,0,1,1]
-    mesh(collection,"Climbing footpath and tapered soil shoulders",points,faces,
-         [mats["gravel"],mats["dark"]],indices,.73)
 
 
 def bedrock(collection, entry, mats, seed):
@@ -279,8 +246,8 @@ def exterior_details(collection, entry, mats, seed):
             shard(collection,"Spalled exterior block %d %d" % (i,sign),at,size,
                   [mats["cliff"]],rng,.64)
     # Low gravel never closes the collision trace or projects above the toes.
-    for j in range(58):
-        z = rng.uniform(-2.28,10.95)
+    for j in range(105):
+        z = rng.uniform(-2.28,LAYOUT["BACK"]-.3)
         y,cx,w = LAYOUT["floor_at"](entry["floor"],z)
         sx = rng.choice((-1,1))
         x = cx+sx*w*rng.uniform(.75,1.04)
@@ -576,7 +543,7 @@ def world_light(scene, name, energy):
 def actual_terrain_reference(scene, entry, mats):
     import bpy
 
-    collection=bpy.data.collections.new("Coast height reference • excluded from GLB")
+    collection=bpy.data.collections.new("Eastern hillside reference • excluded from GLB")
     scene.collection.children.link(collection)
     h=LAYOUT["CoastHeight"]()
     points,faces=[],[]
@@ -591,7 +558,7 @@ def actual_terrain_reference(scene, entry, mats):
         for i in range(n-1):
             a=j*n+i
             faces.append((a,a+n,a+n+1,a+1))
-    mesh(collection,"Real coastline height samples",points,faces,[mats["dark"]],
+    mesh(collection,"Eastern hillside height samples",points,faces,[mats["dark"]],
          [0]*len(faces),.37)
 
 
@@ -630,7 +597,7 @@ def place_collection(scene, collection, at, yaw):
     ASSET["add_instance"](scene,collection,at,yaw)
 
 
-def build(scratch):
+def build(scratch, galleries_only=False):
     import bpy
 
     assert bpy.app.background
@@ -655,7 +622,7 @@ def build(scratch):
         bpy.context.window.scene=scene
         parts[ident] = collection = add_collection(scene,ident)
         lane(collection,entry,mats["gravel"])
-        trail_grade(collection,entry,mats)
+        # The exterior path is painted into the continuous terrain and meets this gallery tread.
         seed=504 if mineral=="coal" else 699
         wall=bedrock(collection,entry,mats,seed)
         if mineral=="coal":
@@ -678,7 +645,9 @@ def build(scratch):
         pickup_studio(scene)
         scenes[ident]=scene
     for ident,part in parts.items():
-        ASSET["export_part"](scenes[ident],part,scratch)
+        if galleries_only and ident in ("coal","iron_ore","iron_ingot"):
+            continue
+        ASSET["export_part"](scenes[ident],part,scratch,active_scene_only=True)
         normalize_shared_images(scratch/(ident+".glb"),RUNTIME/(ident+".glb"))
     bpy.context.window.scene=scenes["coal_mine"]
     for scene in list(bpy.data.scenes):

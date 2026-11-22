@@ -39,7 +39,7 @@ async function wait(page, predicate, arg = null, timeout = 10000) {
 
 async function openMap(page) {
   await page.keyboard.press('KeyM');
-  return wait(page, () => CooperStatus.atlas.open && Object.keys(CooperStatus.atlas.sites).length === 6);
+  return wait(page, expected => CooperStatus.atlas.open && expected.every(site => site in CooperStatus.atlas.sites), Object.keys(travel));
 }
 
 function middle([x, y, width, height]) {
@@ -61,7 +61,9 @@ async function focus(page) {
 }
 
 const travel = {
+  root_trail: [58,-75.7], flower_valley: [191,-52], coal_mine: [90,-55], iron_mine: [265,-56], east_ridge: [322,-32.4],
   island: [-187.55, -57.1], ridge: [-69.9, -53.15], beach: [-84.8, -50.7],
+  buddha: [-113.84, -78.57],
   lake: [-8.55, -49.1], tower: [6.7, -16.9], camp: [1.9, -85.0],
 };
 

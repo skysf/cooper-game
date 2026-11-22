@@ -109,7 +109,12 @@ func _verify() -> void:
 		quit(2)
 		return
 	var room: Dictionary = rooms[ROOM]
-	_expect(_snapshot(alice).storage == _snapshot(bob).storage and room.data.storage.size() == 12,"legacy room sees one shared set of containers, furniture and a furnace")
+	var camp_fixtures:=["camp-first-cot","camp-iron-furnace","camp-table","camp-table-babushka","camp-table-gnome","camp-water-jug"]
+	var expected_ids:=camp_fixtures.duplicate()
+	for index in Storage.START.size():
+		expected_ids.append("camp-storage-%d"%index)
+	_expect(_snapshot(alice).storage == _snapshot(bob).storage and room.data.storage.has_all(expected_ids)
+		and room.data.storage.size()==expected_ids.size(),"legacy room has one shared set of containers, furniture, cot and furnace")
 	_verify_capacities(room,alice)
 	_verify_transactions(room,alice,bob)
 	var moved := _verify_carry_throw(room,alice,bob)

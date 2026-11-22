@@ -1,0 +1,52 @@
+{
+  "authority_checks": [
+    "walking into the animal leaves the player outside its torso",
+    "unattended boar forages, walks, lies down, breathes and rises",
+    "approach triggers a spatial warning before contact",
+    "sidestep dodges a committed charge and boar breaks into a run",
+    "health stays intact during the warning",
+    "one contact damages its target exactly once",
+    "both room members receive identical boar positions, clips and sound events",
+    "passengers do not draw ground attacks",
+    "normal wildlife ray tests hit the live mesh",
+    "surviving a hit startles the boar",
+    "one carcass exposes the right materials after its collapse",
+    "harvesting uses the shared container and removes each unit once",
+    "harvesting does not immediately replace a hunt",
+    "an emptied carcass yields a new animal after fifteen active minutes",
+    "camp bench produces all three finished goods at their recipe costs",
+    "wearing the mantle over the jacket reduces the rain mood penalty",
+    "another player's whistle cannot claim the dog",
+    "owner's audible whistle changes the real dog's navigation target",
+    "the shared campfire cooks the shoulder cut",
+    "aimed field placement consumes the carried roll outside camp",
+    "occupied bedding stays in place and accepts only one sleeper",
+    "captive sleeps, claims one place and recovers health on the hide",
+    "companion sleeps, claims one place and recovers health on the hide",
+    "a free bed rolls up once and can be shared",
+    "room reload preserves equipment and wildlife"
+  ],
+  "storage_checks": 63,
+  "storage_failures": 0,
+  "artwork": "art/animals/boar_study/wild_boar_motion.blend",
+  "triangles": 29099,
+  "clips": [
+    "Forage",
+    "Walk",
+    "Run",
+    "Warn",
+    "Charge",
+    "LieDown",
+    "Rest",
+    "Rise",
+    "Collapse",
+    "Dead"
+  ],
+  "skycut": {
+    "boar_root": "generate-30",
+    "boar_warn": "generate-31",
+    "boar_rush": "generate-32",
+    "tusk_whistle": "generate-33",
+    "charged_total": 9.2
+  }
+}

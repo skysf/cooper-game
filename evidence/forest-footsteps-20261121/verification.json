@@ -1,0 +1,318 @@
+{
+  "skycut": {
+    "model": "Sonilo sound effects",
+    "takesGenerated": 3,
+    "takesUsed": 2,
+    "creditsCharged": 4.2
+  },
+  "release": {
+    "webAndMacPckSha256": "69f3600c92b4bcfa961836a63ac2b639d11cf06fa93dbfafe4ed46ef1cde8b16",
+    "retiredGroundSoundsInPackage": [],
+    "packagedGroundSounds": [
+      "step_loam_1.wav",
+      "step_loam_2.wav",
+      "step_loam_3.wav",
+      "step_soil_1.wav",
+      "step_soil_2.wav",
+      "step_soil_3.wav"
+    ]
+  },
+  "browser": [
+    {
+      "backend": "lan",
+      "zone": "tower",
+      "start": [
+        19,
+        -7
+      ],
+      "outwardWalkM": 7.48,
+      "outAndBackAndJump": true,
+      "file": null,
+      "seconds": 5.9,
+      "steps": [
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.994
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.994
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.994
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.994
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.425
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.992
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.992
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.993
+        }
+      ]
+    },
+    {
+      "backend": "lan",
+      "zone": "east_ridge",
+      "start": [
+        315,
+        -72
+      ],
+      "outwardWalkM": 8.1,
+      "outAndBackAndJump": true,
+      "file": null,
+      "seconds": 5.78,
+      "steps": [
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 1.0
+        }
+      ]
+    },
+    {
+      "backend": "engine",
+      "zone": "tower",
+      "start": [
+        19,
+        -7
+      ],
+      "outwardWalkM": 7.49,
+      "outAndBackAndJump": true,
+      "file": "loam.wav",
+      "seconds": 5.92,
+      "steps": [
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.994
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.757
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.992
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.993
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.992
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_2.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_3.wav",
+          "correlation": 0.995
+        },
+        {
+          "cue": "step_loam_1.wav",
+          "correlation": 0.993
+        }
+      ]
+    },
+    {
+      "backend": "engine",
+      "zone": "east_ridge",
+      "start": [
+        315,
+        -72
+      ],
+      "outwardWalkM": 7.17,
+      "outAndBackAndJump": true,
+      "file": "soil.wav",
+      "seconds": 5.78,
+      "steps": [
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 0.998
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 0.998
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_2.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_1.wav",
+          "correlation": 0.999
+        },
+        {
+          "cue": "step_soil_3.wav",
+          "correlation": 1.0
+        }
+      ]
+    }
+  ]
+}

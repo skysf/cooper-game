@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-21",
+  "measurement": "10 ms stereo RMS windows during outdoor rain. A dip is a window at least 12 dB below that segment’s median. Browser input passed through the normal first- and third-person controls.",
+  "source": {
+    "durationSeconds": 7.988,
+    "channels": 2,
+    "medianAroundSeamDbfs": -35.64,
+    "quietest10msAroundSeamDbfs": -59.87
+  },
+  "preparedRain": {
+    "durationSeconds": 7.028,
+    "channels": 2,
+    "medianAroundSeamDbfs": -35.85,
+    "quietest10msAroundSeamDbfs": -37.62
+  },
+  "browser": {
+    "before": {
+      "normal": {
+        "still": {
+          "seconds": 2.01,
+          "turns": 0,
+          "medianDbfs": -29.78,
+          "quietest10msDbfs": -32,
+          "longestDipMs": 0
+        },
+        "firstPersonTurn": {
+          "seconds": 9,
+          "turns": 4.2,
+          "medianDbfs": -29.74,
+          "quietest10msDbfs": -54.15,
+          "longestDipMs": 90
+        },
+        "thirdPersonTurn": {
+          "seconds": 10,
+          "turns": 4.69,
+          "medianDbfs": -46.11,
+          "quietest10msDbfs": -120,
+          "longestDipMs": 70
+        }
+      },
+      "lan": {
+        "still": {
+          "seconds": 2.02,
+          "turns": 0,
+          "medianDbfs": -38.1,
+          "quietest10msDbfs": -40.29,
+          "longestDipMs": 0
+        },
+        "firstPersonTurn": {
+          "seconds": 9.01,
+          "turns": 4.28,
+          "medianDbfs": -37.72,
+          "quietest10msDbfs": -62.18,
+          "longestDipMs": 80
+        },
+        "thirdPersonTurn": {
+          "seconds": 10.02,
+          "turns": 4.72,
+          "medianDbfs": -37.73,
+          "quietest10msDbfs": -61.9,
+          "longestDipMs": 80
+        }
+      }
+    },
+    "after": {
+      "normal": {
+        "still": {
+          "seconds": 2,
+          "turns": 0,
+          "medianDbfs": -30.53,
+          "quietest10msDbfs": -32.58,
+          "longestDipMs": 0,
+          "maxBrowserFrameMs": 20
+        },
+        "firstPersonTurn": {
+          "seconds": 9.01,
+          "turns": 4.25,
+          "medianDbfs": -30.47,
+          "quietest10msDbfs": -32.65,
+          "longestDipMs": 0,
+          "maxBrowserFrameMs": 33
+        },
+        "thirdPersonTurn": {
+          "seconds": 10,
+          "turns": 4.72,
+          "medianDbfs": -30.39,
+          "quietest10msDbfs": -32.67,
+          "longestDipMs": 0,
+          "maxBrowserFrameMs": 60
+        },
+        "stereoRainSourceStarts": 1,
+        "measuredLoopBoundaries": 3
+      },
+      "lan": {
+        "still": {
+          "seconds": 2.02,
+          "turns": 0,
+          "medianDbfs": -30.48,
+          "quietest10msDbfs": -32.69,
+          "longestDipMs": 0,
+          "maxBrowserFrameMs": 338
+        },
+        "firstPersonTurn": {
+          "seconds": 9.01,
+          "turns": 4.28,
+          "medianDbfs": -30.44,
+          "quietest10msDbfs": -32.7,
+          "longestDipMs": 0,
+          "maxBrowserFrameMs": 39
+        },
+        "thirdPersonTurn": {
+          "seconds": 10,
+          "turns": 4.77,
+          "medianDbfs": -30.4,
+          "quietest10msDbfs": -32.77,
+          "longestDipMs": 0,
+          "maxBrowserFrameMs": 48
+        },
+        "stereoRainSourceStarts": 1,
+        "measuredLoopBoundaries": 3
+      }
+    }
+  },
+  "nativeAcrossLoop": {
+    "medianDb": -30.7298393249512,
+    "quietestDb": -32.0441207885742,
+    "windows10ms": 27
+  },
+  "lakeReflectionPrograms": {
+    "beforeWarmup": {
+      "newProgramsOnFirstTurn": 7,
+      "longestAnimationFrameMsOnFirstTurn": 71
+    },
+    "afterWarmup": {
+      "newProgramsOnFirstTurn": 0,
+      "longestAnimationFrameMsOnFirstTurn": 33
+    }
+  },
+  "releasePckSha256": "ae220dd0decfd576fc30b7aec37faaa5da1cc737789ce581549acb129b410db9"
+}

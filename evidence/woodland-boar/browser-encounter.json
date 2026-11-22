@@ -1,0 +1,76 @@
+{
+  "room": "boar-view-e1d258",
+  "observations": {
+    "clips": [
+      "Rest",
+      "Rise",
+      "Warn",
+      "Charge",
+      "Run",
+      "Forage"
+    ],
+    "cues": [
+      {
+        "name": "boar_warn.wav",
+        "gain": 0.37580201029777527,
+        "t": 14.9706537777781
+      },
+      {
+        "name": "boar_rush.wav",
+        "gain": 0.4905359745025635,
+        "t": 16.2641641515155
+      },
+      {
+        "name": "boar_root.wav",
+        "gain": 0.29214054346084595,
+        "t": 19.0530394761906
+      }
+    ],
+    "audioContexts": 1,
+    "guide": {
+      "animals": [
+        "boar"
+      ],
+      "cooking": false
+    },
+    "health": 100,
+    "partnerHealth": 81
+  },
+  "atlas": {
+    "x": 46.0999984741211,
+    "y": 5.13444496116426,
+    "z": -68.1999969482422,
+    "a": {
+      "clip": "Forage",
+      "clipAt": 19.1435156666668,
+      "cooldown": 26.6768490000003,
+      "lap": 0,
+      "route": 0,
+      "struck": true,
+      "target": "",
+      "until": 24.5435156666668,
+      "x": 30.2100601196289,
+      "y": 0.00692827999591827,
+      "yaw": 0,
+      "z": -77
+    },
+    "clip": "Forage",
+    "h": 100,
+    "guide": {
+      "animals": [
+        "boar"
+      ],
+      "cooking": false
+    },
+    "elapsed": 20.8435156666667,
+    "pp": -0.326344388312062,
+    "wy": 1.06503285731317,
+    "locked": true,
+    "day": "day",
+    "view": [
+      1280,
+      720
+    ]
+  },
+  "errors": []
+}

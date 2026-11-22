@@ -41,7 +41,10 @@ jobs:
           "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-survival.gd" -- "$(mktemp -d "$RUNNER_TEMP/survival.XXXXXX")"
           "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-feedback.gd"
           "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-inventory-stack.gd" -- "$(mktemp -d "$RUNNER_TEMP/inventory.XXXXXX")"
+          "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-field-guide.gd" -- "$(mktemp -d "$RUNNER_TEMP/field-guide.XXXXXX")"
           "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-player-locomotion.gd"
+          "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-weapons.gd" -- "$(mktemp -d "$RUNNER_TEMP/weapons.XXXXXX")"
+          "$GODOT_BIN" --headless --path coop --script "$GITHUB_WORKSPACE/scripts/test-coop-eagle-death.gd"
       - name: Test multiplayer rooms and persistence
         run: npm run coop:test
       - name: Test raids, captive care, companions and real NPC scenes

@@ -179,6 +179,10 @@ def grass_cells(plants, chunks):
 def main(reuse_materials=False):
     subprocess.run(["node", "scripts/build-scene.mjs", "--coop"], cwd=ROOT, check=True)
     layout = json.loads((SOURCE / "scene.json").read_text())
+    import shutil
+    OUT.mkdir(parents=True,exist_ok=True)
+    for biome in ("verdant","namaqua"):
+        shutil.copyfile(ROOT/"art/field_regions"/(biome+".glb"),OUT/(biome+".glb"))
     for d in (OUT,TEXTURES,MATERIALS):
         d.mkdir(parents=True,exist_ok=True)
     if not reuse_materials:

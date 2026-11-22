@@ -1,0 +1,25 @@
+{
+  "errors": [],
+  "models": {
+    "female": {
+      "closedEyeFrames": 12,
+      "loudFrames": 53,
+      "quietFrames": 77
+    },
+    "female_elite": {
+      "closedEyeFrames": 7,
+      "loudFrames": 53,
+      "quietFrames": 77
+    },
+    "male": {
+      "closedEyeFrames": 10,
+      "loudFrames": 46,
+      "quietFrames": 95
+    },
+    "male_elite": {
+      "closedEyeFrames": 8,
+      "loudFrames": 46,
+      "quietFrames": 95
+    }
+  }
+}

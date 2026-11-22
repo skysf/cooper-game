@@ -1,6 +1,7 @@
 extends RefCounted
 
 const MODELS := {
+	"boar_cloak":preload("res://props/wild_boar/boar_cloak.glb"),
 	"cap": preload("res://props/camp_cap.glb"),
 	"helmet": preload("res://props/camp_helmet.glb"),
 	"jacket": preload("res://props/camp_jacket.glb"),

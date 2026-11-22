@@ -1,0 +1,163 @@
+{
+  "browser": {
+    "room": "east-qa-06e86a",
+    "frameSamples": {
+      "root-trail": {
+        "frames": 156,
+        "fps": 57.1,
+        "p95ms": 33.2
+      },
+      "flower-valley": {
+        "frames": 163,
+        "fps": 60,
+        "p95ms": 16.8
+      }
+    },
+    "ore": {
+      "coal_mine": {
+        "before": 14,
+        "after": 13
+      },
+      "iron_mine": {
+        "before": 10,
+        "after": 9
+      }
+    },
+    "errors": []
+  },
+  "mines": {
+    "checks": 85,
+    "failures": [],
+    "measurements": {
+      "coal": {
+        "base": 0.0,
+        "size": "(0.209464, 0.1397, 0.167827)",
+        "surfaces": 1,
+        "textured": 1,
+        "triangles": 396
+      },
+      "coal_mine": {
+        "base": -7.88003063201904,
+        "floor_collision_error": 4.24385070800781e-05,
+        "height_above_terrain": 0.118434906005859,
+        "jump_apex_m": 0.54,
+        "obbs": 443,
+        "peak_floor_grade": 0.262184143066406,
+        "size": "(15.25446, 14.97137, 44.05578)",
+        "surfaces": 5,
+        "textured": 4,
+        "travel_ticks_30": 417,
+        "travel_ticks_60": 832,
+        "triangles": 19486
+      },
+      "coal_seam": {
+        "base": -0.36003902554512,
+        "size": "(0.573795, 0.784713, 2.17)",
+        "surfaces": 2,
+        "textured": 2,
+        "triangles": 2624
+      },
+      "iron_ingot": {
+        "base": 0.0,
+        "size": "(0.302, 0.052313, 0.152)",
+        "surfaces": 3,
+        "textured": 3,
+        "triangles": 128
+      },
+      "iron_mine": {
+        "base": -7.80622005462646,
+        "floor_collision_error": 4.33921813964844e-05,
+        "height_above_terrain": 0.461037245575426,
+        "jump_apex_m": 0.539999938905238,
+        "obbs": 467,
+        "peak_floor_grade": 0.262184143066406,
+        "size": "(19.42882, 14.86867, 47.17495)",
+        "surfaces": 5,
+        "textured": 4,
+        "travel_ticks_30": 465,
+        "travel_ticks_60": 928,
+        "triangles": 20022
+      },
+      "iron_ore": {
+        "base": 0.0,
+        "size": "(0.200047, 0.155408, 0.166241)",
+        "surfaces": 1,
+        "textured": 1,
+        "triangles": 396
+      },
+      "iron_seam": {
+        "base": -0.346095025539398,
+        "size": "(0.242287, 0.73099, 2.165)",
+        "surfaces": 1,
+        "textured": 1,
+        "triangles": 2930
+      }
+    }
+  },
+  "caveResidents": {
+    "camps": {
+      "coal_mine": {
+        "crafted": 2,
+        "deadfall": 4,
+        "fireUntil": 358.08,
+        "fires": 3,
+        "food": 2,
+        "fruitAt": 361.84,
+        "fruitOnBush": 6,
+        "settled": true,
+        "water": 2,
+        "wood": 5,
+        "woodAt": 349.88
+      },
+      "iron_mine": {
+        "crafted": 2,
+        "deadfall": 4,
+        "fireUntil": 355.52,
+        "fires": 3,
+        "food": 2,
+        "fruitAt": 317.12,
+        "fruitOnBush": 5,
+        "settled": true,
+        "water": 2,
+        "wood": 5,
+        "woodAt": 354.6
+      }
+    },
+    "duties": [
+      "coal_mine/fire",
+      "coal_mine/water",
+      "iron_mine/fire",
+      "iron_mine/water",
+      "coal_mine/food",
+      "iron_mine/food",
+      "coal_mine/wood",
+      "iron_mine/wood",
+      "coal_mine/craft",
+      "iron_mine/craft",
+      "coal_mine/rest",
+      "iron_mine/rest"
+    ],
+    "errors": [],
+    "outdoor": [
+      "coal_mine/water",
+      "iron_mine/water",
+      "coal_mine/food",
+      "iron_mine/food",
+      "coal_mine/wood",
+      "iron_mine/wood"
+    ],
+    "reloaded": true
+  },
+  "existingWildPeopleChecks": 68,
+  "workAnimationCases": [
+    "female_elite/DrawWater",
+    "female_elite/GatherFruit",
+    "male/DrawWater",
+    "male/GatherFruit"
+  ],
+  "playerMotionChecks": 21,
+  "nativeHeadless": {
+    "joinedRoom": true,
+    "exitObservation": "Godot reported a live ObjectDB instance on timed shutdown."
+  }
+}

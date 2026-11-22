@@ -65,7 +65,13 @@ Godot 无窗口验证走通了服务端抢拾、压布、磨刃、割绳、投�
 
 泥路、林地落叶、木栈台和浅水各有脚步声。进入深水、在水面划水和下潜有各自的水声。投石和落石声随房间服务器确认的动作播放，石块落在泥地、木板、硬物和水里时音色不同。附近队友听到动作发生的方位。红船登机时启动，运转声音随推力变化，停稳下机后关闭。
 
-脚步和划水声跟随角色位置和实际位移。一次性音效最多同时播放 8 路，飞船另外占用一个循环音源。20 条单声道 WAV 源文件约 478 KB，均由本项目合成。Mac 与支持 AudioWorklet 的网页使用 Godot 音频，普通局域网 HTTP 页面通过 Web Audio 播放包内同一份 PCM。网页自动播放由「进入林地」时的点击解锁。 [音效脚本](../coop/camp_audio.gd) · [合成脚本](../scripts/build-camp-audio.py)
+北坡林地使用鞋底压过腐叶和松针的录音，裸土坡和泥路使用鞋底轻擦细土的录音。两种地面各有三个实录风格的 SkyCut 单步，行走和跳跃落地都按脚下地面选取，同一人物连续两步会换用另一条。东部地面的判定随地形烘焙，沿用画面中沙土和小径的分布。游戏资源从 SkyCut 工程中标记的六个片段导入为 16 位单声道 PCM。 [SkyCut 工程](../art/game_audio/雨线营地%20·%20环境与生物音效.skycut) · [Godot 导入脚本](../scripts/import-footstep-cues.gd) · [北坡实机录音](../evidence/forest-footsteps-20261121/loam.wav) · [土坡实机录音](../evidence/forest-footsteps-20261121/soil.wav) · [网页播放验证](../evidence/forest-footsteps-20261121/verification.json)
+
+脚步和划水声跟随角色位置和实际位移。一次性音效最多同时播放 8 路，飞船、雨、溪流和泉眼、营火、鳄鱼游动各有独立循环。Mac 与支持 AudioWorklet 的网页使用 Godot 音频，普通局域网 HTTP 页面通过 Web Audio 播放包内同一份 PCM。网页自动播放由「进入林地」时的点击解锁。 [音效脚本](../coop/camp_audio.gd) · [合成脚本](../scripts/build-camp-audio.py)
+
+SkyCut 生成的 18 条录音已进入游戏包。苹果有清脆的咬皮声，面包和三明治用较轻的撕咬声，肉类用纤维撕开和咀嚼声。营地水壶、桌上溪水和背包里的水共用吞咽声。进食、取物、制作及采矿在房间保存成功后才向附近玩家发声。击中人或动物的声音与挥空分开。鳄鱼发起扑咬会播放一次攻击声；只有游动、潜入或浮出时有游水声。矿洞深处会衰减户外雨声，营火只在燃料有效时可听到。 [录音清单与响度](../evidence/eastern-ground-repair-20261121/sounds.json) · [双人局域网音频实测](../evidence/eastern-ground-repair-20261121/voice-and-food.json) · [浏览器 AudioWorklet 实测](../evidence/eastern-ground-repair-20261121/voice-and-food-worklet.json)
+
+室外雨声使用 SkyCut 原录音的两个声道。预处理去掉收尾的低音量片段，将两段稳定雨声等功率交叉淡化，并把文件接点放在相邻的原始采样之间。网页通过 Web Audio 在音频线程上循环，Mac 使用无方向的立体声播放器。降雨强度、人物潜水和矿洞深度控制音量，切换肩后视角时沿用人物所在位置。湖岸倒影使用独立的渲染层，进入游戏前按同一图层绘制两侧河岸。实测首次转身时的材质程序链接从 7 次降到 0 次。 [雨声制作脚本](../scripts/prepare-rain-loop.py) · [转向与循环实测](../evidence/rain-loop-20261121.json)
 
 ## 木屋里的桌子与补给
 
@@ -116,6 +122,41 @@ Tab 面板有「背包」和「角色」两个页签。背包左栏按全部、�
 房间只有一只藏獒，由第一位收养它的玩家指挥。位置、归属和指令随房间记录，动作在队友之间同步。跟随使用房间的碰撞规则，遇到木屋侧墙等障碍时会绕行。旧房间更新后会在入口补上这只狗，保留已有的修屋进度。
 
 [Blender 源文件](../art/animals/camp_mastiff.blend)用于编辑。将导出的 GLB 同步到 `coop/props/camp_mastiff.glb` 后由 Godot 导入。运行时按顺序播放 `Lie-down`、`Rest`、`Rise`。停步时播放 `Idle`，近距离走路，落后时用对角步态小跑。步频跟随房间里的实际移动速度，动画切换时平滑过渡。GLB 名称中的 `-loop` 后缀会在导入时启用循环。服务端和客户端回归覆盖自主走动、收养竞争、修屋后回门廊休息、绕墙跟随、待命和存档。
+
+## 湖区住船与绵羊
+
+在 **M → 鹿鸣湖** 落地后，住船停在东岸木栈台外侧，绵羊在栈台靠湖的草坡吃草。走到栈台外端按 **E** 登船，按 **F** 请摆渡人和采药人起桨。也可以站在栈台上按 **F**，从岸边看他们划船。两人各操一舷，起桨后划 17 个完整桨程，再收桨靠回同一座栈台，全程约 47 秒。上船后站在露天甲板，面朝湖面。**WASD** 在甲板走动，按住 **Control** 蹲进船篷，离开低矮处后可站起。**V** 切换观景视角。靠岸后，走近露天甲板出口按 **E** 上岸。 [登船视野](../evidence/lake-dockwork/open-deck-view.jpg) · [湖上实录](../evidence/lake-dockwork/lake-voyage.webm)
+
+篷下左右各有一个铺位，靠近床边按 **E** 躺下，每秒恢复 1.5 点健康，上限 100。再按 **E** 回到过道。每张床一次接待一人，两个铺位可以分别使用，开船后仍可休息。营地绳床采用同一套规则。 [营地建床与安排住民](camp-storage.md#营地绳床)
+
+走近并看向绵羊，按 **E** 剪下一束羊毛。羊会抬头停步，换成剃后的短毛外形。羊毛在房间累计运行 14 分钟后长回。多人同时剪只能收取一束，背包满时保留原毛。狩猎后可从这只羊身上取两份带骨生羊排，有长毛时还可取得一束羊毛。消耗一份生羊排可以在燃烧的营火旁制作一份烤羊排。存档会记录这只羊的生死和毛况。 [实机毛况和背包物品](../evidence/lake-life/sheep-and-lamb.jpg) · [绵羊 Blender 原稿](../art/animals/sheep_study/sheep_study.blend) · [绵羊动作源文件](../art/animals/sheep_study/sheep_motion.blend)
+
+住船沿用湖区设计稿中的搭接木壳、亚麻油布篷和柳编药篮。两个船工的待船、起桨、划水和靠岸动作与房间时钟同步，桨片触水时驱动湖面涟漪与划水声。靠岸时摆渡人双手收绳盘缆，采药人从背篮取出草药整理。开船时两人放下手里的活，各自双手握桨。桨声与沿溪能听到的水声由 SkyCut 生成。 [靠岸人物实录](../evidence/lake-dockwork/dock-chores.webm) · [靠岸动作 Blender 源文件](../art/characters/reed_marsh_study/lakefolk_1700/lakefolk_dockwork.blend) · [船与人物 Blender 原稿](../art/characters/reed_marsh_study/lakefolk_1700/lakefolk_houseboat.blend) · [双人划桨 Blender 源文件](../art/characters/reed_marsh_study/lakefolk_1700/lakefolk_rowing.blend)
+
+从项目根目录运行下面的命令可重新导出游戏模型、生成背包图标及可编辑的动画场景。
+
+```sh
+./scripts/start-blender.sh --background --python-exit-code 7 --python scripts/build-lake-life.py
+./scripts/start-blender.sh --background --python-exit-code 7 --python scripts/lake_life/presentation.py
+```
+
+在鹿鸣湖任一处能够到水面的湖岸按 **F**，可将一份淡水装进背包。在船上或栈台看到开船提示时，按 **R** 取水。
+
+2026-11-21 在独立房间验证了抢同一张床、两张床同时休息、航行中回血和起身让床。网页实测还从住民面板安排俘虏接着使用玩家刚离开的营地床。用游戏中的头盔和篷布网格采样，过道内蹲着转身、蹲走的最小净空约 2 厘米，左右铺位躺下时分别约有 53、56 厘米。可用 `scripts/test-coop-lake-life.gd` 重跑床位、船上移动和人物姿势回归。 [舱内视角](../evidence/lake-dockwork/inside-canopy.jpg) · [夜间登船](../evidence/lake-dockwork/night-from-deck.jpg) · [营地床轮用](../evidence/lake-dockwork/camp-guest-rest.jpg)
+
+## 林地野猪
+
+按 **M** 选择「野猪林地」可到根影林径西侧的观察位置。野猪会沿林地拱土、换地方、屈腿卧下、呼吸和起身。进入约 4.6 米范围会惊动它。野猪先转向目标、踏蹄低吼，约 1.2 秒后沿当时的方向冲撞。侧移可以避开，正面撞到扣 19 点健康，同一轮只结算一次。冲过后它会继续跑开。叫声从野猪所在的位置传出。 [双人带声实录](../evidence/woodland-boar/forest-encounter.webm)
+
+野猪倒地后按 **E** 取材，有两份生野猪肉、两枚獠牙和一张整皮。在点燃的营火旁，每份生肉可烤成一份烤野猪肉，补充 35 点饱腹和 5 点心情。取材剩余量随房间保存。尸体取空且距倒地已满 15 分钟房间运行时间后，林地会再出现野猪。
+
+| 营地木桌配方 | 材料 | 用法 |
+|---|---|---|
+| 獠牙扣猎人披肩 | 野猪皮 1、野猪獠牙 1、绳子 1 | 在背包里穿戴，可以和夹克一起穿。雨天引起的心情损耗减少三分之一。 |
+| 獠牙猎犬哨 | 野猪獠牙 1、绳子 1 | 在背包选「吹哨召回」。36 米内自己收养的藏獒会沿可走路线跟来。 |
+| 猪皮铺盖卷 | 野猪皮 1、羊毛 1、绳子 1 | 从背包选「铺开休息」，瞄准平地后左键放下。按 **E** 躺下或起身，空置时按 **G** 收卷。玩家、同伴、俘虏轮流使用，每张铺盖一次容纳一人。 |
+
+原画稿包含野猪、肩肉、整皮和一对下颌獠牙。动作源文件保留蒙皮、十段动作及营地装备模型。进入 Blender 动作编辑器可以切换动作。游戏模型约 2.91 万个三角形，网页版和 Mac 版共用同一套动画数据。 [Blender 原画稿](../art/animals/boar_study/wild_boar.blend) · [动作与装备源文件](../art/animals/boar_study/wild_boar_motion.blend) · [动作预览](../art/animals/boar_study/wild_boar_motion.jpg)
 
 ## 鹿鸣湖的鳄鱼和老鹰
 
@@ -202,6 +243,23 @@ Tab 面板有「背包」和「角色」两个页签。背包左栏按全部、�
 
 
 ## 玩家动作
+
+### 人形模型、第一人称腿脚与近战（2026-11-21）
+
+陆地上低头可以看到自己的手、衣摆、膝盖和登山靴。脱掉长裤会露出模型原有的短裤和裸腿。按 **1** 选择徒手，再连续点左键，角色依次打出左直拳、右直拳和左摆拳。短暂停手后会收回防守姿势。**V** 可切换肩后视角，队友也能看到同一侧手的动作。持盾时保留左臂护盾，木棍、长矛和日本刀各自使用挥击、刺出和挥砍动作。 [动作实录](../evidence/human-motion-20261121/attacks.mp4) · [腿脚对照](../evidence/human-motion-20261121/legs-and-feet.jpg)
+
+可编辑的玩家源文件为 `art/characters/sky_field_character.blend`，游戏读取 `coop/props/sky_character.glb`。用 `scripts/build-player-field-model.py` 从原步态工程重建雕形、皮肤纹理和近战轨道，脚掌固定的接触姿势由 `scripts/bake-human-attacks.py` 烘焙。房间共享出手时间、装备、连拳序号和俯仰角。`player_melee_pose.gd` 根据这些数据采样，在走动时沿用下半身步态。用以下命令输出候选资产、复验实际导入骨架。 [五套模型及动作清单](../evidence/human-motion-20261121/assets.json)
+
+```sh
+./scripts/start-blender.sh --background --factory-startup --python-exit-code 1 --python scripts/build-player-field-model.py -- .cache/human-motion
+/Users/sky/Downloads/Godot.app/Contents/MacOS/Godot --headless --path coop --script "$PWD/scripts/test-coop-human-attacks.gd"
+```
+
+70 项近战与骨架检查通过，另外复验了 21 项玩家移动检查、46 项武器检查和四款来袭者的步态。两个浏览器分别作为出拳者和队友，记录到三次出手的动作与房间时间一致。Mac 发行版也已进入营地并加载场景。 [检查结果](../evidence/human-motion-20261121/checks.json) · [双端记录](../evidence/human-motion-20261121/browser.json) · [网页版出拳](../evidence/human-motion-20261121/web-punch.jpg) · [网页版低头看腿脚](../evidence/human-motion-20261121/web-first-person-feet.jpg)
+
+### 步态、跳跃与游泳（2026-11-19）
+
+第一人称跳跃时，镜头与本地人物共用当帧脚底高度。站姿、游姿和步行起伏使用相对眼高平滑。验证覆盖 30 与 60 FPS 下的起跳到落地，以及网页版平视、低头和肩后视角的连续画面。 [跳跃记录](../evidence/valley-and-portals-20261121/checks.json)
 
 玩家继续使用原 `sky_character.glb` 骨架、头身、眼镜、帽子与服装。新增 `coop/animations/player_locomotion.tres` 的 Walk、Run、Takeoff、Air、Land、Swim、Tread 动作，源文件为 `art/characters/locomotion/player_locomotion.blend`。原 Stand/Sit 保留，外套仅修正袖子绑定权重以跟随划臂，网格与贴图不变。[步态对照](../evidence/player-locomotion/walk.png) · [跑动](../evidence/player-locomotion/run.png) · [起落](../evidence/player-locomotion/jump.png) · [划水与踩水](../evidence/player-locomotion/swim.png)。
 

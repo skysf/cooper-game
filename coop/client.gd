@@ -13,7 +13,16 @@ const Weapons = preload("res://weapons.gd")
 const FollowCamera = preload("res://follow_camera.gd")
 const CampDog = preload("res://camp_dog.gd")
 const CampDogScene = preload("res://camp_dog_scene.gd")
+const Wildlife = preload("res://wildlife.gd")
+const WoodlandBoarScene=preload("res://woodland_boar_scene.gd")
+const LakeLifeScene = preload("res://lake_life_scene.gd")
+const Beds = preload("res://camp_beds.gd")
+const Ferry = preload("res://lake_ferry.gd")
+const FieldAtlas = preload("res://field_atlas.gd")
+const Reeds = preload("res://lake_reeds.gd")
+const Sheep = preload("res://lake_sheep.gd")
 const WildlifeScene = preload("res://wildlife_scene.gd")
+const StorageWildlife = preload("res://storage_wildlife.gd")
 const WildPeople = preload("res://wild_people.gd")
 const WildPeopleScene = preload("res://wild_people_scene.gd")
 const FieldAtlasPanel = preload("res://field_atlas_panel.gd")
@@ -39,7 +48,6 @@ const DEFAULT_WS := "ws://127.0.0.1:4184/room"
 var net := Network.new()
 var terrain := Terrain.new()
 var atlas := FieldAtlasPanel.new()
-var atlas_resume_lock := false
 var weather := Weather.new()
 var hud := Hud.new()
 var stone_scene := StoneScene.new()
@@ -48,7 +56,6 @@ var mines_scene := MinesScene.new()
 var mine_target := ""
 var rescue_target := ""
 var storage_panel := StoragePanel.new()
-var storage_resume_lock := false
 var storage_target := ""
 var held_storage := ""
 var storage_notice := -1
@@ -59,9 +66,15 @@ var placement_item := ""
 var construction_recipe := ""
 var camp_audio := CampAudio.new()
 var camera := Camera3D.new()
+var next_sighting_ms := 0
+var sighting_retry: Dictionary = {}
 var follow_camera := FollowCamera.new()
 var camp_dog: Node3D
 var wildlife := WildlifeScene.new()
+var forest_boar:=WoodlandBoarScene.new()
+var lake_life := LakeLifeScene.new()
+var reed_target := ""
+var lake_target := ""
 var people_scene := WildPeopleScene.new()
 var people_panel := WildPeoplePanel.new()
 var people_open := false
@@ -73,18 +86,21 @@ var trace_wild := false
 var spaceship := SpaceshipScene.new()
 var local_hiker: Node3D
 var third_person := false
+var on_houseboat := false
+var boat_panorama := false
 var follow_arm := -1.0
 var first_person_view: bool:
 	get:
-		return not third_person or sight_blend > 0.0
+		return not boat_panorama if on_houseboat else not third_person or sight_blend > 0.0
 var sight_blend := 0.0
-var eye_height := EYE_HEIGHT
+var eye_offset := EYE_HEIGHT
 var world: Dictionary
 var sites: Dictionary = {}
 var body_pos := Vector2(1.9,-85)
 var yaw := -.08
 var pitch := .10
 var locked := false
+var menu_open := true
 var prefer_tarp := false
 var avatars := {}
 var plan := ""
@@ -97,8 +113,8 @@ var invite_url := ""
 var hud_clock := 0.
 var web := OS.has_feature("web")
 var preview_warming := false
+var preview_progress := {"stage": "lighting"}
 var web_join
-var web_document
 var telemetry_clock := 0.
 var last_log := ""
 var status_record: FileAccess
@@ -113,7 +129,7 @@ var grindstone_target := false
 var newest_impact := 0
 var water_room_time := -1.0
 var backpack_open := false
-var backpack_resume_lock := false
+var resume_after_panel := false
 var displayed_provisions: Dictionary = {}
 var food_target := ""
 var jug_target := false
@@ -139,7 +155,7 @@ func _ready() -> void:
 	camera.keep_aspect = Camera3D.KEEP_WIDTH
 	camera.fov = VIEW_FOV
 	camera.near = .07
-	camera.far = 105
+	camera.far = Weather.LANDSCAPE_FAR
 	camera.cull_mask &= ~WildPeopleScene.WARM_LAYER
 	camera.current = true
 	camera.position = Vector3(body_pos.x,EYE_HEIGHT,body_pos.y)
@@ -154,6 +170,10 @@ func _ready() -> void:
 	camp_audio.configure(world.route)
 	add_child(camp_audio)
 	add_child(wildlife)
+	add_child(forest_boar)
+	add_child(lake_life)
+	lake_life.blade_entered_water.connect(terrain.add_water_impact)
+	lake_life.blade_entered_water.connect(camp_audio.oar_entry)
 	add_child(people_scene)
 	add_child(spaceship)
 	net.process_priority = -10
@@ -177,6 +197,8 @@ func _ready() -> void:
 	hud.invite_requested.connect(_invite)
 	hud.backpack_close_requested.connect(_set_backpack.bind(false))
 	hud.backpack_action_requested.connect(_use_backpack)
+	hud.camp_page_requested.connect(_open_camp_page)
+	hud.habitat_requested.connect(_open_habitat)
 	if web:
 		terrain.prepare_exhaust_warmup(spaceship.lift_jets[0].mesh, spaceship.lift_material)
 		preview_warming = true
@@ -185,16 +207,33 @@ func _ready() -> void:
 
 func _warm_character_preview() -> void:
 	await terrain.wait_for_lantern_warmup()
-	await _warm_world_views()
+	var preview := await _warm_world_views()
+	preview_progress = {"stage": "character"}
 	await get_tree().process_frame
 	var equipped_pack := _bag_slots() > Survival.SLOT_COUNT
 	var slot := int(net.players.get(net.self_id, {}).get("slot", 1))
 	hud.set_equipment(net.survival, equipped_pack, slot)
 	await hud.character_preview.warm_up(hud.worn, equipped_pack, slot)
+	preview_progress = {"stage": "people", "total": WildPeopleScene.MODELS.size() * WildPeopleScene.WARMUP_PER_MODEL}
 	await people_scene.warm_up()
+	# Looking toward the lake first activates a separate reflection layer.
+	# Draw both banks with that camera mask once streamed ground is available.
+	var lens := preview.get_camera_3d()
+	lens.cull_mask = terrain.lake.reflection_camera.cull_mask
+	lens.far = terrain.lake.reflection_camera.far
+	lens.fov = 100.0
+	var lake := LakeLayout.center()
+	var surface := Vector3(lake.x, LakeLayout.water_y(), lake.y)
+	for offset: Vector3 in [Vector3(25.0, -1.6, -22.0), Vector3(-12.0, -1.6, 11.0)]:
+		lens.position = surface + offset
+		lens.look_at(surface + Vector3.UP)
+		preview.render_target_update_mode = SubViewport.UPDATE_ONCE
+		await RenderingServer.frame_post_draw
+	preview.queue_free()
+	await preview.tree_exited
 	preview_warming = false
 
-func _warm_world_views() -> void:
+func _warm_world_views() -> SubViewport:
 	# The default camp view cannot submit all the material variants seen on the trail.
 	var preview := SubViewport.new()
 	preview.size = Vector2i(160, 90)
@@ -245,18 +284,20 @@ func _warm_world_views() -> void:
 		var at := passage * Vector3(middle[2],float(middle[1]) + EYE_HEIGHT,middle[0])
 		views.append([at, MinesLayout.gather(id), 290.0])
 		views.append([at, entrance + Vector3.UP * 0.9, 290.0])
+	preview_progress = {"stage": "world", "done": 0, "total": views.size()}
 	for view: Array in views:
 		lens.position = view[0]
 		lens.look_at(view[1])
 		lens.far = view[2]
 		preview.render_target_update_mode = SubViewport.UPDATE_ONCE
 		await RenderingServer.frame_post_draw
-	preview.queue_free()
-	await preview.tree_exited
+		preview_progress.done += 1
+	traveler.queue_free()
+	rain_preview.queue_free()
+	return preview
 
 func _read_join() -> void:
 	if web:
-		web_document = JavaScriptBridge.get_interface("document")
 		web_join = JavaScriptBridge.get_interface("CooperJoin")
 		trace_wild = bool(JavaScriptBridge.eval("Boolean(window.__CooperWildTrace)"))
 		people_scene.trace_enabled = trace_wild
@@ -316,52 +357,96 @@ func _mouse_locked() -> bool:
 	return Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 
 func _capture() -> void:
-	if backpack_open or people_open or atlas.is_open or not _playable() or _mouse_locked():
+	if _panel_open() or not _playable() or _mouse_locked():
 		return
 	if not web:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _release() -> void:
+	locked = false
 	if web:
-		if _mouse_locked():
-			web_document.exitPointerLock()
+		if web_join != null:
+			web_join.releasePointer()
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	net.set_motion(Vector2.ZERO,yaw)
 	net.aim_pitch = null
 
+func _set_menu_open(open: bool) -> void:
+	if menu_open == open:
+		return
+	menu_open = open
+	if web and web_join != null:
+		web_join.setMenuOpen(open)
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and setup_ok and not web:
 		_release()
 
-func _set_atlas(open: bool) -> void:
-	if atlas.is_open == open or open and not _playable():
-		return
-	if open:
-		atlas_resume_lock = _mouse_locked() or backpack_open and backpack_resume_lock or storage_panel.is_open and storage_resume_lock
-		_set_storage(false)
-	atlas.set_open(open)
-	if open:
-		_set_backpack(false)
-		_set_people(false)
-	hud.modal_open = open
+func _panel_open() -> bool:
+	return backpack_open or people_open or atlas.is_open or storage_panel.is_open
+
+func _sync_panels() -> void:
+	var open := _panel_open()
+	hud.modal_open = people_open or atlas.is_open or storage_panel.is_open
 	if web and web_join != null:
-		web_join.setAtlasOpen(open)
-	get_viewport().disable_3d = open
+		web_join.setPanelOpen(open, atlas.is_open)
 	if open:
-		locked = false
+		resume_after_panel = resume_after_panel or _mouse_locked()
 		net.blocking = false
 		_release()
-	elif atlas_resume_lock and net.ready_in_room:
+		return
+	var resume := resume_after_panel
+	resume_after_panel = false
+	if resume and _playable():
 		if web and web_join != null:
-			web_join.resumeFromAtlas()
+			web_join.resumeFromPanel()
 		else:
 			_capture()
 
-func _atlas_reply(action: String, accepted: bool, text: String) -> void:
+func _close_panel() -> bool:
+	if atlas.is_open:
+		_set_atlas(false)
+	elif storage_panel.is_open:
+		_set_storage(false)
+	elif people_open:
+		_set_people(false)
+	elif backpack_open:
+		_set_backpack(false)
+	else:
+		return false
+	return true
+
+func _set_atlas(open: bool) -> void:
+	if atlas.is_open == open or open and not _playable():
+		return
+	atlas.set_open(open)
+	if open:
+		_set_storage(false)
+		_set_backpack(false)
+		_set_people(false)
+	get_viewport().disable_3d = open
+	_sync_panels()
+
+func _atlas_reply(action: String, accepted: bool, text: String, site: String) -> void:
 	atlas.reply(action, text)
 	if action == "travel" and accepted:
-		eye_height = float(net.player_motion.y) + PlayerMotion.eye_offset(net.player_motion.swimming)
+		eye_offset = PlayerMotion.eye_offset(net.player_motion.swimming)
+		var landmark: Dictionary = FieldAtlas.LANDMARKS.get(site,{})
+		if landmark.has("view"):
+			var view: Vector2 = landmark.view
+			if site=="boar_wood" and not net.boar.is_empty():
+				view=Vector2(net.boar.x,net.boar.z)
+			var delta: Vector2 = view-net.local_position
+			yaw = atan2(-delta.x,-delta.y)
+			pitch = atan2(LakeLayout.ground_height(view)+float(landmark.viewHeight)-float(net.player_motion.y)-eye_offset,delta.length())
+		elif site in ["island", "buddha"]:
+			var monument := LakeLayout.Coast.buddha
+			var target: Vector2 = monument.pose.origin if site == "island" else monument.pose * Vector2(4.43,16.96)
+			var toward: Vector2 = target - net.local_position
+			yaw = atan2(-toward.x, -toward.y)
+			var target_y := monument.sole_y + (31.0 if site == "island" else 2.28)
+			pitch = atan2(target_y - float(net.player_motion.y) - eye_offset, toward.length())
 		follow_arm = -1.0
 		ship_camera_arm = -1.0
 		_set_atlas(false)
@@ -372,24 +457,50 @@ func _set_backpack(open: bool) -> void:
 		return
 	if open and (not _playable() or net.is_piloting() or net.survival.is_empty()):
 		return
-	if open:
-		if people_open:
-			_set_people(false)
-		_set_storage(false)
-	if open:
-		backpack_resume_lock = _mouse_locked()
-		hud.set_equipment(net.survival, _bag_slots() > Survival.SLOT_COUNT, int(net.players.get(net.self_id, {}).get("slot", 1)))
 	backpack_open = open
-	hud.set_backpack_open(open, net.survival.get("bag", {}), _can_put_on_table(), _bag_slots())
-	if web and web_join != null:
-		web_join.setBackpackOpen(open or people_open)
 	if open:
-		_release()
-	elif not web and backpack_resume_lock:
-		_capture()
+		_set_people(false)
+		_set_storage(false)
+		hud.set_equipment(net.survival, _bag_slots() > Survival.SLOT_COUNT, int(net.players.get(net.self_id, {}).get("slot", 1)))
+	hud.set_backpack_open(open, net.survival.get("bag", {}), _can_put_on_table(), _bag_slots())
+	_sync_panels()
+
+func _open_camp_page(page: String) -> void:
+	match page:
+		"map": _set_atlas(true)
+		"storage":
+			var target: Dictionary = net.storage.get(storage_target, {})
+			if not target.is_empty() and int(Storage.KINDS[target.kind].capacity) > 0:
+				_open_storage_object(storage_target)
+			else:
+				hud.say("靠近并看向可储物的容器")
+		"people": _set_people(true)
+		"field": _set_backpack(false)
+		"room": _open_camp_menu()
+
+func _open_habitat(site: String) -> void:
+	_set_atlas(true)
+	if atlas.is_open:
+		atlas.view.focus_landmark(site)
+
+func _open_camp_menu() -> void:
+	resume_after_panel = false
+	_close_panel()
+	_set_menu_open(true)
+	_release()
 
 func _input(event: InputEvent) -> void:
 	if not setup_ok or not (event is InputEventKey) or not event.pressed or event.echo:
+		return
+	if event.physical_keycode == KEY_ESCAPE:
+		if event.alt_pressed or event.ctrl_pressed or event.meta_pressed:
+			return
+		if event.shift_pressed:
+			_open_camp_menu()
+		elif not _close_panel() and not construction_recipe.is_empty():
+			construction_recipe = ""
+			placement.clear()
+		get_viewport().set_input_as_handled()
 		return
 	if event.physical_keycode == KEY_M and not (event.alt_pressed or event.ctrl_pressed or event.meta_pressed):
 		_set_atlas(not atlas.is_open)
@@ -397,8 +508,6 @@ func _input(event: InputEvent) -> void:
 		return
 	if atlas.is_open:
 		match event.physical_keycode:
-			KEY_ESCAPE:
-				_set_atlas(false)
 			KEY_EQUAL, KEY_KP_ADD:
 				atlas.zoom_step(true)
 			KEY_MINUS, KEY_KP_SUBTRACT:
@@ -408,9 +517,6 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if storage_panel.is_open:
-		if event.physical_keycode == KEY_ESCAPE:
-			_set_storage(false)
-			get_viewport().set_input_as_handled()
 		return
 	if event.physical_keycode == KEY_K and not (event.alt_pressed or event.ctrl_pressed or event.meta_pressed):
 		_set_storage(true, "craft")
@@ -419,19 +525,22 @@ func _input(event: InputEvent) -> void:
 	if event.physical_keycode == KEY_B and not (event.alt_pressed or event.ctrl_pressed or event.meta_pressed):
 		_set_people(not people_open)
 		get_viewport().set_input_as_handled()
-	elif event.physical_keycode == KEY_ESCAPE and people_open:
-		_set_people(false)
-		get_viewport().set_input_as_handled()
 	elif event.physical_keycode == KEY_TAB and not (event.alt_pressed or event.ctrl_pressed or event.meta_pressed) and (backpack_open or not net.survival.is_empty()):
 		_set_backpack(not backpack_open)
-		get_viewport().set_input_as_handled()
-	elif event.physical_keycode == KEY_ESCAPE and backpack_open:
-		_set_backpack(false)
 		get_viewport().set_input_as_handled()
 
 func _use_backpack(action: String, item: String) -> void:
 	if backpack_open:
-		if action == "equip":
+		if action=="whistle":
+			net.interact_dog("whistle")
+			_set_backpack(false)
+		elif action=="unroll":
+			if not held_storage.is_empty() or not held_stone.is_empty():
+				hud.say("先放下手中的物件")
+				return
+			_set_backpack(false)
+			_storage_panel_action("build_preview",{"recipe":"lay_bedroll"})
+		elif action == "equip":
 			net.interact_person("unequip" if net.survival.get("weapon") == item else "equip", item)
 		else:
 			net.interact_provision(action, item)
@@ -439,41 +548,24 @@ func _use_backpack(action: String, item: String) -> void:
 func _set_people(open: bool) -> void:
 	if people_open == open or open and (not _playable() or net.is_piloting()):
 		return
-	if open:
-		if backpack_open:
-			_set_backpack(false)
-		_set_storage(false)
 	people_open = open
-	hud.modal_open = open
-	people_panel.set_open(open, people_target if open else "")
-	if web and web_join != null:
-		web_join.setBackpackOpen(open or backpack_open)
 	if open:
-		_release()
-		net.blocking = false
-		locked = false
-		net.set_motion(Vector2.ZERO, yaw)
+		_set_backpack(false)
+		_set_storage(false)
+	people_panel.set_open(open, people_target if open else "")
+	_sync_panels()
+	if open:
 		people_panel.refresh(net.wild_people, net.survival, body_pos, net.elapsed, net.last_notice, net.notice_number)
 
 func _set_storage(open: bool, mode := "storage", id := "") -> void:
 	if storage_panel.is_open == open or open and (not _playable() or not net.storage_available or net.is_piloting()):
 		return
+	storage_panel.set_open(open, mode, id)
 	if open:
-		storage_resume_lock = _mouse_locked()
 		_set_backpack(false)
 		_set_people(false)
-	storage_panel.set_open(open, mode, id)
-	hud.modal_open = open
-	if web and web_join != null:
-		web_join.setBackpackOpen(open)
-	if open:
-		_release()
-		locked = false
-		net.blocking = false
-		net.set_motion(Vector2.ZERO, yaw)
 		storage_panel.sync(net.storage, net.survival.get("bag", {}), net.elapsed, net.self_id, _bag_slots())
-	elif not web and storage_resume_lock and net.ready_in_room:
-		_capture()
+	_sync_panels()
 
 
 func _storage_panel_action(action: String, fields: Dictionary) -> void:
@@ -495,6 +587,7 @@ func _open_storage_object(id: String) -> void:
 		return
 	var kind: String = net.storage[id].kind
 	match kind:
+		Beds.KIND, Beds.BEDROLL: net.interact_storage("sleep", {"id":id})
 		"campfire": _set_storage(true, "fire", id)
 		"iron_furnace": _set_storage(true, "furnace", id)
 		"wood_sign": _set_storage(true, "sign", id)
@@ -510,6 +603,8 @@ func _can_carry_storage_target() -> bool:
 func _person_action(action: String, item: String, id: String) -> void:
 	if people_open:
 		net.interact_person(action, item, id)
+		if action == "chat":
+			_set_people(false)
 
 func _locate_source(source: String) -> void:
 	tracked_source = source
@@ -522,11 +617,16 @@ func _attack() -> void:
 	var attack_pitch := pitch
 	if not first_person_view:
 		var reach: float = Weapons.stats(weapon).reach
+		var firearm := Weapons.firearm(weapon)
 		var look := Basis.from_euler(Vector3(_follow_pitch(), yaw, 0.0))
 		var destination := camera.position - look.z * (maxf(5.0, reach) + maxf(follow_arm, 0.0))
-		var nearest := INF
+		var bird := Wildlife.eagle(wildlife.flight_time) if net.eagle_alive and wildlife.flight_time >= 0.0 else {}
+		var sheep := Sheep.pose(net.elapsed,net.sheared_at) if net.sheep_alive else {}
+		var animal := StorageWildlife.ray_hit({"croc": net.crocodile, "eagle": bird, "dog": net.dog, "boar":net.boar, "sheep":sheep},
+			camera.position, destination, 0.0, firearm, net.elapsed)
+		var nearest: float = animal.get("distance", INF)
 		for npc: Dictionary in net.wild_people.get("people", {}).values():
-			var hit := WildPeople.ray_hit(npc, camera.position, destination)
+			var hit := WildPeople.ray_hit(npc, camera.position, destination, firearm)
 			if not hit.is_empty() and float(hit.distance) < nearest:
 				nearest = hit.distance
 		if nearest < INF:
@@ -548,14 +648,14 @@ func _bag_slots() -> int:
 	return Survival.slot_count(net.backpack_enabled and not net.backpack_owner.is_empty() and net.backpack_owner == net.self_id)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not setup_ok or backpack_open or people_open or atlas.is_open or storage_panel.is_open:
+	if not setup_ok or _panel_open():
 		return
 	if event is InputEventMouseMotion and _mouse_locked():
 		var motion: Vector2 = event.screen_relative
 		var fov := _look_fov(net.survival.get("weapon", ""))
 		var sensitivity := MOUSE_SENSITIVITY * tan(deg_to_rad(fov * 0.5)) / tan(deg_to_rad(VIEW_FOV * 0.5))
 		yaw = wrapf(yaw - motion.x * sensitivity, -PI, PI)
-		pitch = clampf(pitch - motion.y * sensitivity, -1.44, 1.51)
+		pitch = clampf(pitch - motion.y * sensitivity, -1.55, 1.51)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if _mouse_locked() and not net.is_piloting():
 			if net.survival.get("health", 100.0) <= 0.0:
@@ -575,7 +675,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			_capture()
 	elif event is InputEventKey and event.pressed and not event.echo:
-		if locked and net.is_piloting() and event.physical_keycode != KEY_ESCAPE:
+		if locked and net.is_piloting():
 			if event.physical_keycode == KEY_E:
 				net.interact_ship("exit")
 			elif event.physical_keycode == KEY_V:
@@ -583,16 +683,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				ship_camera_arm = -1.0
 			return
 		match event.physical_keycode:
-			KEY_ESCAPE:
-				if not construction_recipe.is_empty():
-					construction_recipe = ""
-					placement.clear()
-					return
-				if not web:
-					_release()
 			KEY_E:
 				if locked and net.survival.get("health", 100.0) > 0.0:
-					if not rescue_target.is_empty():
+					if not str(net.player_motion.get("bed","")).is_empty():
+						net.interact_lake("wake")
+					elif Beds.aboard(lake_target):
+						net.interact_lake(lake_target)
+					elif not rescue_target.is_empty():
 						net.rescue_player(rescue_target)
 					elif net.storage.has(storage_target) and (held_storage.is_empty() or net.storage[storage_target].kind == "campfire"):
 						_open_storage_object(storage_target)
@@ -600,6 +697,10 @@ func _unhandled_input(event: InputEvent) -> void:
 						_open_storage_object(held_storage)
 					elif not people_target.is_empty():
 						_set_people(true)
+					elif lake_target in ["board","leave","shear"]:
+						net.interact_lake(lake_target)
+					elif not reed_target.is_empty() and not Reeds.cut(reed_target,net.reed_cuts,net.elapsed):
+						net.harvest_reeds(reed_target)
 					elif ship_target and net.ship.get("pilot", "") == "":
 						net.interact_ship("board")
 					elif backpack_target:
@@ -618,7 +719,9 @@ func _unhandled_input(event: InputEvent) -> void:
 						net.interact(nearby)
 			KEY_F:
 				if locked and not dog_target and net.survival.get("health", 100.0) > 0.0:
-					if not mine_target.is_empty():
+					if (on_houseboat or lake_target == "board") and Ferry.moored(net.elapsed,net.ferry_departure):
+						net.interact_lake("sail")
+					elif not mine_target.is_empty():
 						net.mine(mine_target)
 					elif not source_target.is_empty():
 						net.interact_person("gather", source_target)
@@ -644,6 +747,8 @@ func _unhandled_input(event: InputEvent) -> void:
 						net.interact_stone("drop")
 					elif jug_target:
 						net.interact_storage("carry", {"id":"camp-water-jug"})
+					elif net.storage.get(storage_target,{}).get("kind","")==Beds.BEDROLL:
+						net.interact_storage("pack_bedroll",{"id":storage_target})
 					elif _can_carry_storage_target():
 						net.interact_storage("carry", {"id": storage_target})
 					elif net.provisions.has(food_target):
@@ -651,6 +756,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_R:
 				if locked and (not held_storage.is_empty() or not construction_recipe.is_empty()):
 					placement_rotation = wrapf(placement_rotation + deg_to_rad(15.0),-PI,PI)
+				elif locked and source_target == "water" and str(net.player_motion.get("bed","")).is_empty():
+					net.interact_person("gather","water")
 			KEY_Q:
 				if locked:
 					prefer_tarp = not prefer_tarp
@@ -662,7 +769,10 @@ func _unhandled_input(event: InputEvent) -> void:
 					net.interact_person("shield")
 			KEY_V:
 				if locked:
-					third_person = not third_person
+					if on_houseboat:
+						boat_panorama = not boat_panorama
+					else:
+						third_person = not third_person
 					follow_arm = -1.0
 
 func _placement_input() -> Dictionary:
@@ -701,6 +811,9 @@ func _confirm_placement() -> void:
 		return
 	var action := _placement_input()
 	if held_storage.is_empty():
+		if construction_recipe=="lay_bedroll" and int(net.survival.get("bag",{}).get("boar_bedroll",0))<1:
+			construction_recipe=""
+			return
 		action.recipe = construction_recipe
 		net.interact_storage("build",action)
 	else:
@@ -710,9 +823,10 @@ func _confirm_placement() -> void:
 func _physics_process(_delta: float) -> void:
 	if not setup_ok:
 		return
-	locked = _mouse_locked() and not backpack_open and not people_open and not atlas.is_open and not storage_panel.is_open
+	locked = _mouse_locked() and not _panel_open()
 	if locked and _playable():
 		field_entered = true
+		_set_menu_open(false)
 	var move := Vector2.ZERO
 	var lift := 0.0
 	var piloting := net.is_piloting()
@@ -727,10 +841,10 @@ func _physics_process(_delta: float) -> void:
 		lift = float(Input.is_physical_key_pressed(KEY_SPACE))
 		if piloting or net.player_motion.swimming:
 			lift -= float(Input.is_physical_key_pressed(KEY_C))
-	net.set_motion(move, yaw, lift)
+	net.set_motion(move, yaw, lift, locked and on_houseboat and Input.is_physical_key_pressed(KEY_CTRL))
 
 func _can_aim(piloting: bool, swimming: bool) -> bool:
-	return (locked and net.ready_in_room and not (piloting or swimming)
+	return (locked and net.ready_in_room and not (piloting or swimming or on_houseboat) and str(net.player_motion.get("bed","")).is_empty()
 		and net.survival.get("health", 0.0) > 0.0 and held_stone.is_empty())
 
 func _process(delta: float) -> void:
@@ -738,7 +852,7 @@ func _process(delta: float) -> void:
 		return
 	var trace_start := Time.get_ticks_usec() if trace_wild else 0
 	var trace_marks: Variant = [] if trace_wild else null
-	locked = _mouse_locked() and not backpack_open and not people_open and not atlas.is_open
+	locked = _mouse_locked() and not _panel_open()
 	if people_open and not net.ready_in_room:
 		_set_people(false)
 	if backpack_open and not net.ready_in_room:
@@ -752,12 +866,24 @@ func _process(delta: float) -> void:
 		locked = false
 	if not net.ready_in_room:
 		field_entered = false
+		_set_menu_open(true)
 	var previous := body_pos
 	if net.ready_in_room:
 		body_pos = net.local_position
 	var piloting := net.is_piloting()
 	var swimming: bool = net.ready_in_room and net.player_motion.swimming
 	var down: bool = net.ready_in_room and net.survival.get("health", 100.0) <= 0.0
+	var aboard: bool = net.ready_in_room and net.player_motion.get("onFerry",false) and not piloting
+	if aboard != on_houseboat:
+		on_houseboat = aboard
+		boat_panorama = false
+		follow_arm = -1.0
+		if aboard:
+			var toward := LakeLayout.center() - body_pos
+			yaw = atan2(-toward.x,-toward.y)
+			pitch = -0.05
+			eye_offset = PlayerMotion.CROUCH_EYE if net.player_motion.get("crouched",false) else PlayerMotion.WALK_EYE
+	var sleeping := not str(net.player_motion.get("bed","")).is_empty()
 	var weapon: String = net.survival.get("weapon", "")
 	if Weapons.firearm(weapon) and _can_aim(piloting, swimming):
 		var aimed := Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
@@ -776,23 +902,40 @@ func _process(delta: float) -> void:
 			ship_view_pitch = pitch
 			chase_ship = true
 		else:
-			eye_height = actor_height + PlayerMotion.eye_offset(swimming)
+			eye_offset = PlayerMotion.eye_offset(swimming)
 		was_piloting = piloting
 	spaceship.sync(net.rendered_ship(), net.elapsed, delta, piloting)
 	var stride := minf(body_pos.distance_to(previous),.18)
 	leg_phase += stride * 4.7
 	var bob := sin(leg_phase*2.) * .019 * clampf(stride / maxf(delta,.001),0.,1.)
 	var view_height := 0.45 if down and not swimming else PlayerMotion.eye_offset(swimming)
-	var height := actor_height + view_height + bob
-	eye_height = lerpf(eye_height, height, minf(delta * 15.0, 1.0))
-	var eye := Vector3(body_pos.x, eye_height, body_pos.y)
+	if sleeping:
+		view_height = .32
+	elif aboard and net.player_motion.get("crouched",false):
+		view_height = PlayerMotion.CROUCH_EYE
+	# The visible body and the lens must rise on the same jump sample. Smooth only stance and gait.
+	eye_offset = lerpf(eye_offset, view_height + bob, 1.0 - exp(-delta * 15.0))
+	var eye := Vector3(body_pos.x, actor_height + eye_offset, body_pos.y)
+	if sleeping:
+		eye += Vector3.BACK.rotated(Vector3.UP,net.player_motion.bedYaw)*.67
+	if aboard and net.player_motion.get("crouched",false):
+		eye.y = minf(eye.y,actor_height+PlayerMotion.CROUCH_EYE+.07)
 	if piloting:
 		_update_ship_camera(delta)
+	elif aboard and boat_panorama:
+		var hull := Ferry.pose(net.elapsed,net.ferry_departure)
+		var pivot := Vector3(hull.point.x, LakeLayout.water_y()+1.77, hull.point.y)
+		var angle := clampf(-pitch+.19,.12,.88)
+		var offset := Vector3(0,sin(angle),cos(angle)).rotated(Vector3.UP,yaw)*5.7
+		var clear := follow_camera.clear_distance(pivot,offset)
+		camera.position = pivot + offset.normalized()*clear
+		camera.look_at(pivot+Vector3.DOWN*.35)
+		camera.fov = VIEW_FOV
+		camera.near = .045
 	else:
-		var view_eye := eye.lerp(Vector3(body_pos.x, height - bob, body_pos.y), sight_blend)
+		var view_eye := eye.lerp(Vector3(body_pos.x, actor_height + view_height, body_pos.y), sight_blend)
 		_update_camera(view_eye, delta, swimming, _look_fov(weapon))
 	var coastal_view := smoothstep(34.0, 73.0, -camera.position.x)
-	camera.far = lerpf(105.0, 290.0, coastal_view)
 	terrain.update_focus(spaceship.position if piloting else eye)
 	if net.ready_in_room:
 		terrain.grove.set_room_time(net.grove_elapsed)
@@ -816,16 +959,25 @@ func _process(delta: float) -> void:
 	if trace_wild:
 		trace_marks.append(["hikers", Time.get_ticks_usec() - trace_start])
 	_update_stones()
-	camp_audio.update_world(net, avatars, camera, spaceship.position, delta, locked)
+	var camp_props := mines_scene.camp_props(net.storage, net.wild_people.get("caves", {}))
+	var weather_ear := spaceship.cockpit_eye() if piloting else eye
+	camp_audio.update_world(net, avatars, camera, weather_ear, spaceship.position, delta, locked, camp_props)
 	_update_provisions()
 	_update_dog(delta)
 	_update_ship_target()
-	storage_scene.sync(net.storage, net.players, net.self_id, camera, first_person_view, net.elapsed, net.rain)
+	storage_scene.sync(camp_props, net.players, net.self_id, camera, first_person_view, net.elapsed, net.rain)
 	held_storage = Storage.held_by(net.storage, net.self_id)
 	storage_target = storage_scene.target(net.storage, body_pos, actor_height, camera,placement_grid) if _playable() and not piloting else ""
 	mine_target = _find_mine(actor_height) if _playable() and not piloting and not swimming else ""
 	rescue_target = _find_rescue_target(Vector3(body_pos.x, actor_height, body_pos.y), swimming) if _playable() and not piloting and not down else ""
 	_update_placement(actor_height,locked and _playable() and not piloting and not swimming and not down)
+	if construction_recipe=="lay_bedroll" and int(net.survival.get("bag",{}).get("boar_bedroll",0))<1:
+		construction_recipe=""
+	forest_boar.sync(net.boar,net.elapsed,delta,camera.position)
+	lake_life.sync(net.ready_in_room and net.lake_household, net.ferry_departure, net.elapsed, net.sheep_alive, net.sheared_at, camera.position)
+	terrain.lake.reeds.sync(net.reed_cuts,net.elapsed)
+	reed_target = Reeds.target(body_pos,actor_height,camera.position,-camera.basis.z) if net.reeds_available and _playable() and not piloting and not down and not on_houseboat else ""
+	lake_target = _lake_target(actor_height) if _playable() and not piloting and not down else ""
 	wildlife.sync(net.crocodile if net.ready_in_room else {}, net.elapsed, eye, delta, net.eagle_alive)
 	if trace_wild:
 		trace_marks.append(["other_scene", Time.get_ticks_usec() - trace_start])
@@ -834,7 +986,7 @@ func _process(delta: float) -> void:
 		trace_marks.append(["people", Time.get_ticks_usec() - trace_start])
 	people_scene.sync_sources(net.wild_people, camera.position)
 	people_scene.equip_players(net.players, avatars, net.self_id, camera,
-		null if first_person_view else local_hiker, delta, net.elapsed, swimming or piloting, sight_blend)
+		local_hiker, delta, net.elapsed, swimming or piloting or sleeping or aboard and first_person_view or net.player_motion.get("storageSeated", false), sight_blend)
 	if trace_wild:
 		trace_marks.append(["gear_sources", Time.get_ticks_usec() - trace_start])
 	_update_people_target()
@@ -847,10 +999,14 @@ func _process(delta: float) -> void:
 	telemetry_clock -= delta
 	if hud_clock <= 0.0:
 		hud_clock = .12
+		if locked and _playable() and not (piloting or down):
+			_observe_wildlife(eye)
 		terrain.grass.set_ground_cover(net.storage,camera.position)
 		for id: String in net.mines:
 			mines_scene.set_remaining(id, int(net.mines[id].stock))
 		var state := _state()
+		if trace_wild:
+			state.faces = people_scene.face_samples()
 		hud.refresh(state,plan,sites[plan]-body_pos,_interaction_prompt(own_wood and own_tarp))
 		people_panel.refresh(net.wild_people, net.survival, body_pos, net.elapsed, net.last_notice, net.notice_number)
 		if storage_panel.is_open:
@@ -867,6 +1023,7 @@ func _process(delta: float) -> void:
 			hud.bearing_arrow.text = "↑" if absf(relative) < .32 else "身后" if absf(relative) > 2.72 else "←" if relative > 0 else "→"
 		if telemetry_clock <= 0.0:
 			telemetry_clock = .25
+			state.menuVisible = hud.panel.is_visible_in_tree()
 			if trace_wild:
 				trace_marks.append(["hud", Time.get_ticks_usec() - trace_start])
 			_publish(state)
@@ -880,6 +1037,27 @@ func _process(delta: float) -> void:
 
 func _follow_pitch() -> float:
 	return clampf(pitch - 0.32, -0.73, 0.14)
+
+func _observe_wildlife(eye: Vector3) -> void:
+	var now := Time.get_ticks_msec()
+	if now < next_sighting_ms or not net.survival.has("fieldGuide"):
+		return
+	var known: Array = net.survival.fieldGuide.animals
+	if known.size() == Survival.SIGHTING_RANGE.size():
+		return
+	var actors := {"croc": wildlife.crocodile, "eagle": wildlife.eagle, "dog": camp_dog, "boar":forest_boar, "sheep":lake_life.live_sheep if net.sheep_alive else null}
+	var offsets := {"croc": .22, "eagle": .25, "dog": .48, "boar":.52, "sheep":.64}
+	for species: String in actors:
+		var animal: Node3D = actors[species]
+		if animal == null or not animal.is_visible_in_tree() or species in known or now < int(sighting_retry.get(species, 0)):
+			continue
+		var at := animal.global_position + Vector3.UP * float(offsets[species])
+		if eye.distance_squared_to(at) > float(Survival.SIGHTING_RANGE[species]) ** 2 or not camera.is_position_in_frustum(at):
+			continue
+		sighting_retry[species] = now + 1500
+		next_sighting_ms = now + 350
+		net.report_sighting(species, yaw, camera.rotation.x)
+		return
 
 func _update_ship_camera(delta := 1.0 / 60.0) -> void:
 	var turn_blend := 1.0 - exp(-delta * 24.0)
@@ -930,7 +1108,7 @@ func _update_camera(eye: Vector3, delta: float, swimming := false, fov := VIEW_F
 	camera.near = 0.04
 
 func _update_stones() -> void:
-	stone_scene.update_stones(net.stones, avatars, net.self_id, camera, net.elapsed, net.rain, net.line_cut, local_hiker if third_person else null, net.player_motion.swimming)
+	stone_scene.update_stones(net.stones, avatars, net.self_id, camera, net.elapsed, net.rain, net.line_cut, local_hiker if not first_person_view else null, net.player_motion.swimming)
 	held_stone = Stones.held_by(net.stones, net.self_id)
 	pickup_stone = ""
 	stone_action = ""
@@ -1042,7 +1220,37 @@ func _update_dog(delta: float) -> void:
 		var stone := Stones.unpack(net.stones[pickup_stone].at)
 		dog_target = camera.position.distance_squared_to(at) < camera.position.distance_squared_to(stone)
 
+func _lake_target(feet: float) -> String:
+	if not net.lake_household:
+		return ""
+	var moored := Ferry.moored(net.elapsed,net.ferry_departure)
+	if net.player_motion.get("onFerry",false):
+		var local: Vector2 = net.player_motion.get("ferryLocal",Ferry.ENTRY)
+		if net.player_motion.get("crouched",false) and Ferry.under_canopy(local) and absf(local.x-.055)<.82:
+			var hull := Ferry.pose(net.elapsed,net.ferry_departure)
+			var side := Vector2(0,-1).rotated(-yaw+float(hull.yaw)).y
+			return Beds.PORT if (local.y + .5*side)>0 else Beds.STARBOARD
+		return "leave" if moored else "riding"
+	if net.sheep_alive and Sheep.reachable(body_pos,feet,net.elapsed,net.sheared_at):
+		var at: Vector3 = Sheep.pose(net.elapsed,net.sheared_at).at + Vector3.UP * 0.67
+		if (-camera.basis.z).dot(camera.position.direction_to(at)) > 0.62:
+			return "growing" if Sheep.shorn(net.elapsed,net.sheared_at) else "shear"
+	if moored and Ferry.at_pier(body_pos,feet):
+		return "board"
+	return ""
+
+func _bed_user(id: String) -> String:
+	for person: Dictionary in net.players.values():
+		if person.get("bed","") == id:
+			return "队友 %d 正在休息" % int(person.slot)
+	for npc: Dictionary in net.wild_people.get("people",{}).values():
+		if npc.phase in ["captive","companion"] and npc.get("bedGoal","") == id:
+			return npc.name + ("正在休息" if npc.get("bed","")==id else "正在前往床边")
+	return ""
+
 func _interaction_prompt(can_fix: bool) -> String:
+	if not str(net.player_motion.get("bed","")).is_empty():
+		return "躺卧休息 · 健康 %d / 100    E  起身" % roundi(net.survival.get("health",100))
 	if not net.is_piloting() and net.survival.get("health", 100.0) <= 0.0:
 		var left := ceili(Survival.rescue_time_left(net.survival.get("downAt", -1.0), net.elapsed))
 		return "倒地 · 等待队友救援（还有 %d 秒）" % left if left > 0 else "正在返回营地"
@@ -1066,12 +1274,30 @@ func _interaction_prompt(can_fix: bool) -> String:
 	if not storage_target.is_empty() and net.storage.has(storage_target):
 		var kind: String = net.storage[storage_target].kind
 		var spec: Dictionary = Storage.KINDS[kind]
+		if Beds.is_bed(kind):
+			var occupant := _bed_user(storage_target)
+			return str(spec.name)+" · "+occupant if not occupant.is_empty() else str(spec.name)+"    E  躺下休息    G  "+("收卷" if kind==Beds.BEDROLL else "搬动")
 		var detail := " · %d 格" % spec.capacity if spec.capacity > 0 and not kind.begins_with("corpse_") else ""
 		var actions := "互动    G  拿起" if spec.carry else "互动"
 		return "E    %s · %s%s" % [actions, spec.name, detail]
 	if not people_target.is_empty():
 		var npc: Dictionary = net.wild_people.people[people_target]
+		if npc.phase=="resident":
+			return "E    查看%s的营地生活\n%s" % [npc.name,npc.help]
 		return "E    %s · %s · 健康 %d%%\n左腿伤 %d / 右腿伤 %d · 查看照料、制服与缴获" % [npc.name, WildPeople.PHASE_NAMES.get(npc.phase, npc.phase), roundi(100.0 * npc.health / npc.maxHealth), roundi(npc.legL), roundi(npc.legR)]
+	match lake_target:
+		"board": return "鹿鸣湖住船    E 上船    F 开船    R 装水"
+		Beds.PORT, Beds.STARBOARD:
+			var occupant := _bed_user(lake_target)
+			return "船舱铺位 · "+occupant if not occupant.is_empty() else "船舱铺位    E 躺下休息    Ctrl 蹲行    V 环顾"
+		"leave": return "WASD 甲板走动 · Ctrl 蹲行进篷 · V 换视角    E 上岸    F 开船    R 装水"
+		"riding": return "环湖航行 · WASD 走动 · Ctrl 蹲行进篷 · V 换视角 · R 装水"
+		"shear": return "绵羊    E  剪羊毛"
+		"growing": return "绵羊 · 新毛正在长"
+	if not reed_target.is_empty():
+		return "芦苇茬 · 正在生长" if Reeds.cut(reed_target,net.reed_cuts,net.elapsed) else "湖岸芦苇    E  采一束"
+	if source_target == "water":
+		return "鹿鸣湖淡水    F  装一份水"
 	if not source_target.is_empty():
 		return "F    %s · 采集一份（库存 %d）" % [WildPeople.SOURCES[source_target].name, net.wild_people.resources[source_target].stock]
 	if net.is_piloting():
@@ -1180,6 +1406,8 @@ func _update_people_target() -> void:
 			people_target = id
 			best = score
 	if people_target.is_empty():
+		if LakeLayout.can_fill_water(body_pos,net.player_motion.y):
+			source_target = "water"
 		for key: String in WildPeople.SOURCES:
 			var source: Dictionary = WildPeople.SOURCES[key]
 			if body_pos.distance_to(Vector2(source.x, source.z)) <= WildPeople.REACH:
@@ -1260,26 +1488,33 @@ func _sync_hikers(delta: float) -> void:
 			local_hiker = null
 		return
 	var piloting := net.is_piloting()
-	var hiker_visible := chase_ship if piloting else not first_person_view
+	var self_data: Dictionary = net.players.get(net.self_id, {})
+	var eye_body := first_person_view and not piloting
+	var hiker_visible: bool = chase_ship if piloting else not eye_body or (
+		not (on_houseboat or not str(net.player_motion.get("bed","")).is_empty()) and not net.player_motion.swimming and not net.player_motion.get("storageSeated", false) and float(self_data.get("health", 100.0)) > 0)
 	if hiker_visible and local_hiker == null:
 		local_hiker = Hiker.new()
 		add_child(local_hiker)
 		local_hiker.position = Vector3(body_pos.x, net.player_motion.y, body_pos.y)
-		var self_data: Dictionary = net.players.get(net.self_id, {})
 		local_hiker.outfit(int(self_data.get("slot",1)))
 	if local_hiker != null:
 		local_hiker.visible = hiker_visible
+		var loose_stone := not Stones.held_by(net.stones, net.self_id).is_empty()
+		local_hiker.eye_pitch = pitch
+		local_hiker.set_eye_view(eye_body, not (Weapons.firearm(self_data.get("weapon", "")) or loose_stone))
 		local_hiker.wear_clothes(net.survival.get("worn", Survival.initial_wear()))
-		local_hiker.wear_backpack(not piloting and net.backpack_enabled and net.backpack_owner == net.self_id)
+		local_hiker.wear_backpack(not (piloting or eye_body or net.player_motion.get("crouched",false)) and str(net.player_motion.get("bed","")).is_empty() and net.backpack_enabled and net.backpack_owner == net.self_id)
+		local_hiker.wear_trail_gear(int(net.survival.get("bag",{}).get("boar_bedroll",0))>0,int(net.survival.get("bag",{}).get("tusk_whistle",0))>0)
 		if piloting:
 			_seat_hiker(local_hiker)
 		else:
 			_stand_hiker(local_hiker, Vector3(body_pos.x, net.player_motion.y, body_pos.y))
 			_storage_seat(local_hiker, net.player_motion)
 			local_hiker.set_motion_state(net.player_motion)
-			local_hiker.set_recovery_state(net.players.get(net.self_id, {}), net.elapsed)
-			local_hiker.heading = yaw
-			local_hiker.holding = not Stones.held_by(net.stones, net.self_id).is_empty() or not str(net.survival.get("weapon", "")).is_empty()
+			local_hiker.set_recovery_state(self_data, net.elapsed)
+			local_hiker.melee.sync(self_data, net.elapsed)
+			local_hiker.heading = float(net.player_motion.bedYaw) if not str(net.player_motion.get("bed","")).is_empty() else yaw
+			local_hiker.holding = loose_stone or not str(net.survival.get("weapon", "")).is_empty()
 			local_hiker.shielding = net.survival.get("shield", false)
 			local_hiker.blocking = net.blocking
 			local_hiker.advance(delta, true)
@@ -1297,7 +1532,8 @@ func _sync_hikers(delta: float) -> void:
 		var person = avatars[key]
 		var is_pilot: bool = key == net.ship.get("pilot", "")
 		person.wear_clothes(data.get("worn", Survival.initial_wear()))
-		person.wear_backpack(not is_pilot and net.backpack_owner == key)
+		person.wear_backpack(not is_pilot and str(data.get("bed","")).is_empty() and not data.get("crouched",false) and net.backpack_owner == key)
+		person.wear_trail_gear(data.get("bedroll",false),data.get("whistle",false))
 		if is_pilot:
 			_seat_hiker(person)
 			person.show()
@@ -1306,7 +1542,8 @@ func _sync_hikers(delta: float) -> void:
 			_storage_seat(person, data)
 			person.set_motion_state(data)
 			person.set_recovery_state(data, net.elapsed)
-			person.heading = float(data.get("yaw", 0.0))
+			person.melee.sync(data, net.elapsed)
+			person.heading = float(data.get("bedYaw",data.get("yaw", 0.0)))
 			person.holding = not Stones.held_by(net.stones, key).is_empty() or not str(data.get("weapon", "")).is_empty()
 			person.shielding = data.get("shield", false)
 			person.blocking = data.get("blocking", false)
@@ -1341,11 +1578,13 @@ func _state() -> Dictionary:
 	var button_rect := hud.enter.get_global_rect()
 	var panel_rect := hud.panel.get_global_rect()
 	var invite_rect := hud.invite.get_global_rect()
-	var equipment_tab := hud.character_tab.get_global_rect()
+	var equipment_tab: Rect2 = hud.camp_tabs.role.get_global_rect()
 	var viewport := get_viewport().get_visible_rect().size
 	return {
 		"ready": _playable(),
+		"menuOpen": menu_open,
 		"atlas": atlas.observables(),
+		"east": {"packs":terrain.east.packs.keys(),"plants":terrain.east.counts,"darkness":weather.cave_darkness},
 		"storageOpen": storage_panel.is_open, "storageTarget": storage_target, "heldStorage": held_storage,
 		"storagePanel": storage_panel.observables(),
 		"mineTarget": mine_target, "mines": net.mines,
@@ -1360,12 +1599,15 @@ func _state() -> Dictionary:
 		"dayPart":weather.day_part, "stones":net.stones, "heldStone":held_stone, "pickupStone":pickup_stone,
 		"stoneAction":stone_action, "lineCut":net.line_cut, "waterImpacts":net.water_impacts,
 		"survival":net.survival, "provisions":net.provisions, "inventoryPanel":hud.inventory_observables(), "provisionScene":terrain.household.observables(net.provisions), "backpackOpen":backpack_open, "bagSlots":_bag_slots(),
-		"equipmentOpen":backpack_open and hud.character_page.visible,
+		"equipmentOpen":backpack_open and hud.character_view.visible,
+		"fieldGuide":hud.guide_page.observables() if hud.guide_page.is_visible_in_tree() else {"open": false},
 		"equipmentTabRect":[equipment_tab.position.x,equipment_tab.position.y,equipment_tab.size.x,equipment_tab.size.y],
 		"backpackOwner": net.backpack_owner, "backpackTarget": backpack_target,
-		"thirdPerson": chase_ship if net.is_piloting() else third_person,
+		"thirdPerson": chase_ship if net.is_piloting() else boat_panorama if on_houseboat else third_person,
 		"weaponView": {"aim": sight_blend, "fov": camera.fov, "firstPerson": first_person_view, "scope": hud.scope_overlay.visible},
 		"dog": net.dog, "dogTarget": dog_target,
+		"boatPanorama":boat_panorama, "crouched":net.player_motion.get("crouched",false), "restingBed":net.player_motion.get("bed",""), "deck":Stones.pack(Vector3(net.player_motion.get("ferryLocal",Vector2.ZERO).x,0,net.player_motion.get("ferryLocal",Vector2.ZERO).y)), "lakeLife":lake_life.observables(), "lakeTarget":lake_target, "onFerry":net.player_motion.get("onFerry",false),
+		"boar":net.boar, "boarAnimation":forest_boar.clip, "reedTarget":reed_target,"reedCuts":net.reed_cuts, "sheepAlive":net.sheep_alive, "shearedAt":net.sheared_at,
 		"wildPeople": net.wild_people, "peopleTarget": people_target, "peopleOpen": people_open, "sourceTarget": source_target, "peoplePanel": people_panel.observables(), "peopleWarmupMs": people_scene.warmup_ms, "peopleWarmupCount": people_scene.warmup_count, "peoplePoolHits": people_scene.pool_hits, "peopleColdCreates": people_scene.cold_creates, "peoplePoolByKey": people_scene.pool_by_key, "peopleColdByKey": people_scene.cold_by_key,
 		"ship": net.ship, "shipPiloting": net.is_piloting(), "shipTarget": ship_target,
 		"shipCameraYaw": ship_view_yaw,
@@ -1378,6 +1620,7 @@ func _state() -> Dictionary:
 		"zone":terrain.focus_zone(), "resident":terrain.resident_count(), "focusReady":terrain.is_focus_ready(),
 		"lanternWarmupMs": terrain.lantern_warmup_ms,
 		"previewWarming": preview_warming,
+		"previewProgress": preview_progress,
 		"previewWarmupBuildMs": hud.character_preview.warmup_build_ms,
 		"previewWarmupDrawMs": hud.character_preview.warmup_draw_ms,
 		"terrainError":terrain.last_error, "nearby":nearby, "target":plan,

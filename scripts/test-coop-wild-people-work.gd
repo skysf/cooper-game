@@ -49,7 +49,7 @@ func _case(setup: Array, clip: String) -> Dictionary:
 	var room := _room(state)
 	var scene := PeopleScene.new()
 	root.add_child(scene)
-	var initial_stock: int = state.resources[intent].stock
+	var initial_stock: int = 0 if water else state.resources[intent].stock
 	var eye := Vector3(source.x, Lake.walk_height(source) + 1.67, source.y)
 	var began := -1.0
 	var ended := -1.0
@@ -92,7 +92,7 @@ func _case(setup: Array, clip: String) -> Dictionary:
 			stop_point = People.position(npc)
 			_check(animator.has_animation(clip) and animator.assigned_animation == clip, label + " active game clip")
 			_check(absf(animator.get_animation(clip).length - float(People.WORK_SECONDS[clip])) < 0.002, label + " runtime and GLB duration")
-			_check(int(state.resources[intent].stock) == initial_stock - 1, label + " consumes one real source item")
+			_check(npc.water > 70 if water else int(state.resources[intent].stock) == initial_stock-1, label + " receives the gathered resource")
 		var age := elapsed-began
 		if age < 0.24 or step % 3 != 0:
 			continue
@@ -103,7 +103,7 @@ func _case(setup: Array, clip: String) -> Dictionary:
 		min_hand = minf(min_hand,at.y)
 		max_reach = maxf(max_reach,-at.z)
 		min_hips = minf(min_hips,_relative(a,"hips").y)
-		var aim := _water_line(source) if water else source
+		var aim := Lake.center() if water else source
 		var expected := stop_point.direction_to(aim)
 		var facing := Basis(Vector3.UP,actor_root.rotation.y) * Vector3.FORWARD
 		min_turn_alignment = minf(min_turn_alignment,expected.dot(Vector2(facing.x,facing.z)))
@@ -136,7 +136,7 @@ func _case(setup: Array, clip: String) -> Dictionary:
 	_check(foot_drift < 0.028 and min_turn_alignment > 0.82, label + " stable feet face the source")
 	_check(floor_error < 0.026, label + " actual soles stay grounded")
 	if water and render:
-		_check(water_contact < 0.045, label + " left hand reaches the actual creek surface")
+		_check(water_contact < 0.045, label + " left hand reaches the actual lake surface")
 	_check(max_grip_gap < 0.015, label + " attached meshes follow animated grip points")
 	if setup[3]:
 		_check(min_back_offset > 0.125, label + " gear stows behind the torso while reaching")
@@ -153,7 +153,7 @@ func _case(setup: Array, clip: String) -> Dictionary:
 			_check(rig.get_bone_pose_position(grip).distance_to(rig.get_bone_rest(grip).origin)<0.02,
 				label + " gear returns to the original hand socket")
 	_check(min_hand < (0.36 if water else 1.06) and max_reach > 0.24, label + " visible reach")
-	_check(maxi(0, initial_stock - int(state.resources[intent].stock)) == 1, label + " work doesn't repeat the debit")
+	_check(not state.resources.has("water") if water else initial_stock - int(state.resources[intent].stock) == 1, label + " work accounts for the correct resource")
 	var retained: Dictionary = People.from_save(JSON.parse_string(JSON.stringify(state)),ended,grid).people[id]
 	_check(retained.weapon == npc.weapon and retained.shield == npc.shield, label + " gear records persist")
 	scene.queue_free()
@@ -174,26 +174,21 @@ func _exhausted_cases() -> void:
 	state.people[npc.id] = npc
 	var room := _room(state)
 	room.data.elapsed = 240.0
-	state.resources.water.stock = 0
-	motion.tick(room,grid,DT)
-	_check(npc.clip == "Guard" and npc.water <= 10.0,"empty source doesn't play a successful gather")
-	state.resources.water.stock = 3
-	room.data.elapsed += DT
 	motion.tick(room,grid,DT)
 	var first: float = npc.clipAt
-	_check(npc.clip == "DrawWater" and state.resources.water.stock == 2,"first draw consumes once")
+	var filled: float = npc.water
+	_check(npc.clip == "DrawWater" and filled>40,"the open lake supplies the first drink")
 	room.data.elapsed = first + 1.1
 	motion.tick(room,grid,DT)
-	_check(npc.clipAt == first and state.resources.water.stock == 2,"no second drink during active work")
+	_check(npc.clipAt == first and npc.water<=filled,"no second drink during active work")
 	room.data.elapsed = first + 1.6
 	motion.tick(room,grid,DT)
-	_check(npc.clip == "DrawWater" and npc.clipAt > first and state.resources.water.stock == 1,"repeat drink has a new timestamp")
+	_check(npc.clip == "DrawWater" and npc.clipAt > first and npc.water>filled+30,"repeat drink has a new timestamp")
 	npc.order = "rest"
 	room.data.elapsed += DT
 	motion.tick(room,grid,DT)
 	_check(npc.clip != "DrawWater","rest order interrupts the work animation")
 	var shared := People.initial(260.0)
-	shared.resources.water.stock = 1
 	for id: String in ["first","second"]:
 		var thirsty := People.make_person(id,0,"male",People.WATER,260.0)
 		thirsty.phase = "companion"
@@ -202,8 +197,8 @@ func _exhausted_cases() -> void:
 	var competition := _room(shared)
 	competition.data.elapsed = 260.0
 	motion.tick(competition,grid,DT)
-	_check(shared.resources.water.stock == 0 and shared.people.first.clip == "DrawWater" and shared.people.second.clip == "Guard",
-		"two companions share one remaining water draw")
+	_check(not shared.resources.has("water") and shared.people.first.clip == "DrawWater" and shared.people.second.clip == "DrawWater",
+		"two companions can drink together at the same lake shore")
 
 func _room(state: Dictionary) -> Dictionary:
 	return {"data":{"wildPeople":state,"elapsed":210.0,"provisions":{},"quest":{"repaired":true}},
@@ -214,10 +209,6 @@ func _approach(source: Vector2) -> Vector2:
 		if Rules.free_at(source+shift,grid):
 			return source+shift
 	return source
-
-func _water_line(source: Vector2) -> Vector2:
-	var index := (source.y-float(Lake.layout.creek.firstZ))/float(Lake.layout.creek.spacing)
-	return Vector2(Lake.creek_sample(index).x,source.y)
 
 func _relative(actor: Dictionary, bone: String) -> Vector3:
 	var rig: Skeleton3D = actor.rig

@@ -72,6 +72,7 @@ var grove := Grove.new()
 var grass := Grass.new()
 var lake := Lake.new()
 var coast := CoastScene.new()
+var east := preload("res://east/region_scene.gd").new()
 var household := ProvisionScene.new()
 
 func configure(zone_base_url: String) -> void:
@@ -96,6 +97,7 @@ func _ready() -> void:
 	_background()
 	_landmarks()
 	add_child(coast)
+	add_child(east)
 	add_child(grove)
 	grove.configure(world.get("grove", {}))
 	set_wet(0.0)
@@ -106,6 +108,7 @@ func _ready() -> void:
 
 func update_focus(pos: Vector3) -> void:
 	focus = pos
+	east.update_focus(pos)
 	grove.update_focus(pos)
 	for crowns: Array in streamed_crowns.values():
 		for crown in crowns:
@@ -113,8 +116,18 @@ func update_focus(pos: Vector3) -> void:
 
 func focus_zone() -> String:
 	var at := Vector2(focus.x, focus.z)
+	if LakeLayout.East.contains(at):
+		if LakeLayout.Gallery.darkness(focus) > .015:
+			return "coal_mine" if at.x < 150 else "iron_mine"
+		if Rect2(110,-96,42,15).has_point(at):
+			return "vine_gap"
+		if Rect2(285,-56,36,37).has_point(at):
+			return "shale_steps"
+		return "root_trail" if at.x < 145 else "flower_valley" if at.x < 277 else "east_ridge"
 	if at.x < -42.0 and LakeLayout.Coast.contains(at):
 		return LakeLayout.Coast.area(at, LakeLayout.water_y())
+	if Rect2(-26,-43,13,13).has_point(at) and LakeLayout.lake_distance(at) > .88:
+		return "reed_bank"
 	if focus.z < -70.0:
 		return "camp"
 	if focus.z < -36.0:
@@ -135,6 +148,8 @@ func _distance(chunk: Dictionary) -> float:
 func is_focus_ready() -> bool:
 	if _lantern_warming:
 		return false
+	if LakeLayout.East.contains(Vector2(focus.x,focus.z)):
+		return east.packs.has("verdant" if focus.x < 140 else "namaqua")
 	if LakeLayout.Coast.contains(Vector2(focus.x, focus.z)):
 		return true
 	for chunk in chunks:
@@ -202,6 +217,10 @@ func _process(_dt: float) -> void:
 			_unload_chunk(id)
 	if pending.is_empty():
 		var candidate := _next_chunk()
+		if candidate.is_empty():
+			candidate = east.needed(focus)
+			if Time.get_ticks_msec() < int(next_try.get(candidate,0)):
+				candidate = ""
 		if not candidate.is_empty():
 			_request_chunk(candidate)
 
@@ -282,6 +301,11 @@ func _parse_chunk(id: String, bytes: PackedByteArray) -> void:
 	if part == null:
 		_failed(id, "Empty scene")
 		return
+	if id in ["verdant","namaqua"]:
+		east.install(id,part)
+		pending = ""
+		last_error = ""
+		return
 	for object in part.find_children("*", "MeshInstance3D", true, false):
 		var mesh_node := object as MeshInstance3D
 		var surface := str(mesh_node.name).get_slice("__", 0)
@@ -354,17 +378,13 @@ func _background() -> void:
 func _background_floor() -> void:
 	var floor_mesh := SurfaceTool.new()
 	floor_mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var material := StandardMaterial3D.new()
-	material.albedo_texture = materials.forest_floor.albedo_texture
-	material.vertex_color_use_as_albedo = true
-	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-	material.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
+	var material: Material = materials.forest_floor
 	var lo := Vector2(-30.0, -121.0 - HORIZON_MARGIN)
-	var hi := Vector2(30, 14) + Vector2.ONE * HORIZON_MARGIN
+	var hi := Vector2(30,14 + HORIZON_MARGIN)
 	floor_mesh.set_material(material)
-	_floor_sector(floor_mesh, lo, Vector2(hi.x, -72), 1, 1)
-	_floor_sector(floor_mesh, Vector2(lo.x, -28), hi, 1, 1)
-	_floor_sector(floor_mesh, Vector2(-7, -72), Vector2(hi.x, -28), 1, 1)
+	_floor_sector(floor_mesh, lo, Vector2(hi.x, -72), 4, 78)
+	_floor_sector(floor_mesh, Vector2(lo.x, -28), hi, 4, 75)
+	_floor_sector(floor_mesh, Vector2(-7, -72), Vector2(hi.x, -28), 3, 44)
 	_floor_sector(floor_mesh, Vector2(lo.x, -72), Vector2(-7, -28), 32, 60)
 	floor_mesh.index()
 	background_floor = _mesh(self, floor_mesh.commit(), Vector3.ZERO)
@@ -376,7 +396,7 @@ func _floor_sector(mesh: SurfaceTool, lo: Vector2, hi: Vector2, columns: int, ro
 	for j in rows + 1:
 		for i in columns + 1:
 			var point := Vector2(lerpf(lo.x, hi.x, i / float(columns)), lerpf(lo.y, hi.y, j / float(rows)))
-			points.append(Vector3(point.x, LakeLayout.ground_height(point) - GROUND_OFFSET, point.y))
+			points.append(Vector3(point.x, LakeLayout.ground_height(point) - GROUND_OFFSET*(1.0-smoothstep(16,30,point.x)), point.y))
 	for j in rows:
 		for i in columns:
 			var first := j * width + i
@@ -384,9 +404,19 @@ func _floor_sector(mesh: SurfaceTool, lo: Vector2, hi: Vector2, columns: int, ro
 			for vertex in [first, first + 1, first + width, first + 1, first + width + 1, first + width]:
 				var point := points[vertex]
 				mesh.set_normal(Vector3.UP)
-				mesh.set_uv(Vector2(point.x, point.z) * 0.5)
-				mesh.set_color(Color(0.66, 0.67, 0.60))
+				mesh.set_uv(Vector2(point.x+(4.0-_trail_center(point.z))*smoothstep(10,23,point.x), point.z)*.5)
+				mesh.set_color(Color(.66,.67,.60).lerp(Color(206/255.0,206/255.0,206/255.0),smoothstep(14,28,point.x)))
 				mesh.add_vertex(point)
+
+func _trail_center(z: float) -> float:
+	var route: Array = world.route
+	for i in range(1,route.size()):
+		var a: Array = route[i-1]
+		var b: Array = route[i]
+		if z>=float(b[2]):
+			var t := clampf(inverse_lerp(a[2],b[2],z),0,1)
+			return lerpf(a[1],b[1],smoothstep(0,1,t))
+	return float(route.back()[1])
 
 func _ground_material(source: StandardMaterial3D, stone: bool) -> ShaderMaterial:
 	var material := ShaderMaterial.new()
@@ -451,6 +481,7 @@ func update_water(elapsed: float, rain: float, lighting: Dictionary) -> void:
 	grass.material.set_shader_parameter("wind_field", wind)
 	grove.set_wind(elapsed, wind)
 	coast.set_wind(elapsed, wind)
+	east.weather(elapsed,rain,lighting)
 	crown_wind_time = elapsed
 	crown_wind_field = wind
 	for crowns: Array in streamed_crowns.values():

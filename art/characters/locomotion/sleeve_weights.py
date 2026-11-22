@@ -40,7 +40,9 @@ def sleeve_weights(positions, edges):
                     group.append(j)
                     stack.append(j)
         mean_x=sum(vertices[i][0] for i in group)/len(group)
-        is_sleeve=float(abs(mean_x)>.165)
+        # The hem has a separate narrow facing at 0.167 m. The inner cuff
+        # trim begins outside 0.18 m; keep the facing at the pelvis on a high reach.
+        is_sleeve=float(abs(mean_x)>.180)
         for i in group:
             fixed[i]=is_sleeve
 

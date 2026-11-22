@@ -1,5 +1,7 @@
 extends RefCounted
 
+const East = preload("res://east/land.gd")
+const Gallery = preload("res://east/mine_ground.gd")
 const Coast = preload("res://coast_layout.gd")
 
 static var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://water_layout.json"))
@@ -23,6 +25,16 @@ static func lake_distance(point: Vector2) -> float:
 static func shore_at(angle: float, distance: float = 1.0) -> Vector2:
 	return center() + Vector2.from_angle(angle) * radius() * (edge_radius(angle) * distance)
 
+# The shoreline follows the same irregular outline used by the rendered lake.
+static func can_fill_water(point: Vector2, feet: float) -> bool:
+	if absf(feet-water_y()) > 1.15:
+		return false
+	var normalized := (point-center())/radius()
+	if normalized.length_squared() > 1.32:
+		return false
+	var edge := shore_at(normalized.angle())
+	return lake_distance(point) < 1.0 or point.distance_squared_to(edge) <= 1.0
+
 static func creek_sample(index: float) -> Vector2:
 	var x := -11.4 + sin(index * 0.22) * 2.1 + cos(index * 0.47) * 0.38
 	var half_width := 0.16 + sin(PI * index / float(layout.creek.steps)) * 1.13
@@ -36,6 +48,8 @@ static func creek_distance(point: Vector2) -> float:
 	return absf(point.x - section.x) / section.y
 
 static func surface_height(point: Vector2) -> float:
+	if East.contains(point):
+		return East.water_height(point)
 	if Coast.sea_at(point, water_y()):
 		return water_y()
 	if lake_distance(point) < 1.0 or creek_distance(point) < 1.0:
@@ -51,6 +65,8 @@ static func blocks_walk(point: Vector2) -> bool:
 	return lake_distance(point) < 0.949
 
 static func ground_height(point: Vector2) -> float:
+	if East.contains(point):
+		return East.height(point)
 	if Coast.contains(point):
 		return Coast.height(point)
 	var distance := lake_distance(point)
@@ -72,7 +88,12 @@ static func on_dock(point: Vector2) -> bool:
 	return point.x >= float(dock.west) and point.x <= float(dock.east) \
 		and absf(point.y - float(dock.z)) < float(dock.halfWidth)
 
-static func walk_height(point: Vector2) -> float:
+static func walk_height(point: Vector2, feet := INF) -> float:
+	if Coast.buddha.bounds.has_point(point):
+		return maxf(Coast.height(point), Coast.buddha.floor_at(point, feet + Coast.buddha.STEP_UP))
+	if East.contains(point):
+		var underground := Gallery.floor_at(point,feet)
+		return underground if is_finite(underground) else maxf(East.height(point), East.Rocks.top(point))
 	return 0.12 if on_dock(point) else ground_height(point)
 
 static func open_water_support(point: Vector2) -> float:

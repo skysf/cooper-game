@@ -124,12 +124,15 @@ func _visibility_changed() -> void:
 		needs_redraw = needs_redraw or view.render_target_update_mode == SubViewport.UPDATE_ONCE
 		view.render_target_update_mode = SubViewport.UPDATE_DISABLED
 
+func rotate_by(angle: float) -> void:
+	person.rotation.y = wrapf(person.rotation.y + angle, -PI, PI)
+	_draw_once()
+
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		dragging = event.pressed
 		mouse_default_cursor_shape = Control.CURSOR_MOVE if dragging else Control.CURSOR_DRAG
 		accept_event()
 	elif event is InputEventMouseMotion and dragging and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
-		person.rotation.y = wrapf(person.rotation.y + event.relative.x * 0.014, -PI, PI)
-		_draw_once()
+		rotate_by(event.relative.x * 0.014)
 		accept_event()

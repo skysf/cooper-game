@@ -1,6 +1,7 @@
 extends SceneTree
 ## Run against an imported coop project. Uses the normal route, hit and storage entry points.
 const Scene = preload("res://camp_storage_scene.gd")
+const LiveScene = preload("res://wildlife_scene.gd")
 const Storage = preload("res://camp_storage.gd")
 const Wildlife = preload("res://wildlife.gd")
 const Health = preload("res://storage_wildlife.gd")
@@ -28,6 +29,14 @@ func _run() -> void:
 	root.add_child(camera)
 	var world: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://world.json"))
 	grid = Rules.collision_grid(world.obstacles)
+	var live := LiveScene.new()
+	root.add_child(live)
+	live.sync(Wildlife.crocodile_pose(Wildlife.crocodile(0.0)), 4.0, Wildlife.PERCH, 0.1)
+	_check(live.crocodile.visible and live.eagle.visible, "Both live animals render before crocodile death")
+	live.sync({"dead": true}, 4.1, Wildlife.PERCH, 0.1)
+	_check(not live.crocodile.visible and live.eagle.visible and live.flight_time > 4.0,
+		"A dead crocodile snapshot hides its live model while the eagle keeps updating")
+	live.queue_free()
 	var dry_flight := -1.0
 	for i in range(40, 260):
 		var clock := i * 0.25

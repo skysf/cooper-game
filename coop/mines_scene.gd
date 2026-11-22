@@ -8,6 +8,8 @@ const HANGER_OFFSET_Y := 0.002
 const WICK_CENTER_Y := -0.392
 const LIGHT_INSET := 0.16
 
+const Gallery = preload("res://east/mine_ground.gd")
+var furniture := {}
 var _seams: Dictionary = {}
 var _remaining: Dictionary = {}
 
@@ -27,6 +29,22 @@ func _ready() -> void:
 			_seams[id] = seam
 		for i in record.lamps.size():
 			_mount_lamp(cave, record.lamps[i], record.floor, i)
+
+		for prop: Array in [["campfire",10.4,-1.43],["wicker_basket",9.4,-1.72],["wood_crate",12.5,1.5]]:
+			var at := Gallery.station(id,prop[1],prop[2])
+			furniture[id+"-"+prop[0]] = {"kind":prop[0],"mode":"ground","yaw":float(record.yaw)+.36,"at":[at.x,at.y,at.z],"fuelUntil":0.0}
+
+func camp_props(storage: Dictionary, caves: Dictionary) -> Dictionary:
+	var result := storage.duplicate()
+	for key: String in furniture:
+		var id := key.get_slice("-",0)
+		if not caves.get(id,{}).get("settled",false):
+			continue
+		var prop: Dictionary = furniture[key]
+		if prop.kind == "campfire":
+			prop.fuelUntil = caves[id].fireUntil
+		result[key] = prop
+	return result
 
 func _mount_lamp(cave: Node3D, record: Dictionary, floor: Array, index: int) -> void:
 	var at := Mines.vector(record.at)

@@ -60,6 +60,8 @@ npm run coop:render:score -- .cache/coop-render-benchmark/render-benchmark.json 
 
 ## 角色预览首开
 
+网页启动条从资源下载开始，继续显示光照、场景、角色预览和营地人物的准备情况。房间连通、出生位置林区载入且预热完成时，进度到达 100% 并显示可用的「进入林地」。延迟首个林区请求可复验加载条一直停在完成之前。 [加载与快捷键回归](../scripts/test-coop-startup-controls-web.mjs)
+
 锁屏时，在 Apple M1 的无窗口 Chrome 157 上用 ANGLE Metal 交错运行修前包、最终包和重复基线。三组使用同一世界、角色模型与贴图，绘图缓冲区均为 1280 × 720。实际点击角色页后，WebGL 编译和链接调用从 45 次降到 0 次，点击到游戏上报页签状态从 270.3 毫秒降到 27.2 毫秒，动作窗口的最大提交间隔从 250.0 毫秒降到 16.7 毫秒。[逐帧数据](../evidence/camp-ui/preview-warmup/before.json) · [最终包](../evidence/camp-ui/preview-warmup/after.json) · [重复基线](../evidence/camp-ui/preview-warmup/before-repeat.json)
 
 最终包的背包、角色页和暴雨在六秒样本中均约 60 FPS，最大提交间隔 16.8 毫秒。角色首绘在油灯预热后的加载遮罩内耗时 252–302 毫秒。本轮从导航到可操作为 6.02–6.95 秒，进入可操作后的首 500 毫秒间隔最大 16.8 毫秒。初轮中系统编译和索引同时占用 CPU，Tab 确认后及静止暴雨也出现慢帧。该轮和交错复测的数值一并保留。 [诊断汇总](../evidence/camp-ui/preview-warmup/summary.json)

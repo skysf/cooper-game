@@ -15,9 +15,10 @@ WORLD = json.loads((COOP / "world.json").read_text())
 WATER = json.loads((COOP / "water_layout.json").read_text())
 FOLIAGE = json.loads((COOP / "coast/foliage.json").read_text())
 GEOGRAPHY = runpy.run_path(str(ROOT / "scripts/build-coast.py"))
-WEST, EAST = COAST["westLimit"], 29
+REGION = json.loads((COOP/"east/region.json").read_text())
+WEST, EAST = COAST["westLimit"], REGION["eastLimit"]
 NORTH, SOUTH = -119, 12
-WIDTH = 2048
+WIDTH = 3072
 HEIGHT = round(WIDTH * (SOUTH - NORTH) / (EAST - WEST))
 RNG = np.random.default_rng(78421)
 
@@ -36,7 +37,11 @@ def elevation(x, z, lake):
     terrain = np.where(fx + fz <= 1, a + (b - a) * fx + (c - a) * fz,
                        d + (c - d) * (1 - fx) + (b - d) * (1 - fz))
     lake_bed = np.where(lake < 1, WATER["waterY"] - 2.35 * np.clip(1 - lake, 0, 1), 0)
-    return np.where(x < -30, terrain, lake_bed)
+    columns, rows = REGION["cells"]
+    ox, oz = REGION["origin"]
+    eastern = np.fromfile(COOP/"east/elevation.bin",dtype="<f4").reshape(rows+1,columns+1)
+    east_y = eastern[np.clip(np.rint(z-oz).astype(int),0,rows),np.clip(np.rint(x-ox).astype(int),0,columns)]
+    return np.where(x >= ox,east_y,np.where(x < -30, terrain, lake_bed))
 
 
 def creek_mask(x, z):
@@ -90,6 +95,8 @@ def paint_terrain():
 def draw_features(image):
     trees = [(p["x"], p["z"], p["r"] * 4 + .5) for p in WORLD["obstacles"] if p["type"] == "tree"]
     trees += [(p[0], p[1], p[2] * .26) for p in FOLIAGE["trees"]]
+    eastern_plants = json.loads((COOP/"east/plants.json").read_text())
+    trees += [(p[0],p[2],p[4]*1.2) for key in ("grove_tree","crooked_tree","quiver_tree","fork_tree") for p in eastern_plants[key]]
     forest = Image.new("RGBA", image.size)
     ink = ImageDraw.Draw(forest)
     for x, z, radius in trees:
@@ -103,6 +110,7 @@ def draw_features(image):
     trails = [[(p[1], p[2]) for p in WORLD["route"]]]
     trails.extend([[(p[0], p[1]) for p in COAST[key]] for key in ("ridgeTrail", "beachTrail", "islandTrail")])
     trails.append([(1.9, -85), (-3.5, -80.5), (-8, -80.5), (-9.5, -78), (-11.5, -75), (-13.5, -73.5), COAST["entry"]])
+    trails.extend(REGION["trails"])
     for trail in trails:
         track = [project(x, z) for x, z in trail]
         drawn.line(track, fill="#a7a27a", width=7, joint="curve")

@@ -1,4 +1,4 @@
-"""Fit the mine walkable surfaces and collision to the shared coast heightfield."""
+"""Fit the mine walkable surfaces and collision to the eastern highlands."""
 from __future__ import annotations
 
 from array import array
@@ -13,37 +13,22 @@ PROJECT = Path(__file__).resolve().parents[1]
 COOP = PROJECT / "coop"
 RUNTIME = COOP / "props/mines"
 APRON = -3.45
-BACK = 11.35
-WALL_SECTIONS = (0.0, .72, 1.68, 2.74, 3.82, 4.86, 5.89, 6.96, 8.0, 9.12, 10.25, BACK)
+BACK = 32.0
+WALL_SECTIONS = tuple(i * 1.28 for i in range(26))
 PROFILE = ((-1, -.57), (-1, .73), (-.89, 1.67), (-.66, 2.31), (-.34, 2.66),
            (0, 2.78), (.37, 2.68), (.70, 2.34), (.92, 1.63), (1, .71), (1, -.57))
 TOP = 1 << 3
 
-SITES = {
-    "coal_mine": {
-        "title": "煤矿洞", "item": "coal", "origin": [-74.25, 19.8093, -31.35], "yaw": 0.0,
-        "approach": [(-71.5,-51.7), (-71.5,-39.12), (-71.57,-38.15), (-72.17,-37.28),
-                     (-73.13,-36.33), (-73.77,-35.53), (-74.10,-35.11), (-74.25,-34.8)],
-        "seam": [-1, 8.34],
-    },
-    "iron_mine": {
-        "title": "铁矿洞", "item": "iron_ore", "origin": [-74.25, 21.7668, -66.55], "yaw": -pi,
-        "approach": [(-69.30,-53.81), (-69.85,-54.45), (-69.85,-55.0), (-70.4,-55.55),
-                     (-70.4,-56.1), (-70.95,-56.65), (-71.5,-57.2), (-71.66,-57.74),
-                     (-71.92,-58.33), (-72.05,-59.3), (-72.05,-61.9), (-72.31,-62.36),
-                     (-73.03,-62.83), (-74.25,-63.1)],
-        "seam": [1, 8.70],
-    },
-}
+SITES = json.loads((COOP / "east/region.json").read_text())["camps"]
 
 
 class CoastHeight:
     def __init__(self):
-        data = json.loads((COOP / "coast_layout.json").read_text())
+        data = json.loads((COOP / "east/region.json").read_text())
         self.x, self.z = data["origin"]
         self.cols, self.rows = data["cells"]
         self.spacing = data["spacing"]
-        self.grid = array("f", (COOP / "coast/elevation.bin").read_bytes())
+        self.grid = array("f", (COOP / "east/elevation.bin").read_bytes())
         if sys.byteorder == "big":
             self.grid.byteswap()
 
@@ -69,12 +54,12 @@ def weft(site, z):
     """Lateral shape independent of floor elevation, from splayed entry to the chamber."""
     inside = min(max(z, 0), BACK)
     phase = 0 if site["item"] == "coal" else .73
-    center = .28*sin(inside*.40+phase) - .28*sin(phase)
+    center = 1.05*(sin(inside*.175+phase)-sin(phase)) + .25*sin(inside*.48)
     if z < 0:
         t = min(1, max(0, (z+2.1)/2.1))
         wide = .49 + .87*t*t*(3-2*t)
     else:
-        wide = 1.36 + .19*sin(inside*.26)**2 + .23*sin(min(pi/2, max(0, inside-5.9)*.48))**2
+        wide = 1.55 + .29*sin(inside*.26)**2 + 1.14*max(0, 1-((inside-10)/5)**2)**2 + .63*max(0, 1-((inside-27)/5)**2)**2
     crown = 1.0 + .053*sin(inside*.76+phase)
     return center, wide, crown
 
@@ -85,23 +70,17 @@ def height_at(coast, site, x, z):
 
 
 def floor_field(coast, site):
-    depths = sorted({round(APRON + i*.29, 4) for i in range(52) if APRON+i*.29<BACK}
+    depths = sorted({round(APRON + i*.37, 4) for i in range(100) if APRON+i*.37 < BACK}
                     | set(WALL_SECTIONS) | {APRON, BACK})
-    need = []
+    rows = []
     for z in depths:
-        center, wide, _ = weft(site,z)
-        # The aperture is sculpted above the existing surface. Ahead and behind
-        # samples guard against a terrain vertex poking through a floor span.
-        cross = wide-.03
-        fit = max(height_at(coast,site,center+cross*i/8,z+offset)
-                  for i in range(-8,9) for offset in [-.10,0,.10])+.035
-        interior = max(0, min(1,(z-APRON)/2.3))
-        center_ground = height_at(coast,site,center,z)
-        need.append(center_ground+.008+(fit-center_ground-.008)*interior)
-    # A Lipschitz envelope smooths an abrupt ridge without lowering any walkable floor.
-    grade = .735
-    heights = [max(n-grade*abs(d-z) for d,n in zip(depths,need)) for z in depths]
-    return [[z, y, *weft(site,z)[:2]] for z,y in zip(depths,heights)]
+        center, width, _ = weft(site,z)
+        if z <= 0:
+            y = height_at(coast,site,center,z) + .035
+        else:
+            y = height_at(coast,site,0,0) + .035 - .225*z + .12*sin(z*.31)
+        rows.append([z,y,center,width])
+    return rows
 
 
 def local(site, x, y, z):
@@ -140,19 +119,6 @@ def approach_field(coast, site, floor):
     need[-1] = floor[0][1]+site["origin"][1]
     ys = [max(y-.63*abs(q-d) for q,y in zip(distances,need)) for d in distances]
     return [[*local(site,x,y,z),w] for (x,z,ux,uz,w),y in zip(rows,ys)]
-
-
-def approach_boxes(stations):
-    for (xa,ya,za,wa),(xb,yb,zb,wb) in zip(stations,stations[1:]):
-        delta = (xb-xa,yb-ya,zb-za)
-        path = unit(delta)
-        lateral = unit((zb-za,0.,xa-xb))
-        up = cross(path,lateral)
-        thickness = .086
-        mid = ((xa+xb)*.5,(ya+yb)*.5,(za+zb)*.5)
-        center = tuple(v-n*thickness*.5 for v,n in zip(mid,up))
-        yield obb(center,(2*min(wa,wb)-.028,thickness,sqrt(dot(delta,delta))+.090),
-                  (lateral,up,path),TOP)
 
 
 def floor_at(floor, z):
@@ -244,18 +210,18 @@ def manifest():
         route += [world(site,cx,fy,z) for z,fy,cx,_ in floor if APRON < z <= 0]
         stems = ident.split("_",1)
         lamps = []
-        for i,z in enumerate((.32,3.75,7.96,10.16)):
+        for i,z in enumerate((.32,7.4,16.7,27.1)):
             local_y, x, w = floor_at(floor,z)
             side_sign = -side if i in (0,2) else side
             lamps.append({
                 "at": [x+side_sign*(w-.28),local_y+1.77,z],
-                "energy": 1.75 if i == 0 else 2.55,
-                "range": 5.8,
+                "energy": (2.4,1.85,1.35,.95)[i],
+                "range": (6.8,6.1,5.6,4.9)[i],
                 "color": [1.0,.67,.37],
             })
         frames = []
         frame_boxes = []
-        for z in (.64,4.14,7.31):
+        for z in (.64,5.1,13.8,21.5,29.65):
             fy, fc, fw = floor_at(floor,z)
             half_gap, beam_y = fw*.88, fy+2.28
             frames.append({"at":[fc,fy,z], "halfGap":half_gap, "beamY":beam_y})
@@ -265,13 +231,13 @@ def manifest():
         mines[ident] = {
             **{k:site[k] for k in ("title","item","origin","yaw")},
             "model": f"res://props/mines/{ident}.glb",
-            "gather": anchor,
+            "gather": [anchor[0]-side*.14,anchor[1],depth],
             "seam": {"model": f"res://props/mines/{stems[0]}_seam.glb",
                      "at":anchor, "yaw":seam_yaw},
             "route": route,
             "floor": floor,
             "footpath": footpath,
-            "colliders": [*approach_boxes(footpath), *walk_boxes(floor), *shell_boxes(site,floor), *frame_boxes],
+            "colliders": [*walk_boxes(floor), *shell_boxes(site,floor), *frame_boxes],
             "frames": frames,
             "lamps": lamps,
         }

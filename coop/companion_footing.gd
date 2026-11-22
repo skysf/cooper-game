@@ -78,7 +78,7 @@ func near(point: Vector2) -> bool:
 	return cells.has(_cell(point))
 
 func height(point: Vector2, feet: float) -> float:
-	return _height(point,feet,Lake.walk_height(point),cells.get(_cell(point),[]))
+	return _height(point,feet,Lake.walk_height(point,feet),cells.get(_cell(point),[]))
 
 func _height(point: Vector2, feet: float, ground: float, parts: Array) -> float:
 	var top := ground
@@ -141,7 +141,7 @@ func clear(at: Vector2, goal: Vector2, feet: float, body: Vector2) -> bool:
 		if parts.is_empty():
 			skipped = true
 			continue
-		var ground := Lake.walk_height(point)
+		var ground := Lake.walk_height(point,feet)
 		if skipped:
 			feet = ground
 			skipped = false
@@ -156,17 +156,17 @@ func move(at: Vector2, direction: Vector2, delta: float, grid: Dictionary, speed
 	var motion := direction.limit_length()*speed*clampf(delta,0.0,0.1)
 	if not near(at) and not near(at+motion):
 		var next := Rules.move(at,direction,delta,grid,false,speed)
-		return Vector3(next.x,Lake.walk_height(next),next.y)
+		return Vector3(next.x,Lake.walk_height(next,feet),next.y)
 	var count := maxi(1,ceili(motion.length()/SAMPLE))
 	for i in count:
 		var next := (at+motion/count).clamp(Rules.MIN_CORNER,Rules.MAX_CORNER)
 		for axis in 2:
 			var candidate := at
 			candidate[axis] = next[axis]
-			var on_fixture := feet > Lake.walk_height(at)+0.03
+			var on_fixture := feet > Lake.walk_height(at,feet)+0.03
 			if candidate.is_equal_approx(at) or not Rules.free_at(candidate,grid) or not Lake.Coast.can_step(at,candidate,feet if on_fixture else -INF):
 				continue
-			var ground := Lake.walk_height(candidate)
+			var ground := Lake.walk_height(candidate,feet)
 			var parts: Array = cells.get(_cell(candidate),[])
 			var y := _height(candidate,feet,ground,parts)
 			if not _blocks(candidate,y,feet,body,parts,ground):
@@ -217,7 +217,7 @@ func _path(at: Vector2, goal: Vector2, grid: Dictionary, feet: float, body: Vect
 				continue
 			var parts: Array = cells.get(_cell(point),[])
 			if not parts.is_empty():
-				var ground := Lake.walk_height(point)
+				var ground := Lake.walk_height(point,feet)
 				if _blocks(point,_height(point,feet,ground,parts),feet,body,parts,ground):
 					navigation.set_point_solid(cell)
 	var start := _nearest(at,navigation,grid,feet,body,true)

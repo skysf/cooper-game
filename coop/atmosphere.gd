@@ -8,6 +8,7 @@ const STAR_CATALOG := preload("res://textures/milky_way_stars.png")
 const EVENING_SKY := preload("res://textures/evening_sky.jpg")
 const DAY_SECONDS := 420.0
 const FIRST_SUNSET := 122.0
+const LANDSCAPE_FAR := 760.0
 const RAIN_FALL_SPEED := 15.0
 const RAIN_PREVAILING_DRIFT := Vector2(2.6, -1.7)
 const LATITUDE := 0.75049158 # 43 degrees north
@@ -179,12 +180,12 @@ func _update_sky(elapsed: float, wet: float) -> void:
 	environment.ambient_light_energy = lerpf(0.77, 0.23, night) * lerpf(1.0, 0.78, wet) * lerpf(0.82, 1.0, maxf(daylight, night))
 	var valley_haze := sky_horizon.lerp(Color("#d2ac87"), twilight * 0.31).lerp(Color("#35495a"), night * 0.21)
 	var sea_haze := valley_haze.lerp(sky_zenith, 0.22).darkened(0.12)
-	# Let haze separate the distant headlands while retaining the contrast of rock and trees.
-	var sea_density := lerpf(0.34, 0.62, wet)
-	environment.fog_density = lerpf(1.0, sea_density, coastal_view * (1.0 - immersion))
+	var rain_density := lerpf(1.0, 0.62, coastal_view)
+	environment.fog_density = lerpf(lerpf(0.61, rain_density, wet), 1.0, immersion)
 	environment.fog_light_color = valley_haze.lerp(sea_haze, coastal_view)
-	environment.fog_depth_begin = lerpf(lerpf(20.0, 8.0, wet), lerpf(58.0, 20.0, wet), coastal_view)
-	environment.fog_depth_end = lerpf(lerpf(103.0, 49.0, wet), lerpf(248.0, 169.0, wet), coastal_view)
+	# Interpolate extinction so the distant ridges return gradually as the rain clears.
+	environment.fog_depth_begin = 1.0 / lerpf(1.0 / 115.0, 1.0 / lerpf(8.0, 20.0, coastal_view), wet)
+	environment.fog_depth_end = 1.0 / lerpf(1.0 / 700.0, 1.0 / lerpf(49.0, 169.0, coastal_view), wet)
 	environment.fog_sky_affect = immersion * 0.91
 	if immersion > 0.0:
 		var depth_weight := smoothstep(0.10, 1.85, eye_depth)
@@ -237,24 +238,32 @@ func _init_streaks() -> void:
 func set_rain_roofs(records: Dictionary) -> void:
 	_rain_shelter.set_roofs(records)
 
+var cave_darkness := 0.0
+
 func update_weather(at: Vector3, elapsed: float, wet: float, repaired: bool,
 		below_water := false, camera_water_depth := NAN, sea_view := 0.0) -> void:
 	# Older callers supply just whether the eye is submerged. A real camera can
 	# cross the waterline continuously, including in third person or from the ship.
 	var depth := camera_water_depth if not is_nan(camera_water_depth) else (1.0 if below_water else -1.0)
 	var blend := smoothstep(-0.045, 0.17, depth)
+	var cave := preload("res://east/mine_ground.gd").darkness(at)
 	if (absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01
-			or below_water != underwater or absf(immersion - blend) > 0.012 or absf(coastal_view - sea_view) > 0.008):
+			or absf(cave-cave_darkness) > .006 or below_water != underwater or absf(immersion - blend) > 0.012 or absf(coastal_view - sea_view) > 0.008):
 		underwater = below_water
 		immersion = blend
 		coastal_view = sea_view
 		eye_depth = maxf(depth, 0.0)
 		_last_sky_time = elapsed
 		_last_sky_rain = wet
+		cave_darkness = cave
 		_update_sky(elapsed, wet)
+		sun.light_energy *= pow(1.0-cave,2)
+		moon.light_energy *= 1.0-cave
+		environment.ambient_light_energy *= lerpf(1.0,.056,cave)
+		environment.fog_light_color = environment.fog_light_color.lerp(Color(.07,.071,.077),cave)
 		streaks.set_shader_parameter("wet", wet)
 		streaks.set_shader_parameter("light_level", clampf(environment.ambient_light_energy / 0.5, 0.28, 1.0))
-	rain.visible = wet > .005 and not underwater
+	rain.visible = wet > .005 and not underwater and cave < .09
 	if rain.visible:
 		rain.global_position = at
 		streaks.set_shader_parameter("wind_time", elapsed)

@@ -1,0 +1,237 @@
+{
+  "grove_tree": {
+    "pack": "verdant",
+    "source": "island_tree_01_a",
+    "height": 7.4,
+    "width": 7.13,
+    "depth": 6.327,
+    "sourceTriangles": 1675335,
+    "nearTriangles": 37582,
+    "farTriangles": 10668
+  },
+  "crooked_tree": {
+    "pack": "verdant",
+    "source": "island_tree_01_b",
+    "height": 5.8,
+    "width": 5.151,
+    "depth": 5.251,
+    "sourceTriangles": 1675335,
+    "nearTriangles": 33059,
+    "farTriangles": 9654
+  },
+  "fallen_trunk": {
+    "pack": "verdant",
+    "source": "main_dead_tree_trunk",
+    "height": 1.65,
+    "width": 2.004,
+    "depth": 0.674,
+    "sourceTriangles": 83128,
+    "nearTriangles": 7000,
+    "farTriangles": 1120
+  },
+  "old_stump": {
+    "pack": "verdant",
+    "source": "dead_tree_trunk_02",
+    "height": 1.35,
+    "width": 2.58,
+    "depth": 0.779,
+    "sourceTriangles": 83128,
+    "nearTriangles": 4500,
+    "farTriangles": 720
+  },
+  "tangled_roots": {
+    "pack": "verdant",
+    "source": "root_cluster_01",
+    "height": 0.73,
+    "width": 1.354,
+    "depth": 2.161,
+    "sourceTriangles": 225272,
+    "nearTriangles": 6500
+  },
+  "bank_roots": {
+    "pack": "verdant",
+    "source": "root_cluster_2_04_lod0",
+    "height": 0.22,
+    "width": 0.653,
+    "depth": 0.651,
+    "sourceTriangles": 10216,
+    "nearTriangles": 1899
+  },
+  "wood_rock": {
+    "pack": "verdant",
+    "source": "rock_07.001",
+    "height": 1.35,
+    "width": 1.519,
+    "depth": 3.026,
+    "sourceTriangles": 2966,
+    "nearTriangles": 2966,
+    "farTriangles": 752
+  },
+  "broadleaf": {
+    "pack": "verdant",
+    "source": "shrub_01_c",
+    "height": 0.49,
+    "width": 0.268,
+    "depth": 0.292,
+    "sourceTriangles": 1374,
+    "nearTriangles": 850
+  },
+  "fern_bush": {
+    "pack": "verdant",
+    "source": "shrub_03_a",
+    "height": 0.65,
+    "width": 0.324,
+    "depth": 0.244,
+    "sourceTriangles": 2385,
+    "nearTriangles": 2080
+  },
+  "underbrush": {
+    "pack": "verdant",
+    "source": "shrub_02_d",
+    "height": 0.75,
+    "width": 0.607,
+    "depth": 0.716,
+    "sourceTriangles": 7590,
+    "nearTriangles": 3100
+  },
+  "trail_grass": {
+    "pack": "verdant",
+    "source": "grass_medium_02_b",
+    "height": 0.32,
+    "width": 0.319,
+    "depth": 0.355,
+    "sourceTriangles": 1760,
+    "nearTriangles": 779
+  },
+  "litter": {
+    "pack": "verdant",
+    "source": "sticks_debris_a",
+    "height": 0.14,
+    "width": 1.079,
+    "depth": 0.782,
+    "sourceTriangles": 981,
+    "nearTriangles": 419
+  },
+  "quiver_tree": {
+    "pack": "namaqua",
+    "source": "quiver_tree_01_LOD0",
+    "height": 5.2,
+    "width": 2.262,
+    "depth": 1.855,
+    "sourceTriangles": 150124,
+    "nearTriangles": 22100,
+    "farTriangles": 4861
+  },
+  "fork_tree": {
+    "pack": "namaqua",
+    "source": "quiver_tree_02_LOD0",
+    "height": 3.0,
+    "width": 1.78,
+    "depth": 1.799,
+    "sourceTriangles": 82074,
+    "nearTriangles": 12500,
+    "farTriangles": 2750
+  },
+  "granite_tor": {
+    "pack": "namaqua",
+    "source": "namaqualand_boulder_04_LOD0.002",
+    "height": 3.6,
+    "width": 4.778,
+    "depth": 4.729,
+    "sourceTriangles": 59066,
+    "nearTriangles": 9400,
+    "farTriangles": 1504
+  },
+  "weathered_rock": {
+    "pack": "namaqua",
+    "source": "namaqualand_boulder_06_LOD0.001",
+    "height": 1.85,
+    "width": 3.453,
+    "depth": 1.885,
+    "sourceTriangles": 109114,
+    "nearTriangles": 5900,
+    "farTriangles": 944
+  },
+  "rock_shelf": {
+    "pack": "namaqua",
+    "source": "namaqualand_cliff_02_LOD0",
+    "height": 4.8,
+    "width": 13.515,
+    "depth": 4.406,
+    "sourceTriangles": 194080,
+    "nearTriangles": 12500,
+    "farTriangles": 1999
+  },
+  "dry_branch": {
+    "pack": "namaqua",
+    "source": "dead_quiver_branch_01",
+    "height": 0.58,
+    "width": 0.337,
+    "depth": 0.3,
+    "sourceTriangles": 14834,
+    "nearTriangles": 2300
+  },
+  "gazania": {
+    "pack": "namaqua",
+    "source": "flower_gazania_d_LOD1.001",
+    "height": 0.32,
+    "width": 0.749,
+    "depth": 0.812,
+    "sourceTriangles": 812,
+    "nearTriangles": 812
+  },
+  "gazania_low": {
+    "pack": "namaqua",
+    "source": "flower_gazania_f_LOD1.001",
+    "height": 0.24,
+    "width": 0.641,
+    "depth": 0.63,
+    "sourceTriangles": 1072,
+    "nearTriangles": 719
+  },
+  "ursinia": {
+    "pack": "namaqua",
+    "source": "flower_ursinia_b_LOD0.001",
+    "height": 0.38,
+    "width": 1.012,
+    "depth": 0.808,
+    "sourceTriangles": 6159,
+    "nearTriangles": 1199
+  },
+  "blue_flower": {
+    "pack": "namaqua",
+    "source": "flower_heliophila_medium_LOD0.001",
+    "height": 0.43,
+    "width": 0.773,
+    "depth": 0.69,
+    "sourceTriangles": 32511,
+    "nearTriangles": 3346
+  },
+  "iceplant": {
+    "pack": "namaqua",
+    "source": "crystalline_iceplant_a_LOD0.001",
+    "height": 0.28,
+    "width": 0.955,
+    "depth": 1.091,
+    "sourceTriangles": 3076,
+    "nearTriangles": 1199
+  },
+  "silver_bush": {
+    "pack": "namaqua",
+    "source": "didelta_spinosa_small_LOD1",
+    "height": 0.48,
+    "width": 0.542,
+    "depth": 0.42,
+    "sourceTriangles": 13972,
+    "nearTriangles": 1347
+  },
+  "wax_shrub": {
+    "pack": "namaqua",
+    "source": "searsia_lucida_a_LOD0.001",
+    "height": 0.86,
+    "width": 0.664,
+    "depth": 0.723,
+    "sourceTriangles": 113405,
+    "nearTriangles": 6231
+  }
+}

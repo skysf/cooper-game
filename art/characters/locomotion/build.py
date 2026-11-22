@@ -6,6 +6,7 @@ Godot only. export_library.gd extracts just animation tracks for the shipping ga
 import json
 import math
 import struct
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -25,6 +26,10 @@ CHANNELS += [f"{finger}_{joint:02d}_{side}" for side,_ in SIDES for finger in FI
 DURATIONS = {"Walk": 1., "Run": .72, "Takeoff": .14, "Air": .60,
              "Land": .22, "Swim": 1.55, "Tread": 1.8}
 
+
+if "--deck" in sys.argv:
+    OUTPUT = Path(".cache/lake-dockwork/poses/baked.glb")
+    DURATIONS = {"Crouch":2.7, "CrouchWalk":.86, "Sleep":3.5}
 
 def rotation(axis, degrees):
     a = np.eye(3)[axis]
@@ -153,7 +158,7 @@ class Pose:
         self.local("hand_"+side,np.eye(3))
 
 
-def stride(p, t, fast):
+def stride(p, t, fast, crouch=False, still=False):
     duty, length = (.37, 2.56) if fast else (.59, 1.46)
     wave, sway = math.cos(TAU*t), math.sin(TAU*t)
     shift_y = (-.112 if fast else -.056) - (.028 if fast else .019)*math.sin(2*TAU*t)
@@ -165,6 +170,12 @@ def stride(p, t, fast):
     p.absolute("upper_chest",angles(-9 if fast else -2,-5.3*wave,-2.2*sway))
     p.absolute("neck",angles(-2,-2*wave,-sway))
     p.absolute("head",angles(0,-.8*wave,-.5*sway))
+    if crouch:
+        length, duty = (0. if still else .83), .63
+        # Tuck the hips back and down so a helmet clears the sloping canvas when turning.
+        p.shift = np.array([.008*sway,-.725+.010*sway*sway,.131])
+        for bone,angle in [("hips",-18),("spine",-35),("chest",-46),("upper_chest",-52),("neck",-32),("head",-13)]:
+            p.absolute(bone,angles(angle,1.1*wave,0))
     for index,(side,sign) in enumerate(SIDES):
         u = (t+.5*index)%1
         reach = length*duty/2
@@ -180,6 +191,9 @@ def stride(p, t, fast):
             z = reach*(1-2*smooth(v)) + tangent*(2*v**3-3*v*v+v)
             heel = curve([(0,24 if fast else 17),(.25,31),(.65,-2),(1,-12)],v)[0]
             clearance = (.25 if fast else .15)*math.sin(PI*v)**1.3
+        if crouch:
+            clearance = 0. if still else clearance*.26
+            heel = 0. if still else heel*.24
         foot, shin, thigh = ("foot_"+side,"shin_"+side,"thigh_"+side)
         pitch = rotation(0,heel)
         ankle_y = -sole_height(foot, pitch) + clearance + (.013 if fast else .004)
@@ -201,6 +215,18 @@ def stride(p, t, fast):
         p.local("upper_arm_"+side,angles(-(35 if fast else 23)*leg_swing-(16 if fast else 4),0,sign*(7 if fast else 4)))
         p.local("forearm_"+side,angles((66 if fast else 22)-(19 if fast else 10)*leg_swing))
         p.local("hand_"+side,angles(-5,0,sign*4))
+        if crouch:
+            p.arm(side,sign,(.25,-.72,-.43),(-.08,-.33,-.73),angles(0))
+
+def sleep_pose(p,t):
+    breath=math.sin(TAU*t)
+    p.absolute("chest",angles(-.7*breath))
+    p.absolute("head",angles(7,9,4))
+    for side,sg in SIDES:
+        p.absolute("thigh_"+side,angles(8 if sg<0 else 3,0,sg*3))
+        p.absolute("shin_"+side,angles(-8 if sg<0 else -2))
+        p.arm(side,sg,(.23,-.88,-.17),(-.64,-.28,-.38),angles(0))
+
 
 
 def jump(p, t, clip):
@@ -299,7 +325,11 @@ for clip,duration in DURATIONS.items():
     for time in times:
         t=time/duration
         p=Pose()
-        if clip in ("Walk","Run"):
+        if clip in ("Crouch","CrouchWalk"):
+            stride(p,t,False,True,clip=="Crouch")
+        elif clip=="Sleep":
+            sleep_pose(p,t)
+        elif clip in ("Walk","Run"):
             stride(p,t,clip=="Run")
         elif clip in ("Swim","Tread"):
             water(p,t,clip=="Swim")
@@ -308,7 +338,7 @@ for clip,duration in DURATIONS.items():
         # Relax the previously spread Stand fingers. The light fist in fast travel
         # opens again for sculling and the outsweep, keeping both grip nodes intact.
         curl = {"Walk":20, "Run":39, "Takeoff":18, "Air":17,
-                "Land":15, "Swim":4, "Tread":7}[clip]
+                "Land":15, "Swim":4, "Tread":7, "Crouch":16,"CrouchWalk":16,"Sleep":12}[clip]
         for side,sign in SIDES:
             for f,finger in enumerate(FINGERS):
                 for joint,factor in ((1,.82),(2,1.),(3,.55)):

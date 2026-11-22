@@ -1,0 +1,32 @@
+{
+  "room": "human-mwq1oc7q",
+  "game": "Godot 4.7.2 Web",
+  "firstPerson": true,
+  "sequence": [
+    {
+      "clip": "PunchJab",
+      "roomTime": 28.0662706666663,
+      "seenByBoth": true
+    },
+    {
+      "clip": "PunchCross",
+      "roomTime": 28.7996039999996,
+      "seenByBoth": true
+    },
+    {
+      "clip": "PunchHook",
+      "roomTime": 29.5829373333329,
+      "seenByBoth": true
+    }
+  ],
+  "thirdPerson": true,
+  "lookDownPitch": -1.55,
+  "raider": [
+    {
+      "phase": "raider",
+      "clip": "PunchJab",
+      "weapon": ""
+    }
+  ],
+  "scriptErrors": []
+}

@@ -175,8 +175,8 @@ try{
   await nearAndUse('repair','repaired');
   const repaired=await state();
   report.completed={rain:repaired.rain,elapsed:repaired.elapsed,quest:repaired.quest,sheltered:repaired.sheltered};
-  await page.keyboard.press('Escape');
-  await until(async()=>!(await state()).locked,5000,'Esc release');
+  await page.keyboard.press('Shift+Escape');
+  await until(async()=>!(await state()).locked,5000,'Shift+Esc release');
   s=await state();
   const [inviteX,inviteY,inviteWidth,inviteHeight]=s.inviteRect;
   await clickCanvasPoint(page,[(inviteX+inviteWidth/2)/s.viewport[0],(inviteY+inviteHeight/2)/s.viewport[1]]);

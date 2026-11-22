@@ -45,7 +45,7 @@ func _verify() -> void:
 	for x in range(-10, 11):
 		for z in range(-10, 11):
 			actual_water = actual_water or is_finite(LakeLayout.surface_height(water_source + Vector2(x, z) * 0.1))
-	_expect(Rules.free_at(water_source, grid) and actual_water, "water source is a walkable bank within one metre of actual creek water")
+	_expect(Rules.free_at(water_source, grid) and actual_water, "water source is a walkable bank within one metre of actual lake water")
 	var npc := WildPeople.make_person("person-1", 2, "female", Vector2(1.5, -83.0), room.data.elapsed)
 	npc.yaw = -2.5
 	state.people[npc.id] = npc
@@ -159,9 +159,8 @@ func _verify() -> void:
 	_do(a, "treat", "", npc.id)
 	_expect(not _notice(a).ok and npc.health == before_health, "remote and stale care requests cannot reach the NPC")
 	room.actors[a.id].point = WildPeople.WATER
-	var before_stock: int = state.resources.water.stock
 	_do(a, "gather", "water")
-	_expect(state.resources.water.stock == before_stock - 1 and room.data.survival[a.id].bag.water == 1, "normal water collection consumes real creek source stock")
+	_expect(not state.resources.has("water") and room.data.survival[a.id].bag.water == 1, "lake water fills a carried portion without a station")
 	# Companion food is physical, public permission is explicit, and it can forage instead.
 	npc.hunger = 30
 	npc.water = 95

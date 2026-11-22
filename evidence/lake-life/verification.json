@@ -1,0 +1,70 @@
+{
+  "lakeChecks": [
+    "departure requires the pier or deck",
+    "two players board at separate positions",
+    "concurrent departure starts exactly one trip",
+    "passengers cannot disembark onto the distant pier",
+    "save records passenger position on the moving deck",
+    "reconnect restores a passenger on the moving hull",
+    "full oval remains on lake water and the deck carries a standing passenger",
+    "landing returns the passenger to the dry pier",
+    "a full bag leaves the fleece on the animal",
+    "simultaneous shearing gives a single bundle",
+    "shearing pauses the grazing animal in place",
+    "the fleece regrows on the room clock",
+    "a second player receives the same coat state",
+    "the live sheep is reachable by the existing hunting path",
+    "a shorn animal leaves one carcass with two lamb chops",
+    "reloaded storage preserves coat, meat and shearing time",
+    "a full coat yields fleece alongside the lamb chops",
+    "existing storage interaction transfers an actual raw chop",
+    "a lit campfire cooks one raw lamb chop",
+    "ferryman contains just its own game mesh",
+    "ferryman displays its vertex paint on every surface",
+    "ferryman imports every authored action",
+    "ferryman grips 0.003 m from shaft, blade -0.109 to 0.580 m relative to water",
+    "herbalist contains just its own game mesh",
+    "herbalist displays its vertex paint on every surface",
+    "herbalist imports every authored action",
+    "herbalist grips 0.007 m from shaft, blade -0.160 to 0.534 m relative to water",
+    "fleece contains just its own game mesh",
+    "fleece displays its vertex paint on every surface",
+    "fleece imports every authored action",
+    "shorn contains just its own game mesh",
+    "shorn displays its vertex paint on every surface",
+    "shorn imports every authored action",
+    "lamb contains just its own game mesh",
+    "lamb displays its vertex paint on every surface",
+    "grilled contains just its own game mesh",
+    "grilled displays its vertex paint on every surface",
+    "wool contains just its own game mesh",
+    "wool displays its vertex paint on every surface"
+  ],
+  "regressions": {
+    "storage": 63,
+    "fieldGuide": "passed",
+    "survival": "passed",
+    "playerLocomotion": "passed"
+  },
+  "film": {
+    "room": "lake-film-f4a9eb",
+    "frames": 170,
+    "seconds": 7.183023929595947,
+    "observer": [
+      -9.60000038146973,
+      -0.0158774860821652,
+      -45.7700004577637
+    ],
+    "both": {
+      "ferryman": "Row",
+      "herbalist": "Row"
+    },
+    "errors": []
+  },
+  "blender": [
+    "ANIMATED SOURCE art/characters/reed_marsh_study/lakefolk_1700/lakefolk_rowing.blend herbalistRig Row 0.661",
+    "ANIMATED SOURCE art/characters/reed_marsh_study/lakefolk_1700/lakefolk_rowing.blend ferrymanRig Row.001 0.66",
+    "ANIMATED SOURCE art/animals/sheep_study/sheep_motion.blend fleeceRig Graze 0.2",
+    "ANIMATED SOURCE art/animals/sheep_study/sheep_motion.blend shornRig Graze.001 0.2"
+  ]
+}

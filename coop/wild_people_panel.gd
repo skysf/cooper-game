@@ -64,7 +64,7 @@ func _ready() -> void:
 	base.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var theme := Theme.new()
 	var font := preload("res://fonts/TrailSans.otf").duplicate() as FontFile
-	font.fallbacks = [preload("res://fonts/CampHanSupplement.otf")]
+	font.fallbacks = [preload("res://fonts/CampHanSupplement.otf"),preload("res://fonts/CampSignCJK.otf")]
 	theme.default_font = font
 	base.theme = theme
 	var shade := ColorRect.new()
@@ -123,6 +123,7 @@ func _ready() -> void:
 		locate.pressed.connect(func(): locate_requested.emit(key))
 		row.add_child(locate)
 		source_buttons[key] = b
+	_label(left, 14).text = "淡水 · 到鹿鸣湖水边按 F 装水"
 	public_button = _button(left, "", "public_food", "", false)
 	repair_button = _button(left, "修补 +25（木料1 / 布1）", "repair_facility", "", false)
 	_label(left, 17).text = "你的缴获装备"
@@ -150,7 +151,7 @@ func _ready() -> void:
 	right.add_child(actions)
 	for spec: Array in [
 		["制服（清醒者会反抗）", "capture", ""], ["编条加固束缚", "bind", ""], ["缴获 / 取回战利品", "loot", ""], ["解除约束并释放", "release", ""],
-		["给一份苹果", "feed", "apple"], ["给一份面包", "feed", "bread"], ["给一份装好的溪水", "water", ""],
+		["安排绳床休息", "bed", ""], ["给一份苹果", "feed", "apple"], ["给一份面包", "feed", "bread"], ["给一份装好的淡水", "water", ""],
 		["用一份药草治疗", "treat", ""], ["邀请自愿留下", "invite", ""], ["协商守家", "order", "guard"],
 		["协商回营休养", "order", "rest"], ["交给木棍", "give_equipment", "club"], ["交给长矛", "give_equipment", "spear"],
 		["交给盾牌", "give_equipment", "shield"], ["交给圆石", "give_equipment", "stone"], ["取回武器", "take_equipment", ""],
@@ -224,6 +225,19 @@ func refresh(data: Dictionary, survival: Dictionary, at: Vector2, elapsed: float
 	var rel: Dictionary = npc.relation
 	var distance := at.distance_to(People.position(npc))
 	var phase: String = npc.phase
+	if phase=="resident":
+		var camp: Dictionary = data.get("caves",{}).get(npc.homeMine,{})
+		var site_name: String = People.Caves.Land.region.camps[npc.homeMine].title
+		var burning := float(camp.get("fireUntil",0))-elapsed
+		var fire_status := "火塘还可燃烧 %d 秒" % ceili(burning) if burning>0 else "火塘已熄"
+		details.text = "%s · %s居民\n%s\n\n饱腹 %d　水分 %d　装备 %s\n%s\n洞内存有食物 %d 份、饮水 %d 份和柴薪 %d 份。" % [npc.name,site_name,npc.help,roundi(npc.hunger),roundi(npc.water),People.WEAPONS.get(npc.weapon,"徒手"),fire_status,int(camp.get("food",0)),int(camp.get("water",0)),int(camp.get("wood",0))]
+		for key: String in action_buttons:
+			var button: Button = action_buttons[key]
+			button.visible = key == "chat/"
+			if button.visible:
+				button.text = "打招呼"
+				button.disabled = distance > People.REACH or survival.get("health", 0) <= 0 or elapsed - float(npc.get("speechAt", -1000.0)) < 4.0
+		return
 	var loot_names := PackedStringArray()
 	for item: String in npc.loot:
 		if int(npc.loot[item]) > 0:
@@ -243,11 +257,14 @@ func refresh(data: Dictionary, survival: Dictionary, at: Vector2, elapsed: float
 			"bind": visible = phase == "captive" and not npc.get("bound", false)
 			"loot": visible = phase in ["down", "captive", "dead"]
 			"release", "invite": visible = phase == "captive"
+			"bed": visible = phase in ["captive","companion"]
 			"feed", "water", "treat": visible = phase in ["captive", "companion", "down"]
 			_: visible = phase == "companion"
 		b.visible = visible
 		b.disabled = distance > People.REACH or survival.get("health", 0) <= 0
-		if command in ["feed", "gift"]:
+		if command == "bed":
+			b.text = "结束床上休息" if npc.has("bedGoal") else "安排绳床休息"
+		elif command in ["feed", "gift"]:
 			b.disabled = b.disabled or int(bag.get(item, 0)) <= 0 or npc.hunger >= 87
 		elif command == "water":
 			b.disabled = b.disabled or int(bag.get("water", 0)) <= 0 or npc.water >= 96
@@ -262,6 +279,7 @@ func refresh(data: Dictionary, survival: Dictionary, at: Vector2, elapsed: float
 		elif command == "end_romance":
 			b.visible = phase == "companion" and npc.relationship == "你的伴侣"
 		elif command == "chat":
+			b.text = "闲聊（每60秒）"
 			b.disabled = b.disabled or elapsed < rel.chatAt + 60
 
 func observables() -> Dictionary:

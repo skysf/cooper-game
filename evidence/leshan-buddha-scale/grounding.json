@@ -1,0 +1,99 @@
+{
+  "collision_shapes": 24,
+  "errors": [],
+  "nails": {
+    "HalluxNail_L": {
+      "footprint_samples": 132,
+      "four_grounded_frames": 74,
+      "highest_m": 2.27866291999817,
+      "landed_on": [
+        "HalluxNail_L",
+        "HalluxNail_L",
+        "HalluxNail_L",
+        "HalluxNail_L"
+      ],
+      "lowest_m": 2.26771926879883,
+      "max_slope_deg": 1.4880401670612,
+      "min_player_gap_m": 0.200000686645508,
+      "nearest_center_m": 0.780000686645508,
+      "soles_game_xyz": [
+        [
+          4.01000022888184,
+          2.27473139762878,
+          16.5699996948242
+        ],
+        [
+          4.84999990463257,
+          2.27473139762878,
+          16.5699996948242
+        ],
+        [
+          4.01000022888184,
+          2.27449750900269,
+          17.3500003814697
+        ],
+        [
+          4.84999990463257,
+          2.27473139762878,
+          17.3500003814697
+        ]
+      ],
+      "outer_width_m": 2.2052321434020996,
+      "outer_depth_m": 1.9200000762939453
+    },
+    "HalluxNail_R": {
+      "footprint_samples": 132,
+      "four_grounded_frames": 79,
+      "highest_m": 2.27866291999817,
+      "landed_on": [
+        "HalluxNail_R",
+        "HalluxNail_R",
+        "HalluxNail_R",
+        "HalluxNail_R"
+      ],
+      "lowest_m": 2.26771950721741,
+      "max_slope_deg": 1.48804134099996,
+      "min_player_gap_m": 0.200000686645508,
+      "nearest_center_m": 0.780000686645508,
+      "soles_game_xyz": [
+        [
+          -4.84999990463257,
+          2.2748920917511,
+          16.5699996948242
+        ],
+        [
+          -4.01000022888184,
+          2.2748920917511,
+          16.5699996948242
+        ],
+        [
+          -4.84999990463257,
+          2.27451968193054,
+          17.3500003814697
+        ],
+        [
+          -4.01000022888184,
+          2.2748920917511,
+          17.3500003814697
+        ]
+      ],
+      "outer_width_m": 2.2052321434020996,
+      "outer_depth_m": 1.9200000762939453
+    }
+  },
+  "player_radius_m": 0.29,
+  "render_meshes": 58,
+  "rendered_hiker_scene": "res://hiker.gd",
+  "simulator": "4.7.2-stable (official)",
+  "standing_grid": "2 x 2 on a single great toenail",
+  "model": "art/landmarks/leshan_buddha/leshan_buddha.glb",
+  "sha256": "ec2191ec31eb2dc269d8028e88c4115be48c428ee91653c7495eecb0412ebdfb",
+  "triangles": 157574,
+  "meters_from_sole_datum_to_crown": 70.93773651123047,
+  "island_distance_preview": {
+    "horizontal_distance_from_camera_to_toenail_m": 82.39,
+    "camera_height_m": 9.38,
+    "horizontal_fov_deg": 78,
+    "in_main_map": false
+  }
+}

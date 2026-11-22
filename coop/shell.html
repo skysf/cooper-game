@@ -55,7 +55,7 @@ h1, h2, p { margin: 0; }
 h1 { margin-bottom: 28px; font-size: clamp(30px, 5vw, 42px); line-height: 1.25; font-weight: 650; }
 .load-state { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 5px 12px; }
 #phase { color: var(--ink); font-size: 15px; line-height: 1.5; }
-#transfer { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+#loadPercent { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 progress {
   display: block;
   width: 100%;
@@ -122,9 +122,9 @@ progress::-moz-progress-bar { background: var(--amber); }
     <h1 id="loaderTitle">雨线营地</h1>
     <div class="load-state">
       <p id="phase" role="status">正在打开营地…</p>
-      <span id="transfer" hidden aria-hidden="true"></span>
+      <span id="loadPercent" aria-hidden="true">0%</span>
     </div>
-    <progress id="bar" aria-label="游戏加载进度"></progress>
+    <progress id="bar" max="100" value="0" aria-label="游戏加载进度"></progress>
   </div>
 </section>
 <a hidden id="fresh" class="shell-button">另开营地</a>
@@ -143,9 +143,10 @@ progress::-moz-progress-bar { background: var(--amber); }
 <script>
 const canvas = document.getElementById('canvas');
 const box = document.getElementById('loader');
+const startup = document.getElementById('startup');
 const phase = document.getElementById('phase');
 const bar = document.getElementById('bar');
-const transfer = document.getElementById('transfer');
+const loadPercent = document.getElementById('loadPercent');
 const fresh = document.getElementById('fresh');
 const invitePanel = document.getElementById('invitePanel');
 const inviteLink = document.getElementById('inviteLink');
@@ -156,7 +157,7 @@ const startNew = () => 'camp-' + Array.from(crypto.getRandomValues(new Uint8Arra
 fresh.href = '?room=' + startNew();
 window.CooperJoin = {
   url: (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/room',
-  room, token: '', pointerLocked: false, backpackOpen: false, atlasOpen: false, inviteVisible: false,
+  room, token: '', pointerLocked: false, menuOpen: true, backpackOpen: false, atlasOpen: false, inviteVisible: false,
   zoneBase: location.origin + '/coop/zones/',
 };
 
@@ -195,7 +196,7 @@ function placeShellActions() {
 
 function syncRoomAction() {
   if (!box.hidden) return;
-  fresh.hidden = CooperJoin.pointerLocked || CooperJoin.backpackOpen || CooperJoin.atlasOpen;
+  fresh.hidden = !CooperJoin.menuOpen || CooperJoin.pointerLocked || CooperJoin.backpackOpen || CooperJoin.atlasOpen;
   if (!fresh.hidden) placeShellActions();
 }
 
@@ -234,21 +235,32 @@ function dismissInvite() {
   canvas.focus({preventScroll: true});
 }
 
-CooperJoin.setBackpackOpen = open => {
-  CooperJoin.backpackOpen = open;
-  syncRoomAction();
+CooperJoin.setPanelOpen = (open, atlasOpen) => {
+  CooperJoin.backpackOpen = open && !atlasOpen;
+  CooperJoin.atlasOpen = atlasOpen;
   if (open) {
     hideInvite();
     canvas.focus({preventScroll: true});
   }
-};
-CooperJoin.setAtlasOpen = open => {
-  CooperJoin.atlasOpen = open;
-  if (open) hideInvite();
   syncRoomAction();
 };
-CooperJoin.resumeFromAtlas = () => {
-  if (document.pointerLockElement || CooperJoin.atlasOpen || CooperJoin.backpackOpen || !navigator.userActivation?.isActive) return;
+CooperJoin.setMenuOpen = open => {
+  CooperJoin.menuOpen = open;
+  if (!open) hideInvite();
+  syncRoomAction();
+};
+let resumeAfterUnlock = false;
+CooperJoin.releasePointer = () => {
+  resumeAfterUnlock = false;
+  CooperJoin.pointerLocked = false;
+  if (document.pointerLockElement === canvas) document.exitPointerLock();
+};
+CooperJoin.resumeFromPanel = () => {
+  if (!box.hidden || CooperJoin.atlasOpen || CooperJoin.backpackOpen || !document.hasFocus()) return;
+  if (document.pointerLockElement === canvas) {
+    resumeAfterUnlock = true;
+    return;
+  }
   canvas.focus({preventScroll: true});
   canvas.requestPointerLock()?.catch(() => {});
 };
@@ -273,15 +285,17 @@ CooperJoin.fetchZone = function(url) {
 
 const config=$GODOT_CONFIG;
 config.canvas=canvas;config.canvasResizePolicy=0;
-// Ordinary HTTP LAN pages can play Web Audio buffers without AudioWorklet.
+// BufferSource loops wrap on the audio clock, even while a camera turn occupies the game thread.
+const BrowserAudioContext=window.AudioContext||window.webkitAudioContext;
+if(BrowserAudioContext) window.CooperAmbience=createCampAudio(BrowserAudioContext);
+// Ordinary HTTP LAN pages also use this mixer for positional effects.
 if(typeof Engine!=='undefined' && !Engine.isAudioWorkletAvailable()) {
   config.args=[...(config.args||[]),'--audio-driver','Dummy'];
-  const BrowserAudioContext=window.AudioContext||window.webkitAudioContext;
-  if(BrowserAudioContext) window.CooperAudio=createCampAudio(BrowserAudioContext);
+  if(BrowserAudioContext) window.CooperAudio=window.CooperAmbience;
 }
 
 function createCampAudio(AudioContextClass){
-  const clips=new Map();
+  const clips=new Map(), ambientVoices=new Map();
   let context, voices=[], engineVoice, count=0, cursor=0;
   function channel(){
     const gain=context.createGain();
@@ -301,19 +315,21 @@ function createCampAudio(AudioContextClass){
     const clip=clips.get(name);
     if(!clip) return null;
     if(!clip.buffer){
-      // GDScript sends each mono 16-bit PCM clip from the game package once.
+      // Godot WAV samples are interleaved signed 16-bit little-endian PCM.
       const bytes=atob(clip.pcm);
-      clip.buffer=context.createBuffer(1,bytes.length/2,clip.rate);
-      const samples=clip.buffer.getChannelData(0);
-      for(let index=0;index<samples.length;index++){
-        const value=bytes.charCodeAt(index*2)|(bytes.charCodeAt(index*2+1)<<8);
-        samples[index]=(value>=32768?value-65536:value)/32768;
+      clip.buffer=context.createBuffer(clip.channels,bytes.length/(2*clip.channels),clip.rate);
+      for(let c=0;c<clip.channels;c++){
+        const samples=clip.buffer.getChannelData(c);
+        for(let i=0,byte=c*2;i<samples.length;i++,byte+=2*clip.channels){
+          const value=bytes.charCodeAt(byte)|(bytes.charCodeAt(byte+1)<<8);
+          samples[i]=(value>=32768?value-65536:value)/32768;
+        }
       }
       delete clip.pcm;
     }
     return clip.buffer;
   }
-  function start(voice,name,volume,pitch,pan,loop=false){
+  function start(voice,name,volume,pitch,pan,loop=false,offset=0){
     const samples=buffer(name);
     if(!samples) return;
     stop(voice);
@@ -333,22 +349,28 @@ function createCampAudio(AudioContextClass){
       if(voice.source===source) voice.source=null;
     };
     voice.source=source;
-    source.start();
+    source.start(0, Math.min(offset,samples.duration));
   }
-  function unlock(){
-    if(!context && count){
-      context=new AudioContextClass();
+  function configureVoices(){
+    if(context && count && !engineVoice){
       voices=Array.from({length:count},channel);
       engineVoice=channel();
     }
+  }
+  function unlock(){
+    if(!context && clips.size) context=new AudioContextClass();
+    configureVoices();
     if(context?.state!=='running') context?.resume().catch(()=>{});
+  }
+  function stopAmbience(){
+    for(const voice of ambientVoices.values()) stop(voice);
   }
   canvas.addEventListener('pointerdown',unlock);
   canvas.addEventListener('keydown',unlock);
   return {
-    configure(voiceCount){count=voiceCount;},
-    register(name,rate,pcm){clips.set(name,{rate,pcm});},
-    play(name,volume,pitch,pan,priority){
+    configure(voiceCount){count=voiceCount;configureVoices();},
+    register(name,rate,pcm,channels=1){clips.set(name,{rate,pcm,channels});},
+    play(name,volume,pitch,pan,priority,offset=0){
       if(context?.state!=='running') return;
       let slot=-1;
       for(let index=0;index<count;index++){
@@ -360,7 +382,7 @@ function createCampAudio(AudioContextClass){
       const voice=voices[slot];
       voice.priority=priority;
       cursor=(slot+1)%count;
-      start(voice,name,volume,pitch,pan);
+      start(voice,name,volume,pitch,pan,false,offset);
     },
     engine(name,volume,pitch,pan){
       if(context?.state!=='running') return;
@@ -370,30 +392,92 @@ function createCampAudio(AudioContextClass){
       engineVoice.source.playbackRate.setTargetAtTime(pitch,now,0.035);
       engineVoice.pan?.pan.setTargetAtTime(pan,now,0.035);
     },
+    ambient(name,volume,pan){
+      if(context?.state!=='running') return;
+      let voice=ambientVoices.get(name);
+      if(volume<=0){stop(voice);return;}
+      if(!voice){voice=channel();ambientVoices.set(name,voice);}
+      if(!voice.source){start(voice,name,volume,1,pan,true);return;}
+      const now=context.currentTime;
+      voice.gain.gain.setTargetAtTime(volume,now,0.04);
+      voice.pan?.pan.setTargetAtTime(pan,now,0.04);
+    },
+    stopAmbience,
     stopEngine(){stop(engineVoice);},
     silence(){
       stop(engineVoice);
       for(const voice of voices) stop(voice);
+      stopAmbience();
     },
   };
 }
-config.onProgress = (loaded, total) => {
-  phase.textContent = '正在载入游戏';
-  if (total > 0) {
-    bar.max = total;
-    bar.value = loaded;
+function showLoading(message, progress) {
+  if (phase.textContent !== message) phase.textContent = message;
+  const percent = Math.max(bar.value, Math.floor(progress));
+  if (bar.value !== percent) {
+    bar.value = percent;
+    loadPercent.textContent = percent + '%';
   }
-  const amount = bytes => (bytes / 1048576).toFixed(1);
-  transfer.textContent = total > 0 ? amount(loaded) + ' / ' + amount(total) + ' MiB' : amount(loaded) + ' MiB';
-  transfer.hidden = false;
+}
+
+const DOWNLOAD_END = 70;
+let downloading = true;
+config.onProgress = (loaded, total) => {
+  if (!downloading) return;
+  const fraction = total > 0 ? Math.min(1, loaded / total) : 0;
+  showLoading(fraction === 1 ? '正在启动游戏引擎…' : '正在下载游戏资源…', DOWNLOAD_END * fraction);
 };
 
 function loadingError(message) {
+  downloading = false;
   phase.textContent = message;
   bar.hidden = true;
-  transfer.hidden = true;
-  document.getElementById('startup').appendChild(fresh);
+  loadPercent.hidden = true;
+  startup.appendChild(fresh);
   fresh.hidden = false;
+}
+
+function showWarmup(state) {
+  const {stage, done, total} = state.previewProgress || {};
+  const progress = (count, start, end) => start + (end - start) * Math.min(1, count / total);
+  switch (stage) {
+    case 'world':
+      showLoading('正在准备场景…', progress(done, 75, 88));
+      break;
+    case 'character':
+      showLoading('正在准备角色预览…', 89);
+      break;
+    case 'people':
+      showLoading('正在准备营地人物…', progress(state.peopleWarmupCount, 91, 96));
+      break;
+    default:
+      showLoading('正在准备光照…', 73);
+  }
+}
+
+function updateStartup() {
+  const state = window.CooperStatus;
+  if (!state) return false;
+  if (state.ready) {
+    showLoading('可以进入林地', 100);
+    box.hidden = true;
+    if (fresh.parentNode === startup) document.body.appendChild(fresh);
+    syncRoomAction();
+    return true;
+  }
+  if (state.previewWarming) {
+    showWarmup(state);
+    return false;
+  }
+  const showFresh = !state.connected || Boolean(state.terrainError);
+  if (showFresh && fresh.parentNode !== startup) startup.appendChild(fresh);
+  fresh.hidden = !showFresh;
+  if (!state.connected) {
+    showLoading(state.status || '正在连接房间…', 97);
+  } else {
+    showLoading(state.terrainError ? '林区加载失败，正在重试…' : '正在加载脚下的林区…', 98);
+  }
+  return false;
 }
 
 if (!/^[a-z0-9_-]{1,24}$/.test(room)) {
@@ -411,18 +495,11 @@ if (!/^[a-z0-9_-]{1,24}$/.test(room)) {
     await new Engine(config).startGame();
   };
   start().then(() => {
+    downloading = false;
+    showLoading('正在初始化营地…', 72);
+    if (updateStartup()) return;
     const wait = setInterval(() => {
-      const state = window.CooperStatus;
-      if (!state) return;
-      if (state.previewWarming) {
-        phase.textContent = '正在准备角色预览…';
-        transfer.hidden = true;
-        bar.removeAttribute('value');
-        return;
-      }
-      clearInterval(wait);
-      box.hidden = true;
-      syncRoomAction();
+      if (updateStartup()) clearInterval(wait);
     }, 80);
   }).catch(error => loadingError('载入失败 · ' + error));
 }
@@ -436,11 +513,13 @@ canvas.addEventListener('click', event => {
     const rect = canvasGameRect(frame, state, bounds);
     return event.clientX >= rect.left && event.clientX < rect.right && event.clientY >= rect.top && event.clientY < rect.bottom;
   };
-  if (inside(state.inviteRect)) {
-    showInvite();
-    return;
+  if (CooperJoin.menuOpen) {
+    if (inside(state.inviteRect)) {
+      showInvite();
+      return;
+    }
+    if (inside(state.panelRect) && !inside(state.enterRect)) return;
   }
-  if (inside(state.panelRect) && !inside(state.enterRect)) return;
   canvas.focus();
   const request = canvas.requestPointerLock();
   request?.catch(error => console.warn('Pointer lock:', error.message));
@@ -453,14 +532,17 @@ canvas.addEventListener('wheel', event => {
 }, {passive: false});
 document.addEventListener('pointerlockchange', () => {
   CooperJoin.pointerLocked = document.pointerLockElement === canvas;
-  if (CooperJoin.pointerLocked) hideInvite();
+  if (CooperJoin.pointerLocked) {
+    hideInvite();
+    if (CooperJoin.backpackOpen || CooperJoin.atlasOpen) CooperJoin.releasePointer();
+  } else if (resumeAfterUnlock) {
+    resumeAfterUnlock = false;
+    CooperJoin.resumeFromPanel();
+  }
   syncRoomAction();
 });
 document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') {
-    if (document.pointerLockElement === canvas) document.exitPointerLock();
-    else if (!invitePanel.hidden) dismissInvite();
-  }
+  if (event.key === 'Escape' && !invitePanel.hidden) dismissInvite();
   if (event.code === 'Space' && document.pointerLockElement === canvas) event.preventDefault();
   if (event.code === 'Tab' && !event.altKey && !event.ctrlKey && !event.metaKey && event.target === canvas &&
     window.CooperStatus?.ready && window.CooperStatus?.survival?.bag) event.preventDefault();

@@ -136,6 +136,7 @@ func _run() -> void:
 	_verify_audio(client)
 	_verify_wildlife(client)
 	_verify_travel_controls(client)
+	_verify_jump_eye(client)
 	client.free()
 	if failures == 0:
 		print("CAMP_FEEDBACK_OK: camp, avatar, equipment, dog, crocodile animations and eagle flight and perch")
@@ -227,7 +228,33 @@ func _verify_travel_controls(client) -> void:
 	_check(client.weather.underwater and client.weather.environment.fog_depth_end <= 16.0
 		and client.terrain.lake.lake_material.get_shader_parameter("underwater"), "diving selects underwater fog and water shading")
 	client.weather.update_weather(Vector3(-26, 1, -50), 30.0, 0.0, false)
-	_check(not client.weather.underwater and client.weather.environment.fog_depth_end > 90.0, "surfacing restores the sky and distance fog")
+	_check(not client.weather.underwater and client.weather.environment.fog_depth_end >= 600.0, "Surfacing restores the distant ridges.")
+	client.weather.update_weather(Vector3(255,29,-94), 38.0, 0.0, false)
+	_check(client.camera.far >= client.weather.environment.fog_depth_end and client.weather.environment.fog_depth_begin >= 100.0,
+		"Clear inland air and the camera both admit the far side of the watershed.")
+	client.weather.update_weather(Vector3(255,29,-94), 82.0, 1.0, false)
+	_check(client.weather.environment.fog_depth_end <= 52.0, "Heavy rain reduces inland visibility.")
+
+func _verify_jump_eye(client: Client) -> void:
+	client.third_person = false
+	client.net.ship.pilot = ""
+	client.net.players.erase("teammate")
+	client.net.local_position = Vector2(1,-85)
+	var grid := client.follow_camera.blockers
+	for fps: float in [30.,60.]:
+		var actor := Client.PlayerMotion.spawn(client.net.local_position)
+		client.net.player_motion = actor
+		client.body_pos = client.net.local_position
+		client.eye_offset = Client.EYE_HEIGHT
+		var worst := 0.0
+		var peak := 0.0
+		for i in int(fps):
+			Client.PlayerMotion.step(actor,Vector2.ZERO,float(i==1),1./fps,grid,{})
+			client._process(1./fps)
+			worst = maxf(worst,absf(client.camera.position.y-client.local_hiker.position.y-Client.EYE_HEIGHT))
+			peak = maxf(peak,actor.y)
+		_check(peak > .45 and actor.grounded and worst < .002,
+			"First-person eye stays above the collar through takeoff and landing at %d FPS (error %.4f m)." % [fps,worst])
 
 func _verify_evening(client) -> void:
 	var weather = client.weather
@@ -288,7 +315,9 @@ func _verify_backpack_and_view(client) -> void:
 	client._unhandled_input(key)
 	client._update_camera(eye, 0.016)
 	client._sync_hikers(0.016)
-	_check(not client.third_person and not person.visible and client.camera.position.is_equal_approx(eye), "V restores the original first-person position and hides the body")
+	_check(not client.third_person and person.visible and person.eye_view and not person.head_mesh.visible
+		and person.boots[0].is_visible_in_tree() and not person.backpack.visible and client.camera.position.is_equal_approx(eye),
+		"V restores the eye position, hides the camera-side head and exposes the player's own feet")
 
 func _verify_clothing(client) -> void:
 	var survival := preload("res://survival.gd")
@@ -302,10 +331,10 @@ func _verify_clothing(client) -> void:
 	_check(hud.backpack_actions.wear.visible and not hud.backpack_actions.eat.visible, "clothing has wear and drop actions instead of food actions")
 	hud._submit_backpack_action("wear")
 	_check(client.net.last_provision_input.get("action") == "wear", "the item page sends a wear request")
-	hud._show_character(true)
+	hud._show_camp_page("role")
 	hud._select_equipment("jacket")
 	var preview = hud.character_preview.person
-	_check(hud.character_page.visible and not hud.inventory_page.visible and preview.garments.jacket.visible and preview.garments.pants.visible and not preview.garments.has("cap"), "the rotatable character shows exactly the equipped clothes")
+	_check(hud.character_view.visible and not hud.inventory_view.visible and preview.garments.jacket.visible and preview.garments.pants.visible and not preview.garments.has("cap"), "the rotatable character shows exactly the equipped clothes")
 	_check(preview.model.find_child("SkyHead", true, false) != null and preview.hair.visible,
 		"the character screen shows the imported portrait and its hair when the cap is off")
 	preview.wear_clothes(survival.initial_wear())
@@ -368,10 +397,10 @@ func _verify_inventory_filters(client) -> void:
 	client.net.survival.worn.cap = false
 	client._set_backpack(true)
 	var hud = client.hud
-	hud._show_character(false)
-	hud.category_buttons.clothing.pressed.emit()
+	hud._show_camp_page("bag")
+	hud.category_buttons.gear.pressed.emit()
 	_check(not hud.backpack_slots[0].visible and hud.backpack_slots[2].visible and hud.detail_title.text == "帽子",
-		"filtering to clothing selects the visible hat without changing its physical inventory slot")
+		"filtering to gear selects the visible hat without changing its physical inventory slot")
 	hud._refresh_backpack({"bread": 1, "cap": 1}, false, survival.SLOT_COUNT)
 	_check(hud.selected_slot == 1 and hud.detail_title.text == "帽子",
 		"the selected garment remains selected when removing earlier stacks shifts its slot")
@@ -380,7 +409,7 @@ func _verify_inventory_filters(client) -> void:
 		"filtering to food exposes the eat action and disables returning food away from the table")
 	hud._refresh_backpack({"bread": 1, "cap": 1}, true, survival.SLOT_COUNT)
 	_check(not hud.backpack_actions.put.disabled, "returning food becomes available when the player reaches the table")
-	hud.character_tab.pressed.emit()
+	hud.camp_tabs.role.pressed.emit()
 	hud.equipment_buttons.cap.pressed.emit()
 	hud.equipment_actions.wear.pressed.emit()
 	_check(client.net.last_provision_input.get("action") == "wear" and client.net.last_provision_input.get("item") == "cap",
@@ -390,7 +419,7 @@ func _verify_inventory_filters(client) -> void:
 	_check(hud.equipment_actions.remove_worn.disabled and not hud.equipment_actions.drop_worn.disabled,
 		"a full backpack disables removing a worn jacket while leaving direct dropping available")
 	hud.category_buttons.all.pressed.emit()
-	hud.inventory_tab.pressed.emit()
+	hud.camp_tabs.bag.pressed.emit()
 	_check(hud.character_preview.view.render_target_update_mode == SubViewport.UPDATE_DISABLED,
 		"switching back to inventory stops rendering the character viewport")
 	client._set_backpack(false)
@@ -398,7 +427,7 @@ func _verify_inventory_filters(client) -> void:
 func _verify_cached_character_preview(client) -> void:
 	var hud = client.hud
 	client._set_backpack(true)
-	hud._show_character(false)
+	hud._show_camp_page("bag")
 	var preview = hud.character_preview
 	var model_id: int = preview.person.get_instance_id()
 	preview.update_character(hud.worn, hud.wearing_backpack, hud.preview_slot + 1)
@@ -408,12 +437,12 @@ func _verify_cached_character_preview(client) -> void:
 	preview._draw_once()
 	# The headless renderer cannot submit a frame. Simulate the one draw having completed.
 	preview._finish_draw()
-	hud._show_character(true)
+	hud._show_camp_page("role")
 	_check(preview.view.render_target_update_mode == SubViewport.UPDATE_DISABLED
 		and preview.texture == preview.view.get_texture(),
 		"first opening with an existing portrait reuses the retained texture without rendering again")
-	hud._show_character(false)
-	hud._show_character(true)
+	hud._show_camp_page("bag")
+	hud._show_camp_page("role")
 	_check(preview.view.render_target_update_mode == SubViewport.UPDATE_DISABLED,
 		"closing and reopening the role page keeps the cached image")
 	client._set_backpack(false)
@@ -491,6 +520,8 @@ func _verify_audio(client) -> void:
 	_check(CampAudio.ENGINE_LOOP.loop_mode == AudioStreamWAV.LOOP_FORWARD, "the red ship's running sample is a forward loop")
 	_check(audio._voices.size() == CampAudio.VOICE_COUNT, "one-shots use a fixed pool")
 	_check(audio._surface(Vector2(1.9, -85.0)) == &"trail" and audio._surface(Vector2(13.0, -85.0)) == &"leaves", "the path and off-trail forest have distinct footsteps")
+	_check(audio._surface(Vector2(21, -8.1)) == &"leaves" and audio._surface(Vector2(108, -86)) == &"leaves", "north lookout and the wooded eastern slope use forest soil")
+	_check(audio._surface(Vector2(78, -68)) == &"trail" and audio._surface(Vector2(315, -72)) == &"trail", "the eastern trail and bare plateau share compact earth")
 	_check(audio._surface(Vector2(-10.8, -49.1)) == &"wood" and audio._surface(lake.shore_at(-0.20, 0.967)) == &"wade", "the deck and shallow water use their own footsteps")
 	audio._camera = client.camera
 	var path := Vector3(1.9, 0.0, -85.0)
@@ -500,7 +531,7 @@ func _verify_audio(client) -> void:
 	audio._track("test-walker", path, CampAudio.Pose.GROUND, 0.10, true, true)
 	_check(audio._voice_cursor == cursor, "standing still never emits a step")
 	audio._track("test-walker", path + Vector3(0.0, 0.0, -0.39), CampAudio.Pose.GROUND, 0.10, true, true)
-	_check(String(audio._voices[cursor].stream.resource_path).get_file().begins_with("step-trail"), "a real grounded stride plays a trail sample")
+	_check(String(audio._voices[cursor].stream.resource_path).get_file().begins_with("step_soil_"), "a real grounded stride plays the SkyCut soil recording")
 	cursor = audio._voice_cursor
 	audio._track("test-walker", path + Vector3(0.0, 0.35, -0.7), CampAudio.Pose.AIR, 0.10, true, true)
 	_check(audio._voice_cursor == cursor, "airborne movement never emits a step")
@@ -512,7 +543,7 @@ func _verify_audio(client) -> void:
 	cursor = audio._voice_cursor
 	for i in range(1, 5):
 		audio._track("test-swimmer", swimmer - Vector3.RIGHT * (float(i) * 0.20), CampAudio.Pose.SWIM, 0.10, false, true)
-	_check(String(audio._voices[cursor].stream.resource_path).get_file().begins_with("swim-stroke"), "continued swimming plays a separate stroke")
+	_check(String(audio._voices[cursor].stream.resource_path).get_file() == "swimmer_stroke.wav", "continued swimming plays a separate stroke")
 	var events := [{"id": 1, "cue": "stone_water", "point": Stones.pack(swimmer), "at": 1.0}]
 	cursor = audio._voice_cursor
 	audio._consume_stones(events, 1.05, true)

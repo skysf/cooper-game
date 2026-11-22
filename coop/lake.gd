@@ -1,5 +1,6 @@
 extends Node3D
 
+const ReedScene = preload("res://lake_reed_scene.gd")
 const LakePlants = preload("res://lake_plants.gd")
 const CreekFerns = preload("res://creek_ferns.gd")
 const WindField = preload("res://vegetation/wind_field.gd")
@@ -23,6 +24,7 @@ const WATER_PARAMETERS := ["sun_direction", "moon_direction", "sky_zenith", "sky
 var lake_material := ShaderMaterial.new()
 var creek_material := ShaderMaterial.new()
 var bed := LakeBed.new()
+var reeds := ReedScene.new()
 var plants := LakePlants.new()
 var creek_ferns := CreekFerns.new()
 var reflection := SubViewport.new()
@@ -74,7 +76,9 @@ func _ready() -> void:
 	_build_dock()
 	_build_far_shore()
 	_build_boulders()
-	_build_reeds()
+	reeds.name = "ShorelineReeds"
+	add_child(reeds)
+	reeds.build(REFLECTION_LAYER)
 	plants.name = "LakesidePlants"
 	add_child(plants)
 	plants.build(REFLECTION_LAYER)
@@ -90,6 +94,7 @@ func set_bank_wet(wet: float) -> void:
 
 func update_water(elapsed: float, rain: float, lighting: Dictionary) -> void:
 	var wind := WindField.sample(elapsed, rain)
+	ReedScene.Plants.set_wind(reeds.material,elapsed,wind,rain)
 	plants.set_wind(elapsed, wind, rain)
 	creek_ferns.set_wind(elapsed, wind, rain)
 	bed.light_bed(elapsed, lighting.get("sun_direction", Vector3.UP), lighting.get("cloud_cover", 0.3))
@@ -356,55 +361,6 @@ func _build_boulders() -> void:
 		boulder.transform = Transform3D(basis, origin)
 		boulder.layers |= REFLECTION_LAYER
 		bank_boulders.add_child(boulder)
-
-func _build_reeds() -> void:
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 7351
-	var mesh := SurfaceTool.new()
-	mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var material := StandardMaterial3D.new()
-	material.vertex_color_use_as_albedo = true
-	material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mesh.set_material(material)
-	for i in 12:
-		var angle := rng.randf() * TAU
-		var direction := Vector3(cos(angle), 0.0, sin(angle))
-		var side := Vector3(-direction.z, 0.0, direction.x)
-		var h := rng.randf_range(0.28, 0.68)
-		var width := rng.randf_range(0.011, 0.023)
-		var foot := direction * rng.randf_range(0.018, 0.105)
-		var bend := foot + Vector3.UP * h * 0.62 + direction * h * 0.17
-		var tip := foot + Vector3.UP * h + direction * h * 0.43
-		var base_color := Color("#343f24")
-		var middle_color := Color("#596341").lerp(Color("#74704b"), rng.randf())
-		var tip_color := middle_color.lerp(Color("#afa377"), 0.30)
-		var points := [foot - side * width, foot + side * width, bend - side * width * 0.76,
-			bend + side * width * 0.76, tip]
-		var colors := [base_color, base_color, middle_color, middle_color, tip_color]
-		for vertex in [0, 1, 2, 1, 3, 2, 2, 3, 4]:
-			mesh.set_normal(Vector3.UP)
-			mesh.set_color(colors[vertex])
-			mesh.add_vertex(points[vertex])
-	var reeds := MultiMesh.new()
-	reeds.transform_format = MultiMesh.TRANSFORM_3D
-	reeds.mesh = mesh.commit()
-	var positions: Array[Transform3D] = []
-	var dock: Dictionary = Layout.layout.dock
-	for i in 180:
-		var angle := rng.randf_range(-1.57, 1.72)
-		var density := 0.46 + sin(angle * 18.0) * 0.37
-		if rng.randf() > density:
-			continue
-		var point := Layout.shore_at(angle, rng.randf_range(0.985, 1.066))
-		if point.x > float(dock.west) and absf(point.y - float(dock.z)) < float(dock.halfWidth) + 0.21:
-			continue
-		var basis := Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3.ONE * rng.randf_range(0.45, 1.25))
-		positions.append(Transform3D(basis, Vector3(point.x, Layout.ground_height(point), point.y)))
-	reeds.instance_count = positions.size()
-	for i in positions.size():
-		reeds.set_instance_transform(i, positions[i])
-	var marsh := _add_multimesh(reeds)
-	marsh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 func _build_reflection() -> void:
 	reflection.size = Vector2i(400, 225)

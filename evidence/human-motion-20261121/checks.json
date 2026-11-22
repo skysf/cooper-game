@@ -1,0 +1,90 @@
+{
+  "game": "Godot 4.7.2",
+  "rigAndAttackChecksPassed": 70,
+  "contactWristGodotMetres": {
+    "PunchCross": [
+      0.057808,
+      1.496019,
+      -0.675866
+    ],
+    "PunchHook": [
+      -0.061491,
+      1.525012,
+      -0.39565
+    ],
+    "PunchJab": [
+      -0.090325,
+      1.496442,
+      -0.642932
+    ]
+  },
+  "playerLocomotionChecksPassed": 21,
+  "weaponChecksPassed": 46,
+  "npcLocomotionPerModel": {
+    "female": [
+      "limp_left",
+      "limp_right",
+      "patrol",
+      "run",
+      "turn_left",
+      "turn_right",
+      "walk"
+    ],
+    "female_elite": [
+      "limp_left",
+      "limp_right",
+      "patrol",
+      "run",
+      "turn_left",
+      "turn_right",
+      "walk"
+    ],
+    "male": [
+      "limp_left",
+      "limp_right",
+      "patrol",
+      "run",
+      "turn_left",
+      "turn_right",
+      "walk"
+    ],
+    "male_elite": [
+      "limp_left",
+      "limp_right",
+      "patrol",
+      "run",
+      "turn_left",
+      "turn_right",
+      "walk"
+    ]
+  },
+  "npcWorkChecks": [
+    "female_elite/DrawWater",
+    "female_elite/GatherFruit",
+    "male/DrawWater",
+    "male/GatherFruit"
+  ],
+  "npcScene": {
+    "animationsPerModel": [
+      21,
+      21,
+      21,
+      21
+    ],
+    "companionOnlyOverheadLabels": true,
+    "panel": true,
+    "realModels": 4,
+    "sourceMarkers": 3
+  },
+  "outfitAndCamera": "CAMP_FEEDBACK_OK",
+  "skill": "Skill is valid!",
+  "webAndMacPckSha256": "3bd107644c21a57be909405a0805b8e1f3f1be09760e90264679d00ae96e4ac0",
+  "nativeFirstPlayable": {
+    "room": "human-mac-check",
+    "ready": true,
+    "zone": "camp",
+    "members": 1,
+    "zoneBase": "http://127.0.0.1:5684/coop/zones/",
+    "terrainError": ""
+  }
+}

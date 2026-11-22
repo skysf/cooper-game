@@ -1,6 +1,8 @@
 extends RefCounted
 
 # All life, combat and social decisions run on the room server. Only JSON values live in saves.
+const Beds = preload("res://camp_beds.gd")
+const Caves = preload("res://east/cave_life.gd")
 const Rules = preload("res://rules.gd")
 const Survival = preload("res://survival.gd")
 const Lake = preload("res://lake_layout.gd")
@@ -9,11 +11,14 @@ const Footing = preload("res://companion_footing.gd")
 const Motion = preload("res://player_motion.gd")
 const Weapons = preload("res://weapons.gd")
 const Ship = preload("res://spaceship.gd")
+const StorageWildlife = preload("res://storage_wildlife.gd")
 const HOME := Vector2(1.8, -84.9)
 const REST := Vector2(0.1, -87.6)
 const FOOD := Vector2(6.0, -81.0)
 const HERBS := Vector2(6.4, -83.8)
-const WATER := Vector2(-10.4, -62.5)
+const WATER := Vector2(-16.0, -61.0) # Walkable southeast shore used by camp residents.
+const RETREAT_DISTANCE := 21.0
+const RETREAT_EXITS := [Vector2(14.5, -65.5), Vector2(17.0, -67.5), Vector2(20.0, -69.0), Vector2(21.5, -71.0)]
 const REACH := 2.25
 # In-place stride distances authored by bake-wild-people-locomotion.py.
 const STRIDE_METERS := {"Walk": 1.38, "Run": 1.92, "Limp": 1.04, "LimpLeft": 1.04}
@@ -25,10 +30,9 @@ const WORK_SECONDS := {"DrawWater": 1.50, "GatherFruit": 1.25}
 const SOURCES := {
 	"fruit": {"name": "林果采集点", "x": 6.0, "z": -81.0, "item": "apple", "capacity": 8, "period": 65.0},
 	"herbs": {"name": "药草采集点", "x": 6.4, "z": -83.8, "item": "herb", "capacity": 5, "period": 100.0},
-	"water": {"name": "溪水取水点", "x": -10.4, "z": -62.5, "item": "water", "capacity": 16, "period": 8.0},
 }
 const WEAPONS := {"": "徒手", "stone": "圆石", "club": "木棍", "spear": "长矛"}
-const PHASE_NAMES := {"raider": "来袭者", "retreat": "受伤撤退", "down": "昏迷", "captive": "受约束的俘虏", "companion": "自由同伴", "released": "已释放", "dead": "死亡", "gone": "已离开"}
+const PHASE_NAMES := {"resident":"洞居者","raider": "来袭者", "retreat": "受伤撤退", "down": "昏迷", "captive": "受约束的俘虏", "companion": "自由同伴", "released": "已释放", "dead": "死亡", "gone": "已离开"}
 const DEFAULT_SETTINGS := {"firstRaid": 540.0, "warning": 30.0, "rest": 300.0, "maxRaiders": 4, "maxCompanions": 4, "maxCaptives": 6, "damageScale": 1.0}
 const MALE_NAMES := ["岩岚", "木衡", "阿峦", "砾川", "林弦", "山青"]
 const FEMALE_NAMES := ["禾岚", "阿榆", "苇宁", "溪棠", "叶遥", "芦音"]
@@ -52,12 +56,13 @@ static func initial(elapsed: float, config: Variant = null) -> Dictionary:
 	var resources := {}
 	for key: String in SOURCES:
 		resources[key] = {"stock": SOURCES[key].capacity, "progress": 0.0}
-	return {"version": 1, "people": {}, "nextId": 1, "settings": settings, "raid": {"wave": 0, "phase": "rest", "nextAt": elapsed + settings.firstRaid + settings.warning, "warningAt": 0.0, "startedAt": 0.0}, "resources": resources, "publicFood": false, "facility": 100.0, "log": [], "logId": 0, "repairAt": -10.0}
+	return {"version": 1, "people": {}, "caves":Caves.camps_from_save({},elapsed), "nextId": 1, "settings": settings, "raid": {"wave": 0, "phase": "rest", "nextAt": elapsed + settings.firstRaid + settings.warning, "warningAt": 0.0, "startedAt": 0.0}, "resources": resources, "publicFood": false, "facility": 100.0, "log": [], "logId": 0, "repairAt": -10.0}
 
 static func from_save(value: Variant, elapsed: float, grid: Dictionary, config: Variant = null) -> Dictionary:
 	var out := initial(elapsed, config)
 	if value is not Dictionary or value.get("version") != 1:
 		return out
+	out.caves = Caves.camps_from_save(value.get("caves"),elapsed)
 	out.settings = settings_from(value.get("settings", config))
 	out.publicFood = value.get("publicFood") == true
 	out.facility = _number(value, "facility", 100.0, 0.0, 100.0)
@@ -96,6 +101,16 @@ static func from_save(value: Variant, elapsed: float, grid: Dictionary, config: 
 			npc.careNeed = int(_number(saved, "careNeed", npc.careNeed, 5, 7))
 			npc.careDuration = _number(saved, "careDuration", npc.careDuration, 65, 115)
 			npc.phase = saved.phase
+			if npc.phase in ["captive","companion"] and saved.get("bedGoal") is String and str(saved.bedGoal).length() <= 40:
+				npc.bedGoal = saved.bedGoal
+				npc.bedStarted = _number(saved,"bedStarted",elapsed,0.0,elapsed)
+				var exit_at: Variant = saved.get("cotExit")
+				if saved.get("bed") == npc.bedGoal and exit_at is Array and exit_at.size()==3 and Survival.finite_number(exit_at[0]) and Survival.finite_number(exit_at[1]) and Survival.finite_number(exit_at[2]):
+					npc.bed = npc.bedGoal
+					npc.cotExit = exit_at
+			Caves.restore(npc,saved,elapsed)
+			if npc.phase=="resident" and not npc.has("homeMine"):
+				continue
 			npc.sex = "female" if saved.get("sex") == "female" else "male"
 			npc.name = str(saved.get("name", npc.name)).left(24)
 			npc.age = clampi(int(npc.age), 23, 55)
@@ -105,7 +120,8 @@ static func from_save(value: Variant, elapsed: float, grid: Dictionary, config: 
 			if not Rules.free_at(position(npc), grid):
 				npc.x = HOME.x
 				npc.z = HOME.y
-			var ground := Lake.walk_height(position(npc))
+			var saved_y := float(saved.y) if Survival.finite_number(saved.get("y")) else INF
+			var ground := Lake.walk_height(position(npc),saved_y)
 			npc.y = _number(saved,"y",ground,ground,ground+6.0)
 			npc.weapon = saved.get("weapon", "") if saved.get("weapon", "") in WEAPONS else ""
 			npc.shield = saved.get("shield") == true
@@ -162,12 +178,12 @@ static func make_person(id: String, tier: int, sex: String, at: Vector2, elapsed
 	rng.randomize()
 	var names: Array = FEMALE_NAMES if sex == "female" else MALE_NAMES
 	return {"id": id, "name": names[rng.randi_range(0, names.size() - 1)], "sex": sex, "age": rng.randi_range(23, 45), "tier": tier, "elite": tier >= 4,
-		"x": at.x, "z": at.y, "yaw": 0.0, "phase": "raider", "health": 84.0 + tier * 17.0, "maxHealth": 84.0 + tier * 17.0,
+		"x": at.x, "z": at.y, "y": Lake.walk_height(at), "yaw": 0.0, "phase": "raider", "health": 84.0 + tier * 17.0, "maxHealth": 84.0 + tier * 17.0,
 		"hunger": 48.0, "water": 42.0, "mood": 44.0, "legL": 0.0, "legR": 0.0, "stun": 0.0, "stunUntil": 0.0, "disease": 0.0,
 		"weapon": ["", "stone", "club", "spear", "spear", "spear"][tier], "shield": tier >= 4, "loot": {}, "looted": false, "bound": false,
 		"relations": {}, "careNeed": rng.randi_range(5, 7), "careDuration": rng.randf_range(65.0, 115.0), "careSeconds": 0.0,
 		"treatedUntil": 0.0, "joinedAt": 0.0, "capturedAt": 0.0, "partner": "", "romanceOpen": rng.randf() > 0.24, "order": "guard", "help": "",
-		"clip": "Idle", "clipAt": elapsed, "stepPhase": 0.0, "attackAt": -10.0, "hitAt": -10.0, "captureAt": -10.0, "swingAt": 0.0, "escapeAt": 0.0, "escapeWarned": false,
+		"clip": "Idle", "clipAt": elapsed, "stepPhase": 0.0, "attackAt": -10.0, "hitAt": -10.0, "speechAt": -1000.0, "captureAt": -10.0, "swingAt": 0.0, "escapeAt": 0.0, "escapeWarned": false,
 		"bornAt": elapsed, "deadAt": 0.0, "actionAt": elapsed, "sickProgress": 0.0, "workAt": 0.0, "resistance": 65.0}
 
 static func event(state: Dictionary, text: String, elapsed: float) -> void:
@@ -180,6 +196,12 @@ static func _clip(npc: Dictionary, name: String, elapsed: float) -> void:
 	if npc.clip != name:
 		npc.clip = name
 		npc.clipAt = elapsed
+
+static func _start_swing(npc: Dictionary, elapsed: float, throwing := false) -> void:
+	if npc.weapon == "":
+		npc.punchStep = posmod(int(npc.get("punchStep", -1)) + 1, Weapons.PUNCHES.size())
+	npc.clip = "Throw" if throwing else String(Weapons.melee_clip(npc.weapon, npc.get("punchStep", 0), npc.shield))
+	npc.clipAt = elapsed
 
 static func _pace(npc: Dictionary, clip: String, advance: float, elapsed: float) -> void:
 	var keep_phase: bool = npc.clip == clip or STRIDE_METERS.has(npc.clip) and STRIDE_METERS.has(clip)
@@ -245,7 +267,7 @@ static func harm(state: Dictionary, npc: Dictionary, damage: float, blunt: bool,
 		return {"ok": true, "text": npc.name + "被击晕，靠近按 E 可制服（不会自动杀死）"}
 	return {"ok": true, "text": ("左腿受伤，移动减慢" if zone == "legL" else "右腿受伤，移动减慢") if not blunt and zone != "body" else "钝击使对方眩晕" if blunt else "锐器造成伤害，继续攻击可能致命"}
 
-static func ray_hit(npc: Dictionary, from: Vector3, to: Vector3) -> Dictionary:
+static func ray_hit(npc: Dictionary, from: Vector3, to: Vector3, firearm := false) -> Dictionary:
 	var p := position(npc)
 	var base := Vector3(p.x, npc.get("y",Lake.walk_height(p)), p.y)
 	var basis := Basis(Vector3.UP, float(npc.yaw))
@@ -278,7 +300,22 @@ static func ray_hit(npc: Dictionary, from: Vector3, to: Vector3) -> Dictionary:
 		if nearest[0].distance_squared_to(nearest[1]) <= float(zone[3]) ** 2 and score < distance:
 			best = {"zone": zone[0], "distance": score}
 			distance = score
+	if firearm:
+		var head := Weapons.box_hit_distance(from, to, base, basis, _head_bounds(npc, down))
+		if head < distance:
+			return {"zone": "head", "distance": head}
 	return best
+
+static func _head_bounds(npc: Dictionary, down: bool) -> AABB:
+	var elite: bool = npc.get("elite", false)
+	var width := 0.42 if elite else 0.24
+	if down or npc.clip == "Down":
+		return AABB(Vector3(-width * 0.5, 0.05, 0.57), Vector3(width, 0.30, 0.43))
+	var bounds := AABB(Vector3(-width * 0.5, 1.48, -0.15), Vector3(width, 0.46 if elite else 0.37, 0.29))
+	match npc.clip:
+		"Run": bounds.position += Vector3(0.0, -0.12, -0.08)
+		"Captive": bounds.position += Vector3(0.0, -0.41, -0.07)
+	return bounds
 
 func can_reach(from: Vector2, to: Vector2, grid: Dictionary, reach := REACH) -> bool:
 	return from.distance_squared_to(to) <= reach * reach and navigator._clear(from, to, grid)
@@ -305,8 +342,12 @@ func attack(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 			held = id
 	if not held.is_empty():
 		return {"ok": false, "text": "手持石块时左键投掷，按 G 放下再近战"}
+	if weapon == "":
+		var continuing: bool = state.get("attackWeapon", "") == "" and elapsed - float(state.get("attackAt", -10.0)) < 1.65
+		state.punchStep = posmod(int(state.get("punchStep", -1)) + 1, Weapons.PUNCHES.size()) if continuing else 0
 	state.attackAt = elapsed
 	state.attackWeapon = weapon
+	state.attackPitch = clampf(float(msg.pitch), -1.44, 1.44)
 	var sharp: bool = stats.sharp
 	var firearm := Weapons.firearm(weapon)
 	var reach: float = stats.reach
@@ -324,19 +365,30 @@ func attack(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 			continue
 		if not firearm and not navigator._clear(actor.point, npc_at, grid):
 			continue
-		var hit := ray_hit(npc, from, to)
+		var hit := ray_hit(npc, from, to, firearm)
 		if not hit.is_empty() and float(hit.distance) < closest:
 			target = id
 			closest = hit.distance
 			zone = hit.zone
-	if target.is_empty():
+	var animal := StorageWildlife.room_hit(room, from, to, 0.0, firearm)
+	var hits_animal: bool = not animal.is_empty() and float(animal.distance) < closest
+	if hits_animal:
+		closest = animal.distance
+	elif target.is_empty():
 		return {"ok": true, "text": ""}
-	if firearm:
+	if firearm or hits_animal:
 		var grove_time := maxf(0.0, elapsed - float(room.data.get("groveStartedAt", 0.0)))
 		var contact := from + from.direction_to(to) * sqrt(closest)
 		if Ship.Ground.sight_obstructed(from, contact, sight_grid, grove_time) or Ship.blocks_sight(room.get("ship", {}), from, contact):
 			return {"ok": true, "text": ""}
+	if hits_animal:
+		var report := StorageWildlife.apply_hit(room, animal, stats.damage, grid)
+		return {"ok": not report.is_empty(), "text": report, "animalContact": from + from.direction_to(to) * sqrt(closest)}
 	var npc: Dictionary = room.data.wildPeople.people[target]
+	if zone == "head":
+		npc.hitAt = elapsed
+		kill(room.data.wildPeople, npc, elapsed)
+		return {"ok": true, "text": "头部命中，击杀" + npc.name}
 	var result := harm(room.data.wildPeople, npc, stats.damage, not sharp, zone, player, elapsed)
 	if firearm and npc.health > 0.0 and zone == "body":
 		result.text = "击中" + npc.name
@@ -395,6 +447,13 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 			room.data.quest.repaired = true
 		return _yes("已消耗你的木料与防水布；设施完整度 +25")
 	if command == "gather":
+		if item == "water":
+			if not Lake.can_fill_water(actor.point,actor.y):
+				return _no("走近鹿鸣湖的水边再装水")
+			if not Survival.can_carry(personal.bag,"water",Survival.slot_count(room.data.backpackOwner == player)):
+				return _no("背包已满")
+			personal.bag.water = int(personal.bag.get("water",0)) + 1
+			return _yes("从鹿鸣湖装了一份淡水")
 		if not SOURCES.has(item):
 			return _no("未知采集点")
 		var source: Dictionary = SOURCES[item]
@@ -429,6 +488,29 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 		return _yes("缴获 %d 件物品，已放入背包" % collected) if collected > 0 else _no("没有可拿走的装备，或背包已满")
 	if not _alive(npc):
 		return _no("死亡无法恢复，不能治疗、招募或发展关系")
+	if command == "bed":
+		if npc.phase not in ["companion","captive"]:
+			return _no("可以为同伴或俘虏安排营地床位")
+		if not str(npc.get("bedGoal","")).is_empty():
+			_leave_cot(npc,elapsed)
+			return _yes(npc.name + "结束了这次休息")
+		var cot := Beds.nearest_cot(room,position(npc),npc.id)
+		if cot.is_empty():
+			return _no("营地里没有空床，可以再建一张绳床")
+		npc.bedGoal = cot
+		npc.bedStarted = elapsed
+		return _yes("已为" + npc.name + "安排绳床")
+
+	if command == "chat" and npc.phase in ["resident", "companion"]:
+		if absf(float(actor.get("y", 0.0)) - float(npc.get("y", 0.0))) > 1.6:
+			return _no("走到对方所在的高度再交谈")
+		if elapsed - float(npc.speechAt) < 4.0:
+			return _no("对方正在说话")
+		if npc.phase == "resident":
+			npc.speechAt = elapsed
+			_face(npc, actor.point)
+			_clip(npc, "Idle", elapsed)
+			return _yes(npc.name + "向你打了个招呼")
 	var rel := relation(npc, player)
 	if command == "capture":
 		if npc.phase not in ["raider", "retreat", "down"]:
@@ -454,7 +536,7 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 		npc.stunUntil = elapsed + 8.0 if npc.stun > 70.0 else 0.0
 		npc.resistance = 70.0
 		rel.trust = maxf(rel.trust, 2.0)
-		npc.help = "需要食物、装好的溪水和药草治疗；不接受强迫亲密关系"
+		npc.help = "需要食物、装好的淡水和药草治疗；不接受强迫亲密关系"
 		_clip(npc, "Captive", elapsed)
 		event(state, npc.name + "被制服，仍需照料并尊重本人去留", elapsed)
 		return _yes("已制服；清醒后仍可能反抗，按 E 查看照料和释放选项")
@@ -499,7 +581,7 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 				rel.affection = minf(100.0, rel.affection + 7.0)
 		elif command == "water":
 			if int(personal.bag.get("water", 0)) <= 0:
-				return _no("先到溪水取水点装水（F），每份水占背包一叠")
+				return _no("到鹿鸣湖边按 F 装水")
 			if npc.water >= 96.0:
 				return _no("对方暂时不渴")
 			personal.bag.water -= 1
@@ -578,6 +660,8 @@ func action(room: Dictionary, player: String, msg: Dictionary, grid: Dictionary,
 			if npc.health < npc.maxHealth * 0.35 or npc.hunger < 25 or npc.water < 25 or npc.disease > 35:
 				return _no("对方现在需要照料，暂时无心闲聊")
 			rel.chatAt = elapsed
+			npc.speechAt = elapsed
+			_face(npc, actor.point)
 			rel.trust = minf(100.0, rel.trust + 5.0)
 			rel.affection = minf(100.0, rel.affection + 8.0)
 			npc.mood = minf(100.0, npc.mood + 6.0)
@@ -624,6 +708,7 @@ func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 			resource.stock = mini(SOURCES[key].capacity, int(resource.stock) + 1)
 	_trim_records(room, 48)
 	_raid(room, grid)
+	Caves.discover(room,self)
 	var footing := Footing.for_room(room) as Footing
 	for id: String in state.people.keys():
 		var npc: Dictionary = state.people[id]
@@ -631,6 +716,8 @@ func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 			continue
 		var at := position(npc)
 		npc.y = footing.height(at,float(npc.get("y",Lake.walk_height(at))))
+		if npc.phase not in ["captive","companion"] and npc.has("bedGoal"):
+			_leave_cot(npc,elapsed)
 		if npc.phase == "dead":
 			if elapsed - npc.deadAt > 600.0:
 				state.people.erase(id)
@@ -644,6 +731,8 @@ func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 					npc.phase = "gone"
 			continue
 		match npc.phase:
+			"resident":
+				Caves.step(room,npc,grid,delta,self)
 			"down":
 				_clip(npc, "Down", elapsed)
 				if elapsed >= npc.stunUntil:
@@ -651,10 +740,15 @@ func tick(room: Dictionary, grid: Dictionary, delta: float) -> void:
 					npc.stun = 25.0
 			"captive":
 				_captive(room, npc, grid, delta)
+				if npc.phase == "captive":
+					_rest_at_cot(room,npc,grid,delta)
+				elif npc.has("bedGoal"):
+					_leave_cot(npc,elapsed)
 			"raider", "retreat":
 				_enemy(room, npc, grid, delta)
 			"companion":
-				_companion(room, npc, grid, delta)
+				if not _rest_at_cot(room,npc,grid,delta) and elapsed - float(npc.speechAt) >= 3.0:
+					_companion(room, npc, grid, delta)
 	# Corpses retain their loot and record, while distant departed people are compacted first.
 	if state.people.size() > 48:
 		for id: String in state.people.keys():
@@ -755,11 +849,78 @@ static func _life(state: Dictionary, npc: Dictionary, elapsed: float, delta: flo
 	if npc.health <= 0:
 		kill(state, npc, elapsed)
 
+static func _leave_cot(npc: Dictionary, elapsed: float) -> void:
+	if npc.has("cotExit"):
+		var foot: Array = npc.cotExit
+		npc.x = foot[0]
+		npc.y = foot[1]
+		npc.z = foot[2]
+	npc.erase("cotExit")
+	npc.erase("bed")
+	npc.erase("bedGoal")
+	npc.cotCheckAt = elapsed + 25.0
+
+func _rest_at_cot(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -> bool:
+	var elapsed: float = room.data.elapsed
+	if not npc.has("bedGoal"):
+		# A captive is escorted to an assigned bed. Companions plan their own breaks.
+		if npc.phase=="captive" or npc.order!="rest" and (npc.water<60 or npc.hunger<57) and npc.health>=npc.maxHealth*.35:
+			return false
+		if elapsed < float(npc.get("cotCheckAt",0.0)):
+			return false
+		npc.cotCheckAt = elapsed+4.0
+		var night := fposmod(elapsed-122.0,420.0)
+		var tired: bool = npc.health < npc.maxHealth*.70 or npc.order=="rest" or night>22 and night<150
+		if not tired or npc.phase == "companion" and room.data.wildPeople.raid.phase=="active" and npc.order!="rest" and npc.health>=npc.maxHealth*.35:
+			return false
+		var cot := Beds.nearest_cot(room,position(npc),npc.id)
+		if cot.is_empty():
+			return false
+		npc.bedGoal = cot
+		npc.bedStarted = elapsed
+	var id: String = npc.bedGoal
+	var socket := Beds.socket(room,id)
+	if socket.is_empty() or Beds.claimed(room,id,npc.id) or npc.get("escapeAt",0.0)>0.0:
+		_leave_cot(npc,elapsed)
+		return false
+	if not npc.has("bed"):
+		if elapsed > float(npc.bedStarted)+90.0:
+			_leave_cot(npc,elapsed)
+			return false
+		var at := position(npc)
+		var center: Vector2 = socket.point
+		var right := Vector2.RIGHT.rotated(-float(socket.yaw))
+		var side := center+right*.82
+		if at.distance_squared_to(side)>at.distance_squared_to(center-right*.82):
+			side=center-right*.82
+		if not Rules.free_at(side,grid):
+			side=center*2.0-side
+		if at.distance_to(side)>.5 or absf(float(npc.y)-float(socket.ground))>.48:
+			npc.help = "正在走向铺盖" if room.data.storage[id].kind==Beds.BEDROLL else "正在走向营地绳床"
+			_drive(room,npc,side,1.12,grid,delta)
+			return true
+		npc.cotExit = [npc.x,npc.y,npc.z]
+		npc.bed = id
+		npc.bedStarted = elapsed
+	npc.x = socket.point.x
+	npc.z = socket.point.y
+	npc.y = socket.y
+	npc.yaw = socket.yaw
+	npc.help = "正在床上睡觉"
+	_clip(npc,"Sleep",elapsed)
+	if npc.hunger>20 and npc.water>20:
+		npc.health = minf(npc.maxHealth,npc.health + Beds.HEAL_PER_SECOND*delta)
+	if elapsed - float(npc.bedStarted)>18 and (npc.health>=npc.maxHealth or npc.water<25 or npc.hunger<25):
+		_leave_cot(npc,elapsed)
+		return false
+	return true
+
 func _captive(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -> void:
 	var state: Dictionary = room.data.wildPeople
 	var elapsed: float = room.data.elapsed
-	_clip(npc, "Down" if elapsed < npc.stunUntil else "Captive", elapsed)
-	if elapsed >= npc.stunUntil and npc.resistance > 55.0 and npc.mood < 45.0 and elapsed > npc.attackAt + 12.0:
+	if not npc.has("bed"):
+		_clip(npc, "Down" if elapsed < npc.stunUntil else "Captive", elapsed)
+	if not npc.has("bed") and elapsed >= npc.stunUntil and npc.resistance > 55.0 and npc.mood < 45.0 and elapsed > npc.attackAt + 12.0:
 		for player: String in room.actors:
 			if room.data.survival[player].health > 0 and can_reach(position(npc), room.actors[player].point, grid, 1.25):
 				npc.attackAt = elapsed
@@ -791,9 +952,12 @@ func _enemy(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -
 	if npc.health < npc.maxHealth * 0.28 or npc.legL + npc.legR > 130.0:
 		npc.phase = "retreat"
 	if npc.phase == "retreat":
-		_drive(room, npc, Vector2(15.0, -69.0), 2.0, grid, delta)
-		if position(npc).distance_to(HOME) > 21.0:
+		# Aim past the departure boundary. Adjacent raiders can take different paths out.
+		var exit: Vector2 = RETREAT_EXITS[posmod(npc.id.hash(), RETREAT_EXITS.size())]
+		_drive(room, npc, exit, 2.0, grid, delta)
+		if position(npc).distance_squared_to(HOME) > RETREAT_DISTANCE * RETREAT_DISTANCE:
 			npc.phase = "gone"
+			room.people_routes.erase(npc.id)
 		return
 	var target := ""
 	var distance := 11.0
@@ -813,7 +977,7 @@ func _enemy(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -
 			if elapsed >= npc.attackAt + 2.7:
 				npc.attackAt = elapsed
 				npc.swingAt = elapsed + 0.66
-				_clip(npc, "Throw" if npc.weapon == "stone" else "Attack", elapsed)
+				_start_swing(npc, elapsed, npc.weapon == "stone")
 			if npc.swingAt > 0 and elapsed >= npc.swingAt:
 				npc.swingAt = 0.0
 				var personal: Dictionary = room.data.survival[target]
@@ -845,7 +1009,7 @@ func _enemy(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: float) -
 		_drive(room, npc, goal, 1.8, grid, delta)
 	elif elapsed >= npc.actionAt + 4.0:
 		npc.actionAt = elapsed
-		_clip(npc, "Attack", elapsed)
+		_start_swing(npc, elapsed)
 		if not food_id.is_empty():
 			var item: String = room.data.provisions[food_id].item
 			room.data.provisions.erase(food_id)
@@ -888,7 +1052,7 @@ func _companion(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: floa
 			_face(npc, position(other))
 			if elapsed > npc.attackAt + 2.2:
 				npc.attackAt = elapsed
-				_clip(npc, "Attack", elapsed)
+				_start_swing(npc, elapsed)
 				var damage := 13.0 if npc.weapon == "spear" else 8.0 if not npc.weapon.is_empty() else 5.0
 				harm(state, other, damage, npc.weapon != "spear", "body", "", elapsed)
 				# A defending raider fights back. Heavy injuries make the companion retreat next tick.
@@ -909,17 +1073,12 @@ func _companion(room: Dictionary, npc: Dictionary, grid: Dictionary, delta: floa
 	else:
 		npc.help = "守家巡逻中；保留食物和水的生活需求"
 	if npc.water < 60:
-		if position(npc).distance_to(WATER) > 0.22:
-			_drive(room, npc, WATER, 1.55, grid, delta)
-		elif state.resources.water.stock > 0:
-			state.resources.water.stock -= 1
+		if Lake.can_fill_water(position(npc), npc.get("y",0.0)) and Lake.lake_distance(position(npc)) <= 1.015:
 			npc.water = minf(100.0, npc.water + 32.0)
-			var creek_index := (WATER.y - float(Lake.layout.creek.firstZ)) / float(Lake.layout.creek.spacing)
-			npc.help = "正在取水"
-			_work(npc, "DrawWater", Vector2(Lake.creek_sample(creek_index).x, WATER.y), elapsed)
+			npc.help = "正在湖边取水"
+			_work(npc, "DrawWater", Lake.center(), elapsed)
 		else:
-			npc.help = "溪水暂时不足，请送一份装好的水"
-			_clip(npc, "Guard", elapsed)
+			_drive(room,npc,WATER,1.55,grid,delta)
 		return
 	if npc.hunger < 57:
 		var food_id := ""
@@ -1024,4 +1183,4 @@ static func snapshot(state: Dictionary, player: String, elapsed: float) -> Dicti
 		out.y = npc.get("y",Lake.walk_height(position(npc)))
 		out.speedFactor = _leg_scale(npc)
 		people[id] = out
-	return {"people": people, "raid": state.raid.duplicate(), "resources": state.resources.duplicate(true), "publicFood": state.publicFood, "facility": state.facility, "log": state.log.duplicate(true), "settings": state.settings.duplicate(), "elapsed": elapsed}
+	return {"people": people, "caves":state.caves.duplicate(true), "raid": state.raid.duplicate(), "resources": state.resources.duplicate(true), "publicFood": state.publicFood, "facility": state.facility, "log": state.log.duplicate(true), "settings": state.settings.duplicate(), "elapsed": elapsed}

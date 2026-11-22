@@ -10,8 +10,10 @@ from math import sin, cos, pi, exp, radians
 from mathutils import Vector, Quaternion
 
 ROOT = Path(__file__).resolve().parents[1]
+FACIAL = runpy.run_path(str(ROOT / "scripts/wild-face-shapes.py"))
 GAIT = runpy.run_path(str(ROOT / "scripts/bake-wild-people-locomotion.py"))
 WORK = runpy.run_path(str(ROOT / "scripts/bake-wild-people-work.py"))
+MELEE = runpy.run_path(str(ROOT / "scripts/bake-human-attacks.py"))
 ART = ROOT / "art/wild_man"
 OUT = ROOT / "coop/wild_people"
 REFERENCE = ART / "source_images"
@@ -144,6 +146,7 @@ def loft(surface, rows, sides, mat, weights, uv, shaping=None, center_uv=None):
     for i, reverse in [(0, True), (len(rows)-1, False)]:
         seq = list(range(sides))[::-1] if reverse else list(range(sides))
         surface.face([rings[i][j] for j in seq], mat, [vertex_uv(i,j,True) for j in seq])
+    return rings
 
 
 def tube(mesh, pts, radii, sides, mat, bone=None):
@@ -247,7 +250,9 @@ def person_materials(key):
             material("Dark fiber",(.048,.029,.017)),
             material("Mask and fleece",(.08,.06,.04),texture="elite"),
             material("Horn patina",(.088,.092,.069),.25),
-            material("Horn ridges",(.058,.055,.036),.25)]
+            material("Horn ridges",(.058,.055,.036),.25),
+            material("Oral cavity",(.035,.009,.008)), material("Inner lips",(.18,.058,.052)),
+            material("Dental enamel",(.55,.43,.31))]
 
 
 def body(mesh, fem, elite=False):
@@ -285,9 +290,16 @@ def body(mesh, fem, elite=False):
           (1.535,.073,.079,.006),(1.555,.078,.086,.001),(1.577,.082,.091,0),
           (1.596,.084,.092,0),(1.617,.083,.093,-.001),(1.639,.080,.091,-.004),
           (1.664,.078,.087,-.006),(1.688,.067,.077,-.008),(1.708,.047,.058,-.008),(1.717,.013,.021,-.01)]
-    rows=[(z,0,dy,rx,ry) for z,rx,ry,dy in head]
+    # Keep the portrait's landmarks while adding sections between them for eyelids,
+    # the nose wings and the ledge between lower lip and chin.
+    head_sections = []
+    for i, (a, b) in enumerate(zip(head, head[1:])):
+        for fraction in (0., .3333, .6667):
+            head_sections.append((i, fraction, tuple(v+(w-v)*fraction for v,w in zip(a,b))))
+    head_sections.append((len(head)-2,1.,head[-1]))
+    rows=[(z,0,dy,rx,ry) for _,_,(z,rx,ry,dy) in head_sections]
     def head_uv(i,s,c,f):
-        z=head[i][0]
+        z=rows[i][0]
         u=1390+(math.asin(max(-1,min(1,s)))/pi+.5)*240
         return u,(483 if f else 747)+(1.717-z)/.232*248
     def face_surface(p,i,a):
@@ -297,21 +309,34 @@ def body(mesh, fem, elite=False):
             lip=.008*exp(-(x/.031)**2-((z-1.542)/.009)**2)
             cheek=.007*exp(-((abs(x)-.046)/.018)**2-((z-1.575)/.025)**2)
             brow=.006*exp(-((z-1.62)/.012)**2)-.009*exp(-((abs(x)-.034)/.018)**2-((z-1.599)/.010)**2)
-            y+=(nose+lip+cheek+brow)*cos(a)**2
+            eye=abs(x)-.034
+            lid=.0038*exp(-(eye/.022)**4-((z-1.603)/.0048)**2)
+            wing=.009*exp(-((abs(x)-.014)/.0065)**2-((z-1.563)/.006)**2)
+            mouth=.004*exp(-(x/.022)**2-((z-1.535)/.005)**2)
+            chin=.007*exp(-(x/.032)**2-((z-1.51)/.013)**2)
+            y+=(nose+lip+cheek+brow+lid+wing+mouth+chin)*cos(a)**2
+            # Soften the square mandibular angle below the cheekbones.
+            x*=1-.065*exp(-((z-1.523)/.021)**2)*abs(sin(a))
         return x,y,z
     def portrait_uv(i,s,c,f):
         data=([(255,320,15),(258,314,37),(263,301,56),(264,279,72),(267,248,78),(269,224,82),
                (267,184,82),(260,159,87),(255,147,89),(249,112,84),(241,87,70),(235,66,45),(232,59,15)] if fem else
               [(224,426,15),(224,417,47),(222,396,66),(222,365,83),(225,333,94),(222,305,96),
                (221,262,94),(219,244,94),(216,220,92),(214,196,90),(212,164,78),(212,141,56),(212,127,19)])
-        cx,cy,w=data[i]
+        j,fraction,_=head_sections[i]
+        cx,cy,w=(v+(w-v)*fraction for v,w in zip(data[j],data[j+1]))
         return (cx-abs(s)*w if fem else cx+s*w),cy
-    loft(mesh,rows,60,0,"head",head_uv,face_surface,portrait_uv)
+    face_start=len(mesh.faces)
+    rings=loft(mesh,rows,60,0,"head",head_uv,face_surface,portrait_uv)
+    FACIAL["add_face"](mesh,rows,rings,face_start,fem,portrait_uv)
     for side,suffix in [(1,"L"),(-1,"R")]:
         oval(mesh,(side*.080,.001,1.573),(.011,.021,.024),1,"head")
         ring(mesh,side*.086,.003,1.544,.009,.0024,.012,7 if fem else 5,"head")
         arm(mesh,fem,side,suffix,elite)
-        leg(mesh,fem,side,suffix)
+        if elite:
+            winter_leg(mesh,fem,side,suffix)
+        else:
+            leg(mesh,fem,side,suffix)
 
 
 def arm(mesh,fem,side,suffix,elite):
@@ -328,7 +353,15 @@ def arm(mesh,fem,side,suffix,elite):
         if i>=10 and not elite:
             return mix_weights(p[2],[(1.389,upper),(1.438,"clavicle_"+suffix)])
         return weights(p,i,a)
-    loft(mesh,rows[:5] if elite else rows,18,1,shoulder_weights,None)
+    def arm_contour(p,i,a):
+        x,y,z=p
+        biceps=.009*exp(-((z-1.255)/.069)**2)
+        triceps=.009*exp(-((z-1.285)/.080)**2)
+        extensor=.006*exp(-((z-1.075)/.064)**2)
+        y+=biceps*max(0,cos(a))**2-triceps*max(0,-cos(a))**2
+        x+=side*extensor*max(0,side*sin(a))**2
+        return x,y,z
+    loft(mesh,rows[:5] if elite else rows,24,1,shoulder_weights,None,arm_contour)
     if not elite:
         # Paint wraps around the arm rather than reprojecting the white between
         # the male reference's bent elbow and his spear.
@@ -339,49 +372,151 @@ def arm(mesh,fem,side,suffix,elite):
             loft(mesh,chip,24,6 if fem else 8,upper if z>1.15 else fore,None)
     # Curled fingers wrap each side of an open 32 mm grip.
     cx=shoulder+.076
-    for j in range(4):
-        z=.884-.0115*j
-        pts=[(side*(cx+.016),.041,z),(side*(cx+.017),.059,z-.004),
-             (side*(cx+.005),.072,z-.005),(side*(cx-.013),.073,z-.006)]
-        tube(mesh,pts,[.009,.008,.007,.005],7,1,hand)
-    tube(mesh,[(side*(cx-.018),.031,.893),(side*(cx-.029),.047,.882),(side*(cx-.026),.066,.872)],
-         [.011,.010,.007],7,1,hand)
+    for j, length in enumerate((.97,1.,.94,.81)):
+        z=.885-.012*j
+        pts=[(side*(cx+.014),.039,z),(side*(cx+.021),.056,z+.001),
+             (side*(cx+.014),.069,z-.002),(side*(cx-.003),.071,z-.005),
+             (side*(cx-.014*length),.063,z-.008)]
+        thick=.0092-.0007*j
+        tube(mesh,pts,[thick,thick*1.06,thick,thick*.80,thick*.62],10,1,hand)
+    tube(mesh,[(side*(cx-.015),.030,.900),(side*(cx-.026),.042,.889),
+               (side*(cx-.028),.058,.878),(side*(cx-.020),.066,.871)],
+         [.012,.011,.009,.006],10,1,hand)
     for k in range(3):
         z=.947+k*.006
         loft(mesh,[(z,side*(cx-.003),.021,.027,.028),(z+.004,side*(cx-.003),.021,.027,.028)],14,
              7 if fem else (3 if k%2 else 8),fore,None)
 
 
+def leg_contour(p,side,a):
+    x,y,z=p
+    outer=side*sin(a)
+    front=cos(a)
+    # The medial calf ends lower, the tibia is flatter, and the patella
+    # projects in front of the joint. Both malleoli remain visible in profile.
+    calf=exp(-((z-(.339-.026*outer))/.083)**2)*max(0,-front)
+    ankle=exp(-((z-(.111-.011*outer))/.021)**2)*abs(outer)**3
+    y-=.014*calf
+    y+=max(0,front)**3*(.012*exp(-((z-.493)/.030)**2)+.004*exp(-((z-.32)/.105)**2))
+    x+=sin(a)*(.006*calf+.007*ankle+.007*max(0,-outer)*exp(-((z-.555)/.050)**2))
+    return x,y,z
+
+
 def leg(mesh,fem,side,suffix):
-    sections=[(.075,.100,.000,.033,.037),(.129,.100,-.010,.033,.036),(.185,.100,-.015,.034,.041),
-              (.255,.099,-.017,.045,.049),(.32,.098,-.016,.054,.056),(.38,.095,-.009,.057,.058),
-              (.437,.092,.006,.047,.048),(.49,.091,.010,.050,.057),(.55,.09,.003,.060,.064),
-              (.65,.086,-.002,.066,.075),(.78,.085,-.002,.077,.085),(.89,.083,.002,.081,.090),(.924,.082,0,.077,.078)]
-    rows=[(z,side*x,y,rx,ry) for z,x,y,rx,ry in sections]
+    sections=[(.075,.100,.000,.032,.037),(.098,.100,-.007,.032,.037),(.123,.100,-.010,.031,.036),
+              (.153,.100,-.013,.029,.034),(.195,.100,-.015,.033,.039),(.255,.099,-.016,.041,.045),
+              (.30,.098,-.016,.051,.051),(.345,.097,-.014,.054,.055),(.385,.095,-.009,.053,.052),
+              (.435,.092,.005,.044,.045),(.464,.092,.009,.045,.045),(.494,.091,.010,.050,.050),
+              (.525,.091,.008,.052,.050),(.565,.09,.005,.056,.061),(.645,.087,-.002,.068,.075),
+              (.72,.086,-.002,.073,.083),(.79,.085,-.002,.078,.087),(.89,.083,.002,.081,.090),(.924,.082,0,.077,.078)]
+    leg_rows=[(z,side*x,y,rx*(.94 if fem else 1),ry) for z,x,y,rx,ry in sections]
     thigh,shin,foot=[n+"_"+suffix for n in ["thigh","shin","foot"]]
     weights=lambda p,i,a:mix_weights(p[2],[(.075,foot),(.14,shin),(.456,shin),(.526,thigh),(.83,thigh),(.938,"hips")])
-    loft(mesh,rows,20,1,weights,None)
+    sole=.014 if fem else .005
+    # Walk from the plantar surface up the instep into the same ankle loop as
+    # the shin. A continuous skin avoids the hard shelf of intersecting shells.
+    cx=side*.10
+    plantar=[(sole,cx,.052,.045,.101),(sole+.008,cx,.052,.049,.110),
+             (sole+.018,cx,.050,.050,.110),(sole+.028,cx,.046,.049,.105),
+             (sole+.039,cx,.033,.044,.089),(sole+.049,cx,.020,.039,.069),
+             (sole+.057,cx,.009,.035,.052)]
+    def leg_and_foot(p,i,a):
+        if i>=len(plantar):
+            return leg_contour(p,side,a)
+        z,_,y,rx,ry=plantar[i]
+        s,c=sin(a),cos(a)
+        width=1.0-.24*max(0,-c)+.085*max(0,c)
+        # The arch rises on the medial side. The heel remains flat where it lands.
+        z+=.013*(1-i/len(plantar))*max(0,-side*s)**3*exp(-((p[1]-.049)/.038)**2)
+        return cx+rx*s*width,y+ry*math.copysign(abs(c)**.82,c),z
+    loft(mesh,plantar+leg_rows,36,1,weights,None,leg_and_foot)
+    def binding(low,high,mat,joint):
+        band=[]
+        for z in (low,high):
+            for a,b in zip(leg_rows,leg_rows[1:]):
+                if a[0]<=z<=b[0]:
+                    t=(z-a[0])/(b[0]-a[0])
+                    _,x,y,rx,ry=(v+(w-v)*t for v,w in zip(a,b))
+                    band.append((z,x,y,rx+.0012,ry+.0012))
+                    break
+        loft(mesh,band,36,mat,joint,None,lambda p,i,a:leg_contour(p,side,a))
     for j in range(3):
         zz=.354+j*.014
-        loft(mesh,[(zz,side*.096,-.010,.057,.058),(zz+.005,side*.096,-.010,.057,.059)],
-             22,6 if fem else 8,shin,None)
+        binding(zz,zz+.004,6 if fem else 8,shin)
     if not fem:
         for j in range(3):
             zz=.120+j*.007
-            loft(mesh,[(zz,side*.10,-.008,.035,.039),(zz+.006,side*.10,-.008,.035,.040)],16,4 if j==0 else 3,shin,None)
-    # Foot narrows at heel and toes; toe tips are split to read in close-ups.
-    cx=side*.10
-    footrows=[(.014,cx,.055,.044,.113),(.025,cx,.054,.047,.117),(.042,cx,.050,.049,.109),
-              (.058,cx,.033,.046,.093),(.078,cx,.011,.038,.066),(.105,cx,-.005,.032,.041)]
-    loft(mesh,footrows,22,1,foot,None)
-    for j in range(5):
-        oval(mesh,(cx+side*(j-2)*.014,.152-.006*j,.026),(.011-.0008*j,.032-.003*j,.015-.001*j),1,foot,7,4)
+            binding(zz,zz+.005,4 if j==0 else 3,shin)
+    for j,(offset,reach,width) in enumerate([(-.031,.183,.0135),(-.010,.186,.0102),
+                (.008,.178,.0091),(.024,.168,.0082),(.038,.156,.0074)]):
+        start=.130-.003*j
+        oval(mesh,(cx+side*offset,(start+reach)/2,sole+.012-.0009*j),
+             (width,(reach-start)/2,.0118-.00115*j),1,foot,12,7)
     if fem:
-        loft(mesh,[(.006,cx,.053,.050,.122),(.015,cx,.053,.051,.123),(.020,cx,.053,.049,.120)],24,3,foot,None)
+        sandal=[(-.064,.014,.006,.014),(-.048,.032,.004,.015),(-.010,.041,.004,.015),(.038,.044,.005,.017),
+                (.09,.052,.004,.016),(.135,.055,.004,.016),(.169,.049,.005,.017),(.189,.026,.008,.019),(.195,.005,.011,.020)]
+        foot_shell(mesh,sandal,side,foot,3)
         for dy in [-.024,.052]:
             pts=[(cx-.044,.069+dy,.025),(cx-.015,.071+dy,.057),(cx+.019,.107+dy,.060),(cx+.043,.106+dy,.03)]
             tube(mesh,pts,[.006]*4,6,4,foot)
         loft(mesh,[(.094,cx,-.002,.036,.040),(.10,cx,-.002,.036,.040)],16,7,foot,None)
+
+
+def foot_shell(mesh,sections,side,bone,material):
+    rings=[]
+    count=24
+    for y,width,bottom,top in sections:
+        ring=[]
+        for j in range(count):
+            a=TAU*j/count
+            xshape,zshape=sin(a),cos(a)
+            # The tread has a nearly flat contact patch, the upper a rounded crown.
+            fraction=((1+zshape)*.5)**1.28
+            z=bottom+(top-bottom)*fraction
+            p=(side*(.100+width*xshape),y,z)
+            ring.append(mesh.v(p,bone(p) if callable(bone) else bone))
+        rings.append(ring)
+    for i in range(len(rings)-1):
+        for j in range(count):
+            k=(j+1)%count
+            face=[rings[i][j],rings[i][k],rings[i+1][k],rings[i+1][j]]
+            mesh.face(face if side<0 else face[::-1],material)
+    mesh.face(rings[0] if side>0 else rings[0][::-1],material)
+    mesh.face(rings[-1] if side<0 else rings[-1][::-1],material)
+
+
+def winter_leg(mesh,fem,side,suffix):
+    # A single visible trouser and boot replace the previously overlapping
+    # bare leg, toes and outerwear. Let the cuff flex between shin and foot.
+    shin,thigh,foot=("shin_"+suffix,"thigh_"+suffix,"foot_"+suffix)
+    sections=[(.123,.100,-.008,.037,.043),(.16,.100,-.012,.042,.046),
+              (.20,.100,-.013,.046,.049),(.254,.099,-.016,.050,.054),
+              (.307,.098,-.020,.057,.059),(.362,.096,-.017,.061,.064),
+              (.414,.094,-.004,.056,.055),(.466,.092,.006,.053,.055),
+              (.500,.091,.009,.056,.057),(.542,.090,.006,.058,.062),
+              (.635,.086,0,.072,.080),(.743,.085,0,.080,.092),(.89,.084,0,.079,.086)]
+    rows=[(z,side*x,y,rx*(.93 if fem else 1.),ry) for z,x,y,rx,ry in sections]
+    cloth=lambda p,i,a:mix_weights(p[2],[(.45,shin),(.54,thigh),(.81,thigh),(.90,"hips")])
+    loft(mesh,rows,24,9,cloth,
+         lambda i,s,c,f:((837 if fem else 711)+s*4,580-(rows[i][0]-.12)*23),
+         lambda p,i,a:leg_contour(p,side,a))
+    boot_sections=[(-.069,.020,.012,.065),(-.060,.037,.007,.087),(-.033,.045,.005,.123),
+                   (.006,.045,.005,.124),(.047,.045,.006,.100),(.090,.051,.005,.080),
+                   (.136,.055,.005,.065),(.169,.048,.008,.053),(.185,.028,.014,.045),
+                   (.191,.008,.021,.035)]
+    foot_shell(mesh,boot_sections,side,foot,8)
+    foot_shell(mesh,[(y,w+.0015,b-.003,b+.009) for y,w,b,t in boot_sections],side,foot,11)
+    cuff=lambda p,i,a:mix_weights(p[2],[(.081,foot),(.150,shin)])
+    for low,high,r in [(.078,.154,.046),(.145,.166,.0475),(.163,.174,.045)]:
+        loft(mesh,[(low,side*.10,-.007,r,r+.003),(high,side*.10,-.008,r-.002,r+.002)],
+             24,11 if low>=.16 else 8,cuff,None)
+    for j in range(3):
+        y=.054+j*.024
+        z=.101-j*.013
+        for cross in (-1,1):
+            pts=[(side*(.10-cross*.025),y-.008,z-.005),(side*.10,y,z+.001),
+                 (side*(.10+cross*.025),y+.012,z-.009)]
+            tube(mesh,pts,[.0023]*3,6,3,foot)
 
 
 def hair(mesh,fem,rng):
@@ -706,18 +841,32 @@ def elite_outfit(mesh,fem,rng):
     for i in range(len(grid)-1):
         for j in range(24):
             if i==5 and (3<=j<8 or 16<=j<21): continue
+            if i in (1,2) and 6<=j<18: continue
             uv=[]
             corners=[(i,j),(i,j+1),(i+1,j+1),(i+1,j)]
             for r,col in corners:
                 z,w,depth=maskrows[r]
                 uv.append((679+(col/12-1)*w*351,284-(z-1.478)*490))
             mesh.face([grid[r][c] for r,c in corners],9,uv)
+    # Return the metal edge into the speaking aperture; the mask stays rigid on the skull.
+    rim=[grid[1][j] for j in range(6,19)]+[grid[2][18]]+[grid[3][j] for j in range(18,5,-1)]+[grid[2][6]]
+    inner=[]
+    for index in rim:
+        x,y,z=mesh.verts[index];inner.append(mesh.v((-x,y-.006,z),"head"))
+    for j in range(len(rim)):
+        k=(j+1)%len(rim);mesh.face([rim[j],rim[k],inner[k],inner[j]],10)
     for side in [-1,1]:
         lo,hi=(3,8) if side<0 else (16,21)
         contour=[grid[5][j] for j in range(lo,hi+1)]+[grid[6][j] for j in range(hi,lo-1,-1)]
-        center=mesh.v((side*.044,.102,1.597),"head")
+        # A recessed rim gives the metal thickness while the actual painted eyes
+        # remain visible underneath the mask when the face turns into the light.
+        inside=[]
+        for vertex in contour:
+            x,y,z=mesh.verts[vertex]
+            inside.append(mesh.v((-x,y-.014,z),"head"))
         for j in range(len(contour)):
-            mesh.face([contour[j],contour[(j+1)%len(contour)],center],2)
+            k=(j+1)%len(contour)
+            mesh.face([contour[j],contour[k],inside[k],inside[j]],10)
         # Curved and segmented horns are readable against distant trees.
         pts=[(side*.065,-.003,1.665),(side*.087,-.013,1.697),(side*.103,-.020,1.747),
              (side*.115,-.026,1.797),(side*.124,-.030,1.842),(side*.146,-.024,1.872),
@@ -891,21 +1040,14 @@ def character(key,elite,player_clips):
               (1.714,0,-.01,.055,.064),(1.728,0,-.010,.016,.022)]
         loft(m,helm,32,9,"head",lambda i,s,c,f:(678+s*18,193+i*3))
         elite_outfit(m,female,rng)
-        # Dark leggings and leather boots read beneath the winter coat.
-        for side,s in [(1,"L"),(-1,"R")]:
-            rows=[(.10,side*.10,-.007,.043,.046),(.24,side*.099,-.015,.052,.058),
-                  (.36,side*.096,-.010,.067,.067),(.49,side*.091,.010,.061,.068),
-                  (.65,side*.086,0,.079,.086),(.79,side*.085,0,.089,.098)]
-            loft(m,rows,18,8,lambda p,i,a:mix_weights(p[2],[(.46,"shin_"+s),(.53,"thigh_"+s)]),None)
-            loft(m,[(.004,side*.10,.056,.055,.132),(.033,side*.10,.056,.058,.133),
-                    (.058,side*.10,.05,.054,.121),(.09,side*.10,.016,.047,.079),(.145,side*.10,-.007,.047,.048)],
-                 20,11,"foot_"+s,None)
     ob=m.finish(rig)
+    FACIAL["install"](ob,m.face_controls)
     # All costume surfaces use a common armature, with at most two influences per vertex.
     for mat in ob.data.materials: mat.use_backface_culling=False
     animate(rig)
     GAIT["build_actions"](rig, player_clips)
     WORK["build_actions"](rig, GAIT)
+    MELEE["build_actions"](rig, GAIT)
     save(key+("_elite" if elite else ""),animated=True)
 
 

@@ -13,6 +13,9 @@ const ROPE := Vector2(2.02, -86.14)
 const GRAVITY := Vector3(0.0, -9.81, 0.0)
 const REACH := 2.05
 const PICKUP_REACH := 2.35
+const THROW_RADIUS := 0.06
+const BLUNT_DAMAGE := 16.0
+const SHARP_DAMAGE := 22.0
 
 static func flat(id: String) -> bool:
 	return id.ends_with("-flat")

@@ -98,9 +98,8 @@ func _run() -> void:
 	_action(a, "put", "water")
 	_expect(room.data.survival[a.id].bag.water == 8, "distant table placement cannot spend water")
 	room.actors[a.id].point = WildPeople.WATER
-	var stock: int = room.data.wildPeople.resources.water.stock
 	var gathered := people_motion.action(room, a.id, {"action": "gather", "item": "water"}, grid)
-	_expect(gathered.ok and room.data.survival[a.id].bag.water == 9 and room.data.wildPeople.resources.water.stock == stock - 1, "ordinary creek gathering consumes source stock into the same stack")
+	_expect(gathered.ok and room.data.survival[a.id].bag.water == 9 and not room.data.wildPeople.resources.has("water"), "shore gathering adds to the same water stack")
 	var npc := WildPeople.make_person("care", 0, "male", WildPeople.HOME, room.data.elapsed)
 	npc.phase = "captive"
 	npc.water = 30.0

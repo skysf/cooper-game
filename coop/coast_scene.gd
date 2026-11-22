@@ -3,6 +3,7 @@ extends Node3D
 const Coast = preload("res://coast_layout.gd")
 const Lake = preload("res://lake_layout.gd")
 const TERRAIN = preload("res://coast/headlands.glb")
+const BUDDHA = preload("res://coast/leshan_buddha.glb")
 const GROUND_SHADER = preload("res://materials/coast_ground.gdshader")
 const OCEAN_SHADER = preload("res://materials/ocean.gdshader")
 const CANOPY = preload("res://textures/lake_canopy.png")
@@ -35,15 +36,24 @@ func _ready() -> void:
 	rock_shader.set_shader_parameter("sand_normal", preload("res://coast/sand_normal.jpg"))
 	rock_shader.set_shader_parameter("forest_color", preload("res://textures/forest_floor_diff.jpg"))
 	rock_shader.set_shader_parameter("sea_level", Lake.water_y())
+	var frame := Coast.buddha.pose
+	rock_shader.set_shader_parameter("carving_frame", Vector4(frame.origin.x, frame.origin.y, frame.y.x, frame.y.y))
 	var land := TERRAIN.instantiate() as Node3D
 	add_child(land)
 	for piece: MeshInstance3D in land.find_children("*", "MeshInstance3D", true, false):
 		piece.material_override = rock_shader
+	var statue := BUDDHA.instantiate() as Node3D
+	statue.position = Vector3(Coast.buddha.pose.origin.x, Coast.buddha.sole_y, Coast.buddha.pose.origin.y)
+	statue.rotation.y = Coast.buddha.yaw
+	add_child(statue)
 	_build_ocean()
 	_build_vegetation()
 	_build_stones()
 	_waymark(Vector2(-17.8, -69.2), PI * 0.44, "海湾")
 	_waymark(Vector2(-73.4, -47.3), PI * 0.90, "沙滩")
+	_waymark(Vector2(13,-84.6),-PI*.46,"东部林径")
+	_waymark(Vector2(80,-66.7),-PI*.37,"煤矿")
+	_waymark(Vector2(244,-40.3),-PI*.34,"铁矿")
 
 func _build_ocean() -> void:
 	ocean_shader.shader = OCEAN_SHADER
@@ -254,7 +264,7 @@ func _waymark(at: Vector2, heading: float, text: String) -> void:
 		node.position = part[1]
 		marker.add_child(node)
 	var font := preload("res://fonts/TrailSans.otf").duplicate() as FontFile
-	font.fallbacks = [preload("res://fonts/CampHanSupplement.otf")]
+	font.fallbacks = [preload("res://fonts/CampHanSupplement.otf"),preload("res://fonts/CampSignCJK.otf")]
 	var title := Label3D.new()
 	title.text = text + "  ›"
 	title.font = font

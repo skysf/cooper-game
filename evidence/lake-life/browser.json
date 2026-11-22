@@ -1,0 +1,172 @@
+{
+  "room": "lake-qa-0ce0b0",
+  "notes": {
+    "east-pier": {
+      "x": -8.55000019073486,
+      "z": -49.0999984741211,
+      "y": 0,
+      "time": 12.9887570000002,
+      "fps": 32,
+      "scene": {
+        "clip": "Moored",
+        "crew": {
+          "ferryman": "Moored",
+          "herbalist": "Moored"
+        },
+        "phase": 2.1887570000002,
+        "sheepClip": "Walk"
+      },
+      "target": "",
+      "aboard": false,
+      "notice": "图鉴已记录 · 鳄鱼",
+      "shorn": -1
+    },
+    "sheep-in-fleece": {
+      "x": -8.6334810256958,
+      "z": -48.2096748352051,
+      "y": 0,
+      "time": 14.3137163333336,
+      "fps": 57,
+      "scene": {
+        "clip": "Moored",
+        "crew": {
+          "ferryman": "Moored",
+          "herbalist": "Moored"
+        },
+        "phase": 3.51371633333357,
+        "sheepClip": "Walk"
+      },
+      "target": "shear",
+      "aboard": false,
+      "notice": "图鉴已记录 · 绵羊",
+      "shorn": -1
+    },
+    "sheep-shorn": {
+      "x": -8.63401222229004,
+      "z": -48.2039909362793,
+      "y": 0,
+      "time": 15.6469983333337,
+      "fps": 60,
+      "scene": {
+        "clip": "Moored",
+        "crew": {
+          "ferryman": "Moored",
+          "herbalist": "Moored"
+        },
+        "phase": 1.24699833333367,
+        "sheepClip": "Alert"
+      },
+      "target": "growing",
+      "aboard": false,
+      "notice": "剪下一束羊毛，已放入背包",
+      "shorn": 14.497039666667,
+      "wool": 1
+    },
+    "houseboat-at-dock": {
+      "x": -11.1221179962158,
+      "z": -49.0990180969238,
+      "y": 0.119999999999935,
+      "time": 17.7802430000004,
+      "fps": 58,
+      "scene": {
+        "clip": "Moored",
+        "crew": {
+          "ferryman": "Moored",
+          "herbalist": "Moored"
+        },
+        "phase": 3.38024300000043,
+        "sheepClip": "Alert"
+      },
+      "target": "board",
+      "aboard": false,
+      "notice": "剪下一束羊毛，已放入背包",
+      "shorn": 14.497039666667,
+      "wool": 1
+    },
+    "aboard": {
+      "x": -14.0699996948242,
+      "z": -48.7800025939941,
+      "y": 0.115,
+      "time": 18.3135576666671,
+      "fps": 60,
+      "scene": {
+        "clip": "Moored",
+        "crew": {
+          "ferryman": "Moored",
+          "herbalist": "Moored"
+        },
+        "phase": 0.313557666667094,
+        "sheepClip": "Alert"
+      },
+      "target": "leave",
+      "aboard": true,
+      "notice": "已登上住船 · 按 F 请船工开船",
+      "shorn": 14.497039666667,
+      "wool": 1
+    },
+    "crew-rowing": {
+      "x": -14.2039165496826,
+      "z": -49.3555030822754,
+      "y": 0.115,
+      "time": 21.496760333334,
+      "fps": 56,
+      "scene": {
+        "clip": "Row",
+        "crew": {
+          "ferryman": "Row",
+          "herbalist": "Row"
+        },
+        "phase": 1.54989066666687,
+        "sheepClip": "Graze"
+      },
+      "target": "riding",
+      "aboard": true,
+      "notice": "船工起桨，环湖一周后回到这座栈台",
+      "shorn": 14.497039666667,
+      "wool": 1
+    },
+    "under-way": {
+      "x": -19.6393852233887,
+      "z": -55.016170501709,
+      "y": 0.115,
+      "time": 27.7919903333337,
+      "fps": 56,
+      "scene": {
+        "clip": "Row",
+        "crew": {
+          "ferryman": "Row",
+          "herbalist": "Row"
+        },
+        "phase": 0.0451206666666297,
+        "sheepClip": "Walk"
+      },
+      "target": "riding",
+      "aboard": true,
+      "notice": "船工起桨，环湖一周后回到这座栈台",
+      "shorn": 14.497039666667,
+      "wool": 1
+    },
+    "back-on-pier": {
+      "x": -12.6499996185303,
+      "z": -49.0999984741211,
+      "y": 0.12,
+      "time": 66.0535086666665,
+      "fps": 59,
+      "scene": {
+        "clip": "Moored",
+        "crew": {
+          "ferryman": "Moored",
+          "herbalist": "Moored"
+        },
+        "phase": 1.25350866666649,
+        "sheepClip": "Graze"
+      },
+      "target": "board",
+      "aboard": false,
+      "notice": "已回到鹿鸣湖栈台",
+      "shorn": 14.497039666667,
+      "wool": 1
+    }
+  },
+  "errors": []
+}

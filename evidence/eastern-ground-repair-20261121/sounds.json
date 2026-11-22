@@ -1,0 +1,133 @@
+{
+  "provider": "SkyCut MCP / Sonilo sound effects",
+  "generationCount": 18,
+  "totalCredits": 32.3,
+  "clips": [
+    {
+      "gameFile": "coop/sounds/ai/resident_male.wav",
+      "durationSeconds": 2.97,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -12.5,
+      "truePeakDb": -4.3
+    },
+    {
+      "gameFile": "coop/sounds/ai/resident_female.wav",
+      "durationSeconds": 2.97,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -27.8,
+      "truePeakDb": -16.8
+    },
+    {
+      "gameFile": "coop/sounds/ai/forest_rain.wav",
+      "durationSeconds": 7.99,
+      "chargedCredits": 3.6,
+      "recordingLevelDb": -35.2,
+      "truePeakDb": -9.5
+    },
+    {
+      "gameFile": "coop/sounds/ai/spring_flow.wav",
+      "durationSeconds": 7.99,
+      "chargedCredits": 3.6,
+      "recordingLevelDb": -38.4,
+      "truePeakDb": -17.5
+    },
+    {
+      "gameFile": "coop/sounds/ai/npc_hit.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -12.9,
+      "truePeakDb": -2.9
+    },
+    {
+      "gameFile": "coop/sounds/ai/animal_hit.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -18.5,
+      "truePeakDb": -2.6
+    },
+    {
+      "gameFile": "coop/sounds/ai/croc_attack.wav",
+      "durationSeconds": 2.97,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -12.9,
+      "truePeakDb": -1.4
+    },
+    {
+      "gameFile": "coop/sounds/ai/swimmer_stroke.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -25.6,
+      "truePeakDb": -8.6
+    },
+    {
+      "gameFile": "coop/sounds/ai/croc_swim.wav",
+      "durationSeconds": 5.02,
+      "chargedCredits": 2.3,
+      "recordingLevelDb": -20.1,
+      "truePeakDb": -5
+    },
+    {
+      "gameFile": "coop/sounds/ai/eat_apple.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -37.8,
+      "truePeakDb": -9.2
+    },
+    {
+      "gameFile": "coop/sounds/ai/eat_bread.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -39.8,
+      "truePeakDb": -15.4
+    },
+    {
+      "gameFile": "coop/sounds/ai/drink_water.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -38.1,
+      "truePeakDb": -23.2
+    },
+    {
+      "gameFile": "coop/sounds/ai/eat_meat.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -34.4,
+      "truePeakDb": -10.6
+    },
+    {
+      "gameFile": "coop/sounds/ai/mine_strike.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -21.8,
+      "truePeakDb": 0.1
+    },
+    {
+      "gameFile": "coop/sounds/ai/camp_fire.wav",
+      "durationSeconds": 6.97,
+      "chargedCredits": 3.2,
+      "recordingLevelDb": -44,
+      "truePeakDb": -22.5
+    },
+    {
+      "gameFile": "coop/sounds/ai/item_pickup.wav",
+      "durationSeconds": 1.02,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -36.8,
+      "truePeakDb": -19
+    },
+    {
+      "gameFile": "coop/sounds/ai/camp_work.wav",
+      "durationSeconds": 2.04,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -26.2,
+      "truePeakDb": -1.4
+    },
+    {
+      "gameFile": "coop/sounds/ai/melee_swing.wav",
+      "durationSeconds": 1.02,
+      "chargedCredits": 1.4,
+      "recordingLevelDb": -16.7,
+      "truePeakDb": -3.1
+    }
+  ]
+}

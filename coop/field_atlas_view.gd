@@ -70,6 +70,15 @@ func recenter() -> void:
 	center = _clamp_center(own_point)
 	queue_redraw()
 
+func focus_landmark(site: String) -> void:
+	if not Atlas.LANDMARKS.has(site):
+		return
+	zoom = 3.2
+	target_zoom = zoom
+	set_process(false)
+	center = _clamp_center(Atlas.LANDMARKS[site].at)
+	queue_redraw()
+
 func zoom_by(factor: float, at: Vector2) -> void:
 	var next := clampf(target_zoom * factor, 1.0, MAX_ZOOM)
 	if is_equal_approx(next, target_zoom):
@@ -148,9 +157,9 @@ func _label_rect(site: String) -> Rect2:
 	var label_size := Vector2(font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 15).x, 17) + pad * 2
 	var point := _project(Atlas.LANDMARKS[site].at)
 	var lower := point + Vector2(-label_size.x * .5, 15)
-	if site == "ridge":
+	if site in ["ridge","coal_mine","iron_mine","shale_steps"]:
 		lower.y = point.y - label_size.y - 15
-	elif site in ["lake", "tower"]:
+	elif site in ["lake", "tower", "buddha"]:
 		lower = point - Vector2(label_size.x + 15, label_size.y * .5)
 	return Rect2(lower, label_size)
 
@@ -232,11 +241,26 @@ func _draw_landmark(site: String) -> void:
 		"lake":
 			for dy in [-4, 0, 4]:
 				draw_polyline(PackedVector2Array([at + Vector2(-6, dy), at + Vector2(-3, dy - 1), at + Vector2(1, dy + 1), at + Vector2(6, dy)]), marker_ink, 1.4, true)
-		"ridge":
+		"ridge","east_ridge","shale_steps":
 			draw_polyline(PackedVector2Array([at + Vector2(-7, 5), at + Vector2(-1, -6), at + Vector2(2, 0),
 				at + Vector2(4, -3), at + Vector2(7, 5)]), marker_ink, 1.4, true)
+		"coal_mine","iron_mine":
+			draw_arc(at + Vector2(0,3),6.0,PI,TAU,12,marker_ink,1.7,true)
+			draw_line(at + Vector2(-7,4),at + Vector2(7,4),marker_ink,1.4)
+		"boar_wood":
+			for side: float in [-1.,1.]:
+				var toe:=PackedVector2Array([at+Vector2(side*1.1,4),at+Vector2(side*1.2,-4.5),at+Vector2(side*4.6,-.7),at+Vector2(side*4.2,3)])
+				draw_colored_polygon(toe,marker_ink)
+		"root_trail","vine_gap","reed_bank","flower_valley":
+			draw_line(at+Vector2(-3,6),at+Vector2(4,-6),marker_ink,1.6,true)
+			draw_arc(at+Vector2(-2,-1),3.5,0,PI,9,marker_ink,1.4,true)
 		"beach":
 			_flag(at, marker_ink)
+		"buddha":
+			draw_circle(at + Vector2(0,-4), 2.4, marker_ink, true, -1, true)
+			draw_polyline(PackedVector2Array([at+Vector2(-6,5), at+Vector2(-4,2), at+Vector2(-2,1),
+				at+Vector2(-2,-1), at+Vector2(2,-1), at+Vector2(2,1), at+Vector2(4,2),
+				at+Vector2(6,5), at+Vector2(-6,5)]), marker_ink, 1.5, true)
 		"island":
 			draw_polyline(PackedVector2Array([at + Vector2(-5, 2), at + Vector2(0, -6), at + Vector2(5, 2), at + Vector2(-5, 2)]), marker_ink, 1.5, true)
 			draw_line(at + Vector2(0, 2), at + Vector2(0, 6), marker_ink, 1.4, true)

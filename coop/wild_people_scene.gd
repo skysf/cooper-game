@@ -1,10 +1,12 @@
 extends Node3D
 
+const Face = preload("res://wild_face.gd")
 const People = preload("res://wild_people.gd")
 const Lake = preload("res://lake_layout.gd")
 const Weapons = preload("res://weapons.gd")
 const MODELS := {"male": "res://wild_people/male.glb", "female": "res://wild_people/female.glb", "male_elite": "res://wild_people/male_elite.glb", "female_elite": "res://wild_people/female_elite.glb"}
 const WARM_LAYER := 1 << 19
+const WARMUP_PER_MODEL := 2
 const EQUIPMENT := {"wicker_strip": "res://props/storage/wicker_strip.glb", "club": "res://wild_people/club.glb", "spear": "res://wild_people/spear.glb", "shield": "res://wild_people/shield.glb", "stone": "res://props/stone_round.glb"}
 var actors: Dictionary = {}
 var player_gear: Dictionary = {}
@@ -75,7 +77,7 @@ func _make_actor(npc: Dictionary) -> Dictionary:
 	var label := _label("")
 	root.add_child(label)
 	label.position.y = 2.12
-	var record := {"root": root, "model": model, "key": key, "rig": rigs[0] if not rigs.is_empty() else null, "animator": animator, "label": label, "clip": "", "weapon": "?", "shield": false, "right": null, "left": null}
+	var record := {"root": root, "model": model, "face": Face.new(model), "key": key, "rig": rigs[0] if not rigs.is_empty() else null, "animator": animator, "label": label, "clip": "", "weapon": "?", "shield": false, "right": null, "left": null}
 	return record
 
 func _attach(rig: Skeleton3D, bone: String, item: String) -> Node3D:
@@ -143,6 +145,11 @@ func sync(people: Dictionary, elapsed: float, delta: float, eye := Vector3.ZERO,
 		root.rotation.y = lerp_angle(root.rotation.y, npc.yaw, 1.0 - exp(-delta * 12.0))
 		var distance := root.position.distance_to(eye)
 		root.visible = distance < 85.0
+		a.face.apply(Face.pose(npc, elapsed) if distance < 23.0 else Vector3.ZERO)
+		var sleeping: bool = npc.get("clip","") == "Sleep" and npc.has("bed")
+		var body_model: Node3D = a.model
+		body_model.rotation.x = PI*.5 if sleeping else 0.0
+		body_model.position = Vector3(0,.146,-.86) if sleeping else Vector3.ZERO
 		var previous_label: bool = a.label.visible
 		# The user reserves overhead identity text for recruited allies only.
 		a.label.visible = npc.phase == "companion" and distance < 8.0
@@ -152,12 +159,16 @@ func sync(people: Dictionary, elapsed: float, delta: float, eye := Vector3.ZERO,
 		a.label.modulate = Color("#d8d4a5")
 		if trace_enabled and previous_label != a.label.visible:
 			_trace_event("label-visible" if a.label.visible else "label-hidden", npc)
-		a.label.position.y = 0.9 if npc.phase in ["dead", "down"] else 2.12
+		a.label.position.y = .65 if sleeping else 0.9 if npc.phase in ["dead", "down"] else 2.12
 		_equip_actor(a, npc)
+		if a.right != null:
+			a.right.visible = not sleeping
+		if a.left != null:
+			a.left.visible = not sleeping
 		var animator: AnimationPlayer = a.animator
 		if animator == null or distance > 42.0:
 			continue
-		var clip: String = npc.clip
+		var clip: String = "Idle" if sleeping else npc.clip
 		if not animator.has_animation(clip):
 			clip = "Idle"
 		if a.clip != clip:
@@ -177,8 +188,31 @@ func sync(people: Dictionary, elapsed: float, delta: float, eye := Vector3.ZERO,
 		var seek_at := Time.get_ticks_usec() if trace_enabled else 0
 		animator.seek(start, false)
 		animator.advance(clock_step)
+		if npc.phase=="resident" and npc.get("duty","") in ["fire","craft"] and clip=="GatherFruit" and float(npc.get("workUntil",0))>elapsed:
+			_hearth_pose(a.rig,npc.duty,elapsed-float(npc.clipAt))
 		if trace_enabled and Time.get_ticks_usec() - seek_at > 1500:
 			_trace_event("seek-slow", npc, seek_at)
+
+func face_samples() -> Dictionary:
+	var result := {}
+	for id: String in actors:
+		var actor: Dictionary = actors[id]
+		var face: Face = actor.face
+		if face.skin != null and actor.root.position.distance_squared_to(view) < 36.0:
+			result[id] = [face.skin.get_blend_shape_value(face.shapes[0]), face.skin.get_blend_shape_value(face.shapes[1]), face.skin.get_blend_shape_value(face.shapes[2])]
+	return result
+
+func _hearth_pose(rig: Skeleton3D, duty: String, age: float) -> void:
+	if rig == null:
+		return
+	var weight := smoothstep(.30,.85,age)*(1.0-smoothstep(2.85,3.3,age))
+	var stroke := .5-.5*cos(age*(10.5 if duty=="craft" else 4.1))
+	for side: String in ["L","R"]:
+		var hand := rig.find_bone("forearm_"+side)
+		if hand<0:
+			continue
+		var bend := .35*stroke if side=="R" else -.12*stroke if duty=="fire" else .09
+		rig.set_bone_pose_rotation(hand,rig.get_bone_pose_rotation(hand)*Quaternion(Vector3.RIGHT,bend*weight))
 
 func _pose_time(npc: Dictionary, root: Node3D, clip: String, elapsed: float, length: float) -> float:
 	if npc.has("stepPhase"):
@@ -214,7 +248,7 @@ func warm_up() -> void:
 	for key: String in MODELS:
 		if not pools.has(key):
 			pools[key] = []
-		for copy in 2:
+		for copy in WARMUP_PER_MODEL:
 			var npc := {"id": "warm-" + key + str(copy), "sex": "female" if key.begins_with("female") else "male", "elite": key.ends_with("elite"), "weapon": "spear", "shield": true}
 			var record := _make_actor(npc)
 			if record.is_empty():
@@ -258,7 +292,7 @@ func sync_sources(state: Dictionary, eye: Vector3) -> void:
 			var label := _label("")
 			label.position.y = 1.0
 			marker.add_child(label)
-			# Source markers are text above the actual woodland and creek, not substitute characters.
+			# Woodland labels follow the position of each growing patch.
 			sources[key] = {"root": marker, "label": label}
 		var marker: Dictionary = sources[key]
 		marker.root.visible = not state.is_empty() and marker.root.position.distance_to(eye) < 36.0
@@ -302,36 +336,29 @@ func equip_players(players: Dictionary, avatars: Dictionary, self_id: String, ca
 			gear.weapon = weapon
 			gear.shield = shield
 		var hiker: Node3D = local_hiker if id == self_id else avatars.get(id)
-		var first: bool = id == self_id and (hiker == null or not hiker.visible)
+		var first: bool = id == self_id and (hiker == null or hiker.eye_view or not hiker.visible)
 		var firearm := Weapons.firearm(weapon)
 		var age := maxf(0.0, elapsed - float(person.get("attackAt", -10.0)))
 		if person.get("attackWeapon", weapon) != weapon:
 			age = INF
-		var phase := clampf(age / float(Weapons.stats(weapon).time), 0.0, 1.0)
-		var swing := maxf(0.0, sin(phase * PI))
 		var recoil := exp(-age * (17.0 if weapon == "rifle" else 25.0)) if firearm else 0.0
-		if first:
+		if first and firearm:
 			gear.root.global_transform = camera.global_transform
 			if gear.right != null:
-				_pose_view_weapon(gear.right, weapon, swing, recoil, aim, gear.sight)
+				_pose_view_firearm(gear.right, weapon, recoil, aim, gear.sight)
 			if gear.left != null:
-				gear.left.visible = not firearm
-				gear.left.position = Vector3(-0.42, -0.45 if not person.get("blocking", false) else -0.15, -0.68)
-				gear.left.rotation = Vector3(0, 0.12, 0.0)
+				gear.left.hide()
 		elif hiker != null:
 			gear.root.global_transform = Transform3D.IDENTITY
 			if gear.right != null:
 				gear.right.visible = true
-				gear.right.global_position = hiker.held_item_position()
 				if firearm:
+					gear.right.global_position = hiker.held_item_position()
 					var aim_pitch: Variant = person.get("aimPitch")
 					var tilt := -0.22 if aim_pitch == null else float(aim_pitch)
 					gear.right.global_basis = Basis.from_euler(Vector3(tilt + recoil * 0.10, hiker.rotation.y, 0.0))
-				elif weapon == "katana":
-					gear.right.global_basis = Basis.from_euler(Vector3(0.65 - swing * 1.15,
-						hiker.rotation.y + swing * 0.72, -0.28 + swing))
 				else:
-					gear.right.global_rotation = Vector3(-swing * 0.8, hiker.rotation.y, -0.15)
+					gear.right.global_transform = hiker.melee_mount(weapon)
 			if gear.left != null:
 				gear.left.visible = not firearm
 				var index: int = hiker.rig.find_bone("hand_L")
@@ -339,21 +366,14 @@ func equip_players(players: Dictionary, avatars: Dictionary, self_id: String, ca
 				gear.left.global_rotation = Vector3(0, hiker.rotation.y, 0)
 		var hands_hidden: bool = local_hands_hidden if id == self_id else person.get("swimming", false) or hiker != null and hiker.seated
 		var incapacitated: bool = float(person.get("health", 100.0)) <= 0.0 or hiker != null and hiker.motion_clip == "recovery/Recover"
-		gear.root.visible = (first or hiker != null and hiker.visible) and not hands_hidden and not incapacitated
+		gear.root.visible = (first and firearm or hiker != null and hiker.visible) and not hands_hidden and not incapacitated and str(person.get("bed","")).is_empty()
 
-func _pose_view_weapon(model: Node3D, weapon: String, swing: float, recoil: float, aim: float, sight: Vector3) -> void:
+func _pose_view_firearm(model: Node3D, weapon: String, recoil: float, aim: float, sight: Vector3) -> void:
 	model.visible = weapon != "rifle" or aim < 0.82
-	if Weapons.firearm(weapon):
-		var rifle := weapon == "rifle"
-		var raised := smoothstep(0.0, 1.0, aim)
-		var carry := Vector3(0.23, -0.27, -0.47) if rifle else Vector3(0.19, -0.24, -0.47)
-		var eye_line := Vector3(0.0, 0.0, -0.23 if rifle else -0.48)
-		model.position = carry.lerp(eye_line - sight, raised) + Vector3.BACK * recoil * (0.072 if rifle else 0.048)
-		var rest := Vector3(0.031, -0.082, -0.056)
-		model.rotation = rest * (1.0 - raised) + Vector3.RIGHT * recoil * (0.08 if rifle else 0.12)
-	elif weapon == "katana":
-		model.position = Vector3(0.28, -0.30, -0.67).lerp(Vector3(-0.17, -0.19, -0.77), swing)
-		model.rotation = Vector3(0.83 - swing * 1.13, -0.28 + swing * 1.02, -0.68 + swing * 1.57)
-	else:
-		model.position = Vector3(0.31 - swing * 0.15, -0.38 + swing * 0.12, -0.64 - swing * 0.32)
-		model.rotation = Vector3(-0.22 - swing * 0.6, 0, -0.17)
+	var rifle := weapon == "rifle"
+	var raised := smoothstep(0.0, 1.0, aim)
+	var carry := Vector3(0.23, -0.27, -0.47) if rifle else Vector3(0.19, -0.24, -0.47)
+	var eye_line := Vector3(0.0, 0.0, -0.23 if rifle else -0.48)
+	model.position = carry.lerp(eye_line - sight, raised) + Vector3.BACK * recoil * (0.072 if rifle else 0.048)
+	var rest := Vector3(0.031, -0.082, -0.056)
+	model.rotation = rest * (1.0 - raised) + Vector3.RIGHT * recoil * (0.08 if rifle else 0.12)

@@ -8,8 +8,12 @@ const PlacementWorld = preload("res://placement_world.gd")
 const Placement = preload("res://placement.gd")
 const PlayerMotion = preload("res://player_motion.gd")
 
+const WoodlandBoar=preload("res://woodland_boar.gd")
+const Beds = preload("res://camp_beds.gd")
+
 const REACH := 2.35
 const WORKBENCH := Vector2(3.1, -88.95)
+const SHEEP_COLLAPSE_SECONDS := 0.8
 const MAX_OBJECTS := 96
 const FURNACE_SECONDS := 38.0
 const FURNACE_RECIPE := {"iron_ore":2,"coal":1}
@@ -18,6 +22,8 @@ const EAGLE_FALL_MAX_SECONDS := 2.25
 const EAGLE_DRIFT_MAX_SECONDS := 4.0
 const CROC_COLLAPSE_SECONDS := 0.90
 const KINDS := {
+	"boar_bedding":{"name":"猪皮铺盖","capacity":0,"radius":.96,"height":.13,"carry":false,"salvage":{},"fuel":0.0},
+	"camp_rope_bed":{"name":"营地绳床","capacity":0,"radius":1.06,"height":0.70,"carry":true,"throwable":false,"salvage":{"wood_plank":4,"rope":1},"fuel":70.0},
 	"wicker_basket": {"name":"编织篮", "capacity":4, "radius":0.19, "height":0.452, "carry":true, "salvage":{"wicker_strip":3}, "fuel":24.0},
 	"wood_crate": {"name":"木箱", "capacity":8, "radius":0.42, "height":0.36, "carry":true, "salvage":{"wood_plank":4}, "fuel":95.0},
 	"military_crate": {"name":"军用木箱", "capacity":12, "radius":0.49, "height":0.39, "carry":true, "salvage":{"wood_plank":5}, "fuel":119.0},
@@ -38,9 +44,12 @@ const KINDS := {
 	"cabin_roof": {"name":"双坡木瓦屋顶", "capacity":0, "radius":2.40, "height":1.19, "carry":true, "throwable":false, "salvage":{"wood_plank":6}, "fuel":0.0},
 	"corpse_croc": {"name":"鳄鱼尸体", "capacity":2, "radius":0.75, "height":0.28, "carry":false, "salvage":{}, "fuel":0.0},
 	"corpse_eagle": {"name":"老鹰尸体", "capacity":3, "radius":0.45, "height":0.24, "carry":false, "salvage":{}, "fuel":0.0},
+	"corpse_boar":{"name":"野猪","capacity":4,"radius":.93,"height":.48,"carry":false,"salvage":{},"fuel":0.0},
+	"corpse_sheep": {"name":"绵羊", "capacity":2, "radius":0.62, "height":0.33, "carry":false, "salvage":{}, "fuel":0.0},
 	"corpse_dog": {"name":"藏獒尸体", "capacity":1, "radius":0.6, "height":0.38, "carry":false, "salvage":{}, "fuel":0.0},
 }
 const MODELS := {
+	"camp_rope_bed":"res://props/storage/camp_rope_bed.glb",
 	"wicker_basket":"res://props/storage/wicker_basket.glb", "wood_crate":"res://props/storage/wood_crate.glb",
 	"military_crate":"res://props/storage/military_crate.glb", "wood_barrel":"res://props/storage/wood_barrel.glb",
 	"wood_barrel_tall":"res://props/storage/wood_barrel_tall.glb", "wood_table":"res://props/camp_table.glb",
@@ -52,9 +61,21 @@ const MODELS := {
 	"cabin_floor":"res://props/construction/cabin_floor.glb", "cabin_wall":"res://props/construction/cabin_wall.glb",
 	"cabin_doorway":"res://props/construction/cabin_doorway.glb", "cabin_roof":"res://props/construction/cabin_roof.glb",
 	"corpse_croc":"res://props/camp_crocodile.glb", "corpse_eagle":"res://props/camp_eagle.glb",
+	"corpse_boar":"res://props/wild_boar/wild_boar.glb",
+	"boar_bedding":"res://props/wild_boar/boar_bedding.glb",
+	"corpse_sheep":"res://props/lake_life/fleece.glb",
 	"corpse_dog":"res://props/camp_mastiff.glb",
 }
 const ITEM_MODELS := {
+	"reed_bundle":"res://vegetation/photo_landscapes/reed_bundle.glb",
+	"boar_raw":"res://props/wild_boar/boar_raw.glb",
+	"boar_grilled":"res://props/wild_boar/boar_grilled.glb",
+	"boar_hide":"res://props/wild_boar/boar_hide.glb",
+	"boar_tusk":"res://props/wild_boar/boar_tusk.glb",
+	"boar_bedroll":"res://props/wild_boar/boar_bedroll.glb",
+	"tusk_whistle":"res://props/wild_boar/tusk_whistle.glb",
+	"wool":"res://props/lake_life/wool.glb", "lamb_raw":"res://props/lake_life/lamb.glb",
+	"lamb_grilled":"res://props/lake_life/grilled.glb",
 	"herb":"res://props/storage/herb_bundle.glb",
 	"wood_plank":"res://props/storage/wood_plank.glb", "wicker_strip":"res://props/storage/wicker_strip.glb",
 	"rope":"res://props/storage/rope.glb", "crocodile_meat_raw":"res://props/storage/crocodile_meat_raw.glb",
@@ -69,8 +90,16 @@ const ORE_ICONS := {
 	"iron_ore":"res://props/mines/inventory_iron_ore.png",
 	"iron_ingot":"res://props/mines/inventory_iron_ingot.png",
 }
-const FUEL_ITEMS := {"wicker_strip":9.0, "wood_plank":24.0, "wood":38.0, "club":16.0, "coal":155.0}
+const FUEL_ITEMS := {"reed_bundle":15.0, "wicker_strip":9.0, "wood_plank":24.0, "wood":38.0, "club":16.0, "coal":155.0}
 const RECIPES := {
+	"reed_strips":{"name":"芦苇编条 ×2","needs":{"reed_bundle":1},"station":"camp","item":"wicker_strip","quantity":2},
+	"camp_rope_bed":{"name":"营地绳床","needs":{"wood_plank":4,"rope":2,"wool":1},"station":"camp","kind":"camp_rope_bed","build":true},
+	"boar_grilled":{"name":"烤野猪肉","needs":{"boar_raw":1},"station":"fire","item":"boar_grilled"},
+	"boar_cloak":{"name":"獠牙扣猎人披肩","needs":{"boar_hide":1,"boar_tusk":1,"rope":1},"station":"camp","item":"boar_cloak"},
+	"tusk_whistle":{"name":"獠牙猎犬哨","needs":{"boar_tusk":1,"rope":1},"station":"camp","item":"tusk_whistle"},
+	"boar_bedroll":{"name":"猪皮铺盖卷","needs":{"boar_hide":1,"wool":1,"rope":1},"station":"camp","item":"boar_bedroll"},
+	"lay_bedroll":{"name":"铺开猪皮铺盖","needs":{"boar_bedroll":1},"station":"field","kind":"boar_bedding","build":true},
+	"lamb_grilled":{"name":"烤羊排","needs":{"lamb_raw":1},"station":"fire","item":"lamb_grilled"},
 	"wicker_basket":{"name":"编织篮","needs":{"wicker_strip":4},"station":"camp","kind":"wicker_basket"},
 	"shield":{"name":"编织盾牌","needs":{"wicker_strip":3,"club":1},"station":"camp","item":"shield"},
 	"rope":{"name":"绳子","needs":{"wicker_strip":2},"station":"camp","item":"rope"},
@@ -119,7 +148,7 @@ static func from_save(value: Variant, elapsed: float, grid: Dictionary) -> Dicti
 			records["camp-storage-%d" % i] = record
 		return records
 	for id: Variant in value:
-		if id is not String or id.length() > 40 or records.size() >= MAX_OBJECTS+4:
+		if id is not String or id.length() > 40 or records.size() >= MAX_OBJECTS+5:
 			continue
 		var saved: Variant = value[id]
 		if saved is not Dictionary or not KINDS.has(saved.get("kind")):
@@ -147,7 +176,12 @@ static func from_save(value: Variant, elapsed: float, grid: Dictionary) -> Dicti
 		record.text = clean_text(text) if text is String else ""
 		if record.kind.begins_with("corpse_") and Survival.finite_number(saved.get("deadAt")):
 			record.deadAt = clampf(float(saved.deadAt), 0.0, elapsed)
-			if record.kind == "corpse_eagle":
+			if record.kind == "corpse_boar":
+				record.landAt = float(record.deadAt)+WoodlandBoar.COLLAPSE_TIME
+			elif record.kind == "corpse_sheep":
+				record.shorn = saved.get("shorn",false) == true
+				record.landAt = float(record.deadAt) + SHEEP_COLLAPSE_SECONDS
+			elif record.kind == "corpse_eagle":
 				_restore_eagle_fall(record, saved, elapsed)
 			elif record.kind == "corpse_croc" and Survival.finite_number(saved.get("landAt")):
 				var land_at := minf(float(saved.landAt), float(record.deadAt) + CROC_COLLAPSE_SECONDS)
@@ -195,19 +229,25 @@ static func corpse_ready(record: Dictionary, elapsed: float) -> bool:
 	return elapsed >= float(record.get("landAt", 0.0))
 
 static func seed_furnace(records: Dictionary, geometry: Dictionary) -> bool:
-	const ID := "camp-iron-furnace"
-	if records.has(ID):
+	return _seed_fixture(records,geometry,"camp-iron-furnace","iron_furnace",[Vector2(5.98,-84.55),Vector2(5.7,-83.60),Vector2(6.65,-85.0),Vector2(6.78,-86.15)])
+
+static func seed_bed(records: Dictionary, geometry: Dictionary) -> bool:
+	return _seed_fixture(records,geometry,"camp-first-cot",Beds.KIND,[Vector2(.15,-88.1),Vector2(-.92,-85.05),Vector2(1.25,-87.55),Vector2(3.8,-82.5),Vector2(1.1,-81.6)])
+
+static func _seed_fixture(records: Dictionary, geometry: Dictionary, id: String, kind: String, points: Array) -> bool:
+	if records.has(id):
 		return true
-	var profile := PlacementWorld.profile("iron_furnace")
-	for point: Vector2 in [Vector2(5.98,-84.55), Vector2(5.7,-83.60), Vector2(6.65,-85.0), Vector2(6.78,-86.15)]:
+	var profile := PlacementWorld.profile(kind)
+	for point: Vector2 in points:
 		var ground := Vector3(point.x,Lake.walk_height(point),point.y)
 		var physical := PlacementWorld.nearby(geometry,records,point,3.15)
 		var placement := Placement.solve(ground+Vector3.UP*.08,ground-Vector3.UP*.08,0.0,profile,physical)
 		if placement.ok:
-			var record := _record("iron_furnace",point,0.0)
-			record.batchReady = 0.0
+			var record := _record(kind,point,0.0)
+			if kind == "iron_furnace":
+				record.batchReady = 0.0
 			_apply_pose(record,placement.pose,0.0,placement.supports)
-			records[ID] = record
+			records[id] = record
 			return true
 	return false
 
@@ -432,6 +472,7 @@ static func _craft(room: Dictionary, player: String, msg: Dictionary, grid: Dict
 		if not Survival.can_carry(bag,recipe.item,slots) or int(bag.get(recipe.item,0)) > Survival.MAX_ITEM_COUNT-quantity:
 			return _no("背包已满")
 		_add(bag,recipe.item,quantity)
+		Survival.record_food_in_guide(state, recipe.item)
 	state.bag = bag
 	_clear_equipment(state)
 	return _yes("制作了" + str(recipe.name))
@@ -478,6 +519,19 @@ static func action(room: Dictionary, player: String, msg: Dictionary, grid: Dict
 	var is_held: bool = id == held
 	if not is_held and (record.mode != "ground" or not near(actor,record,grid)):
 		return _no("走近物品后再操作")
+	if Beds.is_bed(record.kind):
+		if action_name == "sleep" and not is_held:
+			return _yes("已经躺下，休息中 · E 起身") if Beds.sleep_player(room,player,id) else _no("这张床已经有人使用")
+		if action_name in ["pack_bedroll","carry","dismantle","burn"] and Beds.claimed(room,id):
+			return _no("有人正在使用这张床")
+	if action_name=="pack_bedroll":
+		if record.kind!=Beds.BEDROLL or is_held:
+			return _no("请选择铺在地上的铺盖")
+		if not Survival.can_carry(state.bag,"boar_bedroll",Survival.slot_count(room.data.backpackOwner==player)):
+			return _no("背包已满")
+		records.erase(id)
+		_add(state.bag,"boar_bedroll")
+		return _yes("收起了猪皮铺盖卷")
 	var spec: Dictionary = KINDS[record.kind]
 	var label: String = spec.name
 	var item: Variant = msg.get("item","")
@@ -496,6 +550,8 @@ static func action(room: Dictionary, player: String, msg: Dictionary, grid: Dict
 				return _no("容器已满" if action_name == "store" else "背包已满")
 			_remove(source,item)
 			_add(target,item)
+			if action_name == "take":
+				Survival.record_food_in_guide(state, item)
 			_clear_equipment(state)
 			return _yes(("存入" if action_name == "store" else "取出") + Survival.ITEM_NAMES[item])
 		"carry":

@@ -1,0 +1,93 @@
+{
+  "checks": [
+    {
+      "check": "The atlas arrival is dry, open and beside the sculpture",
+      "ok": true
+    },
+    {
+      "check": "Movement and jumping reach the nail from the atlas landing",
+      "ok": true
+    },
+    {
+      "check": "The continuous headland rises above the Buddha's crown",
+      "ok": true
+    },
+    {
+      "check": "Clear island sightline to sculpture at local height 68.00",
+      "ok": true
+    },
+    {
+      "check": "Clear island sightline to sculpture at local height 61.00",
+      "ok": true
+    },
+    {
+      "check": "Clear island sightline to sculpture at local height 32.00",
+      "ok": true
+    },
+    {
+      "check": "Clear island sightline to sculpture at local height 2.28",
+      "ok": true
+    },
+    {
+      "check": "Four player footprints land on a single big toenail on side -1",
+      "ok": true
+    },
+    {
+      "check": "Four player footprints land on a single big toenail on side 1",
+      "ok": true
+    },
+    {
+      "check": "Walking into the toes cannot pass through the foot or snap up onto the knees",
+      "ok": true
+    },
+    {
+      "check": "The inland and coastal height fields meet at the old western edge",
+      "ok": true
+    },
+    {
+      "check": "Normal player movement walks from the lake up to the clifftop",
+      "ok": true
+    },
+    {
+      "check": "The descending trail reaches the shore with the same collision data",
+      "ok": true
+    },
+    {
+      "check": "Normal movement switches to swimming and crosses the outer reef",
+      "ok": true
+    },
+    {
+      "check": "A swimmer can land and walk to the top of the offshore island",
+      "ok": true
+    },
+    {
+      "check": "The bay and ocean route includes sustained swimming",
+      "ok": true
+    },
+    {
+      "check": "The same ship flies at full speed from the mainland across the reef to the island",
+      "ok": true
+    },
+    {
+      "check": "The ship can park on sea water and let a player get out to swim",
+      "ok": true
+    },
+    {
+      "check": "A saved island location restores on the new terrain",
+      "ok": true
+    }
+  ],
+  "fastestShip": 11.0000276565552,
+  "seamError": 0.0174716525757708,
+  "shipTargetDistance": 0.181463733315468,
+  "swimFrames": 1975,
+  "crestWorld": [
+    -80.25,
+    85.14707946777344,
+    -82.25
+  ],
+  "behindCrown": 82.06587219238281,
+  "soleY": 1.55,
+  "crownY": 72.49,
+  "islandToForefoot": 81.8134212294061
+}

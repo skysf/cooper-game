@@ -30,7 +30,7 @@ func sync(croc: Dictionary, elapsed: float, observer: Vector3, delta: float, eag
 		flight_time = -1.0
 		return
 
-	var position_data: Array = croc.at
+	var position_data: Array = croc.get("at", [0.0, 0.0, 0.0])
 	var at := Vector3(position_data[0], position_data[1], position_data[2])
 	if not croc.get("dead", false) and observer.distance_squared_to(at) <= 52.0 * 52.0:
 		var was_visible := crocodile.visible

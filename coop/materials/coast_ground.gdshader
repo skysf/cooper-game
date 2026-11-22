@@ -9,6 +9,7 @@ uniform sampler2D sand_color : source_color, repeat_enable, filter_linear_mipmap
 uniform sampler2D sand_normal : hint_normal, repeat_enable, filter_linear_mipmap_anisotropic;
 uniform sampler2D forest_color : source_color, repeat_enable, filter_linear_mipmap_anisotropic;
 uniform float sea_level = -0.075;
+uniform vec4 carving_frame;
 uniform float room_seconds;
 uniform float rain_amount;
 uniform float sunlight = 1.0;
@@ -17,9 +18,15 @@ varying vec3 world_at;
 varying vec3 rock_at;
 varying vec3 world_normal;
 varying vec4 ground_mix;
+varying float sandstone;
 
 void vertex() {
 	world_at = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	vec2 offset = world_at.xz - carving_frame.xy;
+	vec2 facing = carving_frame.zw;
+	vec2 local = vec2(dot(offset, vec2(facing.y, -facing.x)), dot(offset, facing));
+	sandstone = dot(facing, facing) * (1.0 - smoothstep(30.0, 65.0, abs(local.x)))
+		* (1.0 - smoothstep(14.0, 38.0, abs(local.y)));
 	// Shift the projection gradually along the wall to break up repeated tiles.
 	rock_at = world_at + 0.56 * sin(world_at.zxy * vec3(0.29, 0.23, 0.31)
 		+ world_at.yzx * vec3(0.16, 0.37, 0.22));
@@ -55,6 +62,10 @@ void fragment() {
 	vec3 cliff = texture(cliff_color, a).rgb * side.x + texture(cliff_color, c).rgb * side.z;
 	vec3 stone = cliff * vec3(0.76, 0.85, 0.94) + texture(seaside_color, b).rgb * side.y;
 	stone *= 0.79 + ground_mix.a * 0.40;
+	float beds = sin(0.78 * point.y + 0.12 * point.z + 1.2 * sin(point.x * 0.16))
+		+ 0.32 * sin(point.y * 2.3 + point.z * 0.19);
+	stone *= mix(vec3(1.0), mix(vec3(0.92, 0.73, 0.65), vec3(1.13, 0.88, 0.73),
+		smoothstep(-1.1, 1.1, beds)), sandstone);
 	vec3 sand = texture(sand_color, point.xz * 0.69 + vec2(0.28, 0.20)).rgb;
 	sand = mix(sand * vec3(1.04, 1.0, 0.91), vec3(0.83, 0.77, 0.63), 0.33);
 

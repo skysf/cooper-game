@@ -22,11 +22,14 @@ const BACKPACK_SLOTS := 6
 # Every registered kind occupies one slot. Count is separate and bounded for save/network safety.
 const MAX_ITEM_COUNT := 2147483647
 const MATERIAL_RESTOCK := 180.0
-const CLOTHING := {"cap": "帽子", "helmet": "头盔", "jacket": "夹克", "pants": "长裤"}
+const CLOTHING := {"boar_cloak":"獠牙扣猎人披肩", "cap": "帽子", "helmet": "头盔", "jacket": "夹克", "pants": "长裤"}
 const HEAD_REPLACEMENT := {"cap": "helmet", "helmet": "cap"}
-const ITEM_NAMES := {"apple": "苹果", "bread": "面包", "cap": "帽子", "helmet": "头盔", "jacket": "夹克", "pants": "长裤", "herb": "药草包", "water": "装好的溪水", "stone": "缴获圆石", "club": "木棍", "spear": "长矛", "shield": "编织盾牌", "wood": "木料", "tarp": "防水布", "katana": "日本刀", "rifle": "栓动步枪", "pistol": "手枪",
-	"wood_plank": "木板", "wicker_strip": "编条", "rope": "绳子", "crocodile_hide": "鳄鱼皮",
+const ITEM_NAMES := {"apple": "苹果", "bread": "面包", "cap": "帽子", "helmet": "头盔", "jacket": "夹克", "pants": "长裤", "herb": "药草包", "water": "装好的淡水", "stone": "缴获圆石", "club": "木棍", "spear": "长矛", "shield": "编织盾牌", "wood": "木料", "tarp": "防水布", "katana": "日本刀", "rifle": "栓动步枪", "pistol": "手枪",
+	"reed_bundle": "芦苇束", "wood_plank": "木板", "wicker_strip": "编条", "rope": "绳子", "crocodile_hide": "鳄鱼皮",
 	"crocodile_meat_raw": "生鳄鱼肉", "crocodile_meat_grilled": "烤鳄鱼肉", "crocodile_sandwich": "鳄鱼肉三明治",
+	"boar_raw":"生野猪肉","boar_grilled":"烤野猪肉","boar_hide":"野猪皮","boar_tusk":"野猪獠牙",
+	"boar_cloak":"獠牙扣猎人披肩","tusk_whistle":"獠牙猎犬哨","boar_bedroll":"猪皮铺盖卷",
+	"wool":"羊毛", "lamb_raw":"生羊排", "lamb_grilled":"烤羊排",
 	"eagle_meat": "老鹰肉", "dog_meat": "狗肉", "eagle_feather": "鹰羽", "eagle_claw": "鹰爪",
 	"coal": "煤块", "iron_ore": "铁矿石", "iron_ingot": "铁锭"}
 const FOOD_STATS := {
@@ -36,8 +39,14 @@ const FOOD_STATS := {
 	"crocodile_meat_grilled": {"hunger": 33.0, "water": 0.0, "mood": 5.0},
 	"crocodile_sandwich": {"hunger": 56.0, "water": 0.0, "mood": 9.0},
 	"eagle_meat": {"hunger": 18.0, "water": 0.0, "mood": 0.0},
+	"boar_raw":{"hunger":15.0,"water":0.0,"mood":0.0},
+	"boar_grilled":{"hunger":35.0,"water":0.0,"mood":5.0},
+	"lamb_raw": {"hunger":14.0, "water":0.0, "mood":0.0},
+	"lamb_grilled": {"hunger":34.0, "water":0.0, "mood":5.0},
 	"dog_meat": {"hunger": 20.0, "water": 0.0, "mood": 0.0},
 }
+const SIGHTING_RANGE := {"boar":30.0, "croc": 38.0, "eagle": 48.0, "dog": 24.0, "sheep": 24.0}
+const COOKING_DISCOVERIES := ["boar_raw","boar_grilled", "lamb_raw", "lamb_grilled", "crocodile_meat_raw", "crocodile_meat_grilled", "crocodile_sandwich"]
 const MAX_STAT := 100.0
 const DRINK_GAIN := 32.0
 const DRINK_THRESHOLD := 96.0
@@ -54,10 +63,11 @@ const RECOVERY_HEALTH := 45.0
 
 static func initial_state() -> Dictionary:
 	return {"health": MAX_STAT, "hunger": 86.0, "water": 82.0, "mood": 65.0, "bag": {"apple": 0, "bread": 0},
+		"fieldGuide": {"animals": [], "cooking": false},
 		"worn": initial_wear(), "weapon": "", "shield": false, "attackAt": -10.0, "attackWeapon": "", "downAt": -1.0}
 
 static func initial_wear() -> Dictionary:
-	return {"cap": true, "helmet": false, "jacket": true, "pants": true}
+	return {"boar_cloak":false, "cap": true, "helmet": false, "jacket": true, "pants": true}
 
 static func stack_limit(item: String) -> int:
 	return MAX_ITEM_COUNT if ITEM_NAMES.has(item) else 0
@@ -102,6 +112,14 @@ static func state_from_save(value: Variant, slots: int = SLOT_COUNT) -> Dictiona
 			state.worn[item] = worn.get(item) == true
 		if state.worn.helmet:
 			state.worn.cap = false
+	var guide: Variant = value.get("fieldGuide")
+	if guide is Dictionary:
+		var animals: Variant = guide.get("animals")
+		if animals is Array:
+			for species: String in SIGHTING_RANGE:
+				if species in animals:
+					state.fieldGuide.animals.append(species)
+		state.fieldGuide.cooking = guide.get("cooking") == true
 	var bag: Variant = value.get("bag")
 	if bag is Dictionary:
 		var available := slots
@@ -111,6 +129,8 @@ static func state_from_save(value: Variant, slots: int = SLOT_COUNT) -> Dictiona
 				var accepted := _quantity(count) if available > 0 else 0
 				if accepted > 0 or not CLOTHING.has(item):
 					state.bag[item] = accepted
+				if accepted > 0:
+					record_food_in_guide(state, item)
 				available -= stack_slots(item, accepted)
 	var weapon: Variant = value.get("weapon", "")
 	if Weapons.ATTACKS.has(weapon) and int(state.bag.get(weapon, 0)) > 0:
@@ -118,6 +138,10 @@ static func state_from_save(value: Variant, slots: int = SLOT_COUNT) -> Dictiona
 	state.shield = value.get("shield") == true and int(state.bag.get("shield", 0)) > 0
 	state.downAt = float(value.get("downAt", -1.0)) if finite_number(value.get("downAt")) else -1.0
 	return state
+
+static func record_food_in_guide(state: Dictionary, item: String) -> void:
+	if item in COOKING_DISCOVERIES:
+		state.fieldGuide.cooking = true
 
 static func initial_provisions() -> Dictionary:
 	var provisions := {}
@@ -216,10 +240,13 @@ static func eat(state: Dictionary, item: String) -> void:
 	var nutrition: Dictionary = FOOD_STATS[item]
 	for key in nutrition:
 		state[key] = minf(MAX_STAT, float(state[key]) + float(nutrition[key]))
+	record_food_in_guide(state, item)
 
 static func tick(state: Dictionary, point: Vector2, roof_repaired: bool, rain: float, delta: float, piloting := false) -> void:
 	state.hunger = maxf(0.0, float(state.hunger) - HUNGER_LOSS * delta)
 	state.water = maxf(0.0, float(state.water) - WATER_LOSS * delta)
+	if state.get("worn",{}).get("boar_cloak",false):
+		rain *= 2.0/3.0
 	var mood_change := -RAIN_MOOD_LOSS * rain
 	if not piloting and inside_shelter(point):
 		# Each of the two fixed decorations contributes separately to the room's comfort.
@@ -237,6 +264,7 @@ static func snapshot(state: Dictionary) -> Dictionary:
 		"water": snappedf(float(state.water), 0.1),
 		"mood": snappedf(float(state.mood), 0.1),
 		"bag": state.bag,
+		"fieldGuide": state.fieldGuide,
 		"worn": state.worn,
 		"weapon": state.get("weapon", ""), "shield": state.get("shield", false),
 		"attackAt": state.get("attackAt", -10.0), "downAt": state.get("downAt", -1.0),

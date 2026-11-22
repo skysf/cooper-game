@@ -28,8 +28,8 @@ func _ready() -> void:
 	for kind: String in ["wicker_basket","wood_crate","military_crate","wood_barrel","wood_barrel_tall","campfire"]:
 		ResourceLoader.load_threaded_request(Storage.MODELS[kind])
 
-func _model_for(kind: String) -> PackedScene:
-	var path: String = Storage.MODELS[kind]
+func _model_for(kind: String, shorn := false) -> PackedScene:
+	var path: String = "res://props/lake_life/shorn.glb" if kind == "corpse_sheep" and shorn else Storage.MODELS[kind]
 	if not resources.has(path):
 		var status := ResourceLoader.load_threaded_get_status(path)
 		if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
@@ -37,8 +37,8 @@ func _model_for(kind: String) -> PackedScene:
 		resources[path] = ResourceLoader.load_threaded_get(path) if status == ResourceLoader.THREAD_LOAD_LOADED else load(path)
 	return resources[path]
 
-func _make(kind: String) -> Dictionary:
-	var packed := _model_for(kind)
+func _make(kind: String, shorn := false) -> Dictionary:
+	var packed := _model_for(kind, shorn)
 	if packed == null:
 		return {}
 	var root := Node3D.new()
@@ -157,7 +157,7 @@ func sync(records: Dictionary, players: Dictionary, self_id: String, camera: Cam
 		if not live.has(id):
 			if distant:
 				continue
-			var made := _make(record.kind)
+			var made := _make(record.kind, record.get("shorn",false))
 			if made.is_empty():
 				continue
 			live[id] = made
@@ -172,6 +172,9 @@ func sync(records: Dictionary, players: Dictionary, self_id: String, camera: Cam
 		else:
 			root.position = at
 			root.rotation = Vector3(lean.x,heading,lean.z)
+			if record.kind=="corpse_boar" and not entry.has("groundTilt"):
+				entry.groundTilt=Storage.WoodlandBoar.ground_tilt(Vector2(at.x,at.z),heading)
+				entry.model.basis=entry.groundTilt
 		if not death_pose.is_empty() and entry.has("corpse_animator"):
 			_sample_corpse_pose(entry.corpse_animator, death_pose.clip, death_pose.phase)
 		if entry.has("label") and entry.label.text != record.text:
@@ -201,6 +204,10 @@ func sync(records: Dictionary, players: Dictionary, self_id: String, camera: Cam
 func _corpse_death_pose(record: Dictionary, at: Vector3, elapsed: float) -> Dictionary:
 	if record.kind == "corpse_eagle":
 		return _eagle_death_pose(record, at, elapsed)
+	if record.kind=="corpse_boar" and not Storage.corpse_ready(record,elapsed):
+		return {"at":at,"clip":"Collapse","phase":clampf((elapsed-float(record.deadAt))/Storage.WoodlandBoar.COLLAPSE_TIME,0.,1.)}
+	if record.kind == "corpse_sheep" and not Storage.corpse_ready(record,elapsed):
+		return {"at":at, "clip":"Collapse", "phase":clampf((elapsed-float(record.deadAt))/Storage.SHEEP_COLLAPSE_SECONDS,0.0,1.0)}
 	if record.kind == "corpse_croc" and not Storage.corpse_ready(record, elapsed):
 		var age := maxf(0.0, elapsed - float(record.get("deadAt", elapsed)))
 		return {"at":at, "clip":"Collapse", "phase":minf(age / Storage.CROC_COLLAPSE_SECONDS, 1.0)}

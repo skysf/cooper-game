@@ -20,6 +20,26 @@
 
 ## 当前进度
 
+### 湖岸芦苇荡、藤蔓谷口与赤层岩坡
+
+三张现场照片收在 `art/field_regions/photo_landscapes/references/`。按 **M** 选择「湖岸芦苇荡」可到鹿鸣湖的浅水岸。芦花由弯曲的多向穗枝组成，细秆、长叶、花穗对同一阵风有不同的摆幅。朝近处成熟的芦苇按 **E** 会拿到一束，现场留下短茬。各丛独立计时，经过 240 秒房间游戏时间重新长成。 [湖岸实景](../evidence/marsh-landscapes/lake-reeds.webp) · [风中芦花录像](../evidence/marsh-landscapes/reed-wind.mp4)
+
+「藤蔓谷口」位于根影林径东侧支路，林下两侧是可绕行的攀藤和低矮叶丛，坡后有林冠遮住部分旱地。「赤层岩坡」在铁矿以东、层岩台地支路旁。两层岩阶与人物脚下使用同一份地形高度。岩面使用参考照中裸岩的局部纹理，山脊上的树木和石阶间的灌丛分别扎根在对应高度。 [藤蔓谷口](../evidence/marsh-landscapes/vine-gap.webp) · [赤层岩坡](../evidence/marsh-landscapes/terraces.webp)
+
+可编辑模型集中在 [Blender 母版](../art/field_regions/photo_landscapes/reed_and_vine_studies.blend)。游戏目录 `coop/vegetation/photo_landscapes/` 包含两种芦苇、短茬、两种藤蔓、叶簇树冠、背包芦苇束及纹理。复用 GLB 时一并取走同目录的 `field_botany.png`。调整美术时先运行 `python3 scripts/bake-landscape-textures.py`，再运行 `scripts/start-blender.sh --background --factory-startup --python-exit-code 1 --python scripts/build-photo-botany.py`。修改谷地或岩阶位置后运行 `python3 scripts/build-eastern-region.py` 和 `python3 scripts/build-coop-atlas.py`，同时更新对应地标。
+
+
+### 东部山地与洞居营地
+
+东部沿木屋外的林径延伸到箭袋树花谷和层岩台地。东西方向由 333 米延长到 666 米，南北仍为 131 米，按玩家边界计算共 87,246 平方米。旧营地、鹿鸣湖和西岸坐标继续沿用。图册新增五个地标。 [地形与道路](../coop/east/region.json) · [试玩](http://127.0.0.1:5684/coop/?room=pine)
+
+- 从用户提供的 `verdant_trail` 和 `namaqualand` 两套 Blender 场景提取 25 种原始模型，包括树、灌丛、根系、草花和岩体。材质保留原始 UV、叶片遮罩、基础色和法线。原植物组合另烘焙了四类低成本植被簇。近处用立体植株，远处用三个观察角度的图集。树干、树叶和枝条分别减面。营地、溪谷、西岸和小岛也分布了新植被。 [来源与模型尺寸](../coop/east/model_catalog.json) · [林径与花谷实机记录](../evidence/eastern-reach-20261121/playtest.json)
+- 煤矿口位于林坡 `(90, −49)`，铁矿口位于花谷东侧 `(265, −62)`。两段井道各长 32 米，洞底比洞口低约 7.3 米。地表和洞内共享水平坐标，各有独立的行走高度。入口天光、火塘和深层油灯共同形成由亮到暗的过渡。 [矿洞行走与开采测试](../scripts/test-coop-mines.gd)
+- 每座矿在玩家首次接近时出现两名居民。房间服务器保存各人的分工、行程、携带量、装备和营地物资。居民沿井道往返洞外的泉眼、采集点和枯枝处。林果和枯枝逐步恢复，食物与水供居民消耗，木柴用于添火和制作装备。靠近按 **E** 可看居民当前的工作和共享储备。 [居民状态](../coop/east/cave_life.gd) · [存档与双人视图验证](../scripts/test-coop-eastern-life.gd)
+
+普通构建从已导出的场景包重建地形和图册。替换来源模型时，依次在 Blender 后台运行 `scripts/prepare-eastern-models.py`，用系统 Python 运行 `scripts/pack-eastern-models.py`，在 Blender 后台运行 `scripts/bake-eastern-cover.py`，再用系统 Python 运行 `scripts/pack-eastern-models.py --cover-only`。矿洞沿 `scripts/build-mine-layout.py` 的剖面生成，`scripts/build-camp-mines.py` 的 `build(scratch, galleries_only=True)` 会重新导出井道及矿脉。 [网页复验脚本](../scripts/coop-eastern-playtest.mjs)
+
+
 2026-11-20，装备和飞船先行。夹克源模型的拉链与胸袋完整，旧运行 GLB 在 Blender 和 Godot 中都有同样的大片折面。已调整减面与贴体顺序，保留 UV、平滑法线与 1024 像素材质。登山靴使用用户提供的左右靴 GLB，沿用脚骨并重算踩地接触。羽饰头盔使用用户提供的 GLB，木屋地面每个房间生成一顶，拾取并穿戴时与帽子互换。靴子和头盔原色贴图已从自发光接到材质底色，核对了明暗两种环境及样稿转身。飞船颜色和法线贴图恢复至 2048 像素，启用各向异性过滤，模型仍为 89,988 个三角面。
 
 - 已通过 Godot 16 项动作检查、装备和动物画面回归及房间生存回归。房间测试覆盖头盔首次生成、同时拾取、换戴、落地、队友拾取和重载不重复生成。网页试玩用真实 G 键拾取头盔，经背包换戴帽子并核对数量。角色样稿通过高清模式旋转与穿戴测试。
@@ -103,3 +123,16 @@
 2. 先以一张开局装备的全尺寸底色做压缩与加载对照。测试相同分辨率、相同镜位的纹理和实际首开时间。将前台路线与四人压力测试里的长帧同 GL 程序、纹理载入及资源预热逐一对应。
 3. 按针叶树试点的方法继续修林缘和岩坡可见树冠，海边、林下和矿洞外增加适宜植物。复查矿洞木梁转角、散石轮廓和近景接地，结合同机位和长路线继续对齐 GTA V 级写实环境细节。
 4. 复验斜屋面、组合支撑和多层结构中的桌椅、容器、摆件。扩大到真实多人互相搬放，同时关注对象过高、位于狭缝或无法稳定落下时的恢复。
+
+
+## 东部边界、矿口和落脚面复核
+
+营地东侧的原林地地面与新地形共享接边和原贴图坐标。树根按每棵树的朝向、缩放和近远模型的树根外缘采样山坡。四种岩块都检查了近远两套拓扑，片状岩壁补上后壁、侧面和底面。角色移动、跳落、第三人称相机和旧存档落脚使用岩石表面的空间索引。两处矿口在实际洞拱旁重建了细分地面，洞外泥路逐渐过渡到洞内碎石。
+
+煤矿与铁矿旁的泉水按各自地势下挖。水只覆盖与泉心连通并低于水平面的三角形，沿浅岸露出底泥，水纹随风雨与天空光照变化。每个矿口从洞内向外做了 2,408 次覆盖采样，全部命中地面。网页另从两侧走向大岩块，并从旧存档中的石内位置重新进房。 [自动测量](../evidence/eastern-ground-repair-20261121/contacts.json) · [网页试玩记录](../evidence/eastern-ground-repair-20261121/browser.json) · [铁矿泉眼](../evidence/eastern-ground-repair-20261121/dryland-spring.jpg)
+
+### 空中看矿口与晴天远景
+
+从飞船斜看煤矿时，洞顶背后的开口会透出天空。两座矿洞的坡面现在从第一道支架后覆过岩拱，地表行走和飞船落地直接读取这层网格的高度。两座矿口和两处泉岸的细网格与外围山坡逐边对齐。复核时隐藏了远山，用高亮背景检查 34 个外部机位，另从洞内向外检查出口。 [煤矿缺口前后对照](../evidence/valley-and-portals-20261121/coal-seam.jpg) · [煤矿飞船实拍](../evidence/valley-and-portals-20261121/coal-flight.jpg) · [铁矿飞船实拍](../evidence/valley-and-portals-20261121/iron-flight.jpg)
+
+箭袋树花谷过去在晴天也会于百米内褪成天色。晴天现在从 115 米开始逐渐加入空气透视，主相机远裁剪为 760 米。地图外围接上了仅供远看的山脊。内陆暴雨时浓雾在 49 米处达到最强。比较图取自同一位置、朝向和俯仰角。 [原画面](../evidence/valley-and-portals-20261121/valley-before.jpg) · [新版晴天](../evidence/valley-and-portals-20261121/valley-clear.jpg) · [同机位暴雨](../evidence/valley-and-portals-20261121/valley-rain.jpg) · [验证记录](../evidence/valley-and-portals-20261121/checks.json)

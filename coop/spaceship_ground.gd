@@ -30,8 +30,8 @@ static func collision_grid(world: Dictionary) -> Dictionary:
 		trees[Vector2(tree[0], tree[1])] = float(tree[2])
 	for tree: Dictionary in grove.get("trees", []):
 		saplings[Vector2(tree.x, tree.z)] = tree
-	for item: Dictionary in world.get("obstacles", []) + Lake.Coast.obstacles:
-		if item.type == "table":
+	for item: Dictionary in world.get("obstacles", []) + Lake.Coast.obstacles + Lake.East.obstacles:
+		if item.has("profile") or item.type == "table":
 			continue
 		var at := Vector2(item.x, item.z)
 		var base := Lake.ground_height(at)
@@ -83,8 +83,10 @@ static func _register(grid: Dictionary, shape: Dictionary) -> void:
 static func _cell(at: Vector2) -> Vector2i:
 	return Vector2i((at / GRID_SIZE).floor())
 
-static func _terrain(at: Vector2) -> float:
-	if Lake.Coast.contains(at) or at.y >= water_min_z and at.y <= water_max_z:
+static func _terrain(at: Vector2, ceiling: float) -> float:
+	if Lake.Coast.buddha.bounds.has_point(at):
+		return maxf(Lake.Coast.height(at), Lake.Coast.buddha.floor_at(at, ceiling))
+	if Lake.East.contains(at) or Lake.Coast.contains(at) or at.y >= water_min_z and at.y <= water_max_z:
 		return Lake.walk_height(at)
 	return 0.0
 
@@ -121,7 +123,9 @@ static func _obstacle_top(shape: Dictionary, at: Vector2, grove_time: float) -> 
 
 static func _surface(at: Vector2, grid: Dictionary, grove_time: float,
 		water: float, ceiling: float = INF, buoyant := false) -> Vector2:
-	var result := Vector2(_terrain(at), LAND)
+	var result := Vector2(_terrain(at, ceiling), LAND)
+	if Lake.East.contains(at) and result.x > Lake.East.height(at)+.015:
+		result.y = ROCK
 	if buoyant and not is_finite(water):
 		water = Lake.open_water_support(at)
 	if water > result.x:
@@ -206,7 +210,7 @@ static func sight_obstructed(from: Vector3, to: Vector3, grid: Dictionary, grove
 	for i in range(1, steps + 1):
 		var point := from.lerp(to, float(i) / steps)
 		var at := Vector2(point.x, point.z)
-		if point.y < _terrain(at):
+		if point.y < Lake.walk_height(at,point.y) or Lake.Coast.buddha.intersects(at, point.y, point.y):
 			return true
 		for shape: Dictionary in grid.get(_cell(at), []):
 			if point.y < float(shape.base):
@@ -228,7 +232,7 @@ static func camera_clearance(pivot: Vector3, offset: Vector3, grid: Dictionary, 
 		var travel := float(i) / steps
 		var point := pivot + offset * travel
 		var at := Vector2(point.x, point.z)
-		if point.y < _terrain(at) + 0.18:
+		if point.y < Lake.walk_height(at,point.y) + 0.18 or Lake.Coast.buddha.intersects(at, point.y-.18, point.y+.18):
 			return maxf(0.25, travel * length - 0.28)
 		for shape: Dictionary in grid.get(_cell(at), []):
 			if point.y > float(shape.base) + float(shape.height) + 0.18:

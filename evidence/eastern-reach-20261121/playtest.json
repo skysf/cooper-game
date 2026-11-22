@@ -1,0 +1,595 @@
+{
+  "room": "east-qa-06e86a",
+  "records": {
+    "atlas": [
+      "beach",
+      "camp",
+      "coal_mine",
+      "east_ridge",
+      "flower_valley",
+      "iron_mine",
+      "island",
+      "lake",
+      "ridge",
+      "root_trail",
+      "tower"
+    ],
+    "root-trail": {
+      "x": 58,
+      "z": -75.6999969482422,
+      "y": 5.83702013974835,
+      "yaw": -1.5592,
+      "pitch": -0.03975,
+      "packs": [
+        "verdant"
+      ],
+      "darkness": 0,
+      "plants": 10934,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "fire",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "root-trail-frame-sample": {
+      "frames": 156,
+      "fps": 57.1,
+      "p95ms": 33.2
+    },
+    "woodland-detail": {
+      "x": 58,
+      "z": -75.6999969482422,
+      "y": 5.83702013974835,
+      "yaw": 0.5736,
+      "pitch": -0.13865,
+      "packs": [
+        "verdant"
+      ],
+      "darkness": 0,
+      "plants": 10934,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "fire",
+          "GatherFruit"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "flower-valley": {
+      "x": 191,
+      "z": -52,
+      "y": 6.51897764205933,
+      "yaw": -1.44955,
+      "pitch": -0.0806,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "flower-valley-frame-sample": {
+      "frames": 163,
+      "fps": 60,
+      "p95ms": 16.8
+    },
+    "wildflowers": {
+      "x": 191,
+      "z": -52,
+      "y": 6.51897764205933,
+      "yaw": -2.6213,
+      "pitch": -0.3042,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "coal-entrance": {
+      "x": 90,
+      "z": -55,
+      "y": 4.2659068107605,
+      "yaw": -3.14159265358979,
+      "pitch": -0.06985,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "coal-hearth": {
+      "x": 90.9484939575195,
+      "z": -41.9731140136719,
+      "y": 2.95233705043793,
+      "yaw": 2.70299265358979,
+      "pitch": -0.53855,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0.661855764041286,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "DrawWater"
+        ]
+      ]
+    },
+    "coal-depth": {
+      "x": 88.4535369873047,
+      "z": -21.4743347167969,
+      "y": -1.66501388549805,
+      "yaw": 1.75269265358979,
+      "pitch": -0.4762,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0.98911807615692,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 80.7021080000011,
+          "fruitOnBush": 3,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": false,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "coal_mine-mined": {
+      "before": 14,
+      "after": 13
+    },
+    "iron-entrance": {
+      "x": 265,
+      "z": -56,
+      "y": 7.32560682296753,
+      "yaw": 0.000442653589793451,
+      "pitch": -0.0397500000000001,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 80.7021080000011,
+          "fruitOnBush": 3,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 0,
+          "fires": 0,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 2,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ],
+        [
+          "iron_mine",
+          "fire",
+          "Walk"
+        ],
+        [
+          "iron_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "iron-depth": {
+      "x": 265.257598876953,
+      "z": -90.8470764160156,
+      "y": 1.19998369216919,
+      "yaw": 1.53339265358979,
+      "pitch": -0.459,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0.997535112598163,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 2,
+          "fruitAt": 80.7021080000011,
+          "fruitOnBush": 3,
+          "settled": true,
+          "water": 1,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 160.768372000002,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "water",
+          "TurnRight"
+        ],
+        [
+          "coal_mine",
+          "wood",
+          "Walk"
+        ],
+        [
+          "iron_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "iron_mine",
+          "water",
+          "Walk"
+        ]
+      ]
+    },
+    "iron_mine-mined": {
+      "before": 10,
+      "after": 9
+    },
+    "east-ridge": {
+      "x": 322,
+      "z": -32.4000015258789,
+      "y": 6.06179746708585,
+      "yaw": -1.39920734641021,
+      "pitch": -0.0397500000000001,
+      "packs": [
+        "verdant",
+        "namaqua"
+      ],
+      "darkness": 0,
+      "plants": 18952,
+      "camps": {
+        "coal_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 131.186222,
+          "fires": 1,
+          "food": 2,
+          "fruitAt": 80.7021080000011,
+          "fruitOnBush": 3,
+          "settled": true,
+          "water": 1,
+          "wood": 1,
+          "woodAt": 0
+        },
+        "iron_mine": {
+          "crafted": 0,
+          "deadfall": 8,
+          "fireUntil": 160.768372000002,
+          "fires": 1,
+          "food": 0,
+          "fruitAt": 0,
+          "fruitOnBush": 6,
+          "settled": true,
+          "water": 0,
+          "wood": 1,
+          "woodAt": 0
+        }
+      },
+      "people": [
+        [
+          "coal_mine",
+          "water",
+          "Walk"
+        ],
+        [
+          "coal_mine",
+          "wood",
+          "Walk"
+        ],
+        [
+          "iron_mine",
+          "food",
+          "Walk"
+        ],
+        [
+          "iron_mine",
+          "water",
+          "DrawWater"
+        ]
+      ]
+    }
+  },
+  "errors": []
+}

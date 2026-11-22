@@ -4,6 +4,7 @@ const EAST_EDGE := -30.0
 const WEST_LIMIT := -304.0
 
 static var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://coast_layout.json"))
+static var buddha := preload("res://coast/buddha_contact.gd").new(layout.buddha)
 static var origin := Vector2(layout.origin[0], layout.origin[1])
 static var step_size := float(layout.spacing)
 static var cells := Vector2i(layout.cells[0], layout.cells[1])
@@ -60,6 +61,8 @@ static func point(key: String) -> Vector2:
 	return Vector2(pair[0], pair[1])
 
 static func area(at: Vector2, sea_level: float) -> String:
+	if at.distance_squared_to(buddha.pose.origin) < 26.0 * 26.0:
+		return "buddha"
 	if at.distance_to(point("island")) < 32.0 and height(at) >= sea_level:
 		return "island"
 	if at.x < point("reef").x - 3.0:

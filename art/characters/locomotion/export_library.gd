@@ -18,7 +18,7 @@ func write_library() -> void:
 			quit(1)
 			return
 		var action := player.get_animation(clip).duplicate(true) as Animation
-		if clip in [&"Walk",&"Run",&"Air",&"Swim",&"Tread"]:
+		if clip in [&"Walk",&"Run",&"Air",&"Swim",&"Tread",&"Crouch",&"CrouchWalk",&"Sleep"]:
 			action.loop_mode = Animation.LOOP_LINEAR
 		result.add_animation(clip,action)
 		print(clip," ",action.length," ",action.get_track_count()," ",action.track_get_path(0))

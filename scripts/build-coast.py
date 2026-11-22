@@ -55,7 +55,43 @@ def route_field(x, z, points):
     return np.sqrt(distance), height
 
 
-def geography(x, z):
+def buddha_coordinates(x, z):
+    site = LAYOUT["buddha"]
+    yaw = np.deg2rad(site["yawDegrees"])
+    dx, dz = x - site["origin"][0], z - site["origin"][1]
+    return dx * np.cos(yaw) - dz * np.sin(yaw), dx * np.sin(yaw) + dz * np.cos(yaw)
+
+
+def carve_buddha_cliff(x, z, ground, trail_distance):
+    site = LAYOUT["buddha"]
+    across, out = buddha_coordinates(x, z)
+    side = np.abs(across)
+    grain = noise(x * .74, z * .83)
+    # A cupped cliff meets the back of the head and the seat. Its shoulders
+    # sweep seaward on either side, leaving the face, knees and toes exposed.
+    lip = 1.2 + 13.6 * smooth(12, 25, side) + 1.0 * np.sin(across * .32) + .8 * grain
+    wall = smooth(0, 8.9, lip - out)
+    crest = site["ridgeY"] + 2.4 * np.sin(across * .19 + .45) + 1.7 * grain
+    terrace = site["soleY"] - .22 + .08 * grain - .29 * np.maximum(out - 20, 0)
+    # A sloping rock ledge beside the outer toes provides a route up from the shore.
+    terrace += 2.35 * gaussian(across - 11.7, 2.6) * gaussian(out - 14.5, 5.7)
+    profile = terrace + wall * (crest - terrace)
+    blend = (1 - smooth(15, 49, side)) * (1 - smooth(12, 48, -out)) * (1 - smooth(22, 34, out))
+    # The southern shoulder ends at the original swimming channel in the bay.
+    blend *= smooth(-57, -71, z) * smooth(3.5, 14, trail_distance) * smooth(Z0 + .5, Z0 + 10, z)
+    carved = ground + (profile - ground) * blend
+    # A lower, longer north spur and a shorter southern bluff carry the skyline
+    # around the recess. The incised bay and its route stay below the saddle.
+    spurs = 68 * gaussian(across + 29, 22) + 27 * gaussian(across + 50, 13)
+    spurs += 49 * gaussian(across - 29, 17)
+    spur_front = 10 + 3.7 * np.sin(across * .19) + 2.2 * grain
+    shoulder = smooth(10, 21, side) * (1 - smooth(48, 70, side))
+    shoulder *= smooth(0, 13, spur_front-out) * (1 - smooth(12, 41, -out))
+    shoulder *= smooth(-57, -71, z) * smooth(3.5, 14, trail_distance)
+    return np.maximum(carved, carved + (spurs + 1.5 * grain - carved) * shoulder)
+
+
+def geography(x, z, *, monument=True):
     u, v = -x, z + 52
     mottling = noise(u * .73, z * .78)
     shore = (84.7 + 17.7 * (1 - gaussian(v, 24))
@@ -119,6 +155,9 @@ def geography(x, z):
 
     trails = []
     ridge_distance, _ridge_grade = route_field(x, z, LAYOUT["ridgeTrail"])
+    if monument:
+        beach_distance, _ = route_field(x, z, LAYOUT["beachTrail"])
+        ground = carve_buddha_cliff(x, z, ground, np.minimum(ridge_distance, beach_distance))
     for name in ("ridgeTrail", "beachTrail", "islandTrail"):
         distance, grade = route_field(x, z, LAYOUT[name])
         width = 5.8 if name == "beachTrail" else 4.7
@@ -253,6 +292,27 @@ def shrubs_and_trees(x, z, geo):
             if -123 < x[j, i] < -76 and 1.3 < ground[j, i] < 14.4 and slope[j, i] > 1.37 and route_distance[j, i] > 4.4:
                 if rng.random() < .44:
                     crags.append([x[j,i], z[j,i], rng.uniform(1.8, 4.15), rng.random()])
+    # Preserve established plants on the rest of the coast. Remove rocks and
+    # growth from the carving, and keep a view corridor from the island lookout.
+    def exposed_plant(entry, clearance):
+        cross, out = buddha_coordinates(entry[0], entry[1])
+        clear_carving = abs(cross) < 16 + clearance and -13 < out < 25 + clearance
+        clear_view = abs(cross) < 3.8 + clearance and 81 < out < 102
+        return not (clear_carving or clear_view)
+
+    trees = [p for p in trees if exposed_plant(p, p[2] * .22)]
+    shrubs = [p for p in shrubs if exposed_plant(p, .35)]
+    stones = [p for p in stones if exposed_plant(p, .6)]
+    crags = [p for p in crags if exposed_plant(p, 1.7)]
+    # Wind-cut conifers follow the raised rim where the terrain can support roots.
+    across, out = buddha_coordinates(x, z)
+    raised = geography(x, z)[0]
+    dz, dx = np.gradient(raised, STEP)
+    crown = (np.abs(across) < 49) & (out < 3) & (raised > 37) & (np.hypot(dx, dz) < .95)
+    crown_rng = np.random.default_rng(2915)
+    for j, i in np.argwhere(crown[::4, ::4]) * 4:
+        if crown_rng.random() < .42:
+            trees.append([x[j, i], z[j, i], crown_rng.uniform(4.6, 8.4), crown_rng.random()])
     placement = {name: np.round(values, 3).tolist() for name, values in
                  (("trees", trees), ("shrubs", shrubs), ("stones", stones), ("crags", crags))}
     placement["dunegrass"] = np.round(dunegrass_positions(trees, shrubs, stones, crags), 3).tolist()
@@ -260,7 +320,9 @@ def shrubs_and_trees(x, z, geo):
 
 
 def main():
+    from coast_buddha import bake as bake_buddha
     OUT.mkdir(parents=True, exist_ok=True)
+    bake_buddha(ROOT, OUT)
     chunk_type = runpy.run_path(str(ROOT / "scripts/coop-zones.py"))["Chunk"]
     terrain = chunk_type()
     x, z = np.meshgrid(np.linspace(X0, X1, CELLS_X + 1), np.linspace(Z0, Z1, CELLS_Z + 1))
@@ -268,10 +330,13 @@ def main():
     height = geo[0].astype("<f4")
     height.tofile(OUT / "elevation.bin")
     sandbar_texture(x, z, geo)
-    shrubs_and_trees(x, z, geo)
+    shrubs_and_trees(x, z, geography(x, z, monument=False))
     bake_mesh(terrain, x, z, "Coast", floor_field=height)
     for name, lo, hi in [("North", -287, Z0), ("South", Z1, 181)]:
-        side_x, side_z = np.meshgrid(np.linspace(X0, X1, 97), np.linspace(lo, hi, 56))
+        # The new northern spur crosses the playable border. Use the same edge
+        # vertices as the playable heightfield all the way along that crest.
+        columns = CELLS_X + 1 if name == "North" else 97
+        side_x, side_z = np.meshgrid(np.linspace(X0, X1, columns), np.linspace(lo, hi, 56))
         bake_mesh(terrain, side_x, side_z, name)
     size = terrain.write("headlands", OUT)
     print(f"Coast, {CELLS_X} by {CELLS_Z} elevation cells, {size:,} bytes of spatially culled terrain.")

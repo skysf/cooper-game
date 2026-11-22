@@ -1,0 +1,155 @@
+{
+  "webAndMacPckSha256": "1c324978c935028ec9be689030538c33e7950baafb8845e176a6784f41e85061",
+  "mineViews": {
+    "coal": {
+      "originalObliqueLeakPixels": 293,
+      "patchedObliqueLeakPixels": 0,
+      "patchedLeakPixelsPerView": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "flightAltitudeAboveGroundM": 16.0,
+      "verticalRays": 2408,
+      "uncovered": 0,
+      "outerRoofContacts": 296
+    },
+    "iron": {
+      "originalObliqueLeakPixels": 127,
+      "patchedObliqueLeakPixels": 0,
+      "patchedLeakPixelsPerView": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "flightAltitudeAboveGroundM": 15.08,
+      "verticalRays": 2408,
+      "uncovered": 0,
+      "outerRoofContacts": 296
+    }
+  },
+  "diagnostic": {
+    "color": "magenta",
+    "distantTerrainHidden": true,
+    "nativeResolution": [
+      840,
+      472
+    ],
+    "sampleRectangle": [
+      330,
+      151,
+      512,
+      315
+    ],
+    "viewsPerMine": 17
+  },
+  "sharedTerrainEdges": {
+    "portal_ground_coal_mine": 184,
+    "spring_bank_coal_mine": 192,
+    "portal_ground_iron_mine": 184,
+    "spring_bank_iron_mine": 192
+  },
+  "weather": {
+    "clear": {
+      "x": 255.380004882812,
+      "y": 27.086585295931,
+      "z": -93.5599975585938,
+      "yaw": -2.58982396850586,
+      "pitch": -0.0843840045928955,
+      "rain": 0,
+      "zone": "flower_valley",
+      "thirdPerson": false,
+      "fps": 56,
+      "grounded": true,
+      "elapsed": 37.138420333333
+    },
+    "storm": {
+      "x": 255.380004882812,
+      "y": 27.086585295931,
+      "z": -93.5599975585938,
+      "yaw": -2.58982396850586,
+      "pitch": -0.0843840045928955,
+      "rain": 1,
+      "zone": "flower_valley",
+      "thirdPerson": false,
+      "fps": 60,
+      "grounded": true,
+      "elapsed": 90.0399916666662
+    },
+    "fairFogRangeM": [
+      115,
+      700
+    ],
+    "stormInlandFogRangeM": [
+      8,
+      49
+    ],
+    "cameraFarM": 760
+  },
+  "jump": {
+    "first": {
+      "renderFrames": 66,
+      "sampledRiseM": 0.685,
+      "motionClips": [
+        "Stand",
+        "move/Air",
+        "move/Land"
+      ]
+    },
+    "down": {
+      "renderFrames": 63,
+      "sampledRiseM": 0.733,
+      "motionClips": [
+        "Stand",
+        "move/Air",
+        "move/Land",
+        "move/Takeoff"
+      ]
+    },
+    "third": {
+      "renderFrames": 33,
+      "sampledRiseM": 0.522,
+      "motionClips": [
+        "Stand",
+        "move/Air",
+        "move/Land"
+      ]
+    }
+  },
+  "mac": {
+    "room": "ridgeline-mac",
+    "ready": true,
+    "connected": true,
+    "focusReady": true,
+    "terrainError": ""
+  },
+  "browserErrors": []
+}

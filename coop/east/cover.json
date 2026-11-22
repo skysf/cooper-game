@@ -1,0 +1,6 @@
+{
+  "sedge_bed":{"span":2.5,"height":1.25,"count":29,"sources":["trail_grass"]},
+  "fern_bed":{"span":2.75,"height":1.375,"count":16,"sources":["fern_bush","underbrush","fern_bush","broadleaf","trail_grass"]},
+  "gold_drift":{"span":2.65,"height":1.325,"count":23,"sources":["gazania","gazania_low","gazania","ursinia","iceplant"]},
+  "blue_drift":{"span":2.5,"height":1.25,"count":18,"sources":["blue_flower","blue_flower","blue_flower","silver_bush","iceplant"]}
+}

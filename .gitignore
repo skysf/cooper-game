@@ -22,6 +22,8 @@ __pycache__/
 /art/animals/source/
 /art/clothing/source/
 /art/weapons/source/
+# Local upstream scene packs used to prepare art/field_regions.
+/art/scenes_assets/
 /art/containers_storage/*_4k.blend/textures/
 /art/characters/sky_head.blend
 /art/characters/sky_head_v2.blend

@@ -36,7 +36,7 @@ func _ready() -> void:
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var theme := Theme.new()
 	var font := preload("res://fonts/TrailSans.otf").duplicate() as FontFile
-	font.fallbacks = [preload("res://fonts/CampHanSupplement.otf")]
+	font.fallbacks = [preload("res://fonts/CampHanSupplement.otf"),preload("res://fonts/CampSignCJK.otf")]
 	theme.default_font = font
 	background.theme = theme
 	var margins := MarginContainer.new()
@@ -56,7 +56,7 @@ func _ready() -> void:
 	title.add_theme_constant_override("separation", 0)
 	header.add_child(title)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_label(title, "鹿鸣湖海岸", 27, PAPER_TEXT)
+	_label(title, "鹿鸣湖与东部山地", 27, PAPER_TEXT)
 	_label(title, "雨线营地  ·  野外图册", 13, SOFT_TEXT)
 	var center := _button(header, "定位我", 65)
 	center.pressed.connect(view.recenter)

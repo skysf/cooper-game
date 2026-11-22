@@ -190,44 +190,53 @@ static func _box_hit(from: Vector3, to: Vector3, object: Dictionary) -> Dictiona
 static func _inside(at: Vector2) -> bool:
 	return at == at.clamp(Rules.MIN_CORNER, Rules.MAX_CORNER)
 
-static func _height(at: Vector2) -> float:
-	return maxf(Lake.walk_height(at), Lake.surface_height(at)) if _inside(at) else -INF
+static func _height(at: Vector2, reference := INF, gallery := false) -> float:
+	if not _inside(at):
+		return -INF
+	if Lake.East.contains(at):
+		if gallery:
+			var floor_y := Lake.Gallery.floor_at(at,reference,1.35,INF)
+			if is_finite(floor_y):
+				return floor_y
+		return maxf(Lake.walk_height(at,reference),Lake.surface_height(at))
+	return maxf(Lake.walk_height(at),Lake.surface_height(at))
 
 static func _terrain_hit(from: Vector3, to: Vector3) -> Dictionary:
 	var start := Vector2(from.x, from.z)
 	var finish := Vector2(to.x, to.z)
-	if from.y < _height(start) - CONTACT:
+	var gallery := Lake.East.contains(start) and is_finite(Lake.Gallery.floor_at(start,from.y,.30,2.9))
+	if from.y < _height(start,from.y,gallery) - CONTACT:
 		return {"t": 0.0, "id": "", "point": from, "normal": Vector3.ZERO, "support": false}
 	var steps := maxi(1, ceili(start.distance_to(finish) / TERRAIN_STEP))
 	for i in range(1, steps + 1):
 		var high := float(i) / steps
 		var point := from.lerp(to, high)
-		if point.y > _height(Vector2(point.x, point.z)):
+		if point.y > _height(Vector2(point.x, point.z),point.y,gallery):
 			continue
 		var low := float(i - 1) / steps
 		for _step in 12:
 			var mid := (low + high) * 0.5
 			point = from.lerp(to, mid)
-			if point.y > _height(Vector2(point.x, point.z)):
+			if point.y > _height(Vector2(point.x, point.z),point.y,gallery):
 				low = mid
 			else:
 				high = mid
 		point = from.lerp(to, high)
 		var at := Vector2(point.x, point.z)
-		var ground := Lake.walk_height(at)
+		var ground := _height(at,point.y,gallery) if Lake.East.contains(at) else Lake.walk_height(at)
 		var water := Lake.surface_height(at)
 		point.y = maxf(ground, water)
 		var wet := water >= ground
 		return {"t": high, "id": "water" if wet else "terrain", "point": point,
-			"normal": Vector3.UP if wet else _terrain_normal(at), "support": not wet}
+			"normal": Vector3.UP if wet else _terrain_normal(at,point.y), "support": not wet}
 	return {}
 
-static func _terrain_normal(at: Vector2) -> Vector3:
+static func _terrain_normal(at: Vector2, feet := INF) -> Vector3:
 	var step := 0.035
-	var left := Lake.walk_height(at - Vector2(step, 0))
-	var right := Lake.walk_height(at + Vector2(step, 0))
-	var near := Lake.walk_height(at - Vector2(0, step))
-	var far := Lake.walk_height(at + Vector2(0, step))
+	var left := Lake.walk_height(at - Vector2(step, 0),feet)
+	var right := Lake.walk_height(at + Vector2(step, 0),feet)
+	var near := Lake.walk_height(at - Vector2(0, step),feet)
+	var far := Lake.walk_height(at + Vector2(0, step),feet)
 	return Vector3(left - right, step * 2.0, near - far).normalized()
 
 static func _above_ground_and_in_bounds(bounds: AABB, pose: Transform3D) -> bool:
@@ -237,7 +246,7 @@ static func _above_ground_and_in_bounds(bounds: AABB, pose: Transform3D) -> bool
 			for z in 3:
 				var point := pose * (bounds.position + bounds.size * Vector3(x, y, z) * 0.5)
 				var at := Vector2(point.x, point.z)
-				if not _inside(at) or point.y < _height(at) - CONTACT:
+				if not _inside(at) or point.y < _height(at,point.y) - CONTACT:
 					return false
 	return true
 

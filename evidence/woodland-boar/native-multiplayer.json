@@ -1,0 +1,14 @@
+{
+  "nativeClips": [
+    "Warn"
+  ],
+  "peerClips": [
+    "Forage",
+    "Warn",
+    "Charge",
+    "Run"
+  ],
+  "damage": 19,
+  "identicalStart": true,
+  "room": "boar-mac-15ef3e"
+}
