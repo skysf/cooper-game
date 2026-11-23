@@ -90,7 +90,9 @@ func sync(ship: Dictionary, elapsed: float, delta: float, local_pilot := false) 
 		return
 	var at := Spaceship.position(ship)
 	var heading: float = ship.yaw
-	if not initialized or position.distance_squared_to(at) > 25.0:
+	var height := float(ship.get("floor", at.y))
+	var vertical_window := maxf(5.0, 2.0 * Spaceship.vertical_scale(at.y - height))
+	if not initialized or absf(position.y - at.y) > vertical_window or Vector2(position.x - at.x, position.z - at.z).length_squared() > 25.0:
 		position = at
 		rotation.y = heading
 		body.rotation = Vector3.ZERO
@@ -100,7 +102,6 @@ func sync(ship: Dictionary, elapsed: float, delta: float, local_pilot := false) 
 	position = position.lerp(at, pose_blend)
 	rotation.y = lerp_angle(rotation.y, heading, pose_blend)
 	var velocity := Spaceship.velocity_sample(ship).rotated(Vector3.UP, -rotation.y)
-	var height := float(ship.get("floor", at.y))
 	var airborne := smoothstep(0.11, 1.05, at.y - height)
 	var pitch := float(ship.get("tiltX", 0.0)) + velocity.z * 0.012 * airborne
 	var bank := float(ship.get("tiltZ", 0.0)) + velocity.x * -0.015 * airborne

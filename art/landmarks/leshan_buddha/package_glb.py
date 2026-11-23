@@ -29,7 +29,14 @@ def optimize():
             continue
         bpy.context.view_layer.objects.active = ob
         mod = ob.modifiers.new('Game silhouette', 'DECIMATE')
-        mod.ratio = .55 if ob.name.startswith('Face') else .42
+        if ob.name.startswith('Face'):
+            mod.ratio = .45
+        elif ob.name.startswith('Long earlobe'):
+            mod.ratio = .48
+        elif ob.name.startswith('Rows of spiral'):
+            mod.ratio = .21
+        else:
+            mod.ratio = .42
         bpy.ops.object.modifier_apply(modifier=mod.name)
 
 

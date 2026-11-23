@@ -102,7 +102,7 @@ async function prepare(reference, beforeOnly, detailViews, clearRoute) {
   };
   const reportName = 'pine-web-' + (clearRoute ? 'clear-route-' : detailViews ? 'detail-' : beforeOnly ? 'before-' : 'ab-') + seed + '.json';
   await writeFile(resolve(output, 'index.html'), `<!doctype html>
-<meta charset="utf-8"><title>雨线营地松树 A/B</title>
+<meta charset="utf-8"><title>Cooper 松树 A/B</title>
 <style>
   body {margin:0;background:#0c1412;color:#e2e6d4;font:15px system-ui;text-align:center}
   header {min-height:48px;display:flex;gap:18px;align-items:center;justify-content:center}
@@ -129,7 +129,7 @@ function runTrials(trials, report, reportName) {
       for (const [index, trial] of trials.entries()) {
         status.textContent = (index + 1) + '/' + trials.length + ' ' + trial.label + ' · ' + trial.station + ' · ' + trial.weather;
         const frame = document.createElement('iframe');
-        frame.title = '雨线营地 · ' + trial.station;
+        frame.title = 'Cooper · ' + trial.station;
         frame.src = trial.url;
         const captured = await new Promise((done, fail) => {
           function finish(error, data) {

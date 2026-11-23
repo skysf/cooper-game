@@ -19,7 +19,7 @@ jobs:
   test:
     name: Godot headless tests
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
         with:
@@ -78,13 +78,13 @@ jobs:
         if: inputs.build == 'macos'
         run: |
           node scripts/godot.mjs coop-native
-          ditto -c -k --keepParent dist/coop-native/CooperCamp.app dist/CooperCamp.zip
+          ditto -c -k --keepParent dist/coop-native/Cooper.app dist/Cooper.zip
       - name: Upload playable build
         uses: actions/upload-artifact@v6
         with:
           name: cooper-game-${{ inputs.build }}
           path: |
-            ${{ inputs.build == 'web' && 'dist/coop' || 'dist/CooperCamp.zip' }}
+            ${{ inputs.build == 'web' && 'dist/coop' || 'dist/Cooper.zip' }}
             LICENSE
             THIRD_PARTY_NOTICES.md
             coop/sky-assets.LICENSE.txt

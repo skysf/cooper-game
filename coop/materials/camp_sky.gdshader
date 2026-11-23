@@ -22,6 +22,10 @@ uniform float night_tint = 0.0;
 uniform float cloud_cover = 0.15;
 uniform float rain_amount = 0.0;
 uniform float room_seconds = 0.0;
+uniform float altitude_km = 0.0;
+uniform vec2 ground_origin_km;
+uniform float ground_rain = 0.0;
+uniform float above_clouds = 0.0;
 
 float noise_field(vec2 p) {
 	return texture(cloud_noise, p).r;
@@ -160,12 +164,83 @@ vec3 cloudy_atmosphere(vec3 d, vec3 below) {
 	return mix(result, cumulus, coverage * (1.0 - evening_weight * 0.53));
 }
 
+// The camera stays over the playable coast. Intersect the view ray with a distant curved
+// surface in planet radii, then sample its coastline and weather in ground-fixed kilometres.
+vec3 aerial_view(vec3 d, vec3 clear_sky) {
+	float h = altitude_km / 6371.0;
+	float height_term = h * (2.0 + h);
+	float horizon_y = -sqrt(height_term) / (1.0 + h);
+	float elevation = d.y - horizon_y;
+	float thin_air = smoothstep(5.0, 72.0, altitude_km);
+	float daylight = smoothstep(-0.15, 0.16, sun_direction.y);
+	vec3 rim = mix(vec3(0.026, 0.069, 0.16), vec3(0.18, 0.54, 0.85), daylight);
+	vec3 upper = clear_sky;
+	if (thin_air > 0.0) {
+		vec3 space = vec3(0.004, 0.007, 0.016);
+		if (elevation > -0.005) {
+			space += starlight(d) * mix(0.85, 0.17, daylight);
+			space += sun_color.rgb * smoothstep(0.99998, 0.999994, dot(d, sun_direction)) * 1.5;
+			if (dot(d, moon_direction) > 0.99997) {
+				vec4 moon = moon_disc(d);
+				space = mix(space, moon.rgb, moon.a);
+			}
+		}
+		upper = mix(clear_sky, space + rim * exp(-max(elevation, 0.0) * 62.0), thin_air);
+	}
+	if (elevation >= 0.002) {
+		return upper;
+	}
+	float b = -(1.0 + h) * d.y;
+	float travel_km = 6371.0 * height_term / max(b + sqrt(max(b * b - height_term, 0.0)), 0.00001);
+	vec2 surface = ground_origin_km + d.xz * travel_km;
+	float hills = noise_field(surface * 0.004 + vec2(0.31, 0.57));
+	float ridges = noise_field(surface * 0.018 + hills * 0.12);
+	// West is out to sea, east is the mainland. Finer noise breaks the shoreline into headlands.
+	vec2 local_uv = surface * 0.25 + vec2(0.27, 0.42);
+	float relief = noise_field(local_uv);
+	float grain = noise_field(local_uv * 7.1);
+	float local_coast = surface.x + 0.06 + sin(surface.y * 1.9) * 0.46 + (relief - 0.5) * 0.7;
+	float regional_coast = surface.x + (hills - 0.5) * 92.0 + (ridges - 0.5) * 13.0;
+	float coast = mix(local_coast, regional_coast, smoothstep(0.9, 20.0, length(surface)));
+	vec3 sea = mix(vec3(0.035, 0.16, 0.29), vec3(0.078, 0.30, 0.37), exp(-abs(coast) * 0.95));
+	vec3 land = mix(vec3(0.15, 0.23, 0.16), vec3(0.40, 0.37, 0.25), smoothstep(0.30, 0.75, hills * 0.64 + ridges * 0.36));
+	float relief_light = relief - noise_field(local_uv + sun_direction.xz * 0.026);
+	land *= 0.78 + relief * 0.36 + relief_light * 0.50 + grain * 0.13;
+	float shore_width = 0.018 + min(travel_km * 0.0006, 0.36);
+	vec3 planet = mix(sea, land, smoothstep(-shore_width, shore_width, coast));
+	vec2 cloud_uv = (ground_origin_km + d.xz * travel_km * max(0.0, 1.0 - 2.0 / altitude_km)) * 0.002;
+	cloud_uv += vec2(0.00008, -0.00004) * room_seconds;
+	float weather_front = noise_field(cloud_uv * 0.73 + vec2(0.37, 0.12));
+	cloud_uv.y += weather_front * 0.045;
+	float billows = noise_field(cloud_uv * vec2(2.3, 3.8) + vec2(0.17, 0.61));
+	float wisps = noise_field(cloud_uv * 11.2 + billows * 0.022);
+	float detail = noise_field(cloud_uv * 37.0);
+	float bank = smoothstep(0.46 - ground_rain * 0.035, 0.66, 0.45 * weather_front + 0.30 * billows + 0.18 * wisps + 0.07 * detail);
+	vec3 clouds = mix(vec3(0.55, 0.64, 0.71), vec3(0.97, 0.97, 0.94), smoothstep(0.25, 0.75, billows * 0.4 + wisps * 0.4 + detail * 0.2));
+	planet = mix(planet, clouds, bank * above_clouds);
+	vec3 normal = normalize(vec3(d.x * travel_km, 6371.0 + altitude_km + d.y * travel_km, d.z * travel_km));
+	float sunlight = smoothstep(-0.12, 0.30, dot(normal, sun_direction));
+	planet *= mix(vec3(0.09, 0.13, 0.22), vec3(1.0), sunlight);
+	planet = mix(planet, mix(sky_horizon.rgb, rim, thin_air), 0.86 * exp(min(elevation, 0.0) * 13.0));
+	return mix(planet, upper, smoothstep(-0.002, 0.002, elevation));
+}
+
 void sky() {
 	if (AT_CUBEMAP_PASS) {
 		// Compatibility keeps this cubemap tiny. Direct lighting and water use the room palette.
 		COLOR = mix(sky_horizon.rgb, sky_zenith.rgb, max(EYEDIR.y, 0.0));
 	} else {
 		vec3 direction = normalize(EYEDIR);
-		COLOR = cloudy_atmosphere(direction, atmosphere(direction));
+		vec3 clear_sky = atmosphere(direction);
+		if (altitude_km <= 0.12) {
+			COLOR = cloudy_atmosphere(direction, clear_sky);
+		} else {
+			vec3 aerial = aerial_view(direction, clear_sky);
+			float blend = mix(smoothstep(0.12, 0.75, altitude_km), above_clouds, smoothstep(-0.03, 0.07, direction.y));
+			COLOR = aerial;
+			if (blend < 1.0) {
+				COLOR = mix(cloudy_atmosphere(direction, clear_sky), aerial, blend);
+			}
+		}
 	}
 }

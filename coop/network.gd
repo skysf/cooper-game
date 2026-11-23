@@ -368,7 +368,10 @@ func _predict_ship(delta: float) -> void:
 	if _predicted_ship.is_empty():
 		return
 	var blend := 1.0 - exp(-delta * 5.0)
-	var correction := (_ship_correction * blend).limit_length(delta * 2.6)
+	var vertical_rate := 2.6 * Spaceship.vertical_scale(float(_predicted_ship.y) - float(_predicted_ship.get("floor", 0.0)))
+	var correction := Vector3(_ship_correction.x, 0.0, _ship_correction.z) * blend
+	correction = correction.limit_length(delta * 2.6)
+	correction.y = clampf(_ship_correction.y * blend, -vertical_rate * delta, vertical_rate * delta)
 	var heading_fix := clampf(_heading_correction * blend, -delta * 0.9, delta * 0.9)
 	_predicted_ship.x += correction.x
 	_predicted_ship.y += correction.y
@@ -384,15 +387,19 @@ func _reconcile_ship(was_piloting: bool) -> void:
 	if ship.get("pilot", "") != self_id:
 		_predicted_ship = {}
 		return
-	var authoritative := Spaceship.position(ship)
-	if not was_piloting or _predicted_ship.is_empty() or authoritative.distance_squared_to(Spaceship.position(_predicted_ship)) > 9.0:
+	var reset_pose := not was_piloting or _predicted_ship.is_empty()
+	if not reset_pose:
+		_ship_correction = Spaceship.position(ship) - Spaceship.position(_predicted_ship)
+		# A snapshot can be a few hundred metres behind the next frame in high-altitude cruise.
+		var vertical_window := maxf(3.0, 1.6 * Spaceship.vertical_scale(float(ship.y) - float(ship.get("floor", 0.0))))
+		reset_pose = absf(_ship_correction.y) > vertical_window or Vector2(_ship_correction.x, _ship_correction.z).length_squared() > 9.0
+	if reset_pose:
 		_predicted_ship = ship.duplicate()
 		_predicted_velocity = Spaceship.velocity_sample(ship)
 		_ship_correction = Vector3.ZERO
 		_heading_correction = 0.0
 		return
 	# Remove snapshot drift over subsequent display frames without replacing the current camera pose.
-	_ship_correction = authoritative - Spaceship.position(_predicted_ship)
 	_heading_correction = angle_difference(float(_predicted_ship.yaw), float(ship.yaw)) if not ship.landed else 0.0
 
 func _receive(msg: Dictionary) -> void:

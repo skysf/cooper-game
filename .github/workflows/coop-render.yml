@@ -27,7 +27,7 @@ jobs:
     name: ${{ inputs.hardware && 'Apple M1 frame timing and visuals' || 'SwiftShader visual A/B' }}
     if: github.event_name != 'workflow_dispatch' || !inputs.hardware || github.ref == 'refs/heads/main'
     runs-on: ${{ inputs.hardware && fromJSON('["self-hosted","macOS","ARM64","cooper-render-gpu"]') || 'ubuntu-24.04' }}
-    timeout-minutes: 40
+    timeout-minutes: 75
     concurrency:
       group: ${{ inputs.hardware && 'cooper-m1-display' || format('cooper-visual-{0}', github.ref) }}
       cancel-in-progress: false

@@ -9,7 +9,7 @@ const HULL_RADIUS := 2.55
 const MIN_CORNER := Rules.MIN_CORNER + Vector2.ONE * HULL_RADIUS
 const MAX_CORNER := Rules.MAX_CORNER - Vector2.ONE * HULL_RADIUS
 const BOARD_RANGE := 3.65
-const CEILING := 32.0
+const MAX_ALTITUDE := 100_000.0 # Metres above the game's sea level.
 const TURN_SPEED := 4.4
 const SURFACE_NAMES := ["land", "water", "rock", "tree", "structure"]
 
@@ -22,6 +22,10 @@ static func position(ship: Dictionary) -> Vector3:
 static func velocity_sample(ship: Dictionary) -> Vector3:
 	var value: Array = ship.get("v", [0.0, 0.0, 0.0])
 	return Vector3(value[0], value[1], value[2])
+
+static func vertical_scale(clearance: float) -> float:
+	# Keep precision around terrain and landmarks. Cruise becomes faster as the hull clears them.
+	return 1.0 + clampf((clearance - 32.0) / 22.0, 0.0, 749.0)
 
 static func exit_point(ship: Dictionary) -> Vector2:
 	return point(ship) + Vector2(1.60, 0.0).rotated(-float(ship.yaw))
@@ -122,8 +126,8 @@ static func step(ship: Dictionary, velocity: Vector3, move: Vector2, lift: float
 	var next := (at + horizontal * dt).clamp(MIN_CORNER, MAX_CORNER)
 	if not next.is_equal_approx(at) or not is_equal_approx(heading, float(ship.yaw)):
 		var candidate := Ground.contact(next, heading, grid, grove_time)
-		var clearance := maxf(altitude, float(support.sideY)) + 0.025
-		if candidate.sideY <= clearance and (not slipping or candidate.y <= altitude + 0.020):
+		var side_clearance := maxf(altitude, float(support.sideY)) + 0.025
+		if candidate.sideY <= side_clearance and (not slipping or candidate.y <= altitude + 0.020):
 			support = candidate
 		elif slipping:
 			var tangent := (support.slide as Vector2).orthogonal() * maxf(0.5, horizontal.length()) * dt
@@ -135,7 +139,7 @@ static func step(ship: Dictionary, velocity: Vector3, move: Vector2, lift: float
 			candidate = left_support if go_left else right_support
 			heading = ship.yaw
 			next = at
-			if candidate.y <= altitude + 0.020 and candidate.sideY <= clearance:
+			if candidate.y <= altitude + 0.020 and candidate.sideY <= side_clearance:
 				next = left if go_left else right
 				support = candidate
 		else:
@@ -143,14 +147,18 @@ static func step(ship: Dictionary, velocity: Vector3, move: Vector2, lift: float
 			heading = ship.yaw
 	horizontal = (next - at) / dt
 
-	var descent_speed := lerpf(0.78, 3.9, smoothstep(0.0, 3.0, altitude - float(support.y)))
-	var climb := lift * (4.8 if lift >= 0.0 else descent_speed)
+	var clearance := altitude - float(support.y)
+	var scale := vertical_scale(clearance)
+	var acceleration := 11.0 * scale
+	var ceiling := Lake.water_y() + MAX_ALTITUDE
+	var climb_speed := minf(4.8 * scale, sqrt(2.0 * acceleration * maxf(ceiling - altitude, 0.0)))
+	var descent_speed := lerpf(0.78, 3.9, smoothstep(0.0, 3.0, clearance)) * scale
+	var climb := lift * (climb_speed if lift >= 0.0 else descent_speed)
 	var vertical_before := velocity.y
 	if slipping:
 		velocity.y = maxf(-6.5, velocity.y - 9.8 * dt)
 	else:
-		velocity.y = move_toward(velocity.y, climb, dt * 11.0)
-	var ceiling := lerpf(CEILING, 65.0, smoothstep(46.0, 86.0, -next.x))
+		velocity.y = move_toward(velocity.y, climb, dt * acceleration)
 	altitude = clampf(altitude + velocity.y * dt, float(support.y), ceiling)
 	var touching := altitude <= float(support.y) + 0.001 and lift <= 0.0
 	ship.x = next.x
@@ -165,7 +173,7 @@ static func step(ship: Dictionary, velocity: Vector3, move: Vector2, lift: float
 		var approach := 1.0 - smoothstep(0.12, 0.82, altitude - float(support.y))
 		ship.tiltX = float(support.pitch) * approach
 		ship.tiltZ = float(support.roll) * approach
-	if is_equal_approx(altitude, ceiling) or touching:
+	if altitude >= ceiling or touching:
 		velocity.y = 0.0
 	return Vector3.ZERO if ship.landed else Vector3(horizontal.x, velocity.y, horizontal.y)
 

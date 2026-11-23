@@ -11,7 +11,7 @@ import {chromium} from 'playwright';
 import {benchmarkWindowPosition, browserTestOptions, clickCanvasPoint, enterCamp, focusWindow,
   hardwareForegroundRequested, macScreenLocked, prepareOffscreenPage, stageOffscreenControls} from './coop-browser-controls.mjs';
 import {captureBlankRaf, installFrameCapture, intervals} from './coop-frame-capture.mjs';
-import {divePose, installSoftwareRoomReplay, recordSoftwareRoom} from './coop-render-fixtures.mjs';
+import {divePose, installSoftwareRoomReplay, prepareSoftwareSite, recordSoftwareRoom} from './coop-render-fixtures.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const output = resolve(process.env.COOP_BENCH_OUT || '.cache/coop-render-benchmark');
@@ -24,7 +24,9 @@ const warmup = Number(process.env.COOP_BENCH_WARMUP || 5);
 const basePort = Number(process.env.COOP_BENCH_PORT || 4270);
 const software = process.env.COOP_BENCH_SOFTWARE === '1';
 const foreground = !software && hardwareForegroundRequested(process.env.COOP_BENCH_HEADLESS);
-const interactionTimeout = software ? 40000 : 6500;
+// The client publishes its pose every quarter-second of game time. A single
+// SwiftShader frame can take several real seconds on a hosted CPU.
+const interactionTimeout = software ? 120000 : 6500;
 const unthrottled = process.env.COOP_BENCH_UNTHROTTLED === '1';
 const windowPosition = foreground ? benchmarkWindowPosition() : null;
 const browserOptions = browserTestOptions({foreground, software, position: windowPosition,
@@ -152,7 +154,8 @@ try {
   const servers = await Promise.all(builds.map(async ([label, directory], index) => {
     const saves = resolve(scratch, label);
     await mkdir(saves);
-    const origin = await startService(directory, saves, basePort + index * 2, services);
+    const site = software ? await prepareSoftwareSite(directory, resolve(scratch, 'site-' + label)) : directory;
+    const origin = await startService(site, saves, basePort + index * 2, services);
     return {label, directory: resolve(directory), saves, origin};
   }));
   if (unthrottled) browserOptions.args.push('--disable-frame-rate-limit', '--disable-gpu-vsync');
@@ -215,10 +218,27 @@ try {
       }
       activeRun.step = 'load-room';
       await page.goto(`${origin}/coop/?room=${room}`, {waitUntil: 'domcontentloaded'});
+      if (software) {
+        // The opaque loading screen covers the main canvas while Godot warms its subviewports.
+        // Limit its pixel load on a CPU rasterizer until the real room is ready.
+        await page.locator('#canvas').evaluate(canvas => { canvas.width = 320; canvas.height = 180; });
+      }
       if (!headless) await focusWindow(page, windowPosition);
       await page.waitForFunction(coast => window.CooperStatus?.ready &&
         (coast ? CooperStatus.focusReady : CooperStatus.resident >= 3) &&
-        document.getElementById('loader').hidden, !!scene.coast, {timeout: software ? 120000 : 50000});
+        document.getElementById('loader').hidden, !!scene.coast, {timeout: software ? 420000 : 50000});
+      if (software) {
+        await page.locator('#canvas').evaluate((canvas, size) => {
+          window.coopFixtureSetStep(1 / 15);
+          canvas.width = size.width;
+          canvas.height = size.height;
+        }, viewport);
+        await page.waitForFunction(size => {
+          const gl = document.getElementById('canvas').getContext('webgl2');
+          return gl?.drawingBufferWidth === size.width && gl.drawingBufferHeight === size.height &&
+            CooperStatus.viewport[0] === size.width && CooperStatus.viewport[1] === size.height;
+        }, viewport, {timeout: interactionTimeout});
+      }
       const initial = await page.evaluate(() => window.CooperStatus);
       assert.ok(Math.hypot(initial.x - x, initial.z - z) < 0.05, 'Room spawn moved for ' + name);
       if (scene.ground !== undefined) {
@@ -266,11 +286,13 @@ try {
         activeRun.scene = view;
         activeRun.step = 'select-view';
         const equipment = !!scenes[view].equipment;
+        if (software && equipment) await page.evaluate(() => window.coopFixtureSetStep(1 / 15));
         let legacyInventory = software && equipment && !await selectEquipment(page, label === 'before');
         const timeInventoryAction = !software && scene.inventory;
         const screenshotClock = scene.clock + warmup;
         activeRun.step = 'before-screenshot';
         await page.waitForFunction(clock => CooperStatus.elapsed >= clock, screenshotClock, {timeout: interactionTimeout});
+        if (software) await page.evaluate(() => window.coopFixtureSetStep(1 / 60));
         const screenshot = label + '-' + view + '.png';
         const beforeScreenshot = scene.transition ? label + '-' + view + '-before.png' : screenshot;
         const still = await page.evaluate(() => window.CooperStatus);
@@ -280,7 +302,7 @@ try {
         await page.waitForTimeout(400);
         const start = await page.evaluate(() => window.CooperStatus);
         const sampleSeconds = scene.transition === 'sunrise' ? Math.max(seconds, 7.5)
-          : software && scene.transition === 'repair' ? 40 : seconds;
+          : software && scene.transition === 'repair' ? 2 * interactionTimeout / 1000 : seconds;
         const collecting = page.evaluate(([ms, minimumFrames]) => window.coopBenchSample(ms, minimumFrames),
           [sampleSeconds * 1000, software ? 3 : 0]);
         let transition;
@@ -289,6 +311,7 @@ try {
         if (scene.transition === 'repair') {
           activeRun.step = 'confirm-repair';
           await page.waitForFunction(() => window.coopBenchSampling, null, {timeout: interactionTimeout});
+          if (software) await page.evaluate(() => window.coopFixtureSetStep(1 / 15));
           const requested = await page.evaluate(() => performance.now());
           await page.keyboard.press('e');
           await page.waitForFunction(() => CooperStatus.quest.repaired, null, {timeout: interactionTimeout});
@@ -297,11 +320,8 @@ try {
           if (software) {
             // Let the regular fade reach full brightness in simulated time,
             // even if each SwiftShader frame takes several wall-clock seconds.
-            const settled = await page.evaluate(() => {
-              window.coopFixtureSetStep(1 / 15);
-              return window.coopFixtureClock() + 640;
-            });
-            await page.waitForFunction(target => window.coopFixtureClock() >= target, settled, {timeout: 60000});
+            const settled = await page.evaluate(() => window.coopFixtureClock() + 640);
+            await page.waitForFunction(target => window.coopFixtureClock() >= target, settled, {timeout: interactionTimeout});
             await page.evaluate(() => {
               window.coopFixtureSetStep(1 / 60);
               window.coopBenchFinish = true;

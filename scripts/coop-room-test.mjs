@@ -46,7 +46,8 @@ async function boot() {
     const line=String(data);logs.push(line);
     if(line.includes('ROOM_SERVER_READY'))ready=true;
   });
-  await until(()=>{if(server.exitCode !== null) throw Error(logs.slice(-12).join(''));return ready;});
+  // A cold server builds the expanded world's navigation grid before it starts listening.
+  await until(()=>{if(server.exitCode !== null) throw Error(logs.slice(-12).join(''));return ready;}, 30000);
 }
 async function stop() {
   if(!server || server.exitCode!==null || server.signalCode!==null)return;

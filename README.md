@@ -1,13 +1,28 @@
-# 雨线营地
+# Cooper
 
-Cooper Game 是一款 Godot 第一人称林地合作生存样片。1–4 人可以在同一网络收集材料、修屋避雨，或到鹿鸣湖看落日和银河。
+**1–4 人合作生存 · 1–4 player co-op survival**
 
-## 试玩
+桌面浏览器和 macOS · Desktop browsers and macOS
 
-房主需要 Node.js 24 和 Godot 4.7.2。可以从 [Actions](https://github.com/skysf/cooper-game/actions/workflows/coop.yml) 下载 Web 构建，将包内的 `dist/coop/` 放入项目的同名目录。自行构建可安装 Python 3、NumPy 和 Pillow，然后运行 `npm run coop:build:web`。
+第一场雨来前，和队友分头去溪谷取木料、上瞭望塔找防水布，再回木屋修好屋顶。雨停后，可以划船穿过鹿鸣湖、进矿洞找矿，或游到外海小岛看乐山大佛。营地的红色飞船能带你一路升到 100 公里高空。
 
-在项目根目录运行 `npm run coop:lan`，然后打开[本机营地](http://localhost:4184/coop/?room=pine)。朋友使用终端打印的同网地址加入。
+Split up before the first storm. Gather timber in the creek valley and find a tarp at the lookout, then meet back at the cabin to repair the roof. After the rain, row across the lake, explore the mines, or swim to the offshore island to see the Leshan Giant Buddha. Back at camp, the red spacecraft can take you 100 km above the coast.
 
-本机自动试玩和基准默认无窗口运行，测试输入留在各自的浏览器会话里。正式硬件帧时由有独立显示器的专用运行器采集。[自动试玩与帧时基准](docs/render-benchmark.md)
+![飞船在 100 公里高空俯瞰云层与地平线 / The spacecraft above the clouds at 100 km](evidence/atmosphere-flight/edge.png)
 
-[试玩、构建与 CI](docs/play.md) · [合作实测](docs/coop.md) · [项目索引](AGENTS.md) · [MIT](LICENSE) · [素材许可与署名](THIRD_PARTY_NOTICES.md)
+| 鹿鸣湖上的队友 · Crewmates on the lake | 从外海小岛望向乐山大佛 · The Buddha from the offshore island |
+| --- | --- |
+| ![两名玩家站在湖上住船中 / Two players aboard the houseboat](evidence/lake-life/crew-at-home.jpg) | ![岛上看向对岸崖壁上的大佛 / The Buddha carved into the cliff across the water](evidence/leshan-eyes/offshore-island.webp) |
+
+## 局域网开局 · Host on your LAN
+
+房主需要 Node.js 24、Godot 4.7.2、Python 3、NumPy 和 Pillow。在项目根目录运行下面两条命令，同一 Wi-Fi 的队友打开终端显示的邀请地址即可加入。
+
+The host needs Node.js 24, Godot 4.7.2, Python 3, NumPy and Pillow. Run these commands from the project root, then share the printed invite URL with players on the same Wi-Fi.
+
+```sh
+npm run coop:build:web
+npm run coop:lan
+```
+
+[操作与构建 / Controls & builds](docs/play.md) · [MIT](LICENSE) · [素材署名 / Asset credits](THIRD_PARTY_NOTICES.md)

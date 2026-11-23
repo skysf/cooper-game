@@ -91,6 +91,40 @@ func _check_buddha() -> void:
 	_expect(walker.point.distance_to(blocked)>6.0 and walker.y < statue.sole_y+3,
 		"Walking into the toes cannot pass through the foot or snap up onto the knees")
 
+func _check_atmospheric_flight(ship: Dictionary) -> void:
+	var velocity := Vector3.ZERO
+	var sea_level := Lake.water_y()
+	var ceiling := sea_level + Ship.MAX_ALTITUDE
+	var at := Ship.point(ship)
+	for tick in 1800:
+		velocity = Ship.step(ship, velocity, Vector2.ZERO, 1.0, ship.yaw, STEP, ship_grid)
+		if ship.y > sea_level + 1000.0:
+			break
+	_expect(ship.y > sea_level + 1000.0 and velocity.y > 50, "The coastal flight clears the old ceiling and accelerates above the terrain")
+	for tick in 120:
+		velocity = Ship.step(ship, velocity, Vector2.ZERO, 0.0, ship.yaw, STEP, ship_grid)
+	var hover_y: float = ship.y
+	velocity = Ship.step(ship, velocity, Vector2.ZERO, 0.0, ship.yaw, STEP, ship_grid)
+	_expect(velocity.is_zero_approx() and ship.y == hover_y, "Releasing lift holds altitude in the climb")
+	for tick in 4800:
+		velocity = Ship.step(ship, velocity, Vector2.ZERO, 1.0, ship.yaw, STEP, ship_grid)
+		if ship.y >= ceiling:
+			break
+	velocity = Ship.step(ship, velocity, Vector2.ZERO, 1.0, ship.yaw, STEP, ship_grid)
+	_expect(absf(ship.y - ceiling) < 0.02 and is_zero_approx(velocity.y) and not ship.landed, "The ship holds at 100 km above sea level under continued thrust")
+	for x: float in [-86.0, -46.0, Ship.PAD.x, 90.0, 320.0]:
+		var crossing := ship.duplicate()
+		crossing.x = x - 0.04
+		Ship.step(crossing, Vector3.RIGHT * 11.0, Vector2.RIGHT, 0.0, ship.yaw, STEP, ship_grid)
+		_expect(crossing.x > x and absf(crossing.y - ceiling) < 0.02, "Crossing x=%.0f at the limit preserves altitude" % x)
+	velocity = Ship.step(ship, velocity, Vector2.ZERO, -1.0, ship.yaw, STEP, ship_grid)
+	_expect(ship.y < ceiling and velocity.y < 0.0, "The pilot can immediately descend from the limit")
+	for tick in 6400:
+		velocity = Ship.step(ship, velocity, Vector2.ZERO, -1.0, ship.yaw, STEP, ship_grid)
+		if ship.landed:
+			break
+	_expect(ship.landed and ship.onWater and absf(ship.y - sea_level) < 0.08 and Ship.point(ship) == at, "Continuous descent from 100 km settles on the original water surface")
+
 func _run() -> void:
 	var world: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://world.json"))
 	grid = Rules.collision_grid(world.obstacles)
@@ -135,6 +169,7 @@ func _run() -> void:
 	var dismount := Ship.dismount(afloat, grid, ship_grid, 0.0)
 	_expect(afloat.onWater and dismount.is_finite() and Motion.put_ashore(dismount).swimming,
 		"The ship can park on sea water and let a player get out to swim")
+	_check_atmospheric_flight(afloat)
 	var persisted := Motion.spawn(flight_target)
 	_expect(persisted.y > 0.3 and persisted.grounded, "A saved island location restores on the new terrain")
 	print("COAST_PHYSICS ", JSON.stringify({"checks": notes, "seamError": join_error, "swimFrames": swim_count[0],

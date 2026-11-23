@@ -181,6 +181,8 @@ func _tick_player(room: Dictionary, id: String, rain: float, grove_time: float, 
 		PlayerMotion.step(actor, actor.direction, actor.lift, delta, grid, room.ship, ship_grid, grove_time,room.data.storage, room.data.get("ferryDepartedAt", -1.0), room.data.elapsed)
 		if StorageWildlife.alive(room,"boar"):
 			Boar.clear_body(actor,before,room.data.get("boar",{}),grid)
+	if piloting:
+		rain *= Rules.rain_exposure(actor.y)
 	Survival.tick(room.data.survival[id], actor.point, room.data.quest.repaired and room.data.wildPeople.facility > 20.0, rain, delta, piloting)
 
 func _resolve_knockouts(code: String, room: Dictionary) -> void:

@@ -267,6 +267,12 @@ func _verify_spaceship(room: Dictionary, alice: Dictionary, bob: Dictionary) -> 
 	_message(alice, {"t": "ship", "action": "board"})
 	_pilot_motion(room, alice, Vector2.ZERO, 1, 60)
 	_expect(ship.pilot == alice.id and not ship.landed and ship.y > 2.5, "a swimmer can board and take off from the water")
+	_pilot_motion(room, alice, Vector2.ZERO, 1, 4500)
+	_publish(ROOM)
+	var high_ship: Dictionary = _snapshot(bob).ship
+	_expect(absf(high_ship.y - LakeLayout.water_y() - Spaceship.MAX_ALTITUDE) < 0.02 and not high_ship.landed
+		and is_zero_approx(high_ship.v[1]) and room.data.ship.y < 1.0,
+		"the teammate sees the pilot hover at the atmospheric limit while the last water landing stays saved")
 	return location
 
 func _verify_flight_surfaces() -> void:

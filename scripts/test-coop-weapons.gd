@@ -213,7 +213,10 @@ func _verify_animals(room: Dictionary, alice: Dictionary) -> void:
 	_leave(3)
 	_join_as(5, ALICE)
 	var loaded: Dictionary = rooms[ROOM]
-	_expect(loaded.data.storageWildlife == {"croc": 0.0, "eagle": 0.0, "dog": 0.0}
+	var expected_health := StorageWildlife.MAX_HEALTH.duplicate()
+	for species in ["croc", "eagle", "dog"]:
+		expected_health[species] = 0.0
+	_expect(loaded.data.storageWildlife == expected_health
 		and loaded.data.storage.has_all(["corpse-croc", "corpse-eagle", "corpse-dog"]),
 		"Room reload keeps all three deaths and their shared corpses")
 

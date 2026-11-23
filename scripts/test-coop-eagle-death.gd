@@ -46,8 +46,10 @@ func _run() -> void:
 			dry_flight = clock
 			break
 	_check(dry_flight >= 0.0, "Dry flight exists on the current route")
+	# During the first landing the grazing ewe stands over this vertical hit path.
+	var ground_time := 39.0 + 2.0 * Wildlife.EAGLE_PERIOD
 	for row: Array in [["perch", 4.0, "Collapse", false], ["dry_flight", dry_flight, "Fall", false],
-			["lake_flight", 20.0, "Fall", true], ["ground", 39.0, "Collapse", false]]:
+			["lake_flight", 20.0, "Fall", true], ["ground", ground_time, "Collapse", false]]:
 		_case(row[0], row[1], row[2], row[3])
 	scene.queue_free()
 	await process_frame

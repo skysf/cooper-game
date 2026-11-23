@@ -1,0 +1,48 @@
+{
+  "geometry": {
+    "Face • carved Maitreya": {
+      "triangles": 44476,
+      "openEdges": 0,
+      "nonmanifoldEdges": 0,
+      "signedVolumeM3": 1008.95
+    },
+    "Long earlobe L": {
+      "triangles": 5740,
+      "openEdges": 0,
+      "nonmanifoldEdges": 0,
+      "signedVolumeM3": 13.69
+    },
+    "Long earlobe R": {
+      "triangles": 5740,
+      "openEdges": 0,
+      "nonmanifoldEdges": 0,
+      "signedVolumeM3": 13.69
+    }
+  },
+  "triangles": 186083,
+  "previousTriangles": 157574,
+  "sizeBytes": 18789488,
+  "heightAboveSolesM": 70.94,
+  "materials": 2,
+  "textureSizes": {
+    "Monument normal": [
+      2048,
+      2048
+    ],
+    "Monument colour": [
+      2048,
+      2048
+    ],
+    "Feet and toenails normal": [
+      2048,
+      2048
+    ],
+    "Feet and toenails colour": [
+      2048,
+      2048
+    ]
+  },
+  "feetTextureContentIdentical": true,
+  "greatToenailGeometryIdentical": true,
+  "gameAssetByteIdentical": true
+}

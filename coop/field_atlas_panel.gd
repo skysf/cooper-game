@@ -57,7 +57,7 @@ func _ready() -> void:
 	header.add_child(title)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_label(title, "鹿鸣湖与东部山地", 27, PAPER_TEXT)
-	_label(title, "雨线营地  ·  野外图册", 13, SOFT_TEXT)
+	_label(title, "Cooper  ·  野外图册", 13, SOFT_TEXT)
 	var center := _button(header, "定位我", 65)
 	center.pressed.connect(view.recenter)
 	zoom_out = _button(header, "−", 37)
