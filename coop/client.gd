@@ -903,6 +903,7 @@ func _process(delta: float) -> void:
 			chase_ship = true
 		else:
 			eye_offset = PlayerMotion.eye_offset(swimming)
+			camera.far = Weather.LANDSCAPE_FAR
 		was_piloting = piloting
 	spaceship.sync(net.rendered_ship(), net.elapsed, delta, piloting)
 	var stride := minf(body_pos.distance_to(previous),.18)
@@ -1018,7 +1019,7 @@ func _process(delta: float) -> void:
 			var source: Dictionary = WildPeople.SOURCES[tracked_source]
 			var offset := Vector2(source.x, source.z) - body_pos
 			hud.bearing.text = source.name
-			hud.bearing_distance.text = "%d m" % roundi(offset.length())
+			hud.show_target_distance(state, offset)
 			var relative := wrapf(atan2(-offset.x, -offset.y) - yaw, -PI, PI)
 			hud.bearing_arrow.text = "↑" if absf(relative) < .32 else "身后" if absf(relative) > 2.72 else "←" if relative > 0 else "→"
 		if telemetry_clock <= 0.0:
@@ -1063,7 +1064,9 @@ func _update_ship_camera(delta := 1.0 / 60.0) -> void:
 	var turn_blend := 1.0 - exp(-delta * 24.0)
 	ship_view_yaw = wrapf(lerp_angle(ship_view_yaw, yaw, turn_blend), -PI, PI)
 	ship_view_pitch = lerpf(ship_view_pitch, pitch, turn_blend)
-	var view_pitch := clampf(ship_view_pitch - 0.19, -0.91, 0.18) if chase_ship else clampf(ship_view_pitch, -0.84, 0.91)
+	var altitude := spaceship.position.y - LakeLayout.water_y()
+	var high_view := smoothstep(120.0, 800.0, altitude)
+	var view_pitch := clampf(ship_view_pitch - 0.19, lerpf(-0.91, -1.50, high_view), 0.18) if chase_ship else clampf(ship_view_pitch, lerpf(-0.84, -1.40, high_view), 0.91)
 	camera.basis = Basis.from_euler(Vector3(view_pitch, ship_view_yaw, 0.0))
 	if chase_ship:
 		var pivot: Vector3 = spaceship.position + Vector3.UP * 1.22
@@ -1078,6 +1081,7 @@ func _update_ship_camera(delta := 1.0 / 60.0) -> void:
 		camera.position = spaceship.cockpit_eye()
 	camera.fov = VIEW_FOV
 	camera.near = 0.07
+	camera.far = maxf(Weather.LANDSCAPE_FAR, altitude * 1.5 + 420.0)
 
 func _update_ship_target() -> void:
 	ship_target = false
@@ -1248,7 +1252,30 @@ func _bed_user(id: String) -> String:
 			return npc.name + ("正在休息" if npc.get("bed","")==id else "正在前往床边")
 	return ""
 
+func _flight_prompt() -> String:
+	if net.ship.onWater:
+		return "水面停泊    空格  起飞    E  下机"
+	if net.ship.landed:
+		match str(net.ship.get("surface", "land")):
+			"rock": return "石头上停稳    空格  起飞    E  下机"
+			"tree": return "树上停稳    空格  起飞    E  下机"
+			_: return "空格  起飞    E  下机"
+	var altitude := spaceship.position.y - LakeLayout.water_y()
+	if altitude >= Spaceship.MAX_ALTITUDE - 0.1:
+		return "大气层边缘 · 海拔 %.0f 公里    C  下降" % (Spaceship.MAX_ALTITUDE * 0.001)
+	if altitude >= 1000.0:
+		return "海拔 %.1f 公里    空格  上升    C  下降" % (altitude * 0.001)
+	var height := maxf(0.0, spaceship.position.y - float(net.ship.get("floor", 0.0)))
+	var landing := "C  下降"
+	if net.ship.get("slipping", false):
+		landing = "下方不稳，飞船下落中"
+	elif not net.ship.canLand:
+		landing = "C  下降 · 下方不稳"
+	return "离地 %.1f m    %s" % [height, landing]
+
 func _interaction_prompt(can_fix: bool) -> String:
+	if net.is_piloting():
+		return _flight_prompt()
 	if not str(net.player_motion.get("bed","")).is_empty():
 		return "躺卧休息 · 健康 %d / 100    E  起身" % roundi(net.survival.get("health",100))
 	if not net.is_piloting() and net.survival.get("health", 100.0) <= 0.0:
@@ -1300,19 +1327,6 @@ func _interaction_prompt(can_fix: bool) -> String:
 		return "鹿鸣湖淡水    F  装一份水"
 	if not source_target.is_empty():
 		return "F    %s · 采集一份（库存 %d）" % [WildPeople.SOURCES[source_target].name, net.wild_people.resources[source_target].stock]
-	if net.is_piloting():
-		if net.ship.onWater:
-			return "水面停泊    空格  起飞    E  下机"
-		if net.ship.landed:
-			match str(net.ship.get("surface", "land")):
-				"rock": return "石头上停稳    空格  起飞    E  下机"
-				"tree": return "树上停稳    空格  起飞    E  下机"
-				_: return "空格  起飞    E  下机"
-		var height := maxf(0.0, spaceship.position.y - LakeLayout.ground_height(Spaceship.point(net.ship)))
-		var landing := "下方不稳，飞船下落中" if net.ship.get("slipping", false) else "C  下降"
-		if not net.ship.canLand and not net.ship.get("slipping", false):
-			landing = "C  下降 · 下方不稳"
-		return "飞行高度 %.1f m    %s" % [height, landing]
 	if ship_target:
 		if not PlayerMotion.boardable(net.ship, net.player_motion):
 			return "空格    上浮到水面后登机" if net.ship.onWater else "靠近同一高度后登机"
@@ -1610,7 +1624,7 @@ func _state() -> Dictionary:
 		"boar":net.boar, "boarAnimation":forest_boar.clip, "reedTarget":reed_target,"reedCuts":net.reed_cuts, "sheepAlive":net.sheep_alive, "shearedAt":net.sheared_at,
 		"wildPeople": net.wild_people, "peopleTarget": people_target, "peopleOpen": people_open, "sourceTarget": source_target, "peoplePanel": people_panel.observables(), "peopleWarmupMs": people_scene.warmup_ms, "peopleWarmupCount": people_scene.warmup_count, "peoplePoolHits": people_scene.pool_hits, "peopleColdCreates": people_scene.cold_creates, "peoplePoolByKey": people_scene.pool_by_key, "peopleColdByKey": people_scene.cold_by_key,
 		"ship": net.ship, "shipPiloting": net.is_piloting(), "shipTarget": ship_target,
-		"shipCameraYaw": ship_view_yaw,
+		"shipCameraYaw": ship_view_yaw, "flightAltitude": spaceship.position.y - LakeLayout.water_y() if net.is_piloting() else 0.0,
 		"fps": Engine.get_frames_per_second(),
 		"swimming": net.player_motion.swimming and not net.is_piloting(), "y": net.player_motion.y,
 		"canPutProvision":_can_put_on_table(), "foodTarget":food_target, "jugTarget":jug_target,

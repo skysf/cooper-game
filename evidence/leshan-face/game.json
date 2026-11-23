@@ -1,0 +1,29 @@
+{
+  "physicsChecksPassed": 19,
+  "siteViews": {
+    "island": {
+      "x": -187.550003051758,
+      "y": 8.23870011113468,
+      "z": -57.0999984741211,
+      "yaw": -1.28443062944585,
+      "pitch": 0.225334259723063,
+      "swimming": false,
+      "day": "day"
+    },
+    "buddhaLanding": {
+      "x": -113.838706970215,
+      "y": 0.792900014129827,
+      "z": -78.5678253173828,
+      "yaw": -1.99516368275299,
+      "pitch": 0.200984527976956,
+      "swimming": false,
+      "day": "day"
+    }
+  },
+  "webErrors": [],
+  "packagedCoastCloseViews": [
+    "front",
+    "quarter",
+    "reverse"
+  ]
+}

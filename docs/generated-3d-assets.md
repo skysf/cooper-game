@@ -30,9 +30,13 @@ python3 scripts/refine-mine-pickups.py pack "$pickup_output/raw" "$pickup_output
 
 佛像是参照乐山大佛坐姿制作的独立游戏雕刻，足底基准面至螺髻高 70.94 米，脚下石台向下延伸 1.65 米。两脚各有五趾，每只脚朝内的大脚趾甲约宽 2.21 米、长 1.92 米。Blender 使用米制、正面朝 −Y，导出至 Godot 后正面朝 +Z。游戏以原尺寸把雕像安放在外海小岛对岸，朝向岛顶步道。重导出后运行 `python3 scripts/build-coast.py` 可同步游戏 GLB 和房间碰撞数据。[可编辑源件](../art/landmarks/leshan_buddha/leshan_buddha.blend) · [游戏 GLB](../coop/coast/leshan_buddha.glb) · [海岸实景](../evidence/leshan-coast/island.png)
 
-Godot 4.7.2 识别 `HalluxNail_L-col` 和 `HalluxNail_R-col`，为两块可见甲面各建了三角网碰撞。独立场景使用正式营地角色和游戏的 0.29 米碰撞半径，每次让四人落到同一枚甲面。两脚均通过。每只脚另取 132 个脚印采样点，命中同一枚甲面，最近的两人之间有约 0.20 米余量。游戏版雕像有 157,574 个三角面，躯体与足部各用一套 2K 底色和法线。[四人脚底近景](../evidence/leshan-buddha-scale/four-on-one-toenail.png) · [尺度对照](../evidence/leshan-buddha-scale/scale-review.jpg) · [碰撞实测数据](../evidence/leshan-buddha-scale/grounding.json)
+Godot 4.7.2 识别 `HalluxNail_L-col` 和 `HalluxNail_R-col`，为两块可见甲面各建了三角网碰撞。独立场景使用正式营地角色和游戏的 0.29 米碰撞半径，每次让四人落到同一枚甲面。两脚均通过。每只脚另取 132 个脚印采样点，命中同一枚甲面，最近的两人之间有约 0.20 米余量。游戏版雕像有 194,693 个三角面，躯体与足部各用一套 2K 底色和法线。[四人脚底近景](../evidence/leshan-buddha-scale/four-on-one-toenail.png) · [尺度对照](../evidence/leshan-buddha-scale/scale-review.jpg) · [碰撞实测数据](../evidence/leshan-buddha-scale/grounding.json)
 
-从项目根目录执行下列命令可重新制作两份模型。只重导出手工调整过的源件时，可使用第二条命令。
+两张头部侧照用于确定耳轮、耳甲腔、鼻翼及半垂眼睑的立体形状。眼睑和眼球与眼眶共用边界顶点。鼻梁沿截面过渡到鼻头和两侧鼻翼，耳甲腔与耳屏雕在同一个耳壳里。整个头部沿用已有砂岩、风化纹理和眉部色板。网页近岸地标与 Mac 版都读取同一份 GLB。 [同光照灰模对照](../evidence/leshan-face/face-comparison.webp) · [海岸近景](../evidence/leshan-face/coast-reverse.webp) · [岛上实景](../evidence/leshan-face/offshore-island.webp) · [网格检查](../evidence/leshan-face/geometry.json)
+
+从外海小岛仰视时，原先的两道眼缝很难辨出目光。现在上下眼睑中央的间距从约 0.49 米增至 0.80 米，上睑遮住虹膜上缘，瞳孔凹入石面。眼窝的局部遮蔽烘入原有砂岩材质。网页与 Mac 发行包使用同一版面部网格。 [晴天与阴雨同机位对照](../evidence/leshan-eyes/eyes-before-after.webp) · [浏览器岛上实景](../evidence/leshan-eyes/offshore-island.webp) · [几何与实测](../evidence/leshan-eyes/checks.json)
+
+从项目根目录执行下列命令可重新制作两份模型。只重导出手工调整过的源件时，可使用第二条命令。第一条命令末尾加 `-- --sculpt-only` 可单独保存 Blender 雕刻。
 
 ```sh
 ./scripts/start-blender.sh --background --factory-startup --python-exit-code 1 --python art/landmarks/leshan_buddha/build.py

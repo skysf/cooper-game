@@ -509,7 +509,7 @@ func _build_briefing() -> void:
 	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	panel.add_theme_stylebox_override("panel", _style(PANEL, EDGE, Vector2(16, 14)))
 	var content := _column(panel, 10)
-	briefing_title = _label(content, 30, INK, "雨线营地", true)
+	briefing_title = _label(content, 30, INK, "Cooper", true)
 	briefing = _label(content, 16, MUTED)
 	briefing.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
@@ -599,7 +599,7 @@ func _build_backpack() -> void:
 	var shell := _column(backpack_panel, 0)
 	var top := _column(_camp_band(shell, CAMP_FRAME, Vector2(18, 11)), 9)
 	var header := _row(top, 14)
-	_label(header, 27, CAMP_PAPER, "雨线营地", true)
+	_label(header, 27, CAMP_PAPER, "Cooper", true)
 	camp_location = _label(header, 14, CAMP_SOFT)
 	camp_location.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	camp_location.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -1185,8 +1185,18 @@ func say(message: String) -> void:
 func _direction(angle: float) -> String:
 	return HEADING[posmod(roundi(angle / (PI / 4)), 8)]
 
+func show_target_distance(s: Dictionary, offset: Vector2) -> void:
+	var metres := offset.length()
+	if s.get("shipPiloting", false):
+		var below := Vector2(s.x, s.z) + offset
+		var rise := float(s.flightAltitude) + Rules.LakeLayout.water_y() - Rules.LakeLayout.ground_height(below)
+		metres = Vector2(metres, rise).length()
+	bearing_distance.text = "%.1f km" % (metres * 0.001) if metres >= 1000.0 else "%d m" % roundi(metres)
+
 func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: String) -> void:
 	area_title.text = AREA.get(s.zone,"林间营地")
+	if float(s.get("flightAltitude", 0.0)) >= 1000.0:
+		area_title.text += "上空"
 	room_line.text = "房间 %s" % s.room
 	room_count.text = "%s / 4 人" % s.members
 	grove_hint.text = s.groveHint
@@ -1199,7 +1209,9 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 	var phase := fposmod(float(s.elapsed), Rules.WEATHER_CYCLE)
 	var time_name: String = {"dawn": "黎明", "day": "白天", "dusk": "暮色", "night": "夜晚"}.get(s.dayPart, "白天")
 	var conditions := "晴间多云"
-	if phase >= Rules.RAIN_START and phase < Rules.RAIN_END:
+	if float(s.get("flightAltitude", 0.0)) >= Rules.CLOUD_TOP_METRES:
+		conditions = "云层上方"
+	elif phase >= Rules.RAIN_START and phase < Rules.RAIN_END:
 		conditions = "雨势渐强" if phase < Rules.RAIN_START + Rules.RAIN_RAMP else "暴雨"
 		if phase >= Rules.RAIN_EASING:
 			conditions = "雨势渐弱"
@@ -1222,7 +1234,7 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 	var arrow := "↑" if absf(relative)<.32 else ("身后" if absf(relative)>2.72 else ("←" if relative>0 else "→"))
 	bearing_arrow.text = arrow
 	bearing.text = GOALS.get(target, "营地")
-	bearing_distance.text = "%d m" % roundi(delta_to_target.length())
+	show_target_distance(s, delta_to_target)
 	bearing.tooltip_text = "面向%s，目标在%s" % [_direction(s.yaw),_direction(direction)]
 	var active: bool = s.locked
 	var show_world := not backpack_open and not modal_open
@@ -1261,7 +1273,7 @@ func refresh(s: Dictionary, target: String, delta_to_target: Vector2, action: St
 		enter.text = "加载林区…"
 		briefing.text = s.terrainError if not s.terrainError.is_empty() else "正在载入脚下林区"
 	else:
-		briefing_title.text = "营地菜单" if entered_field else "雨线营地"
+		briefing_title.text = "营地菜单" if entered_field else "Cooper"
 		enter.text = "继续探索" if entered_field else "进入林地"
 		if entered_field:
 			briefing.text = "Shift+Esc 放开鼠标。"

@@ -1,6 +1,7 @@
 extends RefCounted
 
 const Lake = preload("res://lake_layout.gd")
+const Rules = preload("res://rules.gd")
 const Stones = preload("res://stones.gd")
 # Recording gain in dB and audible radius in metres.
 const LOOPS := {
@@ -62,7 +63,7 @@ func update(audio, net, fire_props: Dictionary, delta: float, weather_ear: Vecto
 	var cover := Lake.Gallery.darkness(weather_ear)
 	var at_water := Lake.surface_height(Vector2(weather_ear.x, weather_ear.z))
 	var outdoors := (1.0 - 0.97 * cover) * (0.18 if weather_ear.y < at_water - 0.07 else 1.0)
-	_mix(audio, &"rain", eye, float(net.rain) * outdoors, dt)
+	_mix(audio, &"rain", eye, float(net.rain) * outdoors * Rules.rain_exposure(weather_ear.y), dt)
 	_mix(audio, &"stream", water_source(eye), outdoors, dt)
 	var croc: Dictionary = net.crocodile
 	var swimming: bool = croc.get("clip", "") in ["Swim", "Dive", "Surface"]

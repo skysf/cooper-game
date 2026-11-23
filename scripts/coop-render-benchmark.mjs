@@ -215,10 +215,26 @@ try {
       }
       activeRun.step = 'load-room';
       await page.goto(`${origin}/coop/?room=${room}`, {waitUntil: 'domcontentloaded'});
+      if (software) {
+        // The opaque loading screen covers the main canvas while Godot warms its subviewports.
+        // Limit its pixel load on a CPU rasterizer until the real room is ready.
+        await page.locator('#canvas').evaluate(canvas => { canvas.width = 320; canvas.height = 180; });
+      }
       if (!headless) await focusWindow(page, windowPosition);
       await page.waitForFunction(coast => window.CooperStatus?.ready &&
         (coast ? CooperStatus.focusReady : CooperStatus.resident >= 3) &&
-        document.getElementById('loader').hidden, !!scene.coast, {timeout: software ? 120000 : 50000});
+        document.getElementById('loader').hidden, !!scene.coast, {timeout: software ? 420000 : 50000});
+      if (software) {
+        await page.locator('#canvas').evaluate((canvas, size) => {
+          canvas.width = size.width;
+          canvas.height = size.height;
+        }, viewport);
+        await page.waitForFunction(size => {
+          const gl = document.getElementById('canvas').getContext('webgl2');
+          return gl?.drawingBufferWidth === size.width && gl.drawingBufferHeight === size.height &&
+            CooperStatus.viewport[0] === size.width && CooperStatus.viewport[1] === size.height;
+        }, viewport, {timeout: interactionTimeout});
+      }
       const initial = await page.evaluate(() => window.CooperStatus);
       assert.ok(Math.hypot(initial.x - x, initial.z - z) < 0.05, 'Room spawn moved for ' + name);
       if (scene.ground !== undefined) {

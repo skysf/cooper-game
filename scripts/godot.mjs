@@ -47,7 +47,7 @@ run('python3', [resolve(root, 'scripts/godot-templates.py'), web ? 'web' : 'mac'
 if (web && !coop) run(process.execPath, [resolve(root, 'scripts/shell.mjs')]);
 const args = ['--headless', '--path', project, '--log-file', resolve(cache, 'godot-export.log')];
 run(engine, [...args, '--import'], true);
-const output = resolve(workspaceOutput, web ? 'index.html' : (coop ? 'CooperCamp.app' : 'Woodland.app'));
+const output = resolve(workspaceOutput, web ? 'index.html' : (coop ? 'Cooper.app' : 'Woodland.app'));
 run(engine, [...args, '--export-release', web ? 'Web' : 'macOS', output], true);
 if (web) {
   for (const name of ['index.html', 'index.js', 'index.wasm', 'index.pck']) {

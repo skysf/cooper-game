@@ -1,6 +1,7 @@
 extends Node3D
 
 const WindField = preload("res://vegetation/wind_field.gd")
+const Rules = preload("res://rules.gd")
 const RainShelter = preload("res://rain_shelter.gd")
 const RAIN_SHADER = preload("res://materials/rain_streaks.gdshader")
 const SKY_SHADER := preload("res://materials/camp_sky.gdshader")
@@ -55,6 +56,7 @@ var _last_sky_time := -1.0
 var _last_sky_rain := -1.0
 var daylight_shadow_range := 38.0
 var coastal_view := 0.0
+var aerial_altitude_km := 0.0
 
 func _ready() -> void:
 	var world := WorldEnvironment.new()
@@ -186,6 +188,10 @@ func _update_sky(elapsed: float, wet: float) -> void:
 	# Interpolate extinction so the distant ridges return gradually as the rain clears.
 	environment.fog_depth_begin = 1.0 / lerpf(1.0 / 115.0, 1.0 / lerpf(8.0, 20.0, coastal_view), wet)
 	environment.fog_depth_end = 1.0 / lerpf(1.0 / 700.0, 1.0 / lerpf(49.0, 169.0, coastal_view), wet)
+	if aerial_altitude_km > 0.0:
+		var distance_gain := smoothstep(0.12, 2.0, aerial_altitude_km) * aerial_altitude_km
+		environment.fog_depth_begin += distance_gain * 450.0
+		environment.fog_depth_end += distance_gain * 1800.0
 	environment.fog_sky_affect = immersion * 0.91
 	if immersion > 0.0:
 		var depth_weight := smoothstep(0.10, 1.85, eye_depth)
@@ -247,7 +253,13 @@ func update_weather(at: Vector3, elapsed: float, wet: float, repaired: bool,
 	var depth := camera_water_depth if not is_nan(camera_water_depth) else (1.0 if below_water else -1.0)
 	var blend := smoothstep(-0.045, 0.17, depth)
 	var cave := preload("res://east/mine_ground.gd").darkness(at)
-	if (absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01
+	var altitude_km := maxf(0.0, at.y - Rules.LakeLayout.water_y()) * 0.001
+	if altitude_km <= 0.12:
+		altitude_km = 0.0
+	var exposure := Rules.rain_exposure(at.y)
+	var ground_rain := wet
+	wet *= exposure
+	if (absf(elapsed - _last_sky_time) >= 1.0 / 30.0 or absf(wet - _last_sky_rain) > 0.01 or absf(altitude_km - aerial_altitude_km) > 0.025
 			or absf(cave-cave_darkness) > .006 or below_water != underwater or absf(immersion - blend) > 0.012 or absf(coastal_view - sea_view) > 0.008):
 		underwater = below_water
 		immersion = blend
@@ -256,6 +268,12 @@ func update_weather(at: Vector3, elapsed: float, wet: float, repaired: bool,
 		_last_sky_time = elapsed
 		_last_sky_rain = wet
 		cave_darkness = cave
+		if altitude_km > 0.0 or aerial_altitude_km > 0.0:
+			sky_material.set_shader_parameter("altitude_km", altitude_km)
+			sky_material.set_shader_parameter("ground_origin_km", Vector2(at.x, at.z) * 0.001)
+			sky_material.set_shader_parameter("above_clouds", 1.0 - exposure)
+			sky_material.set_shader_parameter("ground_rain", ground_rain)
+		aerial_altitude_km = altitude_km
 		_update_sky(elapsed, wet)
 		sun.light_energy *= pow(1.0-cave,2)
 		moon.light_energy *= 1.0-cave

@@ -17,7 +17,7 @@ const base = new URL(process.env.COOP_BASE || 'http://localhost:' + (process.env
 const room = 'walk-' + Date.now().toString(36);
 const pageURL = base + '/coop/?room=' + room;
 const native = process.platform === 'darwin' && process.env.COOP_WEB_ONLY !== '1';
-const app = resolve(root, 'dist/coop-native/CooperCamp.app');
+const app = resolve(root, 'dist/coop-native/Cooper.app');
 const log = resolve(root, '.cache',room+'-mac.log');
 const manifest = JSON.parse(await readFile(resolve(root,'coop/world.json'),'utf8'));
 const evidenceDir = resolve(root,process.env.COOP_EVIDENCE_DIR||'evidence');

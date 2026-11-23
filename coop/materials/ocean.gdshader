@@ -108,7 +108,10 @@ void fragment() {
 		color = mix(color, salt, foam);
 		vec3 surface = color / max(opacity, 0.10);
 		float haze = smoothstep(mix(94.0, 48.0, rain_amount), mix(275.0, 214.0, rain_amount), distance_to_eye);
-		ALBEDO = mix(surface, sky_horizon.rgb, haze);
-		ALPHA = clamp(opacity + glint * 0.12, 0.0, 1.0) * smoothstep(0.012, 0.072, path);
+		// Above the coast the finite wave mesh merges into the sea in the aerial panorama.
+		float aerial = smoothstep(90.0, 710.0, toward_eye.y);
+		ALBEDO = mix(surface, sky_horizon.rgb, haze * (1.0 - aerial * 0.85));
+		ALPHA = clamp(opacity + glint * 0.12, 0.0, 1.0) * smoothstep(0.012, 0.072, path)
+			* mix(1.0, field_inside, aerial) * (1.0 - smoothstep(1800.0, 4100.0, toward_eye.y));
 	}
 }

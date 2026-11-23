@@ -1,8 +1,12 @@
-# 新窗口续接 · 2026-11-22
+# 新窗口续接 · 2026-11-23
 
 在项目根目录先读 [AGENTS.md](../AGENTS.md)。当前主线是 Godot 4.7.2 / GDScript，优先桌面浏览器，也有 Mac 发行版。
 
 ## 最新试玩
+
+项目已于 11 月 23 日暂停，本机网页和房间服务均已关闭。恢复时使用下方命令，网页入口为 5684，`pine` 房间将读取原存档 `.local-rooms/pine.json`。 [重启后进入营地](http://127.0.0.1:5684/coop/?room=pine)
+
+营地红色飞船可升到海拔 100 公里。看向停稳的飞船按 **E** 登机，按住**空格**爬升，松开悬停，按住 **C** 返航。 [飞船操作](coop.md#红色飞船与水中移动)
 
 按 **M** 选择「野猪林地」，可以在根影林径西侧观察野猪。听到踏蹄低吼后侧移躲开冲撞。取材后可在营火烤肉，或在营地木桌制作披肩、猎犬哨和铺盖卷。 [本机试玩](http://127.0.0.1:5684/coop/?room=pine) · [配方与操作](coop.md#林地野猪) · [双人游戏录像](../evidence/woodland-boar/forest-encounter.webm)
 
@@ -10,30 +14,25 @@
 
 5684 的西岸新增乐山大佛。在 **M** 键图册点击「外海小岛」会面向大佛，点击「乐山大佛」会到佛脚前的石滩。两种试玩包沿用同一房间和存档。[进入普通房间](http://127.0.0.1:5684/coop/?room=pine) · [海岸与实景](coast.md#外海小岛对岸的乐山大佛)
 
-常用的 **5684 / pine** 现已更新湖区住船和绵羊，继续使用 `.local-rooms/human-models` 的原存档。在 **M** 图册选择鹿鸣湖，栈台 **E** 上船、**F** 开船。可在船上走动、按住 **Control** 蹲进船篷、在床边按 **E** 睡下回血。营地可建绳床供玩家、同伴和俘虏轮用，每床一次一人。靠近湖水按 **F** 取水，栈台或船上用 **R**。湖岸草地看向绵羊按 **E** 剪毛。 [进入普通房间](http://127.0.0.1:5684/coop/?room=pine) · [湖区住船与绵羊](coop.md#湖区住船与绵羊)
+在 **M** 图册选择鹿鸣湖，栈台 **E** 上船、**F** 开船。可在船上走动、按住 **Control** 蹲进船篷、在床边按 **E** 睡下回血。营地可建绳床供玩家、同伴和俘虏轮用，每床一次一人。靠近湖水按 **F** 取水，栈台或船上用 **R**。湖岸草地看向绵羊按 **E** 剪毛。 [进入普通房间](http://127.0.0.1:5684/coop/?room=pine) · [湖区住船与绵羊](coop.md#湖区住船与绵羊)
 
 
-2026-11-21 的东部山地版已接入 5684 普通营地，沿用此前人形版的房间存档。按 **M** 可选根影林径、箭袋树花谷、层岩台地及两座矿口。也可以从木屋东边沿路牌出发。低头看腿脚、左键徒手连击、**V** 肩后视角均可继续使用。 [普通营地](http://127.0.0.1:5684/coop/?room=pine) · [徒手来袭者](http://127.0.0.1:5684/coop/?room=trail-encounter) · [东部山地与洞居营地](world-upgrade.md#东部山地与洞居营地)
+按 **M** 可选根影林径、箭袋树花谷、层岩台地及两座矿口。也可以从木屋东边沿路牌出发。低头看腿脚、左键徒手连击、**V** 肩后视角均可继续使用。 [普通营地](http://127.0.0.1:5684/coop/?room=pine) · [东部山地与洞居营地](world-upgrade.md#东部山地与洞居营地)
+
+需要重启时，在项目根目录运行下列命令。
 
 ```sh
 COOP_SITE_DIR=dist/coop COOP_PORT=5684 COOP_ROOM_PORT=5685 \
-  COOP_SAVE_DIR=.local-rooms/human-models npm run coop
+  COOP_SAVE_DIR=.local-rooms npm run coop
 ```
 
 Mac 版的九个地景分块随本次本机发行包提供。连接同一房间可运行下列命令。
 
 ```sh
-open -n dist/coop-native/CooperCamp.app --args -- --room=pine --url=ws://127.0.0.1:5684/room --zone-base=http://127.0.0.1:5684/coop/zones/
+open -n dist/coop-native/Cooper.app --args -- --room=pine --url=ws://127.0.0.1:5684/room --zone-base=http://127.0.0.1:5684/coop/zones/
 ```
 
-上一版 Web 合并包是 [5584 试玩](http://127.0.0.1:5584/coop/?room=pine)。Tab 打开新版背包、角色和图鉴。目击动物或获得鳄鱼肉会更新个人图鉴。启动进度在游戏就绪时完成。Esc 关闭当前界面，Shift+Esc 返回营地菜单。探索中鼠标解除锁定时，可点击画面继续。枪械击中头部会一击击杀，来袭者会分路撤出营地。此包的分块通过链接读取 `dist/coop-streamed-crown-20261120/zones`。 [图鉴与烹饪](camp-storage.md#野外图鉴) · [来袭者](wild-people.md)
-
-端口空闲时，从项目根目录重新启动。`pine` 沿用这个版本自己的本机房间与浏览器身份。
-
-```sh
-COOP_SITE_DIR=dist/coop-animal-combat COOP_PORT=5584 COOP_ROOM_PORT=5585 \
-  COOP_SAVE_DIR=.local-rooms/detail-preview npm run coop
-```
+Tab 打开新版背包、角色和图鉴。目击动物或获得鳄鱼肉会更新个人图鉴。启动进度在游戏就绪时完成。Esc 关闭当前界面，Shift+Esc 返回营地菜单。探索中鼠标解除锁定时，可点击画面继续。枪械击中头部会一击击杀，来袭者会分路撤出营地。旧的 Web 对照包通过链接读取 `dist/coop-streamed-crown-20261120/zones`。 [图鉴与烹饪](camp-storage.md#野外图鉴) · [来袭者](wild-people.md)
 
 图册版包括从鹿鸣湖无缝进入海湾、从礁线游到外海小岛、实拍岩壁材质、营地开局的三件武器和 **M** 键野外图册。图册的六处地标可直接传送，同房间可看见队友，个人标记会随身份及房间保存。滚轮和 **+ / −** 缩放，放大、缩小各有原创电子音。 [图册操作](field-atlas.md) · [海岸路线](coast.md) · [拾取与瞄准](wild-people.md#营地开局武器)
 
@@ -51,8 +50,6 @@ npm run coop:render:benchmark -- dist/coop-animal-combat dist/coop
 
 ## 本机清理与存档
 
-4173 的早期 A/B 服务和 4184 / 4185 的旧营地服务已关闭。旧导出包已清理，历史测量保存在 `evidence/`。当前房间使用 `.local-rooms/detail-preview/pine.json`。
-
-旧房间、测试存档和历次备份归档在 `.local-rooms/backups/retired-servers-20261121.qpbwbdaj/old-saves-and-service-logs.tar.gz`。归档保留工作区相对路径，可先解到单独目录找回指定房间。
+2026-11-23 已关闭原 4186、5584、5684 三套服务，清除本机旧房间存档、测试存档和两份旧备份。新服务使用 5684 提供网页与联机入口，5685 运行房间后端。新房间的存档是 `.local-rooms/pine.json`。
 
 [构建与运行手册](play.md) · [实玩测试与帧时基准](render-benchmark.md) · [主要验收记录](../evidence/)

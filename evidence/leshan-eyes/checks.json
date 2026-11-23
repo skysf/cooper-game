@@ -1,0 +1,57 @@
+{
+  "glbTriangles": 194693,
+  "previousGlbTriangles": 186083,
+  "face": {
+    "triangles": 53086,
+    "openEdges": 0,
+    "nonmanifoldEdges": 0,
+    "signedVolumeM3": 1009.11
+  },
+  "centralLidOpeningM": {
+    "previous": 0.49,
+    "revised": 0.8
+  },
+  "pupilDepthChangeM": {
+    "left": 0.458,
+    "right": 0.458
+  },
+  "maxSourceToGlbEyeSampleErrorM": 0.0003,
+  "glbBytes": 19038708,
+  "bakedMaterials": 2,
+  "bakedTextureSizes": {
+    "Monument normal": [
+      2048,
+      2048
+    ],
+    "Monument colour": [
+      2048,
+      2048
+    ],
+    "Feet and toenails normal": [
+      2048,
+      2048
+    ],
+    "Feet and toenails colour": [
+      2048,
+      2048
+    ]
+  },
+  "statueHeightM": 70.94,
+  "greatToenailsIdenticalToPrevious": true,
+  "coastPhysicsChecks": 19,
+  "islandBrowserPose": {
+    "x": -187.550003051758,
+    "y": 8.23870011113468,
+    "z": -57.0999984741211,
+    "yaw": -1.28443062944585,
+    "pitch": 0.225334259723063,
+    "swimming": false,
+    "day": "day"
+  },
+  "webRuntimeErrors": [],
+  "packagedFaceTriangles": {
+    "Web": 53086,
+    "macOS": 53086
+  },
+  "contactSha256": "ae8c10411ea123f72036f8d1530e41957cdc7d6e71dbf9e51f8c10c5190193e6"
+}

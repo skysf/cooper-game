@@ -1,7 +1,12 @@
 config_version=5
 
 [application]
-config/name="雨线营地"
+config/name="Cooper"
+; Preserve existing native identities and default room saves after the display-name change.
+config/use_custom_user_dir=true
+config/use_custom_user_dir.web=false
+config/custom_user_dir_name="Godot/app_userdata/雨线营地"
+config/custom_user_dir_name.linux="godot/app_userdata/雨线营地"
 run/main_scene="res://client.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 

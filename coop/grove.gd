@@ -180,7 +180,8 @@ func observe(focus: Vector3, forward: Vector3) -> String:
 			continue
 		var root: Node3D = tree.root
 		var offset := Vector2(root.position.x, root.position.z) - eye
-		var distance := offset.length_squared()
+		var tree_y := clampf(focus.y, root.position.y, root.position.y + float(tree.height))
+		var distance := offset.length_squared() + (focus.y - tree_y) ** 2
 		if distance >= nearest or offset.normalized().dot(facing) < 0.73:
 			continue
 		nearest = distance

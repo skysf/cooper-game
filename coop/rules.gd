@@ -13,6 +13,8 @@ const RAIN_RAMP := 15.0
 const RAIN_EASING := 101.0
 const RAIN_END := 119.0
 const WEATHER_CYCLE := 420.0
+const CLOUD_BASE_METRES := 1600.0
+const CLOUD_TOP_METRES := 4500.0
 
 const GRID_SIZE := 4.0
 
@@ -22,6 +24,9 @@ static func pair(value: Array) -> Vector2:
 static func rain_at(elapsed: float) -> float:
 	var phase := fposmod(elapsed, WEATHER_CYCLE)
 	return clampf((phase - RAIN_START) / RAIN_RAMP, 0.0, 1.0) * (1.0 - smoothstep(RAIN_EASING, RAIN_END, phase))
+
+static func rain_exposure(world_y: float) -> float:
+	return 1.0 - smoothstep(CLOUD_BASE_METRES, CLOUD_TOP_METRES, world_y - LakeLayout.water_y())
 
 # Index each obstacle in every overlapping cell, including the player's radius.
 static func collision_grid(obstacles: Array) -> Dictionary:

@@ -76,7 +76,7 @@ server.listen(port,lan?'0.0.0.0':'127.0.0.1',()=>{
   child=spawn(godot,['--headless','--path',gamePath,'--log-file',resolve(root,'.cache',port===4184?'coop-room.log':'coop-room-'+port+'.log'),'--script','res://server.gd','--','--port='+roomPort,'--save='+save],{stdio:['ignore','pipe','inherit']});
   child.stdout.on('data',chunk=>{
     if(!ready&&chunk.toString().includes('ROOM_SERVER_READY')){
-      ready=true;console.log('雨线营地 http://localhost:'+port+'/coop/　房间存档 '+save);
+      ready=true;console.log('Cooper http://localhost:'+port+'/coop/　房间存档 '+save);
       if(advertised)console.log('同网邀请 '+advertised+'/coop/?room=pine');
     }
   });
