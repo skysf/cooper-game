@@ -44,8 +44,11 @@ export async function recordSoftwareRoom(origin, room, token, scene, warmup) {
     const fixture = {welcome, initial: pinClock(initial, clock), roomClock: clock};
     if (scene.transition === 'repair') {
       send({t:'act', site:'repair'});
-      const notice = await waitFor(() => messages.get('notice'), 'repair acknowledgement');
-      assert.ok(notice.ok && notice.site === 'repair', 'The authoritative room did not repair the lamp');
+      const notice = await waitFor(() => {
+        const reply = messages.get('notice');
+        return reply?.site === 'repair' && reply;
+      }, 'repair acknowledgement');
+      assert.ok(notice.ok, 'The room rejected the repair: ' + notice.text);
       const repaired = await waitFor(() => messages.get('snapshot')?.quest?.repaired && messages.get('snapshot'), 'repaired snapshot');
       fixture.repair = [pinClock(repaired, clock), notice];
     }
