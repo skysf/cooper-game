@@ -1,6 +1,8 @@
 // Record production room replies quickly, then let offscreen WebGL consume them at its own pace.
 import assert from 'node:assert/strict';
 import {randomBytes} from 'node:crypto';
+import {mkdir, readdir, readFile, symlink, writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
 
 export const divePose = {maxY: -1.02, tolerance: 0.002};
 
@@ -76,6 +78,23 @@ export async function recordSoftwareRoom(origin, room, token, scene, warmup) {
   }
 }
 
+// Serve the timing shim from disk. Intercepting HTTP in Playwright also stalls
+// unrelated GLB requests behind the busy software renderer and disables caching.
+export async function prepareSoftwareSite(build, site) {
+  await mkdir(site);
+  const runtime = await readFile(resolve(build, 'index.js'), 'utf8');
+  const clock = /var _emscripten_get_now\s*=\s*\(\)\s*=>\s*performance\.now\(\)/;
+  assert.ok(clock.test(runtime), 'Software capture could not find the pinned Godot runtime clock');
+  await writeFile(resolve(site, 'index.js'), runtime.replace(clock,
+    'var _emscripten_get_now=()=>window.coopFixtureClock()'));
+  for (const file of await readdir(build)) {
+    if (file !== 'index.js' && file !== 'index.js.gz') {
+      await symlink(resolve(build, file), resolve(site, file));
+    }
+  }
+  return site;
+}
+
 export async function installSoftwareRoomReplay(context, fixtures) {
   // The rasterizer may take several wall-clock seconds per frame. Advance only
   // the game runtime's monotonic clock with displayed frames. Browser frame
@@ -91,17 +110,6 @@ export async function installSoftwareRoomReplay(context, fixtures) {
     window.coopFixtureClock = () => time;
     window.coopFixtureSetStep = frameSeconds => { step = frameSeconds * 1000; };
     requestFrame(advance);
-  });
-  await context.route(url => url.pathname === '/coop/index.js', async route => {
-    const response = await route.fetch();
-    const runtime = await response.text();
-    const clock = /var _emscripten_get_now\s*=\s*\(\)\s*=>\s*performance\.now\(\)/;
-    if (!response.ok() || !clock.test(runtime)) {
-      await route.fulfill({status: 502, body: 'Software capture could not find the pinned Godot runtime clock'});
-      return;
-    }
-    await route.fulfill({contentType: 'text/javascript',
-      body: runtime.replace(clock, 'var _emscripten_get_now=()=>window.coopFixtureClock()')});
   });
   await context.routeWebSocket(url => url.pathname === '/room', socket => {
     let fixture;

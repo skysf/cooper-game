@@ -11,7 +11,7 @@ import {chromium} from 'playwright';
 import {benchmarkWindowPosition, browserTestOptions, clickCanvasPoint, enterCamp, focusWindow,
   hardwareForegroundRequested, macScreenLocked, prepareOffscreenPage, stageOffscreenControls} from './coop-browser-controls.mjs';
 import {captureBlankRaf, installFrameCapture, intervals} from './coop-frame-capture.mjs';
-import {divePose, installSoftwareRoomReplay, recordSoftwareRoom} from './coop-render-fixtures.mjs';
+import {divePose, installSoftwareRoomReplay, prepareSoftwareSite, recordSoftwareRoom} from './coop-render-fixtures.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const output = resolve(process.env.COOP_BENCH_OUT || '.cache/coop-render-benchmark');
@@ -152,7 +152,8 @@ try {
   const servers = await Promise.all(builds.map(async ([label, directory], index) => {
     const saves = resolve(scratch, label);
     await mkdir(saves);
-    const origin = await startService(directory, saves, basePort + index * 2, services);
+    const site = software ? await prepareSoftwareSite(directory, resolve(scratch, 'site-' + label)) : directory;
+    const origin = await startService(site, saves, basePort + index * 2, services);
     return {label, directory: resolve(directory), saves, origin};
   }));
   if (unthrottled) browserOptions.args.push('--disable-frame-rate-limit', '--disable-gpu-vsync');
