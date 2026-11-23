@@ -79,7 +79,7 @@ async function startService(directory, saves, port, services) {
   const origin = 'http://127.0.0.1:' + port;
   let diagnostics = '';
   for (const stream of [child.stderr, child.stdout]) stream.on('data', text => { diagnostics += text; });
-  const limit = Date.now() + 16000;
+  const limit = Date.now() + (software ? 30000 : 16000);
   while (Date.now() < limit && child.exitCode === null) {
     const status = await fetch(origin + '/health').then(response => response.json()).catch(() => null);
     if (status?.game === 'cooper-camp' && status.ready && diagnostics.includes(saves)) return origin;
@@ -105,8 +105,12 @@ async function aim(page, scene) {
 }
 
 async function canvasScreenshot(page, file) {
-  const clip = await page.locator('#canvas').boundingBox();
-  await page.screenshot({path: resolve(output, file), clip, timeout: software ? 60000 : 30000});
+  const clip = await page.evaluate(() => {
+    const {x, y, width, height} = document.getElementById('canvas').getBoundingClientRect();
+    return {x, y, width, height};
+  });
+  assert.ok(clip.width > 0 && clip.height > 0, 'Missing game canvas');
+  await page.screenshot({path: resolve(output, file), clip, timeout: software ? interactionTimeout : 30000});
 }
 
 async function gamePackageSha(directory) {
@@ -165,6 +169,7 @@ try {
     ({label, directory, pckSha256: await gamePackageSha(directory)})));
   const context = await browser.newContext({viewport, deviceScaleFactor: 1});
   if (software) {
+    context.setDefaultTimeout(interactionTimeout);
     await installSoftwareRoomReplay(context, softwareFixtures);
     report.softwareFixture = 'Production room replies and a frame-stepped Godot clock. Browser frame intervals remain real wall time.';
   }

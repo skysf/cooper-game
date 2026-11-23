@@ -22,40 +22,217 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: cooper-render-${{ github.ref }}-${{ inputs.hardware && 'gpu' || 'visual' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  benchmark:
-    name: ${{ inputs.hardware && 'Apple M1 frame timing and visuals' || 'SwiftShader visual A/B' }}
-    if: github.event_name != 'workflow_dispatch' || !inputs.hardware || github.ref == 'refs/heads/main'
-    runs-on: ${{ inputs.hardware && fromJSON('["self-hosted","macOS","ARM64","cooper-render-gpu"]') || 'ubuntu-24.04' }}
+  plan:
+    name: Select render comparison
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+      reference: ${{ steps.plan.outputs.reference }}
+      tree: ${{ steps.plan.outputs.tree }}
+      proof: ${{ steps.plan.outputs.proof }}
+      source: ${{ steps.plan.outputs.source }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+          sparse-checkout: scripts
+          persist-credentials: false
+      - id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HARDWARE: ${{ inputs.hardware || false }}
+          REQUESTED_REFERENCE: ${{ inputs.reference_sha || vars.COOP_APPROVED_RENDER_SHA }}
+        run: node scripts/coop-render-plan.mjs
+
+  builds:
+    name: Export ${{ matrix.version }}
+    needs: plan
+    if: needs.plan.outputs.mode == 'full'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [before, after]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout: scripts
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ matrix.version == 'before' && needs.plan.outputs.reference || github.sha }}
+          path: game
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install pinned Godot and export template
+        run: |
+          python3 -m pip install numpy Pillow
+          bash scripts/install-ci-godot.sh
+          python3 scripts/godot-templates.py web
+          mkdir -p game/.cache
+          ln -s "$GITHUB_WORKSPACE/.cache/templates" game/.cache/templates
+      - name: Export the release
+        working-directory: game
+        run: |
+          npm ci
+          npm run coop:build:web
+      - name: Pack the release for the scene workers
+        working-directory: game
+        env:
+          VERSION: ${{ matrix.version }}
+        run: |
+          tar --exclude='*.gz' -cf "$RUNNER_TEMP/site.tar" dist/coop
+          if [[ "$VERSION" == after ]]; then
+            find coop -name .godot -prune -o -type f \( -name '*.gd' -o -name '*.json' -o -name '*.bin' -o -name project.godot \) -print0 |
+              tar --append --file="$RUNNER_TEMP/site.tar" --null --files-from=-
+          fi
+      - uses: actions/upload-artifact@v6
+        with:
+          name: cooper-build-${{ matrix.version }}
+          path: ${{ runner.temp }}/site.tar
+          compression-level: 1
+          retention-days: 1
+          overwrite: true
+          if-no-files-found: error
+
+  scenes:
+    name: Compare ${{ matrix.group }}
+    needs: builds
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {group: lake, scenes: lake}
+          - {group: lamp, scenes: lamp}
+          - {group: inventory, scenes: 'inventory,equipment'}
+    env:
+      COOP_BENCH_OUT: .cache/render-ci
+      COOP_BENCH_SCENES: ${{ matrix.scenes }}
+      COOP_BENCH_HEADLESS: '1'
+      COOP_BENCH_SOFTWARE: '1'
+      COOP_BENCH_WARMUP: '8'
+      COOP_BENCH_SECONDS: '5'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout: scripts
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install the renderer and comparison tools
+        run: |
+          npm ci
+          python3 -m pip install numpy Pillow
+          bash scripts/install-ci-godot.sh
+          npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: cooper-build-*
+          path: ${{ runner.temp }}/cooper-builds
+      - name: Unpack the two releases and the candidate room data
+        run: |
+          mkdir -p .cache/render-reference
+          tar -xf "$RUNNER_TEMP/cooper-builds/cooper-build-before/site.tar" -C .cache/render-reference
+          tar -xf "$RUNNER_TEMP/cooper-builds/cooper-build-after/site.tar"
+      - name: Verify the scoring rules
+        if: matrix.group == 'lake'
+        run: npm run coop:render:test
+      - name: Capture and compare both versions on this runner
+        run: |
+          capture_status=0
+          npm run coop:render:benchmark -- .cache/render-reference/dist/coop dist/coop || capture_status=$?
+          npm run coop:render:score -- "$COOP_BENCH_OUT/render-benchmark.json" --require-software --scenes "$COOP_BENCH_SCENES"
+          exit "$capture_status"
+      - uses: actions/upload-artifact@v6
+        if: ${{ !cancelled() }}
+        with:
+          name: cooper-render-${{ matrix.group }}
+          path: |
+            .cache/render-ci/*.json
+            .cache/render-ci/*.png
+          include-hidden-files: true
+          if-no-files-found: warn
+          overwrite: true
+          retention-days: 14
+
+  visual:
+    name: SwiftShader visual A/B
+    needs: [plan, builds, scenes]
+    if: ${{ always() && !cancelled() && !inputs.hardware }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Verify the comparison result
+        env:
+          PLAN_RESULT: ${{ needs.plan.result }}
+          MODE: ${{ needs.plan.outputs.mode }}
+          BUILDS: ${{ needs.builds.result }}
+          SCENES: ${{ needs.scenes.result }}
+          SOURCE: ${{ needs.plan.outputs.source }}
+          TREE: ${{ needs.plan.outputs.tree }}
+          REFERENCE: ${{ needs.plan.outputs.reference }}
+        run: |
+          [[ "$PLAN_RESULT" == success ]] || exit 1
+          case "$MODE" in
+            full)
+              [[ "$BUILDS" == success && "$SCENES" == success ]] || exit 1
+              echo 'Lake, lamp, inventory and equipment passed at 1280 × 720.' >> "$GITHUB_STEP_SUMMARY"
+              printf '%s\n' "$TREE" "$REFERENCE" "$GITHUB_RUN_ID" > "$RUNNER_TEMP/compared.txt"
+              ;;
+            reuse) echo "Verified the same game tree and reference in [the merged PR comparison]($SOURCE)." >> "$GITHUB_STEP_SUMMARY" ;;
+            docs) echo 'Only documentation or screenshots under evidence/ changed.' >> "$GITHUB_STEP_SUMMARY" ;;
+            *) exit 1 ;;
+          esac
+      - name: Record the tested PR tree and reference
+        if: github.event_name == 'pull_request' && needs.plan.outputs.mode == 'full'
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ needs.plan.outputs.proof }}
+          path: ${{ runner.temp }}/compared.txt
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  hardware:
+    name: Apple M1 frame timing and visuals
+    needs: plan
+    if: needs.plan.outputs.mode == 'hardware' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, macOS, ARM64, cooper-render-gpu]
     timeout-minutes: 75
-    concurrency:
-      group: ${{ inputs.hardware && 'cooper-m1-display' || format('cooper-visual-{0}', github.ref) }}
-      cancel-in-progress: false
     env:
       COOP_BENCH_OUT: .cache/render-ci
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 2
           persist-credentials: false
-      - name: Identify immutable reference
-        id: reference
-        env:
-          REQUESTED_REFERENCE: ${{ inputs.reference_sha || vars.COOP_APPROVED_RENDER_SHA || github.event.pull_request.base.sha || github.event.before }}
-        shell: bash
-        run: |
-          reference="$REQUESTED_REFERENCE"
-          if [[ -z "$reference" || "$reference" == 0000000000000000000000000000000000000000 ]]; then
-            reference=$(git rev-parse --verify HEAD^ 2>/dev/null || true)
-          fi
-          if [[ ! "$reference" =~ ^[a-fA-F0-9]{40}$ || "$reference" == "$GITHUB_SHA" ]]; then
-            echo '::error title=Invalid render environment::No distinct baseline commit is available. Select a reviewed reference SHA when dispatching the workflow.'
-            exit 2
-          fi
-          echo "sha=$reference" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v6
         with:
-          ref: ${{ steps.reference.outputs.sha }}
+          ref: ${{ needs.plan.outputs.reference }}
           path: .cache/render-reference
           persist-credentials: false
       - uses: actions/setup-node@v6
@@ -65,41 +242,18 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - name: Install test and build tools
+      - name: Prepare the hardware comparison
         run: |
           npm ci
           python3 -m pip install numpy Pillow
           bash scripts/install-ci-godot.sh
-      - name: Install the pinned Chromium build
-        if: ${{ !inputs.hardware }}
-        run: npx playwright install --with-deps chromium
-      - name: Verify that the gate rejects corrupt images and slow frame sequences
-        run: npm run coop:render:test
-      - name: Export candidate game
-        run: npm run coop:build:web
-      - name: Export reference game
-        working-directory: .cache/render-reference
-        shell: bash
-        run: |
+          npm run coop:render:test
+          npm run coop:build:web
+          cd .cache/render-reference
           mkdir -p .cache
           ln -s "$GITHUB_WORKSPACE/.cache/templates" .cache/templates
           npm run coop:build:web
-      - name: Capture and compare the software rasterized scenes
-        if: ${{ !inputs.hardware }}
-        env:
-          COOP_BENCH_SCENES: lake,lamp,inventory,equipment
-          COOP_BENCH_HEADLESS: '1'
-          COOP_BENCH_SOFTWARE: '1'
-          COOP_BENCH_WARMUP: '8'
-          COOP_BENCH_SECONDS: '5'
-        shell: bash
-        run: |
-          capture_status=0
-          npm run coop:render:benchmark -- .cache/render-reference/dist/coop dist/coop || capture_status=$?
-          npm run coop:render:score -- "$COOP_BENCH_OUT/render-benchmark.json" --require-software --scenes "$COOP_BENCH_SCENES"
-          exit "$capture_status"
       - name: Capture and score Apple M1 hardware frame timing
-        if: ${{ inputs.hardware }}
         env:
           COOP_HARDWARE_FOREGROUND: '1'
           COOP_BENCH_HEADLESS: '0'
@@ -108,7 +262,6 @@ jobs:
           COOP_BENCH_WINDOW_Y: ${{ vars.COOP_RENDER_WINDOW_Y || '40' }}
           COOP_BENCH_SCENES: ${{ inputs.hardware_scenes }}
           COOP_BENCH_SECONDS: '8'
-        shell: bash
         run: |
           capture_status=0
           flight_status=0
@@ -124,11 +277,10 @@ jobs:
           npm run coop:render:score -- "$COOP_BENCH_OUT/render-benchmark.json" --mode hardware --scenes "$COOP_BENCH_SCENES" --flight "$COOP_BENCH_OUT/flight-web.json"
           if [[ "$flight_status" != '0' ]]; then exit "$flight_status"; fi
           exit "$capture_status"
-      - name: Upload canvas pairs, visual differences and frame samples
+      - uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v6
         with:
-          name: ${{ inputs.hardware && 'cooper-render-m1' || 'cooper-render-visual' }}
+          name: cooper-render-m1
           path: |
             .cache/render-ci/*.json
             .cache/render-ci/*.png

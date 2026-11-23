@@ -16,7 +16,7 @@
     "coop:native": "node scripts/open-camp.mjs",
     "coop:render:benchmark": "node scripts/coop-render-benchmark.mjs",
     "coop:render:score": "python3 scripts/coop-render-score.py",
-    "coop:render:test": "node --test scripts/test-coop-browser-controls.mjs && python3 scripts/test-coop-render-score.py",
+    "coop:render:test": "node --test scripts/test-coop-browser-controls.mjs scripts/test-coop-render-plan.mjs && python3 scripts/test-coop-render-score.py",
     "coop:test": "node scripts/coop-room-test.mjs",
     "coop:lan": "node scripts/coop-serve.mjs --lan",
     "coop:test:wild": "node scripts/coop-wild-people-test.mjs",

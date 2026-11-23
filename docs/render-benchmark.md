@@ -76,7 +76,11 @@ npm run coop:render:score -- .cache/coop-render-benchmark/render-benchmark.json 
 
 ## CI
 
-推送到主分支或创建 PR 时，工作流分别构建参考提交和候选提交，在同一版 Chromium 与 SwiftShader 中比较画面。可将已认可的美术版本的完整提交 SHA 填入仓库变量 `COOP_APPROVED_RENDER_SHA`，后续多个小改动都与同一版比较。未配置变量时采用 PR 基底或本次推送前的提交。手动运行时的 `reference_sha` 优先级最高。刻意改美术时先审阅目标机位及差分图，再更新变量。[CI 工作流](../.github/workflows/coop-render.yml)
+普通 PR 的参考版和候选版分别在两台 Linux 运行器上同时构建。湖岸、营灯、背包与装备分为三组并行，每组在同一台机器上打开两个版本，以相同 Chromium 和 SwiftShader 对比 1280 × 720 画面。背包与装备共用已经打开的角色窗口。构建中转包保留一天，每组的截图、差分图及原始采样保留十四天。详细结果在 GitHub Actions 的 `SwiftShader visual A/B` 检查中。[CI 工作流](../.github/workflows/coop-render.yml)
+
+合并到主分支时，CI 会查找已合并 PR 的成功记录，同时核对 PR 编号、最终文件树和参考提交。三者全部一致时，检查摘要会链接到原始对照。缺少记录、记录已过期、参考版本改变或合并修改了文件时，会重新完整比较。只改 README、项目说明、文档或验收截图的提交走快速检查。手动运行始终执行所选的完整比较。
+
+可将已认可的美术版本的完整提交 SHA 填入仓库变量 `COOP_APPROVED_RENDER_SHA`，后续多个小改动都与同一版比较。未配置变量时采用 PR 基底或本次推送前的提交。手动运行时的 `reference_sha` 优先级最高。刻意改美术时先审阅目标机位及差分图，再更新变量。
 
 本机 SwiftShader 复验中，湖岸水面与三栏背包的有意改版触发了画质复核，油灯点亮通过比较。[评分](../evidence/render-ci/render-score.json) · [湖岸差分](../evidence/render-ci/diff-lake.png) · [背包差分](../evidence/render-ci/diff-inventory.png)
 
