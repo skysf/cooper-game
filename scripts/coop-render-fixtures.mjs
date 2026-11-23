@@ -78,8 +78,29 @@ export async function recordSoftwareRoom(origin, room, token, scene, warmup) {
   }
 }
 
-// Serve the timing shim from disk. Intercepting HTTP in Playwright also stalls
-// unrelated GLB requests behind the busy software renderer and disables caching.
+// Runs in the browser before Godot starts compiling shaders on the CPU. Use the
+// release's own fetcher and its real timeout for each file. Godot still parses
+// and installs the exact downloaded model when the chunk enters its streaming range.
+async function warmZoneDownloads(files) {
+  const join = window.CooperJoin;
+  if (!join.fetchZone) return; // Older releases stream through Godot itself.
+  const fetchZone = join.fetchZone.bind(join);
+  const tickets = new Map();
+  await Promise.all(files.map(async file => {
+    const url = new URL(file, join.zoneBase).href;
+    const ticket = fetchZone(url);
+    while (!ticket.done) await new Promise(done => setTimeout(done, 25));
+    if (ticket.error || !ticket.bytes?.byteLength) throw Error('Cannot load ' + url + ': ' + ticket.error);
+    tickets.set(url, ticket);
+  }));
+  join.fetchZone = url => {
+    const ticket = tickets.get(url);
+    if (!ticket) return fetchZone(url);
+    tickets.delete(url);
+    return ticket;
+  };
+}
+
 export async function prepareSoftwareSite(build, site) {
   await mkdir(site);
   const runtime = await readFile(resolve(build, 'index.js'), 'utf8');
@@ -87,8 +108,15 @@ export async function prepareSoftwareSite(build, site) {
   assert.ok(clock.test(runtime), 'Software capture could not find the pinned Godot runtime clock');
   await writeFile(resolve(site, 'index.js'), runtime.replace(clock,
     'var _emscripten_get_now=()=>window.coopFixtureClock()'));
+  const html = await readFile(resolve(build, 'index.html'), 'utf8');
+  const start = 'await new Engine(config).startGame()';
+  assert.ok(html.includes(start), 'Cannot find the game startup in the release HTML');
+  const zones = (await readdir(resolve(build, 'zones'))).filter(file => file.endsWith('.glb'));
+  assert.ok(zones.length, 'The release has no streamed map chunks');
+  await writeFile(resolve(site, 'index.html'), html.replace(start,
+    () => `await (${warmZoneDownloads.toString()})(${JSON.stringify(zones)}); ${start}`));
   for (const file of await readdir(build)) {
-    if (file !== 'index.js' && file !== 'index.js.gz') {
+    if (!['index.js', 'index.js.gz', 'index.html', 'index.html.gz'].includes(file)) {
       await symlink(resolve(build, file), resolve(site, file));
     }
   }
